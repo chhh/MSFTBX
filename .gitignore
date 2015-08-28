@@ -1,0 +1,14 @@
+**/nbproject/private/
+**/build/
+**/nbbuild/
+**/dist/
+**/nbdist/
+**/nbactions.xml
+**/nb-configuration.xml
+**/out/
+
+**/_unused
+
+**/.idea/workspace.xml
+**/.idea/tasks.xml
+**/.idea/dictionaries

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://www.netbeans.org/ns/project/1">
+    <type>org.netbeans.modules.apisupport.project</type>
+    <configuration>
+        <data xmlns="http://www.netbeans.org/ns/nb-module-project/3">
+            <code-name-base>umich.ms.msfiletoolbox</code-name-base>
+            <suite-component/>
+            <module-dependencies>
+                <dependency>
+                    <code-name-base>umich.ms.msfiletoolbox.libs</code-name-base>
+                    <build-prerequisite/>
+                    <compile-dependency/>
+                    <run-dependency>
+                        <specification-version>1.0</specification-version>
+                    </run-dependency>
+                </dependency>
+            </module-dependencies>
+            <public-packages>
+                <package>umich.ms.datatypes</package>
+                <package>umich.ms.datatypes.index</package>
+                <package>umich.ms.datatypes.index.impl</package>
+                <package>umich.ms.datatypes.lcmsrun</package>
+                <package>umich.ms.datatypes.scan</package>
+                <package>umich.ms.datatypes.scan.impl</package>
+                <package>umich.ms.datatypes.scan.props</package>
+                <package>umich.ms.datatypes.scancollection</package>
+                <package>umich.ms.datatypes.scancollection.impl</package>
+                <package>umich.ms.datatypes.spectrum</package>
+                <package>umich.ms.datatypes.spectrum.impl</package>
+                <package>umich.ms.fileio</package>
+                <package>umich.ms.fileio.exceptions</package>
+                <package>umich.ms.fileio.filetypes</package>
+                <package>umich.ms.fileio.filetypes.mzml</package>
+                <package>umich.ms.fileio.filetypes.mzxml</package>
+                <package>umich.ms.fileio.filetypes.util</package>
+                <package>umich.ms.fileio.filetypes.xmlbased</package>
+                <package>umich.ms.util</package>
+                <package>umich.ms.util.base64</package>
+            </public-packages>
+        </data>
+    </configuration>
+</project>

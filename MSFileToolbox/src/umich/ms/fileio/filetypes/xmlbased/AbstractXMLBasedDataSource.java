@@ -1,0 +1,864 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package umich.ms.fileio.filetypes.xmlbased;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.RandomAccessFile;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.Map;
+import java.util.NavigableMap;
+import java.util.Set;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+import javolution.xml.internal.stream.XMLStreamReaderImpl;
+import org.apache.commons.pool2.ObjectPool;
+import org.apache.commons.pool2.impl.SoftReferenceObjectPool;
+import umich.ms.datatypes.LCMSDataSubset;
+import umich.ms.datatypes.index.Index;
+import umich.ms.datatypes.lcmsrun.LCMSRunInfo;
+import umich.ms.datatypes.scan.IScan;
+import umich.ms.datatypes.spectrum.ISpectrum;
+import umich.ms.fileio.exceptions.FileParsingException;
+import umich.ms.fileio.filetypes.AbstractLCMSDataSource;
+import umich.ms.fileio.filetypes.util.MultiSpectraParser;
+import umich.ms.util.ByteArrayHolder;
+import umich.ms.util.PooledByteArrayHolders;
+
+/**
+ * @param <I> the type of index
+ * @param <E> The type of elements in the index
+ *
+ * @author Dmitry Avtonomov
+ */
+public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement, I extends Index<E>> extends AbstractLCMSDataSource<I> {
+    /** 1024 bytes - the minimum size, that an index builder should assign to workers. */
+    private final int INDEX_BUILDER_MIN_READ_SIZE = 1 << 10;
+//    private final int INDEX_BUILDER_MIN_READ_SIZE = 1000;
+    /** 512 byte overlaps between readers. */
+    private final int INDEX_BUILDER_MIN_OVERLAP = 1 << 9;
+//    private final int INDEX_BUILDER_MIN_OVERLAP = 500;
+    /** 8MB read buffer. */
+    private final int INDEX_BUILDER_READ_BUF_SIZE = 1 << 23;
+//    private final int INDEX_BUILDER_READ_BUF_SIZE = 1000000;
+    protected transient ObjectPool<XMLStreamReaderImpl> readerPool = instantiateReaderPool();
+    // TODO: WARNING: ACHTUNG: remove this field, was here for testing
+    public volatile long time_reading = 0;
+
+    public AbstractXMLBasedDataSource(String path) {
+        super(path);
+    }
+
+    @Override
+    public String getName() {
+        return getPath();
+    }
+
+    @Override
+    public void releaseMemory() {
+        runInfo = null;
+        readerPool.close();
+        readerPool = instantiateReaderPool();
+        releaseResources();
+        System.gc(); // it's up to JVM to decide if the memory should be actually freed
+    }
+
+    /**
+     * This method will be called by {@link #releaseMemory()} in addition to cleaning up resources,
+     * used by this abstract implementation.
+     * Clean up here anything additional, that your subclass has created, such as a file-type-specific index.
+     */
+    protected abstract void releaseResources();
+
+    protected ObjectPool<XMLStreamReaderImpl> instantiateReaderPool() {
+        return new SoftReferenceObjectPool<>(new XMLStreamReaderFactory());
+    }
+
+   
+
+    
+    //    /**
+    //     * <b>You probably don't need that method</b>, it parses the spectra indexes (where in the file each
+    //     * spectrumRef description starts and ends).<br/>
+    //     * It will be called automatically for you if you call parsing methods that don't take an index as input.<br/>
+    //     * The index will not be stored in this MZXMLFile instance, if you want caching to work, just call {@link #fetchIndex()}.
+    //     * @return TreeMap, keys: spectrumRef number, vals: byte offset from the beginning of the file where this spectrumRef
+    //     * starts. The last element of this map holds the end position of the last spectrumRef.
+    //     * @throws umich.ms.fileio.exceptions.FileParsingException
+    //     */
+    //    public TreeMap<Integer, OffsetLength> parseIndex() throws FileParsingException {
+    //        MZXMLIndexParser parser = new MZXMLIndexParser(this);
+    //        TreeMap<Integer, OffsetLength> idx = parser.parse();
+    //        return idx;
+    //    }
+    @Override
+    public List<IScan> parse(LCMSDataSubset subset) throws FileParsingException {
+        Integer fromNum = subset.getScanNumLo();
+        Integer toNum = subset.getScanNumHi();
+        Set<Integer> msLevelsToParseSpectra = subset.getMsLvls();
+        I idx = fetchIndex(); // make sure, that the index is parsed
+        LCMSRunInfo inf = fetchRunInfo(); // make sure we have the runInfo
+        // figure out which scans are to be read
+        NavigableMap<Integer, E> subIndex;
+        NavigableMap<Integer, E> idxMap = idx.getMapByNum();
+        if (fromNum == null && toNum == null) {
+            subIndex = idxMap;
+        } else {
+            if (fromNum == null) {
+                fromNum = idxMap.firstKey();
+            } else {
+                fromNum = idxMap.ceilingKey(fromNum);
+            }
+            if (toNum == null) {
+                toNum = idxMap.lastKey();
+            } else {
+                toNum = idxMap.floorKey(toNum);
+            }
+            subIndex = idxMap.subMap(fromNum, true, toNum, true);
+        }
+        if (subIndex.size() == 0) {
+            throw new FileParsingException("The run does not contain any spectra in the number range you provided!");
+        }
+        List<IScan> scans = new ArrayList<>(subIndex.size());
+        int numWorkers = getNumThreadsForParsing();
+        int numSpectraPerWorker = getTasksPerCpuPerBatch();
+        ExecutorService exec = Executors.newFixedThreadPool(numWorkers);
+
+        Set<? extends Map.Entry<Integer, ? extends XMLBasedIndexElement>> entrySet = subIndex.entrySet();
+        Iterator<? extends Map.Entry<Integer, ? extends XMLBasedIndexElement>> idxEntriesIter = entrySet.iterator();
+
+        // this is the main read buffer
+        int readLen = 1 << 18; // 256k default read buffer size
+        byte[] readBuf1 = new byte[readLen];
+        // this is the second read buffer, used for reads, while threads are parsing the previous batch
+        byte[] readBuf2 = new byte[readLen];
+        try {
+            RandomAccessFile raf = this.getRandomAccessFile();
+            ArrayList<OffsetLength> readTasks = null;
+            do {
+                // This is needed for cancellable tasks
+                if (Thread.interrupted()) {
+                    throw new FileParsingException("Thread interrupted, parsing was cancelled.");
+                }
+                // check if we have read something in the previous iteration, if we did, then use the 2nd read buffer
+                if (readTasks != null && !readTasks.isEmpty()) {
+                    // if we did read something on the previous iteration before submitting parsing tasks, use it
+                    // just flip buffers
+                    byte[] readBufTmp = readBuf1;
+                    readBuf1 = readBuf2;
+                    readBuf2 = readBufTmp;
+                } else {
+                    // figure out which spectra to read in this batch and read them
+                    int maxScansToReadInBatch = numWorkers * numSpectraPerWorker;
+                    readTasks = new ArrayList<>(maxScansToReadInBatch);
+                    readBuf1 = readContinuousBatchOfSpectra(idxEntriesIter, raf, readBuf1, readTasks, maxScansToReadInBatch);
+                }
+                // distribute the spectra between workers
+                int[] workerScanCounts = distributeParseLoad(numWorkers, readTasks);
+                // submit the tasks to executor service
+                ArrayList<Future<List<IScan>>> parseTasks = submitParseTasks(subset, runInfo, numWorkers, exec, readBuf1, readTasks, workerScanCounts, true);
+                // before blocking on waiting for the parsing tasks to complete,
+                // initiate another read
+                // figure out which spectra to read in this batch and read them
+                int maxScansToReadInBatch = numWorkers * numSpectraPerWorker;
+                readTasks = new ArrayList<>(maxScansToReadInBatch);
+                if (idxEntriesIter.hasNext()) {
+                    readBuf2 = readContinuousBatchOfSpectra(idxEntriesIter, raf, readBuf2, readTasks, maxScansToReadInBatch);
+                }
+                // block and wait for all the parsers to finish, at this point
+                // we already have the next chunk read-in while the parsers were busy
+                for (Future<List<IScan>> parseTask : parseTasks) {
+                    try {
+                        List<IScan> parsedScans = parseTask.get(getParsingTimeout(), TimeUnit.SECONDS);
+                        if (parsedScans != null) {
+                            for (IScan scan : parsedScans) {
+                                scans.add(scan);
+                            }
+                        }
+                    } catch (InterruptedException | TimeoutException | ExecutionException | NullPointerException e) {
+                        throw new FileParsingException(e);
+                    }
+                }
+            } while (idxEntriesIter.hasNext() || !readTasks.isEmpty());
+            this.close();
+        } catch (IOException ex) {
+            throw new FileParsingException(ex);
+        } finally {
+            this.close();
+            exec.shutdown();
+        }
+        // wait for the executor pool to shut down
+        try {
+            exec.awaitTermination(getParsingTimeout(), TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            throw new FileParsingException(String.format("Executor pool failed to shut down in %d sec!", getParsingTimeout()), e);
+        }
+        return scans;
+    }
+
+    protected int[] distributeParseLoad(int numWorkers, ArrayList<OffsetLength> readTasks) {
+        int[] workerScanCounts = new int[numWorkers];
+        Arrays.fill(workerScanCounts, readTasks.size() / numWorkers);
+        int leftoverScans = readTasks.size() % numWorkers;
+        for (int i = 0; i < leftoverScans; i++) {
+            workerScanCounts[i]++;
+        }
+        return workerScanCounts;
+    }
+
+    /**
+     * The index as it is built by index builder contains offsets of "scan" tags, and their lengths. This leaves a gap
+     * between spectra (there might be spaces, newlines and tabs), so if you read a file like that with MzML parser,
+     * it will do lot's of small reads, because it will have to skip those gaps. It's faster to read the file including
+     * those gaps, so we'll be fixing the initially-built "proper" index, to one, that has lengths of spectra spanning
+     * from the beginning of one spectrum tag, to the beginning of the next one.
+     * @param idx
+     */
+    protected I fixIndex(I idx) {
+        if (idx.size() < 2) {
+            return idx;
+        }
+        NavigableMap<Integer, E> map = idx.getMapByNum();
+        Set<? extends Map.Entry<Integer, E>> entries = map.entrySet();
+        Iterator<? extends Map.Entry<Integer, E>> it = entries.iterator();
+
+        // we have at least 2 elements in the iterator
+        Map.Entry<Integer, E> curr, next;
+        OffsetLength currOfflen, nextOfflen;
+        curr = it.next();
+        while (it.hasNext()) {
+            next = it.next();
+            currOfflen = curr.getValue().getOffsetLength();
+            nextOfflen = next.getValue().getOffsetLength();
+            curr.getValue().setOffsetLength(new OffsetLength(currOfflen.offset, (int)(nextOfflen.offset - currOfflen.offset)));
+            curr = next;
+        }
+        return idx;
+    }
+
+    protected ArrayList<Future<List<IScan>>> submitParseTasks(LCMSDataSubset subset, LCMSRunInfo info, int numWorkers, ExecutorService exec, byte[] readBuf1, ArrayList<OffsetLength> readTasks, int[] workerScanCounts, boolean areScansContinuous) {
+        ArrayList<Future<List<IScan>>> parseTasks = new ArrayList<>(numWorkers);
+        int numSpectraAssignedForParsing = 0;
+        long baseOffset = readTasks.get(0).offset; // this is the offset of the smallest scan num we've read
+        int offsetInReadBufForCurWorker = 0;
+        for (int thisWorkerScanCount : workerScanCounts) {
+            if (thisWorkerScanCount == 0) {
+                // it means this worker has nothing to parse, so will all other workers, no need to continue
+                break;
+            }
+            // calculate the positions in the read byte[] which should be submitted for this worker
+            int readTaskLoNum = numSpectraAssignedForParsing;
+            int readTaskHiNum = numSpectraAssignedForParsing + thisWorkerScanCount - 1;
+            ByteArrayInputStream bais;
+            if (areScansContinuous) {
+                OffsetLength readTaskLo = readTasks.get(readTaskLoNum);
+                OffsetLength readTaskHi = readTasks.get(readTaskHiNum);
+                int offsetInReadBuf = (int) (readTaskLo.offset - baseOffset);
+                int lengthOfRead = (int) (readTaskHi.offset - readTaskLo.offset + readTaskHi.length);
+                bais = new ByteArrayInputStream(readBuf1, offsetInReadBuf, lengthOfRead);
+            } else {
+                // if scans were not continuous, we need to iterate over scan index elements, adding up their lengths
+                int fullReadTasksLenForThisWorker = 0;
+                for (int i = numSpectraAssignedForParsing; i <= readTaskHiNum; i++) {
+                    fullReadTasksLenForThisWorker += readTasks.get(i).length;
+                }
+                bais = new ByteArrayInputStream(readBuf1, offsetInReadBufForCurWorker, fullReadTasksLenForThisWorker);
+                offsetInReadBufForCurWorker += fullReadTasksLenForThisWorker;
+            }
+            // submit the job for this worker
+            Future<List<IScan>> task;
+            MultiSpectraParser parser = getSpectraParser(bais, subset, readerPool, thisWorkerScanCount);
+            task = exec.submit(parser);
+            parseTasks.add(task);
+            numSpectraAssignedForParsing += thisWorkerScanCount;
+        }
+        return parseTasks;
+    }
+
+    /**
+     * File type specific parser.
+     * @param inputStream a stream, from which the parser will parse the actual scan. If this stream is some sort of a
+     *                    FileStream, make sure you use buffering, because reading from the stream in the parser is
+     *                    normally unbuffered.
+     * @param subset the only purpose of this subset object is to identify scans, for which spectra should be parsed
+     * @param readerPool can be null, then a new reader will be created every time. It is highly recommended to provide
+     *                   a valid pool
+     * @param numSpectra can be null. If you know how many spectra can be parsed from the {@code inputStream}, then
+     *                   pass it here. If set, and this number of spectra was not reached when parsing, an exception will
+     *                   be thrown.
+     * @return a parser, which can handle a block of text, containing, possibly, multiple spectra
+     */
+    public abstract MultiSpectraParser getSpectraParser(InputStream inputStream,
+            LCMSDataSubset subset, ObjectPool<XMLStreamReaderImpl> readerPool, Integer numSpectra);
+
+    protected byte[] readContinuousBatchOfSpectra(Iterator<? extends Map.Entry<Integer, ? extends XMLBasedIndexElement>> entries,
+            RandomAccessFile file, byte[] readBuf, ArrayList<OffsetLength> readTasks, int maxScansToReadInBatch) throws IOException {
+        while (entries.hasNext() && readTasks.size() < maxScansToReadInBatch) {
+            readTasks.add(entries.next().getValue().getOffsetLength());
+        }
+        long readOffset = readTasks.get(0).offset;
+        int readLength = (int) (readTasks.get(readTasks.size() - 1).offset - readOffset + readTasks.get(readTasks.size() - 1).length);
+        // check if the buffer size is enough and expand accordingly, or clean the old buffer
+        if (readBuf.length < readLength) {
+            readBuf = new byte[readLength];
+        } else {
+            Arrays.fill(readBuf, (byte) 0);
+        }
+        long time_start = System.nanoTime();
+        // read everything into the buffer
+        file.seek(readOffset);
+        file.readFully(readBuf, 0, readLength);
+        time_reading = time_reading + (System.nanoTime() - time_start);
+        return readBuf;
+    }
+
+    /**
+     * Reads up to (@code maxScansToRead) scans from the iterator, checking for continuity of scans in the
+     * original file, so it could do sequential reads.
+     * @param scanNumsIter iterator over scan numbers to be read
+     * @param maxScansToReadInBatch max number of scans to read from the provided iterator
+     * @param readTasks a list, where scan index elements, that were read in this call, will be placed
+     * @param index the index of XML files
+     * @param file random acccess file to read from
+     * @param readBuf the buffer to read to, might be changed and grown, new instance will be returned by this method
+     * @return the read buffer, might not be the same array instance, the buffer could have been grown to
+     * accommodate all spectra from the iterator.
+     * @throws IOException
+     */
+    protected byte[] readListOfSpectra(ListIterator<Integer> scanNumsIter, int maxScansToReadInBatch, 
+            ArrayList<OffsetLength> readTasks, NavigableMap<Integer, ? extends XMLBasedIndexElement> index,
+            RandomAccessFile file, byte[] readBuf) throws IOException {
+        if (!scanNumsIter.hasNext()) {
+            throw new IllegalArgumentException("Scan number iterator had no active elements");
+        }
+        Arrays.fill(readBuf, (byte) 2);
+        Integer scanNumCur;
+        Integer scanNumPrev = null;
+        Integer scanNumLower;
+        int batchStart = 0;
+        int batchLen = 0;
+        int readBufPos = 0;
+        // process the first scan
+        scanNumCur = scanNumsIter.next();
+        OffsetLength offsetLength = index.get(scanNumCur).getOffsetLength();
+        if (offsetLength == null) {
+            throw new IllegalArgumentException("The scan number requested for reading was not in the index");
+        }
+        readTasks.add(offsetLength);
+        batchLen++;
+        if (!scanNumsIter.hasNext() || maxScansToReadInBatch == 1) {
+            long readOffset = readTasks.get(batchStart).offset;
+            int readLength = (int) (offsetLength.offset - readOffset + offsetLength.length);
+            // check if the buffer size is enough and expand accordingly, or clean the old buffer
+            int spaceLeft = readBuf.length - readBufPos;
+            if (spaceLeft < readLength) {
+                readBuf = Arrays.copyOf(readBuf, readBuf.length + readLength); // grow more than needed
+            }
+            file.seek(readOffset);
+            file.readFully(readBuf, readBufPos, readLength);
+            return readBuf;
+        }
+        while (scanNumsIter.hasNext() && readTasks.size() < maxScansToReadInBatch) {
+            scanNumCur = scanNumsIter.next();
+            offsetLength = index.get(scanNumCur).getOffsetLength();
+            if (offsetLength == null) {
+                throw new IllegalArgumentException("The scan number requested for reading was not in the index");
+            }
+            scanNumLower = index.lowerKey(scanNumCur);
+            // check continuity of requested spectra in the file
+            if (scanNumPrev != scanNumLower) {
+                // discontinuity or no more scans
+                // flush the current batch
+                long readOffset = readTasks.get(batchStart).offset;
+                OffsetLength lastReadTask = readTasks.get(batchStart + batchLen - 1);
+                int readLength = (int) (lastReadTask.offset - readOffset + lastReadTask.length);
+                // check if the buffer size is enough and expand accordingly, or clean the old buffer
+                int spaceLeft = readBuf.length - readBufPos;
+                if (spaceLeft < readLength) {
+                    readBuf = Arrays.copyOf(readBuf, readBuf.length + readLength); // grow more than needed
+                }
+                file.seek(readOffset);
+                file.readFully(readBuf, readBufPos, readLength);
+                readBufPos += readLength;
+                batchLen = 0;
+                batchStart = readTasks.size();
+            }
+            readTasks.add(offsetLength);
+            batchLen++;
+            scanNumPrev = scanNumCur;
+        }
+        if (batchLen > 0) {
+            // if we have something left to process, flush the last batch
+            long readOffset = readTasks.get(batchStart).offset;
+            OffsetLength lastReadTask = readTasks.get(batchStart + batchLen - 1);
+            int readLength = (int) (lastReadTask.offset - readOffset + lastReadTask.length);
+            // check if the buffer size is enough and expand accordingly, or clean the old buffer
+            int spaceLeft = readBuf.length - readBufPos;
+            if (spaceLeft < readLength) {
+                readBuf = Arrays.copyOf(readBuf, readBuf.length + readLength); // grow more than needed
+            }
+            file.seek(readOffset);
+            file.readFully(readBuf, readBufPos, readLength);
+        }
+        return readBuf;
+    }
+
+    //    /**
+    //     * @deprecated This was not such a good idea, the speed is largely the same or worse as compared to
+    //     * reading the whole file multithreaded in sequential manner, rather than trying to use random access to
+    //     * separate scan headers. For SSDs this won't matter as well, as the read speeds are so great. The only difference
+    //     * is in memory usage. This parsing of the structure doesn't use any memory, while parsing multithreaded for some
+    //     * reason eats 200-300Mb.
+    //     *
+    //     * Parses the complete structure of the file - all scan meta-info is parsed and finalized (links between
+    //     * parent and child scans are established).
+    //     * @return
+    //     */
+    //    @Deprecated
+    //    public IScanCollection parseStructure() throws FileParsingException {
+    //        BasicSetup setup = new BasicSetup().invoke();
+    //        TreeMap<Integer, ScanIndexElement> idx = setup.getIndex();
+    //        ScanFactory scanFactory = setup.getScanFactory();
+    //        IScanCollection scns = setup.getScans();
+    //        LCMSRunInfo info = setup.getRunInfo();
+    //
+    //        InputStream inputStream = null;
+    //        try {
+    //            SeekableByteChannel chan = Files.newByteChannel(Paths.get(getPath()), StandardOpenOption.READ);
+    //            // 1024 bytes should be enough for most scan headers to be read in one buffered read
+    ////            RandomInputStream ris = new RandomInputStream(new umich.ms.external.ucar.RandomAccessFile(getPath(), "r", 1024));
+    ////            inputStream = (InputStream) ris;
+    //
+    //            RandomAccessFile raf = this.getRandomAccessFile();
+    //            int bufSize = 128;
+    //            byte[] readBuf = new byte[bufSize];
+    //            boolean isRetry = false;
+    //
+    //            Set<Map.Entry<Integer, ScanIndexElement>> idxEntries = idx.entrySet();
+    //            long offset;
+    //            boolean goToNextScan = true;
+    //            int repeatCount = 0;
+    //            int maxRepeats = 5;
+    //            Map.Entry<Integer, ScanIndexElement> idxElem = null;
+    //            for (Iterator<Map.Entry<Integer, ScanIndexElement>> iterator = idxEntries.iterator(); iterator.hasNext(); ) {
+    //                if (goToNextScan) {
+    //                    idxElem = iterator.next();
+    //                }
+    //                offset = idxElem.getValue().offset;
+    ////                raf.seek(offset);
+    ////                raf.readFully(readBuf);
+    ////                inputStream = new ByteArrayInputStream(readBuf);
+    //
+    //                chan.position(offset);
+    //                inputStream = Channels.newInputStream(chan);
+    //
+    //                Set<Integer> msLevelsToParseSpectra = Collections.emptySet();
+    //                MultiSpectraParser parser = getSpectraParser(inputStream, scanFactory, info, msLevelsToParseSpectra, this.readerPool, 1);
+    //                try {
+    //                    List<IScan> scan = parser.call();
+    //                    if (scan != null && !scan.isEmpty()) {
+    //                        scns.addScan(scan.get(0));
+    //                        goToNextScan = true;
+    //                        repeatCount = 0;
+    //                    } else {
+    //                        if (repeatCount >= maxRepeats) {
+    //                            throw new FileParsingException("When parsing structure parser returned a null or empty list of parsed scans.");
+    //                        }
+    //                        bufSize = bufSize * 2;
+    //                        readBuf = new byte[bufSize];
+    //                        goToNextScan = false;
+    //                        repeatCount++;
+    //                    }
+    //                } catch (Exception e) {
+    //                    if (repeatCount >= maxRepeats) {
+    //                        throw new FileParsingException("Error in parser, when parsing structure", e);
+    //                    }
+    //                    bufSize = bufSize * 2;
+    //                    readBuf = new byte[bufSize];
+    //                    goToNextScan = false;
+    //                    repeatCount++;
+    //                }
+    //
+    //            }
+    //
+    //
+    ////            for (Map.Entry<Integer, ScanIndexElement> idxEntry : idxEntries) {
+    ////                offset = idxEntry.getValue().offset;
+    ////                raf.seek(offset);
+    ////                raf.readFully(readBuf);
+    ////                inputStream = new ByteArrayInputStream(readBuf);
+    ////
+    ////                // seek to the desired position
+    //////                chan.position(offset);
+    //////                inputStream = Channels.newInputStream(chan);
+    ////
+    //////                ris.seek(offset);
+    ////
+    ////                MultiSpectraParser parser = getSpectraParser(inputStream, scanFactory, 1, info, Collections.EMPTY_SET, this.readerPool);
+    ////                try {
+    ////                    List<IScan> scan = parser.call();
+    ////                    if (scan != null && !scan.isEmpty()) {
+    ////                        scans.addScan(scan.get(0));
+    ////                    } else {
+    ////                        readBuf =
+    ////                        throw new FileParsingException("When parsing structure parser returned a null or empty list of parsed scans.");
+    ////                    }
+    ////                } catch (Exception e) {
+    ////                    throw new FileParsingException("Error in parser, when parsing structure", e);
+    ////                }
+    ////            }
+    //        } catch (Exception e) {
+    //            throw new FileParsingException(e);
+    //        } finally {
+    //            if (inputStream != null) {
+    //                try {
+    //                    inputStream.close();
+    //                } catch (IOException e) {
+    //                    throw new FileParsingException("Could not close RandomInputStream", e);
+    //                }
+    //            }
+    //            this.close();
+    //        }
+    //        ScanCollectionHelper.finalizeScanCollection(scns);
+    //        ScanCollectionHelper.finalizePrecursorWindows(scns);
+    //        return scns;
+    //    }
+    /**
+     * @deprecated this method has not been updated to the new parsing version
+     * @param scanNums List of scan numbers to be parsed. All scan numbers MUST be present in the file.
+     * @return
+     * @throws FileParsingException
+     */
+    @Override
+    @Deprecated
+    public List<IScan> parse(List<Integer> scanNums) throws FileParsingException {
+        // the basic idea here is that you read in a single thread into a large byte array
+        // and then submit what's been read to the parsers
+        if (scanNums.isEmpty()) {
+            throw new IllegalArgumentException("The scan list you provided contained no valid scan numbers.");
+        }
+        I idx = fetchIndex(); // make sure, that the index is parsed
+        LCMSRunInfo inf = fetchRunInfo(); // make sure we have the runInfo
+        for (Integer scanNum : scanNums) {
+            if (idx.getByNum(scanNum) == null) {
+                throw new IllegalArgumentException(String.format("One of the scan numbers you requested didn't exist in the Index (scan #%d)", scanNum));
+            }
+        }
+        List<IScan> scans = new ArrayList<>(scanNums.size());
+        int numWorkers = getNumThreadsForParsing();
+        int numSpectraPerWorker = getTasksPerCpuPerBatch();
+        ExecutorService exec = Executors.newFixedThreadPool(numWorkers);
+        ListIterator<Integer> scanNumsIter = scanNums.listIterator();
+        LCMSDataSubset subset = LCMSDataSubset.WHOLE_RUN;
+        // this is the main read buffer
+        byte[] readBuf1 = new byte[1 << 18]; // 256k default read buffer size
+        // this is the second read buffer, used for reads, while threads are parsing the previous batch
+        byte[] readBuf2 = new byte[1 << 18]; // 256k default read buffer size
+        try {
+            RandomAccessFile raf = this.getRandomAccessFile();
+            ArrayList<OffsetLength> readTasks = null;
+            do {
+                // This is needed for cancellable tasks
+                if (Thread.interrupted()) {
+                    throw new FileParsingException("Thread interrupted, parsing was cancelled.");
+                }
+                // check if we have read something in the previous iteration, if we did, then use the 2nd read buffer
+                if (readTasks != null && !readTasks.isEmpty()) {
+                    // if we did read something on the previous iteration before submitting parsing tasks, use it
+                    // just flip buffers
+                    byte[] readBufTmp = readBuf1;
+                    readBuf1 = readBuf2;
+                    readBuf2 = readBufTmp;
+                } else {
+                    // figure out which spectra to read in this batch and read them
+                    int maxScansToReadInBatch = numWorkers * numSpectraPerWorker;
+                    readTasks = new ArrayList<>(maxScansToReadInBatch);
+                    readBuf1 = readListOfSpectra(scanNumsIter, maxScansToReadInBatch, readTasks, idx.getMapByNum(), raf, readBuf1);
+                }
+                // distribute the spectra between workers
+                int[] workerScanCounts = distributeParseLoad(numWorkers, readTasks);
+                // submit the tasks to executor service
+                ArrayList<Future<List<IScan>>> parseTasks = submitParseTasks(subset, runInfo, numWorkers, exec, readBuf1, readTasks, workerScanCounts, false);
+                // before blocking on waiting for the parsing tasks to complete,
+                // initiate another read
+                // figure out which spectra to read in this batch and read them
+                int maxScansToReadInBatch = numWorkers * numSpectraPerWorker;
+                readTasks = new ArrayList<>(maxScansToReadInBatch);
+                if (scanNumsIter.hasNext()) {
+                    readBuf2 = readListOfSpectra(scanNumsIter, maxScansToReadInBatch, readTasks, idx.getMapByNum(), raf, readBuf2);
+                }
+                // block and wait for all the parsers to finish, at this point
+                // we already have the next chunk read-in while the parsers were busy
+                for (Future<List<IScan>> parseTask : parseTasks) {
+                    try {
+                        List<IScan> parsedScans = parseTask.get(getParsingTimeout(), TimeUnit.SECONDS);
+                        if (parsedScans != null) {
+                            for (IScan scan : parsedScans) {
+                                scans.add(scan);
+                            }
+                        }
+                    } catch (InterruptedException | TimeoutException | ExecutionException | NullPointerException e) {
+                        throw new FileParsingException(e);
+                    }
+                }
+            } while (scanNumsIter.hasNext() || !readTasks.isEmpty());
+            this.close();
+        } catch (IOException ex) {
+            throw new FileParsingException(ex);
+        } finally {
+            this.close();
+            exec.shutdown();
+        }
+        // wait for the executor pool to shut down
+        try {
+            exec.awaitTermination(getParsingTimeout(), TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            throw new FileParsingException(String.format("Executor pool failed to shut down in %d sec!", getParsingTimeout()), e);
+        }
+        return scans;
+    }
+
+    @Override
+    public IScan parseScan(int num, boolean parseSpectrum) throws FileParsingException {
+        // prepare for parsing
+        NavigableMap<Integer, ? extends XMLBasedIndexElement> idx = fetchIndex().getMapByNum();
+        LCMSRunInfo info = fetchRunInfo();
+        OffsetLength offsetLength = idx.get(num).getOffsetLength();
+        if (offsetLength == null) {
+            throw new IllegalArgumentException("The scan you've requested to parse spectrumRef for was not found in the index");
+        }
+        try {
+            long offset = offsetLength.offset;
+            int length = offsetLength.length;
+            // get a read buffer
+            ByteArrayHolder bah = PooledByteArrayHolders.getInstance().getPool().borrowObject();
+            bah.ensureCapacity(length);
+            // do the read IO
+            RandomAccessFile raf = this.getRandomAccessFile();
+            raf.seek(offset);
+            raf.readFully(bah.getUnderlyingBytes(), 0, length);
+            bah.setPosition(length); // just to make sure, that BAH knows the valid data range
+            // we've read the whole scan from file, wrap it into a ByteStream and pass to the parser
+            ByteArrayInputStream is = new ByteArrayInputStream(bah.getUnderlyingBytes(), 0, length);
+            
+            // This is just a trick to fool the parser into parsing everything.
+            // It doesn't cause any trouble, as we've only read a single scan from the file.
+            LCMSDataSubset subset = LCMSDataSubset.WHOLE_RUN;
+            if (!parseSpectrum) {
+                subset = LCMSDataSubset.STRUCTURE_ONLY;
+            }
+            MultiSpectraParser parser = getSpectraParser(is, subset, readerPool, 1);
+            List<IScan> scansParsed = parser.call();
+            if (scansParsed == null || scansParsed.isEmpty()) {
+                throw new FileParsingException("Could not parse a single spectrumRef from the file");
+            }
+            if (scansParsed.size() != 1) {
+                throw new FileParsingException("Somehow more than one scan was parsed, when we tried to parse a single spectrumRef");
+            }
+            IScan scan = scansParsed.get(0);
+            return scan;
+        } catch (Exception e) {
+            throw new FileParsingException(e);
+        } finally {
+            this.close();
+        }
+    }
+
+    @Override
+    public ISpectrum parseSpectrum(int num) throws FileParsingException {
+        IScan scan = parseScan(num, true);
+        if (scan == null) {
+            throw new FileParsingException("Could not parse spectrumRef from file");
+        }
+        return scan.getSpectrum(); // this must be safe, as the spectrum parsed by parseScan() must be STRONGly referenced
+    }
+
+
+    /**
+     * Be careful with this method, it will go over the whole file, building index from scans that it can find.
+     * It will ignore the index in file, even if it's present!<br/>
+     * This method is called automatically if an index was requested via {@link #fetchIndex()} and the file contained
+     * no index.
+     * @param idx index instance to add parsed index elements to, this index will be modified.
+     * @return
+     * @throws FileParsingException
+     */
+    public I buildIndex(I idx) throws FileParsingException {
+        int numWorkers = getNumThreadsForParsing();
+        ExecutorService exec = Executors.newFixedThreadPool(numWorkers);
+
+        // this is the main read buffer
+        int readLen = INDEX_BUILDER_READ_BUF_SIZE;
+        byte[] readBuf1 = new byte[readLen];
+        boolean isBuf2Filled = false;
+        long readBufOffset = -1;
+        ArrayList<E> unfinishedIndexElements = new ArrayList<>(100);
+        // this is the second read buffer, used for reads, while threads are parsing the previous batch
+        byte[] readBuf2 = new byte[readLen];
+        try {
+            RandomAccessFile raf = this.getRandomAccessFile();
+            long fileLen = raf.length();
+            if (fileLen == 0) {
+                throw new FileParsingException("File size was zero, when trying to build index");
+            }
+            long curPos = 0; // current position, up to which we read the file
+            long nextPos = -1; // the position to move the current pointer to
+            int curReadLen = Math.min((int)fileLen, readLen);
+            do {
+                // This is needed for cancellable tasks
+                if (Thread.interrupted()) {
+                    throw new FileParsingException("Thread interrupted, parsing was cancelled.");
+                }
+                // check if we have read something in the previous iteration, if we did, then use the 2nd read buffer
+                if (isBuf2Filled) {
+                    // if we did read something on the previous iteration before submitting parsing tasks, use it
+                    // just flip buffers
+                    byte[] readBufTmp = readBuf1;
+                    readBuf1 = readBuf2;
+                    readBuf2 = readBufTmp;
+                } else {
+                    // this is the first read
+                    raf.seek(curPos);
+                    readBufOffset = curPos;
+                    raf.readFully(readBuf1, 0, curReadLen);
+                    curPos = raf.getFilePointer();
+                }
+                // distribute the buffer between workers
+                IndexBuilderInfo[] indexBuilderInfoWorkers = distributeIndexBuilders(readBuf1, curReadLen, readBufOffset, numWorkers);
+                List<Future<IndexBuilderResult<E>>> futures = submitIndexBuilders(indexBuilderInfoWorkers, exec);
+
+                // before blocking on waiting for the parsing tasks to complete, initiate another read
+                if (curPos < fileLen) { // we're not yet further than the EOF
+                    nextPos = curPos - INDEX_BUILDER_MIN_OVERLAP;
+                    assert (nextPos > 0);
+                    curReadLen = nextPos + curReadLen <= fileLen ? curReadLen : (int)(fileLen - nextPos);
+                    raf.seek(nextPos);
+                    readBufOffset = nextPos;
+                    raf.readFully(readBuf2, 0, curReadLen);
+                    curPos = raf.getFilePointer();
+                    isBuf2Filled = true;
+                } else {
+                    isBuf2Filled = false;
+                }
+
+                // block and wait for all the parsers to finish, at this point
+                // we already have the next chunk read-in while the parsers were busy
+                for (Future<IndexBuilderResult<E>> future : futures) {
+                    try {
+                        IndexBuilderResult<E> result = future.get(getParsingTimeout(), TimeUnit.SECONDS);
+                        if (result != null) {
+                            List<E> indexElements = result.getIndexElements();
+                            for (E indexElement : indexElements) {
+                                idx.add(indexElement);
+                            }
+                            List<E> unfinishedElems = result.getUnfinishedIndexElements();
+                            if (!unfinishedElems.isEmpty()) {
+                                unfinishedIndexElements.addAll(unfinishedElems);
+                            }
+                        } else {
+                            throw new FileParsingException("IndexBuilderResult was null, which should never happen");
+                        }
+                    } catch (InterruptedException | TimeoutException | ExecutionException | NullPointerException e) {
+                        throw new FileParsingException(e);
+                    }
+                }
+            } while (curPos < fileLen);
+
+            if (!unfinishedIndexElements.isEmpty()) {
+                for (E e : unfinishedIndexElements) {
+                    E byNum = idx.getByNum(e.getNumber());
+                    if (byNum == null) {
+                        idx.add(e); // we'll definitely need to run fixIndex() after doing that!
+                    }
+                }
+                idx = fixIndex(idx);
+            }
+
+            this.close();
+        } catch (IOException ex) {
+            throw new FileParsingException(ex);
+        } finally {
+            this.close();
+            exec.shutdown();
+        }
+        // wait for the executor pool to shut down
+        try {
+            exec.awaitTermination(getParsingTimeout(), TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            throw new FileParsingException(String.format("Executor pool failed to shut down in %d sec!", getParsingTimeout()), e);
+        }
+
+        return idx;
+    }
+
+    private IndexBuilderInfo[] distributeIndexBuilders(byte[] readBuf, int bytesValid, long offsetInFile, int numWorkers) {
+        if (bytesValid == 0) {
+            return new IndexBuilderInfo[0];
+        }
+
+        final int baseReadLen = INDEX_BUILDER_MIN_READ_SIZE + INDEX_BUILDER_MIN_OVERLAP;
+
+        if (bytesValid <= baseReadLen) {
+            // if we only have enough bytes for one worker - so be it
+            ByteArrayInputStream is = new ByteArrayInputStream(readBuf, 0, bytesValid);
+            IndexBuilderInfo worker = new IndexBuilderInfo(offsetInFile, 0, is);
+            return new IndexBuilderInfo[]{worker};
+        }
+
+        /**
+         *         |----------|
+         * |----------|    |----------| N segments of total length S
+         *          ^           ^
+         *          O(overlap)   X(length of one segment)
+         */
+        double bytesPerWorker = ((double)bytesValid + (numWorkers - 1) * INDEX_BUILDER_MIN_OVERLAP ) / numWorkers;
+        double numWorkersForMinReadLengths = (bytesValid - INDEX_BUILDER_MIN_OVERLAP) / (double)INDEX_BUILDER_MIN_READ_SIZE;
+        int bpw = (int)Math.ceil(bytesPerWorker);
+        int nwfmrl = (int)Math.ceil(numWorkersForMinReadLengths);
+
+        int numAssignedWorkers = Math.min(numWorkers, nwfmrl);
+        IndexBuilderInfo[] workers = new IndexBuilderInfo[numAssignedWorkers];
+
+        int curOffset = 0;
+        int curReadLen = numAssignedWorkers == numWorkers ? bpw : baseReadLen;
+        for (int i = 0; i < workers.length; i++) {
+            ByteArrayInputStream is = new ByteArrayInputStream(readBuf, curOffset, curReadLen);
+            IndexBuilderInfo worker = new IndexBuilderInfo(offsetInFile, curOffset, is);
+            workers[i] = worker;
+            curOffset += curReadLen - INDEX_BUILDER_MIN_OVERLAP;
+            if (curOffset + curReadLen > bytesValid) {
+                curReadLen = bytesValid - curOffset;
+            }
+        }
+
+        // we don't have enough workers, each will have to process more than the minimum
+
+        return workers;
+    }
+
+    public abstract IndexBuilder<E> getIndexBuilder(IndexBuilderInfo info);
+
+    private List<Future<IndexBuilderResult<E>>> submitIndexBuilders(IndexBuilderInfo[] builders, ExecutorService exec) {
+        ArrayList<Future<IndexBuilderResult<E>>> result = new ArrayList<>(builders.length);
+        for (IndexBuilderInfo info : builders) {
+            IndexBuilder<E> builder = getIndexBuilder(info);
+            //MultiSpectraParser parser = getSpectraParser(info.is, LCMSDataSubset.WHOLE_RUN, readerPool, null);
+            //IndexBuilderInfo builder = parser.getIndexBuilder(info.offsetInFile, info.offsetInBuffer);
+            Future<IndexBuilderResult<E>> task = exec.submit(builder);
+            result.add(task);
+        }
+        return result;
+    }
+}

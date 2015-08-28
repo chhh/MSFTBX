@@ -1,0 +1,12 @@
+I used the following command to generate JAXB stubs from mzXML.xsd:
+
+G:\tmp\_grabage\mzxml>
+    "C:\Program Files\Java\jdk1.7.0_75\bin\xjc.exe"
+    -b bindings3.xml
+    -d generated
+    -p umich.ms.fileio.filetypes.mzxml.jaxb
+    http://sashimi.sourceforge.net/schema_revision/mzXML_3.2/mzXML_3.2.xsd
+
+There was a problem caused by "general_types_1.0.xsd", which used the same attribute name twice ("value").
+This was resolved by providing "-b bindings3.xml" option to xjc, this was the file providing mappings to new names.
+
