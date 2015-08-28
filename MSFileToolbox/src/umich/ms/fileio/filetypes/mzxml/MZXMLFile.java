@@ -178,7 +178,7 @@ public class MZXMLFile extends AbstractXMLBasedDataSource<MZXMLIndexElement, MZX
             double fileSize = path.toFile().length() / (1024 * 1024);
             System.out.printf("File: %s (%.2fMb)\n", path.toString(), fileSize);
             MZXMLFile mzxml = new MZXMLFile(path.toString(), true);
-            mzxml.setNumThreadsForParsing(1);
+            mzxml.setNumThreadsForParsing(null);
             mzxml.setTasksPerCpuPerBatch(50);
             mzxml.setParsingTimeout(30 * 1000);
             long startTime = System.nanoTime();
