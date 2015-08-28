@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" xmlns:GAML="http://www.bioml.com/gaml/">
+  <xs:import namespace="http://www.bioml.com/gaml/" schemaLocation="GAML.xsd"/>
+  <xs:element name="bioml">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="group"/>
+      </xs:sequence>
+      <xs:attribute name="label" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="group">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="protein"/>
+        <xs:element minOccurs="0" ref="group"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="note"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="GAML:trace"/>
+      </xs:sequence>
+      <xs:attribute name="act" type="xs:integer"/>
+      <xs:attribute name="expect" type="xs:double"/>
+      <xs:attribute name="fI" type="xs:decimal"/>
+      <xs:attribute name="id" type="xs:integer"/>
+      <xs:attribute name="label" use="required"/>
+      <xs:attribute name="maxI" type="xs:integer"/>
+      <xs:attribute name="mh" type="xs:decimal"/>
+      <xs:attribute name="rt"/>
+      <xs:attribute name="sumI" type="xs:decimal"/>
+      <xs:attribute name="type" use="required" type="xs:NCName"/>
+      <xs:attribute name="z" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="protein">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="note"/>
+        <xs:element ref="file"/>
+        <xs:element ref="peptide"/>
+      </xs:sequence>
+      <xs:attribute name="annotation"/>
+      <xs:attribute name="expect" use="required" type="xs:decimal"/>
+      <xs:attribute name="id" use="required" type="xs:decimal"/>
+      <xs:attribute name="label" use="required"/>
+      <xs:attribute name="sumI" use="required" type="xs:decimal"/>
+      <xs:attribute name="uid" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="file">
+    <xs:complexType>
+      <xs:attribute name="URL" use="required"/>
+      <xs:attribute name="type" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="peptide">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="domain"/>
+      </xs:sequence>
+      <xs:attribute name="end" use="required" type="xs:integer"/>
+      <xs:attribute name="start" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="domain">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="aa"/>
+      </xs:sequence>
+      <xs:attribute name="b_ions" use="required" type="xs:integer"/>
+      <xs:attribute name="b_score" use="required" type="xs:decimal"/>
+      <xs:attribute name="delta" use="required" type="xs:decimal"/>
+      <xs:attribute name="end" use="required" type="xs:integer"/>
+      <xs:attribute name="expect" use="required" type="xs:double"/>
+      <xs:attribute name="hyperscore" use="required" type="xs:decimal"/>
+      <xs:attribute name="id" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="mh" use="required" type="xs:decimal"/>
+      <xs:attribute name="missed_cleavages" use="required" type="xs:integer"/>
+      <xs:attribute name="nextscore" use="required" type="xs:decimal"/>
+      <xs:attribute name="post" use="required"/>
+      <xs:attribute name="pre" use="required"/>
+      <xs:attribute name="seq" use="required" type="xs:NCName"/>
+      <xs:attribute name="start" use="required" type="xs:integer"/>
+      <xs:attribute name="y_ions" use="required" type="xs:integer"/>
+      <xs:attribute name="y_score" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="aa">
+    <xs:complexType>
+      <xs:attribute name="at" use="required" type="xs:integer"/>
+      <xs:attribute name="id" type="xs:NCName"/>
+      <xs:attribute name="modified" use="required" type="xs:decimal"/>
+      <xs:attribute name="pm" type="xs:NCName"/>
+      <xs:attribute name="type" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="note">
+    <xs:complexType mixed="true">
+      <xs:attribute name="label" use="required"/>
+      <xs:attribute name="type" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="GAML.values">
+    <xs:sequence>
+      <xs:element ref="GAML:values"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

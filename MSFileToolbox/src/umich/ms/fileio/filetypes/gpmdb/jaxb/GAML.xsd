@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.bioml.com/gaml/" xmlns:GAML="http://www.bioml.com/gaml/">
+  <xs:import schemaLocation="biomol.full.xsd"/>
+  <xs:element name="trace">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="GAML:attribute"/>
+        <xs:element ref="GAML:Xdata"/>
+        <xs:element ref="GAML:Ydata"/>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:integer"/>
+      <xs:attribute name="label" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="type" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="attribute">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:decimal">
+          <xs:attribute name="type" use="required"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Xdata">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="GAML.values">
+          <xs:attribute name="label" use="required" type="xs:NMTOKEN"/>
+          <xs:attribute name="units" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Ydata">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="GAML.values">
+          <xs:attribute name="label" use="required" type="xs:NMTOKEN"/>
+          <xs:attribute name="units" use="required" type="xs:NCName"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="values">
+    <xs:complexType mixed="true">
+      <xs:attribute name="byteorder" use="required" type="xs:NCName"/>
+      <xs:attribute name="format" use="required" type="xs:NCName"/>
+      <xs:attribute name="numvalues" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
