@@ -19,6 +19,7 @@ import javolution.xml.stream.XMLStreamException;
 import javolution.xml.stream.XMLStreamReader;
 import umich.ms.datatypes.LCMSDataSubset;
 import umich.ms.fileio.exceptions.FileParsingException;
+import umich.ms.fileio.exceptions.IndexBrokenException;
 import umich.ms.fileio.exceptions.IndexNotFoundException;
 import umich.ms.fileio.filetypes.xmlbased.OffsetLength;
 import umich.ms.logging.LogHelper;
@@ -42,6 +43,7 @@ public class MZMLIndexParser {
     protected static int INDEX_OFFSET_MIN_VALUE = 128;
     //RE_INDEX_ENTRY = Pattern.compile(
     //        "<" + TAG_OFFSET + "[^>]+?idRef\\s*=\\s*\"[^>]*?scan=(\\d+?)\\s*\"\\s*>\\s*(\\d+?)\\s*</" + TAG_OFFSET + ">");
+    protected Pattern RE_INDEX_ENTRY_SIMPLE = Pattern.compile(String.format("<%s[^>]*?>\\s*(\\d+?)\\s*</%s>", TAG_OFFSET, TAG_OFFSET));
     protected Pattern RE_END_OF_RUN = Pattern.compile("</" + TAG_END_OF_RUN + ">");
     /**
      * @deprecated We now only use the scan id ('idRef' attribute in the index) and never
@@ -107,7 +109,7 @@ public class MZMLIndexParser {
             source.close();
         } catch (IOException e) {
             throw new FileParsingException(e);
-        } catch (IndexNotFoundException ex) {
+        } catch (IndexNotFoundException | IndexBrokenException ex) {
             // we could not find the index, we'll have to scan through the whole file and build one ourselves
             source.close();
             MZMLIndex index = new MZMLIndex();
@@ -193,7 +195,7 @@ public class MZMLIndexParser {
      * @throws IOException
      * @throws IndexNotFoundException in case "indexListOffset" tag could not be found within 100 lines from the end of file
      */
-    protected long findIndexOffset(RandomAccessFile raf) throws IOException, IndexNotFoundException {
+    protected long findIndexOffset(RandomAccessFile raf) throws IOException, IndexNotFoundException, IndexBrokenException {
         long fileLen = raf.length();
         int bytesToRead = fileLen > MAX_BYTES_FROM_END_TO_SEARCH_FOR_INDEX ? MAX_BYTES_FROM_END_TO_SEARCH_FOR_INDEX : (int)fileLen;
         long offsetFromEOF = fileLen - bytesToRead;
@@ -202,9 +204,28 @@ public class MZMLIndexParser {
         raf.readFully(bytes, 0, bytes.length);
         String fileEndingStr = new String(bytes);
         Matcher matcher = RE_INDEX_OFFSET.matcher(fileEndingStr);
-        long offset = -1;
+        long indexOffset = -1;
         if (matcher.find()) {
-            offset = Long.parseLong(matcher.group(1));
+            indexOffset = Long.parseLong(matcher.group(1));
+        }
+
+        Matcher matcherIdxEntry = RE_INDEX_ENTRY_SIMPLE.matcher(fileEndingStr);
+        long offsetPrev = indexOffset, offsetCur;
+        int countIndexElems = 0;
+        while(matcherIdxEntry.find()) {
+            offsetCur = Long.parseLong(matcherIdxEntry.group(1));
+            if (offsetCur <= offsetPrev) {
+                throw new IndexBrokenException(String.format(
+                        "The index contained an element less than zero: '%s'", matcherIdxEntry.group(0)));
+            }
+            if (offsetCur <= offsetPrev) {
+                throw new IndexBrokenException(String.format(
+                        "The index contained an element less or equal to a previous one. The match was: '%s'", matcherIdxEntry.group(0)));
+            }
+            if (offsetCur >= indexOffset) {
+                throw new IndexBrokenException("The index contained an element that was further in the file than the 'indexOffset'.");
+            }
+            offsetPrev = offsetCur;
         }
 
         // Old version reading in reverse line by line
@@ -232,12 +253,12 @@ public class MZMLIndexParser {
 //            }
 //        }
 
-        if (offset == -1) {
+        if (indexOffset == -1) {
             throw new IndexNotFoundException(String.format(
                     "%s <%s> section was not found within the last %d lines in the file! (%s)",
                     FILE_TYPE_NAME, TAG_INDEXOFFSET, MAX_LINES_FROM_END_TO_SEARCH_FOR_INDEX, source.getPath()));
         }
-        return offset;
+        return indexOffset;
     }
 
     /**
