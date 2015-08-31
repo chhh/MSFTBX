@@ -139,11 +139,12 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
         Set<? extends Map.Entry<Integer, ? extends XMLBasedIndexElement>> entrySet = subIndex.entrySet();
         Iterator<? extends Map.Entry<Integer, ? extends XMLBasedIndexElement>> idxEntriesIter = entrySet.iterator();
 
-        // this is the main read buffer
+        // set up read buffers
         int readLen = 1 << 18; // 256k default read buffer size
         byte[] readBuf1 = new byte[readLen];
-        // this is the second read buffer, used for reads, while threads are parsing the previous batch
         byte[] readBuf2 = new byte[readLen];
+        byte[] readBufTmp;
+
         try {
             RandomAccessFile raf = this.getRandomAccessFile();
             ArrayList<OffsetLength> readTasks = null;
@@ -156,7 +157,7 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
                 if (readTasks != null && !readTasks.isEmpty()) {
                     // if we did read something on the previous iteration before submitting parsing tasks, use it
                     // just flip buffers
-                    byte[] readBufTmp = readBuf1;
+                    readBufTmp = readBuf1;
                     readBuf1 = readBuf2;
                     readBuf2 = readBufTmp;
                 } else {
@@ -699,23 +700,27 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
         int numWorkers = getNumThreadsForParsing();
         ExecutorService exec = Executors.newFixedThreadPool(numWorkers);
 
-        // this is the main read buffer
+        // set up read buffers
         int readLen = INDEX_BUILDER_READ_BUF_SIZE;
         byte[] readBuf1 = new byte[readLen];
+        byte[] readBuf2 = new byte[readLen];
+        byte[] readBufTmp;
+
         boolean isBuf2Filled = false;
         long readBufOffset = -1;
         ArrayList<E> unfinishedIndexElements = new ArrayList<>(100);
         // this is the second read buffer, used for reads, while threads are parsing the previous batch
-        byte[] readBuf2 = new byte[readLen];
+
         try {
             RandomAccessFile raf = this.getRandomAccessFile();
             long fileLen = raf.length();
             if (fileLen == 0) {
-                throw new FileParsingException("File size was zero, when trying to build index");
+                throw new FileParsingException("File size was zero when trying to build index.");
             }
-            long curPos = 0; // current position, up to which we read the file
-            long nextPos = -1; // the position to move the current pointer to
-            int curReadLen = Math.min((int)fileLen, readLen);
+            long posCur = 0; // current position, up to which we have read the file so far
+            long posNext = -1; // the position to move the current pointer to
+            int fileLenInt = fileLen >= Integer.MAX_VALUE ? Integer.MAX_VALUE : (int)fileLen;
+            int curReadLen = Math.min(fileLenInt, readLen);
             do {
                 // This is needed for cancellable tasks
                 if (Thread.interrupted()) {
@@ -724,30 +729,34 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
                 // check if we have read something in the previous iteration, if we did, then use the 2nd read buffer
                 if (isBuf2Filled) {
                     // if we did read something on the previous iteration before submitting parsing tasks, use it
-                    // just flip buffers
-                    byte[] readBufTmp = readBuf1;
+                    // by flipping the buffers
+                    readBufTmp = readBuf1;
                     readBuf1 = readBuf2;
                     readBuf2 = readBufTmp;
                 } else {
                     // this is the first read
-                    raf.seek(curPos);
-                    readBufOffset = curPos;
+                    raf.seek(posCur);
+                    readBufOffset = raf.getFilePointer();
+
+                    // TODO: ACHTUNG: WARING: when there is no index, there is still a bug here
+                    // the fix was lost in the HDD crash :(((
+
                     raf.readFully(readBuf1, 0, curReadLen);
-                    curPos = raf.getFilePointer();
+                    posCur = raf.getFilePointer();
                 }
                 // distribute the buffer between workers
                 IndexBuilderInfo[] indexBuilderInfoWorkers = distributeIndexBuilders(readBuf1, curReadLen, readBufOffset, numWorkers);
                 List<Future<IndexBuilderResult<E>>> futures = submitIndexBuilders(indexBuilderInfoWorkers, exec);
 
                 // before blocking on waiting for the parsing tasks to complete, initiate another read
-                if (curPos < fileLen) { // we're not yet further than the EOF
-                    nextPos = curPos - INDEX_BUILDER_MIN_OVERLAP;
-                    assert (nextPos > 0);
-                    curReadLen = nextPos + curReadLen <= fileLen ? curReadLen : (int)(fileLen - nextPos);
-                    raf.seek(nextPos);
-                    readBufOffset = nextPos;
+                if (posCur < fileLen) { // we're not yet further than the EOF
+                    posNext = posCur - INDEX_BUILDER_MIN_OVERLAP;
+                    assert (posNext > 0);
+                    curReadLen = posNext + curReadLen <= fileLen ? curReadLen : (int)(fileLen - posNext);
+                    raf.seek(posNext);
+                    readBufOffset = posNext;
                     raf.readFully(readBuf2, 0, curReadLen);
-                    curPos = raf.getFilePointer();
+                    posCur = raf.getFilePointer();
                     isBuf2Filled = true;
                 } else {
                     isBuf2Filled = false;
@@ -774,7 +783,7 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
                         throw new FileParsingException(e);
                     }
                 }
-            } while (curPos < fileLen);
+            } while (posCur < fileLen);
 
             if (!unfinishedIndexElements.isEmpty()) {
                 for (E e : unfinishedIndexElements) {
