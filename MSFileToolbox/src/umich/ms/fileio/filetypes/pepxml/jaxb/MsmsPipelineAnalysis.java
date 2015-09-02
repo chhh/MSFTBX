@@ -4252,7 +4252,7 @@ public class MsmsPipelineAnalysis {
                     @XmlAttribute(name = "calc_neutral_pep_mass", required = true)
                     protected float calcNeutralPepMass;
                     @XmlAttribute(name = "massdiff", required = true)
-                    protected String massdiff;
+                    protected float massdiff;
                     @XmlAttribute(name = "num_tol_term")
                     @XmlSchemaType(name = "nonNegativeInteger")
                     protected Integer numTolTerm;
@@ -4609,7 +4609,7 @@ public class MsmsPipelineAnalysis {
                      *     {@link String }
                      *     
                      */
-                    public String getMassdiff() {
+                    public float getMassdiff() {
                         return massdiff;
                     }
 
@@ -4621,7 +4621,7 @@ public class MsmsPipelineAnalysis {
                      *     {@link String }
                      *     
                      */
-                    public void setMassdiff(String value) {
+                    public void setMassdiff(float value) {
                         this.massdiff = value;
                     }
 
