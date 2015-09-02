@@ -1,0 +1,27 @@
+<jxb:bindings version="2.0"
+xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <jxb:bindings schemaLocation="file:///G:/tmp/pepxml/pepXML_v118.xsd" node="/xsd:schema">
+        
+		<jxb:bindings node="//xsd:element[@name='mixturemodel']//xsd:element[@name='point']">
+				<jxb:bindings node=".//xsd:attribute[@name='value']">
+					<jxb:property name="value_mixturemodel_point"/>
+				</jxb:bindings>
+        </jxb:bindings>
+		
+        <jxb:bindings node="//xsd:complexType[@name='nameValueType']">
+            <jxb:bindings node=".//xsd:attribute[@name='value']">
+                <jxb:property name="value_nameValueType"/>
+            </jxb:bindings>
+        </jxb:bindings>
+        
+        <jxb:bindings node="//xsd:complexType[@name='mixtureModelType']">
+			<jxb:bindings node=".//xsd:attribute[@name='value']">
+				<jxb:property name="value_mixtureModelType"/>
+			</jxb:bindings>
+        </jxb:bindings>
+		
+		
+		
+    </jxb:bindings>
+</jxb:bindings>
