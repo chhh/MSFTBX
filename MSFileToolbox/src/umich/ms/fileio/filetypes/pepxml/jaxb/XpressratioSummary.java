@@ -62,7 +62,7 @@ public class XpressratioSummary {
     @XmlAttribute(name = "masstol", required = true)
     protected float masstol;
     @XmlAttribute(name = "ppmtol", required = true)
-    protected BigInteger ppmtol;
+    protected Integer ppmtol;
 
     /**
      * Gets the value of the version property.
@@ -221,10 +221,10 @@ public class XpressratioSummary {
      * 
      * @return
      *     possible object is
-     *     {@link BigInteger }
+     *     {@link Integer }
      *     
      */
-    public BigInteger getPpmtol() {
+    public Integer getPpmtol() {
         return ppmtol;
     }
 
@@ -233,10 +233,10 @@ public class XpressratioSummary {
      * 
      * @param value
      *     allowed object is
-     *     {@link BigInteger }
+     *     {@link Integer }
      *     
      */
-    public void setPpmtol(BigInteger value) {
+    public void setPpmtol(Integer value) {
         this.ppmtol = value;
     }
 

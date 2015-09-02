@@ -60,7 +60,7 @@ public class AsapratioContribution {
     protected float error;
     @XmlAttribute(name = "charge", required = true)
     @XmlSchemaType(name = "nonNegativeInteger")
-    protected BigInteger charge;
+    protected Integer charge;
     @XmlAttribute(name = "use", required = true)
     @XmlSchemaType(name = "unsignedByte")
     protected short use;
@@ -150,10 +150,10 @@ public class AsapratioContribution {
      * 
      * @return
      *     possible object is
-     *     {@link BigInteger }
+     *     {@link Integer }
      *     
      */
-    public BigInteger getCharge() {
+    public Integer getCharge() {
         return charge;
     }
 
@@ -162,10 +162,10 @@ public class AsapratioContribution {
      * 
      * @param value
      *     allowed object is
-     *     {@link BigInteger }
+     *     {@link Integer }
      *     
      */
-    public void setCharge(BigInteger value) {
+    public void setCharge(Integer value) {
         this.charge = value;
     }
 

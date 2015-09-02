@@ -39,17 +39,17 @@ import javax.xml.bind.annotation.XmlType;
 public class XpressratioTimestamp {
 
     @XmlAttribute(name = "xpress_light", required = true)
-    protected BigInteger xpressLight;
+    protected Integer xpressLight;
 
     /**
      * Gets the value of the xpressLight property.
      * 
      * @return
      *     possible object is
-     *     {@link BigInteger }
+     *     {@link Integer }
      *     
      */
-    public BigInteger getXpressLight() {
+    public Integer getXpressLight() {
         return xpressLight;
     }
 
@@ -58,10 +58,10 @@ public class XpressratioTimestamp {
      * 
      * @param value
      *     allowed object is
-     *     {@link BigInteger }
+     *     {@link Integer }
      *     
      */
-    public void setXpressLight(BigInteger value) {
+    public void setXpressLight(Integer value) {
         this.xpressLight = value;
     }
 

@@ -44,7 +44,7 @@ public class DatabaseRefreshTimestamp {
     protected String database;
     @XmlAttribute(name = "min_num_enz_term")
     @XmlSchemaType(name = "nonNegativeInteger")
-    protected BigInteger minNumEnzTerm;
+    protected Integer minNumEnzTerm;
 
     /**
      * Gets the value of the database property.
@@ -75,10 +75,10 @@ public class DatabaseRefreshTimestamp {
      * 
      * @return
      *     possible object is
-     *     {@link BigInteger }
+     *     {@link Integer }
      *     
      */
-    public BigInteger getMinNumEnzTerm() {
+    public Integer getMinNumEnzTerm() {
         return minNumEnzTerm;
     }
 
@@ -87,10 +87,10 @@ public class DatabaseRefreshTimestamp {
      * 
      * @param value
      *     allowed object is
-     *     {@link BigInteger }
+     *     {@link Integer }
      *     
      */
-    public void setMinNumEnzTerm(BigInteger value) {
+    public void setMinNumEnzTerm(Integer value) {
         this.minNumEnzTerm = value;
     }
 

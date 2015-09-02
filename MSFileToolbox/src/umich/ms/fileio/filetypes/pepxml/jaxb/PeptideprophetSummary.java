@@ -455,49 +455,49 @@ public class PeptideprophetSummary {
         protected float fvalue;
         @XmlAttribute(name = "obs_1_distr", required = true)
         @XmlSchemaType(name = "nonNegativeInteger")
-        protected BigInteger obs1Distr;
+        protected Integer obs1Distr;
         @XmlAttribute(name = "model_1_pos_distr", required = true)
         protected float model1PosDistr;
         @XmlAttribute(name = "model_1_neg_distr", required = true)
         protected float model1NegDistr;
         @XmlAttribute(name = "obs_2_distr", required = true)
         @XmlSchemaType(name = "nonNegativeInteger")
-        protected BigInteger obs2Distr;
+        protected Integer obs2Distr;
         @XmlAttribute(name = "model_2_pos_distr", required = true)
         protected float model2PosDistr;
         @XmlAttribute(name = "model_2_neg_distr", required = true)
         protected float model2NegDistr;
         @XmlAttribute(name = "obs_3_distr", required = true)
         @XmlSchemaType(name = "nonNegativeInteger")
-        protected BigInteger obs3Distr;
+        protected Integer obs3Distr;
         @XmlAttribute(name = "model_3_pos_distr", required = true)
         protected float model3PosDistr;
         @XmlAttribute(name = "model_3_neg_distr", required = true)
         protected float model3NegDistr;
         @XmlAttribute(name = "obs_4_distr", required = true)
         @XmlSchemaType(name = "nonNegativeInteger")
-        protected BigInteger obs4Distr;
+        protected Integer obs4Distr;
         @XmlAttribute(name = "model_4_pos_distr", required = true)
         protected float model4PosDistr;
         @XmlAttribute(name = "model_4_neg_distr", required = true)
         protected float model4NegDistr;
         @XmlAttribute(name = "obs_5_distr", required = true)
         @XmlSchemaType(name = "nonNegativeInteger")
-        protected BigInteger obs5Distr;
+        protected Integer obs5Distr;
         @XmlAttribute(name = "model_5_pos_distr", required = true)
         protected float model5PosDistr;
         @XmlAttribute(name = "model_5_neg_distr", required = true)
         protected float model5NegDistr;
         @XmlAttribute(name = "obs_6_distr", required = true)
         @XmlSchemaType(name = "nonNegativeInteger")
-        protected BigInteger obs6Distr;
+        protected Integer obs6Distr;
         @XmlAttribute(name = "model_6_pos_distr", required = true)
         protected float model6PosDistr;
         @XmlAttribute(name = "model_6_neg_distr", required = true)
         protected float model6NegDistr;
         @XmlAttribute(name = "obs_7_distr", required = true)
         @XmlSchemaType(name = "nonNegativeInteger")
-        protected BigInteger obs7Distr;
+        protected Integer obs7Distr;
         @XmlAttribute(name = "model_7_pos_distr", required = true)
         protected float model7PosDistr;
         @XmlAttribute(name = "model_7_neg_distr", required = true)
@@ -524,10 +524,10 @@ public class PeptideprophetSummary {
          * 
          * @return
          *     possible object is
-         *     {@link BigInteger }
+         *     {@link Integer }
          *     
          */
-        public BigInteger getObs1Distr() {
+        public Integer getObs1Distr() {
             return obs1Distr;
         }
 
@@ -536,10 +536,10 @@ public class PeptideprophetSummary {
          * 
          * @param value
          *     allowed object is
-         *     {@link BigInteger }
+         *     {@link Integer }
          *     
          */
-        public void setObs1Distr(BigInteger value) {
+        public void setObs1Distr(Integer value) {
             this.obs1Distr = value;
         }
 
@@ -580,10 +580,10 @@ public class PeptideprophetSummary {
          * 
          * @return
          *     possible object is
-         *     {@link BigInteger }
+         *     {@link Integer }
          *     
          */
-        public BigInteger getObs2Distr() {
+        public Integer getObs2Distr() {
             return obs2Distr;
         }
 
@@ -592,10 +592,10 @@ public class PeptideprophetSummary {
          * 
          * @param value
          *     allowed object is
-         *     {@link BigInteger }
+         *     {@link Integer }
          *     
          */
-        public void setObs2Distr(BigInteger value) {
+        public void setObs2Distr(Integer value) {
             this.obs2Distr = value;
         }
 
@@ -636,10 +636,10 @@ public class PeptideprophetSummary {
          * 
          * @return
          *     possible object is
-         *     {@link BigInteger }
+         *     {@link Integer }
          *     
          */
-        public BigInteger getObs3Distr() {
+        public Integer getObs3Distr() {
             return obs3Distr;
         }
 
@@ -648,10 +648,10 @@ public class PeptideprophetSummary {
          * 
          * @param value
          *     allowed object is
-         *     {@link BigInteger }
+         *     {@link Integer }
          *     
          */
-        public void setObs3Distr(BigInteger value) {
+        public void setObs3Distr(Integer value) {
             this.obs3Distr = value;
         }
 
@@ -692,10 +692,10 @@ public class PeptideprophetSummary {
          * 
          * @return
          *     possible object is
-         *     {@link BigInteger }
+         *     {@link Integer }
          *     
          */
-        public BigInteger getObs4Distr() {
+        public Integer getObs4Distr() {
             return obs4Distr;
         }
 
@@ -704,10 +704,10 @@ public class PeptideprophetSummary {
          * 
          * @param value
          *     allowed object is
-         *     {@link BigInteger }
+         *     {@link Integer }
          *     
          */
-        public void setObs4Distr(BigInteger value) {
+        public void setObs4Distr(Integer value) {
             this.obs4Distr = value;
         }
 
@@ -748,10 +748,10 @@ public class PeptideprophetSummary {
          * 
          * @return
          *     possible object is
-         *     {@link BigInteger }
+         *     {@link Integer }
          *     
          */
-        public BigInteger getObs5Distr() {
+        public Integer getObs5Distr() {
             return obs5Distr;
         }
 
@@ -760,10 +760,10 @@ public class PeptideprophetSummary {
          * 
          * @param value
          *     allowed object is
-         *     {@link BigInteger }
+         *     {@link Integer }
          *     
          */
-        public void setObs5Distr(BigInteger value) {
+        public void setObs5Distr(Integer value) {
             this.obs5Distr = value;
         }
 
@@ -804,10 +804,10 @@ public class PeptideprophetSummary {
          * 
          * @return
          *     possible object is
-         *     {@link BigInteger }
+         *     {@link Integer }
          *     
          */
-        public BigInteger getObs6Distr() {
+        public Integer getObs6Distr() {
             return obs6Distr;
         }
 
@@ -816,10 +816,10 @@ public class PeptideprophetSummary {
          * 
          * @param value
          *     allowed object is
-         *     {@link BigInteger }
+         *     {@link Integer }
          *     
          */
-        public void setObs6Distr(BigInteger value) {
+        public void setObs6Distr(Integer value) {
             this.obs6Distr = value;
         }
 
@@ -860,10 +860,10 @@ public class PeptideprophetSummary {
          * 
          * @return
          *     possible object is
-         *     {@link BigInteger }
+         *     {@link Integer }
          *     
          */
-        public BigInteger getObs7Distr() {
+        public Integer getObs7Distr() {
             return obs7Distr;
         }
 
@@ -872,10 +872,10 @@ public class PeptideprophetSummary {
          * 
          * @param value
          *     allowed object is
-         *     {@link BigInteger }
+         *     {@link Integer }
          *     
          */
-        public void setObs7Distr(BigInteger value) {
+        public void setObs7Distr(Integer value) {
             this.obs7Distr = value;
         }
 
@@ -1010,7 +1010,7 @@ public class PeptideprophetSummary {
         protected List<Object> mixturemodelDistributionOrMixturemodel;
         @XmlAttribute(name = "precursor_ion_charge", required = true)
         @XmlSchemaType(name = "nonNegativeInteger")
-        protected BigInteger precursorIonCharge;
+        protected Integer precursorIonCharge;
         @XmlAttribute(name = "comments", required = true)
         protected String comments;
         @XmlAttribute(name = "prior_probability", required = true)
@@ -1019,10 +1019,10 @@ public class PeptideprophetSummary {
         protected float estTotCorrect;
         @XmlAttribute(name = "tot_num_spectra", required = true)
         @XmlSchemaType(name = "nonNegativeInteger")
-        protected BigInteger totNumSpectra;
+        protected Integer totNumSpectra;
         @XmlAttribute(name = "num_iterations", required = true)
         @XmlSchemaType(name = "nonNegativeInteger")
-        protected BigInteger numIterations;
+        protected Integer numIterations;
 
         /**
          * Gets the value of the mixturemodelDistributionOrMixturemodel property.
@@ -1059,10 +1059,10 @@ public class PeptideprophetSummary {
          * 
          * @return
          *     possible object is
-         *     {@link BigInteger }
+         *     {@link Integer }
          *     
          */
-        public BigInteger getPrecursorIonCharge() {
+        public Integer getPrecursorIonCharge() {
             return precursorIonCharge;
         }
 
@@ -1071,10 +1071,10 @@ public class PeptideprophetSummary {
          * 
          * @param value
          *     allowed object is
-         *     {@link BigInteger }
+         *     {@link Integer }
          *     
          */
-        public void setPrecursorIonCharge(BigInteger value) {
+        public void setPrecursorIonCharge(Integer value) {
             this.precursorIonCharge = value;
         }
 
@@ -1139,10 +1139,10 @@ public class PeptideprophetSummary {
          * 
          * @return
          *     possible object is
-         *     {@link BigInteger }
+         *     {@link Integer }
          *     
          */
-        public BigInteger getTotNumSpectra() {
+        public Integer getTotNumSpectra() {
             return totNumSpectra;
         }
 
@@ -1151,10 +1151,10 @@ public class PeptideprophetSummary {
          * 
          * @param value
          *     allowed object is
-         *     {@link BigInteger }
+         *     {@link Integer }
          *     
          */
-        public void setTotNumSpectra(BigInteger value) {
+        public void setTotNumSpectra(Integer value) {
             this.totNumSpectra = value;
         }
 
@@ -1163,10 +1163,10 @@ public class PeptideprophetSummary {
          * 
          * @return
          *     possible object is
-         *     {@link BigInteger }
+         *     {@link Integer }
          *     
          */
-        public BigInteger getNumIterations() {
+        public Integer getNumIterations() {
             return numIterations;
         }
 
@@ -1175,10 +1175,10 @@ public class PeptideprophetSummary {
          * 
          * @param value
          *     allowed object is
-         *     {@link BigInteger }
+         *     {@link Integer }
          *     
          */
-        public void setNumIterations(BigInteger value) {
+        public void setNumIterations(Integer value) {
             this.numIterations = value;
         }
 

@@ -747,7 +747,7 @@ public class MsmsPipelineAnalysis {
         protected List<DataFilter> dataFilter;
         @XmlAttribute(name = "generation_no", required = true)
         @XmlSchemaType(name = "nonNegativeInteger")
-        protected BigInteger generationNo;
+        protected Integer generationNo;
 
         /**
          * Gets the value of the dataFilter property.
@@ -783,10 +783,10 @@ public class MsmsPipelineAnalysis {
          * 
          * @return
          *     possible object is
-         *     {@link BigInteger }
+         *     {@link Integer }
          *     
          */
-        public BigInteger getGenerationNo() {
+        public Integer getGenerationNo() {
             return generationNo;
         }
 
@@ -795,10 +795,10 @@ public class MsmsPipelineAnalysis {
          * 
          * @param value
          *     allowed object is
-         *     {@link BigInteger }
+         *     {@link Integer }
          *     
          */
-        public void setGenerationNo(BigInteger value) {
+        public void setGenerationNo(Integer value) {
             this.generationNo = value;
         }
 
@@ -829,7 +829,7 @@ public class MsmsPipelineAnalysis {
 
             @XmlAttribute(name = "number", required = true)
             @XmlSchemaType(name = "nonNegativeInteger")
-            protected BigInteger number;
+            protected Integer number;
             @XmlAttribute(name = "parent_file", required = true)
             protected String parentFile;
             @XmlAttribute(name = "windows_parent")
@@ -842,10 +842,10 @@ public class MsmsPipelineAnalysis {
              * 
              * @return
              *     possible object is
-             *     {@link BigInteger }
+             *     {@link Integer }
              *     
              */
-            public BigInteger getNumber() {
+            public Integer getNumber() {
                 return number;
             }
 
@@ -854,10 +854,10 @@ public class MsmsPipelineAnalysis {
              * 
              * @param value
              *     allowed object is
-             *     {@link BigInteger }
+             *     {@link Integer }
              *     
              */
-            public void setNumber(BigInteger value) {
+            public void setNumber(Integer value) {
                 this.number = value;
             }
 
@@ -2019,7 +2019,7 @@ public class MsmsPipelineAnalysis {
                 protected String sense;
                 @XmlAttribute(name = "min_spacing")
                 @XmlSchemaType(name = "nonNegativeInteger")
-                protected BigInteger minSpacing;
+                protected Integer minSpacing;
                 @XmlAttribute(name = "cut", required = true)
                 protected String cut;
                 @XmlAttribute(name = "no_cut")
@@ -2054,12 +2054,12 @@ public class MsmsPipelineAnalysis {
                  * 
                  * @return
                  *     possible object is
-                 *     {@link BigInteger }
+                 *     {@link Integer }
                  *     
                  */
-                public BigInteger getMinSpacing() {
+                public Integer getMinSpacing() {
                     if (minSpacing == null) {
-                        return new BigInteger("1");
+                        return new Integer("1");
                     } else {
                         return minSpacing;
                     }
@@ -2070,10 +2070,10 @@ public class MsmsPipelineAnalysis {
                  * 
                  * @param value
                  *     allowed object is
-                 *     {@link BigInteger }
+                 *     {@link Integer }
                  *     
                  */
-                public void setMinSpacing(BigInteger value) {
+                public void setMinSpacing(Integer value) {
                     this.minSpacing = value;
                 }
 
@@ -2879,10 +2879,10 @@ public class MsmsPipelineAnalysis {
                 protected String enzyme;
                 @XmlAttribute(name = "max_num_internal_cleavages", required = true)
                 @XmlSchemaType(name = "nonNegativeInteger")
-                protected BigInteger maxNumInternalCleavages;
+                protected Integer maxNumInternalCleavages;
                 @XmlAttribute(name = "min_number_termini", required = true)
                 @XmlSchemaType(name = "nonNegativeInteger")
-                protected BigInteger minNumberTermini;
+                protected Integer minNumberTermini;
 
                 /**
                  * Gets the value of the enzyme property.
@@ -2913,10 +2913,10 @@ public class MsmsPipelineAnalysis {
                  * 
                  * @return
                  *     possible object is
-                 *     {@link BigInteger }
+                 *     {@link Integer }
                  *     
                  */
-                public BigInteger getMaxNumInternalCleavages() {
+                public Integer getMaxNumInternalCleavages() {
                     return maxNumInternalCleavages;
                 }
 
@@ -2925,10 +2925,10 @@ public class MsmsPipelineAnalysis {
                  * 
                  * @param value
                  *     allowed object is
-                 *     {@link BigInteger }
+                 *     {@link Integer }
                  *     
                  */
-                public void setMaxNumInternalCleavages(BigInteger value) {
+                public void setMaxNumInternalCleavages(Integer value) {
                     this.maxNumInternalCleavages = value;
                 }
 
@@ -2937,10 +2937,10 @@ public class MsmsPipelineAnalysis {
                  * 
                  * @return
                  *     possible object is
-                 *     {@link BigInteger }
+                 *     {@link Integer }
                  *     
                  */
-                public BigInteger getMinNumberTermini() {
+                public Integer getMinNumberTermini() {
                     return minNumberTermini;
                 }
 
@@ -2949,10 +2949,10 @@ public class MsmsPipelineAnalysis {
                  * 
                  * @param value
                  *     allowed object is
-                 *     {@link BigInteger }
+                 *     {@link Integer }
                  *     
                  */
-                public void setMinNumberTermini(BigInteger value) {
+                public void setMinNumberTermini(Integer value) {
                     this.minNumberTermini = value;
                 }
 
@@ -3010,10 +3010,10 @@ public class MsmsPipelineAnalysis {
                 protected String databaseReleaseIdentifier;
                 @XmlAttribute(name = "size_in_db_entries")
                 @XmlSchemaType(name = "nonNegativeInteger")
-                protected BigInteger sizeInDbEntries;
+                protected Integer sizeInDbEntries;
                 @XmlAttribute(name = "size_of_residues")
                 @XmlSchemaType(name = "nonNegativeInteger")
-                protected BigInteger sizeOfResidues;
+                protected Integer sizeOfResidues;
                 @XmlAttribute(name = "type", required = true)
                 protected String type;
 
@@ -3166,10 +3166,10 @@ public class MsmsPipelineAnalysis {
                  * 
                  * @return
                  *     possible object is
-                 *     {@link BigInteger }
+                 *     {@link Integer }
                  *     
                  */
-                public BigInteger getSizeInDbEntries() {
+                public Integer getSizeInDbEntries() {
                     return sizeInDbEntries;
                 }
 
@@ -3178,10 +3178,10 @@ public class MsmsPipelineAnalysis {
                  * 
                  * @param value
                  *     allowed object is
-                 *     {@link BigInteger }
+                 *     {@link Integer }
                  *     
                  */
-                public void setSizeInDbEntries(BigInteger value) {
+                public void setSizeInDbEntries(Integer value) {
                     this.sizeInDbEntries = value;
                 }
 
@@ -3190,10 +3190,10 @@ public class MsmsPipelineAnalysis {
                  * 
                  * @return
                  *     possible object is
-                 *     {@link BigInteger }
+                 *     {@link Integer }
                  *     
                  */
-                public BigInteger getSizeOfResidues() {
+                public Integer getSizeOfResidues() {
                     return sizeOfResidues;
                 }
 
@@ -3202,10 +3202,10 @@ public class MsmsPipelineAnalysis {
                  * 
                  * @param value
                  *     allowed object is
-                 *     {@link BigInteger }
+                 *     {@link Integer }
                  *     
                  */
-                public void setSizeOfResidues(BigInteger value) {
+                public void setSizeOfResidues(Integer value) {
                     this.sizeOfResidues = value;
                 }
 
@@ -3651,7 +3651,7 @@ public class MsmsPipelineAnalysis {
             protected float precursorNeutralMass;
             @XmlAttribute(name = "assumed_charge", required = true)
             @XmlSchemaType(name = "nonNegativeInteger")
-            protected BigInteger assumedCharge;
+            protected Integer assumedCharge;
             @XmlAttribute(name = "search_specification")
             protected String searchSpecification;
             @XmlAttribute(name = "index", required = true)
@@ -3883,10 +3883,10 @@ public class MsmsPipelineAnalysis {
              * 
              * @return
              *     possible object is
-             *     {@link BigInteger }
+             *     {@link Integer }
              *     
              */
-            public BigInteger getAssumedCharge() {
+            public Integer getAssumedCharge() {
                 return assumedCharge;
             }
 
@@ -3895,10 +3895,10 @@ public class MsmsPipelineAnalysis {
              * 
              * @param value
              *     allowed object is
-             *     {@link BigInteger }
+             *     {@link Integer }
              *     
              */
-            public void setAssumedCharge(BigInteger value) {
+            public void setAssumedCharge(Integer value) {
                 this.assumedCharge = value;
             }
 
@@ -4245,23 +4245,23 @@ public class MsmsPipelineAnalysis {
                     protected long numTotProteins;
                     @XmlAttribute(name = "num_matched_ions")
                     @XmlSchemaType(name = "nonNegativeInteger")
-                    protected BigInteger numMatchedIons;
+                    protected Integer numMatchedIons;
                     @XmlAttribute(name = "tot_num_ions")
                     @XmlSchemaType(name = "nonNegativeInteger")
-                    protected BigInteger totNumIons;
+                    protected Integer totNumIons;
                     @XmlAttribute(name = "calc_neutral_pep_mass", required = true)
                     protected float calcNeutralPepMass;
                     @XmlAttribute(name = "massdiff", required = true)
                     protected String massdiff;
                     @XmlAttribute(name = "num_tol_term")
                     @XmlSchemaType(name = "nonNegativeInteger")
-                    protected BigInteger numTolTerm;
+                    protected Integer numTolTerm;
                     @XmlAttribute(name = "num_missed_cleavages")
-                    protected BigInteger numMissedCleavages;
+                    protected Integer numMissedCleavages;
                     @XmlAttribute(name = "num_matched_peptides")
-                    protected BigInteger numMatchedPeptides;
+                    protected Integer numMatchedPeptides;
                     @XmlAttribute(name = "is_rejected")
-                    protected BigInteger isRejected;
+                    protected Integer isRejected;
                     @XmlAttribute(name = "protein_descr")
                     protected String proteinDescr;
                     @XmlAttribute(name = "calc_pI")
@@ -4542,10 +4542,10 @@ public class MsmsPipelineAnalysis {
                      * 
                      * @return
                      *     possible object is
-                     *     {@link BigInteger }
+                     *     {@link Integer }
                      *     
                      */
-                    public BigInteger getNumMatchedIons() {
+                    public Integer getNumMatchedIons() {
                         return numMatchedIons;
                     }
 
@@ -4554,10 +4554,10 @@ public class MsmsPipelineAnalysis {
                      * 
                      * @param value
                      *     allowed object is
-                     *     {@link BigInteger }
+                     *     {@link Integer }
                      *     
                      */
-                    public void setNumMatchedIons(BigInteger value) {
+                    public void setNumMatchedIons(Integer value) {
                         this.numMatchedIons = value;
                     }
 
@@ -4566,10 +4566,10 @@ public class MsmsPipelineAnalysis {
                      * 
                      * @return
                      *     possible object is
-                     *     {@link BigInteger }
+                     *     {@link Integer }
                      *     
                      */
-                    public BigInteger getTotNumIons() {
+                    public Integer getTotNumIons() {
                         return totNumIons;
                     }
 
@@ -4578,10 +4578,10 @@ public class MsmsPipelineAnalysis {
                      * 
                      * @param value
                      *     allowed object is
-                     *     {@link BigInteger }
+                     *     {@link Integer }
                      *     
                      */
-                    public void setTotNumIons(BigInteger value) {
+                    public void setTotNumIons(Integer value) {
                         this.totNumIons = value;
                     }
 
@@ -4630,10 +4630,10 @@ public class MsmsPipelineAnalysis {
                      * 
                      * @return
                      *     possible object is
-                     *     {@link BigInteger }
+                     *     {@link Integer }
                      *     
                      */
-                    public BigInteger getNumTolTerm() {
+                    public Integer getNumTolTerm() {
                         return numTolTerm;
                     }
 
@@ -4642,10 +4642,10 @@ public class MsmsPipelineAnalysis {
                      * 
                      * @param value
                      *     allowed object is
-                     *     {@link BigInteger }
+                     *     {@link Integer }
                      *     
                      */
-                    public void setNumTolTerm(BigInteger value) {
+                    public void setNumTolTerm(Integer value) {
                         this.numTolTerm = value;
                     }
 
@@ -4654,10 +4654,10 @@ public class MsmsPipelineAnalysis {
                      * 
                      * @return
                      *     possible object is
-                     *     {@link BigInteger }
+                     *     {@link Integer }
                      *     
                      */
-                    public BigInteger getNumMissedCleavages() {
+                    public Integer getNumMissedCleavages() {
                         return numMissedCleavages;
                     }
 
@@ -4666,10 +4666,10 @@ public class MsmsPipelineAnalysis {
                      * 
                      * @param value
                      *     allowed object is
-                     *     {@link BigInteger }
+                     *     {@link Integer }
                      *     
                      */
-                    public void setNumMissedCleavages(BigInteger value) {
+                    public void setNumMissedCleavages(Integer value) {
                         this.numMissedCleavages = value;
                     }
 
@@ -4678,10 +4678,10 @@ public class MsmsPipelineAnalysis {
                      * 
                      * @return
                      *     possible object is
-                     *     {@link BigInteger }
+                     *     {@link Integer }
                      *     
                      */
-                    public BigInteger getNumMatchedPeptides() {
+                    public Integer getNumMatchedPeptides() {
                         return numMatchedPeptides;
                     }
 
@@ -4690,10 +4690,10 @@ public class MsmsPipelineAnalysis {
                      * 
                      * @param value
                      *     allowed object is
-                     *     {@link BigInteger }
+                     *     {@link Integer }
                      *     
                      */
-                    public void setNumMatchedPeptides(BigInteger value) {
+                    public void setNumMatchedPeptides(Integer value) {
                         this.numMatchedPeptides = value;
                     }
 
@@ -4702,12 +4702,12 @@ public class MsmsPipelineAnalysis {
                      * 
                      * @return
                      *     possible object is
-                     *     {@link BigInteger }
+                     *     {@link Integer }
                      *     
                      */
-                    public BigInteger getIsRejected() {
+                    public Integer getIsRejected() {
                         if (isRejected == null) {
-                            return new BigInteger("0");
+                            return new Integer("0");
                         } else {
                             return isRejected;
                         }
@@ -4718,10 +4718,10 @@ public class MsmsPipelineAnalysis {
                      * 
                      * @param value
                      *     allowed object is
-                     *     {@link BigInteger }
+                     *     {@link Integer }
                      *     
                      */
-                    public void setIsRejected(BigInteger value) {
+                    public void setIsRejected(Integer value) {
                         this.isRejected = value;
                     }
 
@@ -4830,7 +4830,7 @@ public class MsmsPipelineAnalysis {
                         protected String proteinDescr;
                         @XmlAttribute(name = "num_tol_term")
                         @XmlSchemaType(name = "nonNegativeInteger")
-                        protected BigInteger numTolTerm;
+                        protected Integer numTolTerm;
                         @XmlAttribute(name = "protein_mw")
                         protected Double proteinMw;
                         @XmlAttribute(name = "peptide_prev_aa")
@@ -4891,10 +4891,10 @@ public class MsmsPipelineAnalysis {
                          * 
                          * @return
                          *     possible object is
-                         *     {@link BigInteger }
+                         *     {@link Integer }
                          *     
                          */
-                        public BigInteger getNumTolTerm() {
+                        public Integer getNumTolTerm() {
                             return numTolTerm;
                         }
 
@@ -4903,10 +4903,10 @@ public class MsmsPipelineAnalysis {
                          * 
                          * @param value
                          *     allowed object is
-                         *     {@link BigInteger }
+                         *     {@link Integer }
                          *     
                          */
-                        public void setNumTolTerm(BigInteger value) {
+                        public void setNumTolTerm(Integer value) {
                             this.numTolTerm = value;
                         }
 
@@ -5272,7 +5272,7 @@ public class MsmsPipelineAnalysis {
 
                             @XmlAttribute(name = "position", required = true)
                             @XmlSchemaType(name = "nonNegativeInteger")
-                            protected BigInteger position;
+                            protected Integer position;
                             @XmlAttribute(name = "mass", required = true)
                             protected double mass;
 
@@ -5281,10 +5281,10 @@ public class MsmsPipelineAnalysis {
                              * 
                              * @return
                              *     possible object is
-                             *     {@link BigInteger }
+                             *     {@link Integer }
                              *     
                              */
-                            public BigInteger getPosition() {
+                            public Integer getPosition() {
                                 return position;
                             }
 
@@ -5293,10 +5293,10 @@ public class MsmsPipelineAnalysis {
                              * 
                              * @param value
                              *     allowed object is
-                             *     {@link BigInteger }
+                             *     {@link Integer }
                              *     
                              */
-                            public void setPosition(BigInteger value) {
+                            public void setPosition(Integer value) {
                                 this.position = value;
                             }
 

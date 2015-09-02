@@ -49,12 +49,12 @@ public class AsapratioSummary {
     @XmlAttribute(name = "author", required = true)
     protected String author;
     @XmlAttribute(name = "elution", required = true)
-    protected BigInteger elution;
+    protected Integer elution;
     @XmlAttribute(name = "labeled_residues", required = true)
     protected String labeledResidues;
     @XmlAttribute(name = "area_flag", required = true)
     @XmlSchemaType(name = "nonNegativeInteger")
-    protected BigInteger areaFlag;
+    protected Integer areaFlag;
     @XmlAttribute(name = "static_quant", required = true)
     protected String staticQuant;
 
@@ -111,10 +111,10 @@ public class AsapratioSummary {
      * 
      * @return
      *     possible object is
-     *     {@link BigInteger }
+     *     {@link Integer }
      *     
      */
-    public BigInteger getElution() {
+    public Integer getElution() {
         return elution;
     }
 
@@ -123,10 +123,10 @@ public class AsapratioSummary {
      * 
      * @param value
      *     allowed object is
-     *     {@link BigInteger }
+     *     {@link Integer }
      *     
      */
-    public void setElution(BigInteger value) {
+    public void setElution(Integer value) {
         this.elution = value;
     }
 
@@ -159,10 +159,10 @@ public class AsapratioSummary {
      * 
      * @return
      *     possible object is
-     *     {@link BigInteger }
+     *     {@link Integer }
      *     
      */
-    public BigInteger getAreaFlag() {
+    public Integer getAreaFlag() {
         return areaFlag;
     }
 
@@ -171,10 +171,10 @@ public class AsapratioSummary {
      * 
      * @param value
      *     allowed object is
-     *     {@link BigInteger }
+     *     {@link Integer }
      *     
      */
-    public void setAreaFlag(BigInteger value) {
+    public void setAreaFlag(Integer value) {
         this.areaFlag = value;
     }
 
