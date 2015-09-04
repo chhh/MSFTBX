@@ -130,7 +130,7 @@ public class LibraSummary {
      */
     public List<FragmentMasses> getFragmentMasses() {
         if (fragmentMasses == null) {
-            fragmentMasses = new ArrayList<FragmentMasses>();
+            fragmentMasses = new ArrayList<FragmentMasses>(1);
         }
         return this.fragmentMasses;
     }
@@ -409,7 +409,7 @@ public class LibraSummary {
          */
         public List<ContributingChannel> getContributingChannel() {
             if (contributingChannel == null) {
-                contributingChannel = new ArrayList<ContributingChannel>();
+                contributingChannel = new ArrayList<ContributingChannel>(1);
             }
             return this.contributingChannel;
         }
@@ -479,7 +479,7 @@ public class LibraSummary {
              */
             public List<AffectedChannel> getAffectedChannel() {
                 if (affectedChannel == null) {
-                    affectedChannel = new ArrayList<AffectedChannel>();
+                    affectedChannel = new ArrayList<AffectedChannel>(1);
                 }
                 return this.affectedChannel;
             }

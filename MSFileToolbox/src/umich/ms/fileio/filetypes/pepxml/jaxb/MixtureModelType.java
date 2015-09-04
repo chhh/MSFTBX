@@ -88,7 +88,7 @@ public class MixtureModelType {
      */
     public List<Point> getPoint() {
         if (point == null) {
-            point = new ArrayList<Point>();
+            point = new ArrayList<Point>(1);
         }
         return this.point;
     }

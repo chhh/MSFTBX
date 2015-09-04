@@ -88,7 +88,7 @@ public class AsapratioPeptideData {
      */
     public List<AsapratioContribution> getAsapratioContribution() {
         if (asapratioContribution == null) {
-            asapratioContribution = new ArrayList<AsapratioContribution>();
+            asapratioContribution = new ArrayList<AsapratioContribution>(1);
         }
         return this.asapratioContribution;
     }

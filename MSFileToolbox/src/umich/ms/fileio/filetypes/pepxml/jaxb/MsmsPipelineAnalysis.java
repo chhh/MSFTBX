@@ -436,7 +436,7 @@ public class MsmsPipelineAnalysis {
      */
     public List<AnalysisSummary> getAnalysisSummary() {
         if (analysisSummary == null) {
-            analysisSummary = new ArrayList<AnalysisSummary>();
+            analysisSummary = new ArrayList<AnalysisSummary>(1);
         }
         return this.analysisSummary;
     }
@@ -489,7 +489,7 @@ public class MsmsPipelineAnalysis {
      */
     public List<MsmsRunSummary> getMsmsRunSummary() {
         if (msmsRunSummary == null) {
-            msmsRunSummary = new ArrayList<MsmsRunSummary>();
+            msmsRunSummary = new ArrayList<MsmsRunSummary>(1);
         }
         return this.msmsRunSummary;
     }
@@ -773,7 +773,7 @@ public class MsmsPipelineAnalysis {
          */
         public List<DataFilter> getDataFilter() {
             if (dataFilter == null) {
-                dataFilter = new ArrayList<DataFilter>();
+                dataFilter = new ArrayList<DataFilter>(1);
             }
             return this.dataFilter;
         }
@@ -1338,7 +1338,7 @@ public class MsmsPipelineAnalysis {
          */
         public List<SearchSummary> getSearchSummary() {
             if (searchSummary == null) {
-                searchSummary = new ArrayList<SearchSummary>();
+                searchSummary = new ArrayList<SearchSummary>(1);
             }
             return this.searchSummary;
         }
@@ -1367,7 +1367,7 @@ public class MsmsPipelineAnalysis {
          */
         public List<AnalysisTimestamp> getAnalysisTimestamp() {
             if (analysisTimestamp == null) {
-                analysisTimestamp = new ArrayList<AnalysisTimestamp>();
+                analysisTimestamp = new ArrayList<AnalysisTimestamp>(1);
             }
             return this.analysisTimestamp;
         }
@@ -1396,7 +1396,7 @@ public class MsmsPipelineAnalysis {
          */
         public List<SpectrumQuery> getSpectrumQuery() {
             if (spectrumQuery == null) {
-                spectrumQuery = new ArrayList<SpectrumQuery>();
+                spectrumQuery = new ArrayList<SpectrumQuery>(1);
             }
             return this.spectrumQuery;
         }
@@ -1859,7 +1859,7 @@ public class MsmsPipelineAnalysis {
              */
             public List<Specificity> getSpecificity() {
                 if (specificity == null) {
-                    specificity = new ArrayList<Specificity>();
+                    specificity = new ArrayList<Specificity>(1);
                 }
                 return this.specificity;
             }
@@ -2343,7 +2343,7 @@ public class MsmsPipelineAnalysis {
              */
             public List<SequenceSearchConstraint> getSequenceSearchConstraint() {
                 if (sequenceSearchConstraint == null) {
-                    sequenceSearchConstraint = new ArrayList<SequenceSearchConstraint>();
+                    sequenceSearchConstraint = new ArrayList<SequenceSearchConstraint>(1);
                 }
                 return this.sequenceSearchConstraint;
             }
@@ -2372,7 +2372,7 @@ public class MsmsPipelineAnalysis {
              */
             public List<AminoacidModification> getAminoacidModification() {
                 if (aminoacidModification == null) {
-                    aminoacidModification = new ArrayList<AminoacidModification>();
+                    aminoacidModification = new ArrayList<AminoacidModification>(1);
                 }
                 return this.aminoacidModification;
             }
@@ -2401,7 +2401,7 @@ public class MsmsPipelineAnalysis {
              */
             public List<TerminalModification> getTerminalModification() {
                 if (terminalModification == null) {
-                    terminalModification = new ArrayList<TerminalModification>();
+                    terminalModification = new ArrayList<TerminalModification>(1);
                 }
                 return this.terminalModification;
             }
@@ -2430,7 +2430,7 @@ public class MsmsPipelineAnalysis {
              */
             public List<NameValueType> getParameter() {
                 if (parameter == null) {
-                    parameter = new ArrayList<NameValueType>();
+                    parameter = new ArrayList<NameValueType>(1);
                 }
                 return this.parameter;
             }
@@ -3681,7 +3681,7 @@ public class MsmsPipelineAnalysis {
              */
             public List<SearchResult> getSearchResult() {
                 if (searchResult == null) {
-                    searchResult = new ArrayList<SearchResult>();
+                    searchResult = new ArrayList<SearchResult>(1);
                 }
                 return this.searchResult;
             }
@@ -4083,7 +4083,7 @@ public class MsmsPipelineAnalysis {
                  */
                 public List<SearchHit> getSearchHit() {
                     if (searchHit == null) {
-                        searchHit = new ArrayList<SearchHit>();
+                        searchHit = new ArrayList<SearchHit>(1);
                     }
                     return this.searchHit;
                 }
@@ -4293,7 +4293,7 @@ public class MsmsPipelineAnalysis {
                      */
                     public List<AlternativeProtein> getAlternativeProtein() {
                         if (alternativeProtein == null) {
-                            alternativeProtein = new ArrayList<AlternativeProtein>();
+                            alternativeProtein = new ArrayList<AlternativeProtein>(1);
                         }
                         return this.alternativeProtein;
                     }
@@ -4346,7 +4346,7 @@ public class MsmsPipelineAnalysis {
                      */
                     public List<NameValueType> getSearchScore() {
                         if (searchScore == null) {
-                            searchScore = new ArrayList<NameValueType>();
+                            searchScore = new ArrayList<NameValueType>(1);
                         }
                         return this.searchScore;
                     }
@@ -4375,7 +4375,7 @@ public class MsmsPipelineAnalysis {
                      */
                     public List<AnalysisResult> getAnalysisResult() {
                         if (analysisResult == null) {
-                            analysisResult = new ArrayList<AnalysisResult>();
+                            analysisResult = new ArrayList<AnalysisResult>(1);
                         }
                         return this.analysisResult;
                     }
@@ -4404,7 +4404,7 @@ public class MsmsPipelineAnalysis {
                      */
                     public List<NameValueType> getParameter() {
                         if (parameter == null) {
-                            parameter = new ArrayList<NameValueType>();
+                            parameter = new ArrayList<NameValueType>(1);
                         }
                         return this.parameter;
                     }
@@ -5170,7 +5170,7 @@ public class MsmsPipelineAnalysis {
                          */
                         public List<ModAminoacidMass> getModAminoacidMass() {
                             if (modAminoacidMass == null) {
-                                modAminoacidMass = new ArrayList<ModAminoacidMass>();
+                                modAminoacidMass = new ArrayList<ModAminoacidMass>(1);
                             }
                             return this.modAminoacidMass;
                         }

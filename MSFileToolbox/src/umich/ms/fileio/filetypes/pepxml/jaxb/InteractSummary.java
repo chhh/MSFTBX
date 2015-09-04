@@ -77,7 +77,7 @@ public class InteractSummary {
      */
     public List<InputFileType> getInputfile() {
         if (inputfile == null) {
-            inputfile = new ArrayList<InputFileType>();
+            inputfile = new ArrayList<InputFileType>(1);
         }
         return this.inputfile;
     }

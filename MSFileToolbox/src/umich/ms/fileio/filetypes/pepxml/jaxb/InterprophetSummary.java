@@ -84,7 +84,7 @@ public class InterprophetSummary {
      */
     public List<InputFileType> getInputfile() {
         if (inputfile == null) {
-            inputfile = new ArrayList<InputFileType>();
+            inputfile = new ArrayList<InputFileType>(1);
         }
         return this.inputfile;
     }
@@ -113,7 +113,7 @@ public class InterprophetSummary {
      */
     public List<RocErrorDataType> getRocErrorData() {
         if (rocErrorData == null) {
-            rocErrorData = new ArrayList<RocErrorDataType>();
+            rocErrorData = new ArrayList<RocErrorDataType>(1);
         }
         return this.rocErrorData;
     }
@@ -142,7 +142,7 @@ public class InterprophetSummary {
      */
     public List<MixtureModelType> getMixturemodel() {
         if (mixturemodel == null) {
-            mixturemodel = new ArrayList<MixtureModelType>();
+            mixturemodel = new ArrayList<MixtureModelType>(1);
         }
         return this.mixturemodel;
     }
