@@ -37,7 +37,7 @@ import javax.xml.bind.annotation.XmlValue;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "nameValueType", propOrder = {
-    "value"
+    "valueNameValueType"
 })
 public class NameValueType {
 
