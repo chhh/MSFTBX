@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="MSFileToolboxModule-src:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/MSFileToolboxModule_src_jar</output-path>
-    <root id="archive" name="MSFileToolboxModule-src_jar.jar">
-      <element id="dir-copy" path="$PROJECT_DIR$/src" />
-    </root>
-  </artifact>
-</component>

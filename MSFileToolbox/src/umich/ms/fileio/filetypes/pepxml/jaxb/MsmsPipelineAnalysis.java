@@ -3638,7 +3638,7 @@ public class MsmsPipelineAnalysis {
             @XmlSchemaType(name = "unsignedInt")
             protected long endScan;
             @XmlAttribute(name = "retention_time_sec")
-            protected Float retentionTimeSec;
+            protected Double retentionTimeSec;
             @XmlAttribute(name = "collision_energy")
             protected Float collisionEnergy;
             @XmlAttribute(name = "compensation_voltage")
@@ -3648,10 +3648,10 @@ public class MsmsPipelineAnalysis {
             @XmlAttribute(name = "activation_method")
             protected ActivationMethodType activationMethod;
             @XmlAttribute(name = "precursor_neutral_mass", required = true)
-            protected float precursorNeutralMass;
+            protected double precursorNeutralMass;
             @XmlAttribute(name = "assumed_charge", required = true)
             @XmlSchemaType(name = "nonNegativeInteger")
-            protected Integer assumedCharge;
+            protected int assumedCharge;
             @XmlAttribute(name = "search_specification")
             protected String searchSpecification;
             @XmlAttribute(name = "index", required = true)
@@ -3750,7 +3750,7 @@ public class MsmsPipelineAnalysis {
              *     {@link Float }
              *     
              */
-            public Float getRetentionTimeSec() {
+            public Double getRetentionTimeSec() {
                 return retentionTimeSec;
             }
 
@@ -3762,7 +3762,7 @@ public class MsmsPipelineAnalysis {
              *     {@link Float }
              *     
              */
-            public void setRetentionTimeSec(Float value) {
+            public void setRetentionTimeSec(Double value) {
                 this.retentionTimeSec = value;
             }
 
@@ -3866,7 +3866,7 @@ public class MsmsPipelineAnalysis {
              * Gets the value of the precursorNeutralMass property.
              * 
              */
-            public float getPrecursorNeutralMass() {
+            public double getPrecursorNeutralMass() {
                 return precursorNeutralMass;
             }
 
@@ -4250,9 +4250,9 @@ public class MsmsPipelineAnalysis {
                     @XmlSchemaType(name = "nonNegativeInteger")
                     protected Integer totNumIons;
                     @XmlAttribute(name = "calc_neutral_pep_mass", required = true)
-                    protected float calcNeutralPepMass;
+                    protected double calcNeutralPepMass;
                     @XmlAttribute(name = "massdiff", required = true)
-                    protected float massdiff;
+                    protected double massdiff;
                     @XmlAttribute(name = "num_tol_term")
                     @XmlSchemaType(name = "nonNegativeInteger")
                     protected Integer numTolTerm;
@@ -4589,7 +4589,7 @@ public class MsmsPipelineAnalysis {
                      * Gets the value of the calcNeutralPepMass property.
                      * 
                      */
-                    public float getCalcNeutralPepMass() {
+                    public double getCalcNeutralPepMass() {
                         return calcNeutralPepMass;
                     }
 
@@ -4597,7 +4597,7 @@ public class MsmsPipelineAnalysis {
                      * Sets the value of the calcNeutralPepMass property.
                      * 
                      */
-                    public void setCalcNeutralPepMass(float value) {
+                    public void setCalcNeutralPepMass(double value) {
                         this.calcNeutralPepMass = value;
                     }
 
@@ -4609,7 +4609,7 @@ public class MsmsPipelineAnalysis {
                      *     {@link String }
                      *     
                      */
-                    public float getMassdiff() {
+                    public double getMassdiff() {
                         return massdiff;
                     }
 
@@ -4621,7 +4621,7 @@ public class MsmsPipelineAnalysis {
                      *     {@link String }
                      *     
                      */
-                    public void setMassdiff(float value) {
+                    public void setMassdiff(double value) {
                         this.massdiff = value;
                     }
 
