@@ -47,7 +47,7 @@ public class ScanDefault extends AbstractScan {
 
     @Override
     public Double getRt() {
-        //return (double)getNum(); // TODO: WARNING: ACHTUNG: This was here to test Waters IMS data in MAP 2D
+//        return (double)getNum(); // TODO: WARNING: ACHTUNG: This was here to test Waters IMS data in MAP 2D
         return rt;
     }
 

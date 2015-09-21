@@ -30,8 +30,14 @@
                 <package>umich.ms.fileio</package>
                 <package>umich.ms.fileio.exceptions</package>
                 <package>umich.ms.fileio.filetypes</package>
+                <package>umich.ms.fileio.filetypes.agilent.cef.jaxb</package>
+                <package>umich.ms.fileio.filetypes.gpmdb</package>
+                <package>umich.ms.fileio.filetypes.gpmdb.jaxb</package>
                 <package>umich.ms.fileio.filetypes.mzml</package>
+                <package>umich.ms.fileio.filetypes.mzml.jaxb</package>
                 <package>umich.ms.fileio.filetypes.mzxml</package>
+                <package>umich.ms.fileio.filetypes.mzxml.jaxb</package>
+                <package>umich.ms.fileio.filetypes.pepxml.jaxb</package>
                 <package>umich.ms.fileio.filetypes.util</package>
                 <package>umich.ms.fileio.filetypes.xmlbased</package>
                 <package>umich.ms.util</package>
