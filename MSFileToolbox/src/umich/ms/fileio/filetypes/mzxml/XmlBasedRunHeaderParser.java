@@ -24,14 +24,14 @@ import umich.ms.fileio.filetypes.xmlbased.OffsetLength;
 import umich.ms.logging.LogHelper;
 
 /**
- * For examples look at source of {@link MZXMLRunHeaderParser} and {@link MZMLRunHeaderParser}.
+ * For example look at source of {@link MZXMLRunHeaderParser} and {@link MZMLRunHeaderParser}.
  * @author Dmitry Avtonomov
  */
 public abstract class XmlBasedRunHeaderParser {
 
 
     /**
-     * Be sure to include all the correct tags in this stream. For examples look
+     * Be sure to include all the correct tags in this stream. For example look
      * at source of {@link MZXMLRunHeaderParser} and {@link MZMLRunHeaderParser}.
      * @param msRunLocation
      * @return

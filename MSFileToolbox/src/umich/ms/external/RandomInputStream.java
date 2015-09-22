@@ -1,4 +1,4 @@
-package umich.ms.fileio.util;
+package umich.ms.external;
 
 import umich.ms.external.ucar.KMPMatch;
 import umich.ms.external.ucar.RandomAccessFile;

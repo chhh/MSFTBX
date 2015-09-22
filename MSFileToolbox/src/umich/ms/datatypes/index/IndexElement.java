@@ -15,7 +15,7 @@ package umich.ms.datatypes.index;
  *         This scanNumber=1 is not always a unique number, it's some internal vendor specific string.
  *     </li>
  *     <li>
- *         There are many other examples
+ *         There are many other example
  *     </li>
  * </ul>
  *

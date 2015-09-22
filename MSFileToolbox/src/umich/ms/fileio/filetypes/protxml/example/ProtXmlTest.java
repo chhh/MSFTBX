@@ -1,6 +1,5 @@
-package umich.ms.fileio.filetypes.protxml.examples;
+package umich.ms.fileio.filetypes.protxml.example;
 
-import umich.ms.fileio.filetypes.pepxml.jaxb.MsmsPipelineAnalysis;
 import umich.ms.fileio.filetypes.protxml.jaxb.ProteinSummary;
 
 import javax.xml.bind.JAXBContext;
