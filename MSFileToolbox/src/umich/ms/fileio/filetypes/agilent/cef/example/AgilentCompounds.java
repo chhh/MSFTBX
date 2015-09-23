@@ -57,6 +57,7 @@ public class AgilentCompounds {
                 IonId ionId = p.parseIonSignature();
                 if (ionId == null)
                     throw new IllegalStateException("Ion signature did not match the regexp in AgilentMSPeak");
+                p.setIonId(ionId);
                 String id = ionId.getMolId();
                 List<AgilentMSPeak> msPeaks = map.get(id);
                 if (msPeaks == null) {

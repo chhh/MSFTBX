@@ -37,7 +37,16 @@ public class AgilentMSPeak implements Comparable<AgilentMSPeak> {
     protected double abTot;
     protected int z = CHARGE_UNKNOWN;
     protected String ionDescription = "";
+    IonId ionId = null;
 
+    public IonId getIonId() {
+        return ionId;
+    }
+
+    public void setIonId(IonId ionId) {
+        this.ionId = ionId;
+    }
+    
     public double getRt() {
         return rt;
     }
