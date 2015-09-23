@@ -13,22 +13,22 @@ import java.util.regex.Pattern;
  *
  * @author Dmitry Avtonomov
  */
-public class AgilentMSPeak {
+public class AgilentMSPeak implements Comparable<AgilentMSPeak> {
     public static final int CHARGE_UNKNOWN = Integer.MIN_VALUE;
-    public static String GRP_MOL_IDENTITY = "grp_id";
-    public static String GRP_M_COUNT = "grp_m_cnt";
-    public static String GRP_Z_SIGN = "grp_z_sgn";
-    public static String GRP_Z_COUNT = "grp_z_cnt";
-    public static String GRP_Z_CARRIER = "grp_z_crr";
-    public static String GRP_ADDUCT = "grp_add";
-    public static String GRP_ISOTOPE_NUM = "grp_iso_n";
+    public static String GRP_MOL_IDENTITY = "grpId";
+    public static String GRP_M_COUNT = "grpMcnt";
+    public static String GRP_Z_SIGN = "grpZsgn";
+    public static String GRP_Z_COUNT = "grpZcnt";
+    public static String GRP_Z_CARRIER = "grpZcrr";
+    public static String GRP_ADDUCT = "grpAdd";
+    public static String GRP_ISOTOPE_NUM = "grpIsoN";
 
     // this works
 //    public static Pattern RE_PEAK_DESCRIPTION = Pattern.compile(String.format(
 //            "(\\d*M(?:\\+|-)(\\d*)(\\w+)(?:\\+\\[[\\w\\+\\-]+?\\])?(?:\\+\\d*)?)",
 //            GRP_MOL_IDENTITY));
     public static Pattern RE_PEAK_DESCRIPTION = Pattern.compile(String.format(
-            "(?<%1$s>(?<%2$s>\\d*)M(?<%3$s>\\+|-)(?<%4$s>\\d*)(?<%5$s>\\w+)(?:\\+(?<%6$s>\\[[\\w\\+\\-]+?\\]))?(?:\\+(?<%$7s>\\d*))?)",
+            "(?<%1$s>(?<%2$s>\\d*)M(?<%3$s>\\+|-)(?<%4$s>\\d*)(?<%5$s>\\w+)(?:\\+(?<%6$s>\\[[\\w\\+\\-]+?\\]))?)(?:\\+(?<%7$s>\\d*))?",
             GRP_MOL_IDENTITY, GRP_M_COUNT, GRP_Z_SIGN, GRP_Z_COUNT, GRP_Z_CARRIER, GRP_ADDUCT, GRP_ISOTOPE_NUM));
 
     protected double rt;
@@ -86,11 +86,41 @@ public class AgilentMSPeak {
         this.ionDescription = ionDescription;
     }
 
-    public Matcher parseIonSignature() {
+    public IonId parseIonSignature() {
         Matcher m = RE_PEAK_DESCRIPTION.matcher(ionDescription);
+        String g;
         if (m.find()) {
-            return m;
+            IonId id = new IonId();
+            g = m.group(GRP_MOL_IDENTITY);
+            id.setMolId(g);
+            g = m.group(GRP_M_COUNT);
+            if (g != null && !g.isEmpty()) {
+                id.setmCount(Integer.parseInt(g));
+            }
+            g = m.group(GRP_ADDUCT);
+            if (g != null) {
+                id.setAdduct(g);
+            }
+            g = m.group(GRP_ISOTOPE_NUM);
+            if (g != null) {
+                int isoNum = g.isEmpty() ? 0 : Integer.parseInt(g);
+                id.setIsotopeNumber(isoNum);
+            }
+            g = m.group(GRP_Z_COUNT);
+            int z = g.isEmpty() ? 1: Integer.parseInt(g);
+            g = m.group(GRP_Z_SIGN);
+            int zSgn = "+".equals(g) ? 1 : -1;
+            z = z * zSgn;
+            id.setZ(z);
+            g = m.group(GRP_Z_CARRIER);
+            id.setzCarrier(g);
+            return id;
         }
         return null;
+    }
+
+    @Override
+    public int compareTo(AgilentMSPeak o) {
+        return Double.compare(mz, o.mz);
     }
 }
