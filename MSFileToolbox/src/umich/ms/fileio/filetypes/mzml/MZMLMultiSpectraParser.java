@@ -49,7 +49,7 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
     protected final MZMLFile source;
     protected LCMSRunInfo runInfo;
     protected MZMLIndex index;
-    
+
     //protected static final Pattern RE_SCAN_NUM_FROM_INDEX_REF = Pattern.compile("(scan=(\\d+)");
     @Deprecated
     protected static final Pattern RE_SCAN_NUM_FROM_INDEX_REF = MZMLIndexParser.RE_SCAN_NUM_FROM_INDEX_REF;
@@ -107,7 +107,7 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
         this.source = source;
     }
 
-    
+
     @Override
     public MZMLFile getSource() {
         return source;
@@ -242,10 +242,17 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
         attrs = reader.getAttributes();
         attr = attrs.getValue(ATTR.PRECURSOR_SPEC_REF.name);
         if (attr != null) {
-            int scanNumInternal = mapIdRefToInternalScanNum(attr);
-            precursorInfo.setParentScanNum(scanNumInternal);
+            precursorInfo.setParentScanRefRaw(attr.toString());
+            try {
+                int scanNumInternal = mapIdRefToInternalScanNum(attr);
+                precursorInfo.setParentScanNum(scanNumInternal);
+            } catch (FileParsingException fpe) {
+                // we couldn't find a mapping, means that likely the parent scan is not in the run at all
+                // this is not critical, so we just leave it as null and store the precursor scan number / scanRef
+                // as a string in the PrecursorInfo#parentScanRefRaw
+            }
         }
-        
+
         eventType = XMLStreamConstants.END_DOCUMENT;
         localName = TAG.PRECURSOR.charArray;
 
@@ -622,7 +629,7 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
 //            }
 //        }
 //        break;
-        
+
     }
 
     private void tagSpectrumStart(Attributes attrs) throws FileParsingException {
@@ -916,6 +923,7 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
      * Given a scan ID goes to the index and tries to find a mapping.
      * @param id
      * @return
+     * @throws umich.ms.fileio.exceptions.FileParsingException in case the mapping can't be done
      */
     protected int mapIdRefToInternalScanNum(CharArray id) throws FileParsingException {
         String idStr = id.toString();

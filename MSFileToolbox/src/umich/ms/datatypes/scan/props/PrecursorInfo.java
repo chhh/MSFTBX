@@ -10,11 +10,26 @@ import umich.ms.util.DoubleRange;
  * Time: 4:00 PM
  */
 public class PrecursorInfo implements Serializable {
+    /** This is the internal scan number, it will only be non-null, if the parent scan itself is still in the mzML/mzXML file. */
     private Integer parentScanNum;
+    /**
+     * This is the raw parent scan reference (a number or a real string ref, like in mzML files).
+     * ProteoWizard leaves in this meta-data even if the parent scan itself is
+     * not present in the file (e.g. it was not included during conversion with ProteoWizard).
+     */
+    private String parentScanRefRaw;
     private Double mzRangeStart;
     private Double mzRangeEnd;
     private Double mzTarget;
     private String activationMethod;
+
+    public String getParentScanRefRaw() {
+        return parentScanRefRaw;
+    }
+
+    public void setParentScanRefRaw(String parentScanRefRaw) {
+        this.parentScanRefRaw = parentScanRefRaw;
+    }
 
     /**
      * Every scan can have a parent, if msLevel is > 1

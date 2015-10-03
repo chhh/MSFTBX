@@ -24,7 +24,7 @@ public class ScanCollectionHelper {
      * the smallest "precursor group".<br/>
      * Formula used: <br/>
      *      {@code Math.abs(maxScansInGroup - minScansInGroup)) / minScansInGroup}<br/>
-     * 
+     *
      * A <b>precursor group</b> is a group of scans, which satisfy one of the
      * two conditions:<br/>
      * <ul>
@@ -94,15 +94,24 @@ public class ScanCollectionHelper {
                     curScan.getChildScans().add(childScan.getNum());
                     PrecursorInfo precursor = childScan.getPrecursor();
                     if (precursor != null) {
-                        if (precursor.getParentScanNum() == null || precursor.getParentScanNum() == curScanNum) {
+
+                        Integer thisMsLevel = curScan.getMsLevel();
+                        Integer chldMsLevel = childScan.getMsLevel();
+                        if (precursor.getParentScanNum() == null
+                                && thisMsLevel != null && chldMsLevel != null && thisMsLevel + 1 == chldMsLevel) {
                             precursor.setParentScanNum(curScanNum);
-                        } else {
-                            // well this is weird, should never happen:
-                            // the Scan contained PrecursorInfo, but the number was different from the inferred one:
-                            // inference is done by selecting the first MS1 scan that is BEFORE this MSn scan
-                            throw new FileParsingException(String.format("When trying to set parent for Scan #%d, "+
-                                    "the Scan contained PrecursorInfo, but the number was different from the inferred one.\n", childNum));
                         }
+
+                        // this else condition seems to not hold when some scans were cut out from mzXML file with ProteoWizrd.
+                        // E.g. when only MS2 scans are kept and all MS1 scans were removed, then the precursor info still
+                        // has that link to MS1 scan, but the scan itself is not in the file, thus the inferred value is incorrect.
+//                        else {
+//                            // well this is weird, should never happen:
+//                            // the Scan contained PrecursorInfo, but the number was different from the inferred one:
+//                            // inference is done by selecting the first MS1 scan that is BEFORE this MSn scan
+//                            throw new FileParsingException(String.format("When trying to set parent for Scan #%d, "+
+//                                    "the Scan contained PrecursorInfo, but the number was different from the inferred one.\n", childNum));
+//                        }
 
                     } else {
                         // this should never happen, precursorInfo should be parsed from mzXML in the first place

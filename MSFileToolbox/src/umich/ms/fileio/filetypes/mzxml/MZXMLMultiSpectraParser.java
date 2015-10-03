@@ -1,5 +1,12 @@
 package umich.ms.fileio.filetypes.mzxml;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.zip.DataFormatException;
 import javolution.text.CharArray;
 import javolution.xml.internal.stream.XMLStreamReaderImpl;
 import javolution.xml.sax.Attributes;
@@ -29,14 +36,6 @@ import umich.ms.util.base64.Base64;
 import umich.ms.util.base64.Base64Context;
 import umich.ms.util.base64.Base64ContextPooled;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.zip.DataFormatException;
-
 /**
  * Parses several spectra using Javolution XML streaming parser.
  * Created by dmitriya on 2015-02-05.
@@ -56,7 +55,7 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
     protected final MZXMLFile source;
     protected LCMSRunInfo runInfo;
     protected MZXMLIndex index;
-    
+
     protected ArrayList<IScan> parsedScans;
     protected VarsHolder vars;
     protected ObjectPool<XMLStreamReaderImpl> readerPool = null;
@@ -126,14 +125,14 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
     public void setReaderPool(ObjectPool<XMLStreamReaderImpl> readerPool) {
         this.readerPool = readerPool;
     }
-    
+
     /**
-     * 
+     *
      * @param is
      * @param subset the subset will only be used to determine if the spectrum
      * should be parsed or not.
      * @param source
-     * @throws FileParsingException 
+     * @throws FileParsingException
      */
     public MZXMLMultiSpectraParser(InputStream is, LCMSDataSubset subset, MZXMLFile source) throws FileParsingException {
         super(is, subset);
@@ -460,8 +459,15 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
 
         attr = attrs.getValue(ATTR.PRECURSOR_SCAN_NUM.name);
         if (attr != null) {
-            int precursorScanNumInternal = mapRawNumToInternalScanNum(attr.toInt());
-            precursorInfo.setParentScanNum(precursorScanNumInternal);
+            precursorInfo.setParentScanRefRaw(attr.toString());
+            try {
+                int precursorScanNumInternal = mapRawNumToInternalScanNum(attr.toInt());
+                precursorInfo.setParentScanNum(precursorScanNumInternal);
+            } catch (FileParsingException fpe) {
+                // We could not find a mapping, which means the file does NOT contain
+                // the scan we're looking for - happens when MS1 scans are removed during conversion, for example.
+                // In this case just leave it as null.
+            }
         }
         attr = attrs.getValue(ATTR.FRAGMENTATION_METHOD.name);
         if (attr != null) {
@@ -672,11 +678,11 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
             length = null;
         }
     }
-    
+
     /**
      * Intended use: find the length of the last scan entry in the file. MzXML
      * might contain chromatograms after scans, and the index only contains the
-     * offset of the last scan - there is no easy way to figure out what the 
+     * offset of the last scan - there is no easy way to figure out what the
      * length is. If you just consider, that the length is from the offset to the
      * beginning of the index, then you might end up reading several hundred Mb
      * of chromatogram data.<br/>
@@ -686,7 +692,7 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
      * @return The length of the first scan entry in this stream, or, more precisely,
      * the offset in the stream of the end of the closing tag of the first 'scan' tag.<br/>
      * Or -1 if no matching pair of 'scan' tags was found.
-     * @throws umich.ms.fileio.exceptions.FileParsingException 
+     * @throws umich.ms.fileio.exceptions.FileParsingException
      * @throws javolution.xml.stream.XMLStreamException
      */
     public int findThisStreamFirstScanLen() throws FileParsingException {
@@ -728,7 +734,7 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
                             break;
                         }
                         break;
-                        
+
                     case XMLStreamConstants.END_ELEMENT:
                         localName = reader.getLocalName();
 
@@ -757,8 +763,8 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
                 }
             }
         }
-        
-        
+
+
         return length;
     }
 
