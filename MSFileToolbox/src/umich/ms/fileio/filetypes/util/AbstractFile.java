@@ -80,10 +80,4 @@ public abstract class AbstractFile implements Closeable {
     public String getPath() {
         return path;
     }
-
-    @Override
-    public void finalize() throws Throwable {
-        this.close();
-        super.finalize();
-    }
 }

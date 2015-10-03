@@ -25,15 +25,15 @@ public class JaxbPepXmlTest {
         File f = new File(p.toString());
 
         // declaring what to parse
-        JAXBContext ctx = JAXBContext.newInstance(MsmsPipelineAnalysis.class);
 
         // run the parser
+        JAXBContext ctx = JAXBContext.newInstance(MsmsPipelineAnalysis.class);
         Unmarshaller unmarshaller  = ctx.createUnmarshaller();
         Object unmarshalled = unmarshaller.unmarshal(f);
+        MsmsPipelineAnalysis pipelineAnalysis = (MsmsPipelineAnalysis) unmarshalled;
 
 
         // use the unmarshalled object
-        MsmsPipelineAnalysis pipelineAnalysis = (MsmsPipelineAnalysis) unmarshalled;
         if (pipelineAnalysis.getMsmsRunSummary().isEmpty()) {
             error("MS/MS run summary was empty!");
         }

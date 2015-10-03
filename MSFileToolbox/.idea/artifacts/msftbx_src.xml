@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="msftbx-src">
+    <output-path>$PROJECT_DIR$/out/artifacts/msftbx</output-path>
+    <root id="archive" name="msftbx-src.jar">
+      <element id="dir-copy" path="$PROJECT_DIR$/src" />
+    </root>
+  </artifact>
+</component>
