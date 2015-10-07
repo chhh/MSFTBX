@@ -10,13 +10,17 @@ import umich.ms.datatypes.lcmsrun.LCMSRunInfo;
 import umich.ms.fileio.exceptions.FileParsingException;
 import umich.ms.fileio.filetypes.util.AbstractFile;
 
+import java.io.Serializable;
+
 
 /**
  * Provides some basic defaults for simple LCMSFile interface methods.
  * @author dmitriya
  * @param <T>
  */
-public abstract class AbstractLCMSDataSource<T extends Index<?>> extends AbstractFile implements LCMSDataSource<T> {
+public abstract class AbstractLCMSDataSource<T extends Index<?>> extends AbstractFile implements LCMSDataSource<T>, Serializable {
+    private static final long serialVersionUID = 474635825669722535L;
+
     /**
      * How many spectra each CPU will be given in one batch. E.g. you assigned 2 threads using
      * {@link #setNumThreadsForParsing(java.lang.Integer)}, and set this parameter to 20, then 40 spectra will be read from disk

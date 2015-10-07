@@ -8,12 +8,16 @@ package umich.ms.datatypes;
 import com.google.common.collect.Range;
 import umich.ms.util.DoubleRange;
 
+import java.io.Serializable;
+
 /**
  * <b>NOT IN USE YET, SUPPOSED TO REPLACE {@link LCMSDataSubset}</b>
  * Represents a subset of data in an LCMS run.
  * @author Dmitry Avtonomov
  */
-public class LCMSRange {
+public class LCMSRange implements Serializable {
+    private static final long serialVersionUID = 1931602507383305152L;
+
     private final Range<Integer> scanRange;
     private final Integer msLevel;
     private final DoubleRange mzRange;
@@ -112,5 +116,5 @@ public class LCMSRange {
         return mzRange;
     }
 
-    
+
 }

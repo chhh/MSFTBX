@@ -2,6 +2,7 @@ package umich.ms.datatypes.lcmsrun;
 
 import umich.ms.datatypes.scan.props.Instrument;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,7 +12,9 @@ import java.util.Map;
  * If only one instrument is added, it will set it as the default one.
  * Created by dmitriya on 2015-02-10.
  */
-public class LCMSRunInfo {
+public class LCMSRunInfo implements Serializable {
+    private static final long serialVersionUID = 9162516985361651181L;
+
     protected Map<String, Instrument> instruments;
     protected String defaultInstrumentID;
     protected Boolean isCentroided;

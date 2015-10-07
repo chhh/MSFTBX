@@ -12,6 +12,8 @@ import umich.ms.datatypes.spectrum.ISpectrum;
 import umich.ms.fileio.exceptions.FileParsingException;
 import umich.ms.fileio.filetypes.mzml.MZMLFile;
 import umich.ms.fileio.filetypes.mzml.MZMLIndex;
+import umich.ms.fileio.filetypes.mzxml.MZXMLFile;
+import umich.ms.fileio.filetypes.mzxml.MZXMLIndex;
 
 import java.util.*;
 
@@ -21,17 +23,17 @@ import java.util.*;
 public class Example {
     public static void main(String[] args) throws FileParsingException {
 
-        String pathToFile = "some/path";
+        String pathToFile = "E:\\andy\\q01507.mzXML";
 
         // Create a concrete implementation of LCMSDataSource
-        MZMLFile source = new MZMLFile(pathToFile);
+        MZXMLFile source = new MZXMLFile(pathToFile);
 
         // Get the index (fetchXXX() methods will parse data from the file if it has not yet been parsed) and
         // cache it in the object for reuse.
         // You'll only need the index if you want to convert between internal scan numbers and raw scan numbers
         // in the file. Some files might have non-consecutive scan numbers, for example, but internally they'll be
         // renumbered to start from 1 and increment by one for each next scan.
-        MZMLIndex idx = source.fetchIndex();
+        MZXMLIndex idx = source.fetchIndex();
         // info about the run
         LCMSRunInfo runInfo = source.fetchRunInfo();
 
@@ -46,9 +48,14 @@ public class Example {
         // If you want higher level access to data, create an LCMSData object
         LCMSData data = new LCMSData(source);
         // load the whole structure of the run, and parse all spectra for MS1 scans
-        data.load(LCMSDataSubset.MS1_WITH_SPECTRA);
+        data.load(LCMSDataSubset.WHOLE_RUN);
+        data.releaseMemory();
+
         // or load the whole structure, but only get m/z-intensity info at MS level 2
         data.load(new LCMSDataSubset(null, null, msLevel, null));
+        data.releaseMemory();
+        // alternatively, use this shortcut
+        data.load(LCMSDataSubset.MS2_WITH_SPECTRA);
         data.releaseMemory();
 
         // If you need memory management, you can also pass an instance of an object, which will be considered
@@ -59,6 +66,7 @@ public class Example {
         System.out.printf("The data is loaded and used by [%s] object.\n", System.identityHashCode(dataUser));
         // at this point dataUser might be garbage collected as it's not referenced anymore, and the data might
         // get unloaded automatically
+        dataUser = null; // just to be sure that we don't have a strong reference
 
         // If you don't want to fiddle around with memory management at all, but still want it to play nicely
         // there's one more feature - auto-loading of spectra.

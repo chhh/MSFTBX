@@ -37,9 +37,9 @@ public class ScanCollectionDefault implements IScanCollection {
 
 
     public ScanCollectionDefault() {
-        
+
         initFields();
-        
+
         defaultStorageStrategy = IScanCollection.DEFAULT_STORAGE_STRATEGY;
         isAutoloadSpectra = false;
     }
@@ -80,6 +80,7 @@ public class ScanCollectionDefault implements IScanCollection {
     @Override
     public void setDefaultStorageStrategy(StorageStrategy storageStrategy) {
         this.defaultStorageStrategy = storageStrategy;
+        this.setStorageStrategy(LCMSDataSubset.WHOLE_RUN, storageStrategy);
     }
 
     @Override
@@ -804,7 +805,7 @@ public class ScanCollectionDefault implements IScanCollection {
 
     @Override
     public void unloadData(LCMSDataSubset subset, Set<LCMSDataSubset> exlude) {
-        
+
         // we only check against ms-levels map and not ms-levels-to-range-groups
         // because the latter is only created after a call to finalizeScanCollection()
         // which happens only when the whole run is requested to be loaded by
@@ -822,7 +823,7 @@ public class ScanCollectionDefault implements IScanCollection {
             NavigableMap<Integer, IScan> scansInSubsetByNumber = getScansInSubsetByNumber(getMapNum2scan(), subset);
             unloadSpectraConditionally(scansInSubsetByNumber, subset, exlude);
         }
-        
+
     }
 
     /**

@@ -5,6 +5,7 @@
  */
 package umich.ms.datatypes.scancollection;
 
+import java.io.Serializable;
 import java.util.TreeMap;
 import umich.ms.datatypes.scan.IScan;
 
@@ -12,7 +13,8 @@ import umich.ms.datatypes.scan.IScan;
  *
  * @author Dmitry Avtonomov
  */
-public class ScanIndexRoot extends ScanIndex {
+public class ScanIndexRoot extends ScanIndex implements Serializable {
+    private static final long serialVersionUID = -1544137529430270821L;
 
     protected TreeMap<Integer, ScanIndex> msLvl2index;
 

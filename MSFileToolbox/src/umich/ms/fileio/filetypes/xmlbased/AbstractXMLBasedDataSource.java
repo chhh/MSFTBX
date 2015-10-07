@@ -55,7 +55,7 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
 //    private final int INDEX_BUILDER_READ_BUF_SIZE = 1000000;
     protected transient ObjectPool<XMLStreamReaderImpl> readerPool = instantiateReaderPool();
     // TODO: WARNING: ACHTUNG: remove this field, was here for testing
-    public volatile long time_reading = 0;
+    public volatile transient long time_reading = 0;
 
     public AbstractXMLBasedDataSource(String path) {
         super(path);
@@ -86,9 +86,9 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
         return new SoftReferenceObjectPool<>(new XMLStreamReaderFactory());
     }
 
-   
 
-    
+
+
     //    /**
     //     * <b>You probably don't need that method</b>, it parses the spectra indexes (where in the file each
     //     * spectrumRef description starts and ends).<br/>
@@ -338,7 +338,7 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
      * accommodate all spectra from the iterator.
      * @throws IOException
      */
-    protected byte[] readListOfSpectra(ListIterator<Integer> scanNumsIter, int maxScansToReadInBatch, 
+    protected byte[] readListOfSpectra(ListIterator<Integer> scanNumsIter, int maxScansToReadInBatch,
             ArrayList<OffsetLength> readTasks, NavigableMap<Integer, ? extends XMLBasedIndexElement> index,
             RandomAccessFile file, byte[] readBuf) throws IOException {
         if (!scanNumsIter.hasNext()) {
@@ -653,7 +653,7 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
             bah.setPosition(length); // just to make sure, that BAH knows the valid data range
             // we've read the whole scan from file, wrap it into a ByteStream and pass to the parser
             ByteArrayInputStream is = new ByteArrayInputStream(bah.getUnderlyingBytes(), 0, length);
-            
+
             // This is just a trick to fool the parser into parsing everything.
             // It doesn't cause any trouble, as we've only read a single scan from the file.
             LCMSDataSubset subset = LCMSDataSubset.WHOLE_RUN;

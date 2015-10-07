@@ -7,6 +7,8 @@ import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.RemovalListener;
 import com.google.common.cache.RemovalNotification;
 import com.google.common.collect.Sets;
+
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -21,24 +23,26 @@ import umich.ms.fileio.filetypes.LCMSDataSource;
  * A wrapper uniting a data source and a scan collection.
  * @author Dmitry Avtonomov
  */
-public class LCMSData {
-    protected final static FinalizableReferenceQueue FRQ = new FinalizableReferenceQueue();
-    private final Set<User> userPhantomRefs = Sets.newConcurrentHashSet();
-    
+public class LCMSData implements Serializable {
+    private static final long serialVersionUID = 7653994906958188619L;
+
+    protected final static transient FinalizableReferenceQueue FRQ = new FinalizableReferenceQueue();
+    private final transient Set<User> userPhantomRefs = Sets.newConcurrentHashSet();
+
     protected LCMSDataSource<?> source;
     protected IScanCollection scans;
-    
+
     private final Object USER_DUMMY = new Object();
-    private RemovalListener<Object, Set<LCMSDataSubset>> listener;
+    private transient RemovalListener<Object, Set<LCMSDataSubset>> listener;
     /** Holds weak references to the objects using data as keys. */
-    private Cache<Object, Set<LCMSDataSubset>> cache;
+    private transient Cache<Object, Set<LCMSDataSubset>> cache;
     protected volatile boolean isReleasingMemory = false;
 
 
     /**
      * Will create LCMSData backed up by {@link ScanCollectionDefault} with
      * spectra auto-loading turned off.
-     * @param source 
+     * @param source
      */
     public LCMSData(LCMSDataSource<?> source) {
         this(source, new ScanCollectionDefault(false));
@@ -58,7 +62,7 @@ public class LCMSData {
         this.source = source;
         this.scans = scans;
         this.scans.setDataSource(source);
-        
+
         // usage tracking setup
         this.listener = buildRemovalListener();
         this.cache = CacheBuilder.newBuilder()
@@ -131,7 +135,7 @@ public class LCMSData {
      * to be in use by some component until it doesn't explicitly call
      * {@link #unload(umich.ms.datatypes.LCMSDataSubset) }.
      * @param subset
-     * @throws FileParsingException 
+     * @throws FileParsingException
      */
     public synchronized void load(LCMSDataSubset subset) throws FileParsingException {
         load(subset, USER_DUMMY);
@@ -173,7 +177,7 @@ public class LCMSData {
 
     /**
      * Unloads spectra matched by this subset.
-     * @param subset 
+     * @param subset
      */
     public synchronized void unload(LCMSDataSubset subset) {
         //System.err.println("=========== UNLOAD (no-user) CALLED ***********************");
@@ -311,5 +315,5 @@ public class LCMSData {
             LCMSData.this.cache.cleanUp();
         }
     }
-    
+
 }

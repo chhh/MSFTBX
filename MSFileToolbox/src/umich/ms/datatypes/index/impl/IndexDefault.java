@@ -20,11 +20,12 @@ import umich.ms.datatypes.index.IndexElement;
  * @param <T>
  */
 public class IndexDefault<T extends IndexElement> implements Index<T> {
+    private static final long serialVersionUID = 2038378308383734437L;
 
     protected final TreeMap<Integer, T> mapByNum;
     protected volatile TreeMap<Integer, T> mapByRawNum;
     protected volatile HashMap<String, T> mapById;
-    
+
     public IndexDefault() {
         mapByNum = new TreeMap<>();
     }

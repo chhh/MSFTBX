@@ -1,5 +1,7 @@
 package umich.ms.datatypes.index;
 
+import java.io.Serializable;
+
 /**
  * A mapping from internal scan numbers (<b>which start at one</b>) to scan numbering in the original files.<br/>
  * mzXML files are required to provide a scan number, those scan numbers are not always continuous, e.g.:<br/>
@@ -27,7 +29,7 @@ package umich.ms.datatypes.index;
  *
  * @author Dmitry Avtonomov
  */
-public interface IndexElement {
+public interface IndexElement extends Serializable {
     /**
      * Internal scan number, starting from 1, incrementing by one for each consecutive scan.<br/>
      * This is the number you get from {@link umich.ms.datatypes.scan.IScan#getNum()}

@@ -10,6 +10,8 @@ import umich.ms.util.DoubleRange;
  * Time: 4:00 PM
  */
 public class PrecursorInfo implements Serializable {
+    private static final long serialVersionUID = 31155610207856826L;
+
     /** This is the internal scan number, it will only be non-null, if the parent scan itself is still in the mzML/mzXML file. */
     private Integer parentScanNum;
     /**

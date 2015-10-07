@@ -2,15 +2,19 @@ package umich.ms.datatypes.spectrum.impl;
 
 import umich.ms.datatypes.spectrum.AbstractSpectrum;
 
+import java.io.Serializable;
+
 /**
  * Author: Dmitry Avtonomov (dmitriya)
  * Email: dmitriy.avtonomov@gmail.com
  *
  * This is a straightforward implementation of AbstractSpectrum using Java arrays
  */
-public class SpectrumDefault extends AbstractSpectrum {
-    transient protected double[] mz;
-    transient protected double[] intensity;
+public class SpectrumDefault extends AbstractSpectrum implements Serializable {
+    private static final long serialVersionUID = -2198926992332773666L;
+
+    protected double[] mz;
+    protected double[] intensity;
 
     /**
      * The provided mz and intensity arrays must be sorted properly

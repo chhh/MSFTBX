@@ -63,7 +63,7 @@ public class MZXMLFile extends AbstractXMLBasedDataSource<MZXMLIndexElement, MZX
     public ObjectPool<XMLStreamReaderImpl> getReaderPool() {
         return readerPool;
     }
-  
+
     @Override
     public MZXMLIndex getIndex() {
         return index;
@@ -91,7 +91,7 @@ public class MZXMLFile extends AbstractXMLBasedDataSource<MZXMLIndexElement, MZX
         return tmp;
     }
 
-    
+
     @Override
     public LCMSRunInfo parseRunInfo() throws FileParsingException {
         MZXMLRunHeaderParser parser = new MZXMLRunHeaderParser(this);
@@ -177,7 +177,7 @@ public class MZXMLFile extends AbstractXMLBasedDataSource<MZXMLIndexElement, MZX
         for (Path path : paths) {
             double fileSize = path.toFile().length() / (1024 * 1024);
             System.out.printf("File: %s (%.2fMb)\n", path.toString(), fileSize);
-            MZXMLFile mzxml = new MZXMLFile(path.toString(), true);
+            MZXMLFile mzxml = new MZXMLFile(path.toString(), false);
             mzxml.setNumThreadsForParsing(null);
             mzxml.setTasksPerCpuPerBatch(50);
             mzxml.setParsingTimeout(30 * 1000);
@@ -218,7 +218,7 @@ public class MZXMLFile extends AbstractXMLBasedDataSource<MZXMLIndexElement, MZX
                 // parse the scans
                 startTime = System.nanoTime();
                 mzxml.time_reading = 0;
-                LCMSDataSubset subset = LCMSDataSubset.MS1_WITH_SPECTRA;
+                LCMSDataSubset subset = LCMSDataSubset.WHOLE_RUN;
                 scanCollection = new ScanCollectionDefault(false);
                 scanCollection.setDataSource(mzxml);
                 scanCollection.loadData(subset, StorageStrategy.STRONG);

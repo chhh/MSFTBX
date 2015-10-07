@@ -8,7 +8,7 @@ import java.io.Serializable;
  * Date: 3/25/13
  * Time: 5:11 PM
  */
-public enum Polarity implements Serializable {
+public enum Polarity {
     POSITIVE (+1, "+"),
     NEGATIVE (-1, "-"),
     NEUTRAL  ( 0, " ");

@@ -1,5 +1,6 @@
 package umich.ms.datatypes;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -14,7 +15,9 @@ import umich.ms.util.DoubleRange;
  * Represents a subset of a ScanCollection.
  * Created by dmitriya on 2015-03-04.
  */
-public class LCMSDataSubset {
+public class LCMSDataSubset implements Serializable {
+    private static final long serialVersionUID = 7992060642981830599L;
+
     Integer scanNumLo;
     Integer scanNumHi;
     Set<Integer> msLvls;
@@ -22,26 +25,33 @@ public class LCMSDataSubset {
 
     private volatile int hashCode;
 
-    /** Sets up the parsing parameters to parse all the scans and spectra in a run */
+    /** Sets up the parsing parameters to parse all the scans and spectra in a run. */
     public static final LCMSDataSubset WHOLE_RUN;
-    /** Sets up the parsing parameters to parse all scans, but spectra only for MS1 scans */
+    /** Sets up the parsing parameters to parse all scans, but spectra only for MS1 scans. */
     public static final LCMSDataSubset MS1_WITH_SPECTRA;
-    /** Sets up the parsing parameters to parse only scans for the whole run, no spectra */
+    /** Sets up the parsing parameters to parse all scans, but spectra only for MS2 scans. */
+    public static final LCMSDataSubset MS2_WITH_SPECTRA;
+    /** Sets up the parsing parameters to parse only scans for the whole run, no spectra. */
     public static final LCMSDataSubset STRUCTURE_ONLY;
 
     static {
-        
+
 
 
         WHOLE_RUN = new LCMSDataSubset();
 
-        Set<Integer> msLvls;
-        msLvls = new HashSet<>(1);
-        msLvls.add(1);
-        MS1_WITH_SPECTRA = new LCMSDataSubset(null, null, msLvls, null);
+        Set<Integer> msLvls1;
+        msLvls1 = new HashSet<>(1);
+        msLvls1.add(1);
+        MS1_WITH_SPECTRA = new LCMSDataSubset(null, null, msLvls1, null);
 
-        msLvls = Collections.emptySet();
-        STRUCTURE_ONLY = new LCMSDataSubset(null, null, msLvls, null);
+        Set<Integer> msLvls2;
+        msLvls2 = new HashSet<>(1);
+        msLvls2.add(2);
+        MS2_WITH_SPECTRA = new LCMSDataSubset(null, null, msLvls2, null);
+
+        Set<Integer> msLvlsEmpty = Collections.emptySet();
+        STRUCTURE_ONLY = new LCMSDataSubset(null, null, msLvlsEmpty, null);
     }
 
     public LCMSDataSubset() {
@@ -100,7 +110,7 @@ public class LCMSDataSubset {
     }
 
     /**
-     * In some cases we don't have the lower/upper mz window (for MS1 this 
+     * In some cases we don't have the lower/upper mz window (for MS1 this
      * requires either this data to be in scan meta info, or the
      * spectrumRef to be parsed). In this case the method returns TRUE.
      * @param scan

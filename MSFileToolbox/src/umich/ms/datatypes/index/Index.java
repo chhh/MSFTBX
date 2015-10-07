@@ -1,5 +1,6 @@
 package umich.ms.datatypes.index;
 
+import java.io.Serializable;
 import java.util.Map;
 import java.util.NavigableMap;
 
@@ -7,7 +8,7 @@ import java.util.NavigableMap;
  * @author Dmitry Avtonomov
  * @param <T>
  */
-public interface Index<T extends IndexElement> {
+public interface Index<T extends IndexElement> extends Serializable {
     /**
      * Add a new index element to this index.
      * @param indexElement

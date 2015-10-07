@@ -1,5 +1,6 @@
 package umich.ms.datatypes.spectrum;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import umich.ms.util.SpectrumUtils;
 
@@ -9,7 +10,9 @@ import umich.ms.util.SpectrumUtils;
  * Date: 3/1/13
  * Time: 2:04 PM
  */
-public abstract class AbstractSpectrum implements ISpectrum {
+public abstract class AbstractSpectrum implements ISpectrum, Serializable {
+    private static final long serialVersionUID = 4857567189693575413L;
+
     protected double minMZ;
     protected double maxMZ;
     protected double minInt;

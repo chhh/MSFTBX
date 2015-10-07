@@ -8,6 +8,8 @@ package umich.ms.datatypes;
 import com.google.common.collect.Range;
 import com.google.common.collect.RangeSet;
 import com.google.common.collect.TreeRangeSet;
+
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
@@ -19,7 +21,8 @@ import umich.ms.util.DoubleRange;
  * added to it, so there is no way to retrieve an added object.
  * @author Dmitry Avtonomov
  */
-public class LCMSRangeSet {
+public class LCMSRangeSet implements Serializable {
+    private static final long serialVersionUID = -2254401763909842422L;
 
     RangeSet<Integer> anyLvlSet;
     Map<Integer, MsLevelRangeSet> lvlMap;
@@ -160,7 +163,7 @@ public class LCMSRangeSet {
     }
 
     public boolean isEmpty() {
-        
+
         if (!anyLvlSet.isEmpty()) {
             return false;
         }
@@ -188,19 +191,19 @@ public class LCMSRangeSet {
             anyPrecursorSet = TreeRangeSet.create();
             rngMap = new HashMap<>(3);
         }
-        
+
         /**
          * Remove the range from all range sets in this ms level.
-         * @param range 
+         * @param range
          */
         public final void removeFromAll(LCMSRange range) {
             anyPrecursorSet.remove(range.getScanRange());
             removeFromSpecific(range);
         }
-        
+
         /**
          * Remove range from all specific precursor ranges at this ms level.
-         * @param range 
+         * @param range
          */
         public final void removeFromSpecific(LCMSRange range) {
             for (Map.Entry<DoubleRange, RangeSet<Integer>> rngMapEntry : rngMap.entrySet()) {

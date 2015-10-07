@@ -1,7 +1,7 @@
 package umich.ms.fileio.filetypes;
 
 /**
- * FActory for automatic detection of supported filetypes and creating corresponding {@link LCMSDataSource}s.
+ * Factory for automatic detection of supported filetypes and creating corresponding {@link LCMSDataSource}s.
  * If you want
  *
  * @author Dmitry Avtonomov

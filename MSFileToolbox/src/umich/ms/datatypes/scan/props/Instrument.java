@@ -10,6 +10,8 @@ import java.io.Serializable;
  * Time: 5:37 PM
  */
 public class Instrument implements Serializable {
+    private static final long serialVersionUID = 5457880259281215955L;
+
     protected String manufacturer;
     protected String model;
     protected String analyzer;

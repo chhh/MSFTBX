@@ -12,6 +12,7 @@ import umich.ms.datatypes.index.IndexElement;
  * @author Dmitry Avtonomov
  */
 public class IndexElementDefault implements IndexElement {
+    private static final long serialVersionUID = -6425013462440420720L;
 
     /**
      * Internal scan number.

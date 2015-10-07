@@ -10,6 +10,7 @@ package umich.ms.datatypes.scan;
  * @author Dmitry Avtonomov
  */
 public enum PeaksCompression {
+
     /** No compression. */
     NONE,
     /** Zlib compression. */

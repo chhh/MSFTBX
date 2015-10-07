@@ -5,6 +5,7 @@
  */
 package umich.ms.datatypes.scancollection;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
@@ -14,7 +15,9 @@ import umich.ms.datatypes.scan.IScan;
  *
  * @author Dmitry Avtonomov
  */
-public class ScanIndex {
+public class ScanIndex implements Serializable {
+    private static final long serialVersionUID = -372131408871860232L;
+    
     protected TreeMap<Integer, IScan> num2scan;
     protected TreeMap<Double, List<IScan>> rt2scan;
 
