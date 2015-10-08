@@ -71,7 +71,14 @@ public class Example {
                 ISpectrum spectrum = scan.fetchSpectrum();
                 // just count the number of points in the spectrum
                 int numPoints = spectrum.getMZs().length;
-                System.out.printf("Scan #%d (raw #%d) contained %d data points\n", scanNumInternal, scanNumRaw, numPoints);
+                if (scan.getMsLevel() > 1) {
+                    System.out.printf("Scan #%d MS%d[%s] (raw #%d), precursor: #%s(mz: %.3f, z: %d) contained %d data points\n",
+                            scanNumInternal, scan.getMsLevel(), scan.getPolarity().toString(), scanNumRaw,
+                            scan.getPrecursor().getParentScanRefRaw(), scan.getPrecursor().getMzTarget(), scan.getPrecursor().getCharge(), numPoints);
+                } else {
+                    System.out.printf("Scan #%d MS%d[%s] (raw #%d) contained %d data points\n",
+                            scanNumInternal, scan.getMsLevel(), scan.getPolarity().toString(), scanNumRaw, numPoints);
+                }
                 // by this point we're no longer holding a strong reference to the spectrum, it can be reclaimed
             }
         }

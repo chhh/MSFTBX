@@ -99,6 +99,7 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
         CENTROIDED("centroided", false),
         PRECURSOR_SCAN_NUM("precursorScanNum", false),
         PRECURSOR_INTENSITY("precursorIntensity", true),
+        PRECURSOR_CHARGE("precursorCharge", false),
         PRECURSOR_ISOLATION_WINDOW("windowWideness", false),
         FRAGMENTATION_METHOD("activationMethod", false),
         COMPRESSION_TYPE("compressionType", true),
@@ -478,6 +479,11 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
         if (attr != null) {
             isolationWindowWidth = attr.toDouble();
         }
+        attr = attrs.getValue(ATTR.PRECURSOR_CHARGE.name);
+        Integer charge = null;
+        if (attr != null) {
+            charge = attr.toInt();
+        }
         // the next XML element must be just CHARACTERS, representing precursor mass
         eventType = reader.next();
         if (eventType != XMLStreamConstants.CHARACTERS) {
@@ -486,6 +492,7 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
         attr = reader.getText();
         double precursorMz = attr.toDouble();
         precursorInfo.setMzTarget(precursorMz);
+        precursorInfo.setCharge(charge);
         if (isolationWindowWidth == null) {
             isolationWindowWidth = 0d;
         }

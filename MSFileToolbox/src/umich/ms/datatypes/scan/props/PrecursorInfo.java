@@ -23,6 +23,7 @@ public class PrecursorInfo implements Serializable {
     private Double mzRangeStart;
     private Double mzRangeEnd;
     private Double mzTarget;
+    private Integer charge;
     private String activationMethod;
 
     public String getParentScanRefRaw() {
@@ -56,6 +57,15 @@ public class PrecursorInfo implements Serializable {
 
     public void setMzTarget(Double mzTarget) {
         this.mzTarget = mzTarget;
+    }
+
+    /** Precursor charge is optional in mzXML/mzML, so it can be null. */
+    public Integer getCharge() {
+        return charge;
+    }
+
+    public void setCharge(Integer charge) {
+        this.charge = charge;
     }
 
     /**
