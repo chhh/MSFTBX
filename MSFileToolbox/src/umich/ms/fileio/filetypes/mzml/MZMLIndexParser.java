@@ -37,45 +37,17 @@ public class MZMLIndexParser {
     protected String ATTR_OFFSET_ID = "idRef";
     protected String TAG_END_OF_RUN = "spectrumList";
     protected Pattern RE_INDEX_OFFSET = Pattern.compile("<" + TAG_INDEXOFFSET + ">(\\d+)<");
-    protected int MAX_LINES_FROM_END_TO_SEARCH_FOR_INDEX = 100;
     protected int MAX_BYTES_FROM_END_TO_SEARCH_FOR_INDEX = 1 << 10; // 1kb
-    protected int MAX_BYTES_FROM_INDEX_TO_END_OF_RUN = 1024;
+    protected int NUM_BYTES_TO_CHECK_INDEX = 1 << 10; // 1kb
     protected static int INDEX_OFFSET_MIN_VALUE = 128;
-    //RE_INDEX_ENTRY = Pattern.compile(
-    //        "<" + TAG_OFFSET + "[^>]+?idRef\\s*=\\s*\"[^>]*?scan=(\\d+?)\\s*\"\\s*>\\s*(\\d+?)\\s*</" + TAG_OFFSET + ">");
     protected Pattern RE_INDEX_ENTRY_SIMPLE = Pattern.compile(String.format("<%s[^>]*?>\\s*(\\d+?)\\s*</%s>", TAG_OFFSET, TAG_OFFSET));
     protected Pattern RE_END_OF_RUN = Pattern.compile("</" + TAG_END_OF_RUN + ">");
-    /**
-     * @deprecated We now only use the scan id ('idRef' attribute in the index) and never
-     * try to guess/parse the scan number from just the index.
-     */
-    @Deprecated
-    public static final Pattern RE_SCAN_NUM_FROM_INDEX_REF = Pattern.compile("(?:scan|cycle)=(\\d+)");
-    public static final Pattern RE_SCAN_ID_FROM_INDEX_REF = Pattern.compile("(?:scan|cycle)=(\\d+)");
 
     public MZMLIndexParser(MZMLFile source) {
         this.source = source;
         // Turn off non-critical Javolution logging
         LogHelper.setJavolutionLogLevelFatal();
     }
-
-    /**
-     * @deprecated We now only use the scan id ('idRef' attribute in the index) and never
-     * try to guess/parse the scan number from just the index.
-     * @param scanIdentifier
-     * @return
-     * @throws FileParsingException
-     */
-    @Deprecated
-    protected int parseScanNumFromIndex(CharArray scanIdentifier) throws FileParsingException {
-        Matcher matcher = RE_SCAN_NUM_FROM_INDEX_REF.matcher(scanIdentifier);
-        if (!matcher.find()) {
-            throw new FileParsingException(String.format(
-                    "Could not parse scan number from an index entry of %s file: %s", FILE_TYPE_NAME, scanIdentifier.toString()));
-        }
-        return Integer.parseInt(matcher.group(1));
-    }
-
 
     public MZMLIndex parse() throws FileParsingException {
 
@@ -129,10 +101,10 @@ public class MZMLIndexParser {
 
         curScanOffset = scanIndex.firstEntry().getValue().offset;
         curScanId = scanIndex.firstEntry().getValue().id;
-        
+
         for (int i = 0; i < scanIndex.size() - 1; i++) {
             scanNumRaw = i;
-            
+
             Map.Entry<Integer, OffsetId> nexScanIndex = scanIndex.higherEntry(scanNumRaw);
             nextScanNumRaw = nexScanIndex.getKey();
             nextScanOffset = nexScanIndex.getValue().offset;
@@ -146,7 +118,7 @@ public class MZMLIndexParser {
             OffsetLength offlen = new OffsetLength(curScanOffset, length);
 
             scanNumInternal = i + 1;
-            
+
             MZMLIndexElement indexElem = new MZMLIndexElement(scanNumInternal, scanNumRaw, curScanId, offlen);
             index.add(indexElem);
 
@@ -187,13 +159,11 @@ public class MZMLIndexParser {
 
 
     /**
-     * Reads the file backwards, looking for {@link #TAG_INDEXOFFSET} tag.
-     * TODO: it's better to just read the last 1kb of the file and parse it normally,
-     * this way it won't depend on line breaks in the file
+     * Reads the last several kB of the file, looking for {@link #TAG_INDEXOFFSET} tag.
      * @param raf
      * @return
      * @throws IOException
-     * @throws IndexNotFoundException in case "indexListOffset" tag could not be found within 100 lines from the end of file
+     * @throws IndexNotFoundException in case "indexListOffset" tag could not be found within the last few kB of the file
      */
     protected long findIndexOffset(RandomAccessFile raf) throws IOException, IndexNotFoundException, IndexBrokenException {
         long fileLen = raf.length();
@@ -208,13 +178,33 @@ public class MZMLIndexParser {
         if (matcher.find()) {
             indexOffset = Long.parseLong(matcher.group(1));
         }
+        if (indexOffset == -1) {
+            throw new IndexNotFoundException(String.format(
+                    "%s <%s> section was not found within the last %d bytes in the file! (%s)",
+                    FILE_TYPE_NAME, TAG_INDEXOFFSET, MAX_BYTES_FROM_END_TO_SEARCH_FOR_INDEX, source.getPath()));
+        }
+        if (indexOffset < INDEX_OFFSET_MIN_VALUE) {
+            throw new IndexBrokenException(String.format(
+                    "Index offset was less than %d, actual value: [%d] - not allowed", INDEX_OFFSET_MIN_VALUE, indexOffset));
+        }
+        if (indexOffset > fileLen) {
+            throw new IndexBrokenException(String.format(
+                    "Index offset was larger than the length of the file, actual value: [%d]", indexOffset));
+        }
 
-        Matcher matcherIdxEntry = RE_INDEX_ENTRY_SIMPLE.matcher(fileEndingStr);
-        long offsetPrev = indexOffset, offsetCur;
-        int countIndexElems = 0;
+        // now check the first few values of the entries in the index
+        long lenFromIndexStartToEOF = fileLen - indexOffset;
+        int indexBeginLength = lenFromIndexStartToEOF >= NUM_BYTES_TO_CHECK_INDEX ? NUM_BYTES_TO_CHECK_INDEX : (int)lenFromIndexStartToEOF;
+        byte[] indexBeginBytes = new byte[indexBeginLength];
+        raf.seek(indexOffset);
+        raf.readFully(indexBeginBytes, 0, indexBeginBytes.length);
+        String indexBeginStr = new String(indexBeginBytes);
+
+        Matcher matcherIdxEntry = RE_INDEX_ENTRY_SIMPLE.matcher(indexBeginStr);
+        long offsetPrev = -2, offsetCur;
         while(matcherIdxEntry.find()) {
             offsetCur = Long.parseLong(matcherIdxEntry.group(1));
-            if (offsetCur <= offsetPrev) {
+            if (offsetCur < 0) {
                 throw new IndexBrokenException(String.format(
                         "The index contained an element less than zero: '%s'", matcherIdxEntry.group(0)));
             }
@@ -223,78 +213,13 @@ public class MZMLIndexParser {
                         "The index contained an element less or equal to a previous one. The match was: '%s'", matcherIdxEntry.group(0)));
             }
             if (offsetCur >= indexOffset) {
-                throw new IndexBrokenException("The index contained an element that was further in the file than the 'indexOffset'.");
+                throw new IndexBrokenException(String.format(
+                        "The index contained an element that was further in the file than the '%s'.", TAG_INDEXOFFSET));
             }
             offsetPrev = offsetCur;
         }
 
-        // Old version reading in reverse line by line
-        // notice that the file is read in reverse line-by-line using ReverseLineInputStream
-//        ReverseLineInputStream reverseLineInputStream = new ReverseLineInputStream(raf);
-//        BufferedReader in = new BufferedReader(new InputStreamReader(reverseLineInputStream));
-//
-//        long offset = -1;
-//        String line;
-//        Matcher indexOffsetReMatcher;
-//        int linesRead = 0;
-//        // reading in reverse, looking for <indexOffset>
-//        while ((line = in.readLine()) != null) {
-//            if (line.contains(TAG_INDEXOFFSET)) {
-//                indexOffsetReMatcher = RE_INDEX_OFFSET.matcher(line);
-//                if (indexOffsetReMatcher.find()) {
-//                    offset = Long.parseLong(indexOffsetReMatcher.group(1));
-//                    break;
-//                }
-//            }
-//
-//            linesRead++;
-//            if (linesRead > MAX_LINES_FROM_END_TO_SEARCH_FOR_INDEX) {
-//                break;
-//            }
-//        }
-
-        if (indexOffset == -1) {
-            throw new IndexNotFoundException(String.format(
-                    "%s <%s> section was not found within the last %d lines in the file! (%s)",
-                    FILE_TYPE_NAME, TAG_INDEXOFFSET, MAX_LINES_FROM_END_TO_SEARCH_FOR_INDEX, source.getPath()));
-        }
         return indexOffset;
-    }
-
-    /**
-     * Search for byte offset of {@code </msRun>} or comparable tag, which should go right after the last scan.
-     * This is actually only needed for the case, when we use a validating XML parser to parseIndexEntries scans
-     * from the XML file, because it will stumble upon seeing a closing {@code </msRun>} tag after the last
-     * {@code </scan>} (that's because the last scan's ending offset is set to be the {@code <index>} offset).
-     * What a mess...
-     * @deprecated not is use anymore, we now just run the parser on the last scan in the index to find out its
-     * actual length
-     * @param fileHandle
-     * @param indexOffset offset of the beginning of the {@code <index>}
-     * @return
-     * @throws IOException
-     * @throws umich.ms.fileio.exceptions.FileParsingException
-     */
-    @Deprecated
-    protected long findEndOfScansOffset(RandomAccessFile fileHandle, long indexOffset) throws IOException, FileParsingException {
-        StringBuilder sb = new StringBuilder();
-        int toRead = (int)Math.min(MAX_BYTES_FROM_INDEX_TO_END_OF_RUN, indexOffset);
-        long pos = indexOffset - toRead;
-        fileHandle.seek(pos);
-        byte[] bytes = new byte[toRead];
-        fileHandle.readFully(bytes);
-        String beforeIndex = new String(bytes, StandardCharsets.UTF_8);
-        Matcher matcher = RE_END_OF_RUN.matcher(beforeIndex);
-        long endOfRunOffset;
-        if (matcher.find()) {
-            endOfRunOffset = pos + matcher.start();
-        } else {
-            return indexOffset;
-//            throw new FileParsingException(String.format("Couldn't find </%s> tag within %d bytes of <%s> tag when parsing index",
-//                    TAG_END_OF_RUN, MAX_BYTES_FROM_INDEX_TO_END_OF_RUN, TAG_INDEX));
-        }
-
-        return endOfRunOffset;
     }
 
     /**

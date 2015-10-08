@@ -8,6 +8,7 @@ import umich.ms.datatypes.scan.IScan;
 import umich.ms.datatypes.scan.StorageStrategy;
 import umich.ms.datatypes.scancollection.IScanCollection;
 import umich.ms.datatypes.scancollection.ScanIndex;
+import umich.ms.datatypes.scancollection.impl.ScanCollectionDefault;
 import umich.ms.datatypes.spectrum.ISpectrum;
 import umich.ms.fileio.exceptions.FileParsingException;
 import umich.ms.fileio.filetypes.mzml.MZMLFile;
@@ -27,6 +28,55 @@ public class Example {
 
         // Create a concrete implementation of LCMSDataSource
         MZXMLFile source = new MZXMLFile(pathToFile);
+
+        // This code block is for processing mzXML containing only MS2 scans
+        {
+            // if a scan has zero peaks in its spectrum it will still be parsed
+            source.setExcludeEmptyScans(false);
+            // null means use as many cores as reported by Runtime.getRuntime().availableProcessors()
+            source.setNumThreadsForParsing(12);
+            // 30 sec timeout for worker threads - each worker must parse its chunk of spectra within that time
+            source.setParsingTimeout(30L);
+
+            // this is a data structure used to store scans and to navigate around the run
+            ScanCollectionDefault scans = new ScanCollectionDefault();
+            // softly reference spectral data, make it reclaimable by GC
+            scans.setDefaultStorageStrategy(StorageStrategy.SOFT);
+            // set it to automatically re-parse spectra from the file if spectra were not yet parsed or were reclaimed
+            // to make auto-loading work you'll need to use IScan#fetchSpectrum() method instead of IScan#getSpectrum()
+            scans.isAutoloadSpectra(true);
+
+            // set the MZXML file as the data source for this scan collection
+            scans.setDataSource(source);
+            // load the whole run, with forced parsing of MS2 spectra, using default StorageStrategy.
+            scans.loadData(LCMSDataSubset.MS2_WITH_SPECTRA);
+
+            TreeMap<Integer, IScan> num2scan = scans.getMapNum2scan();
+            Set<Map.Entry<Integer, IScan>> scanEntries = num2scan.entrySet();
+            // we will use this index to map from internal scan numbers to raw scan numbers
+            MZXMLIndex idx = source.fetchIndex();
+            for (Map.Entry<Integer, IScan> scanEntry : scanEntries) {
+                Integer scanNum = scanEntry.getKey();
+                IScan scan = scanEntry.getValue();
+
+                // internal scan number (1 based)
+                int scanNumInternal = scan.getNum();
+                // an implementation of IndexElement will know how to covert between different numbering schemes
+                // it's possible to get a null here, but this should not happen
+                IndexElement idxElem = idx.getByNum(scanNumInternal);
+                int scanNumRaw = idxElem.getRawNumber();
+
+                // note that we use fetchSpectrum() method here, because we've set the ScanCollection to softly
+                // reference spectra
+                ISpectrum spectrum = scan.fetchSpectrum();
+                // just count the number of points in the spectrum
+                int numPoints = spectrum.getMZs().length;
+                System.out.printf("Scan #%d (raw #%d) contained %d data points\n", scanNumInternal, scanNumRaw, numPoints);
+                // by this point we're no longer holding a strong reference to the spectrum, it can be reclaimed
+            }
+        }
+        System.exit(1);
+
 
         // Get the index (fetchXXX() methods will parse data from the file if it has not yet been parsed) and
         // cache it in the object for reuse.
@@ -109,8 +159,8 @@ public class Example {
         // ScanCollectionHelper.finalizeScanCollection(scans), which sets up parent child relations between scans
         // even if that information was not in the scan meta-data.
         // You can also call this method yourself if it you only parse a portion of the file
-        Integer parentScanNum = scan.getPrecursor().getParentScanNum();
-        System.out.printf("Scan #%d (MS%d) is a child scan of #%d\n", scan.getNum(), scan.getMsLevel(), parentScanNum);
+        String parentScanRef = scan.getPrecursor().getParentScanRefRaw();
+        System.out.printf("Scan #%d (MS%d) is a child scan of {%s}\n", scan.getNum(), scan.getMsLevel(), parentScanRef);
 
         data.releaseMemory();
     }

@@ -50,9 +50,6 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
     protected LCMSRunInfo runInfo;
     protected MZMLIndex index;
 
-    //protected static final Pattern RE_SCAN_NUM_FROM_INDEX_REF = Pattern.compile("(scan=(\\d+)");
-    @Deprecated
-    protected static final Pattern RE_SCAN_NUM_FROM_INDEX_REF = MZMLIndexParser.RE_SCAN_NUM_FROM_INDEX_REF;
     protected ArrayList<IScan> parsedScans;
     protected VarsHolder vars;
     protected ObjectPool<XMLStreamReaderImpl> readerPool = null;
@@ -900,24 +897,6 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
             return true;
         }
         return false;
-    }
-
-    /**
-     * @deprecated We don't try parsing scan numbers from the scan ID anymore,
-     * instead use the run index (from data source) to get a mapping from
-     * ID to the internal scan number.
-     * @param scanIdentifier
-     * @return
-     * @throws FileParsingException
-     * @deprecated
-     */
-    @Deprecated
-    protected int parseScanNumFromId(CharArray scanIdentifier) throws FileParsingException {
-        Matcher matcher = RE_SCAN_NUM_FROM_INDEX_REF.matcher(scanIdentifier);
-        if (!matcher.find()) {
-            throw new FileParsingException("Could not parse scan number from an index entry of mzML file");
-        }
-        return Integer.parseInt(matcher.group(1));
     }
 
     /**

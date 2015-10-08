@@ -257,6 +257,17 @@ public interface IScanCollection extends Serializable {
 
     /**
      * <b>IMPLEMENTATIONS MUST BE SYNCHRONIZED</b><br/>
+     * Loads spectra for a subset of scans, or all of them, depending on the configuration. Uses the default storage
+     * strategy.
+     * @param subset configuration, for which scans what data should be loaded. Can't be null.
+     *               Scans in the range of scan numbers should be loaded, but spectra should be loaded
+     *               only for the scans, specified by MS level and m/z ranges.
+     * @throws umich.ms.fileio.exceptions.FileParsingException
+     */
+    void loadData(LCMSDataSubset subset) throws FileParsingException;
+
+    /**
+     * <b>IMPLEMENTATIONS MUST BE SYNCHRONIZED</b><br/>
      * Unloads <b>SPECTRA</b> from the underlying ScanCollection.
      * <b>This method should be synchronized.</b>
      * @param subset

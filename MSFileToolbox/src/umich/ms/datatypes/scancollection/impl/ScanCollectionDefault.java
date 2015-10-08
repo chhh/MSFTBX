@@ -709,6 +709,11 @@ public class ScanCollectionDefault implements IScanCollection {
     }
 
     @Override
+    public synchronized void loadData(final LCMSDataSubset subset) throws FileParsingException {
+        loadData(subset, getDefaultStorageStrategy());
+    }
+
+    @Override
     public synchronized void loadData(final LCMSDataSubset subset, StorageStrategy storageStrategy)
             throws FileParsingException {
         if (source == null) {
