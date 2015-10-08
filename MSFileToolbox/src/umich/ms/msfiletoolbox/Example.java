@@ -39,7 +39,7 @@ public class Example {
             source.setParsingTimeout(30000L);
 
 
-            source.fetchIndex();
+            MZXMLIndex mzxmlIndex = source.fetchIndex();
 
 
             // this is a data structure used to store scans and to navigate around the run

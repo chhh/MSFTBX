@@ -721,7 +721,9 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
             long posNext = -1; // the position to move the current pointer to
             int fileLenInt = fileLen >= Integer.MAX_VALUE ? Integer.MAX_VALUE : (int)fileLen;
             int curReadLen = Math.min(fileLenInt, readLen);
+            int iteration = 0;
             do {
+                iteration++;
                 // This is needed for cancellable tasks
                 if (Thread.interrupted()) {
                     throw new FileParsingException("Thread interrupted, parsing was cancelled.");
@@ -775,6 +777,13 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
                             List<E> unfinishedElems = result.getUnfinishedIndexElements();
                             if (!unfinishedElems.isEmpty()) {
                                 unfinishedIndexElements.addAll(unfinishedElems);
+                                for (E unfinishedElem : unfinishedElems) {
+                                    int scanNumOfInterest = 6338;
+                                    if (unfinishedElem.getRawNumber() == scanNumOfInterest) {
+                                        int a = 1;
+                                        System.out.printf("Scan raw#%d encountered in interation #%d\n", scanNumOfInterest,iteration);
+                                    }
+                                }
                             }
                         } else {
                             throw new FileParsingException("IndexBuilderResult was null, which should never happen");
@@ -792,8 +801,10 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
                         idx.add(e); // we'll definitely need to run fixIndex() after doing that!
                     }
                 }
-                idx = fixIndex(idx);
             }
+            // this is pretty much required as the index's internal numbering is incorrect at this point
+            // and the raw numbers are used as internal numbers
+            idx = fixIndex(idx);
 
             this.close();
         } catch (IOException ex) {
