@@ -27,8 +27,8 @@ import umich.ms.util.IntervalST;
  * @author Dmitry Avtonomov
  */
 public class ScanCollectionDefault implements IScanCollection {
-    public LCMSRunInfo runInfo;
-    protected ScanIndexRoot index;
+    public volatile LCMSRunInfo runInfo;
+    protected volatile ScanIndexRoot index;
     public TreeMap<Integer, IntervalST<Double, TreeMap<Integer, IScan>>> msLevel2rangeGroups;
     protected StorageStrategy defaultStorageStrategy;
     protected boolean isAutoloadSpectra;
@@ -265,7 +265,22 @@ public class ScanCollectionDefault implements IScanCollection {
     }
 
     @Override
-    public LCMSRunInfo getRunInfo() {
+    public synchronized LCMSRunInfo getRunInfo() {
+        LCMSRunInfo tmp = runInfo;
+        if (tmp == null) {
+            synchronized (this) {
+                tmp = runInfo;
+                if (tmp == null && source != null) {
+                    try {
+                        tmp = source.fetchRunInfo();
+                        runInfo = tmp;
+                    } catch (FileParsingException e) {
+                        // TODO: uh oh, I don't know what to do here... This means that we could not parse the run info
+                        // but I don't want to throw an error in this case
+                    }
+                }
+            }
+        }
         return runInfo;
     }
 

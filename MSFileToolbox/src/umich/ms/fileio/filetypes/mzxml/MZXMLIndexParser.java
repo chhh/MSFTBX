@@ -200,7 +200,7 @@ public class MZXMLIndexParser {
         long offsetPrev = -2, offsetCur;
         while(matcherIdxEntry.find()) {
             offsetCur = Long.parseLong(matcherIdxEntry.group(1));
-            if (offsetCur < 0) {
+            if (offsetCur > 0) {
                 throw new IndexBrokenException(String.format(
                         "The index contained an element less than zero: '%s'", matcherIdxEntry.group(0)));
             }

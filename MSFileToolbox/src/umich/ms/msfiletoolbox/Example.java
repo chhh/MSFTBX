@@ -36,7 +36,11 @@ public class Example {
             // null means use as many cores as reported by Runtime.getRuntime().availableProcessors()
             source.setNumThreadsForParsing(12);
             // 30 sec timeout for worker threads - each worker must parse its chunk of spectra within that time
-            source.setParsingTimeout(30L);
+            source.setParsingTimeout(30000L);
+
+
+            source.fetchIndex();
+
 
             // this is a data structure used to store scans and to navigate around the run
             ScanCollectionDefault scans = new ScanCollectionDefault();
