@@ -34,9 +34,9 @@ public class Example {
             // if a scan has zero peaks in its spectrum it will still be parsed
             source.setExcludeEmptyScans(false);
             // null means use as many cores as reported by Runtime.getRuntime().availableProcessors()
-            source.setNumThreadsForParsing(12);
+            source.setNumThreadsForParsing(null);
             // 30 sec timeout for worker threads - each worker must parse its chunk of spectra within that time
-            source.setParsingTimeout(30000L);
+            source.setParsingTimeout(30L);
 
 
             MZXMLIndex mzxmlIndex = source.fetchIndex();

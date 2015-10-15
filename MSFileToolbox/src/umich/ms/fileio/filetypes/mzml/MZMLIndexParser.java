@@ -13,10 +13,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javolution.text.CharArray;
 import javolution.xml.internal.stream.XMLInputFactoryImpl;
-import javolution.xml.stream.XMLInputFactory;
-import javolution.xml.stream.XMLStreamConstants;
-import javolution.xml.stream.XMLStreamException;
-import javolution.xml.stream.XMLStreamReader;
+import javolution.xml.stream.*;
 import umich.ms.datatypes.LCMSDataSubset;
 import umich.ms.fileio.exceptions.FileParsingException;
 import umich.ms.fileio.exceptions.IndexBrokenException;
@@ -290,7 +287,7 @@ public class MZMLIndexParser {
 
         } catch (XMLStreamException e) {
             // Javolution throws an Exception, which can only be identified by its text message
-            if (!e.getMessage().contains("Unexpected end tag")) {
+            if (e instanceof XMLUnexpectedEndTagException) {
                 throw new FileParsingException("Error when parsing index entries", e);
             }
         }

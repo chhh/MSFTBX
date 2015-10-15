@@ -747,8 +747,8 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
                     posCur = raf.getFilePointer();
                 }
                 // distribute the buffer between workers
-                IndexBuilderInfo[] indexBuilderInfoWorkers = distributeIndexBuilders(readBuf1, curReadLen, readBufOffset, numWorkers);
-                List<Future<IndexBuilderResult<E>>> futures = submitIndexBuilders(indexBuilderInfoWorkers, exec);
+                IndexBuilderInfo[] indexBuilderInfos = distributeIndexBuilders(readBuf1, curReadLen, readBufOffset, numWorkers);
+                List<Future<IndexBuilderResult<E>>> futures = submitIndexBuilders(indexBuilderInfos, exec);
 
                 // before blocking on waiting for the parsing tasks to complete, initiate another read
                 if (posCur < fileLen) { // we're not yet further than the EOF
@@ -777,13 +777,6 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
                             List<E> unfinishedElems = result.getUnfinishedIndexElements();
                             if (!unfinishedElems.isEmpty()) {
                                 unfinishedIndexElements.addAll(unfinishedElems);
-                                for (E unfinishedElem : unfinishedElems) {
-                                    int scanNumOfInterest = 6338;
-                                    if (unfinishedElem.getRawNumber() == scanNumOfInterest) {
-                                        int a = 1;
-                                        System.out.printf("Scan raw#%d encountered in interation #%d\n", scanNumOfInterest,iteration);
-                                    }
-                                }
                             }
                         } else {
                             throw new FileParsingException("IndexBuilderResult was null, which should never happen");

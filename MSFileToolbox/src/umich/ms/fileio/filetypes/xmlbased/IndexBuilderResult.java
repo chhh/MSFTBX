@@ -9,10 +9,12 @@ import java.util.List;
  * @param <T> type of index elements
  */
 public class IndexBuilderResult <T extends XMLBasedIndexElement> {
+    private IndexBuilderInfo info;
     private List<T> indexElements;
     private List<T> unfinishedIndexElements;
 
-    public IndexBuilderResult() {
+    public IndexBuilderResult(IndexBuilderInfo info) {
+        this.info = info;
         this.indexElements = new ArrayList<>(100);
         this.unfinishedIndexElements = new ArrayList<>(1);
     }
@@ -31,5 +33,9 @@ public class IndexBuilderResult <T extends XMLBasedIndexElement> {
 
     public boolean addUnfinishedIndexElement(T indexElement) {
         return unfinishedIndexElements.add(indexElement);
+    }
+
+    public IndexBuilderInfo getInfo() {
+        return info;
     }
 }

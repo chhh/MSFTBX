@@ -15,10 +15,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javolution.text.CharArray;
 import javolution.xml.internal.stream.XMLInputFactoryImpl;
-import javolution.xml.stream.XMLInputFactory;
-import javolution.xml.stream.XMLStreamConstants;
-import javolution.xml.stream.XMLStreamException;
-import javolution.xml.stream.XMLStreamReader;
+import javolution.xml.stream.*;
 import umich.ms.datatypes.LCMSDataSubset;
 import umich.ms.datatypes.index.Index;
 import umich.ms.fileio.exceptions.FileParsingException;
@@ -200,7 +197,7 @@ public class MZXMLIndexParser {
         long offsetPrev = -2, offsetCur;
         while(matcherIdxEntry.find()) {
             offsetCur = Long.parseLong(matcherIdxEntry.group(1));
-            if (offsetCur > 0) {
+            if (offsetCur < 0) {
                 throw new IndexBrokenException(String.format(
                         "The index contained an element less than zero: '%s'", matcherIdxEntry.group(0)));
             }
@@ -275,7 +272,7 @@ public class MZXMLIndexParser {
 
         } catch (XMLStreamException e) {
             // Javolution throws an Exception, which can only be identified by its text message
-            if (!e.getMessage().contains("Unexpected end tag")) {
+            if (e instanceof XMLUnexpectedEndTagException) {
                 throw new FileParsingException("Error when parsing index entries", e);
             }
         }

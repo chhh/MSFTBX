@@ -5,6 +5,8 @@ import javolution.xml.internal.stream.XMLStreamReaderImpl;
 import javolution.xml.sax.Attributes;
 import javolution.xml.stream.XMLStreamConstants;
 import javolution.xml.stream.XMLStreamException;
+import javolution.xml.stream.XMLUnexpectedEndOfDocumentException;
+import javolution.xml.stream.XMLUnexpectedEndTagException;
 import org.apache.commons.pool2.ObjectPool;
 import umich.ms.datatypes.LCMSDataSubset;
 import umich.ms.datatypes.lcmsrun.LCMSRunInfo;
@@ -70,7 +72,7 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
      **/
     private int numOpeningScanTagsFound;
 
-    protected static enum TAG {
+    protected enum TAG {
         SCAN("scan"),
         PRECURSOR("precursorMz"),
         PEAKS("peaks");
@@ -82,7 +84,7 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
         }
     }
 
-    protected static enum ATTR {
+    protected enum ATTR {
         SCAN_NUM("num", true),
         SCAN_TYPE("scanType", false),
         MS_LEVEL("msLevel", true),
@@ -177,10 +179,10 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
                 try {
                     eventType = reader.next();
                 } catch (XMLStreamException e) {
-                    if (e.getMessage().contains("Unexpected end tag")) {
+                    if (e instanceof XMLUnexpectedEndTagException) {
                         continue;
                     }
-                    if (e.getMessage().contains(("Unexpected end of document"))) {
+                    if (e instanceof XMLUnexpectedEndOfDocumentException) {
                         // this happens when we have nested <scan> tags and parsing not the whole MS1/MS2 child pairs
                         if (parsedScans.size() == numOpeningScanTagsFound ||
                                 (vars.curScan != null
@@ -247,13 +249,14 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
 
     /**
      * For use with Executors, consider using  instead of calling this method directly.
-     * @param offsetInFile Global offset of the read-buffer (which is shared by multiple parsers) relative to the start of the file.
-     * @param offsetInBuffer Offset in the read-buffer (which is shared by multiple parsers), where this particular parser started parsing.
+     * @param info info about offsets in the file and in the currently read buffer
      * @return
      * @throws FileParsingException
      */
-    public IndexBuilderResult<MZXMLIndexElement> buildIndex(final long offsetInFile, final long offsetInBuffer) throws Exception {
-        IndexBuilderResult<MZXMLIndexElement> result = new IndexBuilderResult<>();
+    public IndexBuilderResult<MZXMLIndexElement> buildIndex(final IndexBuilderInfo info) throws Exception {
+        final long offsetInFile = info.offsetInFile;
+        final long offsetInBuffer = info.offsetInBuffer;
+        IndexBuilderResult<MZXMLIndexElement> result = new IndexBuilderResult<>(info);
 
         numOpeningScanTagsFound = 0;
         vars = new VarsHolder();
@@ -271,10 +274,11 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
                 try {
                     eventType = reader.next();
                 } catch (XMLStreamException e) {
-                    if (e.getMessage().contains("Unexpected end tag")) {
+                    if (e instanceof XMLUnexpectedEndTagException) {
+                        eventType = XMLStreamConstants.END_ELEMENT;
                         continue;
                     }
-                    if (e.getMessage().contains(("Unexpected end of document"))) {
+                    if (e instanceof XMLUnexpectedEndOfDocumentException) {
                         // as we're reading arbitrary chunks of file, we will almost always finish parsing by hitting this condition
                         if (vars.offset != null) {
                             addCurIndexElementAndFlushVars(result, offsetInFile, offsetInBuffer);
@@ -318,13 +322,6 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
                         localName = reader.getLocalName();
 
                         if (localName.equals(TAG.SCAN.name)) {
-                            if (reader == null) {
-                                int a = 1;
-                            } else if (reader.getLocation() == null) {
-                                int a = 1;
-                            } else if (vars.offset == null){
-                                int a= 1;
-                            }
                             vars.length = (int)(reader.getLocation().getCharacterOffset() - vars.offset);
                             addCurIndexElementAndFlushVars(result, offsetInFile, offsetInBuffer);
                         }
@@ -603,7 +600,6 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
                 vars.curScan.setInstrument(runInfo.getDefaultInstrument());
             }
         }
-        return;
     }
 
     protected void addCurScanAndFlushVars() {
@@ -700,8 +696,7 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
      * @return The length of the first scan entry in this stream, or, more precisely,
      * the offset in the stream of the end of the closing tag of the first 'scan' tag.<br/>
      * Or -1 if no matching pair of 'scan' tags was found.
-     * @throws umich.ms.fileio.exceptions.FileParsingException
-     * @throws javolution.xml.stream.XMLStreamException
+     * @throws FileParsingException
      */
     public int findThisStreamFirstScanLen() throws FileParsingException {
         int length = -1;
@@ -713,17 +708,16 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
             LogHelper.setJavolutionLogLevelFatal();
 
             int eventType = XMLStreamConstants.END_DOCUMENT;
-            CharArray localName, attr;
-            Attributes attrs;
+            CharArray localName;
             do {
                 // Read the next XML element
                 try {
                     eventType = reader.next();
                 } catch (XMLStreamException e) {
-                    if (e.getMessage().contains("Unexpected end tag")) {
+                    if (e instanceof XMLUnexpectedEndTagException) {
                         continue;
                     }
-                    if (e.getMessage().contains(("Unexpected end of document"))) {
+                    if (e instanceof XMLUnexpectedEndOfDocumentException) {
                         // this happens when we have nested <scan> tags and parsing not the whole MS1/MS2 child pairs
                         return length;
                     }
@@ -810,13 +804,13 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
         }
 
         @Override
-        public IndexBuilderResult<MZXMLIndexElement> buildIndex(long offsetInFile, long offsetInBuffer) throws Exception {
-            return MZXMLMultiSpectraParser.this.buildIndex(offsetInFile, offsetInBuffer);
+        public IndexBuilderResult<MZXMLIndexElement> buildIndex(IndexBuilderInfo info) throws Exception {
+            return MZXMLMultiSpectraParser.this.buildIndex(info);
         }
 
         @Override
         public IndexBuilderResult<MZXMLIndexElement> call() throws Exception {
-            return buildIndex(info.offsetInFile, info.offsetInBuffer);
+            return buildIndex(info);
         }
     }
 }

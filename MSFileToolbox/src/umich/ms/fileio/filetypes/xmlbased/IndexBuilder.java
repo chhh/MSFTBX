@@ -8,5 +8,5 @@ import java.util.concurrent.Callable;
  * @param <T> type of elements in the index.
  */
 public interface IndexBuilder<T extends XMLBasedIndexElement> extends Callable<IndexBuilderResult<T>> {
-    IndexBuilderResult<T> buildIndex(long offsetInFile, long offsetInBuffer) throws Exception;
+    IndexBuilderResult<T> buildIndex(IndexBuilderInfo info) throws Exception;
 }
