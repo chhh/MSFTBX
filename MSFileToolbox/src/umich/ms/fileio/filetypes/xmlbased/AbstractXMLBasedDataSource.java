@@ -26,6 +26,8 @@ import java.util.concurrent.TimeoutException;
 import javolution.xml.internal.stream.XMLStreamReaderImpl;
 import org.apache.commons.pool2.ObjectPool;
 import org.apache.commons.pool2.impl.SoftReferenceObjectPool;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import umich.ms.datatypes.LCMSDataSubset;
 import umich.ms.datatypes.index.Index;
 import umich.ms.datatypes.lcmsrun.LCMSRunInfo;
@@ -57,6 +59,8 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
     // TODO: WARNING: ACHTUNG: remove this field, was here for testing
     public volatile transient long time_reading = 0;
 
+    Logger log = LoggerFactory.getLogger(AbstractXMLBasedDataSource.class);
+    
     public AbstractXMLBasedDataSource(String path) {
         super(path);
     }
@@ -105,38 +109,22 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
     //    }
     @Override
     public List<IScan> parse(LCMSDataSubset subset) throws FileParsingException {
-        Integer fromNum = subset.getScanNumLo();
-        Integer toNum = subset.getScanNumHi();
-        Set<Integer> msLevelsToParseSpectra = subset.getMsLvls();
         I idx = fetchIndex(); // make sure, that the index is parsed
         LCMSRunInfo inf = fetchRunInfo(); // make sure we have the runInfo
         // figure out which scans are to be read
-        NavigableMap<Integer, E> subIndex;
         NavigableMap<Integer, E> idxMap = idx.getMapByNum();
-        if (fromNum == null && toNum == null) {
-            subIndex = idxMap;
-        } else {
-            if (fromNum == null) {
-                fromNum = idxMap.firstKey();
-            } else {
-                fromNum = idxMap.ceilingKey(fromNum);
-            }
-            if (toNum == null) {
-                toNum = idxMap.lastKey();
-            } else {
-                toNum = idxMap.floorKey(toNum);
-            }
-            subIndex = idxMap.subMap(fromNum, true, toNum, true);
-        }
-        if (subIndex.size() == 0) {
+        Integer scanNumLo = subset.getScanNumLo() == null ? idxMap.firstKey() : idxMap.ceilingKey(subset.getScanNumLo());;
+        Integer scanNumHi = subset.getScanNumHi() == null ? idxMap.lastKey() : idxMap.floorKey(subset.getScanNumHi());
+        NavigableMap<Integer, E> subIdx = idxMap.subMap(scanNumLo, true, scanNumHi, true);
+        if (subIdx.isEmpty()) {
             throw new FileParsingException("The run does not contain any spectra in the number range you provided!");
         }
-        List<IScan> scans = new ArrayList<>(subIndex.size());
-        int numWorkers = getNumThreadsForParsing();
-        int numSpectraPerWorker = getTasksPerCpuPerBatch();
-        ExecutorService exec = Executors.newFixedThreadPool(numWorkers);
+        List<IScan> scans = new ArrayList<>(subIdx.size());
+        int numThreads = getNumThreadsForParsing();
+        int numSpectraPerThread = getTasksPerCpuPerBatch();
+        ExecutorService exec = Executors.newFixedThreadPool(numThreads);
 
-        Set<? extends Map.Entry<Integer, ? extends XMLBasedIndexElement>> entrySet = subIndex.entrySet();
+        Set<? extends Map.Entry<Integer, ? extends XMLBasedIndexElement>> entrySet = subIdx.entrySet();
         Iterator<? extends Map.Entry<Integer, ? extends XMLBasedIndexElement>> idxEntriesIter = entrySet.iterator();
 
         // set up read buffers
@@ -151,6 +139,7 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
             do {
                 // This is needed for cancellable tasks
                 if (Thread.interrupted()) {
+                    log.debug("Main AbstractXMLBasedDataSource read thread was interrupted, parsing cancelled.");
                     throw new FileParsingException("Thread interrupted, parsing was cancelled.");
                 }
                 // check if we have read something in the previous iteration, if we did, then use the 2nd read buffer
@@ -162,18 +151,18 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
                     readBuf2 = readBufTmp;
                 } else {
                     // figure out which spectra to read in this batch and read them
-                    int maxScansToReadInBatch = numWorkers * numSpectraPerWorker;
-                    readTasks = new ArrayList<>(maxScansToReadInBatch);
-                    readBuf1 = readContinuousBatchOfSpectra(idxEntriesIter, raf, readBuf1, readTasks, maxScansToReadInBatch);
+                    int numScansToRead = numThreads * numSpectraPerThread;
+                    readTasks = new ArrayList<>(numScansToRead);
+                    readBuf1 = readContinuousBatchOfSpectra(idxEntriesIter, raf, readBuf1, readTasks, numScansToRead);
                 }
                 // distribute the spectra between workers
-                int[] workerScanCounts = distributeParseLoad(numWorkers, readTasks);
+                int[] workerScanCounts = distributeParseLoad(numThreads, readTasks);
                 // submit the tasks to executor service
-                ArrayList<Future<List<IScan>>> parseTasks = submitParseTasks(subset, runInfo, numWorkers, exec, readBuf1, readTasks, workerScanCounts, true);
+                ArrayList<Future<List<IScan>>> parseTasks = submitParseTasks(subset, runInfo, numThreads, exec, readBuf1, readTasks, workerScanCounts, true);
                 // before blocking on waiting for the parsing tasks to complete,
                 // initiate another read
                 // figure out which spectra to read in this batch and read them
-                int maxScansToReadInBatch = numWorkers * numSpectraPerWorker;
+                int maxScansToReadInBatch = numThreads * numSpectraPerThread;
                 readTasks = new ArrayList<>(maxScansToReadInBatch);
                 if (idxEntriesIter.hasNext()) {
                     readBuf2 = readContinuousBatchOfSpectra(idxEntriesIter, raf, readBuf2, readTasks, maxScansToReadInBatch);
@@ -249,7 +238,9 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
         return idx;
     }
 
-    protected ArrayList<Future<List<IScan>>> submitParseTasks(LCMSDataSubset subset, LCMSRunInfo info, int numWorkers, ExecutorService exec, byte[] readBuf1, ArrayList<OffsetLength> readTasks, int[] workerScanCounts, boolean areScansContinuous) {
+    protected ArrayList<Future<List<IScan>>> submitParseTasks(LCMSDataSubset subset, LCMSRunInfo info, 
+            int numWorkers, ExecutorService exec, byte[] readBuf1, ArrayList<OffsetLength> readTasks, 
+            int[] workerScanCounts, boolean areScansContinuous) {
         ArrayList<Future<List<IScan>>> parseTasks = new ArrayList<>(numWorkers);
         int numSpectraAssignedForParsing = 0;
         long baseOffset = readTasks.get(0).offset; // this is the offset of the smallest scan num we've read
