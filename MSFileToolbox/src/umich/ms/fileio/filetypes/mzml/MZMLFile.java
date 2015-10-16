@@ -112,8 +112,32 @@ public class MZMLFile extends AbstractXMLBasedDataSource<MZMLIndexElement, MZMLI
         }
 
         String[] filenames = args;
+        Integer numThreads = null;
+        Integer numSpectraPerThread = 50;
         List<Path> paths = new ArrayList<>();
-        for (String filename : filenames) {
+        for (int i=0; i < filenames.length; i++) {
+            String filename = filenames[i];
+            if (i == 0) {
+                try {
+                    int numThreadsParsed = Integer.parseInt(filename);
+                    numThreads = numThreadsParsed;
+                    System.out.printf("Setting number of threads to: %d\n", numThreadsParsed);
+                    continue;
+                } catch (NumberFormatException e) {
+                    // no worries, it's ok
+                }
+            }
+            if (i == 1) {
+                try {
+                    int numSpectraPerThreadParsed = Integer.parseInt(filename);
+                    numSpectraPerThread = numSpectraPerThreadParsed;
+                    System.out.printf("Setting number of spectra per thread to: %d\n", numSpectraPerThreadParsed);
+                    continue;
+                } catch (NumberFormatException e) {
+                    // it's ok
+                }
+            }
+
             Path path = Paths.get(filename).toAbsolutePath();
             if (!Files.exists(path)) {
                 System.err.println("File does not exist: " + path.toString());
@@ -134,8 +158,8 @@ public class MZMLFile extends AbstractXMLBasedDataSource<MZMLIndexElement, MZMLI
             System.out.println(lcmsRunInfo.toString());
 
 
-            mzml.setNumThreadsForParsing(4);
-            mzml.setTasksPerCpuPerBatch(50);
+            mzml.setNumThreadsForParsing(numThreads);
+            mzml.setTasksPerCpuPerBatch(numSpectraPerThread);
             mzml.setParsingTimeout(30 * 1000);
             long startTime = System.nanoTime();
 
