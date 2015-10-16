@@ -158,13 +158,38 @@ public class MZXMLFile extends AbstractXMLBasedDataSource<MZXMLIndexElement, MZX
     public static void main(String[] args) throws FileParsingException, JAXBException {
         // check arguments
         if (args.length == 0) {
-            System.out.println("Give me a dollar. And a list of mzXML files. E.g.: " + "\n\tjava -jar MSDataStructures.jar ./*.mzXML");
+            System.out.println("Give me a dollar. And a list of mzXML files. E.g.: " + "\n\tjava -jar msftbx.jar ./*.mzXML");
             System.exit(0);
         }
+
         // aggregate paths found on the command line
         String[] filenames = args;
+        Integer numThreads = null;
+        Integer numSpectraPerThread = 50;
         List<Path> paths = new ArrayList<>();
-        for (String filename : filenames) {
+        for (int i=0; i < filenames.length; i++) {
+            String filename = filenames[i];
+            if (i == 0) {
+                try {
+                    int numThreadsParsed = Integer.parseInt(filename);
+                    numThreads = numThreadsParsed;
+                    System.out.printf("Setting number of threads to: %d\n", numThreadsParsed);
+                    continue;
+                } catch (NumberFormatException e) {
+                    // no worries, it's ok
+                }
+            }
+            if (i == 1) {
+                try {
+                    int numSpectraPerThreadParsed = Integer.parseInt(filename);
+                    numSpectraPerThread = numSpectraPerThreadParsed;
+                    System.out.printf("Setting number of spectra per thread to: %d\n", numSpectraPerThreadParsed);
+                    continue;
+                } catch (NumberFormatException e) {
+                    // it's ok
+                }
+            }
+
             Path path = Paths.get(filename).toAbsolutePath();
             if (!Files.exists(path)) {
                 System.err.println("File does not exist: " + path.toString());
@@ -178,8 +203,8 @@ public class MZXMLFile extends AbstractXMLBasedDataSource<MZXMLIndexElement, MZX
             double fileSize = path.toFile().length() / (1024 * 1024);
             System.out.printf("File: %s (%.2fMb)\n", path.toString(), fileSize);
             MZXMLFile mzxml = new MZXMLFile(path.toString(), false);
-            mzxml.setNumThreadsForParsing(null);
-            mzxml.setTasksPerCpuPerBatch(50);
+            mzxml.setNumThreadsForParsing(numThreads);
+            mzxml.setTasksPerCpuPerBatch(numSpectraPerThread);
             mzxml.setParsingTimeout(30 * 1000);
             long startTime = System.nanoTime();
             // parse index
