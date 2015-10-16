@@ -29,6 +29,7 @@ import umich.ms.fileio.exceptions.FileParsingException;
 import umich.ms.fileio.filetypes.xmlbased.AbstractXMLBasedDataSource;
 import umich.ms.fileio.filetypes.xmlbased.IndexBuilder;
 import umich.ms.fileio.filetypes.xmlbased.IndexBuilderInfo;
+import static umich.ms.logging.LogHelper.configureJavaUtilLogging;
 import umich.ms.util.IntervalST;
 
 /**
@@ -105,6 +106,7 @@ public class MZMLFile extends AbstractXMLBasedDataSource<MZMLIndexElement, MZMLI
     }
 
     public static void main(String[] args) throws FileParsingException {
+        configureJavaUtilLogging();
         if (args.length == 0) {
             System.out.println("Give me a dollar. And a list of mzML files. E.g.: "
                     + "\n\tjava -jar MSDataStructures.jar ./*.mzML");

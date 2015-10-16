@@ -21,6 +21,8 @@ import java.util.Set;import java.util.TreeMap;
 import javax.xml.bind.JAXBException;
 import javolution.xml.internal.stream.XMLStreamReaderImpl;
 import org.apache.commons.pool2.ObjectPool;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import umich.ms.datatypes.LCMSDataSubset;
 import umich.ms.datatypes.lcmsrun.LCMSRunInfo;
 import umich.ms.datatypes.scan.IScan;
@@ -32,6 +34,7 @@ import umich.ms.fileio.exceptions.FileParsingException;
 import umich.ms.fileio.filetypes.xmlbased.AbstractXMLBasedDataSource;
 import umich.ms.fileio.filetypes.xmlbased.IndexBuilder;
 import umich.ms.fileio.filetypes.xmlbased.IndexBuilderInfo;
+import static umich.ms.logging.LogHelper.configureJavaUtilLogging;
 import umich.ms.util.DoubleRange;
 import umich.ms.util.Interval1D;
 import umich.ms.util.IntervalST;
@@ -156,6 +159,7 @@ public class MZXMLFile extends AbstractXMLBasedDataSource<MZXMLIndexElement, MZX
      * @throws javax.xml.bind.JAXBException
      */
     public static void main(String[] args) throws FileParsingException, JAXBException {
+        configureJavaUtilLogging();
         // check arguments
         if (args.length == 0) {
             System.out.println("Give me a dollar. And a list of mzXML files. E.g.: " + "\n\tjava -jar msftbx.jar ./*.mzXML");
