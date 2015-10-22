@@ -35,7 +35,7 @@ public class MZXMLRunHeaderParser extends XmlBasedRunHeaderParser {
 
     @Override
     public LCMSRunInfo parse() throws RunHeaderParsingException {
-        OffsetLength msRunLocation = locateRunHeader(TAG_MSRUN, TAG_SCAN);
+        OffsetLength msRunLocation = locateRunHeader(TAG_MSRUN);
         MsRun parsedInfo = parseHeaderWithJAXB(MsRun.class, msRunLocation);
         LCMSRunInfo runInfo = new LCMSRunInfo();
 
@@ -56,23 +56,23 @@ public class MZXMLRunHeaderParser extends XmlBasedRunHeaderParser {
                             "Should be <msInstrument msInstrumentID='xxx'> or <msInstrument id='xxx'>");
                 }
                 Instrument instrument = new Instrument();
-                
+
                 MsRun.MsInstrument.MsManufacturer msManufacturer = i.getMsManufacturer();
                 String manufacturer = msManufacturer != null ? msManufacturer.getValueOntologyEntryType() : Instrument.UNKNOWN_MANUFACTURER;
                 instrument.setManufacturer(manufacturer);
-                
+
                 OntologyEntryType msModel = i.getMsModel();
                 String model = msModel != null ? msModel.getValueOntologyEntryType() : Instrument.UNKNOWN_MODEL;
                 instrument.setModel(model);
-                
+
                 MsRun.MsInstrument.MsMassAnalyzer msMassAnalyzer = i.getMsMassAnalyzer();
                 String analyzer = msMassAnalyzer != null ? msMassAnalyzer.getValueOntologyEntryType() : Instrument.UNKNOWN_ANALYZER;
                 instrument.setAnalyzer(analyzer);
-                
+
                 OntologyEntryType msDetector = i.getMsDetector();
                 String detector = msDetector != null ? msDetector.getValueOntologyEntryType() : Instrument.UNKNOWN_DETECTOR;
                 instrument.setDetector(detector);
-                
+
                 OntologyEntryType msIonisation = i.getMsIonisation();
                 String ionisation = msIonisation != null ? msIonisation.getValueOntologyEntryType() : Instrument.UNKNOWN_IONISATION;
                 instrument.setIonisation(ionisation);
@@ -124,11 +124,8 @@ public class MZXMLRunHeaderParser extends XmlBasedRunHeaderParser {
         try {
             RandomAccessFile raf = source.getRandomAccessFile();
             raf.seek(msRunLocation.offset);
-            String tagMsRunClose = "</" + TAG_MSRUN + ">";
-            byte[] msRunCloseBytes = tagMsRunClose.getBytes(StandardCharsets.UTF_8);
-            byte[] bytes = new byte[msRunLocation.length + msRunCloseBytes.length];
-            raf.readFully(bytes, 0, msRunLocation.length);
-            System.arraycopy(msRunCloseBytes, 0, bytes, msRunLocation.length, msRunCloseBytes.length);
+            byte[] bytes = new byte[msRunLocation.length];
+            raf.readFully(bytes, 0, bytes.length);
             return new BufferedInputStream(new ByteArrayInputStream(bytes));
         } catch (IOException e) {
             throw new RunHeaderParsingException(e);
@@ -141,5 +138,5 @@ public class MZXMLRunHeaderParser extends XmlBasedRunHeaderParser {
     public AbstractFile getAbstractFile() {
         return source;
     }
-    
+
 }

@@ -145,7 +145,9 @@ public class MZMLFile extends AbstractXMLBasedDataSource<MZMLIndexElement, MZMLI
                 System.err.println("File does not exist: " + path.toString());
                 System.exit(1);
             }
-            paths.add(path);
+            if (Files.isRegularFile(path))
+                paths.add(path);
+
         }
 
         IScanCollection scans;
@@ -183,7 +185,7 @@ public class MZMLFile extends AbstractXMLBasedDataSource<MZMLIndexElement, MZMLI
             startTime = System.nanoTime();
             scans = new ScanCollectionDefault(false);
             scans.setDataSource(mzml);
-            scans.loadData(LCMSDataSubset.MS1_WITH_SPECTRA, null);
+            scans.loadData(LCMSDataSubset.WHOLE_RUN, null);
             System.out.println("It took: " + (System.nanoTime() - startTime) / 1e9
                     + " seconds to parse all scans (" + scans.getScanCount() + " spectra)");
 

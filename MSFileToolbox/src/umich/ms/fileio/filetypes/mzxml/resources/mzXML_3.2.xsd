@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by Patrick Pedrioli (Institute For Systems Biology) -->
 <xs:schema targetNamespace="http://sashimi.sourceforge.net/schema_revision/mzXML_3.2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:cff="http://sashimi.sourceforge.net/schema_revision/mzXML_3.2" elementFormDefault="qualified" attributeFormDefault="unqualified" version="3.2">
-	<xs:include schemaLocation="http://sashimi.sourceforge.net/schema_revision/mzXML_3.2/separations/separation_technique_1.0.xsd"/>
-	<xs:include schemaLocation="http://sashimi.sourceforge.net/schema_revision/mzXML_3.2/general_types_1.0.xsd"/>
+	<xs:include schemaLocation="separation_technique_1.0.xsd"/>
+	<xs:include schemaLocation="general_types_1.0.xsd"/>
 	<xs:element name="msRun">
 		<xs:complexType>
 			<xs:sequence>

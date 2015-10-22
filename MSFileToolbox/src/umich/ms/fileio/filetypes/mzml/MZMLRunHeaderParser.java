@@ -56,7 +56,7 @@ public class MZMLRunHeaderParser extends XmlBasedRunHeaderParser {
 
     @Override
     public LCMSRunInfo parse() throws RunHeaderParsingException {
-        OffsetLength headerLocation = locateRunHeader(TAG_MZML, TAG_SPECTRUMLIST);
+        OffsetLength headerLocation = locateRunHeader(TAG_MZML);
         MzMLType parsedInfo = parseHeaderWithJAXB(MzMLType.class, headerLocation);
         LCMSRunInfo runInfo = new LCMSRunInfo();
 
@@ -241,11 +241,12 @@ public class MZMLRunHeaderParser extends XmlBasedRunHeaderParser {
         try {
             RandomAccessFile raf = source.getRandomAccessFile();
             raf.seek(msRunLocation.offset);
-            String closingTags = "</" + TAG_RUN + "></" + TAG_MZML + ">";
-            byte[] msRunCloseBytes = closingTags.getBytes(StandardCharsets.UTF_8);
-            byte[] bytes = new byte[msRunLocation.length + msRunCloseBytes.length];
-            raf.readFully(bytes, 0, msRunLocation.length);
-            System.arraycopy(msRunCloseBytes, 0, bytes, msRunLocation.length, msRunCloseBytes.length);
+            //String closingTags = "</" + TAG_RUN + "></" + TAG_MZML + ">";
+            //byte[] msRunCloseBytes = closingTags.getBytes(StandardCharsets.UTF_8);
+            //byte[] bytes = new byte[msRunLocation.length + msRunCloseBytes.length];
+            byte[] bytes = new byte[msRunLocation.length];
+            raf.readFully(bytes, 0, bytes.length);
+            //System.arraycopy(msRunCloseBytes, 0, bytes, msRunLocation.length, msRunCloseBytes.length);
             return new BufferedInputStream(new ByteArrayInputStream(bytes));
         } catch (IOException e) {
             throw new RunHeaderParsingException(e);

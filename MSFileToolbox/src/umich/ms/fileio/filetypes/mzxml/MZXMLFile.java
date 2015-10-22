@@ -35,6 +35,8 @@ import umich.ms.fileio.filetypes.xmlbased.AbstractXMLBasedDataSource;
 import umich.ms.fileio.filetypes.xmlbased.IndexBuilder;
 import umich.ms.fileio.filetypes.xmlbased.IndexBuilderInfo;
 import static umich.ms.logging.LogHelper.configureJavaUtilLogging;
+
+import umich.ms.fileio.util.FileListing;
 import umich.ms.util.DoubleRange;
 import umich.ms.util.Interval1D;
 import umich.ms.util.IntervalST;
@@ -160,6 +162,7 @@ public class MZXMLFile extends AbstractXMLBasedDataSource<MZXMLIndexElement, MZX
      */
     public static void main(String[] args) throws FileParsingException, JAXBException {
         configureJavaUtilLogging();
+        Logger logger = LoggerFactory.getLogger(MZXMLFile.class);
         // check arguments
         if (args.length == 0) {
             System.out.println("Give me a dollar. And a list of mzXML files. E.g.: " + "\n\tjava -jar msftbx.jar ./*.mzXML");
@@ -199,7 +202,14 @@ public class MZXMLFile extends AbstractXMLBasedDataSource<MZXMLIndexElement, MZX
                 System.err.println("File does not exist: " + path.toString());
                 System.exit(1);
             }
-            paths.add(path);
+            if (Files.isRegularFile(path)) {
+                paths.add(path);
+            } else if (Files.isDirectory(path)) {
+                FileListing fileListing = new FileListing(path, ".*\\.mzXML");
+                fileListing.setFollowLinks(false);
+                fileListing.setRecursive(false);
+                paths.addAll(fileListing.findFiles());
+            }
         }
         // iterate over the files, parsing them
         IScanCollection scanCollection;
@@ -280,24 +290,26 @@ public class MZXMLFile extends AbstractXMLBasedDataSource<MZXMLIndexElement, MZX
                 mzxml.time_reading = 0;
             }
             // print a part of the first spectrumRef
-            IScan scan = scanCollection.getMapNum2scan().firstEntry().getValue();
-            ISpectrum spectrum = scan.getSpectrum();
-            if (spectrum != null) {
-                double[] mzs = spectrum.getMZs();
-                System.out.print("First ten valus of m/z array of the 1st scan:\n\t");
-                for (int i = 0; i < mzs.length && i < 10; i++) {
-                    System.out.printf("%.3f ", mzs[i]);
+            if (!scanCollection.getMapNum2scan().isEmpty()) {
+                IScan scan = scanCollection.getMapNum2scan().firstEntry().getValue();
+                ISpectrum spectrum = scan.getSpectrum();
+                if (spectrum != null) {
+                    double[] mzs = spectrum.getMZs();
+                    System.out.print("First ten valus of m/z array of the 1st scan:\n\t");
+                    for (int i = 0; i < mzs.length && i < 10; i++) {
+                        System.out.printf("%.3f ", mzs[i]);
+                    }
+                    System.out.println();
+                } else {
+                    System.out.println("The first scan is there, but the spectrum has not been parsed.");
                 }
-                System.out.println();
-            } else {
-                System.out.println("The first scan is there, but the spectrum has not been parsed.");
             }
             // do count the total number of peaks in the file
             TreeMap<Integer, IScan> num2scanMap = scanCollection.getMapNum2scan();
             Set<Map.Entry<Integer, IScan>> num2scanEntries = num2scanMap.entrySet();
             int counterMzIntPairs = 0;
             for (Map.Entry<Integer, IScan> next : num2scanEntries) {
-                scan = next.getValue();
+                IScan scan = next.getValue();
                 if (scan.getSpectrum() != null) {
                     counterMzIntPairs += scan.getSpectrum().getMZs().length;
                 }

@@ -9,14 +9,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.RandomAccessFile;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.Map;
-import java.util.NavigableMap;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -60,7 +53,7 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
     public volatile transient long time_reading = 0;
 
     Logger log = LoggerFactory.getLogger(AbstractXMLBasedDataSource.class);
-    
+
     public AbstractXMLBasedDataSource(String path) {
         super(path);
     }
@@ -110,6 +103,10 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
     @Override
     public List<IScan> parse(LCMSDataSubset subset) throws FileParsingException {
         I idx = fetchIndex(); // make sure, that the index is parsed
+        if (idx.getMapByNum().isEmpty()) {
+            // if the index was empty - there's nothing to parse
+            return Collections.emptyList();
+        }
         LCMSRunInfo inf = fetchRunInfo(); // make sure we have the runInfo
         // figure out which scans are to be read
         NavigableMap<Integer, E> idxMap = idx.getMapByNum();
@@ -238,8 +235,8 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
         return idx;
     }
 
-    protected ArrayList<Future<List<IScan>>> submitParseTasks(LCMSDataSubset subset, LCMSRunInfo info, 
-            int numWorkers, ExecutorService exec, byte[] readBuf1, ArrayList<OffsetLength> readTasks, 
+    protected ArrayList<Future<List<IScan>>> submitParseTasks(LCMSDataSubset subset, LCMSRunInfo info,
+            int numWorkers, ExecutorService exec, byte[] readBuf1, ArrayList<OffsetLength> readTasks,
             int[] workerScanCounts, boolean areScansContinuous) {
         ArrayList<Future<List<IScan>>> parseTasks = new ArrayList<>(numWorkers);
         int numSpectraAssignedForParsing = 0;

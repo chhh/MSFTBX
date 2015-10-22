@@ -7,7 +7,7 @@
     </content>
     <orderEntry type="jdk" jdkName="1.7" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="MSFileToolbox Deps" level="project" />
-    <orderEntry type="library" name="MSFileToolbox Logging" level="project" />
+    <orderEntry type="library" name="MSFTBX deps" level="project" />
+    <orderEntry type="library" name="MSFTBX logging" level="project" />
   </component>
 </module>

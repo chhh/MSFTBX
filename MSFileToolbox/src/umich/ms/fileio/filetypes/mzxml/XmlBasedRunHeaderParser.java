@@ -11,6 +11,7 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javolution.text.CharArray;
 import javolution.xml.internal.stream.XMLStreamReaderImpl;
@@ -52,8 +53,8 @@ public abstract class XmlBasedRunHeaderParser {
             InputStream runHeaderInputStream = getRunHeaderInputStream(msRunLocation);
             String packageName = clazz.getPackage().getName();
             Thread.currentThread().setContextClassLoader(this.getClass().getClassLoader());
-            JAXBContext jaxbContext = JAXBContext.newInstance(packageName, this.getClass().getClassLoader());
-            Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+            JAXBContext ctx = JAXBContext.newInstance(packageName, this.getClass().getClassLoader());
+            Unmarshaller unmarshaller = ctx.createUnmarshaller();
             Object unmarshalled = unmarshaller.unmarshal(runHeaderInputStream);
             parsedInfo = convertJAXBObjectToDomain(clazz, unmarshalled);
         } catch (JAXBException e) {
@@ -70,17 +71,16 @@ public abstract class XmlBasedRunHeaderParser {
     /**
      * Reads the run header from the file, locating positions of {@code <firstTag>} and first {@code <lastTag>} tags.
      * @param firstTag the first tag after which run header starts
-     * @param lastTag the tag before which run header ends
      * @return the offset and length in bytes in the file (file is assumed to be UTF-8 by the standard)
      * @throws umich.ms.fileio.exceptions.RunHeaderParsingException
      */
-    protected OffsetLength locateRunHeader(String firstTag, String lastTag) throws RunHeaderParsingException {
+    protected OffsetLength locateRunHeader(String firstTag) throws RunHeaderParsingException {
         XMLStreamReaderImpl reader = new XMLStreamReaderImpl();
         LogHelper.setJavolutionLogLevelFatal();
-        BufferedInputStream bis = null;
-        long prevElementOffset = 0;
-        long msRunOffset = -1;
-        long scanOffset = -1;
+        BufferedInputStream bis;
+        long headerStartOffset = -1;
+        long headerEndOffset = -1;
+        final int MAX_OFFSET = 1024 * 1024; // safety net, 1MB should be enough for any header
         try {
             bis = getAbstractFile().getBufferedInputStream();
             reader.setInput(bis, StandardCharsets.UTF_8.name());
@@ -93,32 +93,31 @@ public abstract class XmlBasedRunHeaderParser {
                     case XMLStreamConstants.START_ELEMENT:
                         localName = reader.getLocalName();
                         if (localName.equals(firstTag)) {
-                            msRunOffset = prevElementOffset;
-                        } else if (localName.equals(lastTag)) {
-                            scanOffset = prevElementOffset;
+                            headerStartOffset = reader.getLocation().getLastStartTagPos();
                         }
-                        prevElementOffset = reader.getLocation().getCharacterOffset();
                         break;
                     case XMLStreamConstants.END_ELEMENT:
-                        prevElementOffset = reader.getLocation().getCharacterOffset();
+                        localName = reader.getLocalName();
+                        if (localName.equals(firstTag)) {
+                            headerEndOffset = reader.getLocation().getCharacterOffset();
+                        }
                         break;
                     case XMLStreamConstants.CHARACTERS:
                         if (reader.isWhiteSpace()) {
                             break;
                         }
-                        prevElementOffset = reader.getLocation().getCharacterOffset();
                         break;
                 }
-            } while (reader.hasNext() && eventType != XMLStreamConstants.END_DOCUMENT && (msRunOffset == -1 || scanOffset == -1));
+            } while (reader.hasNext() && eventType != XMLStreamConstants.END_DOCUMENT && (headerStartOffset == -1 || headerEndOffset == -1));
             getAbstractFile().close();
         } catch (FileNotFoundException | XMLStreamException e) {
             throw new RunHeaderParsingException("Error when parsing MS run header info", e);
         } finally {
             getAbstractFile().close();
         }
-        if (msRunOffset == -1 || scanOffset == -1) {
-            throw new RunHeaderParsingException(String.format("Could not find <%s> and/or <%s> tags when parsing LCMS run header", firstTag, lastTag));
+        if (headerStartOffset == -1 || headerEndOffset == -1) {
+            throw new RunHeaderParsingException(String.format("Could not find <%s> opening and closing tags when parsing LCMS run header", firstTag));
         }
-        return new OffsetLength(msRunOffset, (int) (scanOffset - msRunOffset));
+        return new OffsetLength(headerStartOffset, (int) (headerEndOffset - headerStartOffset));
     }
 }

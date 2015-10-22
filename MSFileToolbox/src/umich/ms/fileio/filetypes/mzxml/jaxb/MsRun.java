@@ -246,9 +246,9 @@ public class MsRun {
     @XmlSchemaType(name = "positiveInteger")
     protected BigInteger scanCount;
     @XmlAttribute(name = "startTime")
-    protected Duration startTime;
+    protected String startTime;
     @XmlAttribute(name = "endTime")
-    protected Duration endTime;
+    protected String endTime;
 
     /**
      * Gets the value of the parentFile property.
@@ -470,7 +470,7 @@ public class MsRun {
      *     {@link Duration }
      *
      */
-    public Duration getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
 
@@ -482,7 +482,7 @@ public class MsRun {
      *     {@link Duration }
      *
      */
-    public void setStartTime(Duration value) {
+    public void setStartTime(String value) {
         this.startTime = value;
     }
 
@@ -494,7 +494,7 @@ public class MsRun {
      *     {@link Duration }
      *
      */
-    public Duration getEndTime() {
+    public String getEndTime() {
         return endTime;
     }
 
@@ -506,7 +506,7 @@ public class MsRun {
      *     {@link Duration }
      *
      */
-    public void setEndTime(Duration value) {
+    public void setEndTime(String value) {
         this.endTime = value;
     }
 
