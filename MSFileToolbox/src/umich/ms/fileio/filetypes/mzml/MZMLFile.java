@@ -183,9 +183,9 @@ public class MZMLFile extends AbstractXMLBasedDataSource<MZMLIndexElement, MZMLI
 
 
             startTime = System.nanoTime();
-            scans = new ScanCollectionDefault(false);
+            scans = new ScanCollectionDefault(true);
             scans.setDataSource(mzml);
-            scans.loadData(LCMSDataSubset.WHOLE_RUN, null);
+            scans.loadData(LCMSDataSubset.STRUCTURE_ONLY, null);
             System.out.println("It took: " + (System.nanoTime() - startTime) / 1e9
                     + " seconds to parse all scans (" + scans.getScanCount() + " spectra)");
 
@@ -200,7 +200,7 @@ public class MZMLFile extends AbstractXMLBasedDataSource<MZMLIndexElement, MZMLI
             }
 
             IScan scan = scans.getMapNum2scan().firstEntry().getValue();
-            ISpectrum spectrum = scan.getSpectrum();
+            ISpectrum spectrum = scan.fetchSpectrum();
             double[] mzs = spectrum.getMZs();
             System.out.print("First ten valus of m/z array of the 1st scan:\n\t");
             for (int i = 0; i < mzs.length && i < 10; i++) {

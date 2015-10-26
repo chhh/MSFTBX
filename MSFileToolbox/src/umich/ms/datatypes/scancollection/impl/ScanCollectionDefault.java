@@ -73,6 +73,11 @@ public class ScanCollectionDefault implements IScanCollection {
     }
 
     @Override
+    public boolean isEmpty() {
+        return index.getNum2scan().isEmpty();
+    }
+
+    @Override
     public StorageStrategy getDefaultStorageStrategy() {
         return defaultStorageStrategy;
     }

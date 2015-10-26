@@ -16,6 +16,7 @@ import org.biojava.nbio.ontology.Term;
 import org.biojava.nbio.ontology.Triple;
 import umich.ms.datatypes.lcmsrun.LCMSRunInfo;
 import umich.ms.datatypes.scan.props.Instrument;
+import umich.ms.fileio.exceptions.RunHeaderBoundsNotFound;
 import umich.ms.fileio.exceptions.RunHeaderParsingException;
 import umich.ms.fileio.filetypes.mzml.jaxb.CVParamType;
 import umich.ms.fileio.filetypes.mzml.jaxb.ComponentListType;
@@ -56,7 +57,15 @@ public class MZMLRunHeaderParser extends XmlBasedRunHeaderParser {
 
     @Override
     public LCMSRunInfo parse() throws RunHeaderParsingException {
-        OffsetLength headerLocation = locateRunHeader(TAG_MZML);
+        OffsetLength headerLocation;
+        try {
+            headerLocation = locateRunHeader(TAG_MZML, true, true, TAG_RUN, true, false);
+        } catch (RunHeaderParsingException e) {
+            if (e instanceof RunHeaderBoundsNotFound) {
+                return LCMSRunInfo.getDummyRunInfo();
+            }
+            throw e;
+        }
         MzMLType parsedInfo = parseHeaderWithJAXB(MzMLType.class, headerLocation);
         LCMSRunInfo runInfo = new LCMSRunInfo();
 
@@ -241,12 +250,13 @@ public class MZMLRunHeaderParser extends XmlBasedRunHeaderParser {
         try {
             RandomAccessFile raf = source.getRandomAccessFile();
             raf.seek(msRunLocation.offset);
-            //String closingTags = "</" + TAG_RUN + "></" + TAG_MZML + ">";
-            //byte[] msRunCloseBytes = closingTags.getBytes(StandardCharsets.UTF_8);
-            //byte[] bytes = new byte[msRunLocation.length + msRunCloseBytes.length];
-            byte[] bytes = new byte[msRunLocation.length];
+            String closingTags = "</" + TAG_RUN + "></" + TAG_MZML + ">";
+//            String closingTags = "</" + TAG_MZML + ">";
+            byte[] msRunCloseBytes = closingTags.getBytes(StandardCharsets.UTF_8);
+            byte[] bytes = new byte[msRunLocation.length + msRunCloseBytes.length];
+//            byte[] bytes = new byte[msRunLocation.length];
             raf.readFully(bytes, 0, bytes.length);
-            //System.arraycopy(msRunCloseBytes, 0, bytes, msRunLocation.length, msRunCloseBytes.length);
+            System.arraycopy(msRunCloseBytes, 0, bytes, msRunLocation.length, msRunCloseBytes.length);
             return new BufferedInputStream(new ByteArrayInputStream(bytes));
         } catch (IOException e) {
             throw new RunHeaderParsingException(e);

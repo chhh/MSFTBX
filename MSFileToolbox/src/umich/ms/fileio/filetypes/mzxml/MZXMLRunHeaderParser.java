@@ -9,6 +9,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 import umich.ms.datatypes.lcmsrun.LCMSRunInfo;
 import umich.ms.datatypes.scan.props.Instrument;
+import umich.ms.fileio.exceptions.RunHeaderBoundsNotFound;
 import umich.ms.fileio.exceptions.RunHeaderParsingException;
 import umich.ms.fileio.filetypes.mzxml.jaxb.MsRun;
 import umich.ms.fileio.filetypes.mzxml.jaxb.OntologyEntryType;
@@ -35,7 +36,16 @@ public class MZXMLRunHeaderParser extends XmlBasedRunHeaderParser {
 
     @Override
     public LCMSRunInfo parse() throws RunHeaderParsingException {
-        OffsetLength msRunLocation = locateRunHeader(TAG_MSRUN);
+        OffsetLength msRunLocation;
+        try {
+            msRunLocation = locateRunHeader(TAG_MSRUN, true, true, TAG_SCAN, true, true);
+        } catch (RunHeaderParsingException e) {
+            if (e instanceof RunHeaderBoundsNotFound) {
+                return LCMSRunInfo.getDummyRunInfo();
+            }
+            throw e;
+        }
+
         MsRun parsedInfo = parseHeaderWithJAXB(MsRun.class, msRunLocation);
         LCMSRunInfo runInfo = new LCMSRunInfo();
 
@@ -124,8 +134,16 @@ public class MZXMLRunHeaderParser extends XmlBasedRunHeaderParser {
         try {
             RandomAccessFile raf = source.getRandomAccessFile();
             raf.seek(msRunLocation.offset);
-            byte[] bytes = new byte[msRunLocation.length];
+
+            String closingTags = "</" + TAG_MSRUN + ">";
+            byte[] msRunCloseBytes = closingTags.getBytes(StandardCharsets.UTF_8);
+            byte[] bytes = new byte[msRunLocation.length + msRunCloseBytes.length];
+
+//            byte[] bytes = new byte[msRunLocation.length];
+
             raf.readFully(bytes, 0, bytes.length);
+            System.arraycopy(msRunCloseBytes, 0, bytes, msRunLocation.length, msRunCloseBytes.length);
+
             return new BufferedInputStream(new ByteArrayInputStream(bytes));
         } catch (IOException e) {
             throw new RunHeaderParsingException(e);

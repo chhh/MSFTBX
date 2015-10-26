@@ -33,6 +33,12 @@ public interface IScanCollection extends Serializable {
     double MIN_GROUP_OVERLAP = 0.5;
 
     /**
+     * Tells if the collection has at least one scan in it.
+     * @return
+     */
+    boolean isEmpty();
+
+    /**
      * Adds a new scan to this collection, maintains all the proper inside mappings.
      * If a scan with the same scan number is already in the map it will be replaced
      * and the old entry will be returned. If no replacement took place - null is returned.

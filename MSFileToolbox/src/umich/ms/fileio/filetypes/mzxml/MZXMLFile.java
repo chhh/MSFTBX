@@ -261,7 +261,7 @@ public class MZXMLFile extends AbstractXMLBasedDataSource<MZXMLIndexElement, MZX
                 scanCollection = new ScanCollectionDefault(false);
                 scanCollection.setDataSource(mzxml);
                 scanCollection.loadData(subset, StorageStrategy.STRONG);
-                boolean loadMs2 = true;
+                boolean loadMs2 = false;
                 if (loadMs2) {
                     HashSet<Integer> msLvl2 = new HashSet<>();
                     msLvl2.add(2);
