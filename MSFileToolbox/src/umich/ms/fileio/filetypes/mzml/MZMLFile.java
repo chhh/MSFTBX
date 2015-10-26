@@ -30,6 +30,8 @@ import umich.ms.fileio.filetypes.xmlbased.AbstractXMLBasedDataSource;
 import umich.ms.fileio.filetypes.xmlbased.IndexBuilder;
 import umich.ms.fileio.filetypes.xmlbased.IndexBuilderInfo;
 import static umich.ms.logging.LogHelper.configureJavaUtilLogging;
+
+import umich.ms.fileio.util.FileListing;
 import umich.ms.util.IntervalST;
 
 /**
@@ -145,9 +147,14 @@ public class MZMLFile extends AbstractXMLBasedDataSource<MZMLIndexElement, MZMLI
                 System.err.println("File does not exist: " + path.toString());
                 System.exit(1);
             }
-            if (Files.isRegularFile(path))
+            if (Files.isRegularFile(path)) {
                 paths.add(path);
-
+            } else if (Files.isDirectory(path)) {
+                FileListing fileListing = new FileListing(path, ".*\\.mzML");
+                fileListing.setFollowLinks(false);
+                fileListing.setRecursive(false);
+                paths.addAll(fileListing.findFiles());
+            }
         }
 
         IScanCollection scans;
@@ -185,7 +192,7 @@ public class MZMLFile extends AbstractXMLBasedDataSource<MZMLIndexElement, MZMLI
             startTime = System.nanoTime();
             scans = new ScanCollectionDefault(true);
             scans.setDataSource(mzml);
-            scans.loadData(LCMSDataSubset.STRUCTURE_ONLY, null);
+            scans.loadData(LCMSDataSubset.WHOLE_RUN, null);
             System.out.println("It took: " + (System.nanoTime() - startTime) / 1e9
                     + " seconds to parse all scans (" + scans.getScanCount() + " spectra)");
 
