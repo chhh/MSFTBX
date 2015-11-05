@@ -427,7 +427,7 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
     //        try {
     //            SeekableByteChannel chan = Files.newByteChannel(Paths.get(getPath()), StandardOpenOption.READ);
     //            // 1024 bytes should be enough for most scan headers to be read in one buffered read
-    ////            RandomInputStream ris = new RandomInputStream(new umich.ms.external.ucar.RandomAccessFile(getPath(), "r", 1024));
+    ////            RandomInputStream ris = new RandomInputStream(new umich.ms.external.ucar.BufferedRandomAccessFile(getPath(), "r", 1024));
     ////            inputStream = (InputStream) ris;
     //
     //            RandomAccessFile raf = this.getRandomAccessFile();

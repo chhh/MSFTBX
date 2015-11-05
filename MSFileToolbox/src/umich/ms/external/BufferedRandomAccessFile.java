@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 
 /**
- * This is an optimized version of the RandomAccessFile class as described by
+ * This is an optimized version of the BufferedRandomAccessFile class as described by
  * Nick Zhang on JavaWorld.com. The article can be found at
  * http://www.javaworld.com/javaworld/javatips/jw-javatip26.html
  *

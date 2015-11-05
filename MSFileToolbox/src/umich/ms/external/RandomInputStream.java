@@ -1,7 +1,7 @@
 package umich.ms.external;
 
-import umich.ms.external.ucar.KMPMatch;
-import umich.ms.external.ucar.RandomAccessFile;
+import umich.ms.external.ucar.*;
+import umich.ms.external.ucar.BufferedRandomAccessFile;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,13 +10,13 @@ import java.nio.channels.WritableByteChannel;
 import java.util.List;
 
 /**
- * A wrapper around {@link umich.ms.external.ucar.RandomAccessFile}, implementing input stream.
+ * A wrapper around {@link BufferedRandomAccessFile}, implementing input stream.
  * Created by dmitriya on 2015-02-27.
  */
 public class RandomInputStream extends InputStream {
-    RandomAccessFile braf;
+    BufferedRandomAccessFile braf;
 
-    public RandomInputStream(RandomAccessFile braf) {
+    public RandomInputStream(BufferedRandomAccessFile braf) {
         this.braf = braf;
     }
 
@@ -26,7 +26,7 @@ public class RandomInputStream extends InputStream {
     }
 
     public static boolean getDebugLeaks() {
-        return RandomAccessFile.getDebugLeaks();
+        return BufferedRandomAccessFile.getDebugLeaks();
     }
 
     public int readUnsignedByte() throws IOException {
@@ -34,7 +34,7 @@ public class RandomInputStream extends InputStream {
     }
 
     public static List<String> getOpenFiles() {
-        return RandomAccessFile.getOpenFiles();
+        return BufferedRandomAccessFile.getOpenFiles();
     }
 
     public byte[] readBytes(int count) throws IOException {
@@ -78,7 +78,7 @@ public class RandomInputStream extends InputStream {
     }
 
     public static long getOpenFileCount() {
-        return RandomAccessFile.getOpenFileCount();
+        return BufferedRandomAccessFile.getOpenFileCount();
     }
 
     public void writeLong(long v) throws IOException {
@@ -102,7 +102,7 @@ public class RandomInputStream extends InputStream {
     }
 
     public static int getMaxOpenFileCount() {
-        return RandomAccessFile.getMaxOpenFileCount();
+        return BufferedRandomAccessFile.getMaxOpenFileCount();
     }
 
     public short readShort() throws IOException {
@@ -114,7 +114,7 @@ public class RandomInputStream extends InputStream {
     }
 
     public static void setDebugAccess(boolean b) {
-        RandomAccessFile.setDebugAccess(b);
+        BufferedRandomAccessFile.setDebugAccess(b);
     }
 
     public void readShort(short[] pa, int start, int n) throws IOException {
@@ -234,7 +234,7 @@ public class RandomInputStream extends InputStream {
     }
 
     public static void setDebugLeaks(boolean b) {
-        RandomAccessFile.setDebugLeaks(b);
+        BufferedRandomAccessFile.setDebugLeaks(b);
     }
 
     public void writeBytes(String s) throws IOException {
@@ -270,7 +270,7 @@ public class RandomInputStream extends InputStream {
     }
 
     public static long getDebugNbytes() {
-        return RandomAccessFile.getDebugNbytes();
+        return BufferedRandomAccessFile.getDebugNbytes();
     }
 
     public void writeInt(int v) throws IOException {
@@ -294,11 +294,11 @@ public class RandomInputStream extends InputStream {
     }
 
     public static List<String> getAllFiles() {
-        return RandomAccessFile.getAllFiles();
+        return umich.ms.external.ucar.BufferedRandomAccessFile.getAllFiles();
     }
 
     public static int getDebugNseeks() {
-        return RandomAccessFile.getDebugNseeks();
+        return BufferedRandomAccessFile.getDebugNseeks();
     }
 
     public void setMinLength(long minLength) {

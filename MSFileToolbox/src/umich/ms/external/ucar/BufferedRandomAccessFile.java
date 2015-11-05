@@ -56,18 +56,18 @@ import umich.ms.external.ucar.util.FileCacheable;
 
 /**
  * <b>WARNING: NOT THREAD SAFE</b>, had to remove {@code net.jcip.annotations.NotThreadSafe} annotation from the class.
- * A buffered drop-in replacement for java.io.RandomAccessFile.
+ * A buffered drop-in replacement for java.io.BufferedRandomAccessFile.
  * Instances of this class realise substantial speed increases over
- * java.io.RandomAccessFile through the use of buffering. This is a
+ * java.io.BufferedRandomAccessFile through the use of buffering. This is a
  * subclass of Object, as it was not possible to subclass
- * java.io.RandomAccessFile because many of the methods are
- * final. However, if it is necessary to use RandomAccessFile and
- * java.io.RandomAccessFile interchangeably, both classes implement the
+ * java.io.BufferedRandomAccessFile because many of the methods are
+ * final. However, if it is necessary to use BufferedRandomAccessFile and
+ * java.io.BufferedRandomAccessFile interchangeably, both classes implement the
  * DataInput and DataOutput interfaces.
  * <p/>
  * <p> By Russ Rew, based on
  * BufferedRandomAccessFile by Alex McManus, based on Sun's source code
- * for java.io.RandomAccessFile.  For Alex McManus version from which
+ * for java.io.BufferedRandomAccessFile.  For Alex McManus version from which
  * this derives, see his <a href="http://www.aber.ac.uk/~agm/Java.html">
  * Freeware Java Classes</a>.
  * <p/>
@@ -79,7 +79,7 @@ import umich.ms.external.ucar.util.FileCacheable;
  * @see java.io.DataOutput
  * @see java.io.RandomAccessFile
  */
-public class RandomAccessFile implements DataInput, DataOutput, FileCacheable, AutoCloseable {
+public class BufferedRandomAccessFile implements DataInput, DataOutput, FileCacheable, AutoCloseable {
 
   static public final int BIG_ENDIAN = 0;
   static public final int LITTLE_ENDIAN = 1;
@@ -109,7 +109,7 @@ public class RandomAccessFile implements DataInput, DataOutput, FileCacheable, A
   /**
    * Debugging, do not use.
    * Set counters to zero, set
-   * @param b set true to track java.io.RandomAccessFile
+   * @param b set true to track java.io.BufferedRandomAccessFile
    */
   static public void setDebugLeaks(boolean b) {
     if (b) {
@@ -195,7 +195,7 @@ public class RandomAccessFile implements DataInput, DataOutput, FileCacheable, A
   protected FileCacheIF fileCache = null;
 
   /**
-   * The underlying java.io.RandomAccessFile.
+   * The underlying java.io.BufferedRandomAccessFile.
    */
   protected java.io.RandomAccessFile file;
   protected java.nio.channels.FileChannel fileChannel;
@@ -265,7 +265,7 @@ public class RandomAccessFile implements DataInput, DataOutput, FileCacheable, A
    *
    * @param bufferSize size of read buffer
    */
-  protected RandomAccessFile(int bufferSize) {
+  protected BufferedRandomAccessFile(int bufferSize) {
     file = null;
     readonly = true;
     init(bufferSize);
@@ -275,10 +275,10 @@ public class RandomAccessFile implements DataInput, DataOutput, FileCacheable, A
    * Constructor, default buffer size.
    *
    * @param location location of the file
-   * @param mode     same as for java.io.RandomAccessFile, usually "r" or "rw"
+   * @param mode     same as for java.io.BufferedRandomAccessFile, usually "r" or "rw"
    * @throws java.io.IOException on open error
    */
-  public RandomAccessFile(String location, String mode) throws IOException {
+  public BufferedRandomAccessFile(String location, String mode) throws IOException {
     this(location, mode, defaultBufferSize);
     this.location = location;
   }
@@ -287,11 +287,11 @@ public class RandomAccessFile implements DataInput, DataOutput, FileCacheable, A
    * Constructor.
    *
    * @param location   location of the file
-   * @param mode       same as for java.io.RandomAccessFile
+   * @param mode       same as for java.io.BufferedRandomAccessFile
    * @param bufferSize size of buffer to use.
    * @throws java.io.IOException on open error
    */
-  public RandomAccessFile(String location, String mode, int bufferSize) throws IOException {
+  public BufferedRandomAccessFile(String location, String mode, int bufferSize) throws IOException {
     this.location = location;
     if (debugLeaks) {
       allFiles.add(location);
@@ -301,12 +301,12 @@ public class RandomAccessFile implements DataInput, DataOutput, FileCacheable, A
       this.file = new java.io.RandomAccessFile(location, mode);
     } catch (IOException ioe) {
       if (ioe.getMessage().equals("Too many open files")) {
-        System.out.printf("RandomAccessFile %s%n", ioe);
+        System.out.printf("BufferedRandomAccessFile %s%n", ioe);
         try {
           Thread.sleep(100);
         } catch (InterruptedException e) {
           throw new IOException("Couldn't sleep the thread for 100 milliseconds, "
-                  + "while waiting to retry opening a RandomAccessFile", e);
+                  + "while waiting to retry opening a BufferedRandomAccessFile", e);
         }
         this.file = new java.io.RandomAccessFile(location, mode); // Windows having troublke keeping up ??
       } else {
@@ -329,10 +329,10 @@ public class RandomAccessFile implements DataInput, DataOutput, FileCacheable, A
   }
 
   /**
-   * Allow access to the underlying java.io.RandomAccessFile.
+   * Allow access to the underlying java.io.BufferedRandomAccessFile.
    * WARNING! BROKEN ENCAPSOLATION, DO NOT USE. May change implementation in the future.
    *
-   * @return the underlying java.io.RandomAccessFile.
+   * @return the underlying java.io.BufferedRandomAccessFile.
    */
   public java.io.RandomAccessFile getRandomAccessFile() {
     return this.file;
@@ -520,7 +520,7 @@ public class RandomAccessFile implements DataInput, DataOutput, FileCacheable, A
    * use this. Does not currently affect writes.
    * Default values is BIG_ENDIAN.
    *
-   * @param endian RandomAccessFile.BIG_ENDIAN or RandomAccessFile.LITTLE_ENDIAN
+   * @param endian BufferedRandomAccessFile.BIG_ENDIAN or BufferedRandomAccessFile.LITTLE_ENDIAN
    */
   public void order(int endian) {
     if (endian < 0) return;
