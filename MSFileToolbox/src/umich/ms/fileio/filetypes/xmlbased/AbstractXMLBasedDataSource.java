@@ -735,8 +735,8 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
                     posCur = raf.getFilePointer();
                 }
                 // distribute the buffer between workers
-                IndexBuilderInfo[] indexBuilderInfos = distributeIndexBuilders(readBuf1, curReadLen, readBufOffset, numWorkers);
-                List<Future<IndexBuilderResult<E>>> futures = submitIndexBuilders(indexBuilderInfos, exec);
+                IndexBuilder.Info[] infos = distributeIndexBuilders(readBuf1, curReadLen, readBufOffset, numWorkers);
+                List<Future<IndexBuilder.Result<E>>> futures = submitIndexBuilders(infos, exec);
 
                 // before blocking on waiting for the parsing tasks to complete, initiate another read
                 if (posCur < fileLen) { // we're not yet further than the EOF
@@ -754,9 +754,9 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
 
                 // block and wait for all the parsers to finish, at this point
                 // we already have the next chunk read-in while the parsers were busy
-                for (Future<IndexBuilderResult<E>> future : futures) {
+                for (Future<IndexBuilder.Result<E>> future : futures) {
                     try {
-                        IndexBuilderResult<E> result = future.get(getParsingTimeout(), TimeUnit.SECONDS);
+                        IndexBuilder.Result<E> result = future.get(getParsingTimeout(), TimeUnit.SECONDS);
                         if (result != null) {
                             List<E> indexElements = result.getIndexElements();
                             for (E indexElement : indexElements) {
@@ -767,7 +767,7 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
                                 unfinishedIndexElements.addAll(unfinishedElems);
                             }
                         } else {
-                            throw new FileParsingException("IndexBuilderResult was null, which should never happen");
+                            throw new FileParsingException("Result was null, which should never happen");
                         }
                     } catch (InterruptedException | TimeoutException | ExecutionException | NullPointerException e) {
                         throw new FileParsingException(e);
@@ -804,9 +804,9 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
         return idx;
     }
 
-    private IndexBuilderInfo[] distributeIndexBuilders(byte[] readBuf, int bytesValid, long offsetInFile, int numWorkers) {
+    private IndexBuilder.Info[] distributeIndexBuilders(byte[] readBuf, int bytesValid, long offsetInFile, int numWorkers) {
         if (bytesValid == 0) {
-            return new IndexBuilderInfo[0];
+            return new IndexBuilder.Info[0];
         }
 
         final int baseReadLen = INDEX_BUILDER_MIN_READ_SIZE + INDEX_BUILDER_MIN_OVERLAP;
@@ -814,8 +814,8 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
         if (bytesValid <= baseReadLen) {
             // if we only have enough bytes for one worker - so be it
             ByteArrayInputStream is = new ByteArrayInputStream(readBuf, 0, bytesValid);
-            IndexBuilderInfo worker = new IndexBuilderInfo(offsetInFile, 0, is);
-            return new IndexBuilderInfo[]{worker};
+            IndexBuilder.Info worker = new IndexBuilder.Info(offsetInFile, 0, is);
+            return new IndexBuilder.Info[]{worker};
         }
 
         /**
@@ -830,13 +830,13 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
         int nwfmrl = (int)Math.ceil(numWorkersForMinReadLengths);
 
         int numAssignedWorkers = Math.min(numWorkers, nwfmrl);
-        IndexBuilderInfo[] workers = new IndexBuilderInfo[numAssignedWorkers];
+        IndexBuilder.Info[] workers = new IndexBuilder.Info[numAssignedWorkers];
 
         int curOffset = 0;
         int curReadLen = numAssignedWorkers == numWorkers ? bpw : baseReadLen;
         for (int i = 0; i < workers.length; i++) {
             ByteArrayInputStream is = new ByteArrayInputStream(readBuf, curOffset, curReadLen);
-            IndexBuilderInfo worker = new IndexBuilderInfo(offsetInFile, curOffset, is);
+            IndexBuilder.Info worker = new IndexBuilder.Info(offsetInFile, curOffset, is);
             workers[i] = worker;
             curOffset += curReadLen - INDEX_BUILDER_MIN_OVERLAP;
             if (curOffset + curReadLen > bytesValid) {
@@ -849,15 +849,15 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
         return workers;
     }
 
-    public abstract IndexBuilder<E> getIndexBuilder(IndexBuilderInfo info);
+    public abstract IndexBuilder<E> getIndexBuilder(IndexBuilder.Info info);
 
-    private List<Future<IndexBuilderResult<E>>> submitIndexBuilders(IndexBuilderInfo[] builders, ExecutorService exec) {
-        ArrayList<Future<IndexBuilderResult<E>>> result = new ArrayList<>(builders.length);
-        for (IndexBuilderInfo info : builders) {
+    private List<Future<IndexBuilder.Result<E>>> submitIndexBuilders(IndexBuilder.Info[] builders, ExecutorService exec) {
+        ArrayList<Future<IndexBuilder.Result<E>>> result = new ArrayList<>(builders.length);
+        for (IndexBuilder.Info info : builders) {
             IndexBuilder<E> builder = getIndexBuilder(info);
             //MultiSpectraParser parser = getSpectraParser(info.is, LCMSDataSubset.WHOLE_RUN, readerPool, null);
-            //IndexBuilderInfo builder = parser.getIndexBuilder(info.offsetInFile, info.offsetInBuffer);
-            Future<IndexBuilderResult<E>> task = exec.submit(builder);
+            //Info builder = parser.getIndexBuilder(info.offsetInFile, info.offsetInBuffer);
+            Future<IndexBuilder.Result<E>> task = exec.submit(builder);
             result.add(task);
         }
         return result;

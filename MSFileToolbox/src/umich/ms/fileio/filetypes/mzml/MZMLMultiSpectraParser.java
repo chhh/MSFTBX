@@ -6,8 +6,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.zip.DataFormatException;
 import javolution.text.CharArray;
 import javolution.xml.internal.stream.XMLStreamReaderImpl;
@@ -32,8 +30,6 @@ import umich.ms.fileio.exceptions.FileParsingException;
 import umich.ms.fileio.filetypes.mzml.util.PSIMSCV;
 import umich.ms.fileio.filetypes.util.MultiSpectraParser;
 import umich.ms.fileio.filetypes.xmlbased.IndexBuilder;
-import umich.ms.fileio.filetypes.xmlbased.IndexBuilderInfo;
-import umich.ms.fileio.filetypes.xmlbased.IndexBuilderResult;
 import umich.ms.fileio.filetypes.xmlbased.OffsetLength;
 import umich.ms.logging.LogHelper;
 import umich.ms.util.ByteArrayHolder;
@@ -748,10 +744,10 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
      * @return
      * @throws FileParsingException
      */
-    public IndexBuilderResult<MZMLIndexElement> buildIndex(final IndexBuilderInfo info) throws Exception {
+    public IndexBuilder.Result<MZMLIndexElement> buildIndex(final IndexBuilder.Info info) throws Exception {
         final long offsetInFile = info.offsetInFile;
         final long offsetInBuffer = info.offsetInBuffer;
-        IndexBuilderResult<MZMLIndexElement> result = new IndexBuilderResult<>(info);
+        IndexBuilder.Result<MZMLIndexElement> result = new IndexBuilder.Result<>(info);
 
         numOpeningScanTagsFound = 0;
         vars = new VarsHolder();
@@ -852,7 +848,7 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
         return result;
     }
 
-    private void addCurIndexElementAndFlushVars(IndexBuilderResult<MZMLIndexElement> result, long offsetInFile, long offsetInBuffer) {
+    private void addCurIndexElementAndFlushVars(IndexBuilder.Result<MZMLIndexElement> result, long offsetInFile, long offsetInBuffer) {
 
         if (vars.spectrumIndex == null || vars.spectrumId == null || vars.offset == null) {
             throw new IllegalStateException("When building index some variables were not set");
@@ -1011,25 +1007,25 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
         }
     }
 
-    public MZMLIndexBuilder getIndexBuilder(IndexBuilderInfo info) {
+    public MZMLIndexBuilder getIndexBuilder(IndexBuilder.Info info) {
         return new MZMLIndexBuilder(info);
     }
 
 
     public class MZMLIndexBuilder implements IndexBuilder<MZMLIndexElement>  {
-        IndexBuilderInfo info;
+        Info info;
 
-        public MZMLIndexBuilder(IndexBuilderInfo info) {
+        public MZMLIndexBuilder(Info info) {
             this.info = info;
         }
 
         @Override
-        public IndexBuilderResult<MZMLIndexElement> buildIndex(IndexBuilderInfo info) throws Exception {
+        public Result<MZMLIndexElement> buildIndex(Info info) throws Exception {
             return MZMLMultiSpectraParser.this.buildIndex(info);
         }
 
         @Override
-        public IndexBuilderResult<MZMLIndexElement> call() throws Exception {
+        public Result<MZMLIndexElement> call() throws Exception {
             return buildIndex(info);
         }
     }

@@ -28,7 +28,7 @@ import umich.ms.fileio.Opts;
 import umich.ms.fileio.exceptions.FileParsingException;
 import umich.ms.fileio.filetypes.xmlbased.AbstractXMLBasedDataSource;
 import umich.ms.fileio.filetypes.xmlbased.IndexBuilder;
-import umich.ms.fileio.filetypes.xmlbased.IndexBuilderInfo;
+
 import static umich.ms.logging.LogHelper.configureJavaUtilLogging;
 
 import umich.ms.fileio.util.FileListing;
@@ -101,7 +101,7 @@ public class MZMLFile extends AbstractXMLBasedDataSource<MZMLIndexElement, MZMLI
     }
 
     @Override
-    public IndexBuilder<MZMLIndexElement> getIndexBuilder(IndexBuilderInfo info) {
+    public IndexBuilder<MZMLIndexElement> getIndexBuilder(IndexBuilder.Info info) {
         MZMLMultiSpectraParser parser = getSpectraParser(info.is, LCMSDataSubset.STRUCTURE_ONLY, getReaderPool(), null);
         MZMLMultiSpectraParser.MZMLIndexBuilder builder = parser.getIndexBuilder(info);
         return builder;

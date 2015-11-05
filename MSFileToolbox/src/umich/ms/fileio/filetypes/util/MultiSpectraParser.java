@@ -10,9 +10,6 @@ import javax.xml.datatype.DatatypeFactory;
 import umich.ms.datatypes.LCMSDataSubset;
 import umich.ms.datatypes.scan.IScan;
 import umich.ms.fileio.filetypes.LCMSDataSource;
-import umich.ms.fileio.filetypes.mzml.MZMLIndexElement;
-import umich.ms.fileio.filetypes.xmlbased.IndexBuilder;
-import umich.ms.fileio.filetypes.xmlbased.IndexBuilderResult;
 
 /**
  * Base class for parsers used by mzXML/mzML files.
@@ -60,7 +57,7 @@ public abstract class MultiSpectraParser implements Callable<List<IScan>> {
     public void setNumScansToProcess(Integer numScansToProcess) {
         this.numScansToProcess = numScansToProcess;
     }
-    
+
     public abstract <T extends LCMSDataSource<?>> T getSource();
 
 
