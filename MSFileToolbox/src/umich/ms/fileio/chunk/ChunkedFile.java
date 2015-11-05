@@ -14,6 +14,9 @@ import java.nio.ByteBuffer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -141,23 +144,33 @@ public class ChunkedFile implements FileChunkSource {
          *          ^           ^
          *          O(overlap)   X(length of one segment)
          */
-        long numChunksL = (long)Math.ceil((double)(fileLen - chunkOverlap) / (double)(chunkSize - chunkOverlap));
+        long numChunksL = (long)Math.ceil((double)(fileLen - chunkOverlap) / (double)(chunkSize));
         if (numChunksL > Integer.MAX_VALUE)
             throw new IllegalStateException("Num chunks can't be more than Integer.MAX_VALUE, file too large or chunk size too small");
         int numChunks = (int)numChunksL;
         FileChunk[] fileChunks = new FileChunk[numChunks];
-        long curOffset = 0;
-        int curLen;
+        List<FileChunk> fileChunksList = new ArrayList<>(numChunks);
+        long curOffset = 0, lenToEOF;
+        int curLen, countChunks = 0, curChunkNum = 0;
         FileChunk fileChunk;
-        long lenToEOF;
-        for (int i = 0; i < numChunks; i++) {
+        do {
             lenToEOF = fileLen - curOffset;
             curLen =  lenToEOF < chunkSize ? (int)(lenToEOF) : chunkSize;
-            fileChunk = new FileChunk(i, curOffset, curLen);
-            fileChunks[i] = fileChunk;
+            if (curLen <= chunkOverlap)
+                break;
+            fileChunk = new FileChunk(curChunkNum, curOffset, curLen);
+//            fileChunks[curChunkNum] = fileChunk;
+            fileChunksList.add(fileChunk);
             curOffset = curOffset + curLen - chunkOverlap;
-        }
-        return fileChunks;
+            log.trace("Adding chunk #{}: offset {}, len {}, offset+len {}, next offset {}",
+                      fileChunk.getChunkNum(), fileChunk.getOffset(), fileChunk.getLength(), fileChunk.getOffset() + fileChunk.getLength(), curOffset);
+            curChunkNum++;
+        } while (curOffset < fileLen && curLen > chunkOverlap);
+        if (curChunkNum != fileChunks.length)
+            log.error("Something wronf with file chunks calculation, " +
+                      "expected number of chunks {}, real number {}, file length {}, chunk size {}, overlap {}",
+                      numChunks, curChunkNum, fileLen, chunkSize, chunkOverlap);
+        return curChunkNum == numChunks ? fileChunksList.toArray(fileChunks) : fileChunksList.toArray(new FileChunk[fileChunksList.size()]);
     }
 
     @Override
@@ -303,22 +316,37 @@ public class ChunkedFile implements FileChunkSource {
 
         String path = "E:\\andy\\q01507.mzML_h";
         Path p = Paths.get(path);
-        final ChunkedFile chunkedFile = new ChunkedFile(p, 1024, 128);
+        final ChunkedFile chunkedFile = new ChunkedFile(p, 1024 * 16, 128);
         chunkedFile.init();
         chunkedFile.setChunkBufferSize(3);
         FileChunk nextChunk;
 
         int numThreads = 3;
         ExecutorService exec = Executors.newFixedThreadPool(numThreads);
+//        final ConcurrentSkipListMap<Integer, FileChunk> map = new ConcurrentSkipListMap<>();
+        final ConcurrentLinkedQueue<FileChunk> chunkFifo = new ConcurrentLinkedQueue<>();
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
                 FileChunk nextChunk;
                 while ((nextChunk = chunkedFile.next()) != null) {
-                    log.debug("Thread '{}' received chunk #{}", Thread.currentThread().getName(), nextChunk.getChunkNum());
+                    int receivedChunkNum = nextChunk.getChunkNum();
+                    log.debug("Thread '{}' received chunk #{}", Thread.currentThread().getName(), receivedChunkNum);
                     String s = new String(nextChunk.getBah().getUnderlyingBytes());
+                    synchronized (chunkedFile) {
+                        if (receivedChunkNum == 1 || receivedChunkNum == 2) {
+                            System.out.printf("ADDING chunk #%d ================================================\n", receivedChunkNum);
+                            System.out.flush();
+                        }
+                        chunkFifo.add(nextChunk);
+                    }
                     //System.out.printf("Woohoo thread '%s' got text:\n\t%s..(%d chars)\n", Thread.currentThread().getName(), s.subSequence(0, 20), s.length());
                     int a = 1;
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
                 log.debug("Thread '{}' received null for next chunk, terminating", Thread.currentThread().getName());
             }
@@ -328,7 +356,7 @@ public class ChunkedFile implements FileChunkSource {
         }
 
         exec.shutdown();
-        exec.awaitTermination(5, TimeUnit.SECONDS);
+        exec.awaitTermination(50, TimeUnit.SECONDS);
 
         log.debug("Main thread finished");
     }
