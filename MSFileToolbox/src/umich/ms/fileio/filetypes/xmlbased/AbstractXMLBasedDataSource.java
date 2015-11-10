@@ -297,8 +297,11 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
         while (entries.hasNext() && readTasks.size() < maxScansToReadInBatch) {
             readTasks.add(entries.next().getValue().getOffsetLength());
         }
-        long readOffset = readTasks.get(0).offset;
-        int readLength = (int) (readTasks.get(readTasks.size() - 1).offset - readOffset + readTasks.get(readTasks.size() - 1).length);
+        OffsetLength readFirst = readTasks.get(0);
+        OffsetLength readLast = readTasks.get(readTasks.size() - 1);
+
+        long readOffset = readFirst.offset;
+        int readLength = (int) (readLast.offset + readLast.length - readOffset);
         // check if the buffer size is enough and expand accordingly, or clean the old buffer
         if (readBuf.length < readLength) {
             readBuf = new byte[readLength];

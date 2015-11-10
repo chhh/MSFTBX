@@ -7,15 +7,14 @@ import java.io.InputStream;
 import java.io.RandomAccessFile;
 import java.nio.channels.Channels;
 import java.nio.charset.StandardCharsets;
-import java.util.Map;
-import java.util.NavigableMap;
-import java.util.Set;
-import java.util.TreeMap;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javolution.text.CharArray;
 import javolution.xml.internal.stream.XMLInputFactoryImpl;
 import javolution.xml.stream.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import umich.ms.datatypes.LCMSDataSubset;
 import umich.ms.datatypes.index.Index;
 import umich.ms.fileio.exceptions.FileParsingException;
@@ -29,6 +28,8 @@ import umich.ms.logging.LogHelper;
  * Created by dmitriya on 2015-02-04.
  */
 public class MZXMLIndexParser {
+    private final static Logger log = LoggerFactory.getLogger(MZXMLIndexParser.class);
+
     protected MZXMLFile source;
     protected String FILE_TYPE_NAME = "mzXML";
     protected String TAG_INDEXOFFSET = "indexOffset";
@@ -89,34 +90,51 @@ public class MZXMLIndexParser {
 
         // converting this parsed index to a map of convenient {ScanNum => {offset, length}} objects
         MZXMLIndex index = new MZXMLIndex();
-        int scanNumRaw     = scanIndex.firstEntry().getKey();
-        int scanNumInternal, nextScanNumRaw, length;
+        int curScanNumRaw  = scanIndex.firstEntry().getKey();
         long curScanOffset = scanIndex.firstEntry().getValue();
-        long nextOffset;
-        for (int i = 0; i < scanIndex.size() - 1; i++) {
-
-            Map.Entry<Integer, Long> nextScanIndex = scanIndex.higherEntry(scanNumRaw);
-            nextScanNumRaw = nextScanIndex.getKey();
-            nextOffset = nextScanIndex.getValue();
-
-            // calculate the length of the entry
-            if (nextScanNumRaw == Integer.MAX_VALUE) {
-                // if the next entry in scanIndex is pointing to the beginning of the index
-                // we'll try to find out the length ourselves by reading the file
-                length = findScanLength(curScanOffset);
-            } else {
-                length = (int) (nextOffset - curScanOffset);
-            }
-
+        int scanNumInternal = 1, nextScanNumRaw, length;
+        long nextScanOffset;
+        if (curScanNumRaw == Integer.MAX_VALUE) {
+            // there was just one scan in the run
+            length = findScanLength(curScanOffset);
             OffsetLength offlen = new OffsetLength(curScanOffset, length);
-
-            scanNumInternal = i + 1;
-
-            MZXMLIndexElement indexElem = new MZXMLIndexElement(scanNumInternal, scanNumRaw, offlen);
+            MZXMLIndexElement indexElem = new MZXMLIndexElement(scanNumInternal++, curScanNumRaw, offlen);
             index.add(indexElem);
+        } else {
+            // there were multiple scans in the run
 
-            scanNumRaw = nextScanIndex.getKey();
-            curScanOffset = nextScanIndex.getValue();
+            Set<Map.Entry<Integer, Long>> entries = scanIndex.entrySet();
+            Iterator<Map.Entry<Integer, Long>> iterator = entries.iterator();
+            Map.Entry<Integer, Long> firstEntry = iterator.next();// skip the first entry
+            curScanNumRaw = firstEntry.getKey();
+            curScanOffset = firstEntry.getValue();
+
+            while (iterator.hasNext()) {
+                Map.Entry<Integer, Long> nextScanEntry = iterator.next();
+                nextScanNumRaw = nextScanEntry.getKey();
+                nextScanOffset = nextScanEntry.getValue();
+                if (nextScanOffset < curScanOffset) {
+                    log.warn("Found mzXML index entry with offset smaller than the previous entry in the same index." +
+                                     " Entry #{}, found offset: {}, previous entry #{}, previous offset: {}", nextScanNumRaw, nextScanOffset, curScanNumRaw, curScanOffset);
+                } else {
+
+                    // calculate the length of the entry
+                    if (nextScanNumRaw == Integer.MAX_VALUE) {
+                        // if the next entry in scanIndex is pointing to the beginning of the index
+                        // we'll try to find out the length ourselves by reading the file
+                        length = findScanLength(curScanOffset);
+                    } else {
+                        length = (int) (nextScanOffset - curScanOffset);
+                    }
+
+                    OffsetLength offlen = new OffsetLength(curScanOffset, length);
+                    MZXMLIndexElement indexElem = new MZXMLIndexElement(scanNumInternal++, curScanNumRaw, offlen);
+                    index.add(indexElem);
+
+                    curScanNumRaw = nextScanNumRaw;
+                    curScanOffset = nextScanOffset;
+                }
+            }
         }
 
         return index;

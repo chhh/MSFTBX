@@ -7,13 +7,17 @@ import java.io.InputStream;
 import java.io.RandomAccessFile;
 import java.nio.channels.Channels;
 import java.nio.charset.StandardCharsets;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javolution.text.CharArray;
 import javolution.xml.internal.stream.XMLInputFactoryImpl;
 import javolution.xml.stream.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import umich.ms.datatypes.LCMSDataSubset;
 import umich.ms.fileio.exceptions.FileParsingException;
 import umich.ms.fileio.exceptions.IndexBrokenException;
@@ -25,6 +29,8 @@ import umich.ms.logging.LogHelper;
  * Created by dmitriya on 2015-02-04.
  */
 public class MZMLIndexParser {
+    private static final Logger log = LoggerFactory.getLogger(MZMLIndexParser.class);
+
     protected MZMLFile source;
     protected String FILE_TYPE_NAME = "mzML";
     protected String TAG_INDEXOFFSET = "indexListOffset";
@@ -92,35 +98,84 @@ public class MZMLIndexParser {
 
         // converting this parsed index to a map of convenient {ScanNum => {offset, length}} objects
         MZMLIndex index = new MZMLIndex();
-        int scanNumRaw, nextScanNumRaw, scanNumInternal, length;
-        long curScanOffset, nextScanOffset;
-        String curScanId, nextScanId;
 
-        curScanOffset = scanIndex.firstEntry().getValue().offset;
-        curScanId = scanIndex.firstEntry().getValue().id;
+//        for (int i = 0; i < scanIndex.size() - 1; i++) {
+//            scanNumRaw = i;
+//
+//            Map.Entry<Integer, OffsetId> nexScanIndex = scanIndex.higherEntry(scanNumRaw);
+//            nextScanNumRaw = nexScanIndex.getKey();
+//            nextScanOffset = nexScanIndex.getValue().offset;
+//            nextScanId = nexScanIndex.getValue().id;
+//
+//            if (nextScanNumRaw == Integer.MAX_VALUE) {
+//                length = findScanLength(curScanOffset);
+//            } else {
+//                length = (int) (nextScanOffset - curScanOffset);
+//            }
+//            OffsetLength offlen = new OffsetLength(curScanOffset, length);
+//
+//            scanNumInternal = i + 1;
+//
+//            MZMLIndexElement indexElem = new MZMLIndexElement(scanNumInternal, scanNumRaw, curScanId, offlen);
+//            index.add(indexElem);
+//
+//            curScanOffset = nextScanOffset;
+//            curScanId = nextScanId;
+//        }
 
-        for (int i = 0; i < scanIndex.size() - 1; i++) {
-            scanNumRaw = i;
 
-            Map.Entry<Integer, OffsetId> nexScanIndex = scanIndex.higherEntry(scanNumRaw);
-            nextScanNumRaw = nexScanIndex.getKey();
-            nextScanOffset = nexScanIndex.getValue().offset;
-            nextScanId = nexScanIndex.getValue().id;
 
-            if (nextScanNumRaw == Integer.MAX_VALUE) {
-                length = findScanLength(curScanOffset);
-            } else {
-                length = (int) (nextScanOffset - curScanOffset);
-            }
+        int curScanNumRaw  = scanIndex.firstEntry().getKey();
+        long curScanOffset = scanIndex.firstEntry().getValue().offset;
+        int scanNumInternal = 1, nextScanNumRaw, length;
+        long nextScanOffset;
+        String curScanId = scanIndex.firstEntry().getValue().id, nextScanId;
+
+        if (curScanNumRaw == Integer.MAX_VALUE) {
+
+            // there was just one scan in the run
+            length = findScanLength(curScanOffset);
             OffsetLength offlen = new OffsetLength(curScanOffset, length);
-
-            scanNumInternal = i + 1;
-
-            MZMLIndexElement indexElem = new MZMLIndexElement(scanNumInternal, scanNumRaw, curScanId, offlen);
+            MZMLIndexElement indexElem = new MZMLIndexElement(scanNumInternal++, curScanNumRaw, curScanId,  offlen);
             index.add(indexElem);
+        } else {
 
-            curScanOffset = nextScanOffset;
-            curScanId = nextScanId;
+            // there were multiple scans in the run
+            Set<Map.Entry<Integer, OffsetId>> entries = scanIndex.entrySet();
+            Iterator<Map.Entry<Integer, OffsetId>> iterator = entries.iterator();
+            Map.Entry<Integer, OffsetId> firstEntry = iterator.next();// skip the first entry
+            curScanId = firstEntry.getValue().id;
+            curScanNumRaw = firstEntry.getKey();
+            curScanOffset = firstEntry.getValue().offset;
+
+            while (iterator.hasNext()) {
+                Map.Entry<Integer, OffsetId> nextScanEntry = iterator.next();
+                nextScanNumRaw = nextScanEntry.getKey();
+                nextScanOffset = nextScanEntry.getValue().offset;
+                nextScanId = nextScanEntry.getValue().id;
+                if (nextScanOffset < curScanOffset) {
+                    log.warn("Found mzML index entry with offset smaller than the previous entry in the same index." +
+                                     " Entry #{}, found offset: {}, previous entry #{}, previous offset: {}", nextScanNumRaw, nextScanOffset, curScanNumRaw, curScanOffset);
+                } else {
+
+                    // calculate the length of the entry
+                    if (nextScanNumRaw == Integer.MAX_VALUE) {
+                        // if the next entry in scanIndex is pointing to the beginning of the index
+                        // we'll try to find out the length ourselves by reading the file
+                        length = findScanLength(curScanOffset);
+                    } else {
+                        length = (int) (nextScanOffset - curScanOffset);
+                    }
+
+                    OffsetLength offlen = new OffsetLength(curScanOffset, length);
+                    MZMLIndexElement indexElem = new MZMLIndexElement(scanNumInternal++, curScanNumRaw, curScanId, offlen);
+                    index.add(indexElem);
+
+                    curScanNumRaw = nextScanNumRaw;
+                    curScanOffset = nextScanOffset;
+                    curScanId = nextScanId;
+                }
+            }
         }
 
         return index;
