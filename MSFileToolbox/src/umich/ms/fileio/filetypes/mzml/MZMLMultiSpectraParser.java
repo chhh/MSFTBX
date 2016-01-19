@@ -153,7 +153,7 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
                     if (e instanceof XMLUnexpectedEndTagException) {
                         continue;
                     }
-                    if (e.getMessage().contains(("Unexpected end of document"))) {
+                    if (e instanceof XMLUnexpectedEndOfDocumentException) {
                         // this happens when we have nested <scan> tags and parsing not the whole MS1/MS2 child pairs
                         if (parsedScans.size() == numOpeningScanTagsFound) {
                             if (numScansToProcess != null && parsedScans.size() != numScansToProcess) {
