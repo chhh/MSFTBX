@@ -776,7 +776,7 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
                         throw new FileParsingException(e);
                     }
                 }
-            } while (posCur < fileLen);
+            } while (posCur < fileLen || isBuf2Filled);
 
             if (!unfinishedIndexElements.isEmpty()) {
                 for (E e : unfinishedIndexElements) {

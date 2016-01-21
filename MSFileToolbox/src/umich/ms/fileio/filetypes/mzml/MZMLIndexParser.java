@@ -99,32 +99,6 @@ public class MZMLIndexParser {
         // converting this parsed index to a map of convenient {ScanNum => {offset, length}} objects
         MZMLIndex index = new MZMLIndex();
 
-//        for (int i = 0; i < scanIndex.size() - 1; i++) {
-//            scanNumRaw = i;
-//
-//            Map.Entry<Integer, OffsetId> nexScanIndex = scanIndex.higherEntry(scanNumRaw);
-//            nextScanNumRaw = nexScanIndex.getKey();
-//            nextScanOffset = nexScanIndex.getValue().offset;
-//            nextScanId = nexScanIndex.getValue().id;
-//
-//            if (nextScanNumRaw == Integer.MAX_VALUE) {
-//                length = findScanLength(curScanOffset);
-//            } else {
-//                length = (int) (nextScanOffset - curScanOffset);
-//            }
-//            OffsetLength offlen = new OffsetLength(curScanOffset, length);
-//
-//            scanNumInternal = i + 1;
-//
-//            MZMLIndexElement indexElem = new MZMLIndexElement(scanNumInternal, scanNumRaw, curScanId, offlen);
-//            index.add(indexElem);
-//
-//            curScanOffset = nextScanOffset;
-//            curScanId = nextScanId;
-//        }
-
-
-
         int curScanNumRaw  = scanIndex.firstEntry().getKey();
         long curScanOffset = scanIndex.firstEntry().getValue().offset;
         int scanNumInternal = 1, nextScanNumRaw, length;
