@@ -306,6 +306,7 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
                             break;
                         case MS_PRECURSOR_CHARGE:
                             precursorInfo.setCharge(val.toInt());
+                            break;
                         case MS_PRECURSOR_COLLISION_ENERGY:
                             // we don't use those
                             break;
