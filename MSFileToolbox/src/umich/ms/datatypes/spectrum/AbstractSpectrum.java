@@ -90,7 +90,8 @@ public abstract class AbstractSpectrum implements ISpectrum, Serializable {
         int pos = Arrays.binarySearch(mzs, mz);
         if (pos >= 0) return pos;
         //if we get here, it means, that [pos = (-(insertion point) - 1)]
-        pos = -(pos + 1);
+        //pos = -(pos + 1);
+        pos = ~pos;
         if (pos == mzs.length) return null;
         return pos;
 
@@ -102,7 +103,8 @@ public abstract class AbstractSpectrum implements ISpectrum, Serializable {
         int pos = Arrays.binarySearch(mzs, mz);
         if (pos >= 0) return pos;
         //if we get here, it means, that [pos = (-(insertion point) - 1)]
-        pos = -(pos + 1);
+        //pos = -(pos + 1);
+        pos = ~pos;
         if (pos == 0) return null;
         return pos - 1;
     }
@@ -113,10 +115,11 @@ public abstract class AbstractSpectrum implements ISpectrum, Serializable {
         int pos = Arrays.binarySearch(mzs, mz);
         if (pos >= 0) return pos;
         //if we get here, it means, that [pos = (-(insertion point) - 1)]
-        pos = -(pos + 1);
+        //pos = -(pos + 1);
+        pos = ~pos;
         if (pos == 0) return pos;
         if (pos == mzs.length) return pos - 1;
-        return (mz - mzs[pos]) <= (mzs[pos+1] - mz) ? pos : pos + 1;
+        return (mz - mzs[pos-1]) <= (mzs[pos] - mz) ? pos - 1 : pos;
     }
 
     @Override
