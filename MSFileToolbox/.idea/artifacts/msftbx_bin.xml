@@ -2,7 +2,7 @@
   <artifact type="jar" name="msftbx-bin">
     <output-path>$PROJECT_DIR$/out/artifacts/msftbx</output-path>
     <root id="archive" name="msftbx-bin.jar">
-      <element id="module-output" name="MSFileToolboxModule" />
+      <element id="module-output" name="MSFileToolbox" />
     </root>
   </artifact>
 </component>
