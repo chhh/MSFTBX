@@ -175,16 +175,16 @@
                 <binary-origin>release/modules/ext/javolution-core-java-6.1.0-SNAPSHOT.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
+                <runtime-relative-path>ext/guava-19.0.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/guava-19.0.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
                 <runtime-relative-path>ext/jaxb-core-2.2.11.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/jaxb-core-2.2.11.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/jaxb-impl-2.2.11.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/jaxb-impl-2.2.11.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/guava-19.0-rc2.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/guava-19.0-rc2.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/jaxb-xjc-2.2.11.jar</runtime-relative-path>
