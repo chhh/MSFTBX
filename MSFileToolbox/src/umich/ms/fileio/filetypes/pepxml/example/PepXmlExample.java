@@ -1,7 +1,6 @@
 package umich.ms.fileio.filetypes.pepxml.example;
 
-import umich.ms.fileio.filetypes.pepxml.jaxb.MsmsPipelineAnalysis;
-import umich.ms.fileio.filetypes.pepxml.jaxb.NameValueType;
+import umich.ms.fileio.filetypes.pepxml.simple.jaxb.MsmsPipelineAnalysis;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Unmarshaller;

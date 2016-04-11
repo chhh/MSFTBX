@@ -249,9 +249,14 @@
 			</xs:attribute>
 			<xs:attribute name="peptide_terminus" type="xs:string">
 			  <xs:annotation>
-			    <xs:documentation>whether modification can reside only at protein terminus (specified 'n', 'c', or 'nc')</xs:documentation>
+			    <xs:documentation>whether modification can reside only at peptide terminus (specified 'n', 'c', or 'nc')</xs:documentation>
 			  </xs:annotation>
 			</xs:attribute>
+			<xs:attribute name="protein_terminus" type="xs:string">
+                          <xs:annotation>
+                            <xs:documentation>whether modification can reside only at protein terminus (specified 'n', 'c', or 'nc')</xs:documentation>
+                              </xs:annotation>
+                           </xs:attribute>
 			<xs:attribute name="symbol" type="aa_symbolType">
 			  <xs:annotation>
 			    <xs:documentation>Special symbol used by search engine to designate this modification</xs:documentation>

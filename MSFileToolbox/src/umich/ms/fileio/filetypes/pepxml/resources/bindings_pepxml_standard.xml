@@ -1,0 +1,57 @@
+<jaxb:bindings version="2.1"
+xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <!--<jaxb:globalBindings localScoping="toplevel" optionalProperty="primitive">-->
+    <jaxb:globalBindings localScoping="toplevel">
+        <!-- No nonsense like BigDecimal and the likes -->
+        <jaxb:javaType name="java.lang.Double"
+                       xmlType="xs:decimal"
+                       parseMethod="javax.xml.bind.DatatypeConverter.parseDouble"
+                       printMethod="javax.xml.bind.DatatypeConverter.printDouble" />
+
+        <jaxb:javaType name="java.lang.Integer"
+                       xmlType="xs:integer"
+                       parseMethod="javax.xml.bind.DatatypeConverter.parseInt"
+                       printMethod="javax.xml.bind.DatatypeConverter.printInt" />
+
+        <!--<jaxb:javaType name="java.lang.Double"-->
+                       <!--xmlType="xs:double"-->
+                       <!--parseMethod="javax.xml.bind.DatatypeConverter.parseDouble"-->
+                       <!--printMethod="javax.xml.bind.DatatypeConverter.printDouble" />-->
+        <!--<jaxb:javaType name="java.lang.Float"-->
+                       <!--xmlType="xs:float"-->
+                       <!--parseMethod="javax.xml.bind.DatatypeConverter.parseFloat"-->
+                       <!--printMethod="javax.xml.bind.DatatypeConverter.printFloat" />-->
+        <!--<jaxb:javaType name="java.lang.Integer"-->
+                       <!--xmlType="xs:int"-->
+                       <!--parseMethod="javax.xml.bind.DatatypeConverter.parseInt"-->
+                       <!--printMethod="javax.xml.bind.DatatypeConverter.printInt" />-->
+        <!--<jaxb:javaType name="java.lang.Long"-->
+                       <!--xmlType="xs:positiveInteger"-->
+                       <!--parseMethod="javax.xml.bind.DatatypeConverter.parseUnsignedInt"-->
+                       <!--printMethod="javax.xml.bind.DatatypeConverter.printUnsignedInt" />-->
+    </jaxb:globalBindings>
+
+    <jaxb:bindings schemaLocation="pepXML_v118_ORIG.xsd" node="/xs:schema">
+        <jaxb:bindings node="//xs:complexType[@name='nameValueType']//xs:attribute[@name='value']">
+            <!-- This one has to be renamed because in the schema nameValueType extends anySimpleValue
+             and that class already has an attribute called 'value' -->
+            <jaxb:property name="valueStr"/>
+        </jaxb:bindings>
+
+        <jaxb:bindings node="/xs:schema/xs:element[@name='interprophet_result']/xs:complexType/xs:sequence/xs:element[@name='search_score_summary']/xs:complexType">
+            <jaxb:class name="SearchScoreSummaryIProphet"/>
+        </jaxb:bindings>
+
+        <jaxb:bindings node="/xs:schema/xs:element/xs:complexType/xs:sequence/xs:element[@name='mixture_model']/xs:complexType">
+            <jaxb:class name="MixtureModelling"/>
+        </jaxb:bindings>
+
+        <jaxb:bindings node="/xs:schema/xs:complexType[@name='mixtureModelType']//xs:element[@name='point']/xs:complexType">
+            <jaxb:class name="MixtureModelPoint"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+
+
+</jaxb:bindings>
