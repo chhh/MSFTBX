@@ -1,0 +1,50 @@
+<jaxb:bindings version="2.1"
+xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <jaxb:globalBindings localScoping="toplevel"/>
+
+    <jaxb:bindings schemaLocation="pepXML_v118_ORIG.xsd" node="/xs:schema">
+
+		<!--<jaxb:bindings node="//xs:element[@name='mixturemodel']//xs:element[@name='point']">-->
+				<!--<jaxb:bindings node=".//xs:attribute[@name='value']">-->
+					<!--<jaxb:property name="value_mixturemodel_point"/>-->
+				<!--</jaxb:bindings>-->
+        <!--</jaxb:bindings>-->
+
+        <!--<jaxb:bindings node="//xs:complexType[@name='nameValueType']">-->
+            <!--<jaxb:bindings node=".//xs:attribute[@name='value']">-->
+                <!--<jaxb:property name="value_nameValueType"/>-->
+            <!--</jaxb:bindings>-->
+        <!--</jaxb:bindings>-->
+
+        <!--<jaxb:bindings node="//xs:complexType[@name='mixtureModelType']">-->
+			<!--<jaxb:bindings node=".//xs:attribute[@name='value']">-->
+				<!--<jaxb:property name="value_mixtureModelType"/>-->
+			<!--</jaxb:bindings>-->
+        <!--</jaxb:bindings>-->
+
+        <jaxb:bindings node="//xs:complexType[@name='nameValueType']//xs:attribute[@name='value']">
+            <jaxb:property name="valueStr"/>
+        </jaxb:bindings>
+
+        <jaxb:bindings node="/xs:schema/xs:element[@name='interprophet_result']/xs:complexType/xs:sequence/xs:element[@name='search_score_summary']/xs:complexType">
+            <jaxb:class name="SearchScoreSummaryIProphet"/>
+        </jaxb:bindings>
+
+        <jaxb:bindings node="/xs:schema/xs:element/xs:complexType/xs:sequence/xs:element[@name='mixture_model']/xs:complexType">
+            <jaxb:class name="MixtureModelling"/>
+        </jaxb:bindings>
+
+        <jaxb:bindings node="/xs:schema/xs:complexType[@name='mixtureModelType']//xs:element[@name='point']/xs:complexType">
+            <jaxb:class name="MixtureModelPoint"/>
+        </jaxb:bindings>
+
+        <!--<jaxb:bindings node="//xs:element[@name='employee']/xs:complexType/xs:sequence/xs:element[@name='address']/xs:complexType">-->
+            <!--<jaxb:class name="EmployeeAddress"/>-->
+        <!--</jaxb:bindings>-->
+
+
+
+    </jaxb:bindings>
+</jaxb:bindings>

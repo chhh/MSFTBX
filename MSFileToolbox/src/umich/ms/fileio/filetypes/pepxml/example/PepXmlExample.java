@@ -13,14 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Simple parsing of all MsmsRunSummary entries in a pep.xml file. In this example the whole input pep.xml (the path to
+ * which is supplied as the first command line argument) is parsed and some data from it is written to a txt file.
  * Created by Dmitry Avtonomov on 2016-02-18.
  */
-public class Datta {
+public class PepXmlExample {
     public static void main(String[] args) throws Exception {
-        // input file
-        //String p1 = "E:\\andy\\datta-score\\Gygi_IC\\b1906_293T_proteinID_01A_QE3_122212.pepXML";
-        //String p2 = "E:\\andy\\datta-score\\Gygi_ICnorm\\b1906_293T_proteinID_01A_QE3_122212.pepXML";
-
 
         String pathIn = args[0];
         ArrayList<String> paths = new ArrayList<>();
