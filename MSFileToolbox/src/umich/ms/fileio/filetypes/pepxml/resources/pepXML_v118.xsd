@@ -383,7 +383,7 @@
 		</xs:annotation>
 		<xs:complexType>
 		  <xs:sequence>
-		    <xs:element name="search_result" minOccurs="0" maxOccurs="unbounded"> 
+		    <xs:element name="search_result" minOccurs="0" maxOccurs="unbounded">
 		      <xs:complexType>
 			<xs:sequence>
 			  <xs:element name="search_hit" minOccurs="0" maxOccurs="unbounded">
@@ -486,7 +486,7 @@
 			      <xs:attribute name="protein" type="xs:string" use="required"/>
 			      <xs:attribute name="num_tot_proteins" type="xs:unsignedInt" use="required">
 				<xs:annotation>
-				  <xs:documentation>Number of unique proteins in search database containing peptide</xs:documentation>	
+				  <xs:documentation>Number of unique proteins in search database containing peptide</xs:documentation>
 				</xs:annotation>
 			      </xs:attribute>
 			      <xs:attribute name="num_matched_ions" type="xs:nonNegativeInteger">
@@ -545,7 +545,7 @@
 			      </xs:annotation>
 			      <xs:selector xpath="./pepx:analysis_result"/>
 			      <xs:field xpath="@analysis"/>
-			      <xs:field xpath="@id"/> 
+			      <xs:field xpath="@id"/>
 			    </xs:unique>
 			  </xs:element>
 			</xs:sequence>
@@ -579,12 +579,12 @@
 		      <xs:documentation>Collision energy used to fragment the parent ion.</xs:documentation>
 		    </xs:annotation>
 		  </xs:attribute>
-		  <xs:attribute name="compensation_voltage" type="xs:float" use="optional" >	
+		  <xs:attribute name="compensation_voltage" type="xs:float" use="optional" >
 		    <xs:annotation>
 		      <xs:documentation>The DC potential applied to the asymmetric waveform in FAIMS that compensates for the difference between high and low field mobility of an ion.</xs:documentation>
 		    </xs:annotation>
 		  </xs:attribute>
-		  <xs:attribute name="precursor_intensity" type="xs:float" use="optional" >	
+		  <xs:attribute name="precursor_intensity" type="xs:float" use="optional" >
 		    <xs:annotation>
 		      <xs:documentation>Intensity of precursor ion.</xs:documentation>
 		    </xs:annotation>
@@ -688,7 +688,7 @@
 	  <xs:key name="timestamp_analysis_id">
 	    <xs:selector xpath="./pepx:analysis_timestamp"/>
 	    <xs:field xpath="@analysis"/>
-	    <xs:field xpath="@id"/> 
+	    <xs:field xpath="@id"/>
 	  </xs:key>
 	  <xs:keyref name="result_analysis_id" refer="timestamp_analysis_id">
 	    <xs:annotation>
@@ -696,7 +696,7 @@
 	    </xs:annotation>
 	    <xs:selector xpath="./pepx:spectrum_query/pepx:search_result/pepx:search_hit/pepx:analysis_result"/>
 	    <xs:field xpath="@analysis"/>
-	    <xs:field xpath="@id"/> 
+	    <xs:field xpath="@id"/>
 	  </xs:keyref>
 	</xs:element>
       </xs:sequence>
@@ -1191,7 +1191,7 @@
 	    <xs:documentation>integrated mass intensity</xs:documentation>
 	  </xs:annotation>
           <xs:complexType>
-            <xs:attribute name="channel" type="positiveInt" use="required"> 
+            <xs:attribute name="channel" type="positiveInt" use="required">
 	      <xs:annotation>
 		<xs:documentation>mass channel number</xs:documentation>
 	      </xs:annotation>
@@ -1342,7 +1342,7 @@
   </xs:element>
 
   <!--the types used by above elements.-->
-  
+
   <xs:simpleType name="engineType">
     <xs:restriction base="xs:string">
       <xs:enumeration value="SEQUEST"/>

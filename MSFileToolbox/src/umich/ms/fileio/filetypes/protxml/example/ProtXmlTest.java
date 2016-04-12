@@ -1,6 +1,6 @@
 package umich.ms.fileio.filetypes.protxml.example;
 
-import umich.ms.fileio.filetypes.protxml.jaxb.ProteinSummary;
+import umich.ms.fileio.filetypes.protxml.jaxb.standard.ProteinSummary;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -15,7 +15,8 @@ import java.nio.file.Paths;
 public class ProtXmlTest {
     public static void main(String[] args) throws JAXBException {
         // input file
-        String path = "D:\\_garbage\\interact-Ewing_set1.prot.xml";
+        //String path = "D:\\_garbage\\interact-Ewing_set1.prot.xml";
+        String path = args[0];
         Path p = Paths.get(path).toAbsolutePath();
         File f = new File(p.toString());
 
@@ -29,6 +30,8 @@ public class ProtXmlTest {
 
         // use the unmarshalled object
         ProteinSummary ps = (ProteinSummary) unmarshalled;
+
+        System.out.printf("File: %s\nContained %d protein groups.\n", path, ps.getProteinGroup().size());
 
         int a = 1;
     }

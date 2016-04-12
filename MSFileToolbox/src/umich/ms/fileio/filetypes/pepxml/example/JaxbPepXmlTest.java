@@ -1,7 +1,7 @@
 package umich.ms.fileio.filetypes.pepxml.example;
 
 
-import umich.ms.fileio.filetypes.pepxml.simple.jaxb.MsmsPipelineAnalysis;
+import umich.ms.fileio.filetypes.pepxml.jaxb.old.MsmsPipelineAnalysis;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;

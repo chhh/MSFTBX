@@ -1,6 +1,6 @@
 package umich.ms.fileio.filetypes.pepxml.example;
 
-import umich.ms.fileio.filetypes.pepxml.simple.jaxb.MsmsPipelineAnalysis;
+import umich.ms.fileio.filetypes.pepxml.jaxb.old.MsmsPipelineAnalysis;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Unmarshaller;
@@ -65,7 +65,7 @@ public class PepXmlExample {
                     for (MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit hit : searchHit) {
                         if (hit.getHitRank() > 10)
                             break;
-                        String scoreStr = hit.getSearchScore().get(0).getValueNameValueType();
+                        String scoreStr = hit.getSearchScore().get(0).getValueStr();
                         Double scoreVal = Double.parseDouble(scoreStr);
 
                         printWriter.printf("%s,%d,%s,%s,%d\n",

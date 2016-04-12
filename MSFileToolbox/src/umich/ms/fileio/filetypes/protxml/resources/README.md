@@ -1,51 +1,46 @@
-### Prot.XML schema to java sources generation
+# Prot.XML schema to java sources generation
 Use `xjc` as usual.  
-ProtXML schema has a java incompatibility in it, redefining two types extending the same parent (`anySimpleType`) and
- specifying the same attributes in the extensions. `xjc` doesn't like that, but in this case we can just remove the 
- redefinition, and use one `nameValueType` definition everywhere.  
-So the original schema had to be changed, modifying this:  
 
-    <xs:element name="peptide" maxOccurs="unbounded">
-		<xs:complexType>
-            <xs:sequence>
-                <xs:element name="parameter" minOccurs="0" maxOccurs="unbounded">
-                    <xs:complexType>
-                        <xs:simpleContent>
-                            <xs:extension base="xs:anySimpleType">
-                                <xs:attribute name="name" type="xs:string" use="required"/>
-                                <xs:attribute name="value" type="xs:anySimpleType" use="required"/>
-                                <xs:attribute name="type" type="xs:anySimpleType"/>
-                            </xs:extension>
-                        </xs:simpleContent>
-                    </xs:complexType>
-                </xs:element>
+# Generated with
+`"C:\Programs\Java\jdk1.8.0_60\bin\xjc.exe" -b bindings_protxml_standard.xml 
+-d "D:\projects\BatMass\MSFTBX\MSFileToolbox\src" -p umich.ms.fileio.filetypes.protxml.jaxb.standard protXML_v7-fixed.xsd`
 
-to this:  
-
-    <xs:element name="peptide" maxOccurs="unbounded">
-    		<xs:complexType>
+The schema has repetitive elements, so I manually extracted two types:
+```xml
+<xs:complexType name="modification_info">
+    <xs:sequence>
+        <xs:element name="mod" minOccurs="0" maxOccurs="unbounded">
+            <xs:complexType>
                 <xs:sequence>
-                    <xs:element name="parameter" type="nameValueType" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="mod_aminoacid_mass" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                            <xs:attribute name="position" type="xs:string" use="required"/>
+                            <xs:attribute name="mass" type="xs:string" use="required"/>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+                <xs:attribute name="mod_nterm_mass" type="xs:string"/>
+                <xs:attribute name="mod_cterm_mass" type="xs:string"/>
+                <xs:attribute name="modified_peptide" type="xs:string"/>
+            </xs:complexType>
+        </xs:element>
+    </xs:sequence>
+    <xs:attribute name="peptide_sequence" type="xs:string" use="required"/>
+    <xs:attribute name="charge" type="xs:positiveInteger" use="required"/>
+    <xs:attribute name="calc_neutral_pep_mass" type="xs:double" use="optional" />
+</xs:complexType>
 
-and also redefined the `nameValueType` user-defined type at the end of the file from:  
-
-    <xs:complexType name="nameValueType">
-        <xs:simpleContent>
-            <xs:extension base="xs:anySimpleType">
-                <xs:attribute name="name" type="xs:string" use="required"/>
-                <xs:attribute name="value" type="xs:anySimpleType" use="required"/>
-                <xs:attribute name="type" type="xs:anySimpleType"/>
-            </xs:extension>
-        </xs:simpleContent>
-    </xs:complexType>
-
-to this:  
-  
-    <xs:complexType name="nameValueType">
-        <xs:attribute name="name" type="xs:string" use="required"/>
-        <xs:attribute name="value" type="xs:string" use="required"/>
-        <xs:attribute name="type" type="xs:string"/>
-    </xs:complexType>
+<xs:complexType name="protein_annotation">
+    <xs:attribute name="protein_description" type="xs:string" use="required"/>
+    <xs:attribute name="ipi_name" type="xs:string"/>
+    <xs:attribute name="refseq_name" type="xs:string"/>
+    <xs:attribute name="swissprot_name" type="xs:string"/>
+    <xs:attribute name="ensembl_name" type="xs:string"/>
+    <xs:attribute name="trembl_name" type="xs:string"/>
+    <xs:attribute name="locus_link_name" type="xs:string"/>
+    <xs:attribute name="flybase" type="xs:string"/>
+</xs:complexType>
+```
 
 Also use the provided bindings to properly map data-types. The `bindings_protxml.xml` has a good general type mapping rules
 that should be used in other binding files as well.

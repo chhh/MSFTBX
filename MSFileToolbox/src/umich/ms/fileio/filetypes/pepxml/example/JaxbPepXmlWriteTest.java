@@ -1,7 +1,7 @@
 package umich.ms.fileio.filetypes.pepxml.example;
 
-import umich.ms.fileio.filetypes.pepxml.simple.jaxb.ActivationMethodType;
-import umich.ms.fileio.filetypes.pepxml.simple.jaxb.MsmsPipelineAnalysis;
+import umich.ms.fileio.filetypes.pepxml.jaxb.old.ActivationMethodType;
+import umich.ms.fileio.filetypes.pepxml.jaxb.old.MsmsPipelineAnalysis;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -25,7 +25,7 @@ public class JaxbPepXmlWriteTest {
         MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery spectrumQuery = new MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery();
         spectrumQueryList.add(spectrumQuery);
 
-        spectrumQuery.setRetentionTimeSec(15d);
+        spectrumQuery.setRetentionTimeSec(15f);
         spectrumQuery.setActivationMethod(ActivationMethodType.HCD);
         spectrumQuery.setAssumedCharge(3);
         spectrumQuery.setStartScan(301);
@@ -39,7 +39,7 @@ public class JaxbPepXmlWriteTest {
         MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit searchHit = new MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit();
         searchHitList.add(searchHit);
 
-        searchHit.setMassdiff(147.01);
+        searchHit.setMassdiff("147.01");
         searchHit.setPeptide("PEPTIDESEQUENCE");
         searchHit.setProtein("PROTEINSEQUENCE");
         searchHit.setNumMissedCleavages(1);
