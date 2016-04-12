@@ -1,7 +1,7 @@
 package umich.ms.fileio.filetypes.pepxml.example;
 
-import umich.ms.fileio.filetypes.pepxml.jaxb.old.ActivationMethodType;
-import umich.ms.fileio.filetypes.pepxml.jaxb.old.MsmsPipelineAnalysis;
+import umich.ms.fileio.filetypes.pepxml.jaxb.nested.ActivationMethodType;
+import umich.ms.fileio.filetypes.pepxml.jaxb.nested.MsmsPipelineAnalysis;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -11,6 +11,8 @@ import java.nio.file.Paths;
 import java.util.List;
 
 /**
+ * An example of how a pepxml file can be written using the provided bindings
+ *
  * Created by Dmitry Avtonomov on 2015-10-17.
  */
 public class JaxbPepXmlWriteTest {
