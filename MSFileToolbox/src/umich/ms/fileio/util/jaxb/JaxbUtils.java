@@ -23,33 +23,153 @@
  */
 package umich.ms.fileio.util.jaxb;
 
-import java.io.File;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.Reader;
-import java.io.StringReader;
-import java.io.StringWriter;
-import java.io.Writer;
+import javax.xml.bind.*;
+import javax.xml.namespace.QName;
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamReader;
+import javax.xml.transform.Source;
+import javax.xml.transform.stream.StreamSource;
+import java.io.*;
+import java.lang.ref.SoftReference;
+import java.lang.ref.WeakReference;
+import java.nio.file.Path;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
-import javax.xml.namespace.QName;
-import javax.xml.transform.Source;
-import javax.xml.transform.stream.StreamSource;
 
 /**
  * Generic serializer (marshaller/unmarshaller) class that uses JAXB.
  *
  * @author Arno Moonen <info@arnom.nl>
+ * @author Dmitry Avtonomov
  */
-public class JaxbSerializer
+public class JaxbUtils
 {
+    /**
+     * To improve the performance, we'll cache the last {@link JAXBContext} used.
+     */
+    protected static final class Cache {
+        final Class<?> type;
+        final JAXBContext context;
+
+        public Cache(Class<?> type) throws JAXBException {
+            this.type = type;
+            this.context = JAXBContext.newInstance(type);
+        }
+    }
+
+    /**
+     * Cache. We don't want to prevent the {@link JaxbUtils.Cache} from being GC-ed,
+     * hence {@link SoftReference}.
+     */
+    protected static volatile SoftReference<Cache> CACHE;
+
+    /**
+     * Obtains the {@link JAXBContext} from the given type, by using the cache if possible.
+     * <p>
+     * The original code in {@link JAXB} class claimed that {@code volatile} on the {@code WeakReference} variable
+     * that they stored the cache in was enough to provide thread safety, but I don't think so as the reference itself,
+     * inside the {@code WeakReference} wrapper isn't volatile.
+     * <p><br/>
+ *     My improvement
+     *
+     */
+    private synchronized static <T> JAXBContext getContext(Class<T> type) throws JAXBException {
+        final SoftReference<Cache> existingCacheRef= CACHE;
+        if (existingCacheRef != null) {
+            Cache existingCache = existingCacheRef.get();
+            if(existingCache != null && existingCache.type == type)
+                return existingCache.context;
+        }
+
+        // overwrite the cache
+        Cache newCache = new Cache(type);
+        CACHE = new SoftReference<Cache>(newCache);
+
+        return newCache.context;
+    }
+
+    /**
+     * Creates an XMLStreamReader based on a file path.
+     *
+     * @param path the path to the file to be parsed
+     * @param namespaceAware if {@code false} the XMLStreamReader will remove all namespaces from all XML elements
+     * @return platform-specific XMLStreamReader implementation
+     * @throws JAXBException if the XMLStreamReader could not be created
+     */
+    public static XMLStreamReader createXmlStreamReader(Path path, boolean namespaceAware) throws JAXBException {
+        XMLInputFactory xif = getXmlInputFactory(namespaceAware);
+        XMLStreamReader xsr = null;
+        try {
+            xsr = xif.createXMLStreamReader(new StreamSource(path.toFile()));
+        } catch (XMLStreamException e) {
+            throw new JAXBException(e);
+        }
+        return xsr;
+    }
+
+    /**
+     * Creates an XMLStreamReader based on an input stream.
+     *
+     * @param is the input stream from which the data to be parsed will be taken
+     * @param namespaceAware if {@code false} the XMLStreamReader will remove all namespaces from all XML elements
+     * @return platform-specific XMLStreamReader implementation
+     * @throws JAXBException if the XMLStreamReader could not be created
+     */
+    public static XMLStreamReader createXmlStreamReader(InputStream is, boolean namespaceAware) throws JAXBException {
+        XMLInputFactory xif = getXmlInputFactory(namespaceAware);
+        XMLStreamReader xsr = null;
+        try {
+            xsr = xif.createXMLStreamReader(is);
+        } catch (XMLStreamException e) {
+            throw new JAXBException(e);
+        }
+        return xsr;
+    }
+
+    /**
+     * Creates an XMLStreamReader based on a Reader.
+     *
+     * @param reader Note that XMLStreamReader, despite the name, does not implement the Reader interface!
+     * @param namespaceAware if {@code false} the XMLStreamReader will remove all namespaces from all XML elements
+     * @return platform-specific XMLStreamReader implementation
+     * @throws JAXBException if the XMLStreamReader could not be created
+     */
+    public static XMLStreamReader createXmlStreamReader(Reader reader, boolean namespaceAware) throws JAXBException {
+        XMLInputFactory xif = getXmlInputFactory(namespaceAware);
+        XMLStreamReader xsr = null;
+        try {
+            xsr = xif.createXMLStreamReader(reader);
+        } catch (XMLStreamException e) {
+            throw new JAXBException(e);
+        }
+        return xsr;
+    }
+
+    protected static XMLInputFactory getXmlInputFactory(boolean namespaceAware) throws JAXBException {
+        XMLInputFactory xif = XMLInputFactory.newFactory();
+        if (!namespaceAware) {
+            if (!xif.isPropertySupported(XMLInputFactory.IS_NAMESPACE_AWARE))
+                throw new JAXBException(
+                        "The XMLInputFactory on this system does not support non-namespace aware parsing. " +
+                                "Look at the source of 'umich.ms.fileio.filetypes.pepxml.PepXmlParser#parse(Path) " +
+                                "method as a reference to implement something else :)");
+
+            xif.setProperty(XMLInputFactory.IS_NAMESPACE_AWARE, false);
+        }
+        return xif;
+    }
+
+    public static <T> T unmarshall(Class<T> clazz, XMLStreamReader xsr) throws JAXBException {
+        JAXBContext jaxb = getContext(clazz);
+
+        Unmarshaller unmarshaller = jaxb.createUnmarshaller();
+        JAXBElement<T> jaxbElement = unmarshaller.unmarshal(xsr, clazz);
+        return jaxbElement.getValue();
+    }
+
     /**
      * Convert a string to an object of a given class.
      *
@@ -305,6 +425,7 @@ public class JaxbSerializer
         JAXBElement element = createCollectionElement(rootName, c);
         m.marshal(element, s);
     }
+
 
     /**
      * Discovers all the classes in the given Collection. These need
