@@ -3,16 +3,16 @@ The bindings file will resolve name clashes in the `.xsd`.
 pepXML schemas can be found [here](https://sourceforge.net/p/sashimi/code/HEAD/tree/trunk/trans_proteomic_pipeline/schema/).
 
 `G:\tmp\pepxml>
-	"<path/to/jdk>/jdk1.x.x/bin/xjc.exe" 
-	-b bindings_pepxml_standard_.xml 
-	-d generated 
+	"<path/to/jdk>/jdk1.x.x/bin/xjc.exe"
+	-b bindings_pepxml_standard_.xml
+	-d generated
 	-p umich.ms.fileio.filetypes.pepxml.jaxb.standard
 	pepXML_v119-fixed.xsd`
-	
-# Errors in original file	
+
+# Errors in original file
 The original schema contains `<xs:any namespace="##any" processContents="lax" minOccurs="0">`
-on line 17, and this makes it incorrect as it is impossible to differentiate between 
-`<any>` element in the sequence and `<xs:element name="parameter"`. So I just commented it 
+on line 17, and this makes it incorrect as it is impossible to differentiate between
+`<any>` element in the sequence and `<xs:element name="parameter"`. So I just commented it
 out. It was useless anyways as `<any>` can only be mapped to plain `Object` in java.
 
 # Changes to original schema
@@ -40,8 +40,8 @@ redundant unbounded hint it actually could figure out the separate lists inside 
 * Standard ``
 * After generation all occurrences of  `new ArrayList<>()` were replaced with `new ArrayList<>(1)` to avoid lots of lists
  of default size, which is 10. As in pepxml there might be tens of thousands of such lists which only hold a single element.
-  * Use the following regex in IDEA for replacement (use _Replace in path_). Search pattern `(new ArrayList<.*?>)\(\)`, 
-  replacement pattern `$1\(1\)` 
+  * Use the following regex in IDEA for replacement (use _Replace in path_). Search pattern `(new ArrayList<.*?>)\(\)`,
+  replacement pattern `$1\(1\)`
 
 # Use like this:
 
