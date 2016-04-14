@@ -5,5 +5,5 @@
 // Generated on: 2016.04.12 at 01:58:34 PM EDT
 //
 
-@javax.xml.bind.annotation.XmlSchema(namespace = "http://regis-web.systemsbiology.net/pepXML", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
+@javax.xml.bind.annotation.XmlSchema(namespace = "", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
 package umich.ms.fileio.filetypes.pepxml.jaxb.standard;
