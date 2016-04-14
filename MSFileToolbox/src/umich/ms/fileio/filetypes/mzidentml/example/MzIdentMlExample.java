@@ -2,16 +2,13 @@ package umich.ms.fileio.filetypes.mzidentml.example;
 
 import umich.ms.fileio.exceptions.FileParsingException;
 import umich.ms.fileio.filetypes.mzidentml.MzIdentMLParser;
-import umich.ms.fileio.filetypes.mzidentml.jaxb.standard.*;
+import umich.ms.fileio.filetypes.mzidentml.jaxb.standard.MzIdentMLType;
+import umich.ms.fileio.filetypes.mzidentml.jaxb.standard.SpectrumIdentificationItemType;
+import umich.ms.fileio.filetypes.mzidentml.jaxb.standard.SpectrumIdentificationListType;
+import umich.ms.fileio.filetypes.mzidentml.jaxb.standard.SpectrumIdentificationResultType;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
-import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamReader;
-import javax.xml.transform.stream.StreamSource;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
@@ -32,15 +29,15 @@ public class MzIdentMlExample {
 
 
         // a single call to parse the whole file
-        MzIdentML mzid = MzIdentMLParser.parse(path);
+        MzIdentMLType mzid = MzIdentMLParser.parse(path);
 
 
-        List<SpectrumIdentificationListType> spectrumIdentificationLists = mzid.getDataCollection().getAnalysisData().getSpectrumIdentificationLists();
+        List<SpectrumIdentificationListType> spectrumIdentificationLists = mzid.getDataCollection().getAnalysisData().getSpectrumIdentificationList();
         for (SpectrumIdentificationListType sil : spectrumIdentificationLists) {
             System.out.printf("Processing spec id list: %s, number of sequences searched: %s\n", sil.getName(), sil.getNumSequencesSearched());
-            List<SpectrumIdentificationResultType> spectrumIdentificationResults = sil.getSpectrumIdentificationResults();
+            List<SpectrumIdentificationResultType> spectrumIdentificationResults = sil.getSpectrumIdentificationResult();
             for (SpectrumIdentificationResultType sir : spectrumIdentificationResults) {
-                List<SpectrumIdentificationItemType> spectrumIdentificationItems = sir.getSpectrumIdentificationItems();
+                List<SpectrumIdentificationItemType> spectrumIdentificationItems = sir.getSpectrumIdentificationItem();
                 for (SpectrumIdentificationItemType si : spectrumIdentificationItems) {
                     System.out.printf("Spectrum ID: %s, calc m/z: %.3f, exp m/z: %.3f\n",
                                       si.getId(), si.getCalculatedMassToCharge(), si.getExperimentalMassToCharge());

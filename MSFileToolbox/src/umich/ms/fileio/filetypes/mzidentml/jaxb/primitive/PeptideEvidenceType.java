@@ -12,12 +12,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * PeptideEvidence links a specific Peptide element to a specific position in a DBSequence. There must only be one PeptideEvidence item per Peptide-to-DBSequence-position. 
- * 
+ * PeptideEvidence links a specific Peptide element to a specific position in a DBSequence. There must only be one PeptideEvidence item per Peptide-to-DBSequence-position.
+ *
  * <p>Java class for PeptideEvidenceType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="PeptideEvidenceType">
  *   &lt;complexContent>
@@ -50,8 +50,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "PeptideEvidenceType", propOrder = {
@@ -87,41 +87,41 @@ public class PeptideEvidenceType
 
     /**
      * Additional parameters or descriptors for the PeptideEvidence.Gets the value of the paramGroup property.
-     * 
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the paramGroup property.
-     * 
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getParamGroup().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link CVParamType }
      * {@link UserParamType }
-     * 
-     * 
+     *
+     *
      */
     public List<AbstractParamType> getParamGroup() {
         if (paramGroup == null) {
-            paramGroup = new ArrayList<AbstractParamType>();
+            paramGroup = new ArrayList<AbstractParamType>(1);
         }
         return this.paramGroup;
     }
 
     /**
      * Gets the value of the dbSequenceRef property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getDBSequenceRef() {
         return dbSequenceRef;
@@ -129,11 +129,11 @@ public class PeptideEvidenceType
 
     /**
      * Sets the value of the dbSequenceRef property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setDBSequenceRef(String value) {
         this.dbSequenceRef = value;
@@ -141,11 +141,11 @@ public class PeptideEvidenceType
 
     /**
      * Gets the value of the peptideRef property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getPeptideRef() {
         return peptideRef;
@@ -153,11 +153,11 @@ public class PeptideEvidenceType
 
     /**
      * Sets the value of the peptideRef property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setPeptideRef(String value) {
         this.peptideRef = value;
@@ -165,7 +165,7 @@ public class PeptideEvidenceType
 
     /**
      * Gets the value of the start property.
-     * 
+     *
      */
     public int getStart() {
         return start;
@@ -173,7 +173,7 @@ public class PeptideEvidenceType
 
     /**
      * Sets the value of the start property.
-     * 
+     *
      */
     public void setStart(int value) {
         this.start = value;
@@ -181,7 +181,7 @@ public class PeptideEvidenceType
 
     /**
      * Gets the value of the end property.
-     * 
+     *
      */
     public int getEnd() {
         return end;
@@ -189,7 +189,7 @@ public class PeptideEvidenceType
 
     /**
      * Sets the value of the end property.
-     * 
+     *
      */
     public void setEnd(int value) {
         this.end = value;
@@ -197,11 +197,11 @@ public class PeptideEvidenceType
 
     /**
      * Gets the value of the pre property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getPre() {
         return pre;
@@ -209,11 +209,11 @@ public class PeptideEvidenceType
 
     /**
      * Sets the value of the pre property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setPre(String value) {
         this.pre = value;
@@ -221,11 +221,11 @@ public class PeptideEvidenceType
 
     /**
      * Gets the value of the post property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getPost() {
         return post;
@@ -233,11 +233,11 @@ public class PeptideEvidenceType
 
     /**
      * Sets the value of the post property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setPost(String value) {
         this.post = value;
@@ -245,11 +245,11 @@ public class PeptideEvidenceType
 
     /**
      * Gets the value of the translationTableRef property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getTranslationTableRef() {
         return translationTableRef;
@@ -257,11 +257,11 @@ public class PeptideEvidenceType
 
     /**
      * Sets the value of the translationTableRef property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setTranslationTableRef(String value) {
         this.translationTableRef = value;
@@ -269,7 +269,7 @@ public class PeptideEvidenceType
 
     /**
      * Gets the value of the frame property.
-     * 
+     *
      */
     public int getFrame() {
         return frame;
@@ -277,7 +277,7 @@ public class PeptideEvidenceType
 
     /**
      * Sets the value of the frame property.
-     * 
+     *
      */
     public void setFrame(int value) {
         this.frame = value;
@@ -285,7 +285,7 @@ public class PeptideEvidenceType
 
     /**
      * Gets the value of the isDecoy property.
-     * 
+     *
      */
     public boolean isIsDecoy() {
         return isDecoy;
@@ -293,7 +293,7 @@ public class PeptideEvidenceType
 
     /**
      * Sets the value of the isDecoy property.
-     * 
+     *
      */
     public void setIsDecoy(boolean value) {
         this.isDecoy = value;

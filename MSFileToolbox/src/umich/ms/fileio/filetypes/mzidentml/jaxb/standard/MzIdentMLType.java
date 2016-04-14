@@ -7,19 +7,18 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
- * The upper-most hierarchy level of mzIdentML with sub-containers for example describing software, protocols and search results (spectrum identifications or protein detection results). 
- * 
+ * The upper-most hierarchy level of mzIdentML with sub-containers for example describing software, protocols and search results (spectrum identifications or protein detection results).
+ *
  * <p>Java class for MzIdentMLType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="MzIdentMLType"&gt;
  *   &lt;complexContent&gt;
@@ -42,8 +41,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "MzIdentMLType", propOrder = {
@@ -56,10 +55,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "analysisCollection",
     "analysisProtocolCollection",
     "dataCollection",
-    "bibliographicReferences"
+    "bibliographicReference"
 })
-@XmlRootElement(name = "MzIdentML")
-public class MzIdentML
+public class MzIdentMLType
     extends IdentifiableType
 {
 
@@ -82,7 +80,7 @@ public class MzIdentML
     @XmlElement(name = "DataCollection", required = true)
     protected DataCollectionType dataCollection;
     @XmlElement(name = "BibliographicReference")
-    protected List<BibliographicReferenceType> bibliographicReferences;
+    protected List<BibliographicReferenceType> bibliographicReference;
     @XmlAttribute(name = "creationDate")
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar creationDate;
@@ -91,11 +89,11 @@ public class MzIdentML
 
     /**
      * Gets the value of the cvList property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link CVListType }
-     *     
+     *
      */
     public CVListType getCvList() {
         return cvList;
@@ -103,11 +101,11 @@ public class MzIdentML
 
     /**
      * Sets the value of the cvList property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link CVListType }
-     *     
+     *
      */
     public void setCvList(CVListType value) {
         this.cvList = value;
@@ -115,11 +113,11 @@ public class MzIdentML
 
     /**
      * Gets the value of the analysisSoftwareList property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link AnalysisSoftwareListType }
-     *     
+     *
      */
     public AnalysisSoftwareListType getAnalysisSoftwareList() {
         return analysisSoftwareList;
@@ -127,11 +125,11 @@ public class MzIdentML
 
     /**
      * Sets the value of the analysisSoftwareList property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link AnalysisSoftwareListType }
-     *     
+     *
      */
     public void setAnalysisSoftwareList(AnalysisSoftwareListType value) {
         this.analysisSoftwareList = value;
@@ -139,11 +137,11 @@ public class MzIdentML
 
     /**
      * Gets the value of the provider property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link ProviderType }
-     *     
+     *
      */
     public ProviderType getProvider() {
         return provider;
@@ -151,11 +149,11 @@ public class MzIdentML
 
     /**
      * Sets the value of the provider property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link ProviderType }
-     *     
+     *
      */
     public void setProvider(ProviderType value) {
         this.provider = value;
@@ -163,11 +161,11 @@ public class MzIdentML
 
     /**
      * Gets the value of the auditCollection property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link AuditCollectionType }
-     *     
+     *
      */
     public AuditCollectionType getAuditCollection() {
         return auditCollection;
@@ -175,11 +173,11 @@ public class MzIdentML
 
     /**
      * Sets the value of the auditCollection property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link AuditCollectionType }
-     *     
+     *
      */
     public void setAuditCollection(AuditCollectionType value) {
         this.auditCollection = value;
@@ -187,11 +185,11 @@ public class MzIdentML
 
     /**
      * Gets the value of the analysisSampleCollection property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link AnalysisSampleCollectionType }
-     *     
+     *
      */
     public AnalysisSampleCollectionType getAnalysisSampleCollection() {
         return analysisSampleCollection;
@@ -199,11 +197,11 @@ public class MzIdentML
 
     /**
      * Sets the value of the analysisSampleCollection property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link AnalysisSampleCollectionType }
-     *     
+     *
      */
     public void setAnalysisSampleCollection(AnalysisSampleCollectionType value) {
         this.analysisSampleCollection = value;
@@ -211,11 +209,11 @@ public class MzIdentML
 
     /**
      * Gets the value of the sequenceCollection property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link SequenceCollectionType }
-     *     
+     *
      */
     public SequenceCollectionType getSequenceCollection() {
         return sequenceCollection;
@@ -223,11 +221,11 @@ public class MzIdentML
 
     /**
      * Sets the value of the sequenceCollection property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link SequenceCollectionType }
-     *     
+     *
      */
     public void setSequenceCollection(SequenceCollectionType value) {
         this.sequenceCollection = value;
@@ -235,11 +233,11 @@ public class MzIdentML
 
     /**
      * Gets the value of the analysisCollection property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link AnalysisCollectionType }
-     *     
+     *
      */
     public AnalysisCollectionType getAnalysisCollection() {
         return analysisCollection;
@@ -247,11 +245,11 @@ public class MzIdentML
 
     /**
      * Sets the value of the analysisCollection property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link AnalysisCollectionType }
-     *     
+     *
      */
     public void setAnalysisCollection(AnalysisCollectionType value) {
         this.analysisCollection = value;
@@ -259,11 +257,11 @@ public class MzIdentML
 
     /**
      * Gets the value of the analysisProtocolCollection property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link AnalysisProtocolCollectionType }
-     *     
+     *
      */
     public AnalysisProtocolCollectionType getAnalysisProtocolCollection() {
         return analysisProtocolCollection;
@@ -271,11 +269,11 @@ public class MzIdentML
 
     /**
      * Sets the value of the analysisProtocolCollection property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link AnalysisProtocolCollectionType }
-     *     
+     *
      */
     public void setAnalysisProtocolCollection(AnalysisProtocolCollectionType value) {
         this.analysisProtocolCollection = value;
@@ -283,11 +281,11 @@ public class MzIdentML
 
     /**
      * Gets the value of the dataCollection property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link DataCollectionType }
-     *     
+     *
      */
     public DataCollectionType getDataCollection() {
         return dataCollection;
@@ -295,52 +293,52 @@ public class MzIdentML
 
     /**
      * Sets the value of the dataCollection property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link DataCollectionType }
-     *     
+     *
      */
     public void setDataCollection(DataCollectionType value) {
         this.dataCollection = value;
     }
 
     /**
-     * Gets the value of the bibliographicReferences property.
-     * 
+     * Gets the value of the bibliographicReference property.
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the bibliographicReferences property.
-     * 
+     * This is why there is not a <CODE>set</CODE> method for the bibliographicReference property.
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getBibliographicReferences().add(newItem);
+     *    getBibliographicReference().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link BibliographicReferenceType }
-     * 
-     * 
+     *
+     *
      */
-    public List<BibliographicReferenceType> getBibliographicReferences() {
-        if (bibliographicReferences == null) {
-            bibliographicReferences = new ArrayList<BibliographicReferenceType>();
+    public List<BibliographicReferenceType> getBibliographicReference() {
+        if (bibliographicReference == null) {
+            bibliographicReference = new ArrayList<BibliographicReferenceType>(1);
         }
-        return this.bibliographicReferences;
+        return this.bibliographicReference;
     }
 
     /**
      * Gets the value of the creationDate property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link XMLGregorianCalendar }
-     *     
+     *
      */
     public XMLGregorianCalendar getCreationDate() {
         return creationDate;
@@ -348,11 +346,11 @@ public class MzIdentML
 
     /**
      * Sets the value of the creationDate property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link XMLGregorianCalendar }
-     *     
+     *
      */
     public void setCreationDate(XMLGregorianCalendar value) {
         this.creationDate = value;
@@ -360,11 +358,11 @@ public class MzIdentML
 
     /**
      * Gets the value of the version property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getVersion() {
         return version;
@@ -372,11 +370,11 @@ public class MzIdentML
 
     /**
      * Sets the value of the version property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setVersion(String value) {
         this.version = value;

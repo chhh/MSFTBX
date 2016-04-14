@@ -11,12 +11,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * The complete set of Contacts (people and organisations) for this file. 
- * 
+ * The complete set of Contacts (people and organisations) for this file.
+ *
  * <p>Java class for AuditCollectionType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="AuditCollectionType"&gt;
  *   &lt;complexContent&gt;
@@ -29,12 +29,12 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "AuditCollectionType", propOrder = {
-    "personsAndOrganizations"
+    "personOrOrganization"
 })
 public class AuditCollectionType {
 
@@ -42,36 +42,36 @@ public class AuditCollectionType {
         @XmlElement(name = "Person", type = PersonType.class),
         @XmlElement(name = "Organization", type = OrganizationType.class)
     })
-    protected List<AbstractContactType> personsAndOrganizations;
+    protected List<AbstractContactType> personOrOrganization;
 
     /**
-     * Gets the value of the personsAndOrganizations property.
-     * 
+     * Gets the value of the personOrOrganization property.
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the personsAndOrganizations property.
-     * 
+     * This is why there is not a <CODE>set</CODE> method for the personOrOrganization property.
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getPersonsAndOrganizations().add(newItem);
+     *    getPersonOrOrganization().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link PersonType }
      * {@link OrganizationType }
-     * 
-     * 
+     *
+     *
      */
-    public List<AbstractContactType> getPersonsAndOrganizations() {
-        if (personsAndOrganizations == null) {
-            personsAndOrganizations = new ArrayList<AbstractContactType>();
+    public List<AbstractContactType> getPersonOrOrganization() {
+        if (personOrOrganization == null) {
+            personOrOrganization = new ArrayList<AbstractContactType>(1);
         }
-        return this.personsAndOrganizations;
+        return this.personOrOrganization;
     }
 
 }

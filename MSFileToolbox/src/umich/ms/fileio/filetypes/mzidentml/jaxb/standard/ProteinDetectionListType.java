@@ -12,11 +12,11 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * The protein list resulting from a protein detection process.
- * 
+ *
  * <p>Java class for ProteinDetectionListType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="ProteinDetectionListType"&gt;
  *   &lt;complexContent&gt;
@@ -29,83 +29,83 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ProteinDetectionListType", propOrder = {
-    "proteinAmbiguityGroups",
-    "cvParamsAndUserParams"
+    "proteinAmbiguityGroup",
+    "paramGroup"
 })
 public class ProteinDetectionListType
     extends IdentifiableType
 {
 
     @XmlElement(name = "ProteinAmbiguityGroup")
-    protected List<ProteinAmbiguityGroupType> proteinAmbiguityGroups;
+    protected List<ProteinAmbiguityGroupType> proteinAmbiguityGroup;
     @XmlElements({
         @XmlElement(name = "cvParam", type = CVParamType.class),
         @XmlElement(name = "userParam", type = UserParamType.class)
     })
-    protected List<AbstractParamType> cvParamsAndUserParams;
+    protected List<AbstractParamType> paramGroup;
 
     /**
-     * Gets the value of the proteinAmbiguityGroups property.
-     * 
+     * Gets the value of the proteinAmbiguityGroup property.
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the proteinAmbiguityGroups property.
-     * 
+     * This is why there is not a <CODE>set</CODE> method for the proteinAmbiguityGroup property.
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getProteinAmbiguityGroups().add(newItem);
+     *    getProteinAmbiguityGroup().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link ProteinAmbiguityGroupType }
-     * 
-     * 
+     *
+     *
      */
-    public List<ProteinAmbiguityGroupType> getProteinAmbiguityGroups() {
-        if (proteinAmbiguityGroups == null) {
-            proteinAmbiguityGroups = new ArrayList<ProteinAmbiguityGroupType>();
+    public List<ProteinAmbiguityGroupType> getProteinAmbiguityGroup() {
+        if (proteinAmbiguityGroup == null) {
+            proteinAmbiguityGroup = new ArrayList<ProteinAmbiguityGroupType>(1);
         }
-        return this.proteinAmbiguityGroups;
+        return this.proteinAmbiguityGroup;
     }
 
     /**
-     * Gets the value of the cvParamsAndUserParams property.
-     * 
+     * Scores or output parameters associated with the whole ProteinDetectionList Gets the value of the paramGroup property.
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the cvParamsAndUserParams property.
-     * 
+     * This is why there is not a <CODE>set</CODE> method for the paramGroup property.
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getCvParamsAndUserParams().add(newItem);
+     *    getParamGroup().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link CVParamType }
      * {@link UserParamType }
-     * 
-     * 
+     *
+     *
      */
-    public List<AbstractParamType> getCvParamsAndUserParams() {
-        if (cvParamsAndUserParams == null) {
-            cvParamsAndUserParams = new ArrayList<AbstractParamType>();
+    public List<AbstractParamType> getParamGroup() {
+        if (paramGroup == null) {
+            paramGroup = new ArrayList<AbstractParamType>(1);
         }
-        return this.cvParamsAndUserParams;
+        return this.paramGroup;
     }
 
 }

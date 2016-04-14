@@ -11,12 +11,12 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * The software packages used to perform the analyses.
- * 			
- * 
+ *
+ *
  * <p>Java class for AnalysisSoftwareListType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="AnalysisSoftwareListType"&gt;
  *   &lt;complexContent&gt;
@@ -28,45 +28,45 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "AnalysisSoftwareListType", propOrder = {
-    "analysisSoftwares"
+    "analysisSoftware"
 })
 public class AnalysisSoftwareListType {
 
     @XmlElement(name = "AnalysisSoftware", required = true)
-    protected List<AnalysisSoftwareType> analysisSoftwares;
+    protected List<AnalysisSoftwareType> analysisSoftware;
 
     /**
-     * Gets the value of the analysisSoftwares property.
-     * 
+     * Gets the value of the analysisSoftware property.
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the analysisSoftwares property.
-     * 
+     * This is why there is not a <CODE>set</CODE> method for the analysisSoftware property.
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getAnalysisSoftwares().add(newItem);
+     *    getAnalysisSoftware().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link AnalysisSoftwareType }
-     * 
-     * 
+     *
+     *
      */
-    public List<AnalysisSoftwareType> getAnalysisSoftwares() {
-        if (analysisSoftwares == null) {
-            analysisSoftwares = new ArrayList<AnalysisSoftwareType>();
+    public List<AnalysisSoftwareType> getAnalysisSoftware() {
+        if (analysisSoftware == null) {
+            analysisSoftware = new ArrayList<AnalysisSoftwareType>(1);
         }
-        return this.analysisSoftwares;
+        return this.analysisSoftware;
     }
 
 }

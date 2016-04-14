@@ -31,8 +31,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "IdentifiableType")
 @XmlSeeAlso({
-    ProviderType.class,
-    BibliographicReferenceType.class,
+    MzIdentMLType.class,
     TranslationTableType.class,
     SpectrumIdentificationProtocolType.class,
     MeasureType.class,
@@ -52,8 +51,9 @@ import javax.xml.bind.annotation.XmlType;
     SampleType.class,
     ExternalDataType.class,
     AbstractContactType.class,
+    BibliographicReferenceType.class,
     ProtocolApplicationType.class,
-    MzIdentML.class
+    ProviderType.class
 })
 public abstract class IdentifiableType {
 

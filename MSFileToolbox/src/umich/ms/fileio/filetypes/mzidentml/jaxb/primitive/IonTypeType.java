@@ -11,12 +11,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * IonType defines the index of fragmentation ions being reported, importing a CV term for the type of ion e.g. b ion. Example: if b3 b7 b8 and b10 have been identified, the index attribute will contain 3 7 8 10, and the corresponding values will be reported in parallel arrays below 
- * 
+ * IonType defines the index of fragmentation ions being reported, importing a CV term for the type of ion e.g. b ion. Example: if b3 b7 b8 and b10 have been identified, the index attribute will contain 3 7 8 10, and the corresponding values will be reported in parallel arrays below
+ *
  * <p>Java class for IonTypeType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="IonTypeType">
  *   &lt;complexContent>
@@ -31,8 +31,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "IonTypeType", propOrder = {
@@ -52,94 +52,94 @@ public class IonTypeType {
 
     /**
      * Gets the value of the fragmentArray property.
-     * 
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the fragmentArray property.
-     * 
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getFragmentArray().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link FragmentArrayType }
-     * 
-     * 
+     *
+     *
      */
     public List<FragmentArrayType> getFragmentArray() {
         if (fragmentArray == null) {
-            fragmentArray = new ArrayList<FragmentArrayType>();
+            fragmentArray = new ArrayList<FragmentArrayType>(1);
         }
         return this.fragmentArray;
     }
 
     /**
      * Gets the value of the cvParam property.
-     * 
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the cvParam property.
-     * 
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getCvParam().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link CVParamType }
-     * 
-     * 
+     *
+     *
      */
     public List<CVParamType> getCvParam() {
         if (cvParam == null) {
-            cvParam = new ArrayList<CVParamType>();
+            cvParam = new ArrayList<CVParamType>(1);
         }
         return this.cvParam;
     }
 
     /**
      * Gets the value of the index property.
-     * 
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the index property.
-     * 
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getIndex().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link String }
-     * 
-     * 
+     *
+     *
      */
     public List<String> getIndex() {
         if (index == null) {
-            index = new ArrayList<String>();
+            index = new ArrayList<String>(1);
         }
         return this.index;
     }
 
     /**
      * Gets the value of the charge property.
-     * 
+     *
      */
     public int getCharge() {
         return charge;
@@ -147,7 +147,7 @@ public class IonTypeType {
 
     /**
      * Sets the value of the charge property.
-     * 
+     *
      */
     public void setCharge(int value) {
         this.charge = value;

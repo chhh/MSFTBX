@@ -10,12 +10,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * References to CV terms defining the measures about product ions to be reported in SpectrumIdentificationItem 
- * 
+ * References to CV terms defining the measures about product ions to be reported in SpectrumIdentificationItem
+ *
  * <p>Java class for MeasureType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="MeasureType"&gt;
  *   &lt;complexContent&gt;
@@ -27,47 +27,47 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "MeasureType", propOrder = {
-    "cvParams"
+    "cvParam"
 })
 public class MeasureType
     extends IdentifiableType
 {
 
-    @XmlElement(name = "cvParam", required = true)
-    protected List<CVParamType> cvParams;
+    @XmlElement(required = true)
+    protected List<CVParamType> cvParam;
 
     /**
-     * Gets the value of the cvParams property.
-     * 
+     * Gets the value of the cvParam property.
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the cvParams property.
-     * 
+     * This is why there is not a <CODE>set</CODE> method for the cvParam property.
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getCvParams().add(newItem);
+     *    getCvParam().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link CVParamType }
-     * 
-     * 
+     *
+     *
      */
-    public List<CVParamType> getCvParams() {
-        if (cvParams == null) {
-            cvParams = new ArrayList<CVParamType>();
+    public List<CVParamType> getCvParam() {
+        if (cvParam == null) {
+            cvParam = new ArrayList<CVParamType>(1);
         }
-        return this.cvParams;
+        return this.cvParam;
     }
 
 }

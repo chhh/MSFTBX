@@ -13,11 +13,11 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * The masses of residues used in the search.
- * 
+ *
  * <p>Java class for MassTableType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="MassTableType"&gt;
  *   &lt;complexContent&gt;
@@ -32,146 +32,146 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "MassTableType", propOrder = {
-    "residues",
-    "ambiguousResidues",
-    "cvParamsAndUserParams"
+    "residue",
+    "ambiguousResidue",
+    "paramGroup"
 })
 public class MassTableType
     extends IdentifiableType
 {
 
     @XmlElement(name = "Residue")
-    protected List<ResidueType> residues;
+    protected List<ResidueType> residue;
     @XmlElement(name = "AmbiguousResidue")
-    protected List<AmbiguousResidueType> ambiguousResidues;
+    protected List<AmbiguousResidueType> ambiguousResidue;
     @XmlElements({
         @XmlElement(name = "cvParam", type = CVParamType.class),
         @XmlElement(name = "userParam", type = UserParamType.class)
     })
-    protected List<AbstractParamType> cvParamsAndUserParams;
+    protected List<AbstractParamType> paramGroup;
     @XmlAttribute(name = "msLevel", required = true)
-    protected List<String> msLevels;
+    protected List<String> msLevel;
 
     /**
-     * Gets the value of the residues property.
-     * 
+     * Gets the value of the residue property.
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the residues property.
-     * 
+     * This is why there is not a <CODE>set</CODE> method for the residue property.
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getResidues().add(newItem);
+     *    getResidue().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link ResidueType }
-     * 
-     * 
+     *
+     *
      */
-    public List<ResidueType> getResidues() {
-        if (residues == null) {
-            residues = new ArrayList<ResidueType>();
+    public List<ResidueType> getResidue() {
+        if (residue == null) {
+            residue = new ArrayList<ResidueType>(1);
         }
-        return this.residues;
+        return this.residue;
     }
 
     /**
-     * Gets the value of the ambiguousResidues property.
-     * 
+     * Gets the value of the ambiguousResidue property.
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the ambiguousResidues property.
-     * 
+     * This is why there is not a <CODE>set</CODE> method for the ambiguousResidue property.
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getAmbiguousResidues().add(newItem);
+     *    getAmbiguousResidue().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link AmbiguousResidueType }
-     * 
-     * 
+     *
+     *
      */
-    public List<AmbiguousResidueType> getAmbiguousResidues() {
-        if (ambiguousResidues == null) {
-            ambiguousResidues = new ArrayList<AmbiguousResidueType>();
+    public List<AmbiguousResidueType> getAmbiguousResidue() {
+        if (ambiguousResidue == null) {
+            ambiguousResidue = new ArrayList<AmbiguousResidueType>(1);
         }
-        return this.ambiguousResidues;
+        return this.ambiguousResidue;
     }
 
     /**
-     * Gets the value of the cvParamsAndUserParams property.
-     * 
+     * Additional parameters or descriptors for the MassTable.Gets the value of the paramGroup property.
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the cvParamsAndUserParams property.
-     * 
+     * This is why there is not a <CODE>set</CODE> method for the paramGroup property.
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getCvParamsAndUserParams().add(newItem);
+     *    getParamGroup().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link CVParamType }
      * {@link UserParamType }
-     * 
-     * 
+     *
+     *
      */
-    public List<AbstractParamType> getCvParamsAndUserParams() {
-        if (cvParamsAndUserParams == null) {
-            cvParamsAndUserParams = new ArrayList<AbstractParamType>();
+    public List<AbstractParamType> getParamGroup() {
+        if (paramGroup == null) {
+            paramGroup = new ArrayList<AbstractParamType>(1);
         }
-        return this.cvParamsAndUserParams;
+        return this.paramGroup;
     }
 
     /**
-     * Gets the value of the msLevels property.
-     * 
+     * Gets the value of the msLevel property.
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the msLevels property.
-     * 
+     * This is why there is not a <CODE>set</CODE> method for the msLevel property.
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getMsLevels().add(newItem);
+     *    getMsLevel().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link String }
-     * 
-     * 
+     *
+     *
      */
-    public List<String> getMsLevels() {
-        if (msLevels == null) {
-            msLevels = new ArrayList<String>();
+    public List<String> getMsLevel() {
+        if (msLevel == null) {
+            msLevel = new ArrayList<String>(1);
         }
-        return this.msLevels;
+        return this.msLevel;
     }
 
 }

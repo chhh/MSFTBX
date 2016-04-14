@@ -13,11 +13,11 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * A contact is either a person or an organization.
- * 
+ *
  * <p>Java class for AbstractContactType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="AbstractContactType"&gt;
  *   &lt;complexContent&gt;
@@ -29,12 +29,12 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "AbstractContactType", propOrder = {
-    "cvParamsAndUserParams"
+    "paramGroup"
 })
 @XmlSeeAlso({
     PersonType.class,
@@ -48,36 +48,36 @@ public abstract class AbstractContactType
         @XmlElement(name = "cvParam", type = CVParamType.class),
         @XmlElement(name = "userParam", type = UserParamType.class)
     })
-    protected List<AbstractParamType> cvParamsAndUserParams;
+    protected List<AbstractParamType> paramGroup;
 
     /**
-     * Gets the value of the cvParamsAndUserParams property.
-     * 
+     * Attributes of this contact such as address, email, telephone etc.Gets the value of the paramGroup property.
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the cvParamsAndUserParams property.
-     * 
+     * This is why there is not a <CODE>set</CODE> method for the paramGroup property.
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getCvParamsAndUserParams().add(newItem);
+     *    getParamGroup().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link CVParamType }
      * {@link UserParamType }
-     * 
-     * 
+     *
+     *
      */
-    public List<AbstractParamType> getCvParamsAndUserParams() {
-        if (cvParamsAndUserParams == null) {
-            cvParamsAndUserParams = new ArrayList<AbstractParamType>();
+    public List<AbstractParamType> getParamGroup() {
+        if (paramGroup == null) {
+            paramGroup = new ArrayList<AbstractParamType>(1);
         }
-        return this.cvParamsAndUserParams;
+        return this.paramGroup;
     }
 
 }

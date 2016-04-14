@@ -11,12 +11,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * Peptide evidence on which this ProteinHypothesis is based by reference to a PeptideEvidence element. 
- * 
+ * Peptide evidence on which this ProteinHypothesis is based by reference to a PeptideEvidence element.
+ *
  * <p>Java class for PeptideHypothesisType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="PeptideHypothesisType"&gt;
  *   &lt;complexContent&gt;
@@ -29,56 +29,56 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "PeptideHypothesisType", propOrder = {
-    "spectrumIdentificationItemReves"
+    "spectrumIdentificationItemRef"
 })
 public class PeptideHypothesisType {
 
     @XmlElement(name = "SpectrumIdentificationItemRef", required = true)
-    protected List<SpectrumIdentificationItemRefType> spectrumIdentificationItemReves;
+    protected List<SpectrumIdentificationItemRefType> spectrumIdentificationItemRef;
     @XmlAttribute(name = "peptideEvidence_ref", required = true)
     protected String peptideEvidenceRef;
 
     /**
-     * Gets the value of the spectrumIdentificationItemReves property.
-     * 
+     * Gets the value of the spectrumIdentificationItemRef property.
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the spectrumIdentificationItemReves property.
-     * 
+     * This is why there is not a <CODE>set</CODE> method for the spectrumIdentificationItemRef property.
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getSpectrumIdentificationItemReves().add(newItem);
+     *    getSpectrumIdentificationItemRef().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link SpectrumIdentificationItemRefType }
-     * 
-     * 
+     *
+     *
      */
-    public List<SpectrumIdentificationItemRefType> getSpectrumIdentificationItemReves() {
-        if (spectrumIdentificationItemReves == null) {
-            spectrumIdentificationItemReves = new ArrayList<SpectrumIdentificationItemRefType>();
+    public List<SpectrumIdentificationItemRefType> getSpectrumIdentificationItemRef() {
+        if (spectrumIdentificationItemRef == null) {
+            spectrumIdentificationItemRef = new ArrayList<SpectrumIdentificationItemRefType>(1);
         }
-        return this.spectrumIdentificationItemReves;
+        return this.spectrumIdentificationItemRef;
     }
 
     /**
      * Gets the value of the peptideEvidenceRef property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getPeptideEvidenceRef() {
         return peptideEvidenceRef;
@@ -86,11 +86,11 @@ public class PeptideHypothesisType {
 
     /**
      * Sets the value of the peptideEvidenceRef property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setPeptideEvidenceRef(String value) {
         this.peptideEvidenceRef = value;

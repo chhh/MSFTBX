@@ -12,12 +12,12 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * A set of logically related results from a protein detection, for example to represent conflicting assignments of peptides to proteins.
- * 			
- * 
+ *
+ *
  * <p>Java class for ProteinAmbiguityGroupType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="ProteinAmbiguityGroupType">
  *   &lt;complexContent>
@@ -30,8 +30,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ProteinAmbiguityGroupType", propOrder = {
@@ -52,59 +52,59 @@ public class ProteinAmbiguityGroupType
 
     /**
      * Gets the value of the proteinDetectionHypothesis property.
-     * 
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the proteinDetectionHypothesis property.
-     * 
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getProteinDetectionHypothesis().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link ProteinDetectionHypothesisType }
-     * 
-     * 
+     *
+     *
      */
     public List<ProteinDetectionHypothesisType> getProteinDetectionHypothesis() {
         if (proteinDetectionHypothesis == null) {
-            proteinDetectionHypothesis = new ArrayList<ProteinDetectionHypothesisType>();
+            proteinDetectionHypothesis = new ArrayList<ProteinDetectionHypothesisType>(1);
         }
         return this.proteinDetectionHypothesis;
     }
 
     /**
      * Scores or parameters associated with the ProteinAmbiguityGroup.Gets the value of the paramGroup property.
-     * 
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the paramGroup property.
-     * 
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getParamGroup().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link CVParamType }
      * {@link UserParamType }
-     * 
-     * 
+     *
+     *
      */
     public List<AbstractParamType> getParamGroup() {
         if (paramGroup == null) {
-            paramGroup = new ArrayList<AbstractParamType>();
+            paramGroup = new ArrayList<AbstractParamType>(1);
         }
         return this.paramGroup;
     }

@@ -12,11 +12,11 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * Helper type to allow multiple cvParams or userParams to be given for an element.
- * 
+ *
  * <p>Java class for ParamListType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="ParamListType">
  *   &lt;complexContent>
@@ -26,8 +26,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ParamListType", propOrder = {
@@ -43,30 +43,30 @@ public class ParamListType {
 
     /**
      * Gets the value of the paramGroup property.
-     * 
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the paramGroup property.
-     * 
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getParamGroup().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link CVParamType }
      * {@link UserParamType }
-     * 
-     * 
+     *
+     *
      */
     public List<AbstractParamType> getParamGroup() {
         if (paramGroup == null) {
-            paramGroup = new ArrayList<AbstractParamType>();
+            paramGroup = new ArrayList<AbstractParamType>(1);
         }
         return this.paramGroup;
     }

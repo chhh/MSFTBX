@@ -13,11 +13,11 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * All identifications made from searching one spectrum. For PMF data, all peptide identifications will be listed underneath as SpectrumIdentificationItems. For MS/MS data, there will be ranked SpectrumIdentificationItems corresponding to possible different peptide IDs.
- * 
+ *
  * <p>Java class for SpectrumIdentificationResultType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="SpectrumIdentificationResultType">
  *   &lt;complexContent>
@@ -32,8 +32,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "SpectrumIdentificationResultType", propOrder = {
@@ -58,70 +58,70 @@ public class SpectrumIdentificationResultType
 
     /**
      * Gets the value of the spectrumIdentificationItem property.
-     * 
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the spectrumIdentificationItem property.
-     * 
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getSpectrumIdentificationItem().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link SpectrumIdentificationItemType }
-     * 
-     * 
+     *
+     *
      */
     public List<SpectrumIdentificationItemType> getSpectrumIdentificationItem() {
         if (spectrumIdentificationItem == null) {
-            spectrumIdentificationItem = new ArrayList<SpectrumIdentificationItemType>();
+            spectrumIdentificationItem = new ArrayList<SpectrumIdentificationItemType>(1);
         }
         return this.spectrumIdentificationItem;
     }
 
     /**
      *  Scores or parameters associated with the SpectrumIdentificationResult (i.e the set of SpectrumIdentificationItems derived from one spectrum) e.g. the number of peptide sequences within the parent tolerance for this spectrum. Gets the value of the paramGroup property.
-     * 
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the paramGroup property.
-     * 
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getParamGroup().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link CVParamType }
      * {@link UserParamType }
-     * 
-     * 
+     *
+     *
      */
     public List<AbstractParamType> getParamGroup() {
         if (paramGroup == null) {
-            paramGroup = new ArrayList<AbstractParamType>();
+            paramGroup = new ArrayList<AbstractParamType>(1);
         }
         return this.paramGroup;
     }
 
     /**
      * Gets the value of the spectrumID property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getSpectrumID() {
         return spectrumID;
@@ -129,11 +129,11 @@ public class SpectrumIdentificationResultType
 
     /**
      * Sets the value of the spectrumID property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setSpectrumID(String value) {
         this.spectrumID = value;
@@ -141,11 +141,11 @@ public class SpectrumIdentificationResultType
 
     /**
      * Gets the value of the spectraDataRef property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getSpectraDataRef() {
         return spectraDataRef;
@@ -153,11 +153,11 @@ public class SpectrumIdentificationResultType
 
     /**
      * Sets the value of the spectraDataRef property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setSpectraDataRef(String value) {
         this.spectraDataRef = value;

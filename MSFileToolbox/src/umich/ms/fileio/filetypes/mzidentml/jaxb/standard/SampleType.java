@@ -11,12 +11,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- *  A description of the sample analysed by mass spectrometry using CVParams or UserParams. If a composite sample has been analysed, a parent sample should be defined, which references subsamples. This represents any kind of substance used in an experimental workflow, such as whole organisms, cells, DNA, solutions, compounds and experimental substances (gels, arrays etc.).	
- * 
+ *  A description of the sample analysed by mass spectrometry using CVParams or UserParams. If a composite sample has been analysed, a parent sample should be defined, which references subsamples. This represents any kind of substance used in an experimental workflow, such as whole organisms, cells, DNA, solutions, compounds and experimental substances (gels, arrays etc.).
+ *
  * <p>Java class for SampleType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="SampleType"&gt;
  *   &lt;complexContent&gt;
@@ -30,115 +30,116 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "SampleType", propOrder = {
-    "contactRoles",
-    "subSamples",
-    "cvParamsAndUserParams"
+    "contactRole",
+    "subSample",
+    "paramGroup"
 })
 public class SampleType
     extends IdentifiableType
 {
 
     @XmlElement(name = "ContactRole")
-    protected List<ContactRoleType> contactRoles;
+    protected List<ContactRoleType> contactRole;
     @XmlElement(name = "SubSample")
-    protected List<SubSampleType> subSamples;
+    protected List<SubSampleType> subSample;
     @XmlElements({
         @XmlElement(name = "cvParam", type = CVParamType.class),
         @XmlElement(name = "userParam", type = UserParamType.class)
     })
-    protected List<AbstractParamType> cvParamsAndUserParams;
+    protected List<AbstractParamType> paramGroup;
 
     /**
-     * Gets the value of the contactRoles property.
-     * 
+     * Gets the value of the contactRole property.
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the contactRoles property.
-     * 
+     * This is why there is not a <CODE>set</CODE> method for the contactRole property.
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getContactRoles().add(newItem);
+     *    getContactRole().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link ContactRoleType }
-     * 
-     * 
+     *
+     *
      */
-    public List<ContactRoleType> getContactRoles() {
-        if (contactRoles == null) {
-            contactRoles = new ArrayList<ContactRoleType>();
+    public List<ContactRoleType> getContactRole() {
+        if (contactRole == null) {
+            contactRole = new ArrayList<ContactRoleType>(1);
         }
-        return this.contactRoles;
+        return this.contactRole;
     }
 
     /**
-     * Gets the value of the subSamples property.
-     * 
+     * Gets the value of the subSample property.
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the subSamples property.
-     * 
+     * This is why there is not a <CODE>set</CODE> method for the subSample property.
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getSubSamples().add(newItem);
+     *    getSubSample().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link SubSampleType }
-     * 
-     * 
+     *
+     *
      */
-    public List<SubSampleType> getSubSamples() {
-        if (subSamples == null) {
-            subSamples = new ArrayList<SubSampleType>();
+    public List<SubSampleType> getSubSample() {
+        if (subSample == null) {
+            subSample = new ArrayList<SubSampleType>(1);
         }
-        return this.subSamples;
+        return this.subSample;
     }
 
     /**
-     * Gets the value of the cvParamsAndUserParams property.
-     * 
+     * The characteristics of a
+     * Material.Gets the value of the paramGroup property.
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the cvParamsAndUserParams property.
-     * 
+     * This is why there is not a <CODE>set</CODE> method for the paramGroup property.
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getCvParamsAndUserParams().add(newItem);
+     *    getParamGroup().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link CVParamType }
      * {@link UserParamType }
-     * 
-     * 
+     *
+     *
      */
-    public List<AbstractParamType> getCvParamsAndUserParams() {
-        if (cvParamsAndUserParams == null) {
-            cvParamsAndUserParams = new ArrayList<AbstractParamType>();
+    public List<AbstractParamType> getParamGroup() {
+        if (paramGroup == null) {
+            paramGroup = new ArrayList<AbstractParamType>(1);
         }
-        return this.cvParamsAndUserParams;
+        return this.paramGroup;
     }
 
 }

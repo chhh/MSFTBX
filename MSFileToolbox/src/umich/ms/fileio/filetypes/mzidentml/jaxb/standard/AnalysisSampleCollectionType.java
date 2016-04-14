@@ -10,12 +10,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * The samples analysed can optionally be recorded using CV terms for descriptions. If a composite sample has been analysed, the subsample association can be used to build a hierarchical description. 
- * 
+ * The samples analysed can optionally be recorded using CV terms for descriptions. If a composite sample has been analysed, the subsample association can be used to build a hierarchical description.
+ *
  * <p>Java class for AnalysisSampleCollectionType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="AnalysisSampleCollectionType"&gt;
  *   &lt;complexContent&gt;
@@ -27,45 +27,45 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "AnalysisSampleCollectionType", propOrder = {
-    "samples"
+    "sample"
 })
 public class AnalysisSampleCollectionType {
 
     @XmlElement(name = "Sample", required = true)
-    protected List<SampleType> samples;
+    protected List<SampleType> sample;
 
     /**
-     * Gets the value of the samples property.
-     * 
+     * Gets the value of the sample property.
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the samples property.
-     * 
+     * This is why there is not a <CODE>set</CODE> method for the sample property.
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getSamples().add(newItem);
+     *    getSample().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link SampleType }
-     * 
-     * 
+     *
+     *
      */
-    public List<SampleType> getSamples() {
-        if (samples == null) {
-            samples = new ArrayList<SampleType>();
+    public List<SampleType> getSample() {
+        if (sample == null) {
+            sample = new ArrayList<SampleType>(1);
         }
-        return this.samples;
+        return this.sample;
     }
 
 }

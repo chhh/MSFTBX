@@ -10,12 +10,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * The collection of sequences (DBSequence or Peptide) identified and their relationship between each other (PeptideEvidence) to be referenced elsewhere in the results. 
- * 
+ * The collection of sequences (DBSequence or Peptide) identified and their relationship between each other (PeptideEvidence) to be referenced elsewhere in the results.
+ *
  * <p>Java class for SequenceCollectionType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="SequenceCollectionType">
  *   &lt;complexContent>
@@ -29,8 +29,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "SequenceCollectionType", propOrder = {
@@ -49,87 +49,87 @@ public class SequenceCollectionType {
 
     /**
      * Gets the value of the dbSequence property.
-     * 
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the dbSequence property.
-     * 
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getDBSequence().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link DBSequenceType }
-     * 
-     * 
+     *
+     *
      */
     public List<DBSequenceType> getDBSequence() {
         if (dbSequence == null) {
-            dbSequence = new ArrayList<DBSequenceType>();
+            dbSequence = new ArrayList<DBSequenceType>(1);
         }
         return this.dbSequence;
     }
 
     /**
      * Gets the value of the peptide property.
-     * 
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the peptide property.
-     * 
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getPeptide().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link PeptideType }
-     * 
-     * 
+     *
+     *
      */
     public List<PeptideType> getPeptide() {
         if (peptide == null) {
-            peptide = new ArrayList<PeptideType>();
+            peptide = new ArrayList<PeptideType>(1);
         }
         return this.peptide;
     }
 
     /**
      * Gets the value of the peptideEvidence property.
-     * 
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the peptideEvidence property.
-     * 
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getPeptideEvidence().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link PeptideEvidenceType }
-     * 
-     * 
+     *
+     *
      */
     public List<PeptideEvidenceType> getPeptideEvidence() {
         if (peptideEvidence == null) {
-            peptideEvidence = new ArrayList<PeptideEvidenceType>();
+            peptideEvidence = new ArrayList<PeptideEvidenceType>(1);
         }
         return this.peptideEvidence;
     }

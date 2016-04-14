@@ -12,11 +12,11 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * A file from which this mzIdentML instance was created.
- * 
+ *
  * <p>Java class for SourceFileType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="SourceFileType"&gt;
  *   &lt;complexContent&gt;
@@ -28,12 +28,12 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "SourceFileType", propOrder = {
-    "cvParamsAndUserParams"
+    "paramGroup"
 })
 public class SourceFileType
     extends ExternalDataType
@@ -43,36 +43,37 @@ public class SourceFileType
         @XmlElement(name = "cvParam", type = CVParamType.class),
         @XmlElement(name = "userParam", type = UserParamType.class)
     })
-    protected List<AbstractParamType> cvParamsAndUserParams;
+    protected List<AbstractParamType> paramGroup;
 
     /**
-     * Gets the value of the cvParamsAndUserParams property.
-     * 
+     * Any additional parameters description the source
+     * 								file.Gets the value of the paramGroup property.
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the cvParamsAndUserParams property.
-     * 
+     * This is why there is not a <CODE>set</CODE> method for the paramGroup property.
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getCvParamsAndUserParams().add(newItem);
+     *    getParamGroup().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link CVParamType }
      * {@link UserParamType }
-     * 
-     * 
+     *
+     *
      */
-    public List<AbstractParamType> getCvParamsAndUserParams() {
-        if (cvParamsAndUserParams == null) {
-            cvParamsAndUserParams = new ArrayList<AbstractParamType>();
+    public List<AbstractParamType> getParamGroup() {
+        if (paramGroup == null) {
+            paramGroup = new ArrayList<AbstractParamType>(1);
         }
-        return this.cvParamsAndUserParams;
+        return this.paramGroup;
     }
 
 }

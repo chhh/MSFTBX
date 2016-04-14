@@ -27,37 +27,13 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ParamType", propOrder = {
-    "userParam",
-    "cvParam"
+    "cvParam",
+    "userParam"
 })
 public class ParamType {
 
-    protected UserParamType userParam;
     protected CVParamType cvParam;
-
-    /**
-     * Gets the value of the userParam property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link UserParamType }
-     *     
-     */
-    public UserParamType getUserParam() {
-        return userParam;
-    }
-
-    /**
-     * Sets the value of the userParam property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link UserParamType }
-     *     
-     */
-    public void setUserParam(UserParamType value) {
-        this.userParam = value;
-    }
+    protected UserParamType userParam;
 
     /**
      * Gets the value of the cvParam property.
@@ -81,6 +57,30 @@ public class ParamType {
      */
     public void setCvParam(CVParamType value) {
         this.cvParam = value;
+    }
+
+    /**
+     * Gets the value of the userParam property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link UserParamType }
+     *     
+     */
+    public UserParamType getUserParam() {
+        return userParam;
+    }
+
+    /**
+     * Sets the value of the userParam property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link UserParamType }
+     *     
+     */
+    public void setUserParam(UserParamType value) {
+        this.userParam = value;
     }
 
 }

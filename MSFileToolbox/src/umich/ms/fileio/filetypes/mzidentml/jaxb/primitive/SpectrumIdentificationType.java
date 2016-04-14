@@ -11,12 +11,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * An Analysis which tries to identify peptides in input spectra, referencing the database searched, the input spectra, the output results and the protocol that is run. 
- * 
+ * An Analysis which tries to identify peptides in input spectra, referencing the database searched, the input spectra, the output results and the protocol that is run.
+ *
  * <p>Java class for SpectrumIdentificationType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="SpectrumIdentificationType">
  *   &lt;complexContent>
@@ -31,8 +31,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "SpectrumIdentificationType", propOrder = {
@@ -54,69 +54,69 @@ public class SpectrumIdentificationType
 
     /**
      * Gets the value of the inputSpectra property.
-     * 
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the inputSpectra property.
-     * 
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getInputSpectra().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link InputSpectraType }
-     * 
-     * 
+     *
+     *
      */
     public List<InputSpectraType> getInputSpectra() {
         if (inputSpectra == null) {
-            inputSpectra = new ArrayList<InputSpectraType>();
+            inputSpectra = new ArrayList<InputSpectraType>(1);
         }
         return this.inputSpectra;
     }
 
     /**
      * Gets the value of the searchDatabaseRef property.
-     * 
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the searchDatabaseRef property.
-     * 
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getSearchDatabaseRef().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link SearchDatabaseRefType }
-     * 
-     * 
+     *
+     *
      */
     public List<SearchDatabaseRefType> getSearchDatabaseRef() {
         if (searchDatabaseRef == null) {
-            searchDatabaseRef = new ArrayList<SearchDatabaseRefType>();
+            searchDatabaseRef = new ArrayList<SearchDatabaseRefType>(1);
         }
         return this.searchDatabaseRef;
     }
 
     /**
      * Gets the value of the spectrumIdentificationProtocolRef property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getSpectrumIdentificationProtocolRef() {
         return spectrumIdentificationProtocolRef;
@@ -124,11 +124,11 @@ public class SpectrumIdentificationType
 
     /**
      * Sets the value of the spectrumIdentificationProtocolRef property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setSpectrumIdentificationProtocolRef(String value) {
         this.spectrumIdentificationProtocolRef = value;
@@ -136,11 +136,11 @@ public class SpectrumIdentificationType
 
     /**
      * Gets the value of the spectrumIdentificationListRef property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getSpectrumIdentificationListRef() {
         return spectrumIdentificationListRef;
@@ -148,11 +148,11 @@ public class SpectrumIdentificationType
 
     /**
      * Sets the value of the spectrumIdentificationListRef property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setSpectrumIdentificationListRef(String value) {
         this.spectrumIdentificationListRef = value;

@@ -11,12 +11,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * A specification of how a nucleic acid sequence database was translated for searching. 
- * 
+ * A specification of how a nucleic acid sequence database was translated for searching.
+ *
  * <p>Java class for DatabaseTranslationType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="DatabaseTranslationType">
  *   &lt;complexContent>
@@ -29,8 +29,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "DatabaseTranslationType", propOrder = {
@@ -45,58 +45,58 @@ public class DatabaseTranslationType {
 
     /**
      * Gets the value of the translationTable property.
-     * 
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the translationTable property.
-     * 
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getTranslationTable().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link TranslationTableType }
-     * 
-     * 
+     *
+     *
      */
     public List<TranslationTableType> getTranslationTable() {
         if (translationTable == null) {
-            translationTable = new ArrayList<TranslationTableType>();
+            translationTable = new ArrayList<TranslationTableType>(1);
         }
         return this.translationTable;
     }
 
     /**
      * Gets the value of the frames property.
-     * 
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the frames property.
-     * 
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getFrames().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link Integer }
-     * 
-     * 
+     *
+     *
      */
     public List<Integer> getFrames() {
         if (frames == null) {
-            frames = new ArrayList<Integer>();
+            frames = new ArrayList<Integer>(1);
         }
         return this.frames;
     }

@@ -1,7 +1,7 @@
 package umich.ms.fileio.filetypes.mzidentml;
 
 import umich.ms.fileio.exceptions.FileParsingException;
-import umich.ms.fileio.filetypes.mzidentml.jaxb.standard.MzIdentML;
+import umich.ms.fileio.filetypes.mzidentml.jaxb.standard.MzIdentMLType;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
@@ -26,7 +26,7 @@ public class MzIdentMLParser {
      * @param path path to the file to parse
      * @return auto-generated representation of the file, read the MzIdentML schema for details.
      */
-    public static MzIdentML parse(Path path) throws FileParsingException {
+    public static MzIdentMLType parse(Path path) throws FileParsingException {
         try {
             JAXBContext jaxb = JAXBContext.newInstance(umich.ms.fileio.filetypes.mzidentml.jaxb.standard.ObjectFactory.class);
             XMLInputFactory xif = XMLInputFactory.newFactory();
@@ -38,7 +38,7 @@ public class MzIdentMLParser {
             xif.setProperty(XMLInputFactory.IS_NAMESPACE_AWARE, false);
             XMLStreamReader xsr = xif.createXMLStreamReader(new StreamSource(path.toFile()));
             Unmarshaller unmarshaller = jaxb.createUnmarshaller();
-            JAXBElement<MzIdentML> jaxbElement = unmarshaller.unmarshal(xsr, MzIdentML.class);
+            JAXBElement<MzIdentMLType> jaxbElement = unmarshaller.unmarshal(xsr, MzIdentMLType.class);
             return jaxbElement.getValue();
 
         } catch (JAXBException | XMLStreamException e) {

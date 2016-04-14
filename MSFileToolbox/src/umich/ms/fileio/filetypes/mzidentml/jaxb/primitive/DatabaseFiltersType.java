@@ -11,12 +11,12 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * The specification of filters applied to the database searched.
- * 			
- * 
+ *
+ *
  * <p>Java class for DatabaseFiltersType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="DatabaseFiltersType">
  *   &lt;complexContent>
@@ -28,8 +28,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "DatabaseFiltersType", propOrder = {
@@ -42,29 +42,29 @@ public class DatabaseFiltersType {
 
     /**
      * Gets the value of the filter property.
-     * 
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the filter property.
-     * 
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getFilter().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link FilterType }
-     * 
-     * 
+     *
+     *
      */
     public List<FilterType> getFilter() {
         if (filter == null) {
-            filter = new ArrayList<FilterType>();
+            filter = new ArrayList<FilterType>(1);
         }
         return this.filter;
     }

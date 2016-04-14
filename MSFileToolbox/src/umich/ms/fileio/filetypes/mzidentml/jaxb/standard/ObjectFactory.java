@@ -1,45 +1,49 @@
 
 package umich.ms.fileio.filetypes.mzidentml.jaxb.standard;
 
+import javax.xml.bind.JAXBElement;
+import javax.xml.bind.annotation.XmlElementDecl;
 import javax.xml.bind.annotation.XmlRegistry;
+import javax.xml.namespace.QName;
 
 
 /**
- * This object contains factory methods for each 
- * Java content interface and Java element interface 
- * generated in the umich.ms.fileio.filetypes.mzidentml.jaxb.standard package. 
- * <p>An ObjectFactory allows you to programatically 
- * construct new instances of the Java representation 
- * for XML content. The Java representation of XML 
- * content can consist of schema derived interfaces 
- * and classes representing the binding of schema 
- * type definitions, element declarations and model 
- * groups.  Factory methods for each of these are 
+ * This object contains factory methods for each
+ * Java content interface and Java element interface
+ * generated in the umich.ms.fileio.filetypes.mzidentml.jaxb.standard package.
+ * <p>An ObjectFactory allows you to programatically
+ * construct new instances of the Java representation
+ * for XML content. The Java representation of XML
+ * content can consist of schema derived interfaces
+ * and classes representing the binding of schema
+ * type definitions, element declarations and model
+ * groups.  Factory methods for each of these are
  * provided in this class.
- * 
+ *
  */
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _MzIdentML_QNAME = new QName("", "MzIdentML", "");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: umich.ms.fileio.filetypes.mzidentml.jaxb.standard
-     * 
+     *
      */
     public ObjectFactory() {
     }
 
     /**
-     * Create an instance of {@link MzIdentML }
-     * 
+     * Create an instance of {@link MzIdentMLType }
+     *
      */
-    public MzIdentML createMzIdentML() {
-        return new MzIdentML();
+    public MzIdentMLType createMzIdentMLType() {
+        return new MzIdentMLType();
     }
 
     /**
      * Create an instance of {@link CVListType }
-     * 
+     *
      */
     public CVListType createCVListType() {
         return new CVListType();
@@ -47,31 +51,15 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link AnalysisSoftwareListType }
-     * 
+     *
      */
     public AnalysisSoftwareListType createAnalysisSoftwareListType() {
         return new AnalysisSoftwareListType();
     }
 
     /**
-     * Create an instance of {@link ProviderType }
-     * 
-     */
-    public ProviderType createProviderType() {
-        return new ProviderType();
-    }
-
-    /**
-     * Create an instance of {@link AuditCollectionType }
-     * 
-     */
-    public AuditCollectionType createAuditCollectionType() {
-        return new AuditCollectionType();
-    }
-
-    /**
      * Create an instance of {@link AnalysisSampleCollectionType }
-     * 
+     *
      */
     public AnalysisSampleCollectionType createAnalysisSampleCollectionType() {
         return new AnalysisSampleCollectionType();
@@ -79,7 +67,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link SequenceCollectionType }
-     * 
+     *
      */
     public SequenceCollectionType createSequenceCollectionType() {
         return new SequenceCollectionType();
@@ -87,7 +75,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link AnalysisCollectionType }
-     * 
+     *
      */
     public AnalysisCollectionType createAnalysisCollectionType() {
         return new AnalysisCollectionType();
@@ -95,31 +83,15 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link AnalysisProtocolCollectionType }
-     * 
+     *
      */
     public AnalysisProtocolCollectionType createAnalysisProtocolCollectionType() {
         return new AnalysisProtocolCollectionType();
     }
 
     /**
-     * Create an instance of {@link DataCollectionType }
-     * 
-     */
-    public DataCollectionType createDataCollectionType() {
-        return new DataCollectionType();
-    }
-
-    /**
-     * Create an instance of {@link BibliographicReferenceType }
-     * 
-     */
-    public BibliographicReferenceType createBibliographicReferenceType() {
-        return new BibliographicReferenceType();
-    }
-
-    /**
      * Create an instance of {@link InputsType }
-     * 
+     *
      */
     public InputsType createInputsType() {
         return new InputsType();
@@ -127,15 +99,23 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link AnalysisDataType }
-     * 
+     *
      */
     public AnalysisDataType createAnalysisDataType() {
         return new AnalysisDataType();
     }
 
     /**
+     * Create an instance of {@link DataCollectionType }
+     *
+     */
+    public DataCollectionType createDataCollectionType() {
+        return new DataCollectionType();
+    }
+
+    /**
      * Create an instance of {@link SearchDatabaseType }
-     * 
+     *
      */
     public SearchDatabaseType createSearchDatabaseType() {
         return new SearchDatabaseType();
@@ -143,7 +123,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link SourceFileType }
-     * 
+     *
      */
     public SourceFileType createSourceFileType() {
         return new SourceFileType();
@@ -151,7 +131,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ModificationParamsType }
-     * 
+     *
      */
     public ModificationParamsType createModificationParamsType() {
         return new ModificationParamsType();
@@ -159,7 +139,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link FilterType }
-     * 
+     *
      */
     public FilterType createFilterType() {
         return new FilterType();
@@ -167,7 +147,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link DatabaseFiltersType }
-     * 
+     *
      */
     public DatabaseFiltersType createDatabaseFiltersType() {
         return new DatabaseFiltersType();
@@ -175,7 +155,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link TranslationTableType }
-     * 
+     *
      */
     public TranslationTableType createTranslationTableType() {
         return new TranslationTableType();
@@ -183,7 +163,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link DatabaseTranslationType }
-     * 
+     *
      */
     public DatabaseTranslationType createDatabaseTranslationType() {
         return new DatabaseTranslationType();
@@ -191,7 +171,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link SpectrumIdentificationProtocolType }
-     * 
+     *
      */
     public SpectrumIdentificationProtocolType createSpectrumIdentificationProtocolType() {
         return new SpectrumIdentificationProtocolType();
@@ -199,7 +179,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link InputSpectraType }
-     * 
+     *
      */
     public InputSpectraType createInputSpectraType() {
         return new InputSpectraType();
@@ -207,7 +187,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link SearchDatabaseRefType }
-     * 
+     *
      */
     public SearchDatabaseRefType createSearchDatabaseRefType() {
         return new SearchDatabaseRefType();
@@ -215,7 +195,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link SpectrumIdentificationType }
-     * 
+     *
      */
     public SpectrumIdentificationType createSpectrumIdentificationType() {
         return new SpectrumIdentificationType();
@@ -223,7 +203,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link MeasureType }
-     * 
+     *
      */
     public MeasureType createMeasureType() {
         return new MeasureType();
@@ -231,7 +211,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link FragmentationTableType }
-     * 
+     *
      */
     public FragmentationTableType createFragmentationTableType() {
         return new FragmentationTableType();
@@ -239,7 +219,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link SpectrumIdentificationListType }
-     * 
+     *
      */
     public SpectrumIdentificationListType createSpectrumIdentificationListType() {
         return new SpectrumIdentificationListType();
@@ -247,7 +227,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link SpecificityRulesType }
-     * 
+     *
      */
     public SpecificityRulesType createSpecificityRulesType() {
         return new SpecificityRulesType();
@@ -255,7 +235,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link SearchModificationType }
-     * 
+     *
      */
     public SearchModificationType createSearchModificationType() {
         return new SearchModificationType();
@@ -263,7 +243,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link FragmentArrayType }
-     * 
+     *
      */
     public FragmentArrayType createFragmentArrayType() {
         return new FragmentArrayType();
@@ -271,7 +251,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link IonTypeType }
-     * 
+     *
      */
     public IonTypeType createIonTypeType() {
         return new IonTypeType();
@@ -279,7 +259,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link FragmentationType }
-     * 
+     *
      */
     public FragmentationType createFragmentationType() {
         return new FragmentationType();
@@ -287,7 +267,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link PeptideEvidenceRefType }
-     * 
+     *
      */
     public PeptideEvidenceRefType createPeptideEvidenceRefType() {
         return new PeptideEvidenceRefType();
@@ -295,7 +275,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link SpectrumIdentificationItemType }
-     * 
+     *
      */
     public SpectrumIdentificationItemType createSpectrumIdentificationItemType() {
         return new SpectrumIdentificationItemType();
@@ -303,7 +283,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link SpectrumIdentificationResultType }
-     * 
+     *
      */
     public SpectrumIdentificationResultType createSpectrumIdentificationResultType() {
         return new SpectrumIdentificationResultType();
@@ -311,7 +291,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link InputSpectrumIdentificationsType }
-     * 
+     *
      */
     public InputSpectrumIdentificationsType createInputSpectrumIdentificationsType() {
         return new InputSpectrumIdentificationsType();
@@ -319,7 +299,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ProteinDetectionType }
-     * 
+     *
      */
     public ProteinDetectionType createProteinDetectionType() {
         return new ProteinDetectionType();
@@ -327,7 +307,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ProteinDetectionProtocolType }
-     * 
+     *
      */
     public ProteinDetectionProtocolType createProteinDetectionProtocolType() {
         return new ProteinDetectionProtocolType();
@@ -335,7 +315,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ProteinDetectionListType }
-     * 
+     *
      */
     public ProteinDetectionListType createProteinDetectionListType() {
         return new ProteinDetectionListType();
@@ -343,7 +323,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link SpectrumIdentificationItemRefType }
-     * 
+     *
      */
     public SpectrumIdentificationItemRefType createSpectrumIdentificationItemRefType() {
         return new SpectrumIdentificationItemRefType();
@@ -351,7 +331,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link PeptideHypothesisType }
-     * 
+     *
      */
     public PeptideHypothesisType createPeptideHypothesisType() {
         return new PeptideHypothesisType();
@@ -359,7 +339,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ProteinDetectionHypothesisType }
-     * 
+     *
      */
     public ProteinDetectionHypothesisType createProteinDetectionHypothesisType() {
         return new ProteinDetectionHypothesisType();
@@ -367,7 +347,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ProteinAmbiguityGroupType }
-     * 
+     *
      */
     public ProteinAmbiguityGroupType createProteinAmbiguityGroupType() {
         return new ProteinAmbiguityGroupType();
@@ -375,7 +355,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ModificationType }
-     * 
+     *
      */
     public ModificationType createModificationType() {
         return new ModificationType();
@@ -383,7 +363,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link PeptideType }
-     * 
+     *
      */
     public PeptideType createPeptideType() {
         return new PeptideType();
@@ -391,7 +371,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link SubstitutionModificationType }
-     * 
+     *
      */
     public SubstitutionModificationType createSubstitutionModificationType() {
         return new SubstitutionModificationType();
@@ -399,7 +379,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link SpectraDataType }
-     * 
+     *
      */
     public SpectraDataType createSpectraDataType() {
         return new SpectraDataType();
@@ -407,7 +387,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link AnalysisSoftwareType }
-     * 
+     *
      */
     public AnalysisSoftwareType createAnalysisSoftwareType() {
         return new AnalysisSoftwareType();
@@ -415,7 +395,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link EnzymeType }
-     * 
+     *
      */
     public EnzymeType createEnzymeType() {
         return new EnzymeType();
@@ -423,7 +403,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link EnzymesType }
-     * 
+     *
      */
     public EnzymesType createEnzymesType() {
         return new EnzymesType();
@@ -431,7 +411,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ResidueType }
-     * 
+     *
      */
     public ResidueType createResidueType() {
         return new ResidueType();
@@ -439,7 +419,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link AmbiguousResidueType }
-     * 
+     *
      */
     public AmbiguousResidueType createAmbiguousResidueType() {
         return new AmbiguousResidueType();
@@ -447,7 +427,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link MassTableType }
-     * 
+     *
      */
     public MassTableType createMassTableType() {
         return new MassTableType();
@@ -455,7 +435,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link PeptideEvidenceType }
-     * 
+     *
      */
     public PeptideEvidenceType createPeptideEvidenceType() {
         return new PeptideEvidenceType();
@@ -463,7 +443,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ToleranceType }
-     * 
+     *
      */
     public ToleranceType createToleranceType() {
         return new ToleranceType();
@@ -471,7 +451,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link SpectrumIDFormatType }
-     * 
+     *
      */
     public SpectrumIDFormatType createSpectrumIDFormatType() {
         return new SpectrumIDFormatType();
@@ -479,7 +459,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link DBSequenceType }
-     * 
+     *
      */
     public DBSequenceType createDBSequenceType() {
         return new DBSequenceType();
@@ -487,7 +467,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link SampleType }
-     * 
+     *
      */
     public SampleType createSampleType() {
         return new SampleType();
@@ -495,7 +475,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link SubSampleType }
-     * 
+     *
      */
     public SubSampleType createSubSampleType() {
         return new SubSampleType();
@@ -503,7 +483,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ExternalDataType }
-     * 
+     *
      */
     public ExternalDataType createExternalDataType() {
         return new ExternalDataType();
@@ -511,7 +491,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link FileFormatType }
-     * 
+     *
      */
     public FileFormatType createFileFormatType() {
         return new FileFormatType();
@@ -519,7 +499,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link PersonType }
-     * 
+     *
      */
     public PersonType createPersonType() {
         return new PersonType();
@@ -527,7 +507,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link AffiliationType }
-     * 
+     *
      */
     public AffiliationType createAffiliationType() {
         return new AffiliationType();
@@ -535,7 +515,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link OrganizationType }
-     * 
+     *
      */
     public OrganizationType createOrganizationType() {
         return new OrganizationType();
@@ -543,7 +523,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ParentOrganizationType }
-     * 
+     *
      */
     public ParentOrganizationType createParentOrganizationType() {
         return new ParentOrganizationType();
@@ -551,7 +531,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ContactRoleType }
-     * 
+     *
      */
     public ContactRoleType createContactRoleType() {
         return new ContactRoleType();
@@ -559,15 +539,23 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link RoleType }
-     * 
+     *
      */
     public RoleType createRoleType() {
         return new RoleType();
     }
 
     /**
+     * Create an instance of {@link BibliographicReferenceType }
+     *
+     */
+    public BibliographicReferenceType createBibliographicReferenceType() {
+        return new BibliographicReferenceType();
+    }
+
+    /**
      * Create an instance of {@link UserParamType }
-     * 
+     *
      */
     public UserParamType createUserParamType() {
         return new UserParamType();
@@ -575,7 +563,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link CVParamType }
-     * 
+     *
      */
     public CVParamType createCVParamType() {
         return new CVParamType();
@@ -583,15 +571,31 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link CvType }
-     * 
+     *
      */
     public CvType createCvType() {
         return new CvType();
     }
 
     /**
+     * Create an instance of {@link AuditCollectionType }
+     *
+     */
+    public AuditCollectionType createAuditCollectionType() {
+        return new AuditCollectionType();
+    }
+
+    /**
+     * Create an instance of {@link ProviderType }
+     *
+     */
+    public ProviderType createProviderType() {
+        return new ProviderType();
+    }
+
+    /**
      * Create an instance of {@link ParamListType }
-     * 
+     *
      */
     public ParamListType createParamListType() {
         return new ParamListType();
@@ -599,10 +603,19 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ParamType }
-     * 
+     *
      */
     public ParamType createParamType() {
         return new ParamType();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link MzIdentMLType }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "", name = "MzIdentML")
+    public JAXBElement<MzIdentMLType> createMzIdentML(MzIdentMLType value) {
+        return new JAXBElement<MzIdentMLType>(_MzIdentML_QNAME, MzIdentMLType.class, null, value);
     }
 
 }

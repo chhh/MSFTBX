@@ -12,11 +12,11 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * The list of enzymes used in experiment
- * 
+ *
  * <p>Java class for EnzymesType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="EnzymesType">
  *   &lt;complexContent>
@@ -29,8 +29,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "EnzymesType", propOrder = {
@@ -45,36 +45,36 @@ public class EnzymesType {
 
     /**
      * Gets the value of the enzyme property.
-     * 
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the enzyme property.
-     * 
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getEnzyme().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link EnzymeType }
-     * 
-     * 
+     *
+     *
      */
     public List<EnzymeType> getEnzyme() {
         if (enzyme == null) {
-            enzyme = new ArrayList<EnzymeType>();
+            enzyme = new ArrayList<EnzymeType>(1);
         }
         return this.enzyme;
     }
 
     /**
      * Gets the value of the independent property.
-     * 
+     *
      */
     public boolean isIndependent() {
         return independent;
@@ -82,7 +82,7 @@ public class EnzymesType {
 
     /**
      * Sets the value of the independent property.
-     * 
+     *
      */
     public void setIndependent(boolean value) {
         this.independent = value;

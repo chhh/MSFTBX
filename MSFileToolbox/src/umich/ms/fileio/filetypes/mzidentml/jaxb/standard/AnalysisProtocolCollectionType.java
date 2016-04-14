@@ -10,12 +10,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * The collection of protocols which include the parameters and settings of the performed analyses. 
- * 
+ * The collection of protocols which include the parameters and settings of the performed analyses.
+ *
  * <p>Java class for AnalysisProtocolCollectionType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="AnalysisProtocolCollectionType"&gt;
  *   &lt;complexContent&gt;
@@ -28,57 +28,57 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "AnalysisProtocolCollectionType", propOrder = {
-    "spectrumIdentificationProtocols",
+    "spectrumIdentificationProtocol",
     "proteinDetectionProtocol"
 })
 public class AnalysisProtocolCollectionType {
 
     @XmlElement(name = "SpectrumIdentificationProtocol", required = true)
-    protected List<SpectrumIdentificationProtocolType> spectrumIdentificationProtocols;
+    protected List<SpectrumIdentificationProtocolType> spectrumIdentificationProtocol;
     @XmlElement(name = "ProteinDetectionProtocol")
     protected ProteinDetectionProtocolType proteinDetectionProtocol;
 
     /**
-     * Gets the value of the spectrumIdentificationProtocols property.
-     * 
+     * Gets the value of the spectrumIdentificationProtocol property.
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the spectrumIdentificationProtocols property.
-     * 
+     * This is why there is not a <CODE>set</CODE> method for the spectrumIdentificationProtocol property.
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getSpectrumIdentificationProtocols().add(newItem);
+     *    getSpectrumIdentificationProtocol().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link SpectrumIdentificationProtocolType }
-     * 
-     * 
+     *
+     *
      */
-    public List<SpectrumIdentificationProtocolType> getSpectrumIdentificationProtocols() {
-        if (spectrumIdentificationProtocols == null) {
-            spectrumIdentificationProtocols = new ArrayList<SpectrumIdentificationProtocolType>();
+    public List<SpectrumIdentificationProtocolType> getSpectrumIdentificationProtocol() {
+        if (spectrumIdentificationProtocol == null) {
+            spectrumIdentificationProtocol = new ArrayList<SpectrumIdentificationProtocolType>(1);
         }
-        return this.spectrumIdentificationProtocols;
+        return this.spectrumIdentificationProtocol;
     }
 
     /**
      * Gets the value of the proteinDetectionProtocol property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link ProteinDetectionProtocolType }
-     *     
+     *
      */
     public ProteinDetectionProtocolType getProteinDetectionProtocol() {
         return proteinDetectionProtocol;
@@ -86,11 +86,11 @@ public class AnalysisProtocolCollectionType {
 
     /**
      * Sets the value of the proteinDetectionProtocol property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link ProteinDetectionProtocolType }
-     *     
+     *
      */
     public void setProteinDetectionProtocol(ProteinDetectionProtocolType value) {
         this.proteinDetectionProtocol = value;

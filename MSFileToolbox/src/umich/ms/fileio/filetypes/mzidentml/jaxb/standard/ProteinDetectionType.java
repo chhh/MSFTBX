@@ -11,12 +11,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * An Analysis which assembles a set of peptides (e.g. from a spectra search analysis) to proteins. 
- * 
+ * An Analysis which assembles a set of peptides (e.g. from a spectra search analysis) to proteins.
+ *
  * <p>Java class for ProteinDetectionType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="ProteinDetectionType"&gt;
  *   &lt;complexContent&gt;
@@ -30,8 +30,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ProteinDetectionType", propOrder = {
@@ -50,40 +50,40 @@ public class ProteinDetectionType
 
     /**
      * Gets the value of the inputSpectrumIdentifications property.
-     * 
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the inputSpectrumIdentifications property.
-     * 
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getInputSpectrumIdentifications().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link InputSpectrumIdentificationsType }
-     * 
-     * 
+     *
+     *
      */
     public List<InputSpectrumIdentificationsType> getInputSpectrumIdentifications() {
         if (inputSpectrumIdentifications == null) {
-            inputSpectrumIdentifications = new ArrayList<InputSpectrumIdentificationsType>();
+            inputSpectrumIdentifications = new ArrayList<InputSpectrumIdentificationsType>(1);
         }
         return this.inputSpectrumIdentifications;
     }
 
     /**
      * Gets the value of the proteinDetectionListRef property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getProteinDetectionListRef() {
         return proteinDetectionListRef;
@@ -91,11 +91,11 @@ public class ProteinDetectionType
 
     /**
      * Sets the value of the proteinDetectionListRef property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setProteinDetectionListRef(String value) {
         this.proteinDetectionListRef = value;
@@ -103,11 +103,11 @@ public class ProteinDetectionType
 
     /**
      * Gets the value of the proteinDetectionProtocolRef property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getProteinDetectionProtocolRef() {
         return proteinDetectionProtocolRef;
@@ -115,11 +115,11 @@ public class ProteinDetectionType
 
     /**
      * Sets the value of the proteinDetectionProtocolRef property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setProteinDetectionProtocolRef(String value) {
         this.proteinDetectionProtocolRef = value;

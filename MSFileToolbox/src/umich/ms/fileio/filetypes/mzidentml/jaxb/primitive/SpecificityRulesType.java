@@ -11,11 +11,11 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * The specificity rules of the searched modification including for example the probability of a modification's presence or peptide or protein termini. Standard fixed or variable status should be provided by the attribute fixedMod.
- * 
+ *
  * <p>Java class for SpecificityRulesType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="SpecificityRulesType">
  *   &lt;complexContent>
@@ -27,8 +27,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "SpecificityRulesType", propOrder = {
@@ -41,29 +41,29 @@ public class SpecificityRulesType {
 
     /**
      * Gets the value of the cvParam property.
-     * 
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the cvParam property.
-     * 
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getCvParam().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link CVParamType }
-     * 
-     * 
+     *
+     *
      */
     public List<CVParamType> getCvParam() {
         if (cvParam == null) {
-            cvParam = new ArrayList<CVParamType>();
+            cvParam = new ArrayList<CVParamType>(1);
         }
         return this.cvParam;
     }

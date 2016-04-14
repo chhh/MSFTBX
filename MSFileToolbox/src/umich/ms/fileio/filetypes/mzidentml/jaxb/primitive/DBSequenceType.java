@@ -13,12 +13,12 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * A database sequence from the specified SearchDatabase (nucleic acid or amino acid). If the sequence is nucleic acid, the source nucleic acid sequence
- * should be given in the seq attribute rather than a translated sequence.	
- * 
+ * should be given in the seq attribute rather than a translated sequence.
+ *
  * <p>Java class for DBSequenceType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="DBSequenceType">
  *   &lt;complexContent>
@@ -34,8 +34,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "DBSequenceType", propOrder = {
@@ -62,11 +62,11 @@ public class DBSequenceType
 
     /**
      * Gets the value of the seq property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getSeq() {
         return seq;
@@ -74,11 +74,11 @@ public class DBSequenceType
 
     /**
      * Sets the value of the seq property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setSeq(String value) {
         this.seq = value;
@@ -86,37 +86,37 @@ public class DBSequenceType
 
     /**
      * Additional descriptors for the sequence, such as taxon, description line etc.Gets the value of the paramGroup property.
-     * 
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the paramGroup property.
-     * 
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getParamGroup().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link CVParamType }
      * {@link UserParamType }
-     * 
-     * 
+     *
+     *
      */
     public List<AbstractParamType> getParamGroup() {
         if (paramGroup == null) {
-            paramGroup = new ArrayList<AbstractParamType>();
+            paramGroup = new ArrayList<AbstractParamType>(1);
         }
         return this.paramGroup;
     }
 
     /**
      * Gets the value of the length property.
-     * 
+     *
      */
     public int getLength() {
         return length;
@@ -124,7 +124,7 @@ public class DBSequenceType
 
     /**
      * Sets the value of the length property.
-     * 
+     *
      */
     public void setLength(int value) {
         this.length = value;
@@ -132,11 +132,11 @@ public class DBSequenceType
 
     /**
      * Gets the value of the searchDatabaseRef property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getSearchDatabaseRef() {
         return searchDatabaseRef;
@@ -144,11 +144,11 @@ public class DBSequenceType
 
     /**
      * Sets the value of the searchDatabaseRef property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setSearchDatabaseRef(String value) {
         this.searchDatabaseRef = value;
@@ -156,11 +156,11 @@ public class DBSequenceType
 
     /**
      * Gets the value of the accession property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getAccession() {
         return accession;
@@ -168,11 +168,11 @@ public class DBSequenceType
 
     /**
      * Sets the value of the accession property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setAccession(String value) {
         this.accession = value;

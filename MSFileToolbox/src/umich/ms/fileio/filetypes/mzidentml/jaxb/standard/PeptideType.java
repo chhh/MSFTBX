@@ -12,11 +12,11 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * One (poly)peptide (a sequence with modifications). The combination of Peptide sequence and modifications must be unique in the file.
- * 
+ *
  * <p>Java class for PeptideType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="PeptideType"&gt;
  *   &lt;complexContent&gt;
@@ -31,15 +31,15 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "PeptideType", propOrder = {
     "peptideSequence",
-    "modifications",
-    "substitutionModifications",
-    "cvParamsAndUserParams"
+    "modification",
+    "substitutionModification",
+    "paramGroup"
 })
 public class PeptideType
     extends IdentifiableType
@@ -48,22 +48,22 @@ public class PeptideType
     @XmlElement(name = "PeptideSequence", required = true)
     protected String peptideSequence;
     @XmlElement(name = "Modification")
-    protected List<ModificationType> modifications;
+    protected List<ModificationType> modification;
     @XmlElement(name = "SubstitutionModification")
-    protected List<SubstitutionModificationType> substitutionModifications;
+    protected List<SubstitutionModificationType> substitutionModification;
     @XmlElements({
         @XmlElement(name = "cvParam", type = CVParamType.class),
         @XmlElement(name = "userParam", type = UserParamType.class)
     })
-    protected List<AbstractParamType> cvParamsAndUserParams;
+    protected List<AbstractParamType> paramGroup;
 
     /**
      * Gets the value of the peptideSequence property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getPeptideSequence() {
         return peptideSequence;
@@ -71,102 +71,102 @@ public class PeptideType
 
     /**
      * Sets the value of the peptideSequence property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setPeptideSequence(String value) {
         this.peptideSequence = value;
     }
 
     /**
-     * Gets the value of the modifications property.
-     * 
+     * Gets the value of the modification property.
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the modifications property.
-     * 
+     * This is why there is not a <CODE>set</CODE> method for the modification property.
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getModifications().add(newItem);
+     *    getModification().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link ModificationType }
-     * 
-     * 
+     *
+     *
      */
-    public List<ModificationType> getModifications() {
-        if (modifications == null) {
-            modifications = new ArrayList<ModificationType>();
+    public List<ModificationType> getModification() {
+        if (modification == null) {
+            modification = new ArrayList<ModificationType>(1);
         }
-        return this.modifications;
+        return this.modification;
     }
 
     /**
-     * Gets the value of the substitutionModifications property.
-     * 
+     * Gets the value of the substitutionModification property.
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the substitutionModifications property.
-     * 
+     * This is why there is not a <CODE>set</CODE> method for the substitutionModification property.
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getSubstitutionModifications().add(newItem);
+     *    getSubstitutionModification().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link SubstitutionModificationType }
-     * 
-     * 
+     *
+     *
      */
-    public List<SubstitutionModificationType> getSubstitutionModifications() {
-        if (substitutionModifications == null) {
-            substitutionModifications = new ArrayList<SubstitutionModificationType>();
+    public List<SubstitutionModificationType> getSubstitutionModification() {
+        if (substitutionModification == null) {
+            substitutionModification = new ArrayList<SubstitutionModificationType>(1);
         }
-        return this.substitutionModifications;
+        return this.substitutionModification;
     }
 
     /**
-     * Gets the value of the cvParamsAndUserParams property.
-     * 
+     * Additional descriptors of this peptide sequence Gets the value of the paramGroup property.
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the cvParamsAndUserParams property.
-     * 
+     * This is why there is not a <CODE>set</CODE> method for the paramGroup property.
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getCvParamsAndUserParams().add(newItem);
+     *    getParamGroup().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link CVParamType }
      * {@link UserParamType }
-     * 
-     * 
+     *
+     *
      */
-    public List<AbstractParamType> getCvParamsAndUserParams() {
-        if (cvParamsAndUserParams == null) {
-            cvParamsAndUserParams = new ArrayList<AbstractParamType>();
+    public List<AbstractParamType> getParamGroup() {
+        if (paramGroup == null) {
+            paramGroup = new ArrayList<AbstractParamType>(1);
         }
-        return this.cvParamsAndUserParams;
+        return this.paramGroup;
     }
 
 }
