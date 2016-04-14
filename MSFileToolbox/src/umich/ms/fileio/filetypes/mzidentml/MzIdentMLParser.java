@@ -2,6 +2,7 @@ package umich.ms.fileio.filetypes.mzidentml;
 
 import umich.ms.fileio.exceptions.FileParsingException;
 import umich.ms.fileio.filetypes.mzidentml.jaxb.standard.MzIdentMLType;
+import umich.ms.fileio.util.jaxb.JaxbUtils;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
@@ -14,7 +15,7 @@ import javax.xml.transform.stream.StreamSource;
 import java.nio.file.Path;
 
 /**
- * Helper methods for MzIdentML (.mzid) files.
+ * A very simple parser for MzIdentML.
  *
  * Created by Dmitry Avtonomov on 2016-04-13.
  */
@@ -28,20 +29,10 @@ public class MzIdentMLParser {
      */
     public static MzIdentMLType parse(Path path) throws FileParsingException {
         try {
-            JAXBContext jaxb = JAXBContext.newInstance(umich.ms.fileio.filetypes.mzidentml.jaxb.standard.ObjectFactory.class);
-            XMLInputFactory xif = XMLInputFactory.newFactory();
-            if (!xif.isPropertySupported(XMLInputFactory.IS_NAMESPACE_AWARE))
-                throw new FileParsingException(
-                        "The XMLInputFactory on this system does not support non-namespace aware parsing. " +
-                        "Look at the source of 'umich.ms.fileio.filetypes.mzidentml.MzIdentMLParser#parse(Path) " +
-                        "method as a reference to implement something else :)");
-            xif.setProperty(XMLInputFactory.IS_NAMESPACE_AWARE, false);
-            XMLStreamReader xsr = xif.createXMLStreamReader(new StreamSource(path.toFile()));
-            Unmarshaller unmarshaller = jaxb.createUnmarshaller();
-            JAXBElement<MzIdentMLType> jaxbElement = unmarshaller.unmarshal(xsr, MzIdentMLType.class);
-            return jaxbElement.getValue();
-
-        } catch (JAXBException | XMLStreamException e) {
+            XMLStreamReader xsr = JaxbUtils.createXmlStreamReader(path, false);
+            MzIdentMLType mzIdentMLType = JaxbUtils.unmarshall(MzIdentMLType.class, xsr);
+            return mzIdentMLType;
+        } catch (JAXBException e) {
             throw new FileParsingException(
                     String.format("JAXB parsing of MzIdentML file failed (%s)", path.toAbsolutePath().toString()), e);
         }

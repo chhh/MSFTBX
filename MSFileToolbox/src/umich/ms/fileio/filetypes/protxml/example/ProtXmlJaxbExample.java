@@ -12,10 +12,8 @@ import java.nio.file.Paths;
 /**
  * Created by dmitriya on 2015-09-22.
  */
-public class ProtXmlExample {
+public class ProtXmlJaxbExample {
     public static void main(String[] args) throws JAXBException {
-        // input file
-        //String path = "D:\\_garbage\\interact-Ewing_set1.prot.xml";
         String path = args[0];
         Path p = Paths.get(path).toAbsolutePath();
         File f = new File(p.toString());

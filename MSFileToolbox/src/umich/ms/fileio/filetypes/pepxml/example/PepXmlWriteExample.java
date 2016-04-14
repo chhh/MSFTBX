@@ -15,7 +15,7 @@ import java.util.List;
  *
  * Created by Dmitry Avtonomov on 2015-10-17.
  */
-public class JaxbPepXmlWriteTest {
+public class PepXmlWriteExample {
     public static void main(String[] args) throws JAXBException {
 
         MsmsPipelineAnalysis msmsPipelineAnalysis = new MsmsPipelineAnalysis();

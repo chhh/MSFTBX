@@ -40,11 +40,6 @@ public class GPMDBFile extends AbstractFile {
 
             Class<Bioml> clazz = Bioml.class;
 
-//            String packageName = clazz.getPackage().getName();
-//            ClassLoader clazzLoader = clazz.getClass().getClassLoader();
-//            Thread.currentThread().setContextClassLoader(clazzLoader);
-//            JAXBContext jaxbContext = JAXBContext.newInstance(packageName);
-
             JAXBContext jaxbContext = JAXBContext.newInstance(clazz);
             Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
             Object unmarshalled = unmarshaller.unmarshal(bis);
