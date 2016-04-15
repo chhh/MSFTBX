@@ -1,4 +1,4 @@
-package umich.ms.msfiletoolbox;
+package umich.ms.fileio.filetypes.mzxml.example;
 
 import umich.ms.datatypes.LCMSData;
 import umich.ms.datatypes.LCMSDataSubset;
@@ -24,10 +24,11 @@ import java.util.*;
 public class Example {
     public static void main(String[] args) throws FileParsingException {
 
-        String pathToFile = "E:\\andy\\q01507.mzXML";
+//        String path = "E:\\andy\\q01507.mzXML";
+        String path = args[0];
 
         // Create a concrete implementation of LCMSDataSource
-        MZXMLFile source = new MZXMLFile(pathToFile);
+        MZXMLFile source = new MZXMLFile(path);
 
         // This code block is for processing mzXML containing only MS2 scans
         {
