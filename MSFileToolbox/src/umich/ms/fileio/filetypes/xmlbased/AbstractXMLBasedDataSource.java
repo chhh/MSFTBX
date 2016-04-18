@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright 2016 Dmitry Avtonomov.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -637,7 +637,10 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
         // prepare for parsing
         NavigableMap<Integer, ? extends XMLBasedIndexElement> idx = fetchIndex().getMapByNum();
         LCMSRunInfo info = fetchRunInfo();
-        OffsetLength offsetLength = idx.get(num).getOffsetLength();
+        XMLBasedIndexElement indexElement = idx.get(num);
+        if (indexElement == null)
+            throw new FileParsingException(String.format("No such scan number found in the index [%d]", num));
+        OffsetLength offsetLength = indexElement.getOffsetLength();
         if (offsetLength == null) {
             throw new IllegalArgumentException("The scan you've requested to parse spectrumRef for was not found in the index");
         }
