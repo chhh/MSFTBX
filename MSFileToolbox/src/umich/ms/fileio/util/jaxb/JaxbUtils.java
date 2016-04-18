@@ -24,7 +24,6 @@ import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 import java.io.*;
 import java.lang.ref.SoftReference;
-import java.lang.ref.WeakReference;
 import java.nio.file.Path;
 import java.util.Collection;
 import java.util.HashSet;
@@ -34,9 +33,12 @@ import java.util.Set;
 /**
  * Generic serializer (marshaller/unmarshaller) class that uses JAXB.
  *
+ * @see JAXB
+ * 
  * @author Arno Moonen <info@arnom.nl>
  * @author Dmitry Avtonomov
  */
+@SuppressWarnings({"rawtypes", "unchecked"})
 public class JaxbUtils
 {
     /**
