@@ -9,5 +9,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="MSFTBX deps" level="project" />
     <orderEntry type="library" name="MSFTBX logging" level="project" />
+    <orderEntry type="library" name="com4j" level="project" />
   </component>
 </module>

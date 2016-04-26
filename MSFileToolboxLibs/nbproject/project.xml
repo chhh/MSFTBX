@@ -100,6 +100,9 @@
                 <package>com.sun.xml.xsom.parser</package>
                 <package>com.sun.xml.xsom.util</package>
                 <package>com.sun.xml.xsom.visitor</package>
+                <package>com4j</package>
+                <package>com4j.stdole</package>
+                <package>com4j.util</package>
                 <package>demo</package>
                 <package>javax.realtime</package>
                 <package>javax.xml.bind</package>
@@ -197,6 +200,10 @@
             <class-path-extension>
                 <runtime-relative-path>ext/slf4j-api-1.7.10.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/slf4j-api-1.7.10.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/com4j-2.2-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/com4j-2.2-SNAPSHOT.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/commons-pool2-2.3.jar</runtime-relative-path>
