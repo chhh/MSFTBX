@@ -17,7 +17,7 @@ package umich.ms.util;
 
 /**
  * Represents a range of doubles, e.g. retention times.
- * Created by dmitriya on 2015-03-04.
+ * @author Dmitry Avtonomov
  */
 public class DoubleRange extends Interval1D<Double> {
     public DoubleRange(Double left, Double right) {

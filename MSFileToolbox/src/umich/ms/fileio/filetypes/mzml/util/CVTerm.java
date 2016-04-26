@@ -17,7 +17,7 @@ package umich.ms.fileio.filetypes.mzml.util;
 
 /**
  * Just the most generic representation of a CV term.
- * Created by dmitriya on 2015-03-30.
+ * @author Dmitry Avtonomov
  */
 public class CVTerm {
     public final String accession;

@@ -25,7 +25,7 @@ import java.util.Arrays;
  * Auto-growing array of bytes, with access to the underlying data.
  * Almost exactly follows Java's ByteArrayOutputStream, but gives access
  * to underlying data and allows basic navigation.
- * Created by dmitriya on 2015-02-24.
+ * @author Dmitry Avtonomov
  */
 public class ByteArrayHolder extends OutputStream {
 

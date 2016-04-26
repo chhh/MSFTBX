@@ -34,7 +34,7 @@ import umich.ms.logging.LogHelper;
 
 /**
  * Parses the header of the file to get isntrument information.
- * Created by dmitriya on 2015-02-10.
+ * @author Dmitry Avtonomov
  */
 public class MZXMLRunHeaderParser extends XmlBasedRunHeaderParser {
     protected MZXMLFile source;

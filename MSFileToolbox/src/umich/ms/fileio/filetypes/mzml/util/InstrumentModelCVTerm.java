@@ -16,7 +16,7 @@
 package umich.ms.fileio.filetypes.mzml.util;
 
 /**
- * Created by dmitriya on 2015-03-30.
+ * @author Dmitry Avtonomov
  */
 public class InstrumentModelCVTerm extends CVTerm {
     public final String vendor;

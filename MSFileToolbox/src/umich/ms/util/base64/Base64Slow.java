@@ -16,7 +16,7 @@
 package umich.ms.util.base64;
 
 /**
- * Created by dmitriya on 2015-02-25.
+ * @author Dmitry Avtonomov
  */
 /*
  * Copyright (C) 2001-2010 Stephen Ostermiller

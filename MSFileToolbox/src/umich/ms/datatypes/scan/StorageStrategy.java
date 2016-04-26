@@ -23,7 +23,7 @@ import umich.ms.util.StrongReference;
 
 /**
  * Enum holding spectrumRef reference types.
- * Created by dmitriya on 2015-03-04.
+ * @author Dmitry Avtonomov
  */
 @SuppressWarnings("rawtypes")
 public enum StorageStrategy {

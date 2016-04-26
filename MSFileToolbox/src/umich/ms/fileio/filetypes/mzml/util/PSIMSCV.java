@@ -37,7 +37,7 @@ import org.biojava.nbio.ontology.io.OboParser;
 /**
  * Commonly used Ontology terms in mzML files.
  * @see <a href="http://psidev.cvs.sourceforge.net/viewvc/psidev/psi/psi-ms/mzML/controlledVocabulary/psi-ms.obo">PSI-MS obo</a>
- * Created by dmitriya on 2015-02-10.
+ * @author Dmitry Avtonomov
  */
 public enum PSIMSCV {
     UO_SECONDS                          ("UO:0000010", "second"),

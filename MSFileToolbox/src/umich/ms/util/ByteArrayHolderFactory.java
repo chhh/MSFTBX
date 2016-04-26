@@ -20,7 +20,7 @@ import org.apache.commons.pool2.PooledObject;
 import org.apache.commons.pool2.impl.DefaultPooledObject;
 
 /**
- * Created by dmitriya on 2015-02-24.
+ * @author Dmitry Avtonomov
  */
 public class ByteArrayHolderFactory extends BasePooledObjectFactory<ByteArrayHolder> {
     protected volatile int defaultSize = 8192; // default to 8192

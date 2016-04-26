@@ -54,7 +54,7 @@ import umich.ms.util.base64.Base64ContextPooled;
 
 /**
  * Parses multiple spectra read from mzML file. One chunk of bytes should be given to it.
- * Created by dmitriya on 2015-02-20.
+ * @author Dmitry Avtonomov
  */
 @SuppressWarnings("unchecked")
 public class MZMLMultiSpectraParser extends MultiSpectraParser {

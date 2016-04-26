@@ -16,7 +16,7 @@
 package umich.ms.fileio.filetypes.mzml.util;
 
 /**
- * Created by dmitriya on 2015-03-13.
+ * @author Dmitry Avtonomov
  */
 public class ActivationCVTerm extends CVTerm {
     public final String description;

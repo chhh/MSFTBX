@@ -41,7 +41,7 @@ import umich.ms.fileio.filetypes.xmlbased.OffsetLength;
 import umich.ms.logging.LogHelper;
 
 /**
- * Created by dmitriya on 2015-02-04.
+ * @author Dmitry Avtonomov
  */
 public class MZMLIndexParser {
     private static final Logger log = LoggerFactory.getLogger(MZMLIndexParser.class);

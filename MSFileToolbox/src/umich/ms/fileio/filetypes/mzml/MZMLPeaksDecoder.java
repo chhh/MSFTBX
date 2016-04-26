@@ -25,7 +25,7 @@ import umich.ms.fileio.filetypes.util.ZlibInflater;
 import umich.ms.util.ByteArrayHolder;
 
 /**
- * Created by dmitriya on 2015-03-16.
+ * @author Dmitry Avtonomov
  */
 public class MZMLPeaksDecoder {
 

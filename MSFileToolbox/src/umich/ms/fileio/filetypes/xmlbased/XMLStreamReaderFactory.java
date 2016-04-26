@@ -22,7 +22,7 @@ import org.apache.commons.pool2.impl.DefaultPooledObject;
 
 /**
  * Produces {@link javolution.xml.internal.stream.XMLStreamReaderImpl} objects for reuse in XML parser-workers.
- * Created by dmitriya on 2015-02-19.
+ * @author Dmitry Avtonomov
  */
 public class XMLStreamReaderFactory extends BasePooledObjectFactory<XMLStreamReaderImpl> {
 

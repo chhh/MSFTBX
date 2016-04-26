@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Used to convert retention times in mzML files.
- * Created by dmitriya on 2015-02-10.
+ * @author Dmitry Avtonomov
  */
 public enum UnitsCV {
 

@@ -17,7 +17,7 @@ package umich.ms.fileio.exceptions;
 
 /**
  * Used in areas, where run header info is parsed.
- * Created by dmitriya on 2015-02-20.
+ * @author Dmitry Avtonomov
  */
 public class RunHeaderParsingException extends FileParsingException {
     public RunHeaderParsingException() {

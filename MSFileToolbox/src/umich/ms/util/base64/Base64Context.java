@@ -19,7 +19,7 @@ import umich.ms.fileio.exceptions.FileParsingException;
 import umich.ms.util.ByteArrayHolder;
 
 /**
-* Created by dmitriya on 2015-02-25.
+* @author Dmitry Avtonomov
 */
 public class Base64Context {
 

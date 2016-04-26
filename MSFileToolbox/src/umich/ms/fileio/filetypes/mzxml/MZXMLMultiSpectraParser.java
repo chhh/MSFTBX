@@ -53,7 +53,7 @@ import java.util.zip.DataFormatException;
 
 /**
  * Parses several spectra using Javolution XML streaming parser.
- * Created by dmitriya on 2015-02-05.
+ * @author Dmitry Avtonomov
  */
 
 // this SuppressWarnings was the only way I've found to get rid of unchecked cast

@@ -21,7 +21,7 @@ import java.io.RandomAccessFile;
 
 /**
  *
- * @author dmitriya
+ * @author Dmitry Avtonomov
  */
 public class ReverseLineInputStream extends InputStream {
     RandomAccessFile in;

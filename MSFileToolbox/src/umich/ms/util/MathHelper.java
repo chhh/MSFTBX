@@ -18,7 +18,7 @@ package umich.ms.util;
 /**
  * Math functions.
  *
- * @author dmitriya
+ * @author Dmitry Avtonomov
  */
 public class MathHelper {
 

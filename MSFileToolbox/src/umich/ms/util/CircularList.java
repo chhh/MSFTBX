@@ -20,7 +20,7 @@ import java.util.LinkedList;
 
 /**
  *
- * @author dmitriya
+ * @author Dmitry Avtonomov
  */
 class CircularList<E> extends LinkedList<E> {
     Iterator<E> circularIter = null;

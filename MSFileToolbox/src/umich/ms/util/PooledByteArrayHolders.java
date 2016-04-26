@@ -22,7 +22,7 @@ import org.apache.commons.pool2.impl.SoftReferenceObjectPool;
 /**
  * A singleton pool of {@link ByteArrayHolder}s. Use it only when you need a
  * relatively large byte array, <b>AND DON'T FORGET TO RETURN OBJECTS TO THE POOL</b>
- * Created by dmitriya on 2015-02-25.
+ * @author Dmitry Avtonomov
  */
 public class PooledByteArrayHolders {
     protected ByteArrayHolderFactory factory;

@@ -53,7 +53,7 @@ import umich.ms.util.StringUtils;
 
 /**
  * Parses the run header of an mzML file.
- * Created by dmitriya on 2015-02-20.
+ * @author Dmitry Avtonomov
  */
 public class MZMLRunHeaderParser extends XmlBasedRunHeaderParser {
 

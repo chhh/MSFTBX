@@ -21,7 +21,7 @@ import umich.ms.util.ByteArrayHolder;
 import umich.ms.util.PooledByteArrayHolders;
 
 /**
-* Created by dmitriya on 2015-02-25.
+* @author Dmitry Avtonomov
 */
 public class Base64ContextPooled extends Base64Context {
     protected ObjectPool<ByteArrayHolder> pool;

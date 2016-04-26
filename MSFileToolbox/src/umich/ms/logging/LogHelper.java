@@ -21,7 +21,7 @@ import java.util.logging.LogManager;
 import javolution.context.LogContext;
         
 /**
- * Created by dmitriya on 2015-02-09.
+ * @author Dmitry Avtonomov
  */
 public class LogHelper {
     private LogHelper() {

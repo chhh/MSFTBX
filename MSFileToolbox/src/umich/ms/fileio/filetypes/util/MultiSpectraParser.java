@@ -28,7 +28,7 @@ import umich.ms.fileio.filetypes.LCMSDataSource;
 
 /**
  * Base class for parsers used by mzXML/mzML files.
- * Created by dmitriya on 2015-02-05.
+ * @author Dmitry Avtonomov
  */
 public abstract class MultiSpectraParser implements Callable<List<IScan>> {
     protected final InputStream is;

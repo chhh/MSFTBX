@@ -28,7 +28,7 @@ import umich.ms.util.DoubleRange;
 
 /**
  * Represents a subset of a ScanCollection.
- * Created by dmitriya on 2015-03-04.
+ * @author Dmitry Avtonomov
  */
 public class LCMSDataSubset implements Serializable {
     private static final long serialVersionUID = 7992060642981830599L;

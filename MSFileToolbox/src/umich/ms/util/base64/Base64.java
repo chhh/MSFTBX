@@ -21,7 +21,7 @@ import java.nio.charset.StandardCharsets;
 
 /**
  * Follows implementation from Apache Commons Codec (org.apache.commons.codec.binary.Base64).
- * Created by dmitriya on 2015-02-25.
+ * @author Dmitry Avtonomov
  */
 public class Base64 {
 

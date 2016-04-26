@@ -25,7 +25,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
- * Created by dmitriya on 2015-09-22.
+ * @author Dmitry Avtonomov
  */
 public class ProtXmlJaxbExample {
     public static void main(String[] args) throws JAXBException {

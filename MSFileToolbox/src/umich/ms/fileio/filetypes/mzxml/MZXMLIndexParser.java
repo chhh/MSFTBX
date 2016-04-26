@@ -40,7 +40,7 @@ import umich.ms.logging.LogHelper;
 
 /**
  * Parses the index portion of an MZXML file.
- * Created by dmitriya on 2015-02-04.
+ * @author Dmitry Avtonomov
  */
 public class MZXMLIndexParser {
     private final static Logger log = LoggerFactory.getLogger(MZXMLIndexParser.class);

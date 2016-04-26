@@ -25,7 +25,7 @@ import umich.ms.fileio.exceptions.FileParsingException;
 
 /**
  * Wrapper interface for working with all LC/MS files.
- * @author dmitriya
+ * @author Dmitry Avtonomov
  * @param <T> index type
  */
 public interface LCMSDataSource<T extends Index<?>> {

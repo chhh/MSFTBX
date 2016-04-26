@@ -25,7 +25,7 @@ import java.util.Map;
  * Temporarily stores processed LC/MS file run header. For now only isntrument info, but
  * applied data-processing and parent files can also be retrieved.<br/>
  * If only one instrument is added, it will set it as the default one.
- * Created by dmitriya on 2015-02-10.
+ * @author Dmitry Avtonomov
  */
 public class LCMSRunInfo implements Serializable {
     private static final long serialVersionUID = 9162516985361651181L;

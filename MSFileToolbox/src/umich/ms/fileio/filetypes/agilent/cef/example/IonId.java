@@ -16,7 +16,7 @@
 package umich.ms.fileio.filetypes.agilent.cef.example;
 
 /**
- * Created by dmitriya on 2015-09-23.
+ * @author Dmitry Avtonomov
  */
 public class IonId {
     public static final int CHARGE_UNKNOWN = Integer.MIN_VALUE;

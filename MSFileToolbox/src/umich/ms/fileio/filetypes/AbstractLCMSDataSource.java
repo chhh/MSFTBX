@@ -25,7 +25,7 @@ import java.io.Serializable;
 
 /**
  * Provides some basic defaults for simple LCMSFile interface methods.
- * @author dmitriya
+ * @author Dmitry Avtonomov
  * @param <T>
  */
 public abstract class AbstractLCMSDataSource<T extends Index<?>> extends AbstractFile implements LCMSDataSource<T>, Serializable {
