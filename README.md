@@ -31,6 +31,8 @@ This library is what drives [BatMass](https://github.com/chhh/batmass).
 - Agilent .cef files parser
 
 ## Building
+You can find pre-compiled binaries [here](https://github.com/chhh/MSFTBX/releases/latest).  
+
 **JAR**: You can load `MSFileToolbox` subdirectory as a project into Intellij IDEA IDE and build the jar from there. `Main Menu -> Build -> Build Artifacts`.  
 **NetBeans Module**: Open the root directory in NetBeans as a project. You will see `MSFTBX` module suite which consists of 3 modules: _MSFileToolbox Module_ - (this is the main thing), _MSFileToolbox Libx_ - these are the depencies, and _Auto Update (MSFTBX)_ - this is the update center for NetBeans Platform projects (you definitely don't need this) .
 
