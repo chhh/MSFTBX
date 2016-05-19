@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE module_updates PUBLIC "-//NetBeans//DTD Autoupdate Catalog 2.6//EN" "http://www.netbeans.org/dtds/autoupdate-catalog-2_6.dtd">
+<module_updates timestamp="46/35/19/19/05/2016">
+
+
+
+<module codenamebase="umich.ms.autoupdate" distribution="umich-ms-autoupdate.nbm" downloadsize="11616" homepage="http://batmass.org" license="AE2BED43" moduleauthor="Dmitry Avtonomov" needsrestart="false" releasedate="2016/05/19">
+    <manifest AutoUpdate-Show-In-Client="true" OpenIDE-Module="umich.ms.autoupdate" OpenIDE-Module-Implementation-Version="160519" OpenIDE-Module-Java-Dependencies="Java &gt; 1.7" OpenIDE-Module-Long-Description="The default behavior of client's UC is controlled by additional params added to batmass.conf:&#10;&#10;    -J-Dplugin.manager.check.interval=EVERY_STARTUP &#10;    This forces to check for updates at app start by default. if the user changes that manually later,&#10;    his settings will be remembered and used afterwards.&#10;    &#10;    -J-Dplugin.manager.check.new.plugins=true&#10;    This option forces to check for new plugin availability (not only updates to the installed plugins).&#10;    New plugins are reported as new updates in a balloon notification in the bottom right corner,&#10;    making it more likely to be installed by users." OpenIDE-Module-Module-Dependencies="org.netbeans.modules.autoupdate.services &gt; 1.51.1" OpenIDE-Module-Name="Auto Update (MSFTBX)" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="MSFTBX Update Center" OpenIDE-Module-Specification-Version="1.0"/>
+    
+</module>
+
+<module autoload="true" codenamebase="umich.ms.msfiletoolbox.libs" distribution="umich-ms-msfiletoolbox-libs.nbm" downloadsize="1884066" homepage="http://batmass.org" license="AE2BED43" moduleauthor="Dmitry Avtonomov" needsrestart="false" releasedate="2016/05/19">
+    <manifest AutoUpdate-Show-In-Client="true" OpenIDE-Module="umich.ms.msfiletoolbox.libs" OpenIDE-Module-Implementation-Version="160519" OpenIDE-Module-Java-Dependencies="Java &gt; 1.7" OpenIDE-Module-Name="MSFileToolbox Libs" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Specification-Version="1.0"/>
+    
+</module>
+
+<module codenamebase="umich.ms.msfiletoolbox" distribution="umich-ms-msfiletoolbox.nbm" downloadsize="3273260" homepage="http://batmass.org" license="AE2BED43" moduleauthor="Dmitry Avtonomov" needsrestart="false" releasedate="2016/05/19">
+    <manifest AutoUpdate-Show-In-Client="true" OpenIDE-Module="umich.ms.msfiletoolbox" OpenIDE-Module-Implementation-Version="160519" OpenIDE-Module-Java-Dependencies="Java &gt; 1.7" OpenIDE-Module-Module-Dependencies="umich.ms.msfiletoolbox.libs &gt; 1.0" OpenIDE-Module-Name="MSFileToolbox Module" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Specification-Version="1.0"/>
+    
+</module>
+
+<license name="AE2BED43" url="licenses/AE2BED43.license"/>
+</module_updates>
+
