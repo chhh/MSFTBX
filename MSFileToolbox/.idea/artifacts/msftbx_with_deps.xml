@@ -8,7 +8,7 @@
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/biojava-ontology-5.0.0-SNAPSHOT.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/slf4j-api-1.7.10.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/slf4j-jdk14-1.7.10.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/lib/guava-19.0-rc2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/guava-19.0.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>
