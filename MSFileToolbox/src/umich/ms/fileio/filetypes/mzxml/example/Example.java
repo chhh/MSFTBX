@@ -30,6 +30,7 @@ import umich.ms.fileio.filetypes.mzml.MZMLFile;
 import umich.ms.fileio.filetypes.mzml.MZMLIndex;
 import umich.ms.fileio.filetypes.mzxml.MZXMLFile;
 import umich.ms.fileio.filetypes.mzxml.MZXMLIndex;
+import umich.ms.fileio.filetypes.mzxml.MZXMLIndexElement;
 
 import java.util.*;
 
@@ -44,7 +45,6 @@ public class Example {
 
         // Create a concrete implementation of LCMSDataSource
         MZXMLFile source = new MZXMLFile(path);
-
         // This code block is for processing mzXML containing only MS2 scans
         {
             // if a scan has zero peaks in its spectrum it will still be parsed

@@ -311,7 +311,8 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
         OffsetLength readLast = readTasks.get(readTasks.size() - 1);
 
         long readOffset = readFirst.offset;
-        int readLength = (int) (readLast.offset + readLast.length - readOffset);
+        // TODO: WARNING ACHTUNG - possible overflow here if single spectra are very large, this has finally bitten me in the ass
+        int readLength = (int) (readLast.offset - readOffset + readLast.length);
         // check if the buffer size is enough and expand accordingly, or clean the old buffer
         if (readBuf.length < readLength) {
             readBuf = new byte[readLength];
