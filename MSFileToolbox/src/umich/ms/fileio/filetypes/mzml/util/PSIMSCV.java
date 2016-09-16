@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright 2016 Dmitry Avtonomov.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -65,7 +65,7 @@ public enum PSIMSCV {
     MS_MZ_OBSERVED_LO                   ("MS:1000528", "lowest observed m/z"),     // observed value
     MS_MZ_OBSERVED_LO_INST_SETTING      ("MS:1000501", "scan window lower limit"), // instrument setting
     MS_MZ_OBSERVED_HI                   ("MS:1000527", "highest observed m/z"),    // observed value
-    MS_MZ_OBSERVED_HI_INST_SETTING      ("MS:1000500", "scan window upper limit"), // isntrument setting
+    MS_MZ_OBSERVED_HI_INST_SETTING      ("MS:1000500", "scan window upper limit"), // instrument setting
     MS_BASEPEAK_MZ                      ("MS:1000504", "base peak m/z"),
     MS_BASEPEAK_INTENSITY               ("MS:1000505", "base peak intensity"),
     MS_TIC                              ("MS:1000285", "total ion current"),

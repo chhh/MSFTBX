@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright 2016 Dmitry Avtonomov.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -79,7 +79,7 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
         SELECTED_ION("selectedIon"),
         ACTIVATION("activation"),
         BINARY_DATA_LIST("binaryDataArrayList"),
-        DINARY_DATA_ARRAY("binaryDataArray"),
+        BINARY_DATA_ARRAY("binaryDataArray"),
         BINARY("binary");
 
         public final String name;

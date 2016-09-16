@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright 2016 Dmitry Avtonomov.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -31,6 +31,7 @@ import org.apache.commons.pool2.ObjectPool;
 import umich.ms.datatypes.LCMSDataSubset;
 import umich.ms.datatypes.lcmsrun.LCMSRunInfo;
 import umich.ms.datatypes.scan.IScan;
+import umich.ms.datatypes.scan.StorageStrategy;
 import umich.ms.datatypes.scancollection.IScanCollection;
 import umich.ms.datatypes.scancollection.impl.ScanCollectionDefault;
 import umich.ms.datatypes.spectrum.ISpectrum;
@@ -202,7 +203,7 @@ public class MZMLFile extends AbstractXMLBasedDataSource<MZMLIndexElement, MZMLI
             startTime = System.nanoTime();
             scans = new ScanCollectionDefault(true);
             scans.setDataSource(mzml);
-            scans.loadData(LCMSDataSubset.WHOLE_RUN, null);
+            scans.loadData(LCMSDataSubset.WHOLE_RUN, StorageStrategy.STRONG);
             System.out.println("It took: " + (System.nanoTime() - startTime) / 1e9
                     + " seconds to parse all scans (" + scans.getScanCount() + " spectra)");
 

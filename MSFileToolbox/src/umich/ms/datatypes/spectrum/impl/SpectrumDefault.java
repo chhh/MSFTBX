@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright 2016 Dmitry Avtonomov.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -37,18 +37,18 @@ public class SpectrumDefault extends AbstractSpectrum implements Serializable {
      * @param intensity
      * @param intLo
      * @param intLoNonZero minimum non-zero intensity in the spectrumRef. Can be set to zero if spectrumRef contains no peaks
-     * @param intHi Base-peak intensity
-     * @param intHiMz
+     * @param basePeakIntensity Base-peak intensity
+     * @param basePeakMz
      * @param intSum
      */
-    public SpectrumDefault(double[] mz, double[] intensity, double intLo, double intLoNonZero, double intHi, double intHiMz, double intSum) {
+    public SpectrumDefault(double[] mz, double[] intensity, double intLo, double intLoNonZero, double basePeakIntensity, double basePeakMz, double intSum) {
         if (mz.length != intensity.length) {
             throw new IllegalArgumentException("M/z and Intensity arrays must be of equal length");
         }
         this.mz = mz;
         this.intensity = intensity;
         if (mz.length > 0) {
-            init(mz[0], mz[mz.length-1], intLo, intLoNonZero, intHi, intHiMz, intSum);
+            init(mz[0], mz[mz.length-1], intLo, intLoNonZero, basePeakIntensity, basePeakMz, intSum);
         } else {
             init(0, 0, 0, 0, 0, 0, 0);
         }
