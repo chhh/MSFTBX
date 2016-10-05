@@ -17,6 +17,7 @@
 package umich.ms.fileio.filetypes.thermo.raw;
 
 import com4j.ComException;
+import com4j.ExecutionException;
 import umich.ms.datatypes.LCMSDataSubset;
 import umich.ms.datatypes.lcmsrun.LCMSRunInfo;
 import umich.ms.datatypes.scan.IScan;
@@ -27,6 +28,8 @@ import umich.ms.fileio.filetypes.thermo.raw.com4j.ClassFactory;
 import umich.ms.fileio.filetypes.thermo.raw.com4j.IXRawfile;
 import umich.ms.fileio.filetypes.thermo.raw.com4j.IXRawfile5;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 /**
@@ -63,7 +66,7 @@ public class ThermoRawFile extends AbstractLCMSDataSource<ThermoRawIndex>{
             IXRawfile5 xRawfile5 = xRawfile.queryInterface(IXRawfile5.class);
             if (xRawfile5 == null)
                 return false;
-        } catch (ComException ex) {
+        } catch (ComException | ExecutionException ex) {
             // looks like we could not find the type library, bail out
             return false;
         }
