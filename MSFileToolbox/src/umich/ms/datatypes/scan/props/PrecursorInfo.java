@@ -25,7 +25,6 @@ import umich.ms.util.DoubleRange;
  * Time: 4:00 PM
  */
 public class PrecursorInfo implements Serializable {
-    private static final long serialVersionUID = 31155610207856826L;
 
     /** This is the internal scan number, it will only be non-null, if the parent scan itself is still in the mzML/mzXML file. */
     private Integer parentScanNum;
@@ -40,6 +39,7 @@ public class PrecursorInfo implements Serializable {
     private Double mzTarget;
     private Integer charge;
     private String activationMethod;
+    private Double intensity;
 
     public String getParentScanRefRaw() {
         return parentScanRefRaw;
@@ -130,5 +130,13 @@ public class PrecursorInfo implements Serializable {
 
     public void setActivationMethod(String activationMethod) {
         this.activationMethod = activationMethod;
+    }
+
+    public Double getIntensity() {
+        return intensity;
+    }
+
+    public void setIntensity(Double intensity) {
+        this.intensity = intensity;
     }
 }

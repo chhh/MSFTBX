@@ -35,14 +35,12 @@ import umich.ms.datatypes.lcmsrun.LCMSRunInfo;
 import umich.ms.datatypes.scan.IScan;
 import umich.ms.datatypes.scan.PeaksCompression;
 import umich.ms.datatypes.scan.impl.ScanDefault;
-import umich.ms.datatypes.scan.props.Instrument;
-import umich.ms.datatypes.scan.props.Polarity;
-import umich.ms.datatypes.scan.props.PrecursorInfo;
-import umich.ms.datatypes.scan.props.ScanType;
+import umich.ms.datatypes.scan.props.*;
 import umich.ms.datatypes.spectrum.ISpectrum;
 import umich.ms.datatypes.spectrum.impl.SpectrumDefault;
 import umich.ms.fileio.exceptions.FileParsingException;
 import umich.ms.fileio.filetypes.mzml.util.PSIMSCV;
+import umich.ms.fileio.filetypes.mzml.util.UnitsCV;
 import umich.ms.fileio.filetypes.util.MultiSpectraParser;
 import umich.ms.fileio.filetypes.xmlbased.IndexBuilder;
 import umich.ms.fileio.filetypes.xmlbased.OffsetLength;
@@ -303,6 +301,10 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
                     switch (cvEntry) {
                         case MS_PRECURSOR_ISO_WND_TARGET:
                             vars.precursorIsoWndTarget = val.toDouble();
+                            break;
+                        case MS_PRECURSOR_INTENSITY:
+                            vars.precursorIntensity = val.toDouble();
+                            precursorInfo.setIntensity(vars.precursorIntensity);
                             break;
                         case MS_PRECURSOR_ISO_WND_LO_OFFSET:
                             vars.precursorIsoWndLoOffset = val.toDouble();
@@ -591,6 +593,44 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
             case MS_SCAN_TYPE_ZOOM:
                 vars.curScan.setScanType(ScanType.ZOOM);
                 break;
+            case MS_ION_INJECTION_TIME:
+                // cvParams for RT should contain time units
+                cvEntry = PSIMSCV.UO_MILLISECONDS; // default assumption
+                attr = attrs.getValue(ATTR.CV_PARAM_UNIT_ACCESSION.name);
+                if (attr != null) {
+                    cvEntry = PSIMSCV.fromAccession(attr.toString());
+                }
+                if (cvEntry == null) {
+                    throw new FileParsingException(String.format(
+                            "Unknown ion injection time units accession encountered: '%s', claims to be: '%s'",
+                            attr.toString(), attrs.getValue(ATTR.CV_PARAM_UNIT_NAME.name).toString()));
+                }
+                InjectionInfo injectionInfo = vars.curScan.getInjectionInfo();
+                if (injectionInfo == null) {
+                    injectionInfo = new InjectionInfo();
+                    vars.curScan.setInjectionInfo(injectionInfo);
+                }
+                switch (cvEntry) {
+                    case UO_MILLISECONDS:
+                        vars.curScan.setRt(val.toDouble());
+                        break;
+                    case UO_MICROSECONDS:
+                        vars.curScan.setRt(val.toDouble() * 1e6d);
+                        break;
+                    case UO_NANOSECONDS:
+                        vars.curScan.setRt(val.toDouble() * 1e9d);
+                        break;
+                    case UO_SECONDS:
+                        injectionInfo.setDuration(val.toDouble() * 1e3d);
+                        break;
+                    case UO_MINUTES:
+                        vars.curScan.setRt(val.toDouble() * 60d * 1e3d);
+                        break;
+                    case UO_HOURS:
+                        vars.curScan.setRt(val.toDouble() * 60d * 1e6d);
+                        break;
+                }
+
             case MS_RT_SCAN_START:
             case MS_RT_RETENTION_TIME:
             case MS_RT_RETENTION_TIME_LOCAL:
@@ -624,6 +664,7 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
                         break;
                     case UO_NANOSECONDS:
                         vars.curScan.setRt(val.toDouble() * 1e9d);
+                        break;
                 }
                 break;
         }
@@ -968,12 +1009,13 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
         Double precursorIsoWndTarget;
         Double precursorIsoWndLoOffset;
         Double precursorIsoWndHiOffset;
+        Double precursorIntensity;
 
         // vars for Index Building
         Long offset;
         Integer length;
 
-        public static enum BIN_DATA_TYPE{MZ, INTENSITY};
+        public enum BIN_DATA_TYPE{MZ, INTENSITY};
         Integer precision;
         EnumSet<PeaksCompression> compressions;
         BIN_DATA_TYPE binDataType;
@@ -1004,6 +1046,7 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
             precursorIsoWndTarget = null;
             precursorIsoWndLoOffset = null;
             precursorIsoWndHiOffset = null;
+            precursorIntensity = null;
 
             offset = null;
             length = null;

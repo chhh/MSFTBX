@@ -16,10 +16,8 @@
 package umich.ms.datatypes.scan;
 
 import java.io.Serializable;
-import umich.ms.datatypes.scan.props.Instrument;
-import umich.ms.datatypes.scan.props.Polarity;
-import umich.ms.datatypes.scan.props.PrecursorInfo;
-import umich.ms.datatypes.scan.props.ScanType;
+
+import umich.ms.datatypes.scan.props.*;
 import umich.ms.datatypes.scancollection.IScanCollection;
 import umich.ms.datatypes.spectrum.ISpectrum;
 import umich.ms.fileio.exceptions.FileParsingException;
@@ -49,6 +47,7 @@ public interface IScan extends Serializable {
     PrecursorInfo getPrecursor();
     List<Integer> getChildScans();
     Instrument    getInstrument();
+    InjectionInfo getInjectionInfo();
     Double        getBasePeakIntensity();
     Double        getBasePeakMz();
     Double        getTic();
@@ -83,6 +82,7 @@ public interface IScan extends Serializable {
     void setPrecursor(PrecursorInfo precursor);
     void setChildScans(List<Integer> childScans);
     void setInstrument(Instrument instrument);
+    void setInjectionInfo(InjectionInfo injectionInfo);
     void setBasePeakIntensity(Double basePeakIntensity);
     void setBasePeakMz(Double basePeakMz);
     void setTic(Double tic);

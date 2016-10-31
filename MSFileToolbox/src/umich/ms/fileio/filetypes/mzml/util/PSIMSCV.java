@@ -25,7 +25,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 import javolution.text.CharArray;
 import org.biojava.nbio.ontology.Ontology;
@@ -73,6 +72,7 @@ public enum PSIMSCV {
     MS_RT_RETENTION_TIME                ("MS:1000894", "retention time"),
     MS_RT_RETENTION_TIME_LOCAL          ("MS:1000895", "local retention time"),
     MS_RT_RETENTION_TIME_NORMALIZED     ("MS:1000896", "normalized retention time"),
+    MS_ION_INJECTION_TIME               ("MS:1000927", "ion injection time"),
     MS_PRECURSOR_ISO_WND_TARGET         ("MS:1000827", "isolation window target m/z"),
     MS_PRECURSOR_ISO_WND_LO_OFFSET      ("MS:1000828", "isolation window lower offset"),
     MS_PRECURSOR_ISO_WND_LO_OBSOLETE    ("MS:1000794", "isolation window lower limit"),
@@ -98,6 +98,8 @@ public enum PSIMSCV {
     MS_INSTRUMENT                       ("MS:1000463", "instrument"),
     MS_INSTRUMENT_MODEL                 ("MS:1000031", "instrument model"),
     MS_INSTRUMENT_VENDOR_OBSOLETE       ("MS:1000030", "vendor"),
+    MS_INSTRUMENT_SERIAL_NUMBER         ("MS:1000529", "instrument serial number"),
+
 
     MS_INSTRUMENT_COMPONENT_SOURCE      ("MS:1000458", "source"),
     MS_INSTRUMENT_COMPONENT_ANALYZER    ("MS:1000443", "mass analyzer type"),
@@ -123,7 +125,7 @@ public enum PSIMSCV {
 
 
     //@StaticResource // this annotation brings dependency on Common Annotations from NBP
-    final static String psiMsOboPath = "umich/ms/fileio/filetypes/mzml/resources/psi-ms.obo";
+    final static String psiMsOboPath = "umich/ms/fileio/filetypes/mzml/resources/psi-ms_v3.74.0.obo";
 
     public static Ontology ONTOLOGY;
 

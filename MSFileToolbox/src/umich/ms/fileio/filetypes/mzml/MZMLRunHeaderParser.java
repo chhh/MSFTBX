@@ -21,11 +21,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.RandomAccessFile;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Set;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import javax.xml.bind.JAXBElement;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.biojava.nbio.ontology.Term;
 import org.biojava.nbio.ontology.Triple;
@@ -103,29 +102,24 @@ public class MZMLRunHeaderParser extends XmlBasedRunHeaderParser {
                 boolean isVendorCvParamFound = false;
                 if (!i.getCvParam().isEmpty()) {
                     for (CVParamType cvParam : i.getCvParam()) {
-                        if (lookupInstrumentCV(cvParam, instrument)) {
-                            isInstrumentCvParamFound = true;
-                        }
-
-                        if (lookupInstrumentVendor(cvParam, instrument)) {
-                            isVendorCvParamFound = true;
-                        }
+                        if (lookupInstrumentCV(cvParam, instrument)) isInstrumentCvParamFound = true;
+                        if (lookupInstrumentVendor(cvParam, instrument)) isVendorCvParamFound = true;
+                        if (PSIMSCV.MS_INSTRUMENT_SERIAL_NUMBER.accession.equals(cvParam.getAccession()))
+                            instrument.setSerialNumber(cvParam.getValue());
                     }
 
                 }
                 if (!isInstrumentCvParamFound && !i.getReferenceableParamGroupRef().isEmpty()) {
                     // if there were no cvParams, there still might be a ReferenceableParamGroupType containing a cvParam
-                    // with isntruent info
+                    // with isntrument info
                     List<ReferenceableParamGroupRefType> refGrps = i.getReferenceableParamGroupRef();
                     for (ReferenceableParamGroupRefType refGrpRef : refGrps) {
                         ReferenceableParamGroupType refGrp = (ReferenceableParamGroupType) refGrpRef.getRef();
                         for (CVParamType cvParam : refGrp.getCvParam()) {
-                            if (lookupInstrumentCV(cvParam, instrument)) {
-                                isInstrumentCvParamFound = true;
-                            }
-
-                            if (lookupInstrumentVendor(cvParam, instrument)) {
-                                isVendorCvParamFound = true;
+                            if (lookupInstrumentCV(cvParam, instrument)) isInstrumentCvParamFound = true;
+                            if (lookupInstrumentVendor(cvParam, instrument)) isVendorCvParamFound = true;
+                            if (PSIMSCV.MS_INSTRUMENT_SERIAL_NUMBER.accession.equals(cvParam.getAccession())) {
+                                instrument.setSerialNumber(cvParam.getValue());
                             }
                         }
                     }
@@ -169,6 +163,14 @@ public class MZMLRunHeaderParser extends XmlBasedRunHeaderParser {
         }
         InstrumentConfigurationType instrument = (InstrumentConfigurationType) defaultInstrumentConfigurationRef;
         runInfo.setDefaultInstrumentID(instrument.getId());
+
+        // get start date
+        XMLGregorianCalendar startTimeStamp = run.getStartTimeStamp();
+        if (startTimeStamp != null) {
+            GregorianCalendar cal = startTimeStamp.toGregorianCalendar();
+            Date date = cal.getTime();
+            runInfo.setRunStartTime(date);
+        }
 
         // try to get the default isCentroided from DataProcessing section
         List<DataProcessingType> dataProcessings = parsedInfo.getDataProcessingList().getDataProcessing();

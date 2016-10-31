@@ -18,6 +18,7 @@ package umich.ms.datatypes.lcmsrun;
 import umich.ms.datatypes.scan.props.Instrument;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,12 +29,14 @@ import java.util.Map;
  * @author Dmitry Avtonomov
  */
 public class LCMSRunInfo implements Serializable {
+
     private static final long serialVersionUID = 9162516985361651181L;
 
     protected Map<String, Instrument> instruments;
     protected String defaultInstrumentID;
     protected Boolean isCentroided;
     private boolean isDefaultExplicitlySet;
+    protected Date date;
 
 
 
@@ -156,6 +159,13 @@ public class LCMSRunInfo implements Serializable {
         return lcmsRunInfo;
     }
 
+    public Date getRunStartTime() {
+        return runStartTime;
+    }
+
+    public void setRunStartTime(Date runStartTime) {
+        this.runStartTime = runStartTime;
+    }
 
     @Override
     public String toString() {

@@ -14,14 +14,22 @@
  * limitations under the License.
  */
 
-package umich.ms.datatypes.lcmsrun.impl;
-
-import com.google.common.util.concurrent.Futures;
+package umich.ms.datatypes.scan.props;
 
 /**
- * Created by Dmitry Avtonomov on 2016-04-27.
+ * Info about ion injection into the mass spectrometer.
+ *
+ * @author Dmitry Avtonomov
  */
-public abstract class LCMSRunInfoImpl {
-    public static void main(String[] args) {
+public class InjectionInfo {
+    /** Injection time in milliseconds. */
+    private Double duration;
+
+    public Double getDuration() {
+        return duration;
+    }
+
+    public void setDuration(Double duration) {
+        this.duration = duration;
     }
 }

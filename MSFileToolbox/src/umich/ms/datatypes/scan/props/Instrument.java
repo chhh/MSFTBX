@@ -19,22 +19,21 @@ import java.io.Serializable;
 
 
 /**
- * Author: Dmitry Avtonomov (dmitriya)
- * Email: dmitriy.avtonomov@gmail.com
- * Date: 3/25/13
- * Time: 5:37 PM
+ * Author: Dmitry Avtonomov
  */
 public class Instrument implements Serializable {
-    private static final long serialVersionUID = 5457880259281215955L;
+    private static final long serialVersionUID = 268119072813701156L;
 
     protected String manufacturer;
     protected String model;
+    protected String serialNumber;
     protected String analyzer;
     protected String detector;
     protected String ionisation;
 
     public static final String ID_UNKNOWN = "ID_UNKNOWN";
     public static final String UNKNOWN_MANUFACTURER = "Vendor N/A";
+    public static final String UNKNOWN_SERIAL_NUMBER = "Serial Number N/A";
     public static final String UNKNOWN_MODEL = "Model N/A";
     public static final String UNKNOWN_ANALYZER = "Analyzer N/A";
     public static final String UNKNOWN_DETECTOR = "Detector N/A";
@@ -42,11 +41,12 @@ public class Instrument implements Serializable {
 
 
     public Instrument() {
-        manufacturer = "";
-        model = "";
-        analyzer = "";
-        detector = "";
-        ionisation = "";
+        manufacturer = UNKNOWN_MANUFACTURER;
+        model = UNKNOWN_MODEL;
+        serialNumber = UNKNOWN_SERIAL_NUMBER;
+        analyzer = UNKNOWN_ANALYZER;
+        detector = UNKNOWN_DETECTOR;
+        ionisation = UNKNOWN_IONISATION;
     }
 
     public Instrument(String manufacturer, String model, String analyzer) {
@@ -90,6 +90,14 @@ public class Instrument implements Serializable {
         this.model = model;
     }
 
+    public String getSerialNumber() {
+        return serialNumber;
+    }
+
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
+    }
+
     public String getIonisation() {
         return ionisation;
     }
@@ -117,26 +125,27 @@ public class Instrument implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Instrument)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
 
         Instrument that = (Instrument) o;
 
-        if (analyzer != null ? !analyzer.equals(that.analyzer) : that.analyzer != null) return false;
-        if (detector != null ? !detector.equals(that.detector) : that.detector != null) return false;
-        if (ionisation != null ? !ionisation.equals(that.ionisation) : that.ionisation != null) return false;
         if (manufacturer != null ? !manufacturer.equals(that.manufacturer) : that.manufacturer != null) return false;
         if (model != null ? !model.equals(that.model) : that.model != null) return false;
+        if (serialNumber != null ? !serialNumber.equals(that.serialNumber) : that.serialNumber != null) return false;
+        if (analyzer != null ? !analyzer.equals(that.analyzer) : that.analyzer != null) return false;
+        if (detector != null ? !detector.equals(that.detector) : that.detector != null) return false;
+        return ionisation != null ? ionisation.equals(that.ionisation) : that.ionisation == null;
 
-        return true;
     }
 
     @Override
     public int hashCode() {
         int result = manufacturer != null ? manufacturer.hashCode() : 0;
         result = 31 * result + (model != null ? model.hashCode() : 0);
-        result = 31 * result + (ionisation != null ? ionisation.hashCode() : 0);
+        result = 31 * result + (serialNumber != null ? serialNumber.hashCode() : 0);
         result = 31 * result + (analyzer != null ? analyzer.hashCode() : 0);
         result = 31 * result + (detector != null ? detector.hashCode() : 0);
+        result = 31 * result + (ionisation != null ? ionisation.hashCode() : 0);
         return result;
     }
 
@@ -145,9 +154,10 @@ public class Instrument implements Serializable {
         return "Instrument{" +
                 "manufacturer='" + manufacturer + '\'' +
                 ", model='" + model + '\'' +
-                ", ionisation='" + ionisation + '\'' +
+                ", serialNumber='" + serialNumber + '\'' +
                 ", analyzer='" + analyzer + '\'' +
                 ", detector='" + detector + '\'' +
+                ", ionisation='" + ionisation + '\'' +
                 '}';
     }
 }

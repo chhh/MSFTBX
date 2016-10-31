@@ -16,11 +16,11 @@
 package umich.ms.datatypes.scan;
 
 import java.text.DecimalFormat;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
-import umich.ms.datatypes.scan.props.Instrument;
-import umich.ms.datatypes.scan.props.Polarity;
-import umich.ms.datatypes.scan.props.PrecursorInfo;
-import umich.ms.datatypes.scan.props.ScanType;
+
+import umich.ms.datatypes.scan.props.*;
 import umich.ms.datatypes.scancollection.IScanCollection;
 import umich.ms.datatypes.spectrum.ISpectrum;
 
@@ -39,6 +39,8 @@ public abstract class AbstractScan implements IScan {
     protected IScanCollection scans;
     /** If this is an MS1 scan, this field is left null, indicating there was no precursor */
     protected PrecursorInfo precursor;
+    /** If a file contains injection information, it should be put here, otherwise this field might be null. */
+    protected InjectionInfo injectionInfo;
     /** A list of MS/MS scans, that originated from this one */
     protected List<Integer> childScans;
     /** Retention time in minutes*/
@@ -95,6 +97,16 @@ public abstract class AbstractScan implements IScan {
         this.scanMzWindowUpper = null;
         this.storageStrategy = StorageStrategy.STRONG;
         this.scans = null;
+    }
+
+    @Override
+    public InjectionInfo getInjectionInfo() {
+        return null;
+    }
+
+    @Override
+    public void setInjectionInfo(InjectionInfo injectionInfo) {
+
     }
 
     @Override
