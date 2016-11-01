@@ -106,6 +106,12 @@ public enum PSIMSCV {
     MS_INSTRUMENT_COMPONENT_DETECTOR    ("MS:1000026", "detector type"),
 
 
+    MS_HASH_SHA1                        ("MS:1000569", "SHA-1"),
+    MS_HASH_MD5                         ("MS:1000568", "MD5"),
+
+
+
+
 //    MS_PRECURSOR_ACTIVATION_CID         ("MS:1000133", "collision-induced dissociation", "CID"),
 //    MS_PRECURSOR_ACTIVATION_PLASMA      ("MS:1000134", "plasma desorption", "Plasma Desorption"),
 //    MS_PRECURSOR_ACTIVATION_POST_SOURCE ("MS:1000135", "post-source decay", "Post-Source Decay"),

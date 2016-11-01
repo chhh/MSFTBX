@@ -101,12 +101,12 @@ public abstract class AbstractScan implements IScan {
 
     @Override
     public InjectionInfo getInjectionInfo() {
-        return null;
+        return injectionInfo;
     }
 
     @Override
     public void setInjectionInfo(InjectionInfo injectionInfo) {
-
+        this.injectionInfo = injectionInfo;
     }
 
     @Override

@@ -18,9 +18,7 @@ package umich.ms.datatypes.lcmsrun;
 import umich.ms.datatypes.scan.props.Instrument;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Temporarily stores processed LC/MS file run header. For now only isntrument info, but
@@ -29,23 +27,17 @@ import java.util.Map;
  * @author Dmitry Avtonomov
  */
 public class LCMSRunInfo implements Serializable {
+    private static final long serialVersionUID = -45967049048809479L;
 
-    private static final long serialVersionUID = 9162516985361651181L;
+    protected Map<String, Instrument> instruments = new HashMap<>(2);
+    protected String defaultInstrumentID = null;
+    protected Boolean isCentroided = null;
+    private boolean isDefaultExplicitlySet = false;
+    protected Date date = null;
+    protected List<MsSoftware> software = new ArrayList<>(5);
+    protected List<OriginalFile> originalFiles = new ArrayList<>(1);
 
-    protected Map<String, Instrument> instruments;
-    protected String defaultInstrumentID;
-    protected Boolean isCentroided;
-    private boolean isDefaultExplicitlySet;
-    protected Date date;
-
-
-
-    public LCMSRunInfo() {
-        defaultInstrumentID = null;
-        isDefaultExplicitlySet = false;
-        instruments = new HashMap<>(2);
-        isCentroided = null;
-    }
+    public LCMSRunInfo() {}
 
     /**
      * If any of data-processing entries in mzXML or a similar file has mentioned, that the files has been centroided.
@@ -160,20 +152,31 @@ public class LCMSRunInfo implements Serializable {
     }
 
     public Date getRunStartTime() {
-        return runStartTime;
+        return this.date;
     }
 
     public void setRunStartTime(Date runStartTime) {
-        this.runStartTime = runStartTime;
+        this.date = runStartTime;
+    }
+
+    public List<MsSoftware> getSoftware() {
+        return software;
+    }
+
+    public List<OriginalFile> getOriginalFiles() {
+        return originalFiles;
     }
 
     @Override
     public String toString() {
-        return "LCMSRunInfo {\n\t" +
+        return "LCMSRunInfo{" +
                 "instruments=" + instruments +
-                ",\n\t defaultInstrumentID='" + defaultInstrumentID + '\'' +
-                ",\n\t isCentroided=" + isCentroided +
-                ",\n\t isDefaultExplicitlySet=" + isDefaultExplicitlySet +
-                "\n}";
+                ", defaultInstrumentID='" + defaultInstrumentID + '\'' +
+                ", isCentroided=" + isCentroided +
+                ", isDefaultExplicitlySet=" + isDefaultExplicitlySet +
+                ", date=" + date +
+                ", software=" + software +
+                ", originalFiles=" + originalFiles +
+                '}';
     }
 }

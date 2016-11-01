@@ -612,24 +612,25 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
                 }
                 switch (cvEntry) {
                     case UO_MILLISECONDS:
-                        vars.curScan.setRt(val.toDouble());
+                        injectionInfo.setDuration(val.toDouble());
                         break;
                     case UO_MICROSECONDS:
-                        vars.curScan.setRt(val.toDouble() * 1e6d);
+                        injectionInfo.setDuration(val.toDouble() / 1e3d);
                         break;
                     case UO_NANOSECONDS:
-                        vars.curScan.setRt(val.toDouble() * 1e9d);
+                        injectionInfo.setDuration(val.toDouble() / 1e6d);
                         break;
                     case UO_SECONDS:
                         injectionInfo.setDuration(val.toDouble() * 1e3d);
                         break;
                     case UO_MINUTES:
-                        vars.curScan.setRt(val.toDouble() * 60d * 1e3d);
+                        injectionInfo.setDuration(val.toDouble() * 60d * 1e3d);
                         break;
                     case UO_HOURS:
-                        vars.curScan.setRt(val.toDouble() * 60d * 1e6d);
+                        injectionInfo.setDuration(val.toDouble() * 60d * 1e6d);
                         break;
                 }
+                break;
 
             case MS_RT_SCAN_START:
             case MS_RT_RETENTION_TIME:
@@ -657,13 +658,13 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
                         vars.curScan.setRt(val.toDouble() * 60d);
                         break;
                     case UO_MILLISECONDS:
-                        vars.curScan.setRt(val.toDouble() * 1e3d);
+                        vars.curScan.setRt(val.toDouble() / 1e3d * 60d);
                         break;
                     case UO_MICROSECONDS:
-                        vars.curScan.setRt(val.toDouble() * 1e6d);
+                        vars.curScan.setRt(val.toDouble() / 1e6d * 60d);
                         break;
                     case UO_NANOSECONDS:
-                        vars.curScan.setRt(val.toDouble() * 1e9d);
+                        vars.curScan.setRt(val.toDouble() / 1e9d * 60d);
                         break;
                 }
                 break;

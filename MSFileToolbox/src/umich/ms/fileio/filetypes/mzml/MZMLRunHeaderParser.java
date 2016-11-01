@@ -21,27 +21,20 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.RandomAccessFile;
 import java.nio.charset.StandardCharsets;
-import java.text.SimpleDateFormat;
 import java.util.*;
 import javax.xml.bind.JAXBElement;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.biojava.nbio.ontology.Term;
 import org.biojava.nbio.ontology.Triple;
+import umich.ms.datatypes.lcmsrun.Hash;
 import umich.ms.datatypes.lcmsrun.LCMSRunInfo;
+import umich.ms.datatypes.lcmsrun.MsSoftware;
+import umich.ms.datatypes.lcmsrun.OriginalFile;
 import umich.ms.datatypes.scan.props.Instrument;
 import umich.ms.fileio.exceptions.RunHeaderBoundsNotFound;
 import umich.ms.fileio.exceptions.RunHeaderParsingException;
-import umich.ms.fileio.filetypes.mzml.jaxb.CVParamType;
-import umich.ms.fileio.filetypes.mzml.jaxb.ComponentListType;
-import umich.ms.fileio.filetypes.mzml.jaxb.ComponentType;
-import umich.ms.fileio.filetypes.mzml.jaxb.DataProcessingType;
-import umich.ms.fileio.filetypes.mzml.jaxb.InstrumentConfigurationType;
-import umich.ms.fileio.filetypes.mzml.jaxb.MzMLType;
-import umich.ms.fileio.filetypes.mzml.jaxb.ProcessingMethodType;
-import umich.ms.fileio.filetypes.mzml.jaxb.ReferenceableParamGroupRefType;
-import umich.ms.fileio.filetypes.mzml.jaxb.ReferenceableParamGroupType;
-import umich.ms.fileio.filetypes.mzml.jaxb.RunType;
+import umich.ms.fileio.filetypes.mzml.jaxb.*;
 import umich.ms.fileio.filetypes.mzml.util.InstrumentModelCVTerm;
 import umich.ms.fileio.filetypes.mzml.util.PSIMSCV;
 import umich.ms.fileio.filetypes.mzxml.XmlBasedRunHeaderParser;
@@ -83,8 +76,42 @@ public class MZMLRunHeaderParser extends XmlBasedRunHeaderParser {
         MzMLType parsedInfo = parseHeaderWithJAXB(MzMLType.class, headerLocation);
         LCMSRunInfo runInfo = new LCMSRunInfo();
 
-        List<InstrumentConfigurationType> instruments =
-                parsedInfo.getInstrumentConfigurationList().getInstrumentConfiguration();
+
+        // original files
+        FileDescriptionType fileDescription = parsedInfo.getFileDescription();
+        if (fileDescription != null) {
+            List<SourceFileType> sourceFile = fileDescription.getSourceFileList().getSourceFile();
+            for (SourceFileType source : sourceFile) {
+                String location = source.getLocation();
+                String name = source.getName();
+                Hash hash = null;
+                for (CVParamType cvParam : source.getCvParam()) {
+                    if (PSIMSCV.MS_HASH_SHA1.accession.equals(cvParam.getAccession())) {
+                        hash = new Hash(cvParam.getValue(), Hash.TYPE.SHA1);
+                    } else if (PSIMSCV.MS_HASH_MD5.accession.equals(cvParam.getAccession())) {
+                        hash = new Hash(cvParam.getValue(), Hash.TYPE.MD5);
+                    }
+                }
+                runInfo.getOriginalFiles().add(new OriginalFile(location, name, hash));
+            }
+        }
+
+
+        // software
+        List<SoftwareType> software = parsedInfo.getSoftwareList().getSoftware();
+        for (SoftwareType soft : software) {
+            String name = soft.getId();
+            String id = soft.getId();
+            String version = soft.getVersion();
+            for (CVParamType cv : soft.getCvParam()) {
+                if (cv.getName() != null && !cv.getName().isEmpty())
+                    name = cv.getName();
+            }
+            runInfo.getSoftware().add(new MsSoftware(name, version));
+        }
+
+
+        List<InstrumentConfigurationType> instruments = parsedInfo.getInstrumentConfigurationList().getInstrumentConfiguration();
         if (instruments.size() > 0) {
             for (InstrumentConfigurationType i : instruments) {
                 String msInstrumentID;
