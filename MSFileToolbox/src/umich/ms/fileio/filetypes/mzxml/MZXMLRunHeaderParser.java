@@ -20,14 +20,23 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.RandomAccessFile;
+import java.net.URI;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.InvalidPathException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
+
+import umich.ms.datatypes.lcmsrun.Hash;
 import umich.ms.datatypes.lcmsrun.LCMSRunInfo;
+import umich.ms.datatypes.lcmsrun.MsSoftware;
+import umich.ms.datatypes.lcmsrun.OriginalFile;
 import umich.ms.datatypes.scan.props.Instrument;
 import umich.ms.fileio.exceptions.RunHeaderBoundsNotFound;
 import umich.ms.fileio.exceptions.RunHeaderParsingException;
 import umich.ms.fileio.filetypes.mzxml.jaxb.MsRun;
 import umich.ms.fileio.filetypes.mzxml.jaxb.OntologyEntryType;
+import umich.ms.fileio.filetypes.mzxml.jaxb.Software;
 import umich.ms.fileio.filetypes.util.AbstractFile;
 import umich.ms.fileio.filetypes.xmlbased.OffsetLength;
 import umich.ms.logging.LogHelper;
@@ -63,6 +72,41 @@ public class MZXMLRunHeaderParser extends XmlBasedRunHeaderParser {
 
         MsRun parsedInfo = parseHeaderWithJAXB(MsRun.class, msRunLocation);
         LCMSRunInfo runInfo = new LCMSRunInfo();
+
+
+        // original files
+        List<MsRun.ParentFile> parentFiles = parsedInfo.getParentFile();
+        for (MsRun.ParentFile parentFile : parentFiles) {
+            String file = parentFile.getFileName();
+            file = file.replaceAll("\\\\", "/");
+            String location = "";
+            String fileName = file;
+            try {
+                Path path = Paths.get(file);
+                location = path.getParent().toString();
+                fileName = path.getFileName().toString();
+            } catch (InvalidPathException e) {
+                // could not parse path, try URI
+                try {
+                    URI uri = URI.create(file).normalize();
+                    String uriPath = uri.getPath();
+                    while (uriPath.startsWith("/")) uriPath = uriPath.substring(1);
+
+                    Path path = Paths.get(uriPath);
+                    location = path.getParent().toString();
+                    fileName = path.getFileName().toString();
+                } catch (IllegalArgumentException e2) {
+                    // URI also didn't work, forget it
+                }
+            }
+
+            Hash hash = null;
+            if (parentFile.getFileSha1() != null && !parentFile.getFileSha1().isEmpty()) {
+                hash = new Hash(parentFile.getFileSha1(), Hash.TYPE.SHA1);
+            }
+            runInfo.getOriginalFiles().add(new OriginalFile(location, fileName, hash));
+        }
+
 
         List<MsRun.MsInstrument> msInstruments = parsedInfo.getMsInstrument();
         if (msInstruments.size() > 0) {
@@ -113,7 +157,12 @@ public class MZXMLRunHeaderParser extends XmlBasedRunHeaderParser {
         for (MsRun.DataProcessing dataProcessing : dataProcessings) {
             if (dataProcessing.isCentroided() != null) {
                 runInfo.setCentroided(dataProcessing.isCentroided());
-                break;
+            }
+
+            Software software = dataProcessing.getSoftware();
+            if (software != null) {
+                MsSoftware msSoftware = new MsSoftware(software.getName(), software.getVersion());
+                runInfo.getSoftware().add(msSoftware);
             }
         }
 

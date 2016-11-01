@@ -171,12 +171,10 @@ public class LCMSRunInfo implements Serializable {
     public String toString() {
         return "LCMSRunInfo{" +
                 "instruments=" + instruments +
+                ", date=" + date +
                 ", defaultInstrumentID='" + defaultInstrumentID + '\'' +
                 ", isCentroided=" + isCentroided +
                 ", isDefaultExplicitlySet=" + isDefaultExplicitlySet +
-                ", date=" + date +
-                ", software=" + software +
-                ", originalFiles=" + originalFiles +
                 '}';
     }
 }

@@ -14,19 +14,11 @@
  * limitations under the License.
  */
 
-package umich.ms.datatypes.lcmsrun;
+package umich.ms.msfiletoolbox;
 
 /**
  * @author Dmitry Avtonomov
  */
-public class Hash {
-    public final String value;
-    public final TYPE type;
-
-    public Hash(String value, TYPE type) {
-        this.value = value;
-        this.type = type;
-    }
-
-    public enum TYPE {UNKNOWN, SHA1, MD5}
+public class MsftbxInfo {
+    public static final String version = "1.1.0";
 }
