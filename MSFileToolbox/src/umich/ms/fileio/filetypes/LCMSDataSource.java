@@ -163,5 +163,5 @@ public interface LCMSDataSource<T extends Index<?>> {
      * @throws umich.ms.fileio.exceptions.FileParsingException
      * @throws IllegalArgumentException
      */
-    public List<IScan> parse(List<Integer> scanNums) throws FileParsingException;
+    List<IScan> parse(List<Integer> scanNums) throws FileParsingException;
 }

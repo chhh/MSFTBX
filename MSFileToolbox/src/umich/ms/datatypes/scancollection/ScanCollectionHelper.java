@@ -112,9 +112,30 @@ public class ScanCollectionHelper {
 
                         Integer thisMsLevel = curScan.getMsLevel();
                         Integer chldMsLevel = childScan.getMsLevel();
-                        if (precursor.getParentScanNum() == null
-                                && thisMsLevel != null && chldMsLevel != null && thisMsLevel + 1 == chldMsLevel) {
-                            precursor.setParentScanNum(curScanNum);
+                        if (precursor.getParentScanNum() == null && thisMsLevel != null && chldMsLevel != null && thisMsLevel + 1 == chldMsLevel) {
+
+                            Double pLo = precursor.getMzRangeStart();
+                            Double pHi = precursor.getMzRangeEnd();
+                            Double sLo = curScan.getScanMzWindowLower();
+                            Double sHi = curScan.getScanMzWindowUpper();
+                            if (pLo != null && pHi != null && sLo != null && sHi != null) {
+                                // if we know precursor isolation window and the scan's m/z scan range
+                                // they must overlap
+                                if (pLo <= sHi && sLo <= pHi) {
+                                    // they overlap!
+                                    if (pLo.equals(pHi)) { // it's a single point
+                                        precursor.setParentScanNum(curScanNum);
+                                    } else {
+                                        final double minOverlap = 0.75;
+                                        double overlap = Math.min(pHi, sHi) - Math.max(pLo, sLo);
+                                        precursor.setParentScanNum(curScanNum);
+                                    }
+                                }
+
+                            } else {
+                                // otherwise blindly add it
+                                precursor.setParentScanNum(curScanNum);
+                            }
                         }
 
                         // this else condition seems to not hold when some scans were cut out from mzXML file with ProteoWizrd.
