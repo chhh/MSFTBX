@@ -134,7 +134,7 @@ public enum PSIMSCV {
 
 
     //@StaticResource // this annotation brings dependency on Common Annotations from NBP
-    final static String psiMsOboPath = "umich/ms/fileio/filetypes/mzml/resources/psi-ms_v3.74.0.obo";
+    final static String psiMsOboPath = "umich/ms/fileio/filetypes/mzml/util/psi-ms.obo";
 
     public static Ontology ONTOLOGY;
 
