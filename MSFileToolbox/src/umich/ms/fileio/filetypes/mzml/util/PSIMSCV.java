@@ -81,7 +81,6 @@ public enum PSIMSCV {
     MS_PRECURSOR_INTENSITY              ("MS:1000042", "peak intensity"),
     MS_PRECURSOR_MZ                     ("MS:1000744", "selected ion m/z"),
     MS_PRECURSOR_CHARGE                 ("MS:1000041", "charge state"),
-    MS_PRECURSOR_COLLISION_ENERGY       ("MS:1000045", "collision energy"),
     MS_DATA_ARRAY_MZ                    ("MS:1000514", "m/z array"),
     MS_DATA_ARRAY_INTENSITY             ("MS:1000515", "intensity array"),
     MS_PRECISION_32                     ("MS:1000521", "32-bit float"),
@@ -94,12 +93,16 @@ public enum PSIMSCV {
 
     MS_DISSOCIATION_METHOD              ("MS:1000044", "dissociation method"),
     MS_PEAK_PICKING                     ("MS:1000035", "peak picking"),
+    MS_ACTIVATION_ENERGY_1              ("MS:1000045", "collision energy"),
+    MS_ACTIVATION_ENERGY_2              ("MS:1000509", "activation energy"),
+    MS_ACTIVATION_ENERGY_LO             ("MS:1002013", "collision energy ramp start"),
+    MS_ACTIVATION_ENERGY_HI             ("MS:1002014", "collision energy ramp end"),
+    MS_ACTIVATION_ENERGY_SUP            ("MS:1002680", "supplemental collision energy"),
 
     MS_INSTRUMENT                       ("MS:1000463", "instrument"),
     MS_INSTRUMENT_MODEL                 ("MS:1000031", "instrument model"),
     MS_INSTRUMENT_VENDOR_OBSOLETE       ("MS:1000030", "vendor"),
     MS_INSTRUMENT_SERIAL_NUMBER         ("MS:1000529", "instrument serial number"),
-
 
     MS_INSTRUMENT_COMPONENT_SOURCE      ("MS:1000458", "source"),
     MS_INSTRUMENT_COMPONENT_ANALYZER    ("MS:1000443", "mass analyzer type"),

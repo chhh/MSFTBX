@@ -15,13 +15,6 @@
  */
 package umich.ms.fileio.filetypes.mzml;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.EnumSet;
-import java.util.List;
-import java.util.zip.DataFormatException;
 import javolution.text.CharArray;
 import javolution.xml.internal.stream.XMLStreamReaderImpl;
 import javolution.xml.sax.Attributes;
@@ -40,7 +33,6 @@ import umich.ms.datatypes.spectrum.ISpectrum;
 import umich.ms.datatypes.spectrum.impl.SpectrumDefault;
 import umich.ms.fileio.exceptions.FileParsingException;
 import umich.ms.fileio.filetypes.mzml.util.PSIMSCV;
-import umich.ms.fileio.filetypes.mzml.util.UnitsCV;
 import umich.ms.fileio.filetypes.util.MultiSpectraParser;
 import umich.ms.fileio.filetypes.xmlbased.IndexBuilder;
 import umich.ms.fileio.filetypes.xmlbased.OffsetLength;
@@ -49,6 +41,14 @@ import umich.ms.util.ByteArrayHolder;
 import umich.ms.util.base64.Base64;
 import umich.ms.util.base64.Base64Context;
 import umich.ms.util.base64.Base64ContextPooled;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.EnumSet;
+import java.util.List;
+import java.util.zip.DataFormatException;
 
 /**
  * Parses multiple spectra read from mzML file. One chunk of bytes should be given to it.
@@ -247,6 +247,7 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
 
         // read until the closing </precursor> tag
         PrecursorInfo precursorInfo = new PrecursorInfo();
+        ActivationInfo activationInfo = precursorInfo.getActivationInfo();
         attrs = reader.getAttributes();
         attr = attrs.getValue(ATTR.PRECURSOR_SPEC_REF.name);
         if (attr != null) {
@@ -294,9 +295,9 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
                         // check for activation method
                         String activationMethod = PSIMSCV.activationMethodFromAccession(attr);
                         if (activationMethod != null) {
-                            precursorInfo.setActivationMethod(activationMethod);
+                            activationInfo.setActivationMethod(activationMethod);
                         }
-                        break;
+                        continue;
                     }
                     switch (cvEntry) {
                         case MS_PRECURSOR_ISO_WND_TARGET:
@@ -324,8 +325,17 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
                         case MS_PRECURSOR_CHARGE:
                             precursorInfo.setCharge(val.toInt());
                             break;
-                        case MS_PRECURSOR_COLLISION_ENERGY:
-                            // we don't use those
+                        case MS_ACTIVATION_ENERGY_1:
+                        case MS_ACTIVATION_ENERGY_2:
+                        case MS_ACTIVATION_ENERGY_LO:
+                        case MS_ACTIVATION_ENERGY_SUP:
+                            activationInfo.setActivationEnergyLo(val.toDouble());
+                            final Double eHi = activationInfo.getActivationEnergyHi();
+                            if (eHi == null || Double.isNaN(eHi))
+                                activationInfo.setActivationEnergyHi(val.toDouble());
+                            break;
+                        case MS_ACTIVATION_ENERGY_HI:
+                            activationInfo.setActivationEnergyHi(val.toDouble());
                             break;
                     }
                 }

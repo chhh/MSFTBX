@@ -38,8 +38,12 @@ public class PrecursorInfo implements Serializable {
     private Double mzRangeEnd;
     private Double mzTarget;
     private Integer charge;
-    private String activationMethod;
+    private ActivationInfo activationInfo;
     private Double intensity;
+
+    public PrecursorInfo() {
+        activationInfo = new ActivationInfo();
+    }
 
     public String getParentScanRefRaw() {
         return parentScanRefRaw;
@@ -120,16 +124,12 @@ public class PrecursorInfo implements Serializable {
         this.mzRangeEnd = mzRangeEnd;
     }
 
-    /**
-     * TODO: This is a STUB. Should probably be an instance of a class, defining activation methods
-     * @return
-     */
-    public String getActivationMethod() {
-        return activationMethod;
+    public ActivationInfo getActivationInfo() {
+        return activationInfo;
     }
 
-    public void setActivationMethod(String activationMethod) {
-        this.activationMethod = activationMethod;
+    public void setActivationInfo(ActivationInfo activationInfo) {
+        this.activationInfo = activationInfo;
     }
 
     public Double getIntensity() {

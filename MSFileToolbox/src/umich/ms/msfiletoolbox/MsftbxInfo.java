@@ -16,9 +16,18 @@
 
 package umich.ms.msfiletoolbox;
 
+import java.util.TreeMap;
+
 /**
  * @author Dmitry Avtonomov
  */
 public class MsftbxInfo {
-    public static final String version = "1.1.1";
+    public static final String version = "1.2.0";
+
+    private static TreeMap<String, String> changelog = new TreeMap<>();
+
+    static {
+        String v1_2_0 = "v1.2.0";
+        changelog.put(v1_2_0, "Added fragmentation energy and reaction time");
+    }
 }

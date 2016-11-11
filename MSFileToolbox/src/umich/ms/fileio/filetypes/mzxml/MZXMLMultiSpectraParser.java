@@ -28,6 +28,7 @@ import umich.ms.datatypes.lcmsrun.LCMSRunInfo;
 import umich.ms.datatypes.scan.IScan;
 import umich.ms.datatypes.scan.PeaksCompression;
 import umich.ms.datatypes.scan.impl.ScanDefault;
+import umich.ms.datatypes.scan.props.ActivationInfo;
 import umich.ms.datatypes.scan.props.Polarity;
 import umich.ms.datatypes.scan.props.PrecursorInfo;
 import umich.ms.datatypes.scan.props.ScanType;
@@ -117,6 +118,7 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
         PRECURSOR_CHARGE("precursorCharge", false),
         PRECURSOR_ISOLATION_WINDOW("windowWideness", false),
         FRAGMENTATION_METHOD("activationMethod", false),
+        ACTIVATION_ENERGY("collisionEnergy", false),
         COMPRESSION_TYPE("compressionType", true),
         COMPRESSED_LEN("compressedLen", true),
         PRECISION("precision", false);
@@ -466,7 +468,11 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
             vars.flushVars();
         }
         attrs = reader.getAttributes();
-        PrecursorInfo precursorInfo = new PrecursorInfo();
+        PrecursorInfo precursorInfo = vars.curScan.getPrecursor();
+        if (precursorInfo == null) {
+            precursorInfo = new PrecursorInfo();
+            vars.curScan.setPrecursor(precursorInfo);
+        }
 
         attr = attrs.getValue(ATTR.PRECURSOR_SCAN_NUM.name);
         if (attr != null) {
@@ -482,7 +488,7 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
         }
         attr = attrs.getValue(ATTR.FRAGMENTATION_METHOD.name);
         if (attr != null) {
-            precursorInfo.setActivationMethod(attr.toString());
+            precursorInfo.getActivationInfo().setActivationMethod(attr.toString());
         }
         attr = attrs.getValue(ATTR.PRECURSOR_ISOLATION_WINDOW.name);
         Double isolationWindowWidth = null;
@@ -509,7 +515,6 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
         precursorInfo.setMzRangeStart(precursorMz - isolationWindowWidth/2d);
         precursorInfo.setMzRangeEnd(precursorMz + isolationWindowWidth/2d);
 
-        vars.curScan.setPrecursor(precursorInfo);
         return eventType;
     }
 
@@ -569,6 +574,18 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
                 vars.curScan.setPolarity(Polarity.NEGATIVE);
             }
         }
+
+        attr = attrs.getValue(ATTR.ACTIVATION_ENERGY.name);
+        if (attr != null) {
+            PrecursorInfo precursorInfo = vars.curScan.getPrecursor();
+            if (precursorInfo == null) {
+                precursorInfo = new PrecursorInfo();
+                vars.curScan.setPrecursor(precursorInfo);
+            }
+            precursorInfo.getActivationInfo().setActivationEnergyLo(attr.toDouble());
+            precursorInfo.getActivationInfo().setActivationEnergyHi(attr.toDouble());
+        }
+
         attr = attrs.getValue(ATTR.RT.name);
         if (attr != null) {
             vars.curScan.setRt(DATA_FACTORY.newDuration(attr.toString()).getTimeInMillis(new Date()) / 1000d / 60d);
