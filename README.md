@@ -44,4 +44,4 @@ I will mavenize the project in near future.
 - Guava 19
 - Apache Commons Pool 2
 - OboParser from [Biojava](http://biojava.org/)'s submodule [Ontology](https://github.com/biojava/biojava/tree/master/biojava-ontology)
-- [Javolution](http://javolution.org/) Core (slightly modified, sources are [here](https://github.com/chhh/javolution))
+- [Javolution](http://javolution.org/) Core (slightly modified, sources are [here](https://github.com/chhh/javolution-msftbx))
