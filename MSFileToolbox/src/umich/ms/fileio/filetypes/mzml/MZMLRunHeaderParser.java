@@ -15,16 +15,6 @@
  */
 package umich.ms.fileio.filetypes.mzml;
 
-import java.io.BufferedInputStream;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.RandomAccessFile;
-import java.nio.charset.StandardCharsets;
-import java.util.*;
-import javax.xml.bind.JAXBElement;
-import javax.xml.datatype.XMLGregorianCalendar;
-
 import org.biojava.nbio.ontology.Term;
 import org.biojava.nbio.ontology.Triple;
 import umich.ms.datatypes.lcmsrun.Hash;
@@ -42,6 +32,12 @@ import umich.ms.fileio.filetypes.util.AbstractFile;
 import umich.ms.fileio.filetypes.xmlbased.OffsetLength;
 import umich.ms.logging.LogHelper;
 import umich.ms.util.StringUtils;
+
+import javax.xml.bind.JAXBElement;
+import javax.xml.datatype.XMLGregorianCalendar;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
 
 /**
  * Parses the run header of an mzML file.
@@ -164,12 +160,12 @@ public class MZMLRunHeaderParser extends XmlBasedRunHeaderParser {
 
                 ComponentListType componentList = i.getComponentList();
                 if (componentList != null) {
-                    String msAnalyzer = componentTypeListToString(componentList.getAnalyzer());
+                    String msAnalyzer = componentTypeListToString(componentList.getAnalyzer(), PSIMSCV.MAP_ANALYZER_TYPE);
                     instrument.setAnalyzer(msAnalyzer);
-                    String msDetector = componentTypeListToString(componentList.getDetector());
-                    instrument.setDetector(msDetector);
-                    String msSource = componentTypeListToString(componentList.getSource());
-                    instrument.setIonisation(msSource);
+                    //String msDetector = componentTypeListToString(componentList.getDetector(), null);
+                    instrument.setDetector("");
+                    String ionization = componentTypeListToString(componentList.getSource(), PSIMSCV.MAP_IONIZATION_TYPE);
+                    instrument.setIonisation(ionization);
                 }
 
                 runInfo.addInstrument(instrument, msInstrumentID);
@@ -248,7 +244,7 @@ public class MZMLRunHeaderParser extends XmlBasedRunHeaderParser {
         return false;
     }
 
-    private String componentTypeListToString(List<? extends ComponentType> comps) {
+    private String componentTypeListToString(List<? extends ComponentType> comps, Map<String, Term> whitelist) {
         List<String> strings = new ArrayList<>();
         for (ComponentType comp : comps) {
             List<CVParamType> cvParams = comp.getCvParam();
@@ -259,6 +255,8 @@ public class MZMLRunHeaderParser extends XmlBasedRunHeaderParser {
                     || accession.equals(PSIMSCV.MS_INSTRUMENT_COMPONENT_DETECTOR.accession)) {
                     continue;
                 }
+                if (whitelist != null && !whitelist.containsKey(accession))
+                        continue;
                 strings.add(cvParam.getName());
             }
         }

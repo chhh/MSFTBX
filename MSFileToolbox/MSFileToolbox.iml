@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_7" inherit-compiler-output="false">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_7">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
@@ -20,15 +20,7 @@
     <orderEntry type="library" name="Maven: org.jvnet.com4j:com4j:2.1" level="project" />
     <orderEntry type="library" name="Maven: com.google.guava:guava:21.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-pool2:2.4.2" level="project" />
-    <orderEntry type="library" name="Maven: com.github.chhh:javolution-core-java-msftbx:6.11.2-SNAPSHOT" level="project" />
-    <orderEntry type="library" name="Maven: org.osgi:org.osgi.core:4.3.1" level="project" />
-    <orderEntry type="library" name="Maven: org.osgi:org.osgi.compendium:4.3.1" level="project" />
-    <orderEntry type="library" name="Maven: com.nativelibs4java:javacl:1.0.0-RC3" level="project" />
-    <orderEntry type="library" name="Maven: com.nativelibs4java:javacl-core:1.0.0-RC3" level="project" />
-    <orderEntry type="library" name="Maven: com.nativelibs4java:opencl4java:1.0.0-RC3" level="project" />
-    <orderEntry type="library" name="Maven: com.nativelibs4java:bridj:0.6.2" level="project" />
-    <orderEntry type="library" name="Maven: com.google.android.tools:dx:1.7" level="project" />
-    <orderEntry type="library" name="Maven: com.nativelibs4java:nativelibs4java-utils:1.5" level="project" />
+    <orderEntry type="library" name="Maven: com.github.chhh:javolution-core-java-msftbx:6.11.3" level="project" />
     <orderEntry type="library" name="Maven: org.biojava:biojava-ontology:5.0.0-alpha6" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.apache.logging.log4j:log4j-slf4j-impl:2.6.1" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.apache.logging.log4j:log4j-api:2.6.1" level="project" />

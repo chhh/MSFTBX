@@ -107,6 +107,7 @@ public enum PSIMSCV {
     MS_INSTRUMENT_COMPONENT_SOURCE      ("MS:1000458", "source"),
     MS_INSTRUMENT_COMPONENT_ANALYZER    ("MS:1000443", "mass analyzer type"),
     MS_INSTRUMENT_COMPONENT_DETECTOR    ("MS:1000026", "detector type"),
+    MS_INSTRUMENT_IONIZATION_TYPE       ("MS:1000008", "ionization type"),
 
 
     MS_HASH_SHA1                        ("MS:1000569", "SHA-1"),
@@ -127,10 +128,13 @@ public enum PSIMSCV {
     public String defaultStringRepresentation;
     protected static final Map<String, PSIMSCV> mapString2PSIMSCV;
     protected static final Map<CharArray, PSIMSCV> mapCharArr2PSIMSCV;
-    protected static Map<String, ActivationCVTerm> mapString2ActivationCVTerm = new HashMap<>(30);
-    protected static Map<CharArray, ActivationCVTerm> mapCharArr2ActivationCVTerm = new HashMap<>(30);
-    protected static Map<String, InstrumentModelCVTerm> mapString2InstrumentModelCVTerm = new HashMap<>(250);
-    protected static Map<String, Term> mapString2PeakPickingCVTerm = new HashMap<>(5);
+
+    public static Map<String, ActivationCVTerm>    mapString2ActivationCVTerm = new HashMap<>(30);
+    public static Map<CharArray, ActivationCVTerm> mapCharArr2ActivationCVTerm = new HashMap<>(30);
+    public static Map<String, Term> MAP_ANALYZER_TYPE = new HashMap<>(30);
+    public static Map<String, InstrumentModelCVTerm> MAP_INSTRUMENT_MODEL = new HashMap<>(250);
+    public static Map<String, Term> MAP_PEAK_PICKING = new HashMap<>(5);
+    public static Map<String, Term> MAP_IONIZATION_TYPE = new HashMap<>(5);
 
 
     //@StaticResource // this annotation brings dependency on Common Annotations from NBP
@@ -162,28 +166,36 @@ public enum PSIMSCV {
             ONTOLOGY = ontology;
 
             // gather activation type entries from the .obo
-            try {
-                Term activationTermRoot = ontology.getTerm(MS_DISSOCIATION_METHOD.accession);
-                TermCallback callbackActivationTerm = new TermCallback() {
-                    @Override
-                    public void perform(Term term, boolean isLeaf) {
-                        String accession = term.getName();
-                        String name = term.getDescription();
-                        String shortName = tryGetShortNameFromSynonyms(term, name);
-                        String definition = tryGetDescription(term);
+            TermCallback callbackActivationTerm = new TermCallback() {
+                @Override
+                public void perform(Term term, boolean isLeaf) {
+                    String accession = term.getName();
+                    String name = term.getDescription();
+                    String shortName = tryGetShortNameFromSynonyms(term, name);
+                    String definition = tryGetDescription(term);
 
-                        ActivationCVTerm activationCVTerm = new ActivationCVTerm(accession, name, definition, shortName);
-                        mapString2ActivationCVTerm.put(accession, activationCVTerm);
-                        mapCharArr2ActivationCVTerm.put(new CharArray(accession), activationCVTerm);
-                    }
-                };
-                drillDownTerms(ontology, activationTermRoot, callbackActivationTerm);
-            } catch (NoSuchElementException e) {
-                // could not find the root element for all activations in the controlled vocabulary
-            }
+                    ActivationCVTerm activationCVTerm = new ActivationCVTerm(accession, name, definition, shortName);
+                    mapString2ActivationCVTerm.put(accession, activationCVTerm);
+                    mapCharArr2ActivationCVTerm.put(new CharArray(accession), activationCVTerm);
+                }
+            };
+            gatherRootedInfo(MS_DISSOCIATION_METHOD.accession, ontology, callbackActivationTerm);
+
+            // gather analyzer types from the .obo
+            TermCallback callbackAnalyzerType = new TermCallback() {
+                @Override
+                public void perform(Term term, boolean isLeaf) {
+                    String accession = term.getName();
+                    String name = term.getDescription();
+                    if (!isLeaf)
+                        return;
+                    MAP_ANALYZER_TYPE.put(accession, term);
+                }
+            };
+            gatherRootedInfo(MS_INSTRUMENT_COMPONENT_ANALYZER.accession, ontology, callbackAnalyzerType);
 
 
-            // gather instrument types from the .obo
+            // gather instrument models from the .obo
             try {
                 Term instModelTermRoot = ontology.getTerm(MS_INSTRUMENT_MODEL.accession);
                 Set<Triple> triplesVendors = ontology.getTriples(null, instModelTermRoot, null);
@@ -198,30 +210,19 @@ public enum PSIMSCV {
                         shortNameVendor = shortNameVendor.substring(0, shortNameVendor.indexOf(instModelEnding)).trim();
                     }
                     final String shortNameVendorFinal = shortNameVendor;
-
-                    try {
-                        Term termVendor = ontology.getTerm(accessionVendor);
-                        TermCallback addLeafInstrumentModelCallback = new TermCallback() {
-                            @Override
-                            public void perform(Term term, boolean isLeaf) {
-                                if (!isLeaf) {
-                                    return;
-                                }
-                                String accessionModel = term.getName();
-                                String nameModel = term.getDescription();
-                                String shortNameModel = tryGetShortNameFromSynonyms(term, nameModel);
-
-                                InstrumentModelCVTerm instrumentModelCVTerm =
-                                        new InstrumentModelCVTerm(accessionModel, nameModel, shortNameVendorFinal, shortNameModel);
-                                mapString2InstrumentModelCVTerm.put(accessionModel, instrumentModelCVTerm);
-                            }
-                        };
-                        // drill down the tree hierarchy starting from the current mass-spec vendor
-                        // all leaf nodes are considered specific instrument models
-                        drillDownTerms(ontology, termVendor, addLeafInstrumentModelCallback);
-                    } catch (NoSuchElementException e) {
-                        // couldn't find some isntrument term in the ontology, no big deal
-                    }
+                    TermCallback callbackInstrumentModel = new TermCallback() {
+                        @Override
+                        public void perform(Term term, boolean isLeaf) {
+                            if (!isLeaf)
+                                return;
+                            String accessionModel = term.getName();
+                            String nameModel = term.getDescription();
+                            String shortNameModel = tryGetShortNameFromSynonyms(term, nameModel);
+                            InstrumentModelCVTerm instrumentModelCVTerm = new InstrumentModelCVTerm(accessionModel, nameModel, shortNameVendorFinal, shortNameModel);
+                            MAP_INSTRUMENT_MODEL.put(accessionModel, instrumentModelCVTerm);
+                        }
+                    };
+                    gatherRootedInfo(accessionVendor, ontology, callbackInstrumentModel);
                 }
             } catch (NoSuchElementException e) {
                 // could not get the root element for all mass spec instruments
@@ -229,26 +230,33 @@ public enum PSIMSCV {
 
 
             // collect peak-picking terms to determine if a file has been centroided (DataProcessing section of mzML)
-            try {
-                Term termPeakPicking = ontology.getTerm(MS_PEAK_PICKING.accession);
-                TermCallback callbackPeakPickingTerm = new TermCallback() {
-                    @Override
-                    public void perform(Term term, boolean isLeaf) {
-                        mapString2PeakPickingCVTerm.put(term.getName(), term);
-                    }
-                };
-                drillDownTerms(ontology, termPeakPicking, callbackPeakPickingTerm);
-            } catch (NoSuchElementException e) {
-                // couldn't find MS_PEAK_PICKING term. Well, what can we do, it's not critical..
-            }
-            int a = 1;
+            TermCallback callbackPeakPickingTerm = new TermCallback() {
+                @Override
+                public void perform(Term term, boolean isLeaf) {
+                    MAP_PEAK_PICKING.put(term.getName(), term);
+                }
+            };
+            gatherRootedInfo(MS_PEAK_PICKING.accession, ontology, callbackPeakPickingTerm);
 
-        } catch (FileNotFoundException e) {
+            TermCallback callbackIonizationType = new TermCallback() {
+                @Override
+                public void perform(Term term, boolean isLeaf) {
+                    MAP_IONIZATION_TYPE.put(term.getName(), term);
+                }
+            };
+            gatherRootedInfo(MS_INSTRUMENT_IONIZATION_TYPE.accession, ontology, callbackIonizationType);
+
+        } catch (ParseException | IOException e) {
             e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        }
+    }
+
+    private static void gatherRootedInfo(String rootAccession, Ontology ontology, TermCallback callback) {
+        try {
+            Term term = ontology.getTerm(rootAccession);
+            drillDownTerms(ontology, term, callback);
+        } catch (NoSuchElementException e) {
+            // could not find the root element for all activations in the controlled vocabulary
         }
     }
 
@@ -338,7 +346,7 @@ public enum PSIMSCV {
     }
 
     private interface TermCallback {
-        public void perform(Term term, boolean isLeaf);
+        void perform(Term term, boolean isLeaf);
     }
 
     public static PSIMSCV fromAccession(String msAccession) {
@@ -350,7 +358,7 @@ public enum PSIMSCV {
     }
 
     public static InstrumentModelCVTerm instrumentFromAccession(String msAccession) {
-        return mapString2InstrumentModelCVTerm.get(msAccession);
+        return MAP_INSTRUMENT_MODEL.get(msAccession);
     }
 
     /**
@@ -379,6 +387,6 @@ public enum PSIMSCV {
      * @return true, if the term "is_a" "MS:1000035" (peak picking), can be the root term itself, or one of its children.
      */
     public static boolean isPeakPickingTerm(String msAccession) {
-        return mapString2PeakPickingCVTerm.get(msAccession) != null;
+        return MAP_PEAK_PICKING.get(msAccession) != null;
     }
 }

@@ -63,8 +63,10 @@ public class LogHelper {
      * compatible to your logging infrastructure, or use SLF4J no-op logger.
      */
     public static final void configureJavaUtilLogging() {
-        
-        try (InputStream is = LogHelper.class.getResourceAsStream("logging.properties")) {    
+
+        try (InputStream is = LogHelper.class.getResourceAsStream("logging.properties")) {
+            if (is == null)
+                throw new IOException("Can't find/open logging.properties");
             LogManager logMan = LogManager.getLogManager();
             logMan.readConfiguration(is);
         } catch (final IOException e) {

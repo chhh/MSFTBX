@@ -27,4 +27,12 @@ public class CVTerm {
         this.accession = accession;
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "CVTerm{" +
+                "accession='" + accession + '\'' +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

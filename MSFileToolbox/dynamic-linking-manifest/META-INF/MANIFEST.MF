@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Class-Path: slf4j-api-1.7.22.jar com4j-2.2-SNAPSHOT.jar javolution-cor
+ e-java-6.1.0-SNAPSHOT.jar commons-pool2-2.3.jar biojava-ontology-5.0.
+ 0-SNAPSHOT.jar guava-19.0.jar slf4j-api-1.7.10.jar slf4j-jdk14-1.7.10
+ .jar
+Main-Class: umich.ms.fileio.filetypes.mzml.MZMLFile
+

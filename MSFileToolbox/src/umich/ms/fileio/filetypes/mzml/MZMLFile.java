@@ -220,9 +220,10 @@ public class MZMLFile extends AbstractXMLBasedDataSource<MZMLIndexElement, MZMLI
             IScan scan = scans.getMapNum2scan().firstEntry().getValue();
             ISpectrum spectrum = scan.fetchSpectrum();
             double[] mzs = spectrum.getMZs();
-            System.out.print("First ten valus of m/z array of the 1st scan:\n\t");
+            double[] intensities = spectrum.getIntensities();
+            System.out.print("First ten valus of m/z and intensity arrays of the 1st scan:\n\t");
             for (int i = 0; i < mzs.length && i < 10; i++) {
-                System.out.printf("%.3f ", mzs[i]);
+                System.out.printf("%.3f=%.1f; ", mzs[i], intensities[i]);
             }
             System.out.println();
 

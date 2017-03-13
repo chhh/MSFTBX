@@ -100,7 +100,7 @@
         <dependency>
             <groupId>com.github.chhh</groupId>
             <artifactId>javolution-core-java-msftbx</artifactId>
-            <version>6.11.2-SNAPSHOT</version>
+            <version>6.11.3</version>
         </dependency>
         <dependency>
             <groupId>org.biojava</groupId>
@@ -123,6 +123,12 @@
                 </configuration>
             </plugin>
 
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.0.2</version>
+            </plugin>
+
             <!-- ======================================================= -->
             <!-- Source code packaging (for IDE) -->
             <!-- ======================================================= -->
@@ -140,6 +146,53 @@
                 </executions>
             </plugin>
 
+
+            <!-- ======================================================= -->
+            <!-- Building a complete jar -->
+            <!-- ======================================================= -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>bin</descriptorRef>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass>umich.ms.fileio.filetypes.mzml.MZMLFile</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id> <!-- this is used for inheritance merges -->
+                        <phase>package</phase> <!-- bind to the packaging phase -->
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
+
+        <!-- ======================================================= -->
+        <!-- Resources -->
+        <!-- ======================================================= -->
+        <resources>
+            <resource>
+                <directory>src</directory>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.obo</include>
+                </includes>
+            </resource>
+        </resources>
+
     </build>
 </project>
