@@ -10,6 +10,15 @@ The acronym stands for `Mass Spectrometry File Toolbox`. This is a library for a
 
 This library is what drives [BatMass](https://github.com/chhh/batmass).
 
+## Maven dependency
+```
+<dependency>
+    <groupId>com.github.chhh</groupId>
+    <artifactId>msftbx</artifactId>
+    <version>1.2.1</version>
+</dependency>
+```
+
 ## How to use
 To get started quickly, follow the tutorial: http://www.batmass.org/tutorial/data-access-layer/#parsing-lc-ms-data-mzml-mzxml-files
 
@@ -40,21 +49,13 @@ To get started quickly, follow the tutorial: http://www.batmass.org/tutorial/dat
 - GPMdb XML files parser
 - Agilent .cef files parser
 
-## Building
+## Building yourself
 You can find some older pre-compiled binaries [here](https://github.com/chhh/MSFTBX/releases/latest).  
 
 ### Building with Maven (preferred)
 `cd ./MSFileToolbox && mvn clean package`  
 Will produce the jar files with just the library `msftbx-1.2.1.jar` as well as one large jar `msftbx-X.X.X-jar-with-dependencies.jar`.
 The latter can be used as is, it includes all the needed dependencies.
-
-```
-<dependency>
-    <groupId>com.github.chhh</groupId>
-    <artifactId>msftbx</artifactId>
-    <version>1.2.1</version>
-</dependency>
-```
 
 ### Building with Intellij IDEA
 **JAR**: You can load `MSFileToolbox` subdirectory as a project into Intellij IDEA IDE and build the jar from there. `Main Menu -> Build -> Build Artifacts`.  
@@ -63,7 +64,6 @@ The latter can be used as is, it includes all the needed dependencies.
 **NetBeans Module**: Open the root directory in NetBeans as a project. You will see `MSFTBX` module suite which consists of 3 modules: _MSFileToolbox Module_ - (this is the main thing), _MSFileToolbox Libx_ - these are the depencies, and _Auto Update (MSFTBX)_ - this is the update center for NetBeans Platform projects (you definitely don't need this) .
 
 ## Dependencies
-- JAXB
 - SLF4J
 - Guava 19
 - Apache Commons Pool 2
