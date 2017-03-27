@@ -33,7 +33,7 @@ public class LCMSDataSourceFactory {
      * @param path
      * @return null if the provided path was not recognized
      */
-    public LCMSDataSource<?> create(Path path) {
+    public static LCMSDataSource<?> create(Path path) {
         path = path.toAbsolutePath();
         String lowerCaseName = path.getFileName().toString().toLowerCase();
         if (lowerCaseName.endsWith(".mzxml")) {

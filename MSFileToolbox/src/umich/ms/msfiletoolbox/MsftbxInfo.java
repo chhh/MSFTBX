@@ -16,18 +16,34 @@
 
 package umich.ms.msfiletoolbox;
 
-import java.util.TreeMap;
+import java.util.*;
 
 /**
  * @author Dmitry Avtonomov
  */
 public class MsftbxInfo {
-    public static final String version = "1.2.0";
+    public static final String version = "1.2.1";
 
-    private static TreeMap<String, String> changelog = new TreeMap<>();
+    private static TreeMap<String, List<String>> changelog = new TreeMap<>();
+    private static Map<String, List<String>> changelogImmutable = Collections.unmodifiableMap(changelog);
 
     static {
-        String v1_2_0 = "v1.2.0";
-        changelog.put(v1_2_0, "Added fragmentation energy and reaction time");
+        String v120 = "v1.2.0";
+        List<String> v120notes = new LinkedList<>();
+        v120notes.add("Added fragmentation energy and reaction time");
+        changelog.put(v120, v120notes);
+
+        String v121 = "v1.2.0";
+        List<String> v121notes = new LinkedList<>();
+        v120notes.add("Mavenized, published to Maven Central");
+        changelog.put(v121, v121notes);
+    }
+
+    public static String getVersion() {
+        return version;
+    }
+
+    public static Map<String, List<String>> getChangelog() {
+        return changelogImmutable;
     }
 }
