@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright 2016 Dmitry Avtonomov.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,12 +15,13 @@
  */
 package umich.ms.fileio.filetypes.pepxml.example;
 
-import umich.ms.fileio.filetypes.pepxml.jaxb.nested.ActivationMethodType;
-import umich.ms.fileio.filetypes.pepxml.jaxb.nested.MsmsPipelineAnalysis;
+import umich.ms.fileio.filetypes.pepxml.jaxb.standard.*;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
@@ -31,15 +32,15 @@ import java.util.List;
  * Created by Dmitry Avtonomov on 2015-10-17.
  */
 public class PepXmlWriteExample {
-    public static void main(String[] args) throws JAXBException {
+    public static void main(String[] args) throws JAXBException, IOException {
 
         MsmsPipelineAnalysis msmsPipelineAnalysis = new MsmsPipelineAnalysis();
-        List<MsmsPipelineAnalysis.MsmsRunSummary> msmsRunSummaryList = msmsPipelineAnalysis.getMsmsRunSummary();
-        MsmsPipelineAnalysis.MsmsRunSummary msmsRunSummary = new MsmsPipelineAnalysis.MsmsRunSummary();
+        List<MsmsRunSummary> msmsRunSummaryList = msmsPipelineAnalysis.getMsmsRunSummary();
+        MsmsRunSummary msmsRunSummary = new MsmsRunSummary();
         msmsRunSummaryList.add(msmsRunSummary);
 
-        List<MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery> spectrumQueryList = msmsRunSummary.getSpectrumQuery();
-        MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery spectrumQuery = new MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery();
+        List<SpectrumQuery> spectrumQueryList = msmsRunSummary.getSpectrumQuery();
+        SpectrumQuery spectrumQuery = new SpectrumQuery();
         spectrumQueryList.add(spectrumQuery);
 
         spectrumQuery.setRetentionTimeSec(15f);
@@ -48,15 +49,15 @@ public class PepXmlWriteExample {
         spectrumQuery.setStartScan(301);
         spectrumQuery.setEndScan(302);
 
-        List<MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult> searchResultList = spectrumQuery.getSearchResult();
-        MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult searchResult = new MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult();
+        List<SearchResult> searchResultList = spectrumQuery.getSearchResult();
+        SearchResult searchResult = new SearchResult();
         searchResultList.add(searchResult);
 
-        List<MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit> searchHitList = searchResult.getSearchHit();
-        MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit searchHit = new MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit();
+        List<SearchHit> searchHitList = searchResult.getSearchHit();
+        SearchHit searchHit = new SearchHit();
         searchHitList.add(searchHit);
 
-        searchHit.setMassdiff("147.01");
+        searchHit.setMassdiff(147.01f);
         searchHit.setPeptide("PEPTIDESEQUENCE");
         searchHit.setProtein("PROTEINSEQUENCE");
         searchHit.setNumMissedCleavages(1);
@@ -64,10 +65,25 @@ public class PepXmlWriteExample {
         searchHit.setPeptideNextAa("Q");
         searchHit.setTotNumIons(27);
 
+        ModificationInfo modInfo = new ModificationInfo();
+        List<ModAminoacidMass> modList = modInfo.getModAminoacidMass();
+        ModAminoacidMass mod = new ModAminoacidMass();
+        mod.setMass(57.123456);
+        mod.setPosition(3);
+        modList.add(mod);
+        mod = new ModAminoacidMass();
+        mod.setMass(15.999);
+        mod.setPosition(5);
+        modList.add(mod);
+        searchHit.setModificationInfo(modInfo);
+
         JAXBContext jaxbContext = JAXBContext.newInstance(MsmsPipelineAnalysis.class);
         Marshaller marshaller = jaxbContext.createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+
         Path path = Paths.get("D:\\tmp\\asd\\jaxb.test.pep.xml");
+        Files.createDirectories(path.getParent());
+
         java.io.File file = path.toFile();
         marshaller.marshal(msmsPipelineAnalysis, file);
     }
