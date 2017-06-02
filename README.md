@@ -54,7 +54,7 @@ You can find some older pre-compiled binaries [here](https://github.com/chhh/MSF
 
 ### Building with Maven (preferred)
 `cd ./MSFileToolbox && mvn clean package`  
-Will produce the jar files with just the library `msftbx-1.2.1.jar` as well as one large jar `msftbx-X.X.X-jar-with-dependencies.jar`.
+Will produce the jar files with just the library `msftbx-X.X.X.jar` as well as one large jar `msftbx-X.X.X-jar-with-dependencies.jar`.
 The latter can be used as is, it includes all the needed dependencies.
 
 ### Building with Intellij IDEA

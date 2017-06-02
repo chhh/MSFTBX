@@ -12,12 +12,7 @@
     <orderEntry type="library" name="MSFTBX deps" level="project" />
     <orderEntry type="library" name="MSFTBX logging" level="project" />
     <orderEntry type="library" name="com4j" level="project" />
-    <orderEntry type="library" name="Maven: com.github.davidmoten:rtree:0.8-RC10" level="project" />
-    <orderEntry type="library" name="Maven: com.github.davidmoten:guava-mini:0.1" level="project" />
-    <orderEntry type="library" name="Maven: io.reactivex:rxjava:1.1.4" level="project" />
-    <orderEntry type="library" name="Maven: com.github.davidmoten:rxjava-extras:0.7" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.22" level="project" />
-    <orderEntry type="library" name="Maven: org.jvnet.com4j:com4j:2.1" level="project" />
     <orderEntry type="library" name="Maven: com.google.guava:guava:21.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-pool2:2.4.2" level="project" />
     <orderEntry type="library" name="Maven: com.github.chhh:javolution-core-java-msftbx:6.11.4" level="project" />
@@ -25,5 +20,6 @@
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.apache.logging.log4j:log4j-slf4j-impl:2.6.1" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.apache.logging.log4j:log4j-api:2.6.1" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.apache.logging.log4j:log4j-core:2.6.1" level="project" />
+    <orderEntry type="library" name="Maven: org.jvnet.com4j:com4j:2.1" level="project" />
   </component>
 </module>
