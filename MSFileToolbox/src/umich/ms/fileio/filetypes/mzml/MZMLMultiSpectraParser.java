@@ -66,7 +66,7 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
     protected ObjectPool<XMLStreamReaderImpl> readerPool = null;
     private int numOpeningScanTagsFound;
 
-    protected static enum TAG {
+    protected enum TAG {
         SPECTRUM("spectrum"),
         CV_PARAM("cvParam"),
         SCAN_LIST("scanList"),
@@ -78,7 +78,9 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
         ACTIVATION("activation"),
         BINARY_DATA_LIST("binaryDataArrayList"),
         BINARY_DATA_ARRAY("binaryDataArray"),
-        BINARY("binary");
+        BINARY("binary"),
+        REF_PARAM_GROUP_LIST("referenceableParamGroupList"),
+        REF_PARAM_GROUP("referenceableParamGroup");
 
         public final String name;
         public final CharArray charArray;
@@ -89,7 +91,7 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
         }
     }
 
-    protected static enum ATTR {
+    protected enum ATTR {
         SPECTRUM_INDEX("index", true),
         SPECTRUM_ID("id", true),
         SPECTRUM_INSTRUMENT("instrumentConfigurationRef", false),
@@ -98,14 +100,15 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
         CV_PARAM_VALUE("value", true),
         CV_PARAM_UNIT_ACCESSION("unitAccession", true),
         CV_PARAM_UNIT_NAME("unitName", true),
-        PRECURSOR_SPEC_REF("spectrumRef", false)
-        ;
+        PRECURSOR_SPEC_REF("spectrumRef", false);
 
         public final String name;
+        public final CharArray charArray;
         public final boolean isRequired;
 
         ATTR(String name, boolean isRequired) {
             this.name = name;
+            this.charArray = new CharArray(name);
             this.isRequired = isRequired;
         }
     }
@@ -148,9 +151,8 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
             LogHelper.setJavolutionLogLevelFatal();
 
             int eventType = XMLStreamConstants.END_DOCUMENT;
-            CharArray localName, attr, val, unitAccession;
+            CharArray localName;
             Attributes attrs;
-            PSIMSCV cvEntry;
 
             do {
                 // if we've read enough spectra already, then stop processing the stream
@@ -188,19 +190,19 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
                         attrs = reader.getAttributes();
 
                         // TODO: consider changing to .contentEquals(), that method doesn't store any references
-                        if (localName.equals(TAG.SPECTRUM.name)) {
+                        if (localName.contentEquals(TAG.SPECTRUM.name)) {
                             tagSpectrumStart(attrs);
 
-                        } else if (localName.equals(TAG.CV_PARAM.name)) {
+                        } else if (localName.contentEquals(TAG.CV_PARAM.name)) {
                             tagCvParamStart(attrs, reader);
 
-                        } else if (localName.equals(TAG.SCAN.name)) {
+                        } else if (localName.contentEquals(TAG.SCAN.name)) {
                             tagSpectrumInstarumentStart(attrs);
 
-                        } else if (localName.equals(TAG.BINARY_DATA_LIST.name)) {
+                        } else if (localName.contentEquals(TAG.BINARY_DATA_LIST.name)) {
                             tagBinaryDataListStart(reader, attrs);
 
-                        } else if (localName.equals(TAG.PRECURSOR.name)) {
+                        } else if (localName.contentEquals(TAG.PRECURSOR.name)) {
                             tagPrecursorStart(reader);
                         }
                         // END: case XMLStreamConstants.START_ELEMENT
@@ -212,7 +214,7 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
                     case XMLStreamConstants.END_ELEMENT:
                         localName = reader.getLocalName();
 
-                        if (localName.equals(TAG.SPECTRUM.name)) {
+                        if (localName.contentEquals(TAG.SPECTRUM.name)) {
                             addCurScanAndFlushVars();
                         }
 
@@ -281,7 +283,7 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
 
             if (eventType == XMLStreamConstants.START_ELEMENT) {
                 attrs = reader.getAttributes();
-                if (localName.equals(TAG.CV_PARAM.name)) {
+                if (localName.contentEquals(TAG.CV_PARAM.name)) {
 
                     attr = attrs.getValue(ATTR.CV_PARAM_ACCESSION.name);
                     val = attrs.getValue(ATTR.CV_PARAM_VALUE.name);
@@ -341,7 +343,7 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
                 }
             }
 
-        } while (!(eventType == XMLStreamConstants.END_ELEMENT && localName.equals(TAG.PRECURSOR.name)));
+        } while (!(eventType == XMLStreamConstants.END_ELEMENT && localName.contentEquals(TAG.PRECURSOR.name)));
         // now we've reached the end of <precursor> tag, so we can check if precursor isolation window
         // bounds were found
                             if (precursorInfo.getMzRangeStart() == null) {
@@ -400,7 +402,7 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
 
 
             if (eventType == XMLStreamConstants.START_ELEMENT) {
-                if (localName.equals(TAG.CV_PARAM.name)) {
+                if (localName.contentEquals(TAG.CV_PARAM.name)) {
 
                     attr = attrs.getValue(ATTR.CV_PARAM_ACCESSION.name);
                     if (attr == null) {
@@ -444,14 +446,14 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
 
 
 
-                } else if (localName.equals(TAG.BINARY.name)) {
+                } else if (localName.contentEquals(TAG.BINARY.name)) {
                     try {
                         eventType = reader.next();
                         if (eventType != XMLStreamConstants.CHARACTERS) {
 
                             if (eventType == XMLStreamConstants.END_ELEMENT) {
                                 localName = reader.getLocalName();
-                                if (localName.equals(TAG.BINARY.name)) {
+                                if (localName.contentEquals(TAG.BINARY.name)) {
                                     // we hit a closing BINARY tag immediately after the opening one - empty array
                                     switch (vars.binDataType) {
                                         case MZ:
@@ -505,7 +507,7 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
                 }
             }
 
-        } while (!(eventType == XMLStreamConstants.END_ELEMENT && localName.equals(TAG.BINARY_DATA_LIST.name)));
+        } while (!(eventType == XMLStreamConstants.END_ELEMENT && localName.contentEquals(TAG.BINARY_DATA_LIST.name)));
 
         // now we've reached the end of <binaryDataArrayList> tag
         double basePeakMz = vars.intensityData.valMaxPos < 0 ? 0d : vars.mzData.arr[vars.intensityData.valMaxPos];
@@ -769,7 +771,7 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
                     case XMLStreamConstants.START_ELEMENT:
                         localName = reader.getLocalName();
 
-                        if (localName.equals(TAG.SPECTRUM.name)) {
+                        if (localName.contentEquals(TAG.SPECTRUM.name)) {
                             numOpeningScanTagsFound += 1;
                             break;
                         }
@@ -778,7 +780,7 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
                     case XMLStreamConstants.END_ELEMENT:
                         localName = reader.getLocalName();
 
-                        if (localName.equals(TAG.SPECTRUM.name)) {
+                        if (localName.contentEquals(TAG.SPECTRUM.name)) {
                             if (numOpeningScanTagsFound == 1) {
                                 length = reader.getLocation().getCharacterOffset();
                                 return length;
@@ -857,7 +859,7 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
                         localName = reader.getLocalName();
                         attrs = reader.getAttributes();
 
-                        if (localName.equals(TAG.SPECTRUM.name)) {
+                        if (localName.contentEquals(TAG.SPECTRUM.name)) {
                             numOpeningScanTagsFound += 1;
                             if (vars.offset != null) {
                                 // this means we've encountered nested Spectrum tags
@@ -889,7 +891,7 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
                     case XMLStreamConstants.END_ELEMENT:
                         localName = reader.getLocalName();
 
-                        if (localName.equals(TAG.SPECTRUM.name)) {
+                        if (localName.contentEquals(TAG.SPECTRUM.name)) {
                             vars.length = (int)(reader.getLocation().getCharacterOffset() - vars.offset);
                             addCurIndexElementAndFlushVars(result, offsetInFile, offsetInBuffer);
                         }
