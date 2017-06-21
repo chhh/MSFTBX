@@ -33,9 +33,9 @@ public class MsftbxInfo {
         v120notes.add("Added fragmentation energy and reaction time");
         changelog.put(v120, v120notes);
 
-        String v121 = "v1.2.0";
+        String v121 = "v1.2.1";
         List<String> v121notes = new LinkedList<>();
-        v120notes.add("Mavenized, published to Maven Central");
+        v121notes.add("Mavenized, published to Maven Central");
         changelog.put(v121, v121notes);
     }
 

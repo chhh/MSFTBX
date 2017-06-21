@@ -48,8 +48,9 @@ public class MZMLRunHeaderParser extends XmlBasedRunHeaderParser {
     protected MZMLFile source;
 
     public static final String TAG_MZML = "mzML";
-    public static final String TAG_SPECTRUMLIST = "spectrumList";
     public static final String TAG_RUN = "run";
+    //public static final String TAG_SPECTRUM_LIST = "spectrumList";
+    //public static final String TAG_CHROMATOGRAM_LIST = "chromatogramList";
 
 
     public MZMLRunHeaderParser(MZMLFile source) {
@@ -76,104 +77,114 @@ public class MZMLRunHeaderParser extends XmlBasedRunHeaderParser {
         // original files
         FileDescriptionType fileDescription = parsedInfo.getFileDescription();
         if (fileDescription != null) {
-            List<SourceFileType> sourceFile = fileDescription.getSourceFileList().getSourceFile();
-            for (SourceFileType source : sourceFile) {
-                String location = source.getLocation();
-                String name = source.getName();
-                Hash hash = null;
-                for (CVParamType cvParam : source.getCvParam()) {
-                    if (PSIMSCV.MS_HASH_SHA1.accession.equals(cvParam.getAccession())) {
-                        hash = new Hash(cvParam.getValue(), Hash.TYPE.SHA1);
-                    } else if (PSIMSCV.MS_HASH_MD5.accession.equals(cvParam.getAccession())) {
-                        hash = new Hash(cvParam.getValue(), Hash.TYPE.MD5);
+            final SourceFileListType sourceFileList = fileDescription.getSourceFileList();
+            if (sourceFileList != null) {
+                List<SourceFileType> sourceFiles = sourceFileList.getSourceFile();
+                for (SourceFileType source : sourceFiles) {
+                    String location = source.getLocation();
+                    String name = source.getName();
+                    Hash hash = null;
+                    for (CVParamType cvParam : source.getCvParam()) {
+                        if (PSIMSCV.MS_HASH_SHA1.accession.equals(cvParam.getAccession())) {
+                            hash = new Hash(cvParam.getValue(), Hash.TYPE.SHA1);
+                        } else if (PSIMSCV.MS_HASH_MD5.accession.equals(cvParam.getAccession())) {
+                            hash = new Hash(cvParam.getValue(), Hash.TYPE.MD5);
+                        }
                     }
+                    runInfo.getOriginalFiles().add(new OriginalFile(location, name, hash));
                 }
-                runInfo.getOriginalFiles().add(new OriginalFile(location, name, hash));
             }
         }
 
 
         // software
-        List<SoftwareType> software = parsedInfo.getSoftwareList().getSoftware();
-        for (SoftwareType soft : software) {
-            String name = soft.getId();
-            String id = soft.getId();
-            String version = soft.getVersion();
-            for (CVParamType cv : soft.getCvParam()) {
-                if (cv.getName() != null && !cv.getName().isEmpty())
-                    name = cv.getName();
+        final SoftwareListType softwareList = parsedInfo.getSoftwareList();
+        if (softwareList != null) {
+            List<SoftwareType> software = softwareList.getSoftware();
+            for (SoftwareType soft : software) {
+                String name = soft.getId();
+                String id = soft.getId();
+                String version = soft.getVersion();
+                for (CVParamType cv : soft.getCvParam()) {
+                    if (cv.getName() != null && !cv.getName().isEmpty())
+                        name = cv.getName();
+                }
+                runInfo.getSoftware().add(new MsSoftware(name, version));
             }
-            runInfo.getSoftware().add(new MsSoftware(name, version));
         }
 
 
-        List<InstrumentConfigurationType> instruments = parsedInfo.getInstrumentConfigurationList().getInstrumentConfiguration();
-        if (instruments.size() > 0) {
-            for (InstrumentConfigurationType i : instruments) {
-                String msInstrumentID;
+        final InstrumentConfigurationListType instrumentConfigurationList = parsedInfo.getInstrumentConfigurationList();
+        if (instrumentConfigurationList != null) {
+            final List<InstrumentConfigurationType> instruments = instrumentConfigurationList.getInstrumentConfiguration();
+            if (instruments != null && instruments.size() > 0) {
+                for (InstrumentConfigurationType i : instruments) {
+                    String msInstrumentID;
 
-                if (i.getId() != null) {
-                    msInstrumentID = i.getId();
-                } else {
-                    throw new RunHeaderParsingException("Could not find instrument ID attribute. " +
-                            "Should be <instrumentConfiguration id=\"xxx\">");
-                }
-
-                Instrument instrument = new Instrument();
-
-                boolean isInstrumentCvParamFound = false;
-                boolean isVendorCvParamFound = false;
-                if (!i.getCvParam().isEmpty()) {
-                    for (CVParamType cvParam : i.getCvParam()) {
-                        if (lookupInstrumentCV(cvParam, instrument)) isInstrumentCvParamFound = true;
-                        if (lookupInstrumentVendor(cvParam, instrument)) isVendorCvParamFound = true;
-                        if (PSIMSCV.MS_INSTRUMENT_SERIAL_NUMBER.accession.equals(cvParam.getAccession()))
-                            instrument.setSerialNumber(cvParam.getValue());
+                    if (i.getId() != null) {
+                        msInstrumentID = i.getId();
+                    } else {
+                        throw new RunHeaderParsingException("Could not find instrument ID attribute. " +
+                                "Should be <instrumentConfiguration id=\"xxx\">");
                     }
 
-                }
-                if (!isInstrumentCvParamFound && !i.getReferenceableParamGroupRef().isEmpty()) {
-                    // if there were no cvParams, there still might be a ReferenceableParamGroupType containing a cvParam
-                    // with isntrument info
-                    List<ReferenceableParamGroupRefType> refGrps = i.getReferenceableParamGroupRef();
-                    for (ReferenceableParamGroupRefType refGrpRef : refGrps) {
-                        ReferenceableParamGroupType refGrp = (ReferenceableParamGroupType) refGrpRef.getRef();
-                        for (CVParamType cvParam : refGrp.getCvParam()) {
+                    Instrument instrument = new Instrument();
+
+                    boolean isInstrumentCvParamFound = false;
+                    boolean isVendorCvParamFound = false;
+                    if (!i.getCvParam().isEmpty()) {
+                        for (CVParamType cvParam : i.getCvParam()) {
                             if (lookupInstrumentCV(cvParam, instrument)) isInstrumentCvParamFound = true;
                             if (lookupInstrumentVendor(cvParam, instrument)) isVendorCvParamFound = true;
-                            if (PSIMSCV.MS_INSTRUMENT_SERIAL_NUMBER.accession.equals(cvParam.getAccession())) {
+                            if (PSIMSCV.MS_INSTRUMENT_SERIAL_NUMBER.accession.equals(cvParam.getAccession()))
                                 instrument.setSerialNumber(cvParam.getValue());
+                        }
+
+                    }
+                    if (!isInstrumentCvParamFound && !i.getReferenceableParamGroupRef().isEmpty()) {
+                        // if there were no cvParams, there still might be a ReferenceableParamGroupType containing a cvParam
+                        // with isntrument info
+                        List<ReferenceableParamGroupRefType> refGrps = i.getReferenceableParamGroupRef();
+                        for (ReferenceableParamGroupRefType refGrpRef : refGrps) {
+                            ReferenceableParamGroupType refGrp = (ReferenceableParamGroupType) refGrpRef.getRef();
+                            for (CVParamType cvParam : refGrp.getCvParam()) {
+                                if (lookupInstrumentCV(cvParam, instrument)) isInstrumentCvParamFound = true;
+                                if (lookupInstrumentVendor(cvParam, instrument)) isVendorCvParamFound = true;
+                                if (PSIMSCV.MS_INSTRUMENT_SERIAL_NUMBER.accession.equals(cvParam.getAccession())) {
+                                    instrument.setSerialNumber(cvParam.getValue());
+                                }
                             }
                         }
                     }
+
+
+                    if (!isInstrumentCvParamFound && !isVendorCvParamFound) {
+                        instrument.setManufacturer(Instrument.UNKNOWN_MANUFACTURER);
+                        instrument.setModel(Instrument.UNKNOWN_MODEL);
+                        //throw new RunHeaderParsingException("Instrument configuration is "
+                        //        + "supposed to have at least one CvParam/referenceableParamGroup with instrument name");
+                    } else if (!isInstrumentCvParamFound && isVendorCvParamFound) {
+                        instrument.setModel(Instrument.UNKNOWN_MODEL);
+                    }
+
+                    ComponentListType componentList = i.getComponentList();
+                    if (componentList != null) {
+                        String msAnalyzer = componentTypeListToString(componentList.getAnalyzer(), PSIMSCV.MAP_ANALYZER_TYPE);
+                        instrument.setAnalyzer(msAnalyzer);
+                        //String msDetector = componentTypeListToString(componentList.getDetector(), null);
+                        instrument.setDetector("");
+                        String ionization = componentTypeListToString(componentList.getSource(), PSIMSCV.MAP_IONIZATION_TYPE);
+                        instrument.setIonisation(ionization);
+                    }
+
+                    runInfo.addInstrument(instrument, msInstrumentID);
                 }
-
-
-                if (!isInstrumentCvParamFound && !isVendorCvParamFound) {
-                    instrument.setManufacturer(Instrument.UNKNOWN_MANUFACTURER);
-                    instrument.setModel(Instrument.UNKNOWN_MODEL);
-                    //throw new RunHeaderParsingException("Instrument configuration is "
-                    //        + "supposed to have at least one CvParam/referenceableParamGroup with instrument name");
-                } else if (!isInstrumentCvParamFound && isVendorCvParamFound) {
-                    instrument.setModel(Instrument.UNKNOWN_MODEL);
-                }
-
-                ComponentListType componentList = i.getComponentList();
-                if (componentList != null) {
-                    String msAnalyzer = componentTypeListToString(componentList.getAnalyzer(), PSIMSCV.MAP_ANALYZER_TYPE);
-                    instrument.setAnalyzer(msAnalyzer);
-                    //String msDetector = componentTypeListToString(componentList.getDetector(), null);
-                    instrument.setDetector("");
-                    String ionization = componentTypeListToString(componentList.getSource(), PSIMSCV.MAP_IONIZATION_TYPE);
-                    instrument.setIonisation(ionization);
-                }
-
-                runInfo.addInstrument(instrument, msInstrumentID);
             }
         } else {
             // couldn't find a single instrument definition, add a dummy
             runInfo.addInstrument(Instrument.getDummy(), Instrument.ID_UNKNOWN);
         }
+
         // default instrument ID is a required attribute of <run> tag in mzML
         RunType run = parsedInfo.getRun();
         if (run == null) {

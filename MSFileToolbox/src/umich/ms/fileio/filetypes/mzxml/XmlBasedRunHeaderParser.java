@@ -107,21 +107,22 @@ public abstract class XmlBasedRunHeaderParser {
             // we're looking for the first <msRun> and <scan> tag occurrence.
             do {
                 eventType = reader.next();
+                final XMLStreamReaderImpl.LocationImpl loc = reader.getLocation();
                 switch (eventType) {
                     case XMLStreamConstants.START_ELEMENT:
                         localName = reader.getLocalName();
                         if (firstTagIsStart && localName.equals(firstTag)) {
                             if (firstTagGetStartLoc) {
-                                headerStartOffset = reader.getLocation().getLastStartTagPos();
+                                headerStartOffset = calcByteOffsetTag(loc);
                             } else {
-                                headerStartOffset = reader.getLocation().getCharacterOffset();
+                                headerStartOffset = calcByteOffsetChars(loc);
                             }
 
                         } else if (lastTagIsStart && localName.equals(lastTag)) {
                             if (lastTagGetStartLoc) {
-                                headerEndOffset = reader.getLocation().getLastStartTagPos();
+                                headerEndOffset = calcByteOffsetTag(loc);
                             } else {
-                                headerEndOffset = reader.getLocation().getCharacterOffset();
+                                headerEndOffset = calcByteOffsetChars(loc);
                             }
                         }
                         break;
@@ -129,16 +130,16 @@ public abstract class XmlBasedRunHeaderParser {
                         localName = reader.getLocalName();
                         if (!firstTagIsStart && localName.equals(firstTag)) {
                             if (firstTagGetStartLoc) {
-                                headerStartOffset = reader.getLocation().getLastStartTagPos();
+                                headerStartOffset = calcByteOffsetTag(loc);
                             } else {
-                                headerStartOffset = reader.getLocation().getCharacterOffset();
+                                headerStartOffset = calcByteOffsetChars(loc);
                             }
 
                         } else if (!lastTagIsStart && localName.equals(lastTag)){
                             if (lastTagGetStartLoc) {
-                                headerEndOffset = reader.getLocation().getLastStartTagPos();
+                                headerEndOffset = calcByteOffsetTag(loc);
                             } else {
-                                headerEndOffset = reader.getLocation().getCharacterOffset();
+                                headerEndOffset = calcByteOffsetChars(loc);
                             }
                         }
                         break;
@@ -148,11 +149,12 @@ public abstract class XmlBasedRunHeaderParser {
                         }
                         break;
                 }
-                if (reader.getLocation().getCharacterOffset() > MAX_OFFSET)
+                if (calcByteOffsetChars(loc) > MAX_OFFSET)
                     throw new RunHeaderBoundsNotFound(String.format(
                             "Could not locate the header of the file using <%s> starting " +
                                     "tag and <%s> closing tag withing the first %d characters", firstTag, lastTag, MAX_OFFSET));
-            } while (reader.hasNext() && eventType != XMLStreamConstants.END_DOCUMENT && (headerStartOffset == -1 || headerEndOffset == -1));
+            } while (eventType != XMLStreamConstants.END_DOCUMENT
+                    && (headerStartOffset == -1 || headerEndOffset == -1));
             getAbstractFile().close();
         } catch (FileNotFoundException | XMLStreamException e) {
             throw new RunHeaderParsingException("Error when parsing MS run header info", e);
@@ -164,5 +166,13 @@ public abstract class XmlBasedRunHeaderParser {
                     "Could not find <%s> opening and <%s> closing tags when parsing LCMS run header", firstTag, lastTag));
         }
         return new OffsetLength(headerStartOffset, (int) (headerEndOffset - headerStartOffset));
+    }
+
+    private long calcByteOffsetChars(XMLStreamReaderImpl.LocationImpl l) {
+        return l.getCharacterOffset() + l.getBomLength();
+    }
+
+    private long calcByteOffsetTag(XMLStreamReaderImpl.LocationImpl l) {
+        return l.getLastStartTagPos() + l.getBomLength();
     }
 }
