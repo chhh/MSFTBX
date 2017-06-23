@@ -95,7 +95,7 @@
         <dependency>
             <groupId>org.biojava</groupId>
             <artifactId>biojava-ontology</artifactId>
-            <version>5.0.0-alpha6</version>
+            <version>5.0.0-alpha10</version>
         </dependency>
         <dependency> <!-- for experimental Thermo RAW support -->
             <groupId>org.jvnet.com4j</groupId>
