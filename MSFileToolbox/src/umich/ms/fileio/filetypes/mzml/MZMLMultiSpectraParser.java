@@ -16,6 +16,7 @@
 package umich.ms.fileio.filetypes.mzml;
 
 import javolution.text.CharArray;
+import javolution.xml.internal.stream.AttributesImpl;
 import javolution.xml.internal.stream.XMLStreamReaderImpl;
 import javolution.xml.sax.Attributes;
 import javolution.xml.stream.XMLStreamConstants;
@@ -38,6 +39,7 @@ import umich.ms.fileio.filetypes.xmlbased.IndexBuilder;
 import umich.ms.fileio.filetypes.xmlbased.OffsetLength;
 import umich.ms.logging.LogHelper;
 import umich.ms.util.ByteArrayHolder;
+import umich.ms.util.StringUtils;
 import umich.ms.util.base64.Base64;
 import umich.ms.util.base64.Base64Context;
 import umich.ms.util.base64.Base64ContextPooled;
@@ -58,7 +60,7 @@ import java.util.zip.DataFormatException;
 public class MZMLMultiSpectraParser extends MultiSpectraParser {
 
     protected final MZMLFile source;
-    protected LCMSRunInfo runInfo;
+    protected MZMLRunInfo runInfo;
     protected MZMLIndex index;
 
     protected ArrayList<IScan> parsedScans;
@@ -80,7 +82,8 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
         BINARY_DATA_ARRAY("binaryDataArray"),
         BINARY("binary"),
         REF_PARAM_GROUP_LIST("referenceableParamGroupList"),
-        REF_PARAM_GROUP("referenceableParamGroup");
+        REF_PARAM_GROUP("referenceableParamGroup"),
+        REF_PARAM_GROUP_REF("referenceableParamGroupRef");
 
         public final String name;
         public final CharArray charArray;
@@ -100,7 +103,8 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
         CV_PARAM_VALUE("value", true),
         CV_PARAM_UNIT_ACCESSION("unitAccession", true),
         CV_PARAM_UNIT_NAME("unitName", true),
-        PRECURSOR_SPEC_REF("spectrumRef", false);
+        PRECURSOR_SPEC_REF("spectrumRef", false),
+        REF("ref", false);
 
         public final String name;
         public final CharArray charArray;
@@ -194,7 +198,7 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
                             tagSpectrumStart(attrs);
 
                         } else if (localName.contentEquals(TAG.CV_PARAM.name)) {
-                            tagCvParamStart(attrs, reader);
+                            tagCvParamStart(attrs);
 
                         } else if (localName.contentEquals(TAG.SCAN.name)) {
                             tagSpectrumInstarumentStart(attrs);
@@ -204,6 +208,22 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
 
                         } else if (localName.contentEquals(TAG.PRECURSOR.name)) {
                             tagPrecursorStart(reader);
+
+                        } else if (localName.contentEquals(TAG.REF_PARAM_GROUP_REF.name)) {
+                            final CharArray ref = attrs.getValue(ATTR.REF.name);
+                            if (StringUtils.isNullOrBlank(ref)) {
+                                throw new IllegalStateException("A 'referenceableParamGroupRef' tag is not allowed to not have " +
+                                        "a 'ref' attribute, or have it blank.");
+                            }
+                            final List<Attributes> refAttrs = runInfo.getRefParamGroupsAttrs().get(ref);
+                            if (refAttrs == null) {
+                                throw new IllegalStateException("A 'referenceableParamGroupRef' referenced id='" + ref + "', " +
+                                        "but no mapping in RunInfo could be found.");
+                            }
+                            for (Attributes a : refAttrs) {
+                                tagCvParamStart(a);
+                            }
+
                         }
                         // END: case XMLStreamConstants.START_ELEMENT
                         break;
@@ -535,7 +555,7 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
         vars.curScan.setInstrument(instrument);
     }
 
-    private void tagCvParamStart(Attributes attrs, XMLStreamReaderImpl reader) throws FileParsingException {
+    private void tagCvParamStart(Attributes attrs) throws FileParsingException {
         CharArray attr, val;
         PSIMSCV cvEntry;
         if (flushVarsIfNoCurScan()) {

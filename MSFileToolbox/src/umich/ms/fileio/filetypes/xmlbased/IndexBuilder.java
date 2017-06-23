@@ -31,7 +31,7 @@ public interface IndexBuilder<T extends XMLBasedIndexElement> extends Callable<I
     /**
      * @author Dmitry Avtonomov
      */
-    public static class Info {
+    class Info {
         /** Global offset of the read-buffer (which is shared by multiple parsers) relative to the start of the file. */
         public final long offsetInFile;
         /**
@@ -54,7 +54,7 @@ public interface IndexBuilder<T extends XMLBasedIndexElement> extends Callable<I
      * @author Dmitry Avtonomov
      * @param <T> type of index elements
      */
-    public static class Result<T extends XMLBasedIndexElement> {
+    class Result<T extends XMLBasedIndexElement> {
         private Info info;
         private List<T> indexElements;
         private List<T> unfinishedIndexElements;

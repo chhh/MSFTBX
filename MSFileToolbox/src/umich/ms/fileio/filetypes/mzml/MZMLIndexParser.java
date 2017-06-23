@@ -30,6 +30,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javolution.text.CharArray;
 import javolution.xml.internal.stream.XMLInputFactoryImpl;
+import javolution.xml.internal.stream.XMLStreamReaderImpl;
 import javolution.xml.stream.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -271,11 +272,11 @@ public class MZMLIndexParser {
      *            with key Integer.MAX_VALUE.
      * @throws FileParsingException
      */
-    protected void parseIndexEntries(byte[] bytes, TreeMap<Integer, OffsetId> map) throws FileParsingException {
-        XMLInputFactory factory = new XMLInputFactoryImpl();
-        XMLStreamReader reader;
+    protected void parseIndexEntries(byte[] bytes, TreeMap<Integer, OffsetId> map) throws IndexBrokenException {
         try {
-            reader = factory.createXMLStreamReader(new ByteArrayInputStream(bytes));
+            final ByteArrayInputStream bais = new ByteArrayInputStream(bytes);
+            XMLStreamReaderImpl reader = new XMLStreamReaderImpl();
+            reader.setInput(bais, StandardCharsets.UTF_8.name());
             boolean isInsideSpectrumIndex = false;
             boolean stopReading = false;
             int eventType, scanNumOrdinal = 0;
@@ -293,13 +294,13 @@ public class MZMLIndexParser {
                             // now read input for all CHARACTERS to get the offset
                             eventType = reader.next();
                             if (eventType != XMLStreamConstants.CHARACTERS) {
-                                throw new FileParsingException(String.format(
+                                throw new IndexBrokenException(String.format(
                                         "Could not find scan offset, specified as CHARACTERS "
                                                 + "after <%s> tag in %s file", TAG_OFFSET, FILE_TYPE_NAME));
                             }
                             offset = reader.getText().toLong();
                             if (offset == offsetPrev) {
-                                throw new FileParsingException("When parsing index, encountered same offsets for" +
+                                throw new IndexBrokenException("When parsing index, encountered same offsets for" +
                                         " different spectra. Likely a broken file, this happens when converting large" +
                                         " files with specific versions of ProteoWizard.");
                             }
@@ -311,7 +312,7 @@ public class MZMLIndexParser {
                             // moved to bottom, because this should be less frequent of an event
                             CharArray name = reader.getAttributeValue(null, "name");
                             if (name == null)
-                                throw new FileParsingException("mzML file index list did not contain "
+                                throw new IndexBrokenException("mzML file index list did not contain "
                                         + "a 'name' attribute for one of its indexes");
                             if (name.equals(INDEX_NAME)) {
                                 isInsideSpectrumIndex = true;
@@ -332,7 +333,7 @@ public class MZMLIndexParser {
         } catch (XMLStreamException e) {
             // Javolution throws an Exception, which can only be identified by its text message
             if (e instanceof XMLUnexpectedEndTagException) {
-                throw new FileParsingException("Error when parsing index entries", e);
+                throw new IndexBrokenException("Error when parsing index entries", e);
             }
         }
     }

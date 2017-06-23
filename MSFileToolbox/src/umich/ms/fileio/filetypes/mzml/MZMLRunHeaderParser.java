@@ -60,19 +60,31 @@ public class MZMLRunHeaderParser extends XmlBasedRunHeaderParser {
     }
 
     @Override
-    public LCMSRunInfo parse() throws RunHeaderParsingException {
+    public MZMLRunInfo parse() throws RunHeaderParsingException {
         OffsetLength headerLocation;
         try {
             headerLocation = locateRunHeader(TAG_MZML, true, true, TAG_RUN, true, false);
         } catch (RunHeaderParsingException e) {
             if (e instanceof RunHeaderBoundsNotFound) {
-                return LCMSRunInfo.getDummyRunInfo();
+                final LCMSRunInfo dummyInfo = LCMSRunInfo.createDummyInfo();
+                return new MZMLRunInfo(dummyInfo);
             }
             throw e;
         }
         MzMLType parsedInfo = parseHeaderWithJAXB(MzMLType.class, headerLocation);
-        LCMSRunInfo runInfo = new LCMSRunInfo();
+        MZMLRunInfo runInfo = new MZMLRunInfo(parsedInfo);
 
+
+        // referenceable param groups
+        final ReferenceableParamGroupListType referenceableParamGroupList = parsedInfo.getReferenceableParamGroupList();
+        if (referenceableParamGroupList != null) {
+            final List<ReferenceableParamGroupType> referenceableParamGroups = referenceableParamGroupList.getReferenceableParamGroup();
+            if (referenceableParamGroups != null) {
+                for (ReferenceableParamGroupType grp : referenceableParamGroups) {
+                    runInfo.addRefParamGroup(grp.getId(), grp.getCvParam());
+                }
+            }
+        }
 
         // original files
         FileDescriptionType fileDescription = parsedInfo.getFileDescription();

@@ -87,7 +87,21 @@ public class MZMLFile extends AbstractXMLBasedDataSource<MZMLIndexElement, MZMLI
     }
 
     @Override
-    public LCMSRunInfo parseRunInfo() throws FileParsingException {
+    public MZMLRunInfo fetchRunInfo() throws FileParsingException {
+        MZMLRunInfo info = (MZMLRunInfo)runInfo;
+        if (runInfo == null) {
+            synchronized (this) {
+                info = (MZMLRunInfo)runInfo;
+                if (info == null) {
+                    runInfo = info = parseRunInfo();
+                }
+            }
+        }
+        return info;
+    }
+
+    @Override
+    public MZMLRunInfo parseRunInfo() throws FileParsingException {
         MZMLRunHeaderParser parser = new MZMLRunHeaderParser(this);
         return parser.parse();
     }

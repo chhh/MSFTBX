@@ -65,7 +65,7 @@ public class MZXMLRunHeaderParser extends XmlBasedRunHeaderParser {
             msRunLocation = locateRunHeader(TAG_MSRUN, true, true, TAG_SCAN, true, true);
         } catch (RunHeaderParsingException e) {
             if (e instanceof RunHeaderBoundsNotFound) {
-                return LCMSRunInfo.getDummyRunInfo();
+                return LCMSRunInfo.createDummyInfo();
             }
             throw e;
         }

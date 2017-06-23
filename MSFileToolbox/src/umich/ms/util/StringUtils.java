@@ -26,6 +26,31 @@ public abstract class StringUtils {
         throw new AssertionError("This class can't be instantiated");
     }
 
+    public static boolean isNullOrEmpty(CharSequence s) {
+        return s == null || s.length() == 0;
+    }
+
+    public static boolean isNullOrWhitespace(CharSequence s) {
+        return s == null || isWhitespace(s);
+    }
+
+    public static boolean isNullOrBlank(CharSequence s) {
+        return s == null || s.length() == 0 || isWhitespace(s);
+    }
+
+    private static boolean isWhitespace(CharSequence s) {
+        int length = s.length();
+        if (length > 0) {
+            for (int i = 0; i < length; i++) {
+                if (!Character.isWhitespace(s.charAt(i))) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
     /**
      * Join strings with a separator.
      * @param iterable

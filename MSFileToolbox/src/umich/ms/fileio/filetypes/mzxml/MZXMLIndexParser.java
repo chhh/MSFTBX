@@ -90,7 +90,8 @@ public class MZXMLIndexParser {
             int readResult = fileHandle.read(bytes); // this string is supposed to be in US-ASCII by convention
 
             this.parseIndexEntries(bytes, scanIndex);
-        } catch (FileParsingException | IOException e) {
+
+        } catch (IOException e) {
             throw new FileParsingException(e);
         } catch (IndexNotFoundException | IndexBrokenException e) {
             // we could not find the index, we'll have to scan through the whole file and build one ourselves
@@ -256,7 +257,7 @@ public class MZXMLIndexParser {
      *            with key Integer.MAX_VALUE.
      * @throws FileParsingException
      */
-    protected void parseIndexEntries(byte[] bytes, TreeMap<Integer, Long> map) throws FileParsingException {
+    protected void parseIndexEntries(byte[] bytes, TreeMap<Integer, Long> map) throws IndexBrokenException {
         XMLInputFactory factory = new XMLInputFactoryImpl();
         XMLStreamReader reader = null;
         try {
@@ -275,7 +276,7 @@ public class MZXMLIndexParser {
                             // now read input for all CHARACTERS to get the offset
                             eventType = reader.next();
                             if (eventType != XMLStreamConstants.CHARACTERS) {
-                                throw new FileParsingException(String.format(
+                                throw new IndexBrokenException(String.format(
                                         "Could not find scan offset, specified as CHARACTERS after <%s> tag in %s file", TAG_OFFSET, FILE_TYPE_NAME));
                             }
                             long offset = reader.getText().toLong();
@@ -286,7 +287,7 @@ public class MZXMLIndexParser {
                             // moved to bottom, because this should be less frequent of an event
                             CharArray name = reader.getAttributeValue(null, "name");
                             if (name == null)
-                                throw new FileParsingException("mzML file index list did not contain a 'name' attribute for one of its indexes");
+                                throw new IndexBrokenException("mzML file index list did not contain a 'name' attribute for one of its indexes");
                             if (name.equals(INDEX_NAME)) {
                                 isInsideSpectrumIndex = true;
                             }
@@ -306,12 +307,12 @@ public class MZXMLIndexParser {
         } catch (XMLStreamException e) {
             // Javolution throws an Exception, which can only be identified by its text message
             if (e instanceof XMLUnexpectedEndTagException) {
-                throw new FileParsingException("Error when parsing index entries", e);
+                throw new IndexBrokenException("Error when parsing index entries", e);
             }
         }
     }
 
-    protected int parseScanNumFromIndex(CharArray scanIdentifier) throws FileParsingException {
+    protected int parseScanNumFromIndex(CharArray scanIdentifier) {
         return scanIdentifier.toInt();
     }
 }

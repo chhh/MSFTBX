@@ -32,7 +32,7 @@ public class LCMSRunInfo implements Serializable {
     protected Map<String, Instrument> instruments = new HashMap<>(2);
     protected String defaultInstrumentID = null;
     protected Boolean isCentroided = null;
-    private boolean isDefaultExplicitlySet = false;
+    protected boolean isDefaultExplicitlySet = false;
     protected Date date = null;
     protected List<MsSoftware> software = new ArrayList<>(5);
     protected List<OriginalFile> originalFiles = new ArrayList<>(1);
@@ -145,7 +145,7 @@ public class LCMSRunInfo implements Serializable {
      * Only use if you can't get real run info.
      * @return
      */
-    public static final LCMSRunInfo getDummyRunInfo() {
+    public static LCMSRunInfo createDummyInfo() {
         LCMSRunInfo lcmsRunInfo = new LCMSRunInfo();
         lcmsRunInfo.addInstrument(Instrument.getDummy(), Instrument.ID_UNKNOWN);
         return lcmsRunInfo;

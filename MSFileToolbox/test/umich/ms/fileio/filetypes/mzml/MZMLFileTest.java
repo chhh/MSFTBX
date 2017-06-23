@@ -16,7 +16,12 @@
 
 package umich.ms.fileio.filetypes.mzml;
 
+import umich.ms.datatypes.LCMSDataSubset;
 import umich.ms.datatypes.lcmsrun.LCMSRunInfo;
+import umich.ms.datatypes.scan.IScan;
+import umich.ms.datatypes.scan.StorageStrategy;
+import umich.ms.datatypes.scancollection.IScanCollection;
+import umich.ms.datatypes.scancollection.impl.ScanCollectionDefault;
 
 import java.io.IOException;
 import java.net.URI;
@@ -46,7 +51,8 @@ public class MZMLFileTest {
             final DirectoryStream<Path> stream = Files.newDirectoryStream(path);
             paths = new ArrayList<>();
             for (Path p : stream) {
-                if (Files.isRegularFile(p)) { // && p.getFileName().toString().equals("RawCentriodCidWithMsLevelInRefParamGroup.mzML")
+                //if (Files.isRegularFile(p)) { // && p.getFileName().toString().equals("RawCentriodCidWithMsLevelInRefParamGroup.mzML")
+                if (Files.isRegularFile(p) && p.getFileName().toString().equals("tiny.pwiz.idx.mzML")) {
                     paths.add(p);
                 }
             }
@@ -64,12 +70,31 @@ public class MZMLFileTest {
     @org.junit.Test
     public void parseRunInfo() throws Exception {
         for (Path p : paths) {
-            System.out.printf("\n\nFile: %s\n", p.getFileName());
+            System.out.printf("\n\nReading run info from file: %s\n", p.getFileName());
 
             final MZMLFile mzml = new MZMLFile(p.toString());
             final LCMSRunInfo runInfo = mzml.fetchRunInfo();
 
             System.out.printf("\tRun info: %s\n", runInfo);
+        }
+    }
+
+    @org.junit.Test
+    public void parseWholeFile() throws Exception {
+        for (Path p : paths) {
+            System.out.printf("\n\nParsing whole file: %s\n", p.getFileName());
+
+            final MZMLFile mzml = new MZMLFile(p.toString());
+
+            mzml.setNumThreadsForParsing(1);
+            mzml.setTasksPerCpuPerBatch(1);
+            mzml.setParsingTimeout(30 * 1000);
+
+            IScanCollection scans = new ScanCollectionDefault(true);
+            scans.setDataSource(mzml);
+            scans.loadData(LCMSDataSubset.WHOLE_RUN, StorageStrategy.STRONG);
+
+
         }
     }
 
