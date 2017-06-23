@@ -802,7 +802,8 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
 
                         if (localName.contentEquals(TAG.SPECTRUM.name)) {
                             if (numOpeningScanTagsFound == 1) {
-                                length = reader.getLocation().getCharacterOffset();
+                                final XMLStreamReaderImpl.LocationImpl loc = reader.getLocation();
+                                length = loc.getCharacterOffset() + loc.getBomLength();
                                 return length;
                             }
                         }
@@ -912,7 +913,8 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
                         localName = reader.getLocalName();
 
                         if (localName.contentEquals(TAG.SPECTRUM.name)) {
-                            vars.length = (int)(reader.getLocation().getCharacterOffset() - vars.offset);
+                            final XMLStreamReaderImpl.LocationImpl loc = reader.getLocation();
+                            vars.length = (int)(loc.getCharacterOffset() + loc.getBomLength() - vars.offset);
                             addCurIndexElementAndFlushVars(result, offsetInFile, offsetInBuffer);
                         }
 
