@@ -76,40 +76,42 @@ public class MZXMLRunHeaderParser extends XmlBasedRunHeaderParser {
 
         // original files
         List<MsRun.ParentFile> parentFiles = parsedInfo.getParentFile();
-        for (MsRun.ParentFile parentFile : parentFiles) {
-            String file = parentFile.getFileName();
-            file = file.replaceAll("\\\\", "/");
-            String location = "";
-            String fileName = file;
-            try {
-                Path path = Paths.get(file);
-                location = path.getParent().toString();
-                fileName = path.getFileName().toString();
-            } catch (InvalidPathException e) {
-                // could not parse path, try URI
+        if (parentFiles != null) {
+            for (MsRun.ParentFile parentFile : parentFiles) {
+                String file = parentFile.getFileName();
+                file = file.replaceAll("\\\\", "/");
+                String location = "";
+                String fileName = file;
                 try {
-                    URI uri = URI.create(file).normalize();
-                    String uriPath = uri.getPath();
-                    while (uriPath.startsWith("/")) uriPath = uriPath.substring(1);
-
-                    Path path = Paths.get(uriPath);
+                    Path path = Paths.get(file);
                     location = path.getParent().toString();
                     fileName = path.getFileName().toString();
-                } catch (IllegalArgumentException e2) {
-                    // URI also didn't work, forget it
-                }
-            }
+                } catch (InvalidPathException e) {
+                    // could not parse path, try URI
+                    try {
+                        URI uri = URI.create(file).normalize();
+                        String uriPath = uri.getPath();
+                        while (uriPath.startsWith("/")) uriPath = uriPath.substring(1);
 
-            Hash hash = null;
-            if (parentFile.getFileSha1() != null && !parentFile.getFileSha1().isEmpty()) {
-                hash = new Hash(parentFile.getFileSha1(), Hash.TYPE.SHA1);
+                        Path path = Paths.get(uriPath);
+                        location = path.getParent().toString();
+                        fileName = path.getFileName().toString();
+                    } catch (IllegalArgumentException e2) {
+                        // URI also didn't work, forget it
+                    }
+                }
+
+                Hash hash = null;
+                if (parentFile.getFileSha1() != null && !parentFile.getFileSha1().isEmpty()) {
+                    hash = new Hash(parentFile.getFileSha1(), Hash.TYPE.SHA1);
+                }
+                runInfo.getOriginalFiles().add(new OriginalFile(location, fileName, hash));
             }
-            runInfo.getOriginalFiles().add(new OriginalFile(location, fileName, hash));
         }
 
 
         List<MsRun.MsInstrument> msInstruments = parsedInfo.getMsInstrument();
-        if (msInstruments.size() > 0) {
+        if (msInstruments != null && msInstruments.size() > 0) {
             for (MsRun.MsInstrument i : msInstruments) {
                 String msInstrumentID;
                 if (i.getMsInstrumentID() != null) {
@@ -154,15 +156,17 @@ public class MZXMLRunHeaderParser extends XmlBasedRunHeaderParser {
         }
 
         List<MsRun.DataProcessing> dataProcessings = parsedInfo.getDataProcessing();
-        for (MsRun.DataProcessing dataProcessing : dataProcessings) {
-            if (dataProcessing.isCentroided() != null) {
-                runInfo.setCentroided(dataProcessing.isCentroided());
-            }
+        if (dataProcessings != null) {
+            for (MsRun.DataProcessing dataProcessing : dataProcessings) {
+                if (dataProcessing.isCentroided() != null) {
+                    runInfo.setCentroided(dataProcessing.isCentroided());
+                }
 
-            Software software = dataProcessing.getSoftware();
-            if (software != null) {
-                MsSoftware msSoftware = new MsSoftware(software.getName(), software.getVersion());
-                runInfo.getSoftware().add(msSoftware);
+                Software software = dataProcessing.getSoftware();
+                if (software != null) {
+                    MsSoftware msSoftware = new MsSoftware(software.getName(), software.getVersion());
+                    runInfo.getSoftware().add(msSoftware);
+                }
             }
         }
 
