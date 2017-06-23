@@ -52,7 +52,7 @@ public class MZMLFileTest {
             paths = new ArrayList<>();
             for (Path p : stream) {
                 //if (Files.isRegularFile(p)) { // && p.getFileName().toString().equals("RawCentriodCidWithMsLevelInRefParamGroup.mzML")
-                if (Files.isRegularFile(p) && p.getFileName().toString().equals("tiny.pwiz.idx.mzML")) {
+                if (Files.isRegularFile(p)) {// && p.getFileName().toString().equals("tiny.pwiz.idx.mzML")) {
                     paths.add(p);
                 }
             }
