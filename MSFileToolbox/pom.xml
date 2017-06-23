@@ -32,7 +32,7 @@
 
     <!--<groupId>com.github.chhh</groupId>-->
     <artifactId>msftbx</artifactId>
-    <version>1.2.3-SNAPSHOT</version>
+    <version>1.2.3</version>
     <packaging>jar</packaging>
 
     <name>MSFTBX</name>
