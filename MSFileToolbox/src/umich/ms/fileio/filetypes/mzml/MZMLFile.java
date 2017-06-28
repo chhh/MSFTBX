@@ -205,7 +205,6 @@ public class MZMLFile extends AbstractXMLBasedDataSource<MZMLIndexElement, MZMLI
                 MZMLIndexElement byNum = index.getByNum(1);
                 MZMLIndexElement byRawNum = index.getByRawNum(byNum.getRawNumber());
                 MZMLIndexElement byId = index.getById(byNum.getId());
-                int a = 1;
 
             } else {
                 System.err.println("Parsed index was empty!");

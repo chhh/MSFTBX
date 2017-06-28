@@ -356,7 +356,6 @@ public class ChunkedFile implements FileChunkSource {
                         chunkFifo.add(nextChunk);
                     }
                     //System.out.printf("Woohoo thread '%s' got text:\n\t%s..(%d chars)\n", Thread.currentThread().getName(), s.subSequence(0, 20), s.length());
-                    int a = 1;
                     try {
                         Thread.sleep(500);
                     } catch (InterruptedException e) {

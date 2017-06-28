@@ -72,8 +72,6 @@ public class AgilentCompounds {
                 if (msPeaks == null) {
                     msPeaks = new ArrayList<>();
                     map.put(id, msPeaks);
-                } else {
-                    int a = 1;
                 }
                 msPeaks.add(p);
             }

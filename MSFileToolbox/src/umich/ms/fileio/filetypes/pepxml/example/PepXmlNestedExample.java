@@ -89,8 +89,7 @@ public class PepXmlNestedExample {
             }
         }
 
-
-        int a = 1;
+        int xyz = 1;
     }
 
 

@@ -202,7 +202,6 @@ public class ScanCollectionHelper {
         }
         for (Integer msLevel : msLevelsToRemove)
             mapMsLevel2rangeGroups.remove(msLevel);
-        int a = 1;
     }
 
     private static boolean isAllRangesHaveApproxSameScanCounts(IntervalST<Double, TreeMap<Integer, IScan>> rangeMapMS2) {

@@ -55,6 +55,5 @@ public class AgilentCefTest {
         AgilentCompounds compounds = cefFile.create();
         compounds.splitCompoundsByAdduct();
 
-        int a = 1;
     }
 }
