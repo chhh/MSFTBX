@@ -50,6 +50,9 @@ public enum PSIMSCV {
     MS_POLARITY_POS_OBSOLETE            ("MS:1000077", "positive ion mode"),
     MS_POLARITY_NEG                     ("MS:1000129", "negative scan"),
     MS_POLARITY_NEG_OBSOLETE            ("MS:1000076", "negative ion mode"),
+    MS_SPECTRUM_TYPE                    ("MS:1000559", "spectrum type"),
+    MS_MASS_SPECTRUM                    ("MS:1000294", "mass spectrum"),
+    MS_CALIBRATION_SPECTRUM             ("MS:1000928", "calibration spectrum"),
     MS_MS1_SPECTRUM                     ("MS:1000579", "MS1 spectrum"),
     MS_MSN_SPECTRUM                     ("MS:1000580", "MSn spectrum"),
     MS_MSN_SPECTRUM_OBSOLETE_1          ("MS:1000339", "nth generation product ion spectrum"),
@@ -90,6 +93,9 @@ public enum PSIMSCV {
     MS_COMPRESSION_NUMPRESS_LIN_PRED    ("MS:1002312", "MS-Numpress linear prediction compression", "Numpress LINPRED"),
     MS_COMPRESSION_NUMPRESS_POS_INT     ("MS:1002313", "MS-Numpress positive integer compression", "Numpress POSINT"),
     MS_COMPRESSION_NUMPRESS_LOG_FLOAT   ("MS:1002314", "MS-Numpress short logged float compression", "Numpress SHLOGF"),
+    MS_COMPRESSION_NUMPRESS_LIN_PRED_ZLIB ("MS:1002746", "MS-Numpress linear prediction compression followed by zlib compression", "Numpress LINPRED+ZLIB"),
+    MS_COMPRESSION_NUMPRESS_POS_INT_ZLIB  ("MS:1002747", "MS-Numpress positive integer compression followed by zlib compression", "Numpress POSINT+ZLIB"),
+    MS_COMPRESSION_NUMPRESS_LOG_FLOAT_ZLIB("MS:1002748", "MS-Numpress short logged float compression followed by zlib compression", "Numpress SHLOGF+ZLIB"),
 
     MS_DISSOCIATION_METHOD              ("MS:1000044", "dissociation method"),
     MS_PEAK_PICKING                     ("MS:1000035", "peak picking"),
@@ -135,6 +141,10 @@ public enum PSIMSCV {
     public static Map<String, InstrumentModelCVTerm> MAP_INSTRUMENT_MODEL = new HashMap<>(250);
     public static Map<String, Term> MAP_PEAK_PICKING = new HashMap<>(5);
     public static Map<String, Term> MAP_IONIZATION_TYPE = new HashMap<>(5);
+    public static Map<String, Term> MAP_MASS_SPECTRUM = new HashMap<>(50);
+    public static Map<String, Term> MAP_SPECTRUM_TYPE = new HashMap<>(100);
+    public static Map<String, Term> MAP_NOT_MASS_SPECTRUM = new HashMap<>(100);
+    public static Map<CharArray, Term> MAP_NOT_MASS_SPECTRUM_CHAR = new HashMap<>(100);
 
 
     //@StaticResource // this annotation brings dependency on Common Annotations from NBP
@@ -154,7 +164,7 @@ public enum PSIMSCV {
         }
 
         OboParser oboParser = new OboParser();
-        Ontology ontology;
+        Ontology ontoMs;
         try {
 
             ClassLoader classLoader = PSIMSCV.class.getClassLoader();
@@ -162,8 +172,8 @@ public enum PSIMSCV {
             InputStream is = classLoader.getResourceAsStream(psiMsOboPath);
             BufferedReader oboFile = new BufferedReader(new InputStreamReader(is));
 
-            ontology = oboParser.parseOBO(oboFile, "PSI-MS", "Mass Spectrometry controlled vocabulary");
-            ONTOLOGY = ontology;
+            ontoMs = oboParser.parseOBO(oboFile, "PSI-MS", "Mass Spectrometry controlled vocabulary");
+            ONTOLOGY = ontoMs;
 
             // gather activation type entries from the .obo
             TermCallback callbackActivationTerm = new TermCallback() {
@@ -179,26 +189,56 @@ public enum PSIMSCV {
                     mapCharArr2ActivationCVTerm.put(new CharArray(accession), activationCVTerm);
                 }
             };
-            gatherRootedInfo(MS_DISSOCIATION_METHOD.accession, ontology, callbackActivationTerm);
+            gatherRootedInfo(MS_DISSOCIATION_METHOD.accession, ontoMs, callbackActivationTerm);
 
             // gather analyzer types from the .obo
             TermCallback callbackAnalyzerType = new TermCallback() {
                 @Override
                 public void perform(Term term, boolean isLeaf) {
-                    String accession = term.getName();
-                    String name = term.getDescription();
                     if (!isLeaf)
                         return;
-                    MAP_ANALYZER_TYPE.put(accession, term);
+                    MAP_ANALYZER_TYPE.put(term.getName(), term);
                 }
             };
-            gatherRootedInfo(MS_INSTRUMENT_COMPONENT_ANALYZER.accession, ontology, callbackAnalyzerType);
+            gatherRootedInfo(MS_INSTRUMENT_COMPONENT_ANALYZER.accession, ontoMs, callbackAnalyzerType);
 
+
+            // gather all Spectrum Types
+            TermCallback callbackSpectrumTypeTerm = new TermCallback() {
+                @Override
+                public void perform(Term term, boolean isLeaf) {
+                    if (!isLeaf)
+                        return;
+                    MAP_SPECTRUM_TYPE.put(term.getName(), term);
+                }
+            };
+            gatherRootedInfo(MS_SPECTRUM_TYPE.accession, ontoMs, callbackSpectrumTypeTerm);
+
+            // gather all Mass Spectrum types
+            TermCallback callbackMassSpectrumTerm = new TermCallback() {
+                @Override
+                public void perform(Term term, boolean isLeaf) {
+                    String accession = term.getName();
+                    MAP_MASS_SPECTRUM.put(accession, term);
+                }
+            };
+            gatherRootedInfo(MS_MASS_SPECTRUM.accession, ontoMs, callbackMassSpectrumTerm);
+
+            // all known non-mass spectrum types
+            for (Map.Entry<String, Term> e : MAP_SPECTRUM_TYPE.entrySet()) {
+                if (MS_CALIBRATION_SPECTRUM.accession.equals(e.getKey())) // calibration spectrum
+                    continue;
+                final Term term = MAP_MASS_SPECTRUM.get(e.getKey());
+                if (term == null) {
+                    MAP_NOT_MASS_SPECTRUM.put(e.getKey(), e.getValue());
+                    MAP_NOT_MASS_SPECTRUM_CHAR.put(new CharArray(e.getKey()), e.getValue());
+                }
+            }
 
             // gather instrument models from the .obo
             try {
-                Term instModelTermRoot = ontology.getTerm(MS_INSTRUMENT_MODEL.accession);
-                Set<Triple> triplesVendors = ontology.getTriples(null, instModelTermRoot, null);
+                Term instModelTermRoot = ontoMs.getTerm(MS_INSTRUMENT_MODEL.accession);
+                Set<Triple> triplesVendors = ontoMs.getTriples(null, instModelTermRoot, null);
                 // iterate over vendors
                 for (Triple tVendor : triplesVendors) {
                     Term subject = tVendor.getSubject();
@@ -222,7 +262,7 @@ public enum PSIMSCV {
                             MAP_INSTRUMENT_MODEL.put(accessionModel, instrumentModelCVTerm);
                         }
                     };
-                    gatherRootedInfo(accessionVendor, ontology, callbackInstrumentModel);
+                    gatherRootedInfo(accessionVendor, ontoMs, callbackInstrumentModel);
                 }
             } catch (NoSuchElementException e) {
                 // could not get the root element for all mass spec instruments
@@ -236,7 +276,7 @@ public enum PSIMSCV {
                     MAP_PEAK_PICKING.put(term.getName(), term);
                 }
             };
-            gatherRootedInfo(MS_PEAK_PICKING.accession, ontology, callbackPeakPickingTerm);
+            gatherRootedInfo(MS_PEAK_PICKING.accession, ontoMs, callbackPeakPickingTerm);
 
             TermCallback callbackIonizationType = new TermCallback() {
                 @Override
@@ -244,7 +284,7 @@ public enum PSIMSCV {
                     MAP_IONIZATION_TYPE.put(term.getName(), term);
                 }
             };
-            gatherRootedInfo(MS_INSTRUMENT_IONIZATION_TYPE.accession, ontology, callbackIonizationType);
+            gatherRootedInfo(MS_INSTRUMENT_IONIZATION_TYPE.accession, ontoMs, callbackIonizationType);
 
         } catch (ParseException | IOException e) {
             e.printStackTrace();

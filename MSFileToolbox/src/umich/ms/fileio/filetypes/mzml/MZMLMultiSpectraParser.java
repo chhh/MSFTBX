@@ -16,7 +16,6 @@
 package umich.ms.fileio.filetypes.mzml;
 
 import javolution.text.CharArray;
-import javolution.xml.internal.stream.AttributesImpl;
 import javolution.xml.internal.stream.XMLStreamReaderImpl;
 import javolution.xml.sax.Attributes;
 import javolution.xml.stream.XMLStreamConstants;
@@ -24,8 +23,8 @@ import javolution.xml.stream.XMLStreamException;
 import javolution.xml.stream.XMLUnexpectedEndOfDocumentException;
 import javolution.xml.stream.XMLUnexpectedEndTagException;
 import org.apache.commons.pool2.ObjectPool;
+import org.biojava.nbio.ontology.Term;
 import umich.ms.datatypes.LCMSDataSubset;
-import umich.ms.datatypes.lcmsrun.LCMSRunInfo;
 import umich.ms.datatypes.scan.IScan;
 import umich.ms.datatypes.scan.PeaksCompression;
 import umich.ms.datatypes.scan.impl.ScanDefault;
@@ -64,7 +63,7 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
     protected MZMLIndex index;
 
     protected ArrayList<IScan> parsedScans;
-    protected VarsHolder vars;
+    protected Vars vars;
     protected ObjectPool<XMLStreamReaderImpl> readerPool = null;
     private int numOpeningScanTagsFound;
 
@@ -147,7 +146,7 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
             parsedScans = new ArrayList<>();
         }
         numOpeningScanTagsFound = 0;
-        vars = new VarsHolder();
+        vars = new Vars();
 
         XMLStreamReaderImpl reader = (readerPool == null) ? new XMLStreamReaderImpl() : readerPool.borrowObject();
         try {
@@ -432,7 +431,7 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
 
                     cvEntry = PSIMSCV.fromAccession(attr);
                     if (cvEntry == null) {
-                        break; // we don't care about unknown cv entries
+                        continue; // we don't care about unknown cv entries
                     }
                     switch (cvEntry) {
                         case MS_PRECISION_32:
@@ -456,18 +455,36 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
                         case MS_COMPRESSION_NUMPRESS_POS_INT:
                             vars.getCompressions().add(PeaksCompression.NUMPRESS_POSINT);
                             break;
+                        case MS_COMPRESSION_NUMPRESS_LIN_PRED_ZLIB:
+                            vars.getCompressions().add(PeaksCompression.NUMPRESS_LINPRED);
+                            vars.getCompressions().add(PeaksCompression.ZLIB);
+                            break;
+                        case MS_COMPRESSION_NUMPRESS_LOG_FLOAT_ZLIB:
+                            vars.getCompressions().add(PeaksCompression.NUMPRESS_SHLOGF);
+                            vars.getCompressions().add(PeaksCompression.ZLIB);
+                            break;
+                        case MS_COMPRESSION_NUMPRESS_POS_INT_ZLIB:
+                            vars.getCompressions().add(PeaksCompression.NUMPRESS_POSINT);
+                            vars.getCompressions().add(PeaksCompression.ZLIB);
+                            break;
                         case MS_DATA_ARRAY_MZ:
-                            vars.binDataType = VarsHolder.BIN_DATA_TYPE.MZ;
+                            vars.binDataType = Vars.BIN_DATA_TYPE.MZ;
                             break;
                         case MS_DATA_ARRAY_INTENSITY:
-                            vars.binDataType = VarsHolder.BIN_DATA_TYPE.INTENSITY;
+                            vars.binDataType = Vars.BIN_DATA_TYPE.INTENSITY;
                             break;
                     }
 
 
 
                 } else if (localName.contentEquals(TAG.BINARY.name)) {
+
                     try {
+                        if (vars.binDataType == null) {
+                            // not an m/z data array or intensity array
+                            continue;
+                        }
+
                         eventType = reader.next();
                         if (eventType != XMLStreamConstants.CHARACTERS) {
 
@@ -519,9 +536,12 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
                                             "a specification if this was mz or intensity data.");
                             }
                         }
-                        vars.flushBinDataDescription();
                     } catch (XMLStreamException e) {
                         throw new FileParsingException(e);
+
+                    } finally {
+                        // no matter what, we remove all previously parsed meta-info about the binary arrays
+                        vars.flushBinDataDescription();
                     }
 
                 }
@@ -530,13 +550,17 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
         } while (!(eventType == XMLStreamConstants.END_ELEMENT && localName.contentEquals(TAG.BINARY_DATA_LIST.name)));
 
         // now we've reached the end of <binaryDataArrayList> tag
-        double basePeakMz = vars.intensityData.valMaxPos < 0 ? 0d : vars.mzData.arr[vars.intensityData.valMaxPos];
-        ISpectrum spectrum = new SpectrumDefault(
-                vars.mzData.arr, vars.intensityData.arr,
-                vars.intensityData.valMin, vars.intensityData.valMinNonZero,
-                vars.intensityData.valMax, basePeakMz,
-                vars.intensityData.sum);
-        vars.curScan.setSpectrum(spectrum, false);
+        if (vars.intensityData == null || vars.mzData == null || vars.mzData.arr == null) {
+            vars.isNonMassSpectrum = true;
+        } else {
+            double basePeakMz = vars.intensityData.valMaxPos < 0 ? 0d : vars.mzData.arr[vars.intensityData.valMaxPos];
+            ISpectrum spectrum = new SpectrumDefault(
+                    vars.mzData.arr, vars.intensityData.arr,
+                    vars.intensityData.valMin, vars.intensityData.valMinNonZero,
+                    vars.intensityData.valMax, basePeakMz,
+                    vars.intensityData.sum);
+            vars.curScan.setSpectrum(spectrum, false);
+        }
     }
 
     private void tagSpectrumInstarumentStart(Attributes attrs) throws FileParsingException {
@@ -556,22 +580,27 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
     }
 
     private void tagCvParamStart(Attributes attrs) throws FileParsingException {
-        CharArray attr, val;
-        PSIMSCV cvEntry;
+
         if (flushVarsIfNoCurScan()) {
             return;
         }
 
         // these are some general CVs, that we can safely parse and assign to the scan
         // all other attributes are optional according to mzXML schema
-        attr = attrs.getValue(ATTR.CV_PARAM_ACCESSION.name);
-        val = attrs.getValue(ATTR.CV_PARAM_VALUE.name);
+        CharArray attr = attrs.getValue(ATTR.CV_PARAM_ACCESSION.name);
+        CharArray val = attrs.getValue(ATTR.CV_PARAM_VALUE.name);
         if (attr == null) {
             throw new FileParsingException("cvParam did not have an 'accession' attribute, which is required");
         }
         //cvEntry = PSIMSCV.fromAccession(attr.toString());
-        cvEntry = PSIMSCV.fromAccession(attr);
+        PSIMSCV cvEntry = PSIMSCV.fromAccession(attr);
         if (cvEntry == null) {
+            // if it's not a mass spectrum, skip the scan all at once
+            final Term term = PSIMSCV.MAP_NOT_MASS_SPECTRUM.get(attr); // look up in the map of definitely-not-mass-spectral types
+            if (term != null) {
+                vars.isNonMassSpectrum = true;
+            }
+
             // we don't care about unknown cv entries
             return;
         }
@@ -758,7 +787,7 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
     public int findThisStreamFirstScanLen() throws FileParsingException {
         int length = -1;
         numOpeningScanTagsFound = 0;
-        vars = new VarsHolder();
+        vars = new Vars();
 
         XMLStreamReaderImpl reader = null;
         try {
@@ -841,7 +870,7 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
         IndexBuilder.Result<MZMLIndexElement> result = new IndexBuilder.Result<>(info);
 
         numOpeningScanTagsFound = 0;
-        vars = new VarsHolder();
+        vars = new Vars();
 
         XMLStreamReaderImpl reader = (readerPool == null) ? new XMLStreamReaderImpl() : readerPool.borrowObject();
         try {
@@ -892,9 +921,6 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
                             // these are required attributes, if they're not there, just throw an exception
                             try {
                                 vars.spectrumIndex = attrs.getValue(ATTR.SPECTRUM_INDEX.name).toInt();
-                                if (vars.spectrumIndex >= 90 && vars.spectrumIndex <= 95) {
-                                    int a = 1;
-                                }
                                 vars.spectrumId = attrs.getValue(ATTR.SPECTRUM_ID.name).toString();
 
                                 long lastStartTagPos = reader.getLocation().getLastStartTagPos();
@@ -924,14 +950,9 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
                         break;
                 }
 
-
-
             } while (eventType != XMLStreamConstants.END_DOCUMENT);
 
-        } catch (Exception e) {
-            int a = 1;
-        }
-        finally {
+        } finally {
             if (readerPool != null && reader != null) {
                 readerPool.returnObject(reader);
             }
@@ -959,21 +980,30 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
     }
 
     protected void addCurScanAndFlushVars() {
-        if (vars.curScan != null) {
-            if (source.isExcludeEmptyScans() && vars.curScan.getSpectrum() != null && vars.curScan.getSpectrum().getMZs().length == 0) {
-                // skip this scan, don't add it
-            } else {
-                if (vars.precursors.size() > 1) {
-                    System.err.printf("Found multiple precursors for scan #%d, this is not really supported", vars.curScan.getNum());
+        try {
+            if (vars.curScan != null && !vars.isNonMassSpectrum) {
+                final boolean needSpectrumParsing = doesNeedSpectrumParsing(vars.curScan);
+                // we need to have found both 'mz' and 'intensity' binary arrays in case the spectrum needs parsing
+                if (!needSpectrumParsing || (vars.mzData != null && vars.intensityData != null)) {
+                    if (source.isExcludeEmptyScans() && vars.curScan.getSpectrum() != null && vars.curScan.getSpectrum().getMZs().length == 0) {
+                        // skip this scan, don't add it
+                    } else {
+                        if (vars.precursors.size() > 1) {
+                            System.err.printf("Found multiple precursors for scan #%d, this is not really supported", vars.curScan.getNum());
+                        }
+                        if (vars.curScan.getInstrument() == null) {
+                            // if the instrument was not set, we'll set it to a default one
+                            vars.curScan.setInstrument(runInfo.getDefaultInstrument());
+                        }
+                        parsedScans.add(vars.curScan);
+                    }
                 }
-                if (vars.curScan.getInstrument() == null) {
-                    // if the instrument was not set, we'll set it to a default one
-                    vars.curScan.setInstrument(runInfo.getDefaultInstrument());
-                }
-                parsedScans.add(vars.curScan);
             }
+
+        } finally {
+            // no matter what, reset temp vars to defaults
+            vars.resetToDefaults();
         }
-        vars.resetToDefaults();
     }
 
     /**
@@ -1033,7 +1063,8 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
         return subset.isInSubset(scan);
     }
 
-    private static class VarsHolder {
+    private static class Vars {
+        boolean isNonMassSpectrum;
         ScanDefault curScan;
         Integer defaultArrayLength;
         Integer spectrumIndex;
@@ -1057,7 +1088,7 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
         MZMLPeaksDecoder.DecodedData mzData;
         MZMLPeaksDecoder.DecodedData intensityData;
 
-        public VarsHolder() {
+        public Vars() {
             resetToDefaults();
         }
 
@@ -1071,6 +1102,7 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
          * Resets all held variables to their default values.
          */
         public final void resetToDefaults() {
+            isNonMassSpectrum = false;
             curScan = null;
             defaultArrayLength = null;
             spectrumIndex = null;
