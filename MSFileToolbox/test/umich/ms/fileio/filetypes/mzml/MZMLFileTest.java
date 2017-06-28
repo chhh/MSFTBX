@@ -22,6 +22,7 @@ import umich.ms.datatypes.scan.IScan;
 import umich.ms.datatypes.scan.StorageStrategy;
 import umich.ms.datatypes.scancollection.IScanCollection;
 import umich.ms.datatypes.scancollection.impl.ScanCollectionDefault;
+import umich.ms.datatypes.spectrum.ISpectrum;
 
 import java.io.IOException;
 import java.net.URI;
@@ -30,8 +31,7 @@ import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.Assert.*;
 
@@ -51,8 +51,10 @@ public class MZMLFileTest {
             final DirectoryStream<Path> stream = Files.newDirectoryStream(path);
             paths = new ArrayList<>();
             for (Path p : stream) {
-                //if (Files.isRegularFile(p)) { // && p.getFileName().toString().equals("RawCentriodCidWithMsLevelInRefParamGroup.mzML")
-                if (Files.isRegularFile(p)) {// && p.getFileName().toString().equals("tiny.pwiz.idx.mzML")) {
+                if (Files.isRegularFile(p)) { // && p.getFileName().toString().equals("RawCentriodCidWithMsLevelInRefParamGroup.mzML")
+                //if (Files.isRegularFile(p) && p.getFileName().toString().equals("tiny.pwiz.idx.mzML")) {
+                //if (Files.isRegularFile(p) && p.getFileName().toString().equals("mzML_with_UV.mzML")) {
+                //if (Files.isRegularFile(p)) {
                     paths.add(p);
                 }
             }
@@ -92,10 +94,41 @@ public class MZMLFileTest {
 
             IScanCollection scans = new ScanCollectionDefault(true);
             scans.setDataSource(mzml);
-            scans.loadData(LCMSDataSubset.WHOLE_RUN, StorageStrategy.STRONG);
+            scans.loadData(LCMSDataSubset.STRUCTURE_ONLY, StorageStrategy.STRONG);
 
 
         }
+    }
+
+    //@org.junit.Test
+    public void parseWholeFileSpeed() throws Exception {
+        //String file = "C:\\data\\andy\\q01507.mzML";
+        String file = "C:\\data\\andy\\20161207_200ng_HeLa_DIA_VarTest.mzML";
+        //String file = "C:\\projects\\batmass\\MSFTBX\\MSFileToolbox\\test\\resources\\mzml\\tiny.pwiz.idx.mzML";
+
+        final MZMLFile mzml = new MZMLFile(file);
+        mzml.setNumThreadsForParsing(null);
+        mzml.setTasksPerCpuPerBatch(5);
+        mzml.setParsingTimeout(30 * 1000);
+
+        final long timeLo = System.nanoTime();
+        IScanCollection scans = new ScanCollectionDefault(true);
+        scans.setDataSource(mzml);
+        scans.loadData(LCMSDataSubset.WHOLE_RUN, StorageStrategy.STRONG);
+        //scans.loadData(LCMSDataSubset.STRUCTURE_ONLY, StorageStrategy.STRONG);
+        double sum = 0;
+        final Set<Map.Entry<Integer, IScan>> entries = scans.getMapNum2scan().entrySet();
+        for (Map.Entry<Integer, IScan> entry : entries) {
+            final IScan scan = entry.getValue();
+            final ISpectrum spec = scan.fetchSpectrum();
+            if (spec.getMZs().length > 0)
+                sum += spec.getMZs()[0];
+            if (spec.getIntensities().length > 0)
+                sum += spec.getIntensities()[0];
+        }
+        final long timeHi = System.nanoTime();
+        System.out.printf("Sum is %.4f\n", sum);
+        System.out.printf("Parsing %s took %.4fs\n", file, (timeHi-timeLo)/1e9);
     }
 
 }
