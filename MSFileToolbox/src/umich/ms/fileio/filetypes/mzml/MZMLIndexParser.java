@@ -28,8 +28,8 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import javolution.text.CharArray;
-import javolution.xml.internal.stream.XMLInputFactoryImpl;
 import javolution.xml.internal.stream.XMLStreamReaderImpl;
 import javolution.xml.stream.*;
 import org.slf4j.Logger;
@@ -86,7 +86,8 @@ public class MZMLIndexParser {
             }
             // we'll find the last byte offset pointing right after the last </scan> element
             //long endOfScansOffset = findEndOfScansOffset(fileHandle, offset);
-            scanIndex.put(Integer.MAX_VALUE, new OffsetId(Long.MAX_VALUE, "END_OF_SCANS"));
+            final OffsetId endOfScans = new OffsetId(Long.MAX_VALUE, "END_OF_SCANS");
+            scanIndex.put(Integer.MAX_VALUE, endOfScans);
 
             // now we have the offset of the index, we can start reading line by line,
             // after rewinding the filepointer to the proper position
@@ -97,6 +98,9 @@ public class MZMLIndexParser {
             int readResult = fileHandle.read(bytes); // this string is supposed to be in US-ASCII by convention
 
             this.parseIndexEntries(bytes, scanIndex);
+            if (scanIndex.size() == 1) { // we didn't read any index entries, it's just our lonely last EndOfScans entry
+                throw new IndexNotFoundException("We found the index list offset, but could not parse any index entries.");
+            }
             source.close();
         } catch (IOException e) {
             throw new FileParsingException(e);
@@ -346,6 +350,24 @@ public class MZMLIndexParser {
         public OffsetId(long offset, String id) {
             this.offset = offset;
             this.id = id;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            OffsetId offsetId = (OffsetId) o;
+
+            if (offset != offsetId.offset) return false;
+            return id != null ? id.equals(offsetId.id) : offsetId.id == null;
+        }
+
+        @Override
+        public int hashCode() {
+            int result = (int) (offset ^ (offset >>> 32));
+            result = 31 * result + (id != null ? id.hashCode() : 0);
+            return result;
         }
     }
 }

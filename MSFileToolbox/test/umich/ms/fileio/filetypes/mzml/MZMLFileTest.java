@@ -51,9 +51,11 @@ public class MZMLFileTest {
             final DirectoryStream<Path> stream = Files.newDirectoryStream(path);
             paths = new ArrayList<>();
             for (Path p : stream) {
-                if (Files.isRegularFile(p)) { // && p.getFileName().toString().equals("RawCentriodCidWithMsLevelInRefParamGroup.mzML")
+                if (Files.isRegularFile(p) && p.getFileName().toString().equals("RawCentriodCidWithMsLevelInRefParamGroup.mzML")) {
+                //if (Files.isRegularFile(p) && p.getFileName().toString().equals("RawCentriodCidWithMsLevelInRefParamGroup_BOM_formatted.mzML")) {
                 //if (Files.isRegularFile(p) && p.getFileName().toString().equals("tiny.pwiz.idx.mzML")) {
                 //if (Files.isRegularFile(p) && p.getFileName().toString().equals("mzML_with_UV.mzML")) {
+                //if (Files.isRegularFile(p) && p.getFileName().toString().equals("SRM.mzML")) {
                 //if (Files.isRegularFile(p)) {
                     paths.add(p);
                 }
@@ -88,15 +90,14 @@ public class MZMLFileTest {
 
             final MZMLFile mzml = new MZMLFile(p.toString());
 
-            mzml.setNumThreadsForParsing(1);
+            mzml.setNumThreadsForParsing(null);
             mzml.setTasksPerCpuPerBatch(1);
             mzml.setParsingTimeout(30 * 1000);
 
             IScanCollection scans = new ScanCollectionDefault(true);
             scans.setDataSource(mzml);
             scans.loadData(LCMSDataSubset.STRUCTURE_ONLY, StorageStrategy.STRONG);
-
-
+            System.out.printf("\tFound/parsed %d spectra\n", scans.getMapNum2scan().size());
         }
     }
 
