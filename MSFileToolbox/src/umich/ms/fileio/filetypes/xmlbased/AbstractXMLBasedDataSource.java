@@ -16,6 +16,7 @@
 package umich.ms.fileio.filetypes.xmlbased;
 
 import java.io.*;
+import java.nio.Buffer;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
@@ -690,6 +691,24 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
         return scan.getSpectrum(); // this must be safe, as the spectrum parsed by parseScan() must be STRONGly referenced
     }
 
+    private class ReadBuf {
+        final byte[] buf;
+        int read = -1;
+        long offsetInFile = -1;
+
+        public ReadBuf(byte[] buf) {
+            this.buf = buf;
+        }
+
+        void clear() {
+            read = -1;
+            offsetInFile = -1;
+        }
+
+        boolean filled() {
+            return read > 0;
+        }
+    }
 
     /**
      * Be careful with this method, it will go over the whole file, building index from scans that it can find.
@@ -706,12 +725,10 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
 
         // set up read buffers
         final int readLen = INDEX_BUILDER_READ_BUF_SIZE;
-        byte[] readBuf1 = new byte[readLen];
-        byte[] readBuf2 = new byte[readLen];
-        byte[] readBufTmp;
+        ReadBuf readBuf1 = new ReadBuf(new byte[readLen]);
+        ReadBuf readBuf2 = new ReadBuf(new byte[readLen]);
 
-        boolean isBuf2Filled = false;
-        long offsetInFile = -1;
+
         ArrayList<E> unfinishedIndexElements = new ArrayList<>(100);
         // this is the second read buffer, used for reads, while threads are parsing the previous batch
 
@@ -730,16 +747,14 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
             throw new IllegalStateException("BOM length returned as '-1' not allowed");
         }
 
+        // now actually read the file
         try {
             RandomAccessFile raf = this.getRandomAccessFile();
             final long fileLen = raf.length();
             if (fileLen == 0) {
                 throw new FileParsingException("File size was zero when trying to build index.");
             }
-            long posCur = bomLength; // current position, up to which we have read the file so far
-            long posNext = -1; // the position to move the current pointer to
-            final int fileLenInt = fileLen >= Integer.MAX_VALUE ? Integer.MAX_VALUE : (int)fileLen;
-            int curReadLen = Math.min(fileLenInt - bomLength, readLen - bomLength);
+            readBuf1.offsetInFile = bomLength; // start at the end of BOM
             int iteration = 0;
             do {
                 iteration++;
@@ -748,38 +763,32 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
                     throw new FileParsingException("Thread interrupted, parsing was cancelled.");
                 }
                 // check if we have read something in the previous iteration, if we did, then use the 2nd read buffer
-                if (isBuf2Filled) {
+                if (readBuf2.filled()) {
                     // if we did read something on the previous iteration before submitting parsing tasks, use it
                     // by flipping the buffers
-                    readBufTmp = readBuf1;
+                    ReadBuf readBufTmp = readBuf1;
                     readBuf1 = readBuf2;
                     readBuf2 = readBufTmp;
+                    readBuf2.clear();
                 } else {
                     // this is the first read
-                    raf.seek(posCur);
-                    offsetInFile = raf.getFilePointer();
+                    raf.seek(readBuf1.offsetInFile);
 
                     // TODO: ACHTUNG: WARING: when there is no index, there is still a bug here
                     // the fix was lost in the HDD crash :(((
-                    raf.readFully(readBuf1, 0, curReadLen);
-                    posCur = raf.getFilePointer();
+                    readBuf1.read = raf.read(readBuf1.buf);
                 }
+
                 // distribute the buffer between workers
-                IndexBuilder.Info[] infos = distributeIndexBuilders(readBuf1, curReadLen, offsetInFile, numWorkers);
+                IndexBuilder.Info[] infos = distributeIndexBuilders(readBuf1, numWorkers);
                 List<Future<IndexBuilder.Result<E>>> futures = submitIndexBuilders(infos, exec);
 
                 // before blocking on waiting for the parsing tasks to complete, initiate another read
-                if (posCur < fileLen) { // we're not yet further than the EOF
-                    posNext = posCur - INDEX_BUILDER_MIN_OVERLAP;
-                    assert (posNext > 0);
-                    curReadLen = posNext + curReadLen <= fileLen ? curReadLen : (int)(fileLen - posNext);
-                    raf.seek(posNext);
-                    offsetInFile = posNext;
-                    raf.readFully(readBuf2, 0, curReadLen);
-                    posCur = raf.getFilePointer();
-                    isBuf2Filled = true;
-                } else {
-                    isBuf2Filled = false;
+                readBuf2.clear();
+                readBuf2.offsetInFile = readBuf1.offsetInFile + readBuf1.read - this.INDEX_BUILDER_MIN_OVERLAP;
+                if (readBuf2.offsetInFile > readBuf1.offsetInFile) { // we're not yet further than the EOF
+                    raf.seek(readBuf2.offsetInFile);
+                    raf.read(readBuf2.buf);
                 }
 
                 // block and wait for all the parsers to finish, at this point
@@ -803,7 +812,8 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
                         throw new FileParsingException(e);
                     }
                 }
-            } while (posCur < fileLen || isBuf2Filled);
+                readBuf1.clear();
+            } while (readBuf2.filled());
 
             if (!unfinishedIndexElements.isEmpty()) {
                 for (E e : unfinishedIndexElements) {
@@ -834,16 +844,20 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
         return idx;
     }
 
-    private IndexBuilder.Info[] distributeIndexBuilders(byte[] readBuf, int readBufLen, long offsetInFile, int numWorkers) {
-        if (readBufLen == 0) {
+    private IndexBuilder.Info[] distributeIndexBuilders(ReadBuf rb, int numWorkers) {
+
+        byte[] buf = rb.buf;
+        int len = rb.read;
+        long offsetInFile = rb.offsetInFile;
+        if (len == 0) {
             return new IndexBuilder.Info[0];
         }
 
         final int baseReadLen = INDEX_BUILDER_MIN_READ_SIZE + INDEX_BUILDER_MIN_OVERLAP;
 
-        if (readBufLen <= baseReadLen) {
+        if (len <= baseReadLen) {
             // if we only have enough bytes for one worker - so be it
-            ByteArrayInputStream is = new ByteArrayInputStream(readBuf, 0, readBufLen);
+            ByteArrayInputStream is = new ByteArrayInputStream(buf, 0, len);
             IndexBuilder.Info worker = new IndexBuilder.Info(offsetInFile, 0, is);
             return new IndexBuilder.Info[]{worker};
         }
@@ -854,8 +868,8 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
          *          ^           ^
          *          O(overlap)   X(length of one segment)
          */
-        double bytesPerWorker = ((double)readBufLen + (numWorkers - 1) * INDEX_BUILDER_MIN_OVERLAP ) / numWorkers;
-        double numWorkersForMinReadLengths = (readBufLen - INDEX_BUILDER_MIN_OVERLAP) / (double)INDEX_BUILDER_MIN_READ_SIZE;
+        double bytesPerWorker = ((double)len + (numWorkers - 1) * INDEX_BUILDER_MIN_OVERLAP ) / numWorkers;
+        double numWorkersForMinReadLengths = (len - INDEX_BUILDER_MIN_OVERLAP) / (double)INDEX_BUILDER_MIN_READ_SIZE;
         int bpw = (int)Math.ceil(bytesPerWorker);
         int nwfmrl = (int)Math.ceil(numWorkersForMinReadLengths);
 
@@ -865,12 +879,12 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
         int curOffset = 0;
         int curReadLen = numAssignedWorkers == numWorkers ? bpw : baseReadLen;
         for (int i = 0; i < workers.length; i++) {
-            ByteArrayInputStream is = new ByteArrayInputStream(readBuf, curOffset, curReadLen);
+            ByteArrayInputStream is = new ByteArrayInputStream(buf, curOffset, curReadLen);
             IndexBuilder.Info worker = new IndexBuilder.Info(offsetInFile, curOffset, is);
             workers[i] = worker;
             curOffset += curReadLen - INDEX_BUILDER_MIN_OVERLAP;
-            if (curOffset + curReadLen > readBufLen) {
-                curReadLen = readBufLen - curOffset;
+            if (curOffset + curReadLen > len) {
+                curReadLen = len - curOffset;
             }
         }
 
