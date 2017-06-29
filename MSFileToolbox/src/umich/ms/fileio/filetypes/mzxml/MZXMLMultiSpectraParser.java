@@ -28,7 +28,6 @@ import umich.ms.datatypes.lcmsrun.LCMSRunInfo;
 import umich.ms.datatypes.scan.IScan;
 import umich.ms.datatypes.scan.PeaksCompression;
 import umich.ms.datatypes.scan.impl.ScanDefault;
-import umich.ms.datatypes.scan.props.ActivationInfo;
 import umich.ms.datatypes.scan.props.Polarity;
 import umich.ms.datatypes.scan.props.PrecursorInfo;
 import umich.ms.datatypes.scan.props.ScanType;
@@ -73,7 +72,7 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
     protected MZXMLIndex index;
 
     protected ArrayList<IScan> parsedScans;
-    protected VarsHolder vars;
+    protected MzxmlVars vars;
     protected ObjectPool<XMLStreamReaderImpl> readerPool = null;
 
     /** This var is used to count the number of times {@code <scan>} tags were encountered during one parsing run.
@@ -173,7 +172,7 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
             parsedScans = new ArrayList<>();
         }
         numOpeningScanTagsFound = 0;
-        vars = new VarsHolder();
+        vars = new MzxmlVars();
 
         XMLStreamReaderImpl reader = (readerPool == null) ? new XMLStreamReaderImpl() : readerPool.borrowObject();
         try {
@@ -262,118 +261,10 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
 
     }
 
-    /**
-     * For use with Executors, consider using  instead of calling this method directly.
-     * @param info info about offsets in the file and in the currently read buffer
-     * @return
-     * @throws FileParsingException
-     */
-    public IndexBuilder.Result<MZXMLIndexElement> buildIndex(final IndexBuilder.Info info) throws Exception {
-        final long offsetInFile = info.offsetInFile;
-        final long offsetInBuffer = info.offsetInBuffer;
-        IndexBuilder.Result<MZXMLIndexElement> result = new IndexBuilder.Result<>(info);
-
-        numOpeningScanTagsFound = 0;
-        vars = new VarsHolder();
-
-        XMLStreamReaderImpl reader = (readerPool == null) ? new XMLStreamReaderImpl() : readerPool.borrowObject();
-        try {
-            reader.setInput(is, StandardCharsets.UTF_8.name());
-            LogHelper.setJavolutionLogLevelFatal();
-
-            int eventType = XMLStreamConstants.END_DOCUMENT;
-            CharArray localName, attr;
-            Attributes attrs;
-            do {
-                // Read the next XML element
-                try {
-                    eventType = reader.next();
-                } catch (XMLStreamException e) {
-                    if (e instanceof XMLUnexpectedEndTagException) {
-                        eventType = XMLStreamConstants.END_ELEMENT;
-                        continue;
-                    }
-                    if (e instanceof XMLUnexpectedEndOfDocumentException) {
-                        // as we're reading arbitrary chunks of file, we will almost always finish parsing by hitting this condition
-                        if (vars.offset != null) {
-                            addCurIndexElementAndFlushVars(result, offsetInFile, offsetInBuffer);
-                        }
-                        return result;
-                    }
-                    throw new FileParsingException(e);
-                }
 
 
-                // Process the read event
-                switch (eventType) {
 
-                    case XMLStreamConstants.START_ELEMENT:
-                        localName = reader.getLocalName();
-                        attrs = reader.getAttributes();
-
-                        if (localName.equals(TAG.SCAN.name)) {
-                            if (vars.offset != null) {
-                                // this means we've encountered nested Spectrum tags
-                                long lastStartTagPos = reader.getLocation().getLastStartTagPos();
-                                vars.length = (int)(vars.offset - lastStartTagPos);
-                                addCurIndexElementAndFlushVars(result, offsetInFile, offsetInBuffer);
-                            }
-
-                            //tagScanStart(reader);
-                            try {
-                                vars.scanNumRaw = attrs.getValue(ATTR.SCAN_NUM.name).toInt();
-                                vars.offset = reader.getLocation().getLastStartTagPos();
-                            } catch (NumberFormatException e) {
-                                throw new FileParsingException("Malformed scan number while building index", e);
-                            }
-
-                        }
-                        break;
-
-                    case XMLStreamConstants.CHARACTERS:
-                        break;
-
-                    case XMLStreamConstants.END_ELEMENT:
-                        localName = reader.getLocalName();
-
-                        if (localName.equals(TAG.SCAN.name)) {
-                            final XMLStreamReaderImpl.LocationImpl loc = reader.getLocation();
-                            vars.length = (int)(loc.getCharacterOffset() + loc.getBomLength() - vars.offset);
-                            addCurIndexElementAndFlushVars(result, offsetInFile, offsetInBuffer);
-                        }
-
-                        break;
-                }
-            } while (eventType != XMLStreamConstants.END_DOCUMENT);
-
-        } finally {
-            // we need to return the reaer to the pool, if we borrowed it from there
-            if (readerPool != null) {
-                readerPool.returnObject(reader);
-            }
-        }
-
-        return result;
-    }
-
-    private void addCurIndexElementAndFlushVars(IndexBuilder.Result<MZXMLIndexElement> result, long offsetInFile, long offsetInBuffer) {
-        if (vars.scanNumRaw == -1 || vars.offset == null) {
-            throw new IllegalStateException("When building index some variables were not set");
-        }
-
-        int len = vars.length != null ? vars.length : -1;
-        OffsetLength offsetLength = new OffsetLength(offsetInFile + offsetInBuffer + vars.offset, len);
-        MZXMLIndexElement idxElem = new MZXMLIndexElement(vars.scanNumRaw, vars.scanNumRaw, offsetLength);
-        if (len != -1) {
-            result.addIndexElement(idxElem);
-        } else {
-            result.addUnfinishedIndexElement(idxElem);
-        }
-
-        vars.flushVars();
-    }
-
-    protected int tagPeaksStart(XMLStreamReaderImpl reader, int eventType) throws XMLStreamException, FileParsingException, DataFormatException, IOException {
+    private int tagPeaksStart(XMLStreamReaderImpl reader, int eventType) throws XMLStreamException, FileParsingException, DataFormatException, IOException {
         Attributes attrs;
         CharArray attr;
         vars.isPeaksTagReached = true;
@@ -466,7 +357,7 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
         CharArray attr;
         int eventType;
         if (vars.curScan == null) {
-            vars.flushVars();
+            vars.reset();
         }
         attrs = reader.getAttributes();
         PrecursorInfo precursorInfo = vars.curScan.getPrecursor();
@@ -658,7 +549,7 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
                 parsedScans.add(vars.curScan);
             }
         }
-        vars.flushVars();
+        vars.reset();
     }
 
     protected CharArray fetchAttribute(Attributes attrs, ATTR attr) throws FileParsingException {
@@ -671,46 +562,6 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
 
     protected boolean doesNeedSpectrumParsing(IScan scan) {
         return subset.isInSubset(scan);
-    }
-
-    protected class VarsHolder {
-        // <scan> atrributes
-        public ScanDefault curScan;
-        public int scanNumRaw;
-        public int peaksCount;
-        public int msLevel;
-
-        // <peaks> attributes
-        public boolean isPeaksTagReached;
-        public int compressedLen;       // required, in practice not always set
-        public String compressionType;  // required, in practice not always set
-        public int precisionMz;
-        public int precisionInt;
-
-        // vars for Index Building
-        Long offset;
-        Integer length;
-
-        /** Check {@link #flushVars()} source for default values */
-        public VarsHolder() {
-            flushVars();
-        }
-
-        public final void flushVars() {
-            curScan = null;
-            scanNumRaw = -1;
-            peaksCount = -1;
-            msLevel = -1;
-
-            isPeaksTagReached = false;
-            compressedLen = -1;
-            compressionType = "none";
-            precisionMz = 32;
-            precisionInt = 32;
-
-            offset = null;
-            length = null;
-        }
     }
 
     /**
@@ -802,11 +653,6 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
         return length;
     }
 
-    public MZXMLIndexBuilder getIndexBuilder(IndexBuilder.Info info) {
-        return new MZXMLIndexBuilder(info);
-    }
-
-
     /**
      * Given a scan internal number (spectrum index) goes to the index and tries to find a mapping.
      * @param rawScanNum the number as is in the scan tag
@@ -828,21 +674,4 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
     }
 
 
-    public class MZXMLIndexBuilder implements IndexBuilder<MZXMLIndexElement> {
-        Info info;
-
-        public MZXMLIndexBuilder(Info info) {
-            this.info = info;
-        }
-
-        @Override
-        public Result<MZXMLIndexElement> buildIndex(Info info) throws Exception {
-            return MZXMLMultiSpectraParser.this.buildIndex(info);
-        }
-
-        @Override
-        public Result<MZXMLIndexElement> call() throws Exception {
-            return buildIndex(info);
-        }
-    }
 }

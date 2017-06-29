@@ -34,18 +34,10 @@ public interface IndexBuilder<T extends XMLBasedIndexElement> extends Callable<I
     class Info {
         /** Global offset of the read-buffer (which is shared by multiple parsers) relative to the start of the file. */
         public final long offsetInFile;
-        /**
-         * Offset in the read-buffer (which is shared by multiple parsers), where this particular parser started
-         * parsing.
-         */
-        public final long offsetInBuffer;
-        //private final IndexBuilder<T> builder;
         public final InputStream is;
 
-    //    public Info(long offsetInFile, long offsetInBuffer, IndexBuilder<T> builder) {
-        public Info(long offsetInFile, long offsetInBuffer, InputStream is) {
+        public Info(long offsetInFile, InputStream is) {
             this.offsetInFile = offsetInFile;
-            this.offsetInBuffer = offsetInBuffer;
             this.is = is;
         }
     }

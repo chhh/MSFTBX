@@ -47,7 +47,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.EnumSet;
 import java.util.List;
 import java.util.zip.DataFormatException;
 
@@ -63,7 +62,7 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
     protected MZMLIndex index;
 
     protected ArrayList<IScan> parsedScans;
-    protected Vars vars;
+    protected MzmlVars vars;
     protected ObjectPool<XMLStreamReaderImpl> readerPool = null;
     private int numOpeningScanTagsFound;
 
@@ -119,6 +118,7 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
     public MZMLMultiSpectraParser(InputStream is, LCMSDataSubset subset, MZMLFile source) throws FileParsingException {
         super(is, subset);
         this.source = source;
+        this.vars = new MzmlVars();
     }
 
 
@@ -146,7 +146,7 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
             parsedScans = new ArrayList<>();
         }
         numOpeningScanTagsFound = 0;
-        vars = new Vars();
+        vars.reset();
 
         XMLStreamReaderImpl reader = (readerPool == null) ? new XMLStreamReaderImpl() : readerPool.borrowObject();
         try {
@@ -468,10 +468,10 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
                             vars.getCompressions().add(PeaksCompression.ZLIB);
                             break;
                         case MS_DATA_ARRAY_MZ:
-                            vars.binDataType = Vars.BIN_DATA_TYPE.MZ;
+                            vars.binDataType = MzmlVars.BIN_DATA_TYPE.MZ;
                             break;
                         case MS_DATA_ARRAY_INTENSITY:
-                            vars.binDataType = Vars.BIN_DATA_TYPE.INTENSITY;
+                            vars.binDataType = MzmlVars.BIN_DATA_TYPE.INTENSITY;
                             break;
                     }
 
@@ -787,7 +787,7 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
     public int findThisStreamFirstScanLen() throws FileParsingException {
         int length = -1;
         numOpeningScanTagsFound = 0;
-        vars = new Vars();
+        vars = new MzmlVars();
 
         XMLStreamReaderImpl reader = null;
         try {
@@ -858,127 +858,6 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
         return length;
     }
 
-    /**
-     * For use with Executors, consider using  instead of calling this method directly.
-     * @param info info about offsets in file and in currently read buffer
-     * @return
-     * @throws FileParsingException
-     */
-    public IndexBuilder.Result<MZMLIndexElement> buildIndex(final IndexBuilder.Info info) throws Exception {
-        final long offsetInFile = info.offsetInFile;
-        final long offsetInBuffer = info.offsetInBuffer;
-        IndexBuilder.Result<MZMLIndexElement> result = new IndexBuilder.Result<>(info);
-
-        numOpeningScanTagsFound = 0;
-        vars = new Vars();
-
-        XMLStreamReaderImpl reader = (readerPool == null) ? new XMLStreamReaderImpl() : readerPool.borrowObject();
-        try {
-            reader.setInput(is, StandardCharsets.UTF_8.name());
-            LogHelper.setJavolutionLogLevelFatal();
-
-            int eventType = XMLStreamConstants.END_DOCUMENT;
-            CharArray localName, attr, val, unitAccession;
-            Attributes attrs;
-            PSIMSCV cvEntry;
-
-            do {
-                // Read the next XML element
-                try {
-                    eventType = reader.next();
-                } catch (XMLStreamException e) {
-                    if (e instanceof XMLUnexpectedEndTagException) {
-                        eventType = XMLStreamConstants.END_ELEMENT;
-                        continue;
-                    }
-                    if (e instanceof XMLUnexpectedEndOfDocumentException) {
-                        // as we're reading arbitrary chunks of file, we will almost always finish parsing by hitting this condition
-                        if (vars.offset != null) {
-                            addCurIndexElementAndFlushVars(result, offsetInFile, offsetInBuffer);
-                        }
-                        return result;
-                    }
-                    throw new FileParsingException(e);
-                }
-
-
-                // process the read event
-                switch (eventType) {
-
-                    case XMLStreamConstants.START_ELEMENT:
-                        localName = reader.getLocalName();
-                        attrs = reader.getAttributes();
-
-                        if (localName.contentEquals(TAG.SPECTRUM.name)) {
-                            numOpeningScanTagsFound += 1;
-                            if (vars.offset != null) {
-                                // this means we've encountered nested Spectrum tags
-                                long lastStartTagPos = reader.getLocation().getLastStartTagPos();
-                                vars.length = (int)(vars.offset - lastStartTagPos);
-                                addCurIndexElementAndFlushVars(result, offsetInFile, offsetInBuffer);
-                            }
-
-                            // these are required attributes, if they're not there, just throw an exception
-                            try {
-                                vars.spectrumIndex = attrs.getValue(ATTR.SPECTRUM_INDEX.name).toInt();
-                                vars.spectrumId = attrs.getValue(ATTR.SPECTRUM_ID.name).toString();
-
-                                long lastStartTagPos = reader.getLocation().getLastStartTagPos();
-                                vars.offset = lastStartTagPos;
-
-                            } catch (NumberFormatException e) {
-                                throw new FileParsingException("Malformed scan number while building index", e);
-                            }
-                        }
-                        break;
-
-                    case XMLStreamConstants.CHARACTERS:
-                        break;
-
-                    case XMLStreamConstants.END_ELEMENT:
-                        localName = reader.getLocalName();
-
-                        if (localName.contentEquals(TAG.SPECTRUM.name)) {
-                            final XMLStreamReaderImpl.LocationImpl loc = reader.getLocation();
-                            vars.length = (int)(loc.getCharacterOffset() + loc.getBomLength() - vars.offset);
-                            addCurIndexElementAndFlushVars(result, offsetInFile, offsetInBuffer);
-                        }
-
-                        break;
-
-                    case XMLStreamConstants.END_DOCUMENT:
-                        break;
-                }
-
-            } while (eventType != XMLStreamConstants.END_DOCUMENT);
-
-        } finally {
-            if (readerPool != null && reader != null) {
-                readerPool.returnObject(reader);
-            }
-        }
-
-        return result;
-    }
-
-    private void addCurIndexElementAndFlushVars(IndexBuilder.Result<MZMLIndexElement> result, long offsetInFile, long offsetInBuffer) {
-
-        if (vars.spectrumIndex == null || vars.spectrumId == null || vars.offset == null) {
-            throw new IllegalStateException("When building index some variables were not set");
-        }
-
-        int len = vars.length != null ? vars.length : -1;
-        OffsetLength offsetLength = new OffsetLength(offsetInFile + offsetInBuffer + vars.offset, len);
-        MZMLIndexElement idxElem = new MZMLIndexElement(vars.spectrumIndex + 1, vars.spectrumIndex, vars.spectrumId, offsetLength);
-        if (len != -1) {
-            result.addIndexElement(idxElem);
-        } else {
-            result.addUnfinishedIndexElement(idxElem);
-        }
-
-        vars.resetToDefaults();
-    }
-
     protected void addCurScanAndFlushVars() {
         try {
             if (vars.curScan != null && !vars.isNonMassSpectrum) {
@@ -1002,7 +881,7 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
 
         } finally {
             // no matter what, reset temp vars to defaults
-            vars.resetToDefaults();
+            vars.reset();
         }
     }
 
@@ -1013,7 +892,7 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
      */
     protected boolean flushVarsIfNoCurScan() {
         if (vars.curScan == null) {
-            vars.resetToDefaults();
+            vars.reset();
             return true;
         }
         return false;
@@ -1061,98 +940,5 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
 
     protected boolean doesNeedSpectrumParsing(IScan scan) {
         return subset.isInSubset(scan);
-    }
-
-    private static class Vars {
-        boolean isNonMassSpectrum;
-        ScanDefault curScan;
-        Integer defaultArrayLength;
-        Integer spectrumIndex;
-        String spectrumId;
-        Integer precursorSpectrumIndex;
-        String activationMethodAbbreviation;
-        List<PrecursorInfo> precursors;
-        Double precursorIsoWndTarget;
-        Double precursorIsoWndLoOffset;
-        Double precursorIsoWndHiOffset;
-        Double precursorIntensity;
-
-        // vars for Index Building
-        Long offset;
-        Integer length;
-
-        public enum BIN_DATA_TYPE{MZ, INTENSITY};
-        Integer precision;
-        EnumSet<PeaksCompression> compressions;
-        BIN_DATA_TYPE binDataType;
-        MZMLPeaksDecoder.DecodedData mzData;
-        MZMLPeaksDecoder.DecodedData intensityData;
-
-        public Vars() {
-            resetToDefaults();
-        }
-
-        public void flushBinDataDescription() {
-            precision = null;
-            compressions = null;
-            binDataType = null;
-        }
-
-        /**
-         * Resets all held variables to their default values.
-         */
-        public final void resetToDefaults() {
-            isNonMassSpectrum = false;
-            curScan = null;
-            defaultArrayLength = null;
-            spectrumIndex = null;
-            spectrumId = null;
-            precursorSpectrumIndex = null;
-            activationMethodAbbreviation = null;
-            precursors = new ArrayList<>(1);
-            precursorIsoWndTarget = null;
-            precursorIsoWndLoOffset = null;
-            precursorIsoWndHiOffset = null;
-            precursorIntensity = null;
-
-            offset = null;
-            length = null;
-
-            precision = null;
-            compressions = null;
-            binDataType = null;
-            mzData = null;
-            intensityData = null;
-        }
-
-        public EnumSet<PeaksCompression> getCompressions() {
-            if (compressions == null) {
-                compressions = EnumSet.noneOf(PeaksCompression.class);
-            }
-            return compressions;
-        }
-    }
-
-    public MZMLIndexBuilder getIndexBuilder(IndexBuilder.Info info) {
-        return new MZMLIndexBuilder(info);
-    }
-
-
-    public class MZMLIndexBuilder implements IndexBuilder<MZMLIndexElement>  {
-        Info info;
-
-        public MZMLIndexBuilder(Info info) {
-            this.info = info;
-        }
-
-        @Override
-        public Result<MZMLIndexElement> buildIndex(Info info) throws Exception {
-            return MZMLMultiSpectraParser.this.buildIndex(info);
-        }
-
-        @Override
-        public Result<MZMLIndexElement> call() throws Exception {
-            return buildIndex(info);
-        }
     }
 }

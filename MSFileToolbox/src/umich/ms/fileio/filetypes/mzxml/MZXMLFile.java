@@ -134,9 +134,7 @@ public class MZXMLFile extends AbstractXMLBasedDataSource<MZXMLIndexElement, MZX
 
     @Override
     public IndexBuilder<MZXMLIndexElement> getIndexBuilder(IndexBuilder.Info info) {
-        MZXMLMultiSpectraParser parser = getSpectraParser(info.is, LCMSDataSubset.STRUCTURE_ONLY, getReaderPool(), null);
-        MZXMLMultiSpectraParser.MZXMLIndexBuilder builder = parser.getIndexBuilder(info);
-        return builder;
+        return new MZXMLIndexBuilder(info, getReaderPool());
     }
 
     @Override
