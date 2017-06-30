@@ -16,7 +16,6 @@
 package umich.ms.fileio.filetypes.xmlbased;
 
 import java.io.*;
-import java.nio.Buffer;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
@@ -25,6 +24,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+
 import javolution.xml.internal.stream.XMLStreamReaderImpl;
 import javolution.xml.stream.XMLStreamException;
 import org.apache.commons.pool2.ObjectPool;
@@ -49,6 +49,8 @@ import umich.ms.util.PooledByteArrayHolders;
  * @author Dmitry Avtonomov
  */
 public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement, I extends Index<E>> extends AbstractLCMSDataSource<I> {
+    private static final Logger logger = LoggerFactory.getLogger(AbstractXMLBasedDataSource.class);
+
     /** 1024 bytes - the minimum size, that an index builder should assign to workers. */
     private final int INDEX_BUILDER_MIN_READ_SIZE = 1 << 10;
 //    private final int INDEX_BUILDER_MIN_READ_SIZE = 1000;
@@ -224,25 +226,24 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
      * @param idx
      */
     protected I fixIndex(I idx) {
-        if (idx.size() < 2) {
-            return idx;
-        }
-        NavigableMap<Integer, E> map = idx.getMapByNum();
-        Set<? extends Map.Entry<Integer, E>> entries = map.entrySet();
-        Iterator<? extends Map.Entry<Integer, E>> it = entries.iterator();
-
-        // we have at least 2 elements in the iterator
-        Map.Entry<Integer, E> curr, next;
-        OffsetLength currOfflen, nextOfflen;
-        curr = it.next();
-        while (it.hasNext()) {
-            next = it.next();
-            currOfflen = curr.getValue().getOffsetLength();
-            nextOfflen = next.getValue().getOffsetLength();
-            curr.getValue().setOffsetLength(new OffsetLength(currOfflen.offset, (int)(nextOfflen.offset - currOfflen.offset)));
-            curr = next;
-        }
         return idx;
+//        int count = 0;
+//        if (idx.size() < 2) {
+//            //return idx;
+//        }
+//        NavigableMap<Integer, E> map = idx.getMapByNum();
+//        Iterator<? extends Map.Entry<Integer, E>> it = map.entrySet().iterator();
+//
+//        // we have at least 2 elements in the iterator
+//        Map.Entry<Integer, E> curr = it.next();
+//        while (it.hasNext()) {
+//            Map.Entry<Integer, E> next = it.next();
+//            OffsetLength currOfflen = curr.getValue().getOffsetLength();
+//            OffsetLength nextOfflen = next.getValue().getOffsetLength();
+//            curr.getValue().setOffsetLength(new OffsetLength(currOfflen.offset, (int)(nextOfflen.offset - currOfflen.offset)));
+//            curr = next;
+//        }
+//        return idx;
     }
 
     protected ArrayList<Future<List<IScan>>> submitParseTasks(LCMSDataSubset subset, LCMSRunInfo info,
@@ -637,7 +638,6 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
     public IScan parseScan(int num, boolean parseSpectrum) throws FileParsingException {
         // prepare for parsing
         NavigableMap<Integer, ? extends XMLBasedIndexElement> idx = fetchIndex().getMapByNum();
-        LCMSRunInfo info = fetchRunInfo();
         XMLBasedIndexElement indexElement = idx.get(num);
         if (indexElement == null)
             throw new FileParsingException(String.format("No such scan number found in the index [%d]", num));
@@ -683,7 +683,7 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
     }
 
     @Override
-    public ISpectrum parseSpectrum(int num) throws FileParsingException {
+    public synchronized ISpectrum  parseSpectrum(int num) throws FileParsingException {
         IScan scan = parseScan(num, true);
         if (scan == null) {
             throw new FileParsingException("Could not parse spectrumRef from file");
@@ -724,12 +724,6 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
             return offsetInFile + read >= pos;
         }
 
-        static void swap(ReadBuf rb1, ReadBuf rb2) {
-            final ReadBuf tmp = rb1;
-            rb1 = rb2;
-            rb2 = tmp;
-        }
-
         String stringValue() {
             if (!filled())
                 throw new IllegalStateException("Can't call stringValue() if the buffer is not filled");
@@ -755,12 +749,11 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
         ReadBuf readBuf1 = new ReadBuf(new byte[readLen]);
         ReadBuf readBuf2 = new ReadBuf(new byte[readLen]);
 
-
-        ArrayList<E> unfinishedIndexElements = new ArrayList<>(100);
-        // this is the second read buffer, used for reads, while threads are parsing the previous batch
+        TreeMap<Long, E> unfinishedLo = new TreeMap<>();
+        TreeMap<Long, E> unfinishedHi = new TreeMap<>();
 
         // if the file has BOM, skip it
-        long bomLength = -1;
+        long bomLength;
         try {
             XMLStreamReaderImpl reader = new XMLStreamReaderImpl();
             reader.setInput(this.getBufferedInputStream(), StandardCharsets.UTF_8.name());
@@ -770,8 +763,8 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
         } finally {
             this.close();
         }
-        if (bomLength == -1) {
-            throw new IllegalStateException("BOM length returned as '-1' not allowed");
+        if (bomLength < 0 || bomLength > 16) {
+            throw new IllegalStateException("BOM length < 0 or > 16. Something went wrong.");
         }
 
         // now actually read the file
@@ -783,6 +776,8 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
             }
             readBuf1.offsetInFile = bomLength; // start at the end of BOM
             int iteration = 0;
+            int numOpen = 0;
+            int numClose = 0;
             do {
                 iteration++;
                 // This is needed for cancellable tasks
@@ -793,7 +788,9 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
                 if (readBuf2.filled()) {
                     // if we did read something on the previous iteration before submitting parsing tasks, use it
                     // by flipping the buffers
-                    ReadBuf.swap(readBuf1, readBuf2);
+                    ReadBuf tmp = readBuf1;
+                    readBuf1 = readBuf2;
+                    readBuf2 = tmp;
                     readBuf2.clear();
                 } else {
                     // this is the first read
@@ -810,9 +807,7 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
                 readBuf2.clear();
                 if (!readBuf1.reached(fileLen)) { // if the previous read hasn't reached EOF
                     readBuf2.offsetInFile = Math.max(bomLength, readBuf1.offsetInFile + readBuf1.read - this.INDEX_BUILDER_MIN_OVERLAP);
-                    if (readBuf2.offsetInFile > readBuf1.offsetInFile) { // we're not yet further than the EOF
-                        readBuf2.read(raf);
-                    }
+                    readBuf2.read(raf);
                 }
 
                 // block and wait for all the parsers to finish, at this point
@@ -821,13 +816,22 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
                     try {
                         IndexBuilder.Result<E> result = future.get(getParsingTimeout(), TimeUnit.SECONDS);
                         if (result != null) {
-                            List<E> indexElements = result.getIndexElements();
-                            for (E indexElement : indexElements) {
-                                idx.add(indexElement);
+                            for (E ie : result.getIndexElements()) {
+                                idx.add(ie);
                             }
-                            List<E> unfinishedElems = result.getUnfinishedIndexElements();
-                            if (!unfinishedElems.isEmpty()) {
-                                unfinishedIndexElements.addAll(unfinishedElems);
+                            numOpen += result.getStartTagLocs().size();
+                            for(E ie : result.getStartTagLocs()) {
+                                if (unfinishedLo.containsKey(ie.getOffsetLength().offset)) {
+                                    int a = 1;
+                                }
+                                unfinishedLo.put(ie.getOffsetLength().offset, ie);
+                            }
+                            numClose += result.getCloseTagLocs().size();
+                            for(E ie : result.getCloseTagLocs()) {
+                                if (unfinishedHi.containsKey(ie.getOffsetLength().offset)) {
+                                    int a = 1;
+                                }
+                                unfinishedHi.put(ie.getOffsetLength().offset, ie);
                             }
                         } else {
                             throw new FileParsingException("Result was null, which should never happen");
@@ -836,22 +840,44 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
                         throw new FileParsingException(e);
                     }
                 }
+
                 readBuf1.clear();
             } while (readBuf2.filled());
 
-            if (!unfinishedIndexElements.isEmpty()) {
-                for (E e : unfinishedIndexElements) {
-                    E byNum = idx.getByNum(e.getNumber());
-                    if (byNum == null) {
-                        idx.add(e); // we'll definitely need to run fixIndex() after doing that!
+            for (E ie : unfinishedLo.values()) {
+                final OffsetLength ol = ie.getOffsetLength();
+                if (ol.length < 0) {
+                    // this is an unfinished element geenrated from a start tag
+                    final Map.Entry<Long, E> nextLo = unfinishedLo.higherEntry(ol.offset);
+                    final Map.Entry<Long, E> nextHi = unfinishedHi.higherEntry(ol.offset);
+
+                    OffsetLength ol2;
+                    if (nextLo != null && nextHi != null) {
+                        final OffsetLength offsetLo = nextLo.getValue().getOffsetLength();
+                        final OffsetLength offsetHi = nextHi.getValue().getOffsetLength();
+                        ol2 = offsetLo.offset <= offsetHi.offset ? offsetLo : offsetHi;
+                    } else if (nextLo != null) {
+                        ol2 = nextLo.getValue().getOffsetLength();
+                    } else if (nextHi != null) {
+                        ol2 = nextHi.getValue().getOffsetLength();
+                    } else {
+                        throw new FileParsingException(String.format(
+                                "While parsing index, found a start element at offset [%d], but did not find a " +
+                                        "closing tag or a next scan", ol.offset));
                     }
+                    long len = ol2.offset - ol.offset;
+                    if (len < 0)
+                        throw new FileParsingException("Calculated length was less than zero");
+                    if (len > Integer.MAX_VALUE)
+                        throw new FileParsingException("Calculated length was larger than Integer.MAX_VALUE");
+                    ie.setOffsetLength(new OffsetLength(ol.offset, (int)len));
+                    idx.add(ie);
                 }
             }
             // this is pretty much required as the index's internal numbering is incorrect at this point
             // and the raw numbers are used as internal numbers
             idx = fixIndex(idx);
 
-            this.close();
         } catch (IOException ex) {
             throw new FileParsingException(ex);
         } finally {
@@ -882,7 +908,7 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
         if (len <= baseReadLen) {
             // if we only have enough bytes for one worker - so be it
             ByteArrayInputStream is = new ByteArrayInputStream(buf, 0, len);
-            IndexBuilder.Info worker = new IndexBuilder.Info(offsetInFile, is);
+            IndexBuilder.Info worker = new IndexBuilder.Info(offsetInFile, len, is, new String(buf, 0, len));
             return new IndexBuilder.Info[]{worker};
         }
 
@@ -898,22 +924,16 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
         int nwfmrl = (int)Math.ceil(numWorkersForMinReadLengths);
 
         int numAssignedWorkers = Math.min(numWorkers, nwfmrl);
-        IndexBuilder.Info[] workers = new IndexBuilder.Info[numAssignedWorkers];
+        IndexBuilder.Info[] infos = new IndexBuilder.Info[numAssignedWorkers];
 
         int offset = 0;
         int length = numAssignedWorkers == numWorkers ? bpw : baseReadLen;
 
-        // TODO: WARNING: ACHTUNG: Remove this line!!!!
-        ArrayList<String> strs = new ArrayList<>();
-
-        for (int i = 0; i < workers.length; i++) {
+        for (int i = 0; i < infos.length; i++) {
             ByteArrayInputStream is = new ByteArrayInputStream(buf, offset, length);
 
-            // TODO: WARNING: ACHTUNG: Remove this line!!!!
-            strs.add(new String(buf, offset, length));
-
-            IndexBuilder.Info worker = new IndexBuilder.Info(offsetInFile + offset, is);
-            workers[i] = worker;
+            IndexBuilder.Info info = new IndexBuilder.Info(offsetInFile + offset, length, is, new String(buf, offset, length));
+            infos[i] = info;
             offset += length - INDEX_BUILDER_MIN_OVERLAP;
             if (offset + length > len) {
                 length = len - offset;
@@ -922,7 +942,7 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
 
         // we don't have enough workers, each will have to process more than the minimum
 
-        return workers;
+        return infos;
     }
 
     public abstract IndexBuilder<E> getIndexBuilder(IndexBuilder.Info info);

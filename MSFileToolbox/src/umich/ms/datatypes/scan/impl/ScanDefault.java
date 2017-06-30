@@ -90,7 +90,7 @@ public class ScanDefault extends AbstractScan {
         if (spec == null) {
             synchronized (this) {
                 spec = spectrumRef.get();
-                if (spec == null && scans!= null && scans.isAutoloadSpectra()) {
+                if (spec == null && scans != null && scans.isAutoloadSpectra()) {
                     spec = scans.getDataSource().parseSpectrum(this.num);
                     if (spec != null) { // the spectrum can still be null, if this scan had no spectrum recorded.
                         setSpectrum(spec, true);

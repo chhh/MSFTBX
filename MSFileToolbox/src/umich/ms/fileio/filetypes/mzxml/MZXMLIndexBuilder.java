@@ -159,7 +159,7 @@ public class MZXMLIndexBuilder implements IndexBuilder<MZXMLIndexElement> {
         if (len != -1) {
             result.addIndexElement(idxElem);
         } else {
-            result.addUnfinishedIndexElement(idxElem);
+            result.addStartTag(idxElem);
         }
 
         vars.reset();

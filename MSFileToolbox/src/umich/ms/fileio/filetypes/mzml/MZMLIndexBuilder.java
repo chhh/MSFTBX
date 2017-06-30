@@ -24,8 +24,6 @@ import javolution.xml.stream.XMLStreamException;
 import javolution.xml.stream.XMLUnexpectedEndOfDocumentException;
 import javolution.xml.stream.XMLUnexpectedEndTagException;
 import org.apache.commons.pool2.ObjectPool;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import umich.ms.fileio.exceptions.FileParsingException;
 import umich.ms.fileio.filetypes.xmlbased.IndexBuilder;
 import umich.ms.fileio.filetypes.xmlbased.OffsetLength;
@@ -37,7 +35,6 @@ import java.nio.charset.StandardCharsets;
  * @author Dmitry Avtonomov
  */
 public class MZMLIndexBuilder implements IndexBuilder<MZMLIndexElement> {
-    private static final Logger logger = LoggerFactory.getLogger(MZMLIndexBuilder.class);
 
     private ObjectPool<XMLStreamReaderImpl> pool;
     private Info info;
@@ -63,9 +60,8 @@ public class MZMLIndexBuilder implements IndexBuilder<MZMLIndexElement> {
      */
     @Override
     public Result<MZMLIndexElement> buildIndex(final Info info) throws Exception {
-        Result<MZMLIndexElement> result = new IndexBuilder.Result<>(info);
 
-        int numOpeningScanTagsFound = 0;
+        Result<MZMLIndexElement> result = new IndexBuilder.Result<>(info);
         vars.reset();
 
         XMLStreamReaderImpl reader = (pool == null) ? new XMLStreamReaderImpl() : pool.borrowObject();
@@ -79,18 +75,16 @@ public class MZMLIndexBuilder implements IndexBuilder<MZMLIndexElement> {
                 try {
                     eventType = reader.next();
                 } catch (XMLStreamException e) {
+
                     if (e instanceof XMLUnexpectedEndTagException) {
-                        eventType = XMLStreamConstants.END_ELEMENT;
-                        continue;
-                    }
-                    if (e instanceof XMLUnexpectedEndOfDocumentException) {
+                        // it's ok to have unexpected closing tags
+                        eventType = reader.getEventType();
+                    } else if (e instanceof XMLUnexpectedEndOfDocumentException) {
                         // as we're reading arbitrary chunks of file, we will almost always finish parsing by hitting this condition
-                        if (vars.offset != null) {
-                            addCurIndexElementAndFlushVars(result, info.offsetInFile);
-                        }
-                        return result;
+                        break;
+                    } else {
+                        throw new FileParsingException(e);
                     }
-                    throw new FileParsingException(e);
                 }
 
 
@@ -102,21 +96,17 @@ public class MZMLIndexBuilder implements IndexBuilder<MZMLIndexElement> {
                         Attributes attrs = reader.getAttributes();
 
                         if (localName.contentEquals(MZMLMultiSpectraParser.TAG.SPECTRUM.name)) {
-                            numOpeningScanTagsFound += 1;
 
-                            if (vars.offset != null) {
-                                // this means we've encountered nested Spectrum tags
-                                logger.info("Found nested");
-                                long lastStartTagPos = reader.getLocation().getLastStartTagPos();
-                                vars.length = (int)(vars.offset - lastStartTagPos);
-                                addCurIndexElementAndFlushVars(result, info.offsetInFile);
+                            if (vars.offsetLo != null) {
+                                throw new FileParsingException("Nested spectrum tags not allowed in mzml.");
                             }
 
                             // these are required attributes, if they're not there, just throw an exception
                             try {
                                 vars.spectrumIndex = attrs.getValue(MZMLMultiSpectraParser.ATTR.SPECTRUM_INDEX.name).toInt();
                                 vars.spectrumId = attrs.getValue(MZMLMultiSpectraParser.ATTR.SPECTRUM_ID.name).toString();
-                                vars.offset = reader.getLocation().getLastStartTagPos();
+                                vars.offsetLo = reader.getLocation().getLastStartTagPos();
+                                addAndFlush(result, info.offsetInFile);
 
                             } catch (NumberFormatException e) {
                                 throw new FileParsingException("Malformed scan number while building index", e);
@@ -132,19 +122,18 @@ public class MZMLIndexBuilder implements IndexBuilder<MZMLIndexElement> {
 
                         if (localName.contentEquals(MZMLMultiSpectraParser.TAG.SPECTRUM.name)) {
                             final XMLStreamReaderImpl.LocationImpl loc = reader.getLocation();
-                            vars.length = (int)(loc.getCharacterOffset() + loc.getBomLength() - vars.offset);
-                            addCurIndexElementAndFlushVars(result, info.offsetInFile);
+                            vars.offsetHi = (long)loc.getCharacterOffset();
+                            addAndFlush(result, info.offsetInFile);
                         }
 
-                        break;
-
-                    case XMLStreamConstants.END_DOCUMENT:
                         break;
                 }
 
             } while (eventType != XMLStreamConstants.END_DOCUMENT);
 
         } finally {
+            addAndFlush(result, info.offsetInFile);
+
             if (pool != null && reader != null) {
                 pool.returnObject(reader);
             }
@@ -153,19 +142,33 @@ public class MZMLIndexBuilder implements IndexBuilder<MZMLIndexElement> {
         return result;
     }
 
-    private void addCurIndexElementAndFlushVars(IndexBuilder.Result<MZMLIndexElement> result, long offsetInFile) {
+    private void addAndFlush(Result<MZMLIndexElement> result, long offsetInFile) throws FileParsingException {
 
-        if (vars.spectrumIndex == null || vars.spectrumId == null || vars.offset == null) {
-            throw new IllegalStateException("When building index some variables were not set");
-        }
+        if (vars.offsetLo != null) {
+            // start tag was there
+            if (vars.spectrumIndex == null || vars.spectrumId == null) {
+                final long l = offsetInFile + vars.offsetLo;
+                throw new IllegalStateException("When building index spectrum index or id were not found for offset: " + l);
+            }
+            if (vars.offsetHi != null) {
+                // fully enclosed scan
+                long len = vars.offsetHi - vars.offsetLo;
+                if (len < 0)
+                    throw new FileParsingException("Calculated length was less than zero");
+                if (len > Integer.MAX_VALUE)
+                    throw new FileParsingException("Calculated length was larger than Integer.MAX_VALUE");
+                result.addIndexElement(new MZMLIndexElement(
+                        vars.spectrumIndex + 1, vars.spectrumIndex, vars.spectrumId, new OffsetLength(offsetInFile + vars.offsetLo, (int)len)));
 
-        int len = vars.length != null ? vars.length : -1;
-        OffsetLength offsetLength = new OffsetLength(offsetInFile + vars.offset, len);
-        MZMLIndexElement idxElem = new MZMLIndexElement(vars.spectrumIndex + 1, vars.spectrumIndex, vars.spectrumId, offsetLength);
-        if (len != -1) {
-            result.addIndexElement(idxElem);
-        } else {
-            result.addUnfinishedIndexElement(idxElem);
+            } else {
+                // start tag only
+                result.addStartTag(new MZMLIndexElement(
+                        vars.spectrumIndex + 1, vars.spectrumIndex, vars.spectrumId, new OffsetLength(offsetInFile + vars.offsetLo, -1)));
+            }
+        } else if (vars.offsetHi != null){
+            // end tag only
+            result.addCloseTag(new MZMLIndexElement(
+                    -1, -1, "closing-tag", new OffsetLength(offsetInFile + vars.offsetHi, 0)));
         }
 
         vars.reset();

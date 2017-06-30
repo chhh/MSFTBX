@@ -90,12 +90,12 @@
         <dependency>
             <groupId>com.github.chhh</groupId>
             <artifactId>javolution-core-java-msftbx</artifactId>
-            <version>6.11.6</version>
+            <version>6.11.7</version>
         </dependency>
         <dependency>
             <groupId>org.biojava</groupId>
             <artifactId>biojava-ontology</artifactId>
-            <version>5.0.0-alpha10</version>
+            <version>4.2.7</version>
         </dependency>
         <dependency> <!-- for experimental Thermo RAW support -->
             <groupId>org.jvnet.com4j</groupId>

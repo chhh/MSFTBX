@@ -44,4 +44,13 @@ public class AbstractXMLBasedIndexElement extends IndexElementDefault implements
     public void setOffsetLength(OffsetLength offlen) {
         this.offlen = offlen;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "offlen=" + offlen +
+                ", numRaw=" + numRaw +
+                ", num=" + num +
+                '}';
+    }
 }

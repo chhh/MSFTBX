@@ -42,7 +42,8 @@ public class MzmlVars {
     Double precursorIntensity;
 
     // vars for Index Building
-    Long offset;
+    Long offsetLo;
+    Long offsetHi;
     Integer length;
 
     public enum BIN_DATA_TYPE {MZ, INTENSITY}
@@ -81,7 +82,8 @@ public class MzmlVars {
         precursorIsoWndHiOffset = null;
         precursorIntensity = null;
 
-        offset = null;
+        offsetLo = null;
+        offsetHi = null;
         length = null;
 
         precision = null;

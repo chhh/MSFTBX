@@ -34,11 +34,29 @@ public interface IndexBuilder<T extends XMLBasedIndexElement> extends Callable<I
     class Info {
         /** Global offset of the read-buffer (which is shared by multiple parsers) relative to the start of the file. */
         public final long offsetInFile;
+        public final int length;
         public final InputStream is;
 
-        public Info(long offsetInFile, InputStream is) {
+        public final String asString;
+        public final int index;
+        public static int counter = 0;
+
+        public Info(long offsetInFile, int length, InputStream is, String asString) {
             this.offsetInFile = offsetInFile;
+            this.length = length;
             this.is = is;
+            this.asString = asString;
+            this.index = counter++;
+        }
+
+        @Override
+        public String toString() {
+            return "Info{" +
+                    "index=" + index +
+                    ", offsetInFile=" + offsetInFile +
+                    ", length=" + length +
+                    ", offsetInFileEnd=" + (offsetInFile + length) +
+                    '}';
         }
     }
 
@@ -49,28 +67,38 @@ public interface IndexBuilder<T extends XMLBasedIndexElement> extends Callable<I
     class Result<T extends XMLBasedIndexElement> {
         private Info info;
         private List<T> indexElements;
-        private List<T> unfinishedIndexElements;
+        private List<T> closeTagLocs;
+        private List<T> startTagLocs;
 
         public Result(Info info) {
             this.info = info;
-            this.indexElements = new ArrayList<>(100);
-            this.unfinishedIndexElements = new ArrayList<>(1);
+            this.indexElements = new ArrayList<>(32);
+            this.closeTagLocs = new ArrayList<>(32);
+            this.startTagLocs = new ArrayList<>(32);
         }
 
         public List<T> getIndexElements() {
             return indexElements;
         }
 
-        public List<T> getUnfinishedIndexElements() {
-            return unfinishedIndexElements;
+        public List<T> getCloseTagLocs() {
+            return closeTagLocs;
         }
 
-        public boolean addIndexElement(T indexElement) {
-            return indexElements.add(indexElement);
+        public List<T> getStartTagLocs() {
+            return startTagLocs;
         }
 
-        public boolean addUnfinishedIndexElement(T indexElement) {
-            return unfinishedIndexElements.add(indexElement);
+        public void addIndexElement(T indexElement) {
+            indexElements.add(indexElement);
+        }
+
+        public void addCloseTag(T indexElement) {
+            closeTagLocs.add(indexElement);
+        }
+
+        public void addStartTag(T indexElement) {
+            startTagLocs.add(indexElement);
         }
 
         public Info getInfo() {

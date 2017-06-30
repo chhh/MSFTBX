@@ -149,7 +149,7 @@ public class MZMLIndexParser {
                 nextScanId = nextScanEntry.getValue().id;
                 if (nextScanOffset < curScanOffset) {
                     log.warn("Found mzML index entry with offset smaller than the previous entry in the same index." +
-                                     " Entry #{}, found offset: {}, previous entry #{}, previous offset: {}", nextScanNumRaw, nextScanOffset, curScanNumRaw, curScanOffset);
+                                     " Entry #{}, found offset: {}, previous entry #{}, previous offsetLo: {}", nextScanNumRaw, nextScanOffset, curScanNumRaw, curScanOffset);
                 } else {
 
                     // calculate the length of the entry

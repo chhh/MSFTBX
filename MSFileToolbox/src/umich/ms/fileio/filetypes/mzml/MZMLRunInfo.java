@@ -38,9 +38,6 @@ public class MZMLRunInfo extends LCMSRunInfo {
     private Map<String, List<CVParamType>> refParamGroups = new HashMap<>();
     private Map<String, List<javolution.xml.sax.Attributes>> refParamGroupsAttrs = new HashMap<>();
 
-    public MZMLRunInfo() {
-    }
-
     public MZMLRunInfo(LCMSRunInfo runInfo) {
         this.date = runInfo.getRunStartTime();
         this.instruments = runInfo.getInstruments();
