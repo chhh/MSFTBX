@@ -226,24 +226,24 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
      * @param idx
      */
     protected I fixIndex(I idx) {
+        //return idx;
+        int count = 0;
+        if (idx.size() < 2) {
+            //return idx;
+        }
+        NavigableMap<Integer, E> map = idx.getMapByNum();
+        Iterator<? extends Map.Entry<Integer, E>> it = map.entrySet().iterator();
+
+        // we have at least 2 elements in the iterator
+        Map.Entry<Integer, E> curr = it.next();
+        while (it.hasNext()) {
+            Map.Entry<Integer, E> next = it.next();
+            OffsetLength currOfflen = curr.getValue().getOffsetLength();
+            OffsetLength nextOfflen = next.getValue().getOffsetLength();
+            curr.getValue().setOffsetLength(new OffsetLength(currOfflen.offset, (int)(nextOfflen.offset - currOfflen.offset)));
+            curr = next;
+        }
         return idx;
-//        int count = 0;
-//        if (idx.size() < 2) {
-//            //return idx;
-//        }
-//        NavigableMap<Integer, E> map = idx.getMapByNum();
-//        Iterator<? extends Map.Entry<Integer, E>> it = map.entrySet().iterator();
-//
-//        // we have at least 2 elements in the iterator
-//        Map.Entry<Integer, E> curr = it.next();
-//        while (it.hasNext()) {
-//            Map.Entry<Integer, E> next = it.next();
-//            OffsetLength currOfflen = curr.getValue().getOffsetLength();
-//            OffsetLength nextOfflen = next.getValue().getOffsetLength();
-//            curr.getValue().setOffsetLength(new OffsetLength(currOfflen.offset, (int)(nextOfflen.offset - currOfflen.offset)));
-//            curr = next;
-//        }
-//        return idx;
     }
 
     protected ArrayList<Future<List<IScan>>> submitParseTasks(LCMSDataSubset subset, LCMSRunInfo info,
@@ -645,11 +645,13 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
         if (offsetLength == null) {
             throw new IllegalArgumentException("The scan you've requested to parse spectrumRef for was not found in the index");
         }
+        ByteArrayHolder bah = null;
+        ObjectPool<ByteArrayHolder> pool = PooledByteArrayHolders.getInstance().getPool();
         try {
             long offset = offsetLength.offset;
             int length = offsetLength.length;
             // get a read buffer
-            ByteArrayHolder bah = PooledByteArrayHolders.getInstance().getPool().borrowObject();
+            bah = pool.borrowObject();
             bah.ensureCapacity(length);
             // do the read IO
             RandomAccessFile raf = this.getRandomAccessFile();
@@ -678,6 +680,13 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
         } catch (Exception e) {
             throw new FileParsingException(e);
         } finally {
+            if (bah != null) {
+                try {
+                    pool.returnObject(bah);
+                } catch (Exception ex) {
+                    throw new FileParsingException("Could not return a byte array holder back to the pool", ex);
+                }
+            }
             this.close();
         }
     }
