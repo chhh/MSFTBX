@@ -59,12 +59,12 @@ public class MZMLFileTest {
             final DirectoryStream<Path> stream = Files.newDirectoryStream(path);
             paths = new ArrayList<>();
             for (Path p : stream) {
-                if (Files.isRegularFile(p) && p.getFileName().toString().equals("RawCentriodCidWithMsLevelInRefParamGroup.mzML")) {
+                //if (Files.isRegularFile(p) && p.getFileName().toString().equals("RawCentriodCidWithMsLevelInRefParamGroup.mzML")) {
                 //if (Files.isRegularFile(p) && p.getFileName().toString().equals("RawCentriodCidWithMsLevelInRefParamGroup_BOM_formatted.mzML")) {
                 //if (Files.isRegularFile(p) && p.getFileName().toString().equals("tiny.pwiz.idx.mzML")) {
                 //if (Files.isRegularFile(p) && p.getFileName().toString().equals("mzML_with_UV.mzML")) {
                 //if (Files.isRegularFile(p) && p.getFileName().toString().equals("SRM.mzML")) {
-                //if (Files.isRegularFile(p)) {
+                if (Files.isRegularFile(p)) {
                     paths.add(p);
                 }
             }
@@ -145,11 +145,11 @@ public class MZMLFileTest {
         }
     }
 
-    @org.junit.Test
+    //@org.junit.Test
     public void parseWholeFileSpeed() throws Exception {
         //String file = "C:\\data\\andy\\q01507.mzML";
-        String file = "C:\\data\\andy\\no-index\\q01507-broken-index.mzML";
-        //String file = "C:\\data\\andy\\20161207_200ng_HeLa_DIA_VarTest.mzML";
+        //String file = "C:\\data\\andy\\no-index\\q01507-broken-index.mzML";
+        String file = "C:\\data\\andy\\20161207_200ng_HeLa_DIA_VarTest.mzML";
         //String file = "C:\\projects\\batmass\\MSFTBX\\MSFileToolbox\\test\\resources\\mzml\\tiny.pwiz.idx.mzML";
 
         System.out.printf("Processing file: %s\n", file);

@@ -34,7 +34,7 @@ public class MsftbxInfo {
         v123notes.add("If anything goes wrong during index parsing, tries to re-index the file instead of throwing exceptions.");
         v123notes.add("Support for ReferenceableParamGroups in mzML.");
         v123notes.add("Fix BOM for mzML/mzXML files.");
-        v123notes.add("Change deps to Javolution-MSFTBX v6.11.6");
+        v123notes.add("Change deps to Javolution-MSFTBX v6.11.7");
         v123notes.add("Use CharArray.contentEquals() in mzML parser");
         changelog.put(v123, v123notes);
 
