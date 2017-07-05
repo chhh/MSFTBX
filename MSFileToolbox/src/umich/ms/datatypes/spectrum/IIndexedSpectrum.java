@@ -20,9 +20,6 @@ package umich.ms.datatypes.spectrum;
  * That is individual mz/intensity pairs can be addressed by an integer index.
  *
  * Author: Dmitry Avtonomov (dmitriya)
- * Email: dmitriy.avtonomov@gmail.com
- * Date: 3/1/13
- * Time: 2:15 PM
  */
 @Deprecated
 public interface IIndexedSpectrum {

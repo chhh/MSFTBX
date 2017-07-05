@@ -27,7 +27,6 @@ import umich.ms.fileio.exceptions.FileParsingException;
  * {@link umich.ms.datatypes.scan.StorageStrategy#STRONG}, it's up to the client to reset this to anything else.
  *
  * Author: Dmitry Avtonomov (dmitriya)
- * Email: dmitriy.avtonomov@gmail.com
  */
 public class ScanDefault extends AbstractScan {
     protected Reference<ISpectrum> spectrumRef;

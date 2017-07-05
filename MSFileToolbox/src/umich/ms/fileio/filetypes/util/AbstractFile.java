@@ -26,9 +26,6 @@ import java.nio.file.Paths;
 
 /**
  * Author: Dmitry Avtonomov (dmitriya)
- * Email: dmitriy.avtonomov@gmail.com
- * Date: 2/18/13
- * Time: 11:01 AM
  */
 public abstract class AbstractFile implements Closeable {
     protected String path = "";

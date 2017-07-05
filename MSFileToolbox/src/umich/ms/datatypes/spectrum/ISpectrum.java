@@ -19,7 +19,6 @@ import java.io.Serializable;
 
 /**
  * Author: Dmitry Avtonomov (dmitriya)
- * Email: dmitriy.avtonomov@gmail.com
  */
 public interface ISpectrum extends Serializable {
     /**

@@ -21,9 +21,6 @@ import umich.ms.util.SpectrumUtils;
 
 /**
  * Author: Dmitry Avtonomov (dmitriya)
- * Email: dmitriy.avtonomov@gmail.com
- * Date: 3/1/13
- * Time: 2:04 PM
  */
 public abstract class AbstractSpectrum implements ISpectrum, Serializable {
     private static final long serialVersionUID = 4857567189693575413L;

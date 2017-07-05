@@ -58,7 +58,6 @@ import java.util.zip.DataFormatException;
  * parent/child relationships yourself.
  *
  * Author: Dmitry Avtonomov (dmitriya)
- * Email: dmitriy.avtonomov@gmail.com
  */
 @Deprecated
 class MZXMLListOfScanDefaultSAXHandler extends DefaultHandler {

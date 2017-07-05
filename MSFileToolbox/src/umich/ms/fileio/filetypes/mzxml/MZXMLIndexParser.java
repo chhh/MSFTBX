@@ -188,8 +188,6 @@ public class MZXMLIndexParser {
      * Reads the last few kB of the file, looking for {@link #TAG_INDEXOFFSET} tag.
      * @param raf
      * @return
-     * @throws IOException
-     * @throws FileParsingException
      */
     protected long findIndexOffset(RandomAccessFile raf) throws IOException, IndexNotFoundException, IndexBrokenException {
 
@@ -255,7 +253,6 @@ public class MZXMLIndexParser {
      * @param map ScanMap with simple mapping from Integer scan numbers to Long offsets, just as written in the "index".
      *            This map should already contain the offset of the beginning of the "index" section in mzML file associated
      *            with key Integer.MAX_VALUE.
-     * @throws FileParsingException
      */
     protected void parseIndexEntries(byte[] bytes, TreeMap<Integer, Long> map) throws IndexBrokenException {
         XMLInputFactory factory = new XMLInputFactoryImpl();
@@ -305,7 +302,6 @@ public class MZXMLIndexParser {
             } while (eventType != XMLStreamConstants.END_DOCUMENT);
 
         } catch (XMLStreamException e) {
-            // Javolution throws an Exception, which can only be identified by its text message
             if (e instanceof XMLUnexpectedEndTagException) {
                 throw new IndexBrokenException("Error when parsing index entries", e);
             }

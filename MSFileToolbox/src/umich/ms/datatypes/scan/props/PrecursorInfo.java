@@ -20,9 +20,6 @@ import umich.ms.util.DoubleRange;
 
 /**
  * Author: Dmitry Avtonomov (dmitriya)
- * Email: dmitriy.avtonomov@gmail.com
- * Date: 3/26/13
- * Time: 4:00 PM
  */
 public class PrecursorInfo implements Serializable {
 

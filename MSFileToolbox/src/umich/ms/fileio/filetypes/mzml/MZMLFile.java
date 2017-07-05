@@ -47,7 +47,7 @@ import umich.ms.util.IntervalST;
 
 /**
  *
- * @author Dmitry Avtonomov <dmitriy.avtonomov@gmail.com>
+ * @author Dmitry Avtonomov
  */
 public class MZMLFile extends AbstractXMLBasedDataSource<MZMLIndexElement, MZMLIndex> {
     private MZMLIndex index;

@@ -29,9 +29,6 @@ import umich.ms.util.ByteArrayHolder;
 
 /**
  * Author: Dmitry Avtonomov (dmitriya)
- * Email: dmitriy.avtonomov@gmail.com
- * Date: 2/21/13
- * Time: 10:24 AM
  */
 public class MZXMLPeaksDecoder {
     

@@ -17,7 +17,7 @@ package umich.ms.fileio.exceptions;
 
 /**
  * Is thrown when anything bad happens during parsing LC/MS files.
- * @author Dmitry Avtonomov <dmitriy.avtonomov@gmail.com>
+ * @author Dmitry Avtonomov
  */
 public class FileParsingException extends Exception {
 

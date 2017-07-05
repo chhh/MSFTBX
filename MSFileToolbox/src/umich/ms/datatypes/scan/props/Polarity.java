@@ -19,9 +19,6 @@ import java.io.Serializable;
 
 /**
  * Author: Dmitry Avtonomov (dmitriya)
- * Email: dmitriy.avtonomov@gmail.com
- * Date: 3/25/13
- * Time: 5:11 PM
  */
 public enum Polarity {
     POSITIVE (+1, "+"),

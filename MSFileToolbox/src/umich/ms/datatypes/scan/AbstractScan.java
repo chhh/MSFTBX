@@ -28,9 +28,6 @@ import umich.ms.datatypes.spectrum.ISpectrum;
  * The most general representation of a Scan.
  *
  * Author: Dmitry Avtonomov (dmitriya)
- * Email: dmitriy.avtonomov@gmail.com
- * Date: 3/1/13
- * Time: 2:25 PM
  */
 public abstract class AbstractScan implements IScan {
     /** Serial number of this scan in an LC/MS run */

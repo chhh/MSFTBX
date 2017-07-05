@@ -20,7 +20,7 @@ import umich.ms.util.StringUtils;
 
 /**
  * The type of scanning used in MS.
- * @author Dmitry Avtonomov <dmitriy.avtonomov@gmail.com>
+ * @author Dmitry Avtonomov
  */
 public enum ScanType {
     UNKNOWN("Unknown"),
