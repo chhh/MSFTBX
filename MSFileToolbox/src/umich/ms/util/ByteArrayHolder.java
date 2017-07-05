@@ -322,7 +322,7 @@ public class ByteArrayHolder extends OutputStream {
 
     /**
      * Checks if there is enough space in the buffer to write N additional bytes.
-     * Will grow the buffer if necessary.<br/>
+     * Will grow the buffer if necessary.
      * It takes current position in the buffer into account.
      * @param numBytesToAdd the number of bytes you want to add to the buffer
      */

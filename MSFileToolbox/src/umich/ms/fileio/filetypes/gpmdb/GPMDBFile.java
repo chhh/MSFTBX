@@ -28,7 +28,7 @@ import umich.ms.fileio.exceptions.FileParsingException;
 import umich.ms.fileio.filetypes.util.AbstractFile;
 
 /**
- * Data source for GPMDB XML files with identifications.<br/>
+ * Data source for GPMDB XML files with identifications.
  * There is no corresponding data access API defined for such data yet.
  * @author Dmitry Avtonomov
  */

@@ -34,18 +34,18 @@ public class ScanCollectionHelper {
 
     /**
      * Defines the ratio of numbers of scans in the larges "precursor group" to
-     * the smallest "precursor group".<br/>
-     * Formula used: <br/>
-     *      {@code Math.abs(maxScansInGroup - minScansInGroup)) / minScansInGroup}<br/>
+     * the smallest "precursor group".
+     * Formula used:
+     *      {@code Math.abs(maxScansInGroup - minScansInGroup)) / minScansInGroup}
      *
      * A <b>precursor group</b> is a group of scans, which satisfy one of the
-     * two conditions:<br/>
+     * two conditions:
      * <ul>
      *     <li>precursor windows were not known for scans, but several scans
      *         had exactly the same precursor mass</li>
      *     <li>precursor windows were known and there was significant overlap
      *         between the precursor windows</li>
-     * </ul><br/>
+     * </ul>
      *
      * <b>There also must be more than one scan in EACH group, for a run
      * to be auto-detected as a DIA run.</b>

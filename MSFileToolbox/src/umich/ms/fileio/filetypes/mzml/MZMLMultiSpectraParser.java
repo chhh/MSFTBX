@@ -774,13 +774,13 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
      * offset of the last scan - there is no easy way to figure out what the
      * length is. If you just consider, that the length is from the offset to the
      * beginning of the index, then you might end up reading several hundred Mb
-     * of chromatogram data.<br/>
+     * of chromatogram data.
      * To use this method properly, you should create a File-based stream (buffered),
      * starting at the offset of the last scan and this method will read the file until
      * it finds the corresponding closing tag.
      *
      * @return The length of the first scan entry in this stream, or, more precisely,
-     * the offset in the stream of the end of the closing tag of the first 'scan' tag.<br/>
+     * the offset in the stream of the end of the closing tag of the first 'scan' tag.
      * Or -1 if no matching pair of 'scan' tags was found.
      * @throws umich.ms.fileio.exceptions.FileParsingException
      */

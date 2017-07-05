@@ -44,7 +44,7 @@ public class ZlibInflater {
 
     
     /**
-     * Convenience method for {@link #zlibUncompressBuffer(byte[], int, Integer)}.<br/>
+     * Convenience method for {@link #zlibUncompressBuffer(byte[], int, Integer)}.
      * Inflates zLib compressed byte[].
      * @param compressed zLib compressed bytes
      * @param uncompressedLen length of data in bytes when uncompressed. Optional.

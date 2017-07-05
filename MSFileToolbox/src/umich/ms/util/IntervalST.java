@@ -25,11 +25,11 @@ import java.util.List;
 /**
  * A generic Interval Search Tree. Use {@link Interval1D} as keys. If you want to
  * store multiple values associated with an interval, just store a List in the tree.
- * <br/>
- * <br/>
+ *
+ *
  * Implementation is an adaptation of IntervalST class (http://algs4.cs.princeton.edu/93intersection/IntervalST.java.html)
  * provided with Algorithms 4 book by Robert Sedgewick and Kevin Wayne.
- * <br/>
+ *
  * Unlike the original, it allows insertion of Intervals which have the same left ends
  * and is fully generic.
  * @author Dmitry Avtonomov
@@ -77,7 +77,7 @@ public class IntervalST<K extends Comparable<K>, V> implements Iterable<Interval
         }
 
         /**
-         * Use with caution. Can be used to update the values stored in the tree.<br/>
+         * Use with caution. Can be used to update the values stored in the tree.
          * First use {@link #searchAll(Interval1D)} to search for Nodes and then replace the values.
          * @param value
          */
@@ -318,7 +318,7 @@ public class IntervalST<K extends Comparable<K>, V> implements Iterable<Interval
 
     /**
      * Return an interval in data structure that intersects the given interval;
-     * Return null if no such interval exists.<br/>
+     * Return null if no such interval exists.
      * Running time is proportional to log N
      * @param interval
      * @return
@@ -346,7 +346,7 @@ public class IntervalST<K extends Comparable<K>, V> implements Iterable<Interval
 
 
     /**
-     * Return <b>ALL</b> intervals in data structure that intersect the given interval.<br/>
+     * Return <b>ALL</b> intervals in data structure that intersect the given interval.
      * Running time is proportional to R log N, where R is the number of intersections.
      * @param interval the interval to search for
      * @return all intersections. Single point intersections are also counted.

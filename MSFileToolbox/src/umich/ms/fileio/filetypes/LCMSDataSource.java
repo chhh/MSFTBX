@@ -81,7 +81,7 @@ public interface LCMSDataSource<T extends Index<?>> {
     boolean isExcludeEmptyScans();
 
     /**
-     * If true, empty scans will be discarded during parsing.<br/>
+     * If true, empty scans will be discarded during parsing.
      * Need to be called prior to parsing.
      * @param excludeEmptyScans
      */
@@ -97,7 +97,7 @@ public interface LCMSDataSource<T extends Index<?>> {
      */
     LCMSRunInfo getRunInfo();
     /**
-     * Gets the run info, parsing it if it yet hasn't been, and caches for reuse.<br/>
+     * Gets the run info, parsing it if it yet hasn't been, and caches for reuse.
      * @return
      * @throws FileParsingException
      */
@@ -111,7 +111,7 @@ public interface LCMSDataSource<T extends Index<?>> {
      */
     T getIndex();
     /**
-     * Returns the index, or parses it from the original file and caches for future reuse.<br/>
+     * Returns the index, or parses it from the original file and caches for future reuse.
      * If you don't want the index to be cached, you can call {@link #parseIndex()} instead.
      * @return
      * @throws umich.ms.fileio.exceptions.FileParsingException
@@ -120,7 +120,7 @@ public interface LCMSDataSource<T extends Index<?>> {
     T parseIndex() throws FileParsingException;
 
     /**
-     * Parse a single spectrumRef from file on disk by it's number.<br/>
+     * Parse a single spectrumRef from file on disk by it's number.
      * Assuming every LCMS file interface must be able to do that.
      * @param num scan number
      * @return
@@ -129,8 +129,8 @@ public interface LCMSDataSource<T extends Index<?>> {
     ISpectrum parseSpectrum(int num) throws FileParsingException;
 
     /**
-     * Parse a single scan from file on disk by it's number.<br/>
-     * Assuming every LCMS file interface must be able to do that.<br/>
+     * Parse a single scan from file on disk by it's number.
+     * Assuming every LCMS file interface must be able to do that.
      * The storage strategy should always be {@link umich.ms.datatypes.scan.StorageStrategy#STRONG},
      * the receiver then can set it to whatever it needs.
      * @param num scan number

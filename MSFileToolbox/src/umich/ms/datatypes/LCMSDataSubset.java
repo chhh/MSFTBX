@@ -176,7 +176,7 @@ public class LCMSDataSubset implements Serializable {
 
     /**
      * Checks if data ranges described by this subset fully contain ranges
-     * specified in another set.<br/>
+     * specified in another set.
      * According to this definition, for example {@link #WHOLE_RUN} contains
      * any other subset, including itself.
      * @param other

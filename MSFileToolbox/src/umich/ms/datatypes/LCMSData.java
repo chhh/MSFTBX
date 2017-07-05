@@ -256,7 +256,7 @@ public class LCMSData implements Serializable {
     /**
      * Unloads the subset without checking the user. It's required by our user-tracking
      * automatic cleanup, if a user was GCed and it hasn't unloaded its subsets, we detect
-     * the GC automatically, and unload all the subsets, used by this killed user.<br/>
+     * the GC automatically, and unload all the subsets, used by this killed user.
      * It will still check for other users using scans from this subset.
      * @param subset
      */
@@ -286,9 +286,9 @@ public class LCMSData implements Serializable {
      * {@link IScanCollection#reset() }. Effectively, you get this object to the
      * same state as it was after calling the constructor, however any
      * ScanCollection configurations are preserved (e.g. spectra auto-loading)
-     * setting.<br/>
+     * setting.
      * <b>IMPORTANT: will clear the registry of loaded subsets without warning!</b>
-     * <br/> It's up to you to make sure you don't call this method while some
+     *   It's up to you to make sure you don't call this method while some
      * component is still using the data.
      */
     public synchronized void releaseMemory() {

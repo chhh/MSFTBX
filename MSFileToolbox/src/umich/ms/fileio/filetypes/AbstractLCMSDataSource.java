@@ -89,7 +89,7 @@ public abstract class AbstractLCMSDataSource<T extends Index<?>> extends Abstrac
     }
 
     /**
-     * If true, empty scans will be discarded during parsing.<br/>
+     * If true, empty scans will be discarded during parsing.
      * Need to be called prior to parsing.
      * @param excludeEmptyScans default value is false
      */
@@ -198,7 +198,7 @@ public abstract class AbstractLCMSDataSource<T extends Index<?>> extends Abstrac
 //    }
 //
 //    /**
-//     * Returns the ScanCollection, parses it first, if necessary.<br/>
+//     * Returns the ScanCollection, parses it first, if necessary.
 //     * If you don't want the ScanCollection to be cached, use
 //     * {@link #parse() } instead.
 //     * @return

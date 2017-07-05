@@ -60,7 +60,7 @@ public class MZMLPeaksDecoder {
      * If the original precision was 32 bit, you still get doubles as output, would
      * be too complicated to provide another method to parseIndexEntries them as floats.
      * Hopefully some day everything will be in 64 bits anyway.
-     * @param bytesIn Byte array, decoded from a base64 encoded string<br/>
+     * @param bytesIn Byte array, decoded from a base64 encoded string
      *                E.g. like: eNoNxltIkwEYBuAOREZFhrCudGFbbraTU+Zmue...
      * @param lengthIn length of data to be treated as values, i.e. the input array can be longer, the values to be
      *                 interpreted must start at offset 0, and this will indicate the length

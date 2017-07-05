@@ -362,7 +362,7 @@ public enum PSIMSCV {
     /**
      * Iterates the ontology tree, following any "is_a" relationships. E.g., if you sart with an "instrument model"
      * term, then it will find all "_manufacturer_name_ instrument model" terms, and then the "intrument models" themselves.
-     * <br/><b>WARNING:<b/><br/>
+     *  <b>WARNING:<b/>
      * If the provided root term has no children, i.e. it's technically a leaf term, the callback for it will be called
      * with {@code isLeaf} set to false - top level root term is never considered a leaf.
      * @param ontology

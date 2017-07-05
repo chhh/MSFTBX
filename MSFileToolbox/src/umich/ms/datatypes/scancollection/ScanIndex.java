@@ -46,7 +46,7 @@ public class ScanIndex implements Serializable {
 
     /**
      * Adds a scan to the index. If the scan has RT set to non-null, will also
-     * add it to RT index.<br/>
+     * add it to RT index.
      * If a scan with the same scan number was already in the index, then it
      * will get replaced.
      *

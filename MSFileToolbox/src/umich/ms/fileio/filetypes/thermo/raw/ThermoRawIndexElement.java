@@ -29,7 +29,7 @@ public class ThermoRawIndexElement extends IndexElementDefault {
     }
 
     /**
-     * The filter line string common to most Thermo instruments, looks like:<br/>
+     * The filter line string common to most Thermo instruments, looks like:
      * FTMS + p NSI Full ms [400.00-2000.00]
      */
     public String getFilter() {

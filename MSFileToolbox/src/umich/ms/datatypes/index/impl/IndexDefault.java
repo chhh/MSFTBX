@@ -25,10 +25,10 @@ import umich.ms.datatypes.index.IndexElement;
 /**
  * Raw and ID maps are lazily created on the first request for a search. Most of the time
  * users will only query the index by the internal number, unless a different mapping is required
- * for something like mapping from .pep.xml results, which stores some raw identifier.<br/>
+ * for something like mapping from .pep.xml results, which stores some raw identifier.
  *
  * <b>This class is not thread safe during the creation stage.</b>
- * Queries after creation can be done from multiple threads.<br/>
+ * Queries after creation can be done from multiple threads.
  * NOTE: Each add operation will clear internal maps for raw numbers
  *
  * @author Dmitry Avtonomov
@@ -86,7 +86,7 @@ public class IndexDefault<T extends IndexElement> implements Index<T> {
     }
 
     /**
-     * Add a {@link umich.ms.datatypes.index.IndexElement} to the index.<br/>
+     * Add a {@link umich.ms.datatypes.index.IndexElement} to the index.
      * Don't use this method, unless you're building a new index.
      *
      * @param indexElement scan index element implementation

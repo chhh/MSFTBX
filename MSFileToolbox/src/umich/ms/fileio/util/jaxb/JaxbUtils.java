@@ -66,7 +66,7 @@ public class JaxbUtils
      * The original code in {@link JAXB} class claimed that {@code volatile} on the {@code WeakReference} variable
      * that they stored the cache in was enough to provide thread safety, but I don't think so as the reference itself,
      * inside the {@code WeakReference} wrapper isn't volatile.
-     * <p><br/>
+     * <p>
  *     My improvement
      *
      */

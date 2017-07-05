@@ -18,8 +18,8 @@ package umich.ms.datatypes.index;
 import java.io.Serializable;
 
 /**
- * A mapping from internal scan numbers (<b>which start at one</b>) to scan numbering in the original files.<br/>
- * mzXML files are required to provide a scan number, those scan numbers are not always continuous, e.g.:<br/>
+ * A mapping from internal scan numbers (<b>which start at one</b>) to scan numbering in the original files.
+ * mzXML files are required to provide a scan number, those scan numbers are not always continuous, e.g.:
  * <ul>
  *     <li>
  *         In mzXML data converted from AB Sciex raw files one might have the first scan number as 2037,
@@ -37,7 +37,7 @@ import java.io.Serializable;
  * </ul>
  *
  * In order to avoid all the confusion about scan numbering, MSFileToolbox uses a separate numbering and indexing
- * scheme. Internally all scan numbers start at one and then increment by one in retention time order.<br/>
+ * scheme. Internally all scan numbers start at one and then increment by one in retention time order.
  * Numbering from the original file is maintained, be it a raw vendor file (e.g. Thermo uses normal 1 based numbering,
  * Agilent has an ordinal number stored internally in their files, but also has those 'experiment number' and
  * other stuff), or an XML based file. The ID is also retained
@@ -46,7 +46,7 @@ import java.io.Serializable;
  */
 public interface IndexElement extends Serializable {
     /**
-     * Internal scan number, starting from 1, incrementing by one for each consecutive scan.<br/>
+     * Internal scan number, starting from 1, incrementing by one for each consecutive scan.
      * This is the number you get from {@link umich.ms.datatypes.scan.IScan#getNum()}
      * @return
      */

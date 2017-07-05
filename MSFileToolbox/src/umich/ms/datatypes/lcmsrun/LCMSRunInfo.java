@@ -22,7 +22,7 @@ import java.util.*;
 
 /**
  * Temporarily stores processed LC/MS file run header. For now only isntrument info, but
- * applied data-processing and parent files can also be retrieved.<br/>
+ * applied data-processing and parent files can also be retrieved.
  * If only one instrument is added, it will set it as the default one.
  * @author Dmitry Avtonomov
  */

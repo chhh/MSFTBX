@@ -100,8 +100,8 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
 
     //    /**
     //     * <b>You probably don't need that method</b>, it parses the spectra indexes (where in the file each
-    //     * spectrumRef description starts and ends).<br/>
-    //     * It will be called automatically for you if you call parsing methods that don't take an index as input.<br/>
+    //     * spectrumRef description starts and ends).
+    //     * It will be called automatically for you if you call parsing methods that don't take an index as input.
     //     * The index will not be stored in this MZXMLFile instance, if you want caching to work, just call {@link #fetchIndex()}.
     //     * @return TreeMap, keys: spectrumRef number, vals: byte offset from the beginning of the file where this spectrumRef
     //     * starts. The last element of this map holds the end position of the last spectrumRef.
@@ -742,7 +742,7 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
 
     /**
      * Be careful with this method, it will go over the whole file, building index from scans that it can find.
-     * It will ignore the index in file, even if it's present!<br/>
+     * It will ignore the index in file, even if it's present!
      * This method is called automatically if an index was requested via {@link #fetchIndex()} and the file contained
      * no index.
      * @param idx index instance to add parsed index elements to, this index will be modified.

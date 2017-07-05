@@ -23,7 +23,7 @@ import org.xml.sax.helpers.XMLFilterImpl;
  * Implementation of an XML filter that can add or remove namespaces from XML elements during parsing.
  * This is needed in some cases, for example, when the schema name contains a version number and
  * a target XML document was generated against an earlier version than your JAXB parser. In this case
- * JAXB won't recognize the elements, as every element name is preffixed with the namespace.<br/><br/>
+ * JAXB won't recognize the elements, as every element name is preffixed with the namespace.
  *
  * One solution is to remove the namespace from the {@code ObjectFactory} annotations and use an
  * {@code XMLStreamReader} that is non-namespace aware, like so:
@@ -36,20 +36,20 @@ import org.xml.sax.helpers.XMLFilterImpl;
  *     Unmarshaller unmarshaller = jc.createUnmarshaller();
  *     Object unmarshal = unmarshaller.unmarshal(xsr);
  * </code></pre>
- * <br/>
- * Using this filter:<br/>
+ *
+ * Using this filter:
  * To add namespaces where missing
  * <pre><code>
  *      new NamespaceFilter("http://www.example.com/namespaceurl", true);
  * </code></pre>
- * <br/>
+ *
  * To remove namespaces
  * <pre><code>
  *      new NamespaceFilter(null, false);
  * </code></pre>
- * <br/>
  *
- * <br/>
+ *
+ *
  *
  * Created by Dmitry Avtonomov on 2016-04-13.
  *

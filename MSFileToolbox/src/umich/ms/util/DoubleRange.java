@@ -29,7 +29,7 @@ public class DoubleRange extends Interval1D<Double> {
     }
 
     /**
-     * If the interval contains just a single point (i.e. this.lo == this.hi), then the overlap is 0.<br/>
+     * If the interval contains just a single point (i.e. this.lo == this.hi), then the overlap is 0.
      * Consider using {@link #overlapRelative(DoubleRange)}.
      * @param other interval to compare to
      * @return 0 if one of the intervals is a single point
@@ -52,7 +52,7 @@ public class DoubleRange extends Interval1D<Double> {
     }
 
     /**
-     * Relative overlap, that is the overlap, divided by the length of the largest interval.<br/>
+     * Relative overlap, that is the overlap, divided by the length of the largest interval.
      * If both intervals are single points and they're equal - returns 1
      * @param other interval to compare to
      * @return if the intervals are single points will return 1, if the points are the same. If a point is compared

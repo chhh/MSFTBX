@@ -243,7 +243,7 @@ public class ScanCollectionDefault implements IScanCollection {
     }
 
     /**
-     * Get a map, holding spectra groupped by precursor m/z isolation window.<br/>
+     * Get a map, holding spectra groupped by precursor m/z isolation window.
      * MS1 spectra are groupped by their overall m/z range.
      * @return Interval search tree for every level, this is only created after a call to {@link #finalize()}.
      *         A call to {@link #finalize()} will be made for you automatically, if you load scans using an
@@ -498,8 +498,8 @@ public class ScanCollectionDefault implements IScanCollection {
     }
 
     /**
-     * Same as {@link #getScansByRtSpan(double, double)}, but only searches at one MS Level.<br/>
-     * If it so happens, that the RTs are between just 2 consecutive scans, then null is returned.<br/>
+     * Same as {@link #getScansByRtSpan(double, double)}, but only searches at one MS Level.
+     * If it so happens, that the RTs are between just 2 consecutive scans, then null is returned.
      * You get a view of the original scan map, not a copy!
      * @param rtStart The beginning of RT window
      * @param rtEnd The end of RT window

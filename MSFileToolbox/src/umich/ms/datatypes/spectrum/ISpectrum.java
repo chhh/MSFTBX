@@ -41,7 +41,7 @@ public interface ISpectrum extends Serializable {
     double getMinInt();
 
     /**
-     * The minimum intensity in the spectrumRef, but greater than zero.<br/>
+     * The minimum intensity in the spectrumRef, but greater than zero.
      * It can still be zero, if there are only zero intensity peaks in the spectrumRef.
      * @return might be zero only if the spectrumRef is of zero length, or all
      * intensities in the spectrumRef are zero.
@@ -67,7 +67,7 @@ public interface ISpectrum extends Serializable {
     double getSumInt();
 
     /**
-     * Array of m/z values.<br/>
+     * Array of m/z values.
      * Might be of zero length, if the spectrumRef had no peaks in it.
      * @return
      */

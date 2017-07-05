@@ -33,10 +33,10 @@ import java.nio.file.Paths;
 import java.util.List;
 
 /**
- * LC/MS data source for Thermo RAW files. Can only be used on Windows.<br/>
+ * LC/MS data source for Thermo RAW files. Can only be used on Windows.
  *
- * Requires installation of MSFileReader library from Thermo, it can be downloaded here:<br/>
- *  https://thermo.flexnetoperations.com<br/>
+ * Requires installation of MSFileReader library from Thermo, it can be downloaded here:
+ *  https://thermo.flexnetoperations.com
  * You will need to register there first. The latest version as of this writing (2016-04-25) was 3.1-SP2.
  * Install it as Administrator, otherwise the service might not get registered.
  *
@@ -56,7 +56,7 @@ public class ThermoRawFile extends AbstractLCMSDataSource<ThermoRawIndex>{
     }
 
     /**
-     * Checks if the MSFileReader Type Library from Thermo is installed as a COM object.<br/>
+     * Checks if the MSFileReader Type Library from Thermo is installed as a COM object.
      * We're using the latest IXrawfile5 interface, so if the machine has an older version of the
      * library, which does not provide IXrawfile5, this method returns false.
      */
@@ -83,7 +83,7 @@ public class ThermoRawFile extends AbstractLCMSDataSource<ThermoRawIndex>{
     }
 
     /**
-     * Checks if the particular machine the code runs on can read Thermo RAW files.<br/>
+     * Checks if the particular machine the code runs on can read Thermo RAW files.
      * That is:
      * <ul>
      *     <li>The OS is Windows</li>

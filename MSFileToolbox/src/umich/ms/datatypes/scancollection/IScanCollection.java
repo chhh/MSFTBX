@@ -69,7 +69,7 @@ public interface IScanCollection extends Serializable {
     TreeMap<Integer, IScan> getMapNum2scan();
 
     /**
-     * Get a map, holding spectra groupped by precursor m/z isolation window.<br/>
+     * Get a map, holding spectra groupped by precursor m/z isolation window.
      * MS1 spectra are groupped by their overall m/z range.
      * @return
      */
@@ -265,7 +265,7 @@ public interface IScanCollection extends Serializable {
     void setStorageStrategy(LCMSDataSubset subset, StorageStrategy strategyInSet, StorageStrategy strategyNotInSet);
 
     /**
-     * <b>IMPLEMENTATIONS MUST BE SYNCHRONIZED</b><br/>
+     * <b>IMPLEMENTATIONS MUST BE SYNCHRONIZED</b>
      * Loads spectra for a subset of scans, or all of them, depending on the configuration.
      * @param subset configuration, for which scans what data should be loaded. Can't be null.
      *               Scans in the range of scan numbers should be loaded, but spectra should be loaded
@@ -277,7 +277,7 @@ public interface IScanCollection extends Serializable {
     void loadData(LCMSDataSubset subset, StorageStrategy storageStrategy) throws FileParsingException;
 
     /**
-     * <b>IMPLEMENTATIONS MUST BE SYNCHRONIZED</b><br/>
+     * <b>IMPLEMENTATIONS MUST BE SYNCHRONIZED</b>
      * Loads spectra for a subset of scans, or all of them, depending on the configuration. Uses the default storage
      * strategy.
      * @param subset configuration, for which scans what data should be loaded. Can't be null.
@@ -288,7 +288,7 @@ public interface IScanCollection extends Serializable {
     void loadData(LCMSDataSubset subset) throws FileParsingException;
 
     /**
-     * <b>IMPLEMENTATIONS MUST BE SYNCHRONIZED</b><br/>
+     * <b>IMPLEMENTATIONS MUST BE SYNCHRONIZED</b>
      * Unloads <b>SPECTRA</b> from the underlying ScanCollection.
      * <b>This method should be synchronized.</b>
      * @param subset
@@ -296,7 +296,7 @@ public interface IScanCollection extends Serializable {
     void unloadData(LCMSDataSubset subset);
 
     /**
-     * <b>IMPLEMENTATIONS MUST BE SYNCHRONIZED</b><br/>
+     * <b>IMPLEMENTATIONS MUST BE SYNCHRONIZED</b>
      * Unloads <b>SPECTRA</b> from the underlying ScanCollection.
      * <b>This method should be synchronized.</b>
      * @param subset the subset to be unloaded
@@ -308,7 +308,7 @@ public interface IScanCollection extends Serializable {
     /**
      * Bring the collection back to initial empty state. Users should be able to
      * add scans to the collection afterwards as if they called the constructor
-     * again.<br/>
+     * again.
      * The reason for having this method is re-use of the exact scan collection
      * type in LCMSData (BatMass) after a request to release memory.
      */
