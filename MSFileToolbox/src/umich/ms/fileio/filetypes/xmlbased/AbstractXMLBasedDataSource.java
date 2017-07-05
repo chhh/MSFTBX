@@ -229,7 +229,7 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
         //return idx;
         int count = 0;
         if (idx.size() < 2) {
-            //return idx;
+            return idx;
         }
         NavigableMap<Integer, E> map = idx.getMapByNum();
         Iterator<? extends Map.Entry<Integer, E>> it = map.entrySet().iterator();
