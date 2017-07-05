@@ -51,7 +51,7 @@ public class PrecursorInfo implements Serializable {
     }
 
     /**
-     * Every scan can have a parent, if msLevel is > 1
+     * Every scan can have a parent, if msLevel is &gt; 1
      * type is Integer and not int, so we could use null for MS1 scans
      * @return
      */

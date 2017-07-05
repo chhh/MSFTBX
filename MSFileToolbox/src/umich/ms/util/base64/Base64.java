@@ -218,7 +218,7 @@ public class Base64 {
      * </p>
      *
      * @param lineLength Each line of encoded data will be at most of the given
-     * length (rounded down to nearest multiple of 4). If lineLength <= 0, then
+     * length (rounded down to nearest multiple of 4). If lineLength &lt;= 0, then
      * the output will not be divided into lines (chunks). Ignored when
      * decoding. @param lineSeparator Each line of encoded data will end with
      * this sequence of

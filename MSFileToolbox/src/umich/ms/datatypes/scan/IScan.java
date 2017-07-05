@@ -58,7 +58,6 @@ public interface IScan extends Serializable {
      * @return if a ScanCollection wasn't set, and the spectrum wasn't explicitly set for this scan, then the spectrum
      * returned might be null. If a scan collection was set, and the scan collection was set to
      * {@link umich.ms.datatypes.scancollection.IScanCollection#isAutoloadSpectra()}
-     * @throws FileParsingException
      */
     ISpectrum getSpectrum();
 

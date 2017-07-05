@@ -220,7 +220,7 @@ public class ByteArrayHolder extends OutputStream {
      * over the decoding process is required.
      *
      * @param  charsetName  the name of a supported
-     *              {@linkplain java.nio.charset.Charset </code>charset<code>}
+     *              {@link java.nio.charset.Charset } <code>charset</code>
      * @return String decoded from the buffer's contents.
      * @exception  UnsupportedEncodingException
      *             If the named charset is not supported

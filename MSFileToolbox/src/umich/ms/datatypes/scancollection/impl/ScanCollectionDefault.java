@@ -264,7 +264,7 @@ public class ScanCollectionDefault implements IScanCollection {
     }
 
     /**
-     * Get a map which links MS Levels (starting from 1) to maps of (scanNum => scanObject).
+     * Get a map which links MS Levels (starting from 1) to maps of (scanNum =&gt; scanObject).
      * @return the mapping
      */
     @Override
@@ -355,7 +355,7 @@ public class ScanCollectionDefault implements IScanCollection {
     /**
      * Scan with the closest Number greater or equal to the provided one is returned.
      * @param scanNum scan number
-     * @return Scan or null, if the ScanCollection didn't have any scans with numbers >= than this one
+     * @return Scan or null, if the ScanCollection didn't have any scans with numbers &gt;= than this one
      */
     @Override
     public IScan getScanByNumUpper(int scanNum) {
