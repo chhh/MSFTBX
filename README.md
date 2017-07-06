@@ -15,7 +15,7 @@ This library is what drives [BatMass](https://github.com/chhh/batmass).
 <dependency>
     <groupId>com.github.chhh</groupId>
     <artifactId>msftbx</artifactId>
-    <version>1.2.1</version>
+    <version>1.3.0</version>
 </dependency>
 ```
 
