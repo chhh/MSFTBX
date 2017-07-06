@@ -34,8 +34,6 @@ import umich.ms.datatypes.spectrum.impl.SpectrumDefault;
 import umich.ms.fileio.exceptions.FileParsingException;
 import umich.ms.fileio.filetypes.mzml.util.PSIMSCV;
 import umich.ms.fileio.filetypes.util.MultiSpectraParser;
-import umich.ms.fileio.filetypes.xmlbased.IndexBuilder;
-import umich.ms.fileio.filetypes.xmlbased.OffsetLength;
 import umich.ms.logging.LogHelper;
 import umich.ms.util.ByteArrayHolder;
 import umich.ms.util.StringUtils;
