@@ -232,7 +232,7 @@
                                             </xs:annotation>
                                             <xs:complexType>
                                                 <xs:attribute name="aminoacid" type="xs:string" use="required"/>
-                                                <xs:attribute name="massdiff" type="xs:string" use="required">
+                                                <xs:attribute name="massdiff" type="xs:float" use="required">
                                                     <xs:annotation>
                                                         <xs:documentation>Mass difference with respect to unmodified aminoacid, must begin with either + (nonnegative) or - [e.g. +1.05446 or -2.3342]</xs:documentation>
                                                     </xs:annotation>

@@ -36,7 +36,7 @@ redundant unbounded hint it actually could figure out the separate lists inside 
 
 # Generated with
 * Standard
-  * `"C:\Programs\Java\jdk1.8.0_60\bin\xjc.exe" -b bindings_pepxml_primitive.xml -d "D:\projects\BatMass\MSFTBX\MSFileToolbox\src" -p umich.ms.fileio.filetypes.pepxml.jaxb.primitive pepXML_v120-fixed.xsd`
+  * `"C:\Programs\Java\jdk1.8.0_60\bin\xjc.exe" -b bindings_pepxml_primitive.xml -d "D:\projects\BatMass\MSFTBX\MSFileToolbox\src" -p umich.ms.fileio.filetypes.pepxml.jaxb.standard pepXML_v120-fixed.xsd`
 * Primitive 
   * `"C:\Programs\Java\jdk1.8.0_60\bin\xjc.exe" -b bindings_pepxml_primitive.xml -d "D:\projects\BatMass\MSFTBX\MSFileToolbox\src" -p umich.ms.fileio.filetypes.pepxml.jaxb.primitive pepXML_v120-fixed.xsd`
 * Nested 
