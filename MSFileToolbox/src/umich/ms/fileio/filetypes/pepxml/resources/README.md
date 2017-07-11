@@ -35,9 +35,12 @@ This `maxOccurs="unbounded"` confused the hell out of _xjc_ and it generated a s
 redundant unbounded hint it actually could figure out the separate lists inside that _sequence_.
 
 # Generated with
-* Primitive `"C:\Programs\Java\jdk1.8.0_60\bin\xjc.exe" -b bindings_pepxml_primitive.xml -d "D:\projects\BatMass\MSFTBX\MSFileToolbox\src" -p umich.ms.fileio.filetypes.pepxml.jaxb.primitive pepXML_v119-fixed.xsd`
-* Nested `"C:\Programs\Java\jdk1.8.0_60\bin\xjc.exe" -b bindings_pepxml_nested.xml -d "D:\projects\BatMass\MSFTBX\MSFileToolbox\src" -p umich.ms.fileio.filetypes.pepxml.jaxb.nested pepXML_v118-old.xsd`
-* Standard ``
+* Standard
+  * `"C:\Programs\Java\jdk1.8.0_60\bin\xjc.exe" -b bindings_pepxml_primitive.xml -d "D:\projects\BatMass\MSFTBX\MSFileToolbox\src" -p umich.ms.fileio.filetypes.pepxml.jaxb.primitive pepXML_v120-fixed.xsd`
+* Primitive 
+  * `"C:\Programs\Java\jdk1.8.0_60\bin\xjc.exe" -b bindings_pepxml_primitive.xml -d "D:\projects\BatMass\MSFTBX\MSFileToolbox\src" -p umich.ms.fileio.filetypes.pepxml.jaxb.primitive pepXML_v120-fixed.xsd`
+* Nested 
+  * `"C:\Programs\Java\jdk1.8.0_60\bin\xjc.exe" -b bindings_pepxml_nested.xml -d "D:\projects\BatMass\MSFTBX\MSFileToolbox\src" -p umich.ms.fileio.filetypes.pepxml.jaxb.nested pepXML_v120-fixed.xsd`
 * After generation all occurrences of  `new ArrayList<>()` were replaced with `new ArrayList<>(1)` to avoid lots of lists
  of default size, which is 10. As in pepxml there might be tens of thousands of such lists which only hold a single element.
   * Use the following regex in IDEA for replacement (use _Replace in path_). Search pattern `(new ArrayList<.*?>)\(\)`,
