@@ -50,6 +50,12 @@
         <jaxb:bindings node="/xs:schema/xs:complexType[@name='mixtureModelType']//xs:element[@name='point']/xs:complexType">
             <jaxb:class name="MixtureModelPoint"/>
         </jaxb:bindings>
+
+        <!-- This was added to the binding starting from pepxml schema v120 to maintain backwards compatibility.
+             Only the datatype name was changed, all the methods stayed the same. -->
+        <jaxb:bindings node="/xs:schema/xs:complexType[@name='modInfoDataType']">
+            <jaxb:class name="ModificationInfo"/>
+        </jaxb:bindings>
     </jaxb:bindings>
 
 

@@ -99,7 +99,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *       &lt;attribute name="num_matched_ions" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
  *       &lt;attribute name="tot_num_ions" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
  *       &lt;attribute name="calc_neutral_pep_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *       &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
  *       &lt;attribute name="num_tol_term" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
  *       &lt;attribute name="num_missed_cleavages" type="{http://www.w3.org/2001/XMLSchema}integer" />
  *       &lt;attribute name="num_matched_peptides" type="{http://www.w3.org/2001/XMLSchema}integer" />
@@ -144,7 +144,7 @@ public class SearchHit {
     @XmlElement(name = "alternative_protein")
     protected List<AltProteinDataType> alternativeProtein;
     @XmlElement(name = "modification_info")
-    protected ModInfoDataType modificationInfo;
+    protected ModificationInfo modificationInfo;
     protected Xlink xlink;
     @XmlElement(name = "search_score")
     protected List<NameValueType> searchScore;
@@ -175,7 +175,7 @@ public class SearchHit {
     @XmlAttribute(name = "calc_neutral_pep_mass", required = true)
     protected float calcNeutralPepMass;
     @XmlAttribute(name = "massdiff", required = true)
-    protected String massdiff;
+    protected float massdiff;
     @XmlAttribute(name = "num_tol_term")
     @XmlJavaTypeAdapter(Adapter1 .class)
     @XmlSchemaType(name = "nonNegativeInteger")
@@ -234,10 +234,10 @@ public class SearchHit {
      *
      * @return
      *     possible object is
-     *     {@link ModInfoDataType }
+     *     {@link ModificationInfo }
      *
      */
-    public ModInfoDataType getModificationInfo() {
+    public ModificationInfo getModificationInfo() {
         return modificationInfo;
     }
 
@@ -246,10 +246,10 @@ public class SearchHit {
      *
      * @param value
      *     allowed object is
-     *     {@link ModInfoDataType }
+     *     {@link ModificationInfo }
      *
      */
-    public void setModificationInfo(ModInfoDataType value) {
+    public void setModificationInfo(ModificationInfo value) {
         this.modificationInfo = value;
     }
 
@@ -559,24 +559,16 @@ public class SearchHit {
     /**
      * Gets the value of the massdiff property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
      */
-    public String getMassdiff() {
+    public float getMassdiff() {
         return massdiff;
     }
 
     /**
      * Sets the value of the massdiff property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
      */
-    public void setMassdiff(String value) {
+    public void setMassdiff(float value) {
         this.massdiff = value;
     }
 

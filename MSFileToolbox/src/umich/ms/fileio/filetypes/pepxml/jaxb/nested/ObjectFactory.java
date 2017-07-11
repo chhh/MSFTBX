@@ -102,11 +102,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ModInfoDataType }
+     * Create an instance of {@link ModificationInfo }
      *
      */
-    public ModInfoDataType createModInfoDataType() {
-        return new ModInfoDataType();
+    public ModificationInfo createModificationInfo() {
+        return new ModificationInfo();
     }
 
     /**
@@ -430,11 +430,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ModInfoDataType.ModAminoacidMass }
+     * Create an instance of {@link ModificationInfo.ModAminoacidMass }
      *
      */
-    public ModInfoDataType.ModAminoacidMass createModInfoDataTypeModAminoacidMass() {
-        return new ModInfoDataType.ModAminoacidMass();
+    public ModificationInfo.ModAminoacidMass createModificationInfoModAminoacidMass() {
+        return new ModificationInfo.ModAminoacidMass();
     }
 
     /**

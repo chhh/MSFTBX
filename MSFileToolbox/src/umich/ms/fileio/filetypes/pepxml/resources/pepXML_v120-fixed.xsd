@@ -300,7 +300,7 @@
                                                         <xs:documentation>n for N-terminus, c for C-terminus</xs:documentation>
                                                     </xs:annotation>
                                                 </xs:attribute>
-                                                <xs:attribute name="massdiff" type="xs:string" use="required">
+                                                <xs:attribute name="massdiff" type="xs:float" use="required">
                                                     <xs:annotation>
                                                         <xs:documentation>Mass difference with respect to unmodified terminus</xs:documentation>
                                                     </xs:annotation>
@@ -523,7 +523,7 @@
                                                                 </xs:annotation>
                                                             </xs:attribute>
                                                             <xs:attribute name="calc_neutral_pep_mass" type="xs:float" use="required"/>
-                                                            <xs:attribute name="massdiff" type="xs:string" use="required">
+                                                            <xs:attribute name="massdiff" type="xs:float" use="required">
                                                                 <xs:annotation>
                                                                     <xs:documentation>Mass(precursor ion) - Mass(peptide)</xs:documentation>
                                                                 </xs:annotation>
@@ -1060,9 +1060,9 @@
             <xs:attribute name="same_scan_range" type="xs:string" use="required"/>
             <xs:attribute name="labeled_residues" type="xs:string" use="required"/>
             <xs:attribute name="xpress_light" type="xs:unsignedInt" use="required"/>
-            <xs:attribute name="massdiff" type="xs:string" use="required"/>
+            <xs:attribute name="massdiff" type="xs:float" use="required"/>
             <xs:attribute name="masstol" type="xs:float" use="required"/>
-            <xs:attribute name="ppmtol" type="xs:integer" use="required"/>
+            <xs:attribute name="ppmtol" type="xs:float" use="required"/>
             <xs:attribute name="min_num_chromatogram_points" type="xs:integer" use="required"/>
             <xs:attribute name="min_num_isotope_peaks" type="xs:integer" use="required"/>
         </xs:complexType>

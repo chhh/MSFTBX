@@ -334,11 +334,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ModInfoDataType }
+     * Create an instance of {@link ModificationInfo }
      *
      */
-    public ModInfoDataType createModInfoDataType() {
-        return new ModInfoDataType();
+    public ModificationInfo createModificationInfo() {
+        return new ModificationInfo();
     }
 
     /**

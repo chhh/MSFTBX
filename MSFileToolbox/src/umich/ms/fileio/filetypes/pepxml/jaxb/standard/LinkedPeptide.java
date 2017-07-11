@@ -67,7 +67,7 @@ public class LinkedPeptide {
     @XmlElement(name = "alternative_protein")
     protected List<AltProteinDataType> alternativeProtein;
     @XmlElement(name = "modification_info")
-    protected ModInfoDataType modificationInfo;
+    protected ModificationInfo modificationInfo;
     @XmlElement(name = "xlink_score")
     protected List<NameValueType> xlinkScore;
     @XmlAttribute(name = "peptide", required = true)
@@ -122,10 +122,10 @@ public class LinkedPeptide {
      *
      * @return
      *     possible object is
-     *     {@link ModInfoDataType }
+     *     {@link ModificationInfo }
      *
      */
-    public ModInfoDataType getModificationInfo() {
+    public ModificationInfo getModificationInfo() {
         return modificationInfo;
     }
 
@@ -134,10 +134,10 @@ public class LinkedPeptide {
      *
      * @param value
      *     allowed object is
-     *     {@link ModInfoDataType }
+     *     {@link ModificationInfo }
      *
      */
-    public void setModificationInfo(ModInfoDataType value) {
+    public void setModificationInfo(ModificationInfo value) {
         this.modificationInfo = value;
     }
 

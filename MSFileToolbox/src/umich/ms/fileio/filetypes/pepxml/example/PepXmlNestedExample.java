@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright 2016 Dmitry Avtonomov.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,6 +16,7 @@
 package umich.ms.fileio.filetypes.pepxml.example;
 
 
+import umich.ms.fileio.filetypes.pepxml.jaxb.nested.ModInfoDataType;
 import umich.ms.fileio.filetypes.pepxml.jaxb.nested.MsmsPipelineAnalysis;
 
 import javax.xml.bind.JAXBContext;
@@ -73,17 +74,17 @@ public class PepXmlNestedExample {
                 error(String.format("Search HIT was empty for query #%d [spec id: %s]", query.getIndex(), query.getSpectrum()));
             }
             MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit firstHit = searchHit.get(0);
-            MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.ModificationInfo mods = firstHit.getModificationInfo();
+            ModInfoDataType modInfo = firstHit.getModificationInfo();
 
-            if (mods != null) {
+            if (modInfo != null) {
                 System.out.printf("mod info is not null for query #%d [spec id: %s]\n", query.getIndex(), query.getSpectrum());
-                if (!mods.getModAminoacidMass().isEmpty()) {
+                if (!modInfo.getModAminoacidMass().isEmpty()) {
                     int x = 1;
                 }
-                if (mods.getModCtermMass() != null) {
+                if (modInfo.getModCtermMass() != null) {
                     int y = 1;
                 }
-                if (mods.getModNtermMass() != null) {
+                if (modInfo.getModNtermMass() != null) {
                     int z = 1;
                 }
             }

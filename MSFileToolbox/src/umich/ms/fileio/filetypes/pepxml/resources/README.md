@@ -34,6 +34,12 @@ to
 This `maxOccurs="unbounded"` confused the hell out of _xjc_ and it generated a single List<Object>, but without this
 redundant unbounded hint it actually could figure out the separate lists inside that _sequence_.
 
+All occurences of regex: `name="massdiff"([^>]*)type="xs:string"` were replaced with (IDEA style) `name="massdiff"$1type="xs:float"`.  
+
+All occurences of regex: `name="ppmtol"([^>]*)type="xs:integer"` were replaced with (IDEA style) `name="ppmtol"$1type="xs:float"`.  
+
+
+
 # Generated with  
 Execute from `MSFTBX\MSFileToolbox\src\umich\ms\fileio\filetypes\pepxml\resources` directory.  
 Will overwrite existing java jaxb files without warning.  
@@ -44,10 +50,11 @@ Will overwrite existing java jaxb files without warning.
   * `"C:\Programs\Java\jdk1.8.0_60\bin\xjc.exe" -no-header -encoding UTF-8 -d "D:\projects\BatMass\MSFTBX\MSFileToolbox\src" -b bindings_pepxml_primitive.xml -p umich.ms.fileio.filetypes.pepxml.jaxb.primitive pepXML_v120-fixed.xsd`
 * Nested 
   * `"C:\Programs\Java\jdk1.8.0_60\bin\xjc.exe" -no-header -encoding UTF-8 -d "D:\projects\BatMass\MSFTBX\MSFileToolbox\src" -b bindings_pepxml_nested.xml -p umich.ms.fileio.filetypes.pepxml.jaxb.nested pepXML_v120-fixed.xsd`
-* After generation all occurrences of  `new ArrayList<>()` were replaced with `new ArrayList<>(1)` to avoid lots of lists
- of default size, which is 10. As in pepxml there might be tens of thousands of such lists which only hold a single element.
+* __After generation__
+  * all occurrences of  `new ArrayList<>()` were replaced with `new ArrayList<>(1)` to avoid lots of lists
+    of default size, which is 10. As in pepxml there might be tens of thousands of such lists which only hold a single element.
   * Use the following regex in IDEA for replacement (use _Replace in path_). Search pattern `(new ArrayList<.*?>)\(\)`,
-  replacement pattern `$1\(1\)`
+    replacement pattern `$1\(1\)`
 
 # Use like this:
 

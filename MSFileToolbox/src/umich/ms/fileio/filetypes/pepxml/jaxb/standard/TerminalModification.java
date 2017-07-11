@@ -33,7 +33,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;attribute name="terminus" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
  *       &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
  *       &lt;attribute name="variable" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="symbol" type="{http://regis-web.systemsbiology.net/pepXML}term_symbolType" />
@@ -53,7 +53,7 @@ public class TerminalModification {
     @XmlAttribute(name = "terminus", required = true)
     protected String terminus;
     @XmlAttribute(name = "massdiff", required = true)
-    protected String massdiff;
+    protected float massdiff;
     @XmlAttribute(name = "mass", required = true)
     protected float mass;
     @XmlAttribute(name = "variable", required = true)
@@ -92,24 +92,16 @@ public class TerminalModification {
     /**
      * Gets the value of the massdiff property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
      */
-    public String getMassdiff() {
+    public float getMassdiff() {
         return massdiff;
     }
 
     /**
      * Sets the value of the massdiff property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
      */
-    public void setMassdiff(String value) {
+    public void setMassdiff(float value) {
         this.massdiff = value;
     }
 

@@ -239,7 +239,7 @@ import org.w3c.dom.Element;
  *                                 &lt;complexContent>
  *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                                     &lt;attribute name="terminus" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *                                     &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                                     &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
  *                                     &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
  *                                     &lt;attribute name="variable" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *                                     &lt;attribute name="symbol" type="{http://regis-web.systemsbiology.net/pepXML}term_symbolType" />
@@ -353,7 +353,7 @@ import org.w3c.dom.Element;
  *                                               &lt;attribute name="num_matched_ions" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
  *                                               &lt;attribute name="tot_num_ions" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
  *                                               &lt;attribute name="calc_neutral_pep_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *                                               &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                                               &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
  *                                               &lt;attribute name="num_tol_term" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
  *                                               &lt;attribute name="num_missed_cleavages" type="{http://www.w3.org/2001/XMLSchema}integer" />
  *                                               &lt;attribute name="num_matched_peptides" type="{http://www.w3.org/2001/XMLSchema}integer" />
@@ -1147,7 +1147,7 @@ public class MsmsPipelineAnalysis {
      *                       &lt;complexContent>
      *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
      *                           &lt;attribute name="terminus" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
-     *                           &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+     *                           &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
      *                           &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
      *                           &lt;attribute name="variable" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
      *                           &lt;attribute name="symbol" type="{http://regis-web.systemsbiology.net/pepXML}term_symbolType" />
@@ -1261,7 +1261,7 @@ public class MsmsPipelineAnalysis {
      *                                     &lt;attribute name="num_matched_ions" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
      *                                     &lt;attribute name="tot_num_ions" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
      *                                     &lt;attribute name="calc_neutral_pep_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
-     *                                     &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+     *                                     &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
      *                                     &lt;attribute name="num_tol_term" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
      *                                     &lt;attribute name="num_missed_cleavages" type="{http://www.w3.org/2001/XMLSchema}integer" />
      *                                     &lt;attribute name="num_matched_peptides" type="{http://www.w3.org/2001/XMLSchema}integer" />
@@ -1737,8 +1737,8 @@ public class MsmsPipelineAnalysis {
              *
              * @return
              *     possible object is
-             *     {@link Element }
              *     {@link Object }
+             *     {@link Element }
              *
              */
             public Object getAny() {
@@ -1750,8 +1750,8 @@ public class MsmsPipelineAnalysis {
              *
              * @param value
              *     allowed object is
-             *     {@link Element }
              *     {@link Object }
+             *     {@link Element }
              *
              */
             public void setAny(Object value) {
@@ -2450,7 +2450,7 @@ public class MsmsPipelineAnalysis {
          *             &lt;complexContent>
          *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
          *                 &lt;attribute name="terminus" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
-         *                 &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+         *                 &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
          *                 &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
          *                 &lt;attribute name="variable" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
          *                 &lt;attribute name="symbol" type="{http://regis-web.systemsbiology.net/pepXML}term_symbolType" />
@@ -3565,7 +3565,7 @@ public class MsmsPipelineAnalysis {
              *   &lt;complexContent>
              *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
              *       &lt;attribute name="terminus" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
-             *       &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+             *       &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
              *       &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
              *       &lt;attribute name="variable" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
              *       &lt;attribute name="symbol" type="{http://regis-web.systemsbiology.net/pepXML}term_symbolType" />
@@ -3585,7 +3585,7 @@ public class MsmsPipelineAnalysis {
                 @XmlAttribute(name = "terminus", required = true)
                 protected String terminus;
                 @XmlAttribute(name = "massdiff", required = true)
-                protected String massdiff;
+                protected float massdiff;
                 @XmlAttribute(name = "mass", required = true)
                 protected float mass;
                 @XmlAttribute(name = "variable", required = true)
@@ -3624,24 +3624,16 @@ public class MsmsPipelineAnalysis {
                 /**
                  * Gets the value of the massdiff property.
                  *
-                 * @return
-                 *     possible object is
-                 *     {@link String }
-                 *
                  */
-                public String getMassdiff() {
+                public float getMassdiff() {
                     return massdiff;
                 }
 
                 /**
                  * Sets the value of the massdiff property.
                  *
-                 * @param value
-                 *     allowed object is
-                 *     {@link String }
-                 *
                  */
-                public void setMassdiff(String value) {
+                public void setMassdiff(float value) {
                     this.massdiff = value;
                 }
 
@@ -3843,7 +3835,7 @@ public class MsmsPipelineAnalysis {
          *                           &lt;attribute name="num_matched_ions" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
          *                           &lt;attribute name="tot_num_ions" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
          *                           &lt;attribute name="calc_neutral_pep_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
-         *                           &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+         *                           &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
          *                           &lt;attribute name="num_tol_term" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
          *                           &lt;attribute name="num_missed_cleavages" type="{http://www.w3.org/2001/XMLSchema}integer" />
          *                           &lt;attribute name="num_matched_peptides" type="{http://www.w3.org/2001/XMLSchema}integer" />
@@ -4323,7 +4315,7 @@ public class MsmsPipelineAnalysis {
              *                 &lt;attribute name="num_matched_ions" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
              *                 &lt;attribute name="tot_num_ions" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
              *                 &lt;attribute name="calc_neutral_pep_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
-             *                 &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+             *                 &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
              *                 &lt;attribute name="num_tol_term" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
              *                 &lt;attribute name="num_missed_cleavages" type="{http://www.w3.org/2001/XMLSchema}integer" />
              *                 &lt;attribute name="num_matched_peptides" type="{http://www.w3.org/2001/XMLSchema}integer" />
@@ -4500,7 +4492,7 @@ public class MsmsPipelineAnalysis {
                  *       &lt;attribute name="num_matched_ions" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
                  *       &lt;attribute name="tot_num_ions" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
                  *       &lt;attribute name="calc_neutral_pep_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
-                 *       &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+                 *       &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
                  *       &lt;attribute name="num_tol_term" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
                  *       &lt;attribute name="num_missed_cleavages" type="{http://www.w3.org/2001/XMLSchema}integer" />
                  *       &lt;attribute name="num_matched_peptides" type="{http://www.w3.org/2001/XMLSchema}integer" />
@@ -4545,7 +4537,7 @@ public class MsmsPipelineAnalysis {
                     @XmlElement(name = "alternative_protein")
                     protected List<AltProteinDataType> alternativeProtein;
                     @XmlElement(name = "modification_info")
-                    protected ModInfoDataType modificationInfo;
+                    protected ModificationInfo modificationInfo;
                     protected MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.Xlink xlink;
                     @XmlElement(name = "search_score")
                     protected List<NameValueType> searchScore;
@@ -4576,7 +4568,7 @@ public class MsmsPipelineAnalysis {
                     @XmlAttribute(name = "calc_neutral_pep_mass", required = true)
                     protected float calcNeutralPepMass;
                     @XmlAttribute(name = "massdiff", required = true)
-                    protected String massdiff;
+                    protected float massdiff;
                     @XmlAttribute(name = "num_tol_term")
                     @XmlJavaTypeAdapter(Adapter1 .class)
                     @XmlSchemaType(name = "nonNegativeInteger")
@@ -4635,10 +4627,10 @@ public class MsmsPipelineAnalysis {
                      *
                      * @return
                      *     possible object is
-                     *     {@link ModInfoDataType }
+                     *     {@link ModificationInfo }
                      *
                      */
-                    public ModInfoDataType getModificationInfo() {
+                    public ModificationInfo getModificationInfo() {
                         return modificationInfo;
                     }
 
@@ -4647,10 +4639,10 @@ public class MsmsPipelineAnalysis {
                      *
                      * @param value
                      *     allowed object is
-                     *     {@link ModInfoDataType }
+                     *     {@link ModificationInfo }
                      *
                      */
-                    public void setModificationInfo(ModInfoDataType value) {
+                    public void setModificationInfo(ModificationInfo value) {
                         this.modificationInfo = value;
                     }
 
@@ -4960,24 +4952,16 @@ public class MsmsPipelineAnalysis {
                     /**
                      * Gets the value of the massdiff property.
                      *
-                     * @return
-                     *     possible object is
-                     *     {@link String }
-                     *
                      */
-                    public String getMassdiff() {
+                    public float getMassdiff() {
                         return massdiff;
                     }
 
                     /**
                      * Sets the value of the massdiff property.
                      *
-                     * @param value
-                     *     allowed object is
-                     *     {@link String }
-                     *
                      */
-                    public void setMassdiff(String value) {
+                    public void setMassdiff(float value) {
                         this.massdiff = value;
                     }
 
@@ -5230,8 +5214,8 @@ public class MsmsPipelineAnalysis {
                          *
                          * <p>
                          * Objects of the following type(s) are allowed in the list
-                         * {@link Element }
                          * {@link Object }
+                         * {@link Element }
                          *
                          *
                          */
@@ -5494,7 +5478,7 @@ public class MsmsPipelineAnalysis {
                             @XmlElement(name = "alternative_protein")
                             protected List<AltProteinDataType> alternativeProtein;
                             @XmlElement(name = "modification_info")
-                            protected ModInfoDataType modificationInfo;
+                            protected ModificationInfo modificationInfo;
                             @XmlElement(name = "xlink_score")
                             protected List<NameValueType> xlinkScore;
                             @XmlAttribute(name = "peptide", required = true)
@@ -5549,10 +5533,10 @@ public class MsmsPipelineAnalysis {
                              *
                              * @return
                              *     possible object is
-                             *     {@link ModInfoDataType }
+                             *     {@link ModificationInfo }
                              *
                              */
-                            public ModInfoDataType getModificationInfo() {
+                            public ModificationInfo getModificationInfo() {
                                 return modificationInfo;
                             }
 
@@ -5561,10 +5545,10 @@ public class MsmsPipelineAnalysis {
                              *
                              * @param value
                              *     allowed object is
-                             *     {@link ModInfoDataType }
+                             *     {@link ModificationInfo }
                              *
                              */
-                            public void setModificationInfo(ModInfoDataType value) {
+                            public void setModificationInfo(ModificationInfo value) {
                                 this.modificationInfo = value;
                             }
 

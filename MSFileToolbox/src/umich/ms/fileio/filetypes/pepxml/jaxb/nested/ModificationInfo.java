@@ -68,12 +68,12 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
     "aminoacidSubstitution",
     "modAminoacidMass"
 })
-public class ModInfoDataType {
+public class ModificationInfo {
 
     @XmlElement(name = "aminoacid_substitution")
     protected List<SubInfoDataType> aminoacidSubstitution;
     @XmlElement(name = "mod_aminoacid_mass")
-    protected List<ModInfoDataType.ModAminoacidMass> modAminoacidMass;
+    protected List<ModificationInfo.ModAminoacidMass> modAminoacidMass;
     @XmlAttribute(name = "mod_nterm_mass")
     protected Double modNtermMass;
     @XmlAttribute(name = "mod_cterm_mass")
@@ -128,13 +128,13 @@ public class ModInfoDataType {
      *
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link ModInfoDataType.ModAminoacidMass }
+     * {@link ModificationInfo.ModAminoacidMass }
      *
      *
      */
-    public List<ModInfoDataType.ModAminoacidMass> getModAminoacidMass() {
+    public List<ModificationInfo.ModAminoacidMass> getModAminoacidMass() {
         if (modAminoacidMass == null) {
-            modAminoacidMass = new ArrayList<ModInfoDataType.ModAminoacidMass>(1);
+            modAminoacidMass = new ArrayList<ModificationInfo.ModAminoacidMass>(1);
         }
         return this.modAminoacidMass;
     }

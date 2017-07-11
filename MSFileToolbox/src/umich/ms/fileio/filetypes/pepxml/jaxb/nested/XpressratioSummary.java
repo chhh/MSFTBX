@@ -40,9 +40,9 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *       &lt;attribute name="same_scan_range" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="labeled_residues" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="xpress_light" use="required" type="{http://www.w3.org/2001/XMLSchema}unsignedInt" />
- *       &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
  *       &lt;attribute name="masstol" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *       &lt;attribute name="ppmtol" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
+ *       &lt;attribute name="ppmtol" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
  *       &lt;attribute name="min_num_chromatogram_points" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
  *       &lt;attribute name="min_num_isotope_peaks" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
  *     &lt;/restriction>
@@ -69,13 +69,11 @@ public class XpressratioSummary {
     @XmlSchemaType(name = "unsignedInt")
     protected long xpressLight;
     @XmlAttribute(name = "massdiff", required = true)
-    protected String massdiff;
+    protected float massdiff;
     @XmlAttribute(name = "masstol", required = true)
     protected float masstol;
     @XmlAttribute(name = "ppmtol", required = true)
-    @XmlJavaTypeAdapter(Adapter1 .class)
-    @XmlSchemaType(name = "integer")
-    protected Integer ppmtol;
+    protected float ppmtol;
     @XmlAttribute(name = "min_num_chromatogram_points", required = true)
     @XmlJavaTypeAdapter(Adapter1 .class)
     @XmlSchemaType(name = "integer")
@@ -200,24 +198,16 @@ public class XpressratioSummary {
     /**
      * Gets the value of the massdiff property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
      */
-    public String getMassdiff() {
+    public float getMassdiff() {
         return massdiff;
     }
 
     /**
      * Sets the value of the massdiff property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
      */
-    public void setMassdiff(String value) {
+    public void setMassdiff(float value) {
         this.massdiff = value;
     }
 
@@ -240,24 +230,16 @@ public class XpressratioSummary {
     /**
      * Gets the value of the ppmtol property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
      */
-    public Integer getPpmtol() {
+    public float getPpmtol() {
         return ppmtol;
     }
 
     /**
      * Sets the value of the ppmtol property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
      */
-    public void setPpmtol(Integer value) {
+    public void setPpmtol(float value) {
         this.ppmtol = value;
     }
 
