@@ -15,7 +15,7 @@ This library is what drives [BatMass](https://github.com/chhh/batmass).
 <dependency>
     <groupId>com.github.chhh</groupId>
     <artifactId>msftbx</artifactId>
-    <version>1.3.0</version>
+    <version>1.3.1</version>
 </dependency>
 ```
 
@@ -49,23 +49,21 @@ To get started quickly, follow the tutorial: http://www.batmass.org/tutorial/dat
 - GPMdb XML files parser
 - Agilent .cef files parser
 
-## Building yourself
-You can find some older pre-compiled binaries [here](https://github.com/chhh/MSFTBX/releases/latest).  
+## Binary distribution
+Get jars from [Maven Central](https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.github.chhh%22%20AND%20a%3A%22msftbx%22).  
+Some older pre-compiled binaries can be found [here](https://github.com/chhh/MSFTBX/releases/latest).  
 
 ### Building with Maven (preferred)
 `cd ./MSFileToolbox && mvn clean package`  
 Will produce the jar files with just the library `msftbx-X.X.X.jar` as well as one large jar `msftbx-X.X.X-jar-with-dependencies.jar`.
 The latter can be used as is, it includes all the needed dependencies.
 
-### Building with Intellij IDEA
-**JAR**: You can load `MSFileToolbox` subdirectory as a project into Intellij IDEA IDE and build the jar from there. `Main Menu -> Build -> Build Artifacts`.  
-
-### Building with Intellij IDEA
+### Building a NetBeans Platform module
 **NetBeans Module**: Open the root directory in NetBeans as a project. You will see `MSFTBX` module suite which consists of 3 modules: _MSFileToolbox Module_ - (this is the main thing), _MSFileToolbox Libx_ - these are the depencies, and _Auto Update (MSFTBX)_ - this is the update center for NetBeans Platform projects (you definitely don't need this) .
 
 ## Dependencies
 - SLF4J
-- Guava 19
+- Google Guava
 - Apache Commons Pool 2
 - OboParser from [Biojava](http://biojava.org/)'s submodule [Ontology](https://github.com/biojava/biojava/tree/master/biojava-ontology)
 - [Javolution](http://javolution.org/) Core (slightly modified, sources are [here](https://github.com/chhh/javolution-msftbx), this modified dependency is
