@@ -16,7 +16,7 @@
 package umich.ms.fileio.filetypes.pepxml.example;
 
 
-import umich.ms.fileio.filetypes.pepxml.jaxb.nested.ModInfoDataType;
+import umich.ms.fileio.filetypes.pepxml.jaxb.nested.ModificationInfo;
 import umich.ms.fileio.filetypes.pepxml.jaxb.nested.MsmsPipelineAnalysis;
 
 import javax.xml.bind.JAXBContext;
@@ -74,7 +74,7 @@ public class PepXmlNestedExample {
                 error(String.format("Search HIT was empty for query #%d [spec id: %s]", query.getIndex(), query.getSpectrum()));
             }
             MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit firstHit = searchHit.get(0);
-            ModInfoDataType modInfo = firstHit.getModificationInfo();
+            ModificationInfo modInfo = firstHit.getModificationInfo();
 
             if (modInfo != null) {
                 System.out.printf("mod info is not null for query #%d [spec id: %s]\n", query.getIndex(), query.getSpectrum());
