@@ -1,11 +1,12 @@
-/* 
- * Copyright 2016 Dmitry Avtonomov.
+
+/*
+ * Copyright (c) 2016 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package umich.ms.fileio.filetypes.pepxml.jaxb.standard;
 
 import java.util.ArrayList;
@@ -83,7 +85,7 @@ import javax.xml.bind.annotation.XmlType;
  *             &lt;complexContent>
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                 &lt;attribute name="aminoacid" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *                 &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                 &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
  *                 &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
  *                 &lt;attribute name="variable" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *                 &lt;attribute name="peptide_terminus" type="{http://www.w3.org/2001/XMLSchema}string" />
@@ -238,7 +240,7 @@ public class SearchSummary {
      */
     public List<SequenceSearchConstraint> getSequenceSearchConstraint() {
         if (sequenceSearchConstraint == null) {
-            sequenceSearchConstraint = new ArrayList<SequenceSearchConstraint>(1);
+            sequenceSearchConstraint = new ArrayList<SequenceSearchConstraint>();
         }
         return this.sequenceSearchConstraint;
     }
@@ -267,7 +269,7 @@ public class SearchSummary {
      */
     public List<AminoacidModification> getAminoacidModification() {
         if (aminoacidModification == null) {
-            aminoacidModification = new ArrayList<AminoacidModification>(1);
+            aminoacidModification = new ArrayList<AminoacidModification>();
         }
         return this.aminoacidModification;
     }
@@ -296,7 +298,7 @@ public class SearchSummary {
      */
     public List<TerminalModification> getTerminalModification() {
         if (terminalModification == null) {
-            terminalModification = new ArrayList<TerminalModification>(1);
+            terminalModification = new ArrayList<TerminalModification>();
         }
         return this.terminalModification;
     }
@@ -325,7 +327,7 @@ public class SearchSummary {
      */
     public List<NameValueType> getParameter() {
         if (parameter == null) {
-            parameter = new ArrayList<NameValueType>(1);
+            parameter = new ArrayList<NameValueType>();
         }
         return this.parameter;
     }

@@ -1,11 +1,12 @@
-/* 
- * Copyright 2016 Dmitry Avtonomov.
+
+/*
+ * Copyright (c) 2016 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package umich.ms.fileio.filetypes.pepxml.jaxb.standard;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -23,9 +25,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -37,8 +39,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
@@ -53,7 +55,7 @@ public class FragmentMasses {
 
     /**
      * Gets the value of the channel property.
-     * 
+     *
      */
     public long getChannel() {
         return channel;
@@ -61,7 +63,7 @@ public class FragmentMasses {
 
     /**
      * Sets the value of the channel property.
-     * 
+     *
      */
     public void setChannel(long value) {
         this.channel = value;
@@ -69,7 +71,7 @@ public class FragmentMasses {
 
     /**
      * Gets the value of the mz property.
-     * 
+     *
      */
     public float getMz() {
         return mz;
@@ -77,7 +79,7 @@ public class FragmentMasses {
 
     /**
      * Sets the value of the mz property.
-     * 
+     *
      */
     public void setMz(float value) {
         this.mz = value;
@@ -85,11 +87,11 @@ public class FragmentMasses {
 
     /**
      * Gets the value of the offset property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link Float }
-     *     
+     *
      */
     public Float getOffset() {
         return offset;
@@ -97,11 +99,11 @@ public class FragmentMasses {
 
     /**
      * Sets the value of the offset property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link Float }
-     *     
+     *
      */
     public void setOffset(Float value) {
         this.offset = value;

@@ -1,11 +1,12 @@
-/* 
- * Copyright 2016 Dmitry Avtonomov.
+
+/*
+ * Copyright (c) 2016 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package umich.ms.fileio.filetypes.pepxml.jaxb.standard;
 
 import java.util.ArrayList;
@@ -36,39 +38,38 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="alternative_protein" maxOccurs="unbounded" minOccurs="0">
- *           &lt;complexType>
- *             &lt;complexContent>
- *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                 &lt;attribute name="protein" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *                 &lt;attribute name="protein_descr" type="{http://www.w3.org/2001/XMLSchema}string" />
- *                 &lt;attribute name="num_tol_term" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
- *                 &lt;attribute name="protein_mw" type="{http://www.w3.org/2001/XMLSchema}double" />
- *                 &lt;attribute name="peptide_prev_aa" type="{http://www.w3.org/2001/XMLSchema}string" />
- *                 &lt;attribute name="peptide_next_aa" type="{http://www.w3.org/2001/XMLSchema}string" />
- *               &lt;/restriction>
- *             &lt;/complexContent>
- *           &lt;/complexType>
- *         &lt;/element>
- *         &lt;element name="modification_info" minOccurs="0">
+ *         &lt;element name="alternative_protein" type="{http://regis-web.systemsbiology.net/pepXML}altProteinDataType" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="modification_info" type="{http://regis-web.systemsbiology.net/pepXML}modInfoDataType" minOccurs="0"/>
+ *         &lt;element name="xlink" minOccurs="0">
  *           &lt;complexType>
  *             &lt;complexContent>
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                 &lt;sequence>
- *                   &lt;element name="mod_aminoacid_mass" maxOccurs="unbounded" minOccurs="0">
+ *                   &lt;element name="linked_peptide" maxOccurs="2" minOccurs="0">
  *                     &lt;complexType>
  *                       &lt;complexContent>
  *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                           &lt;attribute name="position" use="required" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
- *                           &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *                           &lt;sequence>
+ *                             &lt;element name="alternative_protein" type="{http://regis-web.systemsbiology.net/pepXML}altProteinDataType" maxOccurs="unbounded" minOccurs="0"/>
+ *                             &lt;element name="modification_info" type="{http://regis-web.systemsbiology.net/pepXML}modInfoDataType" minOccurs="0"/>
+ *                             &lt;element name="xlink_score" type="{http://regis-web.systemsbiology.net/pepXML}nameValueType" maxOccurs="unbounded" minOccurs="0"/>
+ *                           &lt;/sequence>
+ *                           &lt;attribute name="peptide" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                           &lt;attribute name="peptide_prev_aa" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                           &lt;attribute name="peptide_next_aa" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                           &lt;attribute name="protein" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                           &lt;attribute name="num_tot_proteins" use="required" type="{http://www.w3.org/2001/XMLSchema}unsignedInt" />
+ *                           &lt;attribute name="calc_neutral_pep_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *                           &lt;attribute name="complement_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *                           &lt;attribute name="designation" type="{http://www.w3.org/2001/XMLSchema}string" />
  *                         &lt;/restriction>
  *                       &lt;/complexContent>
  *                     &lt;/complexType>
  *                   &lt;/element>
+ *                   &lt;element name="xlink_score" type="{http://regis-web.systemsbiology.net/pepXML}nameValueType" maxOccurs="unbounded" minOccurs="0"/>
  *                 &lt;/sequence>
- *                 &lt;attribute name="mod_nterm_mass" type="{http://www.w3.org/2001/XMLSchema}double" />
- *                 &lt;attribute name="mod_cterm_mass" type="{http://www.w3.org/2001/XMLSchema}double" />
- *                 &lt;attribute name="modified_peptide" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                 &lt;attribute name="identifier" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                 &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
  *               &lt;/restriction>
  *             &lt;/complexContent>
  *           &lt;/complexType>
@@ -79,7 +80,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *             &lt;complexContent>
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                 &lt;sequence>
- *                   &lt;any processContents='lax'/>
+ *                   &lt;any processContents='lax' maxOccurs="unbounded"/>
  *                 &lt;/sequence>
  *                 &lt;attribute name="analysis" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *                 &lt;attribute name="id" type="{http://regis-web.systemsbiology.net/pepXML}positiveInt" default="1" />
@@ -98,10 +99,19 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *       &lt;attribute name="num_matched_ions" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
  *       &lt;attribute name="tot_num_ions" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
  *       &lt;attribute name="calc_neutral_pep_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *       &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="num_tol_term" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
  *       &lt;attribute name="num_missed_cleavages" type="{http://www.w3.org/2001/XMLSchema}integer" />
  *       &lt;attribute name="num_matched_peptides" type="{http://www.w3.org/2001/XMLSchema}integer" />
+ *       &lt;attribute name="xlink_type">
+ *         &lt;simpleType>
+ *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *             &lt;enumeration value="na"/>
+ *             &lt;enumeration value="xl"/>
+ *             &lt;enumeration value="loop"/>
+ *           &lt;/restriction>
+ *         &lt;/simpleType>
+ *       &lt;/attribute>
  *       &lt;attribute name="is_rejected" default="0">
  *         &lt;simpleType>
  *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger">
@@ -124,6 +134,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlType(name = "", propOrder = {
     "alternativeProtein",
     "modificationInfo",
+    "xlink",
     "searchScore",
     "analysisResult",
     "parameter"
@@ -131,9 +142,10 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 public class SearchHit {
 
     @XmlElement(name = "alternative_protein")
-    protected List<AlternativeProtein> alternativeProtein;
+    protected List<AltProteinDataType> alternativeProtein;
     @XmlElement(name = "modification_info")
-    protected ModificationInfo modificationInfo;
+    protected ModInfoDataType modificationInfo;
+    protected Xlink xlink;
     @XmlElement(name = "search_score")
     protected List<NameValueType> searchScore;
     @XmlElement(name = "analysis_result")
@@ -163,7 +175,7 @@ public class SearchHit {
     @XmlAttribute(name = "calc_neutral_pep_mass", required = true)
     protected float calcNeutralPepMass;
     @XmlAttribute(name = "massdiff", required = true)
-    protected float massdiff;
+    protected String massdiff;
     @XmlAttribute(name = "num_tol_term")
     @XmlJavaTypeAdapter(Adapter1 .class)
     @XmlSchemaType(name = "nonNegativeInteger")
@@ -176,6 +188,8 @@ public class SearchHit {
     @XmlJavaTypeAdapter(Adapter1 .class)
     @XmlSchemaType(name = "integer")
     protected Integer numMatchedPeptides;
+    @XmlAttribute(name = "xlink_type")
+    protected String xlinkType;
     @XmlAttribute(name = "is_rejected")
     @XmlJavaTypeAdapter(Adapter1 .class)
     protected Integer isRejected;
@@ -204,13 +218,13 @@ public class SearchHit {
      *
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link AlternativeProtein }
+     * {@link AltProteinDataType }
      *
      *
      */
-    public List<AlternativeProtein> getAlternativeProtein() {
+    public List<AltProteinDataType> getAlternativeProtein() {
         if (alternativeProtein == null) {
-            alternativeProtein = new ArrayList<AlternativeProtein>(1);
+            alternativeProtein = new ArrayList<AltProteinDataType>();
         }
         return this.alternativeProtein;
     }
@@ -220,10 +234,10 @@ public class SearchHit {
      *
      * @return
      *     possible object is
-     *     {@link ModificationInfo }
+     *     {@link ModInfoDataType }
      *
      */
-    public ModificationInfo getModificationInfo() {
+    public ModInfoDataType getModificationInfo() {
         return modificationInfo;
     }
 
@@ -232,11 +246,35 @@ public class SearchHit {
      *
      * @param value
      *     allowed object is
-     *     {@link ModificationInfo }
+     *     {@link ModInfoDataType }
      *
      */
-    public void setModificationInfo(ModificationInfo value) {
+    public void setModificationInfo(ModInfoDataType value) {
         this.modificationInfo = value;
+    }
+
+    /**
+     * Gets the value of the xlink property.
+     *
+     * @return
+     *     possible object is
+     *     {@link Xlink }
+     *
+     */
+    public Xlink getXlink() {
+        return xlink;
+    }
+
+    /**
+     * Sets the value of the xlink property.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link Xlink }
+     *
+     */
+    public void setXlink(Xlink value) {
+        this.xlink = value;
     }
 
     /**
@@ -263,7 +301,7 @@ public class SearchHit {
      */
     public List<NameValueType> getSearchScore() {
         if (searchScore == null) {
-            searchScore = new ArrayList<NameValueType>(1);
+            searchScore = new ArrayList<NameValueType>();
         }
         return this.searchScore;
     }
@@ -292,7 +330,7 @@ public class SearchHit {
      */
     public List<AnalysisResult> getAnalysisResult() {
         if (analysisResult == null) {
-            analysisResult = new ArrayList<AnalysisResult>(1);
+            analysisResult = new ArrayList<AnalysisResult>();
         }
         return this.analysisResult;
     }
@@ -321,7 +359,7 @@ public class SearchHit {
      */
     public List<NameValueType> getParameter() {
         if (parameter == null) {
-            parameter = new ArrayList<NameValueType>(1);
+            parameter = new ArrayList<NameValueType>();
         }
         return this.parameter;
     }
@@ -521,16 +559,24 @@ public class SearchHit {
     /**
      * Gets the value of the massdiff property.
      *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
      */
-    public float getMassdiff() {
+    public String getMassdiff() {
         return massdiff;
     }
 
     /**
      * Sets the value of the massdiff property.
      *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
      */
-    public void setMassdiff(float value) {
+    public void setMassdiff(String value) {
         this.massdiff = value;
     }
 
@@ -604,6 +650,30 @@ public class SearchHit {
      */
     public void setNumMatchedPeptides(Integer value) {
         this.numMatchedPeptides = value;
+    }
+
+    /**
+     * Gets the value of the xlinkType property.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getXlinkType() {
+        return xlinkType;
+    }
+
+    /**
+     * Sets the value of the xlinkType property.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setXlinkType(String value) {
+        this.xlinkType = value;
     }
 
     /**

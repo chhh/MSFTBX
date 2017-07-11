@@ -1,11 +1,12 @@
-/* 
- * Copyright 2016 Dmitry Avtonomov.
+
+/*
+ * Copyright (c) 2016 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package umich.ms.fileio.filetypes.pepxml.jaxb.standard;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -26,9 +28,9 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -47,8 +49,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
@@ -85,11 +87,11 @@ public class XpressratioSummary {
 
     /**
      * Gets the value of the version property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getVersion() {
         return version;
@@ -97,11 +99,11 @@ public class XpressratioSummary {
 
     /**
      * Sets the value of the version property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setVersion(String value) {
         this.version = value;
@@ -109,11 +111,11 @@ public class XpressratioSummary {
 
     /**
      * Gets the value of the author property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getAuthor() {
         return author;
@@ -121,11 +123,11 @@ public class XpressratioSummary {
 
     /**
      * Sets the value of the author property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setAuthor(String value) {
         this.author = value;
@@ -133,11 +135,11 @@ public class XpressratioSummary {
 
     /**
      * Gets the value of the sameScanRange property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getSameScanRange() {
         return sameScanRange;
@@ -145,11 +147,11 @@ public class XpressratioSummary {
 
     /**
      * Sets the value of the sameScanRange property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setSameScanRange(String value) {
         this.sameScanRange = value;
@@ -157,11 +159,11 @@ public class XpressratioSummary {
 
     /**
      * Gets the value of the labeledResidues property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getLabeledResidues() {
         return labeledResidues;
@@ -169,11 +171,11 @@ public class XpressratioSummary {
 
     /**
      * Sets the value of the labeledResidues property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setLabeledResidues(String value) {
         this.labeledResidues = value;
@@ -181,7 +183,7 @@ public class XpressratioSummary {
 
     /**
      * Gets the value of the xpressLight property.
-     * 
+     *
      */
     public long getXpressLight() {
         return xpressLight;
@@ -189,7 +191,7 @@ public class XpressratioSummary {
 
     /**
      * Sets the value of the xpressLight property.
-     * 
+     *
      */
     public void setXpressLight(long value) {
         this.xpressLight = value;
@@ -197,11 +199,11 @@ public class XpressratioSummary {
 
     /**
      * Gets the value of the massdiff property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getMassdiff() {
         return massdiff;
@@ -209,11 +211,11 @@ public class XpressratioSummary {
 
     /**
      * Sets the value of the massdiff property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setMassdiff(String value) {
         this.massdiff = value;
@@ -221,7 +223,7 @@ public class XpressratioSummary {
 
     /**
      * Gets the value of the masstol property.
-     * 
+     *
      */
     public float getMasstol() {
         return masstol;
@@ -229,7 +231,7 @@ public class XpressratioSummary {
 
     /**
      * Sets the value of the masstol property.
-     * 
+     *
      */
     public void setMasstol(float value) {
         this.masstol = value;
@@ -237,11 +239,11 @@ public class XpressratioSummary {
 
     /**
      * Gets the value of the ppmtol property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public Integer getPpmtol() {
         return ppmtol;
@@ -249,11 +251,11 @@ public class XpressratioSummary {
 
     /**
      * Sets the value of the ppmtol property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setPpmtol(Integer value) {
         this.ppmtol = value;
@@ -261,11 +263,11 @@ public class XpressratioSummary {
 
     /**
      * Gets the value of the minNumChromatogramPoints property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public Integer getMinNumChromatogramPoints() {
         return minNumChromatogramPoints;
@@ -273,11 +275,11 @@ public class XpressratioSummary {
 
     /**
      * Sets the value of the minNumChromatogramPoints property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setMinNumChromatogramPoints(Integer value) {
         this.minNumChromatogramPoints = value;
@@ -285,11 +287,11 @@ public class XpressratioSummary {
 
     /**
      * Gets the value of the minNumIsotopePeaks property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public Integer getMinNumIsotopePeaks() {
         return minNumIsotopePeaks;
@@ -297,11 +299,11 @@ public class XpressratioSummary {
 
     /**
      * Sets the value of the minNumIsotopePeaks property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setMinNumIsotopePeaks(Integer value) {
         this.minNumIsotopePeaks = value;

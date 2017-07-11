@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jaxb:bindings xmlns:jaxb='http://java.sun.com/xml/ns/jaxb' version='2.1'
-               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-               xsi:schemaLocation="http://java.sun.com/xml/ns/jaxb http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/jaxb/bindingschema_2_0.xsd">
+               xmlns:xs="http://www.w3.org/2001/XMLSchema"
+               xs:schemaLocation="http://java.sun.com/xml/ns/jaxb http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/jaxb/bindingschema_2_0.xsd">
 <!--<jaxb:bindings version="2.1"-->
                <!--xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"-->
                <!--xmlns:xs="http://www.w3.org/2001/XMLSchema">-->

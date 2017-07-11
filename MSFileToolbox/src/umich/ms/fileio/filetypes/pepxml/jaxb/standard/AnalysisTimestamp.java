@@ -1,11 +1,12 @@
-/* 
- * Copyright 2016 Dmitry Avtonomov.
+
+/*
+ * Copyright (c) 2016 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package umich.ms.fileio.filetypes.pepxml.jaxb.standard;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -27,9 +29,9 @@ import org.w3c.dom.Element;
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -44,8 +46,8 @@ import org.w3c.dom.Element;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -65,12 +67,12 @@ public class AnalysisTimestamp {
 
     /**
      * Gets the value of the any property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link Element }
      *     {@link Object }
-     *     
+     *
      */
     public Object getAny() {
         return any;
@@ -78,12 +80,12 @@ public class AnalysisTimestamp {
 
     /**
      * Sets the value of the any property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link Element }
      *     {@link Object }
-     *     
+     *
      */
     public void setAny(Object value) {
         this.any = value;
@@ -91,11 +93,11 @@ public class AnalysisTimestamp {
 
     /**
      * Gets the value of the time property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link XMLGregorianCalendar }
-     *     
+     *
      */
     public XMLGregorianCalendar getTime() {
         return time;
@@ -103,11 +105,11 @@ public class AnalysisTimestamp {
 
     /**
      * Sets the value of the time property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link XMLGregorianCalendar }
-     *     
+     *
      */
     public void setTime(XMLGregorianCalendar value) {
         this.time = value;
@@ -115,11 +117,11 @@ public class AnalysisTimestamp {
 
     /**
      * Gets the value of the analysis property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getAnalysis() {
         return analysis;
@@ -127,11 +129,11 @@ public class AnalysisTimestamp {
 
     /**
      * Sets the value of the analysis property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setAnalysis(String value) {
         this.analysis = value;
@@ -139,7 +141,7 @@ public class AnalysisTimestamp {
 
     /**
      * Gets the value of the id property.
-     * 
+     *
      */
     public long getId() {
         return id;
@@ -147,7 +149,7 @@ public class AnalysisTimestamp {
 
     /**
      * Sets the value of the id property.
-     * 
+     *
      */
     public void setId(long value) {
         this.id = value;

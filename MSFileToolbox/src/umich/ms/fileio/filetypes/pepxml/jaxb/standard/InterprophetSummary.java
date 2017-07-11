@@ -1,11 +1,12 @@
-/* 
- * Copyright 2016 Dmitry Avtonomov.
+
+/*
+ * Copyright (c) 2016 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package umich.ms.fileio.filetypes.pepxml.jaxb.standard;
 
 import java.util.ArrayList;
@@ -97,7 +99,7 @@ public class InterprophetSummary {
      */
     public List<InputFileType> getInputfile() {
         if (inputfile == null) {
-            inputfile = new ArrayList<InputFileType>(1);
+            inputfile = new ArrayList<InputFileType>();
         }
         return this.inputfile;
     }
@@ -126,7 +128,7 @@ public class InterprophetSummary {
      */
     public List<RocErrorDataType> getRocErrorData() {
         if (rocErrorData == null) {
-            rocErrorData = new ArrayList<RocErrorDataType>(1);
+            rocErrorData = new ArrayList<RocErrorDataType>();
         }
         return this.rocErrorData;
     }
@@ -155,7 +157,7 @@ public class InterprophetSummary {
      */
     public List<MixtureModelType> getMixturemodel() {
         if (mixturemodel == null) {
-            mixturemodel = new ArrayList<MixtureModelType>(1);
+            mixturemodel = new ArrayList<MixtureModelType>();
         }
         return this.mixturemodel;
     }

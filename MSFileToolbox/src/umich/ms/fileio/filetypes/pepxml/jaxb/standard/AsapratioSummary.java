@@ -1,11 +1,12 @@
-/* 
- * Copyright 2016 Dmitry Avtonomov.
+
+/*
+ * Copyright (c) 2016 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package umich.ms.fileio.filetypes.pepxml.jaxb.standard;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -26,9 +28,9 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -44,8 +46,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
@@ -73,11 +75,11 @@ public class AsapratioSummary {
 
     /**
      * Gets the value of the version property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getVersion() {
         return version;
@@ -85,11 +87,11 @@ public class AsapratioSummary {
 
     /**
      * Sets the value of the version property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setVersion(String value) {
         this.version = value;
@@ -97,11 +99,11 @@ public class AsapratioSummary {
 
     /**
      * Gets the value of the author property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getAuthor() {
         return author;
@@ -109,11 +111,11 @@ public class AsapratioSummary {
 
     /**
      * Sets the value of the author property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setAuthor(String value) {
         this.author = value;
@@ -121,11 +123,11 @@ public class AsapratioSummary {
 
     /**
      * Gets the value of the elution property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public Integer getElution() {
         return elution;
@@ -133,11 +135,11 @@ public class AsapratioSummary {
 
     /**
      * Sets the value of the elution property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setElution(Integer value) {
         this.elution = value;
@@ -145,11 +147,11 @@ public class AsapratioSummary {
 
     /**
      * Gets the value of the labeledResidues property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getLabeledResidues() {
         return labeledResidues;
@@ -157,11 +159,11 @@ public class AsapratioSummary {
 
     /**
      * Sets the value of the labeledResidues property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setLabeledResidues(String value) {
         this.labeledResidues = value;
@@ -169,11 +171,11 @@ public class AsapratioSummary {
 
     /**
      * Gets the value of the areaFlag property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public Integer getAreaFlag() {
         return areaFlag;
@@ -181,11 +183,11 @@ public class AsapratioSummary {
 
     /**
      * Sets the value of the areaFlag property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setAreaFlag(Integer value) {
         this.areaFlag = value;
@@ -193,11 +195,11 @@ public class AsapratioSummary {
 
     /**
      * Gets the value of the staticQuant property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getStaticQuant() {
         return staticQuant;
@@ -205,11 +207,11 @@ public class AsapratioSummary {
 
     /**
      * Sets the value of the staticQuant property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setStaticQuant(String value) {
         this.staticQuant = value;
@@ -217,11 +219,11 @@ public class AsapratioSummary {
 
     /**
      * Gets the value of the specifiedResidueMasses property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getSpecifiedResidueMasses() {
         return specifiedResidueMasses;
@@ -229,11 +231,11 @@ public class AsapratioSummary {
 
     /**
      * Sets the value of the specifiedResidueMasses property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setSpecifiedResidueMasses(String value) {
         this.specifiedResidueMasses = value;
