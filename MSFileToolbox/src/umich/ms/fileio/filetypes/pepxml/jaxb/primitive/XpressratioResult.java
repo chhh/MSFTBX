@@ -1,11 +1,12 @@
-/* 
- * Copyright 2016 Dmitry Avtonomov.
+
+/*
+ * Copyright (c) 2016 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package umich.ms.fileio.filetypes.pepxml.jaxb.primitive;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -26,9 +28,9 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -49,8 +51,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
@@ -90,7 +92,7 @@ public class XpressratioResult {
 
     /**
      * Gets the value of the lightFirstscan property.
-     * 
+     *
      */
     public long getLightFirstscan() {
         return lightFirstscan;
@@ -98,7 +100,7 @@ public class XpressratioResult {
 
     /**
      * Sets the value of the lightFirstscan property.
-     * 
+     *
      */
     public void setLightFirstscan(long value) {
         this.lightFirstscan = value;
@@ -106,7 +108,7 @@ public class XpressratioResult {
 
     /**
      * Gets the value of the lightLastscan property.
-     * 
+     *
      */
     public long getLightLastscan() {
         return lightLastscan;
@@ -114,7 +116,7 @@ public class XpressratioResult {
 
     /**
      * Sets the value of the lightLastscan property.
-     * 
+     *
      */
     public void setLightLastscan(long value) {
         this.lightLastscan = value;
@@ -122,7 +124,7 @@ public class XpressratioResult {
 
     /**
      * Gets the value of the lightMass property.
-     * 
+     *
      */
     public float getLightMass() {
         return lightMass;
@@ -130,7 +132,7 @@ public class XpressratioResult {
 
     /**
      * Sets the value of the lightMass property.
-     * 
+     *
      */
     public void setLightMass(float value) {
         this.lightMass = value;
@@ -138,7 +140,7 @@ public class XpressratioResult {
 
     /**
      * Gets the value of the heavyFirstscan property.
-     * 
+     *
      */
     public long getHeavyFirstscan() {
         return heavyFirstscan;
@@ -146,7 +148,7 @@ public class XpressratioResult {
 
     /**
      * Sets the value of the heavyFirstscan property.
-     * 
+     *
      */
     public void setHeavyFirstscan(long value) {
         this.heavyFirstscan = value;
@@ -154,7 +156,7 @@ public class XpressratioResult {
 
     /**
      * Gets the value of the heavyLastscan property.
-     * 
+     *
      */
     public long getHeavyLastscan() {
         return heavyLastscan;
@@ -162,7 +164,7 @@ public class XpressratioResult {
 
     /**
      * Sets the value of the heavyLastscan property.
-     * 
+     *
      */
     public void setHeavyLastscan(long value) {
         this.heavyLastscan = value;
@@ -170,7 +172,7 @@ public class XpressratioResult {
 
     /**
      * Gets the value of the heavyMass property.
-     * 
+     *
      */
     public float getHeavyMass() {
         return heavyMass;
@@ -178,7 +180,7 @@ public class XpressratioResult {
 
     /**
      * Sets the value of the heavyMass property.
-     * 
+     *
      */
     public void setHeavyMass(float value) {
         this.heavyMass = value;
@@ -186,7 +188,7 @@ public class XpressratioResult {
 
     /**
      * Gets the value of the massTol property.
-     * 
+     *
      */
     public float getMassTol() {
         return massTol;
@@ -194,7 +196,7 @@ public class XpressratioResult {
 
     /**
      * Sets the value of the massTol property.
-     * 
+     *
      */
     public void setMassTol(float value) {
         this.massTol = value;
@@ -202,11 +204,11 @@ public class XpressratioResult {
 
     /**
      * Gets the value of the ratio property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getRatio() {
         return ratio;
@@ -214,11 +216,11 @@ public class XpressratioResult {
 
     /**
      * Sets the value of the ratio property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setRatio(String value) {
         this.ratio = value;
@@ -226,11 +228,11 @@ public class XpressratioResult {
 
     /**
      * Gets the value of the heavy2LightRatio property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getHeavy2LightRatio() {
         return heavy2LightRatio;
@@ -238,11 +240,11 @@ public class XpressratioResult {
 
     /**
      * Sets the value of the heavy2LightRatio property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setHeavy2LightRatio(String value) {
         this.heavy2LightRatio = value;
@@ -250,7 +252,7 @@ public class XpressratioResult {
 
     /**
      * Gets the value of the lightArea property.
-     * 
+     *
      */
     public float getLightArea() {
         return lightArea;
@@ -258,7 +260,7 @@ public class XpressratioResult {
 
     /**
      * Sets the value of the lightArea property.
-     * 
+     *
      */
     public void setLightArea(float value) {
         this.lightArea = value;
@@ -266,7 +268,7 @@ public class XpressratioResult {
 
     /**
      * Gets the value of the heavyArea property.
-     * 
+     *
      */
     public float getHeavyArea() {
         return heavyArea;
@@ -274,7 +276,7 @@ public class XpressratioResult {
 
     /**
      * Sets the value of the heavyArea property.
-     * 
+     *
      */
     public void setHeavyArea(float value) {
         this.heavyArea = value;
@@ -282,11 +284,11 @@ public class XpressratioResult {
 
     /**
      * Gets the value of the decimalRatio property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public Double getDecimalRatio() {
         return decimalRatio;
@@ -294,11 +296,11 @@ public class XpressratioResult {
 
     /**
      * Sets the value of the decimalRatio property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setDecimalRatio(Double value) {
         this.decimalRatio = value;

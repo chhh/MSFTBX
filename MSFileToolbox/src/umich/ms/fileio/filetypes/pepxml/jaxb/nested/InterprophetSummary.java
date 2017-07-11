@@ -1,11 +1,12 @@
-/* 
- * Copyright 2016 Dmitry Avtonomov.
+
+/*
+ * Copyright (c) 2016 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package umich.ms.fileio.filetypes.pepxml.jaxb.nested;
 
 import java.util.ArrayList;
@@ -41,6 +43,8 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;/sequence>
  *       &lt;attribute name="version" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="options" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="est_tot_num_correct_psm" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="est_tot_num_correct_pep" type="{http://www.w3.org/2001/XMLSchema}float" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -66,6 +70,10 @@ public class InterprophetSummary {
     protected String version;
     @XmlAttribute(name = "options")
     protected String options;
+    @XmlAttribute(name = "est_tot_num_correct_psm")
+    protected Float estTotNumCorrectPsm;
+    @XmlAttribute(name = "est_tot_num_correct_pep")
+    protected Float estTotNumCorrectPep;
 
     /**
      * Gets the value of the inputfile property.
@@ -91,7 +99,7 @@ public class InterprophetSummary {
      */
     public List<InputFileType> getInputfile() {
         if (inputfile == null) {
-            inputfile = new ArrayList<InputFileType>(1);
+            inputfile = new ArrayList<InputFileType>();
         }
         return this.inputfile;
     }
@@ -120,7 +128,7 @@ public class InterprophetSummary {
      */
     public List<RocErrorDataType> getRocErrorData() {
         if (rocErrorData == null) {
-            rocErrorData = new ArrayList<RocErrorDataType>(1);
+            rocErrorData = new ArrayList<RocErrorDataType>();
         }
         return this.rocErrorData;
     }
@@ -149,7 +157,7 @@ public class InterprophetSummary {
      */
     public List<MixtureModelType> getMixturemodel() {
         if (mixturemodel == null) {
-            mixturemodel = new ArrayList<MixtureModelType>(1);
+            mixturemodel = new ArrayList<MixtureModelType>();
         }
         return this.mixturemodel;
     }
@@ -200,6 +208,54 @@ public class InterprophetSummary {
      */
     public void setOptions(String value) {
         this.options = value;
+    }
+
+    /**
+     * Gets the value of the estTotNumCorrectPsm property.
+     *
+     * @return
+     *     possible object is
+     *     {@link Float }
+     *
+     */
+    public Float getEstTotNumCorrectPsm() {
+        return estTotNumCorrectPsm;
+    }
+
+    /**
+     * Sets the value of the estTotNumCorrectPsm property.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link Float }
+     *
+     */
+    public void setEstTotNumCorrectPsm(Float value) {
+        this.estTotNumCorrectPsm = value;
+    }
+
+    /**
+     * Gets the value of the estTotNumCorrectPep property.
+     *
+     * @return
+     *     possible object is
+     *     {@link Float }
+     *
+     */
+    public Float getEstTotNumCorrectPep() {
+        return estTotNumCorrectPep;
+    }
+
+    /**
+     * Sets the value of the estTotNumCorrectPep property.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link Float }
+     *
+     */
+    public void setEstTotNumCorrectPep(Float value) {
+        this.estTotNumCorrectPep = value;
     }
 
 }

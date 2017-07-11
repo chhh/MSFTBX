@@ -1,11 +1,12 @@
-/* 
- * Copyright 2016 Dmitry Avtonomov.
+
+/*
+ * Copyright (c) 2016 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package umich.ms.fileio.filetypes.pepxml.jaxb.primitive;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -24,9 +26,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -39,8 +41,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
@@ -59,7 +61,7 @@ public class ErrorPoint {
 
     /**
      * Gets the value of the error property.
-     * 
+     *
      */
     public float getError() {
         return error;
@@ -67,7 +69,7 @@ public class ErrorPoint {
 
     /**
      * Sets the value of the error property.
-     * 
+     *
      */
     public void setError(float value) {
         this.error = value;
@@ -75,7 +77,7 @@ public class ErrorPoint {
 
     /**
      * Gets the value of the minProb property.
-     * 
+     *
      */
     public float getMinProb() {
         return minProb;
@@ -83,7 +85,7 @@ public class ErrorPoint {
 
     /**
      * Sets the value of the minProb property.
-     * 
+     *
      */
     public void setMinProb(float value) {
         this.minProb = value;
@@ -91,7 +93,7 @@ public class ErrorPoint {
 
     /**
      * Gets the value of the numCorr property.
-     * 
+     *
      */
     public long getNumCorr() {
         return numCorr;
@@ -99,7 +101,7 @@ public class ErrorPoint {
 
     /**
      * Sets the value of the numCorr property.
-     * 
+     *
      */
     public void setNumCorr(long value) {
         this.numCorr = value;
@@ -107,7 +109,7 @@ public class ErrorPoint {
 
     /**
      * Gets the value of the numIncorr property.
-     * 
+     *
      */
     public long getNumIncorr() {
         return numIncorr;
@@ -115,7 +117,7 @@ public class ErrorPoint {
 
     /**
      * Sets the value of the numIncorr property.
-     * 
+     *
      */
     public void setNumIncorr(long value) {
         this.numIncorr = value;

@@ -684,7 +684,7 @@ public class SearchHit {
      *     {@link String }
      *
      */
-    public int getIsRejected() {
+    public Integer getIsRejected() {
         if (isRejected == null) {
             return new Adapter1().unmarshal("0");
         } else {

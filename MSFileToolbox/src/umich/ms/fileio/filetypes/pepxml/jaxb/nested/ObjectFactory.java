@@ -1,11 +1,12 @@
-/* 
- * Copyright 2016 Dmitry Avtonomov.
+
+/*
+ * Copyright (c) 2016 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,24 +14,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package umich.ms.fileio.filetypes.pepxml.jaxb.nested;
 
 import javax.xml.bind.annotation.XmlRegistry;
 
 
 /**
- * This object contains factory methods for each 
- * Java content interface and Java element interface 
- * generated in the umich.ms.fileio.filetypes.pepxml.jaxb.nested package. 
- * <p>An ObjectFactory allows you to programatically 
- * construct new instances of the Java representation 
- * for XML content. The Java representation of XML 
- * content can consist of schema derived interfaces 
- * and classes representing the binding of schema 
- * type definitions, element declarations and model 
- * groups.  Factory methods for each of these are 
+ * This object contains factory methods for each
+ * Java content interface and Java element interface
+ * generated in the umich.ms.fileio.filetypes.pepxml.jaxb.nested package.
+ * <p>An ObjectFactory allows you to programatically
+ * construct new instances of the Java representation
+ * for XML content. The Java representation of XML
+ * content can consist of schema derived interfaces
+ * and classes representing the binding of schema
+ * type definitions, element declarations and model
+ * groups.  Factory methods for each of these are
  * provided in this class.
- * 
+ *
  */
 @XmlRegistry
 public class ObjectFactory {
@@ -38,14 +40,14 @@ public class ObjectFactory {
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: umich.ms.fileio.filetypes.pepxml.jaxb.nested
-     * 
+     *
      */
     public ObjectFactory() {
     }
 
     /**
      * Create an instance of {@link PeptideprophetResult }
-     * 
+     *
      */
     public PeptideprophetResult createPeptideprophetResult() {
         return new PeptideprophetResult();
@@ -53,7 +55,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link LibraResult }
-     * 
+     *
      */
     public LibraResult createLibraResult() {
         return new LibraResult();
@@ -61,7 +63,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link MsmsPipelineAnalysis }
-     * 
+     *
      */
     public MsmsPipelineAnalysis createMsmsPipelineAnalysis() {
         return new MsmsPipelineAnalysis();
@@ -69,7 +71,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link LibraSummary }
-     * 
+     *
      */
     public LibraSummary createLibraSummary() {
         return new LibraSummary();
@@ -77,23 +79,39 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link PeptideprophetSummary }
-     * 
+     *
      */
     public PeptideprophetSummary createPeptideprophetSummary() {
         return new PeptideprophetSummary();
     }
 
     /**
+     * Create an instance of {@link PtmprophetResult }
+     *
+     */
+    public PtmprophetResult createPtmprophetResult() {
+        return new PtmprophetResult();
+    }
+
+    /**
      * Create an instance of {@link InterprophetResult }
-     * 
+     *
      */
     public InterprophetResult createInterprophetResult() {
         return new InterprophetResult();
     }
 
     /**
+     * Create an instance of {@link ModInfoDataType }
+     *
+     */
+    public ModInfoDataType createModInfoDataType() {
+        return new ModInfoDataType();
+    }
+
+    /**
      * Create an instance of {@link PeptideprophetSummary.MixtureModelling }
-     * 
+     *
      */
     public PeptideprophetSummary.MixtureModelling createPeptideprophetSummaryMixtureModelling() {
         return new PeptideprophetSummary.MixtureModelling();
@@ -101,7 +119,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link PeptideprophetSummary.MixtureModelling.Mixturemodel }
-     * 
+     *
      */
     public PeptideprophetSummary.MixtureModelling.Mixturemodel createPeptideprophetSummaryMixtureModellingMixturemodel() {
         return new PeptideprophetSummary.MixtureModelling.Mixturemodel();
@@ -109,7 +127,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link PeptideprophetSummary.MixtureModelling.MixturemodelDistribution }
-     * 
+     *
      */
     public PeptideprophetSummary.MixtureModelling.MixturemodelDistribution createPeptideprophetSummaryMixtureModellingMixturemodelDistribution() {
         return new PeptideprophetSummary.MixtureModelling.MixturemodelDistribution();
@@ -117,7 +135,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link LibraSummary.IsotopicContributions }
-     * 
+     *
      */
     public LibraSummary.IsotopicContributions createLibraSummaryIsotopicContributions() {
         return new LibraSummary.IsotopicContributions();
@@ -125,7 +143,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link LibraSummary.IsotopicContributions.ContributingChannel }
-     * 
+     *
      */
     public LibraSummary.IsotopicContributions.ContributingChannel createLibraSummaryIsotopicContributionsContributingChannel() {
         return new LibraSummary.IsotopicContributions.ContributingChannel();
@@ -133,7 +151,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link MsmsPipelineAnalysis.MsmsRunSummary }
-     * 
+     *
      */
     public MsmsPipelineAnalysis.MsmsRunSummary createMsmsPipelineAnalysisMsmsRunSummary() {
         return new MsmsPipelineAnalysis.MsmsRunSummary();
@@ -141,7 +159,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery }
-     * 
+     *
      */
     public MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery createMsmsPipelineAnalysisMsmsRunSummarySpectrumQuery() {
         return new MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery();
@@ -149,7 +167,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult }
-     * 
+     *
      */
     public MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult createMsmsPipelineAnalysisMsmsRunSummarySpectrumQuerySearchResult() {
         return new MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult();
@@ -157,23 +175,23 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit }
-     * 
+     *
      */
     public MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit createMsmsPipelineAnalysisMsmsRunSummarySpectrumQuerySearchResultSearchHit() {
         return new MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit();
     }
 
     /**
-     * Create an instance of {@link MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.ModificationInfo }
-     * 
+     * Create an instance of {@link MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.Xlink }
+     *
      */
-    public MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.ModificationInfo createMsmsPipelineAnalysisMsmsRunSummarySpectrumQuerySearchResultSearchHitModificationInfo() {
-        return new MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.ModificationInfo();
+    public MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.Xlink createMsmsPipelineAnalysisMsmsRunSummarySpectrumQuerySearchResultSearchHitXlink() {
+        return new MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.Xlink();
     }
 
     /**
      * Create an instance of {@link MsmsPipelineAnalysis.MsmsRunSummary.SearchSummary }
-     * 
+     *
      */
     public MsmsPipelineAnalysis.MsmsRunSummary.SearchSummary createMsmsPipelineAnalysisMsmsRunSummarySearchSummary() {
         return new MsmsPipelineAnalysis.MsmsRunSummary.SearchSummary();
@@ -181,7 +199,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link MsmsPipelineAnalysis.MsmsRunSummary.SampleEnzyme }
-     * 
+     *
      */
     public MsmsPipelineAnalysis.MsmsRunSummary.SampleEnzyme createMsmsPipelineAnalysisMsmsRunSummarySampleEnzyme() {
         return new MsmsPipelineAnalysis.MsmsRunSummary.SampleEnzyme();
@@ -189,7 +207,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link MsmsPipelineAnalysis.DatasetDerivation }
-     * 
+     *
      */
     public MsmsPipelineAnalysis.DatasetDerivation createMsmsPipelineAnalysisDatasetDerivation() {
         return new MsmsPipelineAnalysis.DatasetDerivation();
@@ -197,7 +215,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link MixtureModelType }
-     * 
+     *
      */
     public MixtureModelType createMixtureModelType() {
         return new MixtureModelType();
@@ -205,7 +223,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link RocErrorDataType }
-     * 
+     *
      */
     public RocErrorDataType createRocErrorDataType() {
         return new RocErrorDataType();
@@ -213,7 +231,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link AsapratioLcLightpeak }
-     * 
+     *
      */
     public AsapratioLcLightpeak createAsapratioLcLightpeak() {
         return new AsapratioLcLightpeak();
@@ -221,7 +239,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link AsapratioLcHeavypeak }
-     * 
+     *
      */
     public AsapratioLcHeavypeak createAsapratioLcHeavypeak() {
         return new AsapratioLcHeavypeak();
@@ -229,7 +247,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link XpressratioTimestamp }
-     * 
+     *
      */
     public XpressratioTimestamp createXpressratioTimestamp() {
         return new XpressratioTimestamp();
@@ -237,7 +255,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link PeptideprophetResult.SearchScoreSummary }
-     * 
+     *
      */
     public PeptideprophetResult.SearchScoreSummary createPeptideprophetResultSearchScoreSummary() {
         return new PeptideprophetResult.SearchScoreSummary();
@@ -245,7 +263,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link AsapratioSummary }
-     * 
+     *
      */
     public AsapratioSummary createAsapratioSummary() {
         return new AsapratioSummary();
@@ -253,7 +271,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link LibraResult.Intensity }
-     * 
+     *
      */
     public LibraResult.Intensity createLibraResultIntensity() {
         return new LibraResult.Intensity();
@@ -261,7 +279,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link XpressratioResult }
-     * 
+     *
      */
     public XpressratioResult createXpressratioResult() {
         return new XpressratioResult();
@@ -269,7 +287,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link InterprophetSummary }
-     * 
+     *
      */
     public InterprophetSummary createInterprophetSummary() {
         return new InterprophetSummary();
@@ -277,7 +295,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link InputFileType }
-     * 
+     *
      */
     public InputFileType createInputFileType() {
         return new InputFileType();
@@ -285,7 +303,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link MsmsPipelineAnalysis.AnalysisSummary }
-     * 
+     *
      */
     public MsmsPipelineAnalysis.AnalysisSummary createMsmsPipelineAnalysisAnalysisSummary() {
         return new MsmsPipelineAnalysis.AnalysisSummary();
@@ -293,7 +311,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link AsapratioContribution }
-     * 
+     *
      */
     public AsapratioContribution createAsapratioContribution() {
         return new AsapratioContribution();
@@ -301,7 +319,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link AsapratioTimestamp }
-     * 
+     *
      */
     public AsapratioTimestamp createAsapratioTimestamp() {
         return new AsapratioTimestamp();
@@ -309,7 +327,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link InteractSummary }
-     * 
+     *
      */
     public InteractSummary createInteractSummary() {
         return new InteractSummary();
@@ -317,7 +335,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link LibraSummary.FragmentMasses }
-     * 
+     *
      */
     public LibraSummary.FragmentMasses createLibraSummaryFragmentMasses() {
         return new LibraSummary.FragmentMasses();
@@ -325,7 +343,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link PeptideprophetSummary.DistributionPoint }
-     * 
+     *
      */
     public PeptideprophetSummary.DistributionPoint createPeptideprophetSummaryDistributionPoint() {
         return new PeptideprophetSummary.DistributionPoint();
@@ -333,15 +351,23 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link AsapratioPeptideData }
-     * 
+     *
      */
     public AsapratioPeptideData createAsapratioPeptideData() {
         return new AsapratioPeptideData();
     }
 
     /**
+     * Create an instance of {@link PtmprophetResult.ModAminoacidProbability }
+     *
+     */
+    public PtmprophetResult.ModAminoacidProbability createPtmprophetResultModAminoacidProbability() {
+        return new PtmprophetResult.ModAminoacidProbability();
+    }
+
+    /**
      * Create an instance of {@link DatabaseRefreshTimestamp }
-     * 
+     *
      */
     public DatabaseRefreshTimestamp createDatabaseRefreshTimestamp() {
         return new DatabaseRefreshTimestamp();
@@ -349,7 +375,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link XpressratioSummary }
-     * 
+     *
      */
     public XpressratioSummary createXpressratioSummary() {
         return new XpressratioSummary();
@@ -357,7 +383,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link InterprophetResult.SearchScoreSummaryIProphet }
-     * 
+     *
      */
     public InterprophetResult.SearchScoreSummaryIProphet createInterprophetResultSearchScoreSummaryIProphet() {
         return new InterprophetResult.SearchScoreSummaryIProphet();
@@ -365,23 +391,55 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link AsapratioResult }
-     * 
+     *
      */
     public AsapratioResult createAsapratioResult() {
         return new AsapratioResult();
     }
 
     /**
+     * Create an instance of {@link PtmprophetSummary }
+     *
+     */
+    public PtmprophetSummary createPtmprophetSummary() {
+        return new PtmprophetSummary();
+    }
+
+    /**
      * Create an instance of {@link NameValueType }
-     * 
+     *
      */
     public NameValueType createNameValueType() {
         return new NameValueType();
     }
 
     /**
+     * Create an instance of {@link AltProteinDataType }
+     *
+     */
+    public AltProteinDataType createAltProteinDataType() {
+        return new AltProteinDataType();
+    }
+
+    /**
+     * Create an instance of {@link SubInfoDataType }
+     *
+     */
+    public SubInfoDataType createSubInfoDataType() {
+        return new SubInfoDataType();
+    }
+
+    /**
+     * Create an instance of {@link ModInfoDataType.ModAminoacidMass }
+     *
+     */
+    public ModInfoDataType.ModAminoacidMass createModInfoDataTypeModAminoacidMass() {
+        return new ModInfoDataType.ModAminoacidMass();
+    }
+
+    /**
      * Create an instance of {@link PeptideprophetSummary.MixtureModelling.Mixturemodel.Point }
-     * 
+     *
      */
     public PeptideprophetSummary.MixtureModelling.Mixturemodel.Point createPeptideprophetSummaryMixtureModellingMixturemodelPoint() {
         return new PeptideprophetSummary.MixtureModelling.Mixturemodel.Point();
@@ -389,7 +447,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link PeptideprophetSummary.MixtureModelling.MixturemodelDistribution.PosmodelDistribution }
-     * 
+     *
      */
     public PeptideprophetSummary.MixtureModelling.MixturemodelDistribution.PosmodelDistribution createPeptideprophetSummaryMixtureModellingMixturemodelDistributionPosmodelDistribution() {
         return new PeptideprophetSummary.MixtureModelling.MixturemodelDistribution.PosmodelDistribution();
@@ -397,7 +455,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link PeptideprophetSummary.MixtureModelling.MixturemodelDistribution.NegmodelDistribution }
-     * 
+     *
      */
     public PeptideprophetSummary.MixtureModelling.MixturemodelDistribution.NegmodelDistribution createPeptideprophetSummaryMixtureModellingMixturemodelDistributionNegmodelDistribution() {
         return new PeptideprophetSummary.MixtureModelling.MixturemodelDistribution.NegmodelDistribution();
@@ -405,47 +463,47 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link LibraSummary.IsotopicContributions.ContributingChannel.AffectedChannel }
-     * 
+     *
      */
     public LibraSummary.IsotopicContributions.ContributingChannel.AffectedChannel createLibraSummaryIsotopicContributionsContributingChannelAffectedChannel() {
         return new LibraSummary.IsotopicContributions.ContributingChannel.AffectedChannel();
     }
 
     /**
+     * Create an instance of {@link MsmsPipelineAnalysis.MsmsRunSummary.CrossLinker }
+     *
+     */
+    public MsmsPipelineAnalysis.MsmsRunSummary.CrossLinker createMsmsPipelineAnalysisMsmsRunSummaryCrossLinker() {
+        return new MsmsPipelineAnalysis.MsmsRunSummary.CrossLinker();
+    }
+
+    /**
      * Create an instance of {@link MsmsPipelineAnalysis.MsmsRunSummary.AnalysisTimestamp }
-     * 
+     *
      */
     public MsmsPipelineAnalysis.MsmsRunSummary.AnalysisTimestamp createMsmsPipelineAnalysisMsmsRunSummaryAnalysisTimestamp() {
         return new MsmsPipelineAnalysis.MsmsRunSummary.AnalysisTimestamp();
     }
 
     /**
-     * Create an instance of {@link MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.AlternativeProtein }
-     * 
-     */
-    public MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.AlternativeProtein createMsmsPipelineAnalysisMsmsRunSummarySpectrumQuerySearchResultSearchHitAlternativeProtein() {
-        return new MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.AlternativeProtein();
-    }
-
-    /**
      * Create an instance of {@link MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.AnalysisResult }
-     * 
+     *
      */
     public MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.AnalysisResult createMsmsPipelineAnalysisMsmsRunSummarySpectrumQuerySearchResultSearchHitAnalysisResult() {
         return new MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.AnalysisResult();
     }
 
     /**
-     * Create an instance of {@link MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.ModificationInfo.ModAminoacidMass }
-     * 
+     * Create an instance of {@link MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.Xlink.LinkedPeptide }
+     *
      */
-    public MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.ModificationInfo.ModAminoacidMass createMsmsPipelineAnalysisMsmsRunSummarySpectrumQuerySearchResultSearchHitModificationInfoModAminoacidMass() {
-        return new MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.ModificationInfo.ModAminoacidMass();
+    public MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.Xlink.LinkedPeptide createMsmsPipelineAnalysisMsmsRunSummarySpectrumQuerySearchResultSearchHitXlinkLinkedPeptide() {
+        return new MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.Xlink.LinkedPeptide();
     }
 
     /**
      * Create an instance of {@link MsmsPipelineAnalysis.MsmsRunSummary.SearchSummary.SearchDatabase }
-     * 
+     *
      */
     public MsmsPipelineAnalysis.MsmsRunSummary.SearchSummary.SearchDatabase createMsmsPipelineAnalysisMsmsRunSummarySearchSummarySearchDatabase() {
         return new MsmsPipelineAnalysis.MsmsRunSummary.SearchSummary.SearchDatabase();
@@ -453,7 +511,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link MsmsPipelineAnalysis.MsmsRunSummary.SearchSummary.EnzymaticSearchConstraint }
-     * 
+     *
      */
     public MsmsPipelineAnalysis.MsmsRunSummary.SearchSummary.EnzymaticSearchConstraint createMsmsPipelineAnalysisMsmsRunSummarySearchSummaryEnzymaticSearchConstraint() {
         return new MsmsPipelineAnalysis.MsmsRunSummary.SearchSummary.EnzymaticSearchConstraint();
@@ -461,7 +519,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link MsmsPipelineAnalysis.MsmsRunSummary.SearchSummary.SequenceSearchConstraint }
-     * 
+     *
      */
     public MsmsPipelineAnalysis.MsmsRunSummary.SearchSummary.SequenceSearchConstraint createMsmsPipelineAnalysisMsmsRunSummarySearchSummarySequenceSearchConstraint() {
         return new MsmsPipelineAnalysis.MsmsRunSummary.SearchSummary.SequenceSearchConstraint();
@@ -469,7 +527,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link MsmsPipelineAnalysis.MsmsRunSummary.SearchSummary.AminoacidModification }
-     * 
+     *
      */
     public MsmsPipelineAnalysis.MsmsRunSummary.SearchSummary.AminoacidModification createMsmsPipelineAnalysisMsmsRunSummarySearchSummaryAminoacidModification() {
         return new MsmsPipelineAnalysis.MsmsRunSummary.SearchSummary.AminoacidModification();
@@ -477,7 +535,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link MsmsPipelineAnalysis.MsmsRunSummary.SearchSummary.TerminalModification }
-     * 
+     *
      */
     public MsmsPipelineAnalysis.MsmsRunSummary.SearchSummary.TerminalModification createMsmsPipelineAnalysisMsmsRunSummarySearchSummaryTerminalModification() {
         return new MsmsPipelineAnalysis.MsmsRunSummary.SearchSummary.TerminalModification();
@@ -485,7 +543,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link MsmsPipelineAnalysis.MsmsRunSummary.SampleEnzyme.Specificity }
-     * 
+     *
      */
     public MsmsPipelineAnalysis.MsmsRunSummary.SampleEnzyme.Specificity createMsmsPipelineAnalysisMsmsRunSummarySampleEnzymeSpecificity() {
         return new MsmsPipelineAnalysis.MsmsRunSummary.SampleEnzyme.Specificity();
@@ -493,7 +551,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link MsmsPipelineAnalysis.DatasetDerivation.DataFilter }
-     * 
+     *
      */
     public MsmsPipelineAnalysis.DatasetDerivation.DataFilter createMsmsPipelineAnalysisDatasetDerivationDataFilter() {
         return new MsmsPipelineAnalysis.DatasetDerivation.DataFilter();
@@ -501,7 +559,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link MixtureModelType.MixtureModelPoint }
-     * 
+     *
      */
     public MixtureModelType.MixtureModelPoint createMixtureModelTypeMixtureModelPoint() {
         return new MixtureModelType.MixtureModelPoint();
@@ -509,7 +567,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link RocErrorDataType.RocDataPoint }
-     * 
+     *
      */
     public RocErrorDataType.RocDataPoint createRocErrorDataTypeRocDataPoint() {
         return new RocErrorDataType.RocDataPoint();
@@ -517,7 +575,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link RocErrorDataType.ErrorPoint }
-     * 
+     *
      */
     public RocErrorDataType.ErrorPoint createRocErrorDataTypeErrorPoint() {
         return new RocErrorDataType.ErrorPoint();

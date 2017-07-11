@@ -1,11 +1,12 @@
-/* 
- * Copyright 2016 Dmitry Avtonomov.
+
+/*
+ * Copyright (c) 2016 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package umich.ms.fileio.filetypes.pepxml.jaxb.primitive;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -24,9 +26,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -44,8 +46,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
@@ -73,7 +75,7 @@ public class AsapratioLcHeavypeak {
 
     /**
      * Gets the value of the status property.
-     * 
+     *
      */
     public byte getStatus() {
         return status;
@@ -81,7 +83,7 @@ public class AsapratioLcHeavypeak {
 
     /**
      * Sets the value of the status property.
-     * 
+     *
      */
     public void setStatus(byte value) {
         this.status = value;
@@ -89,7 +91,7 @@ public class AsapratioLcHeavypeak {
 
     /**
      * Gets the value of the leftValley property.
-     * 
+     *
      */
     public int getLeftValley() {
         return leftValley;
@@ -97,7 +99,7 @@ public class AsapratioLcHeavypeak {
 
     /**
      * Sets the value of the leftValley property.
-     * 
+     *
      */
     public void setLeftValley(int value) {
         this.leftValley = value;
@@ -105,7 +107,7 @@ public class AsapratioLcHeavypeak {
 
     /**
      * Gets the value of the rightValley property.
-     * 
+     *
      */
     public int getRightValley() {
         return rightValley;
@@ -113,7 +115,7 @@ public class AsapratioLcHeavypeak {
 
     /**
      * Sets the value of the rightValley property.
-     * 
+     *
      */
     public void setRightValley(int value) {
         this.rightValley = value;
@@ -121,7 +123,7 @@ public class AsapratioLcHeavypeak {
 
     /**
      * Gets the value of the background property.
-     * 
+     *
      */
     public float getBackground() {
         return background;
@@ -129,7 +131,7 @@ public class AsapratioLcHeavypeak {
 
     /**
      * Sets the value of the background property.
-     * 
+     *
      */
     public void setBackground(float value) {
         this.background = value;
@@ -137,7 +139,7 @@ public class AsapratioLcHeavypeak {
 
     /**
      * Gets the value of the area property.
-     * 
+     *
      */
     public float getArea() {
         return area;
@@ -145,7 +147,7 @@ public class AsapratioLcHeavypeak {
 
     /**
      * Sets the value of the area property.
-     * 
+     *
      */
     public void setArea(float value) {
         this.area = value;
@@ -153,7 +155,7 @@ public class AsapratioLcHeavypeak {
 
     /**
      * Gets the value of the areaError property.
-     * 
+     *
      */
     public float getAreaError() {
         return areaError;
@@ -161,7 +163,7 @@ public class AsapratioLcHeavypeak {
 
     /**
      * Sets the value of the areaError property.
-     * 
+     *
      */
     public void setAreaError(float value) {
         this.areaError = value;
@@ -169,7 +171,7 @@ public class AsapratioLcHeavypeak {
 
     /**
      * Gets the value of the time property.
-     * 
+     *
      */
     public float getTime() {
         return time;
@@ -177,7 +179,7 @@ public class AsapratioLcHeavypeak {
 
     /**
      * Sets the value of the time property.
-     * 
+     *
      */
     public void setTime(float value) {
         this.time = value;
@@ -185,7 +187,7 @@ public class AsapratioLcHeavypeak {
 
     /**
      * Gets the value of the timeWidth property.
-     * 
+     *
      */
     public float getTimeWidth() {
         return timeWidth;
@@ -193,7 +195,7 @@ public class AsapratioLcHeavypeak {
 
     /**
      * Sets the value of the timeWidth property.
-     * 
+     *
      */
     public void setTimeWidth(float value) {
         this.timeWidth = value;
@@ -201,11 +203,11 @@ public class AsapratioLcHeavypeak {
 
     /**
      * Gets the value of the isHeavy property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getIsHeavy() {
         return isHeavy;
@@ -213,11 +215,11 @@ public class AsapratioLcHeavypeak {
 
     /**
      * Sets the value of the isHeavy property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setIsHeavy(String value) {
         this.isHeavy = value;

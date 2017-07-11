@@ -1,11 +1,12 @@
-/* 
- * Copyright 2016 Dmitry Avtonomov.
+
+/*
+ * Copyright (c) 2016 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package umich.ms.fileio.filetypes.pepxml.jaxb.primitive;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -23,9 +25,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -39,8 +41,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
@@ -59,7 +61,7 @@ public class Intensity {
 
     /**
      * Gets the value of the channel property.
-     * 
+     *
      */
     public long getChannel() {
         return channel;
@@ -67,7 +69,7 @@ public class Intensity {
 
     /**
      * Sets the value of the channel property.
-     * 
+     *
      */
     public void setChannel(long value) {
         this.channel = value;
@@ -75,7 +77,7 @@ public class Intensity {
 
     /**
      * Gets the value of the targetMass property.
-     * 
+     *
      */
     public float getTargetMass() {
         return targetMass;
@@ -83,7 +85,7 @@ public class Intensity {
 
     /**
      * Sets the value of the targetMass property.
-     * 
+     *
      */
     public void setTargetMass(float value) {
         this.targetMass = value;
@@ -91,7 +93,7 @@ public class Intensity {
 
     /**
      * Gets the value of the absolute property.
-     * 
+     *
      */
     public float getAbsolute() {
         return absolute;
@@ -99,7 +101,7 @@ public class Intensity {
 
     /**
      * Sets the value of the absolute property.
-     * 
+     *
      */
     public void setAbsolute(float value) {
         this.absolute = value;
@@ -107,7 +109,7 @@ public class Intensity {
 
     /**
      * Gets the value of the normalized property.
-     * 
+     *
      */
     public float getNormalized() {
         return normalized;
@@ -115,7 +117,7 @@ public class Intensity {
 
     /**
      * Sets the value of the normalized property.
-     * 
+     *
      */
     public void setNormalized(float value) {
         this.normalized = value;
@@ -123,7 +125,7 @@ public class Intensity {
 
     /**
      * Gets the value of the reject property.
-     * 
+     *
      */
     public boolean isReject() {
         return reject;
@@ -131,7 +133,7 @@ public class Intensity {
 
     /**
      * Sets the value of the reject property.
-     * 
+     *
      */
     public void setReject(boolean value) {
         this.reject = value;

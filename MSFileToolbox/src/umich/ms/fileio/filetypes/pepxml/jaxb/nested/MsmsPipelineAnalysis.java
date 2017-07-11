@@ -1,11 +1,12 @@
-/* 
- * Copyright 2016 Dmitry Avtonomov.
+
+/*
+ * Copyright (c) 2016 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package umich.ms.fileio.filetypes.pepxml.jaxb.nested;
 
 import java.util.ArrayList;
@@ -45,7 +47,7 @@ import org.w3c.dom.Element;
  *             &lt;complexContent>
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                 &lt;sequence>
- *                   &lt;any processContents='lax' minOccurs="0"/>
+ *                   &lt;element name="parameter" type="{http://regis-web.systemsbiology.net/pepXML}nameValueType" maxOccurs="unbounded" minOccurs="0"/>
  *                 &lt;/sequence>
  *                 &lt;attribute name="time" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
  *                 &lt;attribute name="analysis" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
@@ -82,7 +84,7 @@ import org.w3c.dom.Element;
  *             &lt;complexContent>
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                 &lt;sequence>
- *                   &lt;element name="sample_enzyme">
+ *                   &lt;element name="sample_enzyme" minOccurs="0">
  *                     &lt;complexType>
  *                       &lt;complexContent>
  *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
@@ -144,6 +146,28 @@ import org.w3c.dom.Element;
  *                       &lt;/complexContent>
  *                     &lt;/complexType>
  *                   &lt;/element>
+ *                   &lt;element name="cross_linker" minOccurs="0">
+ *                     &lt;complexType>
+ *                       &lt;complexContent>
+ *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                           &lt;sequence>
+ *                             &lt;element name="cross_linker_info" type="{http://regis-web.systemsbiology.net/pepXML}nameValueType" maxOccurs="unbounded"/>
+ *                           &lt;/sequence>
+ *                           &lt;attribute name="identifier" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                           &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *                           &lt;attribute name="link_sites" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                           &lt;attribute name="isotope_labeled" use="required">
+ *                             &lt;simpleType>
+ *                               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *                                 &lt;enumeration value="Y"/>
+ *                                 &lt;enumeration value="N"/>
+ *                               &lt;/restriction>
+ *                             &lt;/simpleType>
+ *                           &lt;/attribute>
+ *                         &lt;/restriction>
+ *                       &lt;/complexContent>
+ *                     &lt;/complexType>
+ *                   &lt;/element>
  *                   &lt;element name="search_summary" maxOccurs="unbounded">
  *                     &lt;complexType>
  *                       &lt;complexContent>
@@ -198,10 +222,11 @@ import org.w3c.dom.Element;
  *                                 &lt;complexContent>
  *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                                     &lt;attribute name="aminoacid" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *                                     &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                                     &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
  *                                     &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
  *                                     &lt;attribute name="variable" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *                                     &lt;attribute name="peptide_terminus" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                                     &lt;attribute name="protein_terminus" type="{http://www.w3.org/2001/XMLSchema}string" />
  *                                     &lt;attribute name="symbol" type="{http://regis-web.systemsbiology.net/pepXML}aa_symbolType" />
  *                                     &lt;attribute name="binary" type="{http://www.w3.org/2001/XMLSchema}string" />
  *                                     &lt;attribute name="description" type="{http://www.w3.org/2001/XMLSchema}string" />
@@ -267,39 +292,38 @@ import org.w3c.dom.Element;
  *                                           &lt;complexContent>
  *                                             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                                               &lt;sequence>
- *                                                 &lt;element name="alternative_protein" maxOccurs="unbounded" minOccurs="0">
- *                                                   &lt;complexType>
- *                                                     &lt;complexContent>
- *                                                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                                                         &lt;attribute name="protein" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *                                                         &lt;attribute name="protein_descr" type="{http://www.w3.org/2001/XMLSchema}string" />
- *                                                         &lt;attribute name="num_tol_term" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
- *                                                         &lt;attribute name="protein_mw" type="{http://www.w3.org/2001/XMLSchema}double" />
- *                                                         &lt;attribute name="peptide_prev_aa" type="{http://www.w3.org/2001/XMLSchema}string" />
- *                                                         &lt;attribute name="peptide_next_aa" type="{http://www.w3.org/2001/XMLSchema}string" />
- *                                                       &lt;/restriction>
- *                                                     &lt;/complexContent>
- *                                                   &lt;/complexType>
- *                                                 &lt;/element>
- *                                                 &lt;element name="modification_info" minOccurs="0">
+ *                                                 &lt;element name="alternative_protein" type="{http://regis-web.systemsbiology.net/pepXML}altProteinDataType" maxOccurs="unbounded" minOccurs="0"/>
+ *                                                 &lt;element name="modification_info" type="{http://regis-web.systemsbiology.net/pepXML}modInfoDataType" minOccurs="0"/>
+ *                                                 &lt;element name="xlink" minOccurs="0">
  *                                                   &lt;complexType>
  *                                                     &lt;complexContent>
  *                                                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                                                         &lt;sequence>
- *                                                           &lt;element name="mod_aminoacid_mass" maxOccurs="unbounded" minOccurs="0">
+ *                                                           &lt;element name="linked_peptide" maxOccurs="2" minOccurs="0">
  *                                                             &lt;complexType>
  *                                                               &lt;complexContent>
  *                                                                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                                                                   &lt;attribute name="position" use="required" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
- *                                                                   &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *                                                                   &lt;sequence>
+ *                                                                     &lt;element name="alternative_protein" type="{http://regis-web.systemsbiology.net/pepXML}altProteinDataType" maxOccurs="unbounded" minOccurs="0"/>
+ *                                                                     &lt;element name="modification_info" type="{http://regis-web.systemsbiology.net/pepXML}modInfoDataType" minOccurs="0"/>
+ *                                                                     &lt;element name="xlink_score" type="{http://regis-web.systemsbiology.net/pepXML}nameValueType" maxOccurs="unbounded" minOccurs="0"/>
+ *                                                                   &lt;/sequence>
+ *                                                                   &lt;attribute name="peptide" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                                                                   &lt;attribute name="peptide_prev_aa" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                                                                   &lt;attribute name="peptide_next_aa" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                                                                   &lt;attribute name="protein" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                                                                   &lt;attribute name="num_tot_proteins" use="required" type="{http://www.w3.org/2001/XMLSchema}unsignedInt" />
+ *                                                                   &lt;attribute name="calc_neutral_pep_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *                                                                   &lt;attribute name="complement_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *                                                                   &lt;attribute name="designation" type="{http://www.w3.org/2001/XMLSchema}string" />
  *                                                                 &lt;/restriction>
  *                                                               &lt;/complexContent>
  *                                                             &lt;/complexType>
  *                                                           &lt;/element>
+ *                                                           &lt;element name="xlink_score" type="{http://regis-web.systemsbiology.net/pepXML}nameValueType" maxOccurs="unbounded" minOccurs="0"/>
  *                                                         &lt;/sequence>
- *                                                         &lt;attribute name="mod_nterm_mass" type="{http://www.w3.org/2001/XMLSchema}double" />
- *                                                         &lt;attribute name="mod_cterm_mass" type="{http://www.w3.org/2001/XMLSchema}double" />
- *                                                         &lt;attribute name="modified_peptide" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                                                         &lt;attribute name="identifier" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                                                         &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
  *                                                       &lt;/restriction>
  *                                                     &lt;/complexContent>
  *                                                   &lt;/complexType>
@@ -310,7 +334,7 @@ import org.w3c.dom.Element;
  *                                                     &lt;complexContent>
  *                                                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                                                         &lt;sequence>
- *                                                           &lt;any processContents='lax'/>
+ *                                                           &lt;any processContents='lax' maxOccurs="unbounded"/>
  *                                                         &lt;/sequence>
  *                                                         &lt;attribute name="analysis" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *                                                         &lt;attribute name="id" type="{http://regis-web.systemsbiology.net/pepXML}positiveInt" default="1" />
@@ -333,6 +357,15 @@ import org.w3c.dom.Element;
  *                                               &lt;attribute name="num_tol_term" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
  *                                               &lt;attribute name="num_missed_cleavages" type="{http://www.w3.org/2001/XMLSchema}integer" />
  *                                               &lt;attribute name="num_matched_peptides" type="{http://www.w3.org/2001/XMLSchema}integer" />
+ *                                               &lt;attribute name="xlink_type">
+ *                                                 &lt;simpleType>
+ *                                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *                                                     &lt;enumeration value="na"/>
+ *                                                     &lt;enumeration value="xl"/>
+ *                                                     &lt;enumeration value="loop"/>
+ *                                                   &lt;/restriction>
+ *                                                 &lt;/simpleType>
+ *                                               &lt;/attribute>
  *                                               &lt;attribute name="is_rejected" default="0">
  *                                                 &lt;simpleType>
  *                                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger">
@@ -356,6 +389,7 @@ import org.w3c.dom.Element;
  *                             &lt;/element>
  *                           &lt;/sequence>
  *                           &lt;attribute name="spectrum" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                           &lt;attribute name="spectrumNativeID" type="{http://www.w3.org/2001/XMLSchema}string" />
  *                           &lt;attribute name="start_scan" use="required" type="{http://www.w3.org/2001/XMLSchema}unsignedInt" />
  *                           &lt;attribute name="end_scan" use="required" type="{http://www.w3.org/2001/XMLSchema}unsignedInt" />
  *                           &lt;attribute name="retention_time_sec" type="{http://www.w3.org/2001/XMLSchema}float" />
@@ -380,7 +414,6 @@ import org.w3c.dom.Element;
  *                 &lt;attribute name="msIonization" type="{http://www.w3.org/2001/XMLSchema}string" />
  *                 &lt;attribute name="msMassAnalyzer" type="{http://www.w3.org/2001/XMLSchema}string" />
  *                 &lt;attribute name="msDetector" type="{http://www.w3.org/2001/XMLSchema}string" />
- *                 &lt;attribute name="search_engine" type="{http://regis-web.systemsbiology.net/pepXML}engineType" />
  *               &lt;/restriction>
  *             &lt;/complexContent>
  *           &lt;/complexType>
@@ -443,7 +476,7 @@ public class MsmsPipelineAnalysis {
      */
     public List<MsmsPipelineAnalysis.AnalysisSummary> getAnalysisSummary() {
         if (analysisSummary == null) {
-            analysisSummary = new ArrayList<MsmsPipelineAnalysis.AnalysisSummary>(1);
+            analysisSummary = new ArrayList<MsmsPipelineAnalysis.AnalysisSummary>();
         }
         return this.analysisSummary;
     }
@@ -496,7 +529,7 @@ public class MsmsPipelineAnalysis {
      */
     public List<MsmsPipelineAnalysis.MsmsRunSummary> getMsmsRunSummary() {
         if (msmsRunSummary == null) {
-            msmsRunSummary = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary>(1);
+            msmsRunSummary = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary>();
         }
         return this.msmsRunSummary;
     }
@@ -584,7 +617,7 @@ public class MsmsPipelineAnalysis {
      *   &lt;complexContent>
      *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
      *       &lt;sequence>
-     *         &lt;any processContents='lax' minOccurs="0"/>
+     *         &lt;element name="parameter" type="{http://regis-web.systemsbiology.net/pepXML}nameValueType" maxOccurs="unbounded" minOccurs="0"/>
      *       &lt;/sequence>
      *       &lt;attribute name="time" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
      *       &lt;attribute name="analysis" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
@@ -598,12 +631,11 @@ public class MsmsPipelineAnalysis {
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "any"
+        "parameter"
     })
     public static class AnalysisSummary {
 
-        @XmlAnyElement(lax = true)
-        protected Object any;
+        protected List<NameValueType> parameter;
         @XmlAttribute(name = "time", required = true)
         @XmlSchemaType(name = "dateTime")
         protected XMLGregorianCalendar time;
@@ -613,29 +645,32 @@ public class MsmsPipelineAnalysis {
         protected String version;
 
         /**
-         * Gets the value of the any property.
+         * Gets the value of the parameter property.
          *
-         * @return
-         *     possible object is
-         *     {@link Element }
-         *     {@link Object }
+         * <p>
+         * This accessor method returns a reference to the live list,
+         * not a snapshot. Therefore any modification you make to the
+         * returned list will be present inside the JAXB object.
+         * This is why there is not a <CODE>set</CODE> method for the parameter property.
+         *
+         * <p>
+         * For example, to add a new item, do as follows:
+         * <pre>
+         *    getParameter().add(newItem);
+         * </pre>
+         *
+         *
+         * <p>
+         * Objects of the following type(s) are allowed in the list
+         * {@link NameValueType }
+         *
          *
          */
-        public Object getAny() {
-            return any;
-        }
-
-        /**
-         * Sets the value of the any property.
-         *
-         * @param value
-         *     allowed object is
-         *     {@link Element }
-         *     {@link Object }
-         *
-         */
-        public void setAny(Object value) {
-            this.any = value;
+        public List<NameValueType> getParameter() {
+            if (parameter == null) {
+                parameter = new ArrayList<NameValueType>();
+            }
+            return this.parameter;
         }
 
         /**
@@ -781,7 +816,7 @@ public class MsmsPipelineAnalysis {
          */
         public List<MsmsPipelineAnalysis.DatasetDerivation.DataFilter> getDataFilter() {
             if (dataFilter == null) {
-                dataFilter = new ArrayList<MsmsPipelineAnalysis.DatasetDerivation.DataFilter>(1);
+                dataFilter = new ArrayList<MsmsPipelineAnalysis.DatasetDerivation.DataFilter>();
             }
             return this.dataFilter;
         }
@@ -957,7 +992,7 @@ public class MsmsPipelineAnalysis {
      *   &lt;complexContent>
      *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
      *       &lt;sequence>
-     *         &lt;element name="sample_enzyme">
+     *         &lt;element name="sample_enzyme" minOccurs="0">
      *           &lt;complexType>
      *             &lt;complexContent>
      *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
@@ -1019,6 +1054,28 @@ public class MsmsPipelineAnalysis {
      *             &lt;/complexContent>
      *           &lt;/complexType>
      *         &lt;/element>
+     *         &lt;element name="cross_linker" minOccurs="0">
+     *           &lt;complexType>
+     *             &lt;complexContent>
+     *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *                 &lt;sequence>
+     *                   &lt;element name="cross_linker_info" type="{http://regis-web.systemsbiology.net/pepXML}nameValueType" maxOccurs="unbounded"/>
+     *                 &lt;/sequence>
+     *                 &lt;attribute name="identifier" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+     *                 &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+     *                 &lt;attribute name="link_sites" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+     *                 &lt;attribute name="isotope_labeled" use="required">
+     *                   &lt;simpleType>
+     *                     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+     *                       &lt;enumeration value="Y"/>
+     *                       &lt;enumeration value="N"/>
+     *                     &lt;/restriction>
+     *                   &lt;/simpleType>
+     *                 &lt;/attribute>
+     *               &lt;/restriction>
+     *             &lt;/complexContent>
+     *           &lt;/complexType>
+     *         &lt;/element>
      *         &lt;element name="search_summary" maxOccurs="unbounded">
      *           &lt;complexType>
      *             &lt;complexContent>
@@ -1073,10 +1130,11 @@ public class MsmsPipelineAnalysis {
      *                       &lt;complexContent>
      *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
      *                           &lt;attribute name="aminoacid" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
-     *                           &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+     *                           &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
      *                           &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
      *                           &lt;attribute name="variable" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
      *                           &lt;attribute name="peptide_terminus" type="{http://www.w3.org/2001/XMLSchema}string" />
+     *                           &lt;attribute name="protein_terminus" type="{http://www.w3.org/2001/XMLSchema}string" />
      *                           &lt;attribute name="symbol" type="{http://regis-web.systemsbiology.net/pepXML}aa_symbolType" />
      *                           &lt;attribute name="binary" type="{http://www.w3.org/2001/XMLSchema}string" />
      *                           &lt;attribute name="description" type="{http://www.w3.org/2001/XMLSchema}string" />
@@ -1142,39 +1200,38 @@ public class MsmsPipelineAnalysis {
      *                                 &lt;complexContent>
      *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
      *                                     &lt;sequence>
-     *                                       &lt;element name="alternative_protein" maxOccurs="unbounded" minOccurs="0">
-     *                                         &lt;complexType>
-     *                                           &lt;complexContent>
-     *                                             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *                                               &lt;attribute name="protein" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
-     *                                               &lt;attribute name="protein_descr" type="{http://www.w3.org/2001/XMLSchema}string" />
-     *                                               &lt;attribute name="num_tol_term" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
-     *                                               &lt;attribute name="protein_mw" type="{http://www.w3.org/2001/XMLSchema}double" />
-     *                                               &lt;attribute name="peptide_prev_aa" type="{http://www.w3.org/2001/XMLSchema}string" />
-     *                                               &lt;attribute name="peptide_next_aa" type="{http://www.w3.org/2001/XMLSchema}string" />
-     *                                             &lt;/restriction>
-     *                                           &lt;/complexContent>
-     *                                         &lt;/complexType>
-     *                                       &lt;/element>
-     *                                       &lt;element name="modification_info" minOccurs="0">
+     *                                       &lt;element name="alternative_protein" type="{http://regis-web.systemsbiology.net/pepXML}altProteinDataType" maxOccurs="unbounded" minOccurs="0"/>
+     *                                       &lt;element name="modification_info" type="{http://regis-web.systemsbiology.net/pepXML}modInfoDataType" minOccurs="0"/>
+     *                                       &lt;element name="xlink" minOccurs="0">
      *                                         &lt;complexType>
      *                                           &lt;complexContent>
      *                                             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
      *                                               &lt;sequence>
-     *                                                 &lt;element name="mod_aminoacid_mass" maxOccurs="unbounded" minOccurs="0">
+     *                                                 &lt;element name="linked_peptide" maxOccurs="2" minOccurs="0">
      *                                                   &lt;complexType>
      *                                                     &lt;complexContent>
      *                                                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *                                                         &lt;attribute name="position" use="required" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
-     *                                                         &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+     *                                                         &lt;sequence>
+     *                                                           &lt;element name="alternative_protein" type="{http://regis-web.systemsbiology.net/pepXML}altProteinDataType" maxOccurs="unbounded" minOccurs="0"/>
+     *                                                           &lt;element name="modification_info" type="{http://regis-web.systemsbiology.net/pepXML}modInfoDataType" minOccurs="0"/>
+     *                                                           &lt;element name="xlink_score" type="{http://regis-web.systemsbiology.net/pepXML}nameValueType" maxOccurs="unbounded" minOccurs="0"/>
+     *                                                         &lt;/sequence>
+     *                                                         &lt;attribute name="peptide" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+     *                                                         &lt;attribute name="peptide_prev_aa" type="{http://www.w3.org/2001/XMLSchema}string" />
+     *                                                         &lt;attribute name="peptide_next_aa" type="{http://www.w3.org/2001/XMLSchema}string" />
+     *                                                         &lt;attribute name="protein" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+     *                                                         &lt;attribute name="num_tot_proteins" use="required" type="{http://www.w3.org/2001/XMLSchema}unsignedInt" />
+     *                                                         &lt;attribute name="calc_neutral_pep_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+     *                                                         &lt;attribute name="complement_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+     *                                                         &lt;attribute name="designation" type="{http://www.w3.org/2001/XMLSchema}string" />
      *                                                       &lt;/restriction>
      *                                                     &lt;/complexContent>
      *                                                   &lt;/complexType>
      *                                                 &lt;/element>
+     *                                                 &lt;element name="xlink_score" type="{http://regis-web.systemsbiology.net/pepXML}nameValueType" maxOccurs="unbounded" minOccurs="0"/>
      *                                               &lt;/sequence>
-     *                                               &lt;attribute name="mod_nterm_mass" type="{http://www.w3.org/2001/XMLSchema}double" />
-     *                                               &lt;attribute name="mod_cterm_mass" type="{http://www.w3.org/2001/XMLSchema}double" />
-     *                                               &lt;attribute name="modified_peptide" type="{http://www.w3.org/2001/XMLSchema}string" />
+     *                                               &lt;attribute name="identifier" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+     *                                               &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
      *                                             &lt;/restriction>
      *                                           &lt;/complexContent>
      *                                         &lt;/complexType>
@@ -1185,7 +1242,7 @@ public class MsmsPipelineAnalysis {
      *                                           &lt;complexContent>
      *                                             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
      *                                               &lt;sequence>
-     *                                                 &lt;any processContents='lax'/>
+     *                                                 &lt;any processContents='lax' maxOccurs="unbounded"/>
      *                                               &lt;/sequence>
      *                                               &lt;attribute name="analysis" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
      *                                               &lt;attribute name="id" type="{http://regis-web.systemsbiology.net/pepXML}positiveInt" default="1" />
@@ -1208,6 +1265,15 @@ public class MsmsPipelineAnalysis {
      *                                     &lt;attribute name="num_tol_term" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
      *                                     &lt;attribute name="num_missed_cleavages" type="{http://www.w3.org/2001/XMLSchema}integer" />
      *                                     &lt;attribute name="num_matched_peptides" type="{http://www.w3.org/2001/XMLSchema}integer" />
+     *                                     &lt;attribute name="xlink_type">
+     *                                       &lt;simpleType>
+     *                                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+     *                                           &lt;enumeration value="na"/>
+     *                                           &lt;enumeration value="xl"/>
+     *                                           &lt;enumeration value="loop"/>
+     *                                         &lt;/restriction>
+     *                                       &lt;/simpleType>
+     *                                     &lt;/attribute>
      *                                     &lt;attribute name="is_rejected" default="0">
      *                                       &lt;simpleType>
      *                                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger">
@@ -1231,6 +1297,7 @@ public class MsmsPipelineAnalysis {
      *                   &lt;/element>
      *                 &lt;/sequence>
      *                 &lt;attribute name="spectrum" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+     *                 &lt;attribute name="spectrumNativeID" type="{http://www.w3.org/2001/XMLSchema}string" />
      *                 &lt;attribute name="start_scan" use="required" type="{http://www.w3.org/2001/XMLSchema}unsignedInt" />
      *                 &lt;attribute name="end_scan" use="required" type="{http://www.w3.org/2001/XMLSchema}unsignedInt" />
      *                 &lt;attribute name="retention_time_sec" type="{http://www.w3.org/2001/XMLSchema}float" />
@@ -1255,7 +1322,6 @@ public class MsmsPipelineAnalysis {
      *       &lt;attribute name="msIonization" type="{http://www.w3.org/2001/XMLSchema}string" />
      *       &lt;attribute name="msMassAnalyzer" type="{http://www.w3.org/2001/XMLSchema}string" />
      *       &lt;attribute name="msDetector" type="{http://www.w3.org/2001/XMLSchema}string" />
-     *       &lt;attribute name="search_engine" type="{http://regis-web.systemsbiology.net/pepXML}engineType" />
      *     &lt;/restriction>
      *   &lt;/complexContent>
      * &lt;/complexType>
@@ -1266,14 +1332,17 @@ public class MsmsPipelineAnalysis {
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
         "sampleEnzyme",
+        "crossLinker",
         "searchSummary",
         "analysisTimestamp",
         "spectrumQuery"
     })
     public static class MsmsRunSummary {
 
-        @XmlElement(name = "sample_enzyme", required = true)
+        @XmlElement(name = "sample_enzyme")
         protected MsmsPipelineAnalysis.MsmsRunSummary.SampleEnzyme sampleEnzyme;
+        @XmlElement(name = "cross_linker")
+        protected MsmsPipelineAnalysis.MsmsRunSummary.CrossLinker crossLinker;
         @XmlElement(name = "search_summary", required = true)
         protected List<MsmsPipelineAnalysis.MsmsRunSummary.SearchSummary> searchSummary;
         @XmlElement(name = "analysis_timestamp")
@@ -1296,8 +1365,6 @@ public class MsmsPipelineAnalysis {
         protected String msMassAnalyzer;
         @XmlAttribute(name = "msDetector")
         protected String msDetector;
-        @XmlAttribute(name = "search_engine")
-        protected EngineType searchEngine;
 
         /**
          * Gets the value of the sampleEnzyme property.
@@ -1324,6 +1391,30 @@ public class MsmsPipelineAnalysis {
         }
 
         /**
+         * Gets the value of the crossLinker property.
+         *
+         * @return
+         *     possible object is
+         *     {@link MsmsPipelineAnalysis.MsmsRunSummary.CrossLinker }
+         *
+         */
+        public MsmsPipelineAnalysis.MsmsRunSummary.CrossLinker getCrossLinker() {
+            return crossLinker;
+        }
+
+        /**
+         * Sets the value of the crossLinker property.
+         *
+         * @param value
+         *     allowed object is
+         *     {@link MsmsPipelineAnalysis.MsmsRunSummary.CrossLinker }
+         *
+         */
+        public void setCrossLinker(MsmsPipelineAnalysis.MsmsRunSummary.CrossLinker value) {
+            this.crossLinker = value;
+        }
+
+        /**
          * Gets the value of the searchSummary property.
          *
          * <p>
@@ -1347,7 +1438,7 @@ public class MsmsPipelineAnalysis {
          */
         public List<MsmsPipelineAnalysis.MsmsRunSummary.SearchSummary> getSearchSummary() {
             if (searchSummary == null) {
-                searchSummary = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary.SearchSummary>(1);
+                searchSummary = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary.SearchSummary>();
             }
             return this.searchSummary;
         }
@@ -1376,7 +1467,7 @@ public class MsmsPipelineAnalysis {
          */
         public List<MsmsPipelineAnalysis.MsmsRunSummary.AnalysisTimestamp> getAnalysisTimestamp() {
             if (analysisTimestamp == null) {
-                analysisTimestamp = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary.AnalysisTimestamp>(1);
+                analysisTimestamp = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary.AnalysisTimestamp>();
             }
             return this.analysisTimestamp;
         }
@@ -1405,7 +1496,7 @@ public class MsmsPipelineAnalysis {
          */
         public List<MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery> getSpectrumQuery() {
             if (spectrumQuery == null) {
-                spectrumQuery = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery>(1);
+                spectrumQuery = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery>();
             }
             return this.spectrumQuery;
         }
@@ -1602,30 +1693,6 @@ public class MsmsPipelineAnalysis {
             this.msDetector = value;
         }
 
-        /**
-         * Gets the value of the searchEngine property.
-         *
-         * @return
-         *     possible object is
-         *     {@link EngineType }
-         *
-         */
-        public EngineType getSearchEngine() {
-            return searchEngine;
-        }
-
-        /**
-         * Sets the value of the searchEngine property.
-         *
-         * @param value
-         *     allowed object is
-         *     {@link EngineType }
-         *
-         */
-        public void setSearchEngine(EngineType value) {
-            this.searchEngine = value;
-        }
-
 
         /**
          * <p>Java class for anonymous complex type.
@@ -1670,8 +1737,8 @@ public class MsmsPipelineAnalysis {
              *
              * @return
              *     possible object is
-             *     {@link Element }
              *     {@link Object }
+             *     {@link Element }
              *
              */
             public Object getAny() {
@@ -1683,8 +1750,8 @@ public class MsmsPipelineAnalysis {
              *
              * @param value
              *     allowed object is
-             *     {@link Element }
              *     {@link Object }
+             *     {@link Element }
              *
              */
             public void setAny(Object value) {
@@ -1753,6 +1820,173 @@ public class MsmsPipelineAnalysis {
              */
             public void setId(long value) {
                 this.id = value;
+            }
+
+        }
+
+
+        /**
+         * <p>Java class for anonymous complex type.
+         *
+         * <p>The following schema fragment specifies the expected content contained within this class.
+         *
+         * <pre>
+         * &lt;complexType>
+         *   &lt;complexContent>
+         *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+         *       &lt;sequence>
+         *         &lt;element name="cross_linker_info" type="{http://regis-web.systemsbiology.net/pepXML}nameValueType" maxOccurs="unbounded"/>
+         *       &lt;/sequence>
+         *       &lt;attribute name="identifier" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+         *       &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+         *       &lt;attribute name="link_sites" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+         *       &lt;attribute name="isotope_labeled" use="required">
+         *         &lt;simpleType>
+         *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+         *             &lt;enumeration value="Y"/>
+         *             &lt;enumeration value="N"/>
+         *           &lt;/restriction>
+         *         &lt;/simpleType>
+         *       &lt;/attribute>
+         *     &lt;/restriction>
+         *   &lt;/complexContent>
+         * &lt;/complexType>
+         * </pre>
+         *
+         *
+         */
+        @XmlAccessorType(XmlAccessType.FIELD)
+        @XmlType(name = "", propOrder = {
+            "crossLinkerInfo"
+        })
+        public static class CrossLinker {
+
+            @XmlElement(name = "cross_linker_info", required = true)
+            protected List<NameValueType> crossLinkerInfo;
+            @XmlAttribute(name = "identifier", required = true)
+            protected String identifier;
+            @XmlAttribute(name = "mass", required = true)
+            protected float mass;
+            @XmlAttribute(name = "link_sites", required = true)
+            protected String linkSites;
+            @XmlAttribute(name = "isotope_labeled", required = true)
+            protected String isotopeLabeled;
+
+            /**
+             * Gets the value of the crossLinkerInfo property.
+             *
+             * <p>
+             * This accessor method returns a reference to the live list,
+             * not a snapshot. Therefore any modification you make to the
+             * returned list will be present inside the JAXB object.
+             * This is why there is not a <CODE>set</CODE> method for the crossLinkerInfo property.
+             *
+             * <p>
+             * For example, to add a new item, do as follows:
+             * <pre>
+             *    getCrossLinkerInfo().add(newItem);
+             * </pre>
+             *
+             *
+             * <p>
+             * Objects of the following type(s) are allowed in the list
+             * {@link NameValueType }
+             *
+             *
+             */
+            public List<NameValueType> getCrossLinkerInfo() {
+                if (crossLinkerInfo == null) {
+                    crossLinkerInfo = new ArrayList<NameValueType>();
+                }
+                return this.crossLinkerInfo;
+            }
+
+            /**
+             * Gets the value of the identifier property.
+             *
+             * @return
+             *     possible object is
+             *     {@link String }
+             *
+             */
+            public String getIdentifier() {
+                return identifier;
+            }
+
+            /**
+             * Sets the value of the identifier property.
+             *
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *
+             */
+            public void setIdentifier(String value) {
+                this.identifier = value;
+            }
+
+            /**
+             * Gets the value of the mass property.
+             *
+             */
+            public float getMass() {
+                return mass;
+            }
+
+            /**
+             * Sets the value of the mass property.
+             *
+             */
+            public void setMass(float value) {
+                this.mass = value;
+            }
+
+            /**
+             * Gets the value of the linkSites property.
+             *
+             * @return
+             *     possible object is
+             *     {@link String }
+             *
+             */
+            public String getLinkSites() {
+                return linkSites;
+            }
+
+            /**
+             * Sets the value of the linkSites property.
+             *
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *
+             */
+            public void setLinkSites(String value) {
+                this.linkSites = value;
+            }
+
+            /**
+             * Gets the value of the isotopeLabeled property.
+             *
+             * @return
+             *     possible object is
+             *     {@link String }
+             *
+             */
+            public String getIsotopeLabeled() {
+                return isotopeLabeled;
+            }
+
+            /**
+             * Sets the value of the isotopeLabeled property.
+             *
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *
+             */
+            public void setIsotopeLabeled(String value) {
+                this.isotopeLabeled = value;
             }
 
         }
@@ -1868,7 +2102,7 @@ public class MsmsPipelineAnalysis {
              */
             public List<MsmsPipelineAnalysis.MsmsRunSummary.SampleEnzyme.Specificity> getSpecificity() {
                 if (specificity == null) {
-                    specificity = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary.SampleEnzyme.Specificity>(1);
+                    specificity = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary.SampleEnzyme.Specificity>();
                 }
                 return this.specificity;
             }
@@ -2199,10 +2433,11 @@ public class MsmsPipelineAnalysis {
          *             &lt;complexContent>
          *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
          *                 &lt;attribute name="aminoacid" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
-         *                 &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+         *                 &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
          *                 &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
          *                 &lt;attribute name="variable" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
          *                 &lt;attribute name="peptide_terminus" type="{http://www.w3.org/2001/XMLSchema}string" />
+         *                 &lt;attribute name="protein_terminus" type="{http://www.w3.org/2001/XMLSchema}string" />
          *                 &lt;attribute name="symbol" type="{http://regis-web.systemsbiology.net/pepXML}aa_symbolType" />
          *                 &lt;attribute name="binary" type="{http://www.w3.org/2001/XMLSchema}string" />
          *                 &lt;attribute name="description" type="{http://www.w3.org/2001/XMLSchema}string" />
@@ -2353,7 +2588,7 @@ public class MsmsPipelineAnalysis {
              */
             public List<MsmsPipelineAnalysis.MsmsRunSummary.SearchSummary.SequenceSearchConstraint> getSequenceSearchConstraint() {
                 if (sequenceSearchConstraint == null) {
-                    sequenceSearchConstraint = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary.SearchSummary.SequenceSearchConstraint>(1);
+                    sequenceSearchConstraint = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary.SearchSummary.SequenceSearchConstraint>();
                 }
                 return this.sequenceSearchConstraint;
             }
@@ -2382,7 +2617,7 @@ public class MsmsPipelineAnalysis {
              */
             public List<MsmsPipelineAnalysis.MsmsRunSummary.SearchSummary.AminoacidModification> getAminoacidModification() {
                 if (aminoacidModification == null) {
-                    aminoacidModification = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary.SearchSummary.AminoacidModification>(1);
+                    aminoacidModification = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary.SearchSummary.AminoacidModification>();
                 }
                 return this.aminoacidModification;
             }
@@ -2411,7 +2646,7 @@ public class MsmsPipelineAnalysis {
              */
             public List<MsmsPipelineAnalysis.MsmsRunSummary.SearchSummary.TerminalModification> getTerminalModification() {
                 if (terminalModification == null) {
-                    terminalModification = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary.SearchSummary.TerminalModification>(1);
+                    terminalModification = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary.SearchSummary.TerminalModification>();
                 }
                 return this.terminalModification;
             }
@@ -2440,7 +2675,7 @@ public class MsmsPipelineAnalysis {
              */
             public List<NameValueType> getParameter() {
                 if (parameter == null) {
-                    parameter = new ArrayList<NameValueType>(1);
+                    parameter = new ArrayList<NameValueType>();
                 }
                 return this.parameter;
             }
@@ -2640,10 +2875,11 @@ public class MsmsPipelineAnalysis {
              *   &lt;complexContent>
              *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
              *       &lt;attribute name="aminoacid" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
-             *       &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+             *       &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
              *       &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
              *       &lt;attribute name="variable" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
              *       &lt;attribute name="peptide_terminus" type="{http://www.w3.org/2001/XMLSchema}string" />
+             *       &lt;attribute name="protein_terminus" type="{http://www.w3.org/2001/XMLSchema}string" />
              *       &lt;attribute name="symbol" type="{http://regis-web.systemsbiology.net/pepXML}aa_symbolType" />
              *       &lt;attribute name="binary" type="{http://www.w3.org/2001/XMLSchema}string" />
              *       &lt;attribute name="description" type="{http://www.w3.org/2001/XMLSchema}string" />
@@ -2661,13 +2897,15 @@ public class MsmsPipelineAnalysis {
                 @XmlAttribute(name = "aminoacid", required = true)
                 protected String aminoacid;
                 @XmlAttribute(name = "massdiff", required = true)
-                protected String massdiff;
+                protected float massdiff;
                 @XmlAttribute(name = "mass", required = true)
                 protected float mass;
                 @XmlAttribute(name = "variable", required = true)
                 protected String variable;
                 @XmlAttribute(name = "peptide_terminus")
                 protected String peptideTerminus;
+                @XmlAttribute(name = "protein_terminus")
+                protected String proteinTerminus;
                 @XmlAttribute(name = "symbol")
                 protected String symbol;
                 @XmlAttribute(name = "binary")
@@ -2702,24 +2940,16 @@ public class MsmsPipelineAnalysis {
                 /**
                  * Gets the value of the massdiff property.
                  *
-                 * @return
-                 *     possible object is
-                 *     {@link String }
-                 *
                  */
-                public String getMassdiff() {
+                public float getMassdiff() {
                     return massdiff;
                 }
 
                 /**
                  * Sets the value of the massdiff property.
                  *
-                 * @param value
-                 *     allowed object is
-                 *     {@link String }
-                 *
                  */
-                public void setMassdiff(String value) {
+                public void setMassdiff(float value) {
                     this.massdiff = value;
                 }
 
@@ -2785,6 +3015,30 @@ public class MsmsPipelineAnalysis {
                  */
                 public void setPeptideTerminus(String value) {
                     this.peptideTerminus = value;
+                }
+
+                /**
+                 * Gets the value of the proteinTerminus property.
+                 *
+                 * @return
+                 *     possible object is
+                 *     {@link String }
+                 *
+                 */
+                public String getProteinTerminus() {
+                    return proteinTerminus;
+                }
+
+                /**
+                 * Sets the value of the proteinTerminus property.
+                 *
+                 * @param value
+                 *     allowed object is
+                 *     {@link String }
+                 *
+                 */
+                public void setProteinTerminus(String value) {
+                    this.proteinTerminus = value;
                 }
 
                 /**
@@ -3528,39 +3782,38 @@ public class MsmsPipelineAnalysis {
          *                       &lt;complexContent>
          *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
          *                           &lt;sequence>
-         *                             &lt;element name="alternative_protein" maxOccurs="unbounded" minOccurs="0">
-         *                               &lt;complexType>
-         *                                 &lt;complexContent>
-         *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-         *                                     &lt;attribute name="protein" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
-         *                                     &lt;attribute name="protein_descr" type="{http://www.w3.org/2001/XMLSchema}string" />
-         *                                     &lt;attribute name="num_tol_term" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
-         *                                     &lt;attribute name="protein_mw" type="{http://www.w3.org/2001/XMLSchema}double" />
-         *                                     &lt;attribute name="peptide_prev_aa" type="{http://www.w3.org/2001/XMLSchema}string" />
-         *                                     &lt;attribute name="peptide_next_aa" type="{http://www.w3.org/2001/XMLSchema}string" />
-         *                                   &lt;/restriction>
-         *                                 &lt;/complexContent>
-         *                               &lt;/complexType>
-         *                             &lt;/element>
-         *                             &lt;element name="modification_info" minOccurs="0">
+         *                             &lt;element name="alternative_protein" type="{http://regis-web.systemsbiology.net/pepXML}altProteinDataType" maxOccurs="unbounded" minOccurs="0"/>
+         *                             &lt;element name="modification_info" type="{http://regis-web.systemsbiology.net/pepXML}modInfoDataType" minOccurs="0"/>
+         *                             &lt;element name="xlink" minOccurs="0">
          *                               &lt;complexType>
          *                                 &lt;complexContent>
          *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
          *                                     &lt;sequence>
-         *                                       &lt;element name="mod_aminoacid_mass" maxOccurs="unbounded" minOccurs="0">
+         *                                       &lt;element name="linked_peptide" maxOccurs="2" minOccurs="0">
          *                                         &lt;complexType>
          *                                           &lt;complexContent>
          *                                             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-         *                                               &lt;attribute name="position" use="required" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
-         *                                               &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+         *                                               &lt;sequence>
+         *                                                 &lt;element name="alternative_protein" type="{http://regis-web.systemsbiology.net/pepXML}altProteinDataType" maxOccurs="unbounded" minOccurs="0"/>
+         *                                                 &lt;element name="modification_info" type="{http://regis-web.systemsbiology.net/pepXML}modInfoDataType" minOccurs="0"/>
+         *                                                 &lt;element name="xlink_score" type="{http://regis-web.systemsbiology.net/pepXML}nameValueType" maxOccurs="unbounded" minOccurs="0"/>
+         *                                               &lt;/sequence>
+         *                                               &lt;attribute name="peptide" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+         *                                               &lt;attribute name="peptide_prev_aa" type="{http://www.w3.org/2001/XMLSchema}string" />
+         *                                               &lt;attribute name="peptide_next_aa" type="{http://www.w3.org/2001/XMLSchema}string" />
+         *                                               &lt;attribute name="protein" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+         *                                               &lt;attribute name="num_tot_proteins" use="required" type="{http://www.w3.org/2001/XMLSchema}unsignedInt" />
+         *                                               &lt;attribute name="calc_neutral_pep_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+         *                                               &lt;attribute name="complement_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+         *                                               &lt;attribute name="designation" type="{http://www.w3.org/2001/XMLSchema}string" />
          *                                             &lt;/restriction>
          *                                           &lt;/complexContent>
          *                                         &lt;/complexType>
          *                                       &lt;/element>
+         *                                       &lt;element name="xlink_score" type="{http://regis-web.systemsbiology.net/pepXML}nameValueType" maxOccurs="unbounded" minOccurs="0"/>
          *                                     &lt;/sequence>
-         *                                     &lt;attribute name="mod_nterm_mass" type="{http://www.w3.org/2001/XMLSchema}double" />
-         *                                     &lt;attribute name="mod_cterm_mass" type="{http://www.w3.org/2001/XMLSchema}double" />
-         *                                     &lt;attribute name="modified_peptide" type="{http://www.w3.org/2001/XMLSchema}string" />
+         *                                     &lt;attribute name="identifier" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+         *                                     &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
          *                                   &lt;/restriction>
          *                                 &lt;/complexContent>
          *                               &lt;/complexType>
@@ -3571,7 +3824,7 @@ public class MsmsPipelineAnalysis {
          *                                 &lt;complexContent>
          *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
          *                                     &lt;sequence>
-         *                                       &lt;any processContents='lax'/>
+         *                                       &lt;any processContents='lax' maxOccurs="unbounded"/>
          *                                     &lt;/sequence>
          *                                     &lt;attribute name="analysis" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
          *                                     &lt;attribute name="id" type="{http://regis-web.systemsbiology.net/pepXML}positiveInt" default="1" />
@@ -3594,6 +3847,15 @@ public class MsmsPipelineAnalysis {
          *                           &lt;attribute name="num_tol_term" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
          *                           &lt;attribute name="num_missed_cleavages" type="{http://www.w3.org/2001/XMLSchema}integer" />
          *                           &lt;attribute name="num_matched_peptides" type="{http://www.w3.org/2001/XMLSchema}integer" />
+         *                           &lt;attribute name="xlink_type">
+         *                             &lt;simpleType>
+         *                               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+         *                                 &lt;enumeration value="na"/>
+         *                                 &lt;enumeration value="xl"/>
+         *                                 &lt;enumeration value="loop"/>
+         *                               &lt;/restriction>
+         *                             &lt;/simpleType>
+         *                           &lt;/attribute>
          *                           &lt;attribute name="is_rejected" default="0">
          *                             &lt;simpleType>
          *                               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger">
@@ -3617,6 +3879,7 @@ public class MsmsPipelineAnalysis {
          *         &lt;/element>
          *       &lt;/sequence>
          *       &lt;attribute name="spectrum" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+         *       &lt;attribute name="spectrumNativeID" type="{http://www.w3.org/2001/XMLSchema}string" />
          *       &lt;attribute name="start_scan" use="required" type="{http://www.w3.org/2001/XMLSchema}unsignedInt" />
          *       &lt;attribute name="end_scan" use="required" type="{http://www.w3.org/2001/XMLSchema}unsignedInt" />
          *       &lt;attribute name="retention_time_sec" type="{http://www.w3.org/2001/XMLSchema}float" />
@@ -3645,6 +3908,8 @@ public class MsmsPipelineAnalysis {
             protected List<MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult> searchResult;
             @XmlAttribute(name = "spectrum", required = true)
             protected String spectrum;
+            @XmlAttribute(name = "spectrumNativeID")
+            protected String spectrumNativeID;
             @XmlAttribute(name = "start_scan", required = true)
             @XmlSchemaType(name = "unsignedInt")
             protected long startScan;
@@ -3696,7 +3961,7 @@ public class MsmsPipelineAnalysis {
              */
             public List<MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult> getSearchResult() {
                 if (searchResult == null) {
-                    searchResult = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult>(1);
+                    searchResult = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult>();
                 }
                 return this.searchResult;
             }
@@ -3723,6 +3988,30 @@ public class MsmsPipelineAnalysis {
              */
             public void setSpectrum(String value) {
                 this.spectrum = value;
+            }
+
+            /**
+             * Gets the value of the spectrumNativeID property.
+             *
+             * @return
+             *     possible object is
+             *     {@link String }
+             *
+             */
+            public String getSpectrumNativeID() {
+                return spectrumNativeID;
+            }
+
+            /**
+             * Sets the value of the spectrumNativeID property.
+             *
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *
+             */
+            public void setSpectrumNativeID(String value) {
+                this.spectrumNativeID = value;
             }
 
             /**
@@ -3973,39 +4262,38 @@ public class MsmsPipelineAnalysis {
              *             &lt;complexContent>
              *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
              *                 &lt;sequence>
-             *                   &lt;element name="alternative_protein" maxOccurs="unbounded" minOccurs="0">
-             *                     &lt;complexType>
-             *                       &lt;complexContent>
-             *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-             *                           &lt;attribute name="protein" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
-             *                           &lt;attribute name="protein_descr" type="{http://www.w3.org/2001/XMLSchema}string" />
-             *                           &lt;attribute name="num_tol_term" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
-             *                           &lt;attribute name="protein_mw" type="{http://www.w3.org/2001/XMLSchema}double" />
-             *                           &lt;attribute name="peptide_prev_aa" type="{http://www.w3.org/2001/XMLSchema}string" />
-             *                           &lt;attribute name="peptide_next_aa" type="{http://www.w3.org/2001/XMLSchema}string" />
-             *                         &lt;/restriction>
-             *                       &lt;/complexContent>
-             *                     &lt;/complexType>
-             *                   &lt;/element>
-             *                   &lt;element name="modification_info" minOccurs="0">
+             *                   &lt;element name="alternative_protein" type="{http://regis-web.systemsbiology.net/pepXML}altProteinDataType" maxOccurs="unbounded" minOccurs="0"/>
+             *                   &lt;element name="modification_info" type="{http://regis-web.systemsbiology.net/pepXML}modInfoDataType" minOccurs="0"/>
+             *                   &lt;element name="xlink" minOccurs="0">
              *                     &lt;complexType>
              *                       &lt;complexContent>
              *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
              *                           &lt;sequence>
-             *                             &lt;element name="mod_aminoacid_mass" maxOccurs="unbounded" minOccurs="0">
+             *                             &lt;element name="linked_peptide" maxOccurs="2" minOccurs="0">
              *                               &lt;complexType>
              *                                 &lt;complexContent>
              *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-             *                                     &lt;attribute name="position" use="required" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
-             *                                     &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+             *                                     &lt;sequence>
+             *                                       &lt;element name="alternative_protein" type="{http://regis-web.systemsbiology.net/pepXML}altProteinDataType" maxOccurs="unbounded" minOccurs="0"/>
+             *                                       &lt;element name="modification_info" type="{http://regis-web.systemsbiology.net/pepXML}modInfoDataType" minOccurs="0"/>
+             *                                       &lt;element name="xlink_score" type="{http://regis-web.systemsbiology.net/pepXML}nameValueType" maxOccurs="unbounded" minOccurs="0"/>
+             *                                     &lt;/sequence>
+             *                                     &lt;attribute name="peptide" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+             *                                     &lt;attribute name="peptide_prev_aa" type="{http://www.w3.org/2001/XMLSchema}string" />
+             *                                     &lt;attribute name="peptide_next_aa" type="{http://www.w3.org/2001/XMLSchema}string" />
+             *                                     &lt;attribute name="protein" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+             *                                     &lt;attribute name="num_tot_proteins" use="required" type="{http://www.w3.org/2001/XMLSchema}unsignedInt" />
+             *                                     &lt;attribute name="calc_neutral_pep_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+             *                                     &lt;attribute name="complement_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+             *                                     &lt;attribute name="designation" type="{http://www.w3.org/2001/XMLSchema}string" />
              *                                   &lt;/restriction>
              *                                 &lt;/complexContent>
              *                               &lt;/complexType>
              *                             &lt;/element>
+             *                             &lt;element name="xlink_score" type="{http://regis-web.systemsbiology.net/pepXML}nameValueType" maxOccurs="unbounded" minOccurs="0"/>
              *                           &lt;/sequence>
-             *                           &lt;attribute name="mod_nterm_mass" type="{http://www.w3.org/2001/XMLSchema}double" />
-             *                           &lt;attribute name="mod_cterm_mass" type="{http://www.w3.org/2001/XMLSchema}double" />
-             *                           &lt;attribute name="modified_peptide" type="{http://www.w3.org/2001/XMLSchema}string" />
+             *                           &lt;attribute name="identifier" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+             *                           &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
              *                         &lt;/restriction>
              *                       &lt;/complexContent>
              *                     &lt;/complexType>
@@ -4016,7 +4304,7 @@ public class MsmsPipelineAnalysis {
              *                       &lt;complexContent>
              *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
              *                           &lt;sequence>
-             *                             &lt;any processContents='lax'/>
+             *                             &lt;any processContents='lax' maxOccurs="unbounded"/>
              *                           &lt;/sequence>
              *                           &lt;attribute name="analysis" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
              *                           &lt;attribute name="id" type="{http://regis-web.systemsbiology.net/pepXML}positiveInt" default="1" />
@@ -4039,6 +4327,15 @@ public class MsmsPipelineAnalysis {
              *                 &lt;attribute name="num_tol_term" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
              *                 &lt;attribute name="num_missed_cleavages" type="{http://www.w3.org/2001/XMLSchema}integer" />
              *                 &lt;attribute name="num_matched_peptides" type="{http://www.w3.org/2001/XMLSchema}integer" />
+             *                 &lt;attribute name="xlink_type">
+             *                   &lt;simpleType>
+             *                     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+             *                       &lt;enumeration value="na"/>
+             *                       &lt;enumeration value="xl"/>
+             *                       &lt;enumeration value="loop"/>
+             *                     &lt;/restriction>
+             *                   &lt;/simpleType>
+             *                 &lt;/attribute>
              *                 &lt;attribute name="is_rejected" default="0">
              *                   &lt;simpleType>
              *                     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger">
@@ -4098,7 +4395,7 @@ public class MsmsPipelineAnalysis {
                  */
                 public List<MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit> getSearchHit() {
                     if (searchHit == null) {
-                        searchHit = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit>(1);
+                        searchHit = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit>();
                     }
                     return this.searchHit;
                 }
@@ -4142,39 +4439,38 @@ public class MsmsPipelineAnalysis {
                  *   &lt;complexContent>
                  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
                  *       &lt;sequence>
-                 *         &lt;element name="alternative_protein" maxOccurs="unbounded" minOccurs="0">
-                 *           &lt;complexType>
-                 *             &lt;complexContent>
-                 *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-                 *                 &lt;attribute name="protein" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
-                 *                 &lt;attribute name="protein_descr" type="{http://www.w3.org/2001/XMLSchema}string" />
-                 *                 &lt;attribute name="num_tol_term" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
-                 *                 &lt;attribute name="protein_mw" type="{http://www.w3.org/2001/XMLSchema}double" />
-                 *                 &lt;attribute name="peptide_prev_aa" type="{http://www.w3.org/2001/XMLSchema}string" />
-                 *                 &lt;attribute name="peptide_next_aa" type="{http://www.w3.org/2001/XMLSchema}string" />
-                 *               &lt;/restriction>
-                 *             &lt;/complexContent>
-                 *           &lt;/complexType>
-                 *         &lt;/element>
-                 *         &lt;element name="modification_info" minOccurs="0">
+                 *         &lt;element name="alternative_protein" type="{http://regis-web.systemsbiology.net/pepXML}altProteinDataType" maxOccurs="unbounded" minOccurs="0"/>
+                 *         &lt;element name="modification_info" type="{http://regis-web.systemsbiology.net/pepXML}modInfoDataType" minOccurs="0"/>
+                 *         &lt;element name="xlink" minOccurs="0">
                  *           &lt;complexType>
                  *             &lt;complexContent>
                  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
                  *                 &lt;sequence>
-                 *                   &lt;element name="mod_aminoacid_mass" maxOccurs="unbounded" minOccurs="0">
+                 *                   &lt;element name="linked_peptide" maxOccurs="2" minOccurs="0">
                  *                     &lt;complexType>
                  *                       &lt;complexContent>
                  *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-                 *                           &lt;attribute name="position" use="required" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
-                 *                           &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+                 *                           &lt;sequence>
+                 *                             &lt;element name="alternative_protein" type="{http://regis-web.systemsbiology.net/pepXML}altProteinDataType" maxOccurs="unbounded" minOccurs="0"/>
+                 *                             &lt;element name="modification_info" type="{http://regis-web.systemsbiology.net/pepXML}modInfoDataType" minOccurs="0"/>
+                 *                             &lt;element name="xlink_score" type="{http://regis-web.systemsbiology.net/pepXML}nameValueType" maxOccurs="unbounded" minOccurs="0"/>
+                 *                           &lt;/sequence>
+                 *                           &lt;attribute name="peptide" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+                 *                           &lt;attribute name="peptide_prev_aa" type="{http://www.w3.org/2001/XMLSchema}string" />
+                 *                           &lt;attribute name="peptide_next_aa" type="{http://www.w3.org/2001/XMLSchema}string" />
+                 *                           &lt;attribute name="protein" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+                 *                           &lt;attribute name="num_tot_proteins" use="required" type="{http://www.w3.org/2001/XMLSchema}unsignedInt" />
+                 *                           &lt;attribute name="calc_neutral_pep_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+                 *                           &lt;attribute name="complement_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+                 *                           &lt;attribute name="designation" type="{http://www.w3.org/2001/XMLSchema}string" />
                  *                         &lt;/restriction>
                  *                       &lt;/complexContent>
                  *                     &lt;/complexType>
                  *                   &lt;/element>
+                 *                   &lt;element name="xlink_score" type="{http://regis-web.systemsbiology.net/pepXML}nameValueType" maxOccurs="unbounded" minOccurs="0"/>
                  *                 &lt;/sequence>
-                 *                 &lt;attribute name="mod_nterm_mass" type="{http://www.w3.org/2001/XMLSchema}double" />
-                 *                 &lt;attribute name="mod_cterm_mass" type="{http://www.w3.org/2001/XMLSchema}double" />
-                 *                 &lt;attribute name="modified_peptide" type="{http://www.w3.org/2001/XMLSchema}string" />
+                 *                 &lt;attribute name="identifier" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+                 *                 &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
                  *               &lt;/restriction>
                  *             &lt;/complexContent>
                  *           &lt;/complexType>
@@ -4185,7 +4481,7 @@ public class MsmsPipelineAnalysis {
                  *             &lt;complexContent>
                  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
                  *                 &lt;sequence>
-                 *                   &lt;any processContents='lax'/>
+                 *                   &lt;any processContents='lax' maxOccurs="unbounded"/>
                  *                 &lt;/sequence>
                  *                 &lt;attribute name="analysis" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
                  *                 &lt;attribute name="id" type="{http://regis-web.systemsbiology.net/pepXML}positiveInt" default="1" />
@@ -4208,6 +4504,15 @@ public class MsmsPipelineAnalysis {
                  *       &lt;attribute name="num_tol_term" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
                  *       &lt;attribute name="num_missed_cleavages" type="{http://www.w3.org/2001/XMLSchema}integer" />
                  *       &lt;attribute name="num_matched_peptides" type="{http://www.w3.org/2001/XMLSchema}integer" />
+                 *       &lt;attribute name="xlink_type">
+                 *         &lt;simpleType>
+                 *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+                 *             &lt;enumeration value="na"/>
+                 *             &lt;enumeration value="xl"/>
+                 *             &lt;enumeration value="loop"/>
+                 *           &lt;/restriction>
+                 *         &lt;/simpleType>
+                 *       &lt;/attribute>
                  *       &lt;attribute name="is_rejected" default="0">
                  *         &lt;simpleType>
                  *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger">
@@ -4230,6 +4535,7 @@ public class MsmsPipelineAnalysis {
                 @XmlType(name = "", propOrder = {
                     "alternativeProtein",
                     "modificationInfo",
+                    "xlink",
                     "searchScore",
                     "analysisResult",
                     "parameter"
@@ -4237,9 +4543,10 @@ public class MsmsPipelineAnalysis {
                 public static class SearchHit {
 
                     @XmlElement(name = "alternative_protein")
-                    protected List<MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.AlternativeProtein> alternativeProtein;
+                    protected List<AltProteinDataType> alternativeProtein;
                     @XmlElement(name = "modification_info")
-                    protected MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.ModificationInfo modificationInfo;
+                    protected ModInfoDataType modificationInfo;
+                    protected MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.Xlink xlink;
                     @XmlElement(name = "search_score")
                     protected List<NameValueType> searchScore;
                     @XmlElement(name = "analysis_result")
@@ -4282,6 +4589,8 @@ public class MsmsPipelineAnalysis {
                     @XmlJavaTypeAdapter(Adapter1 .class)
                     @XmlSchemaType(name = "integer")
                     protected Integer numMatchedPeptides;
+                    @XmlAttribute(name = "xlink_type")
+                    protected String xlinkType;
                     @XmlAttribute(name = "is_rejected")
                     @XmlJavaTypeAdapter(Adapter1 .class)
                     protected Integer isRejected;
@@ -4310,13 +4619,13 @@ public class MsmsPipelineAnalysis {
                      *
                      * <p>
                      * Objects of the following type(s) are allowed in the list
-                     * {@link MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.AlternativeProtein }
+                     * {@link AltProteinDataType }
                      *
                      *
                      */
-                    public List<MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.AlternativeProtein> getAlternativeProtein() {
+                    public List<AltProteinDataType> getAlternativeProtein() {
                         if (alternativeProtein == null) {
-                            alternativeProtein = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.AlternativeProtein>(1);
+                            alternativeProtein = new ArrayList<AltProteinDataType>();
                         }
                         return this.alternativeProtein;
                     }
@@ -4326,10 +4635,10 @@ public class MsmsPipelineAnalysis {
                      *
                      * @return
                      *     possible object is
-                     *     {@link MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.ModificationInfo }
+                     *     {@link ModInfoDataType }
                      *
                      */
-                    public MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.ModificationInfo getModificationInfo() {
+                    public ModInfoDataType getModificationInfo() {
                         return modificationInfo;
                     }
 
@@ -4338,11 +4647,35 @@ public class MsmsPipelineAnalysis {
                      *
                      * @param value
                      *     allowed object is
-                     *     {@link MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.ModificationInfo }
+                     *     {@link ModInfoDataType }
                      *
                      */
-                    public void setModificationInfo(MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.ModificationInfo value) {
+                    public void setModificationInfo(ModInfoDataType value) {
                         this.modificationInfo = value;
+                    }
+
+                    /**
+                     * Gets the value of the xlink property.
+                     *
+                     * @return
+                     *     possible object is
+                     *     {@link MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.Xlink }
+                     *
+                     */
+                    public MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.Xlink getXlink() {
+                        return xlink;
+                    }
+
+                    /**
+                     * Sets the value of the xlink property.
+                     *
+                     * @param value
+                     *     allowed object is
+                     *     {@link MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.Xlink }
+                     *
+                     */
+                    public void setXlink(MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.Xlink value) {
+                        this.xlink = value;
                     }
 
                     /**
@@ -4369,7 +4702,7 @@ public class MsmsPipelineAnalysis {
                      */
                     public List<NameValueType> getSearchScore() {
                         if (searchScore == null) {
-                            searchScore = new ArrayList<NameValueType>(1);
+                            searchScore = new ArrayList<NameValueType>();
                         }
                         return this.searchScore;
                     }
@@ -4398,7 +4731,7 @@ public class MsmsPipelineAnalysis {
                      */
                     public List<MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.AnalysisResult> getAnalysisResult() {
                         if (analysisResult == null) {
-                            analysisResult = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.AnalysisResult>(1);
+                            analysisResult = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.AnalysisResult>();
                         }
                         return this.analysisResult;
                     }
@@ -4427,7 +4760,7 @@ public class MsmsPipelineAnalysis {
                      */
                     public List<NameValueType> getParameter() {
                         if (parameter == null) {
-                            parameter = new ArrayList<NameValueType>(1);
+                            parameter = new ArrayList<NameValueType>();
                         }
                         return this.parameter;
                     }
@@ -4721,6 +5054,30 @@ public class MsmsPipelineAnalysis {
                     }
 
                     /**
+                     * Gets the value of the xlinkType property.
+                     *
+                     * @return
+                     *     possible object is
+                     *     {@link String }
+                     *
+                     */
+                    public String getXlinkType() {
+                        return xlinkType;
+                    }
+
+                    /**
+                     * Sets the value of the xlinkType property.
+                     *
+                     * @param value
+                     *     allowed object is
+                     *     {@link String }
+                     *
+                     */
+                    public void setXlinkType(String value) {
+                        this.xlinkType = value;
+                    }
+
+                    /**
                      * Gets the value of the isRejected property.
                      *
                      * @return
@@ -4830,196 +5187,8 @@ public class MsmsPipelineAnalysis {
                      * &lt;complexType>
                      *   &lt;complexContent>
                      *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-                     *       &lt;attribute name="protein" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
-                     *       &lt;attribute name="protein_descr" type="{http://www.w3.org/2001/XMLSchema}string" />
-                     *       &lt;attribute name="num_tol_term" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
-                     *       &lt;attribute name="protein_mw" type="{http://www.w3.org/2001/XMLSchema}double" />
-                     *       &lt;attribute name="peptide_prev_aa" type="{http://www.w3.org/2001/XMLSchema}string" />
-                     *       &lt;attribute name="peptide_next_aa" type="{http://www.w3.org/2001/XMLSchema}string" />
-                     *     &lt;/restriction>
-                     *   &lt;/complexContent>
-                     * &lt;/complexType>
-                     * </pre>
-                     *
-                     *
-                     */
-                    @XmlAccessorType(XmlAccessType.FIELD)
-                    @XmlType(name = "")
-                    public static class AlternativeProtein {
-
-                        @XmlAttribute(name = "protein", required = true)
-                        protected String protein;
-                        @XmlAttribute(name = "protein_descr")
-                        protected String proteinDescr;
-                        @XmlAttribute(name = "num_tol_term")
-                        @XmlJavaTypeAdapter(Adapter1 .class)
-                        @XmlSchemaType(name = "nonNegativeInteger")
-                        protected Integer numTolTerm;
-                        @XmlAttribute(name = "protein_mw")
-                        protected Double proteinMw;
-                        @XmlAttribute(name = "peptide_prev_aa")
-                        protected String peptidePrevAa;
-                        @XmlAttribute(name = "peptide_next_aa")
-                        protected String peptideNextAa;
-
-                        /**
-                         * Gets the value of the protein property.
-                         *
-                         * @return
-                         *     possible object is
-                         *     {@link String }
-                         *
-                         */
-                        public String getProtein() {
-                            return protein;
-                        }
-
-                        /**
-                         * Sets the value of the protein property.
-                         *
-                         * @param value
-                         *     allowed object is
-                         *     {@link String }
-                         *
-                         */
-                        public void setProtein(String value) {
-                            this.protein = value;
-                        }
-
-                        /**
-                         * Gets the value of the proteinDescr property.
-                         *
-                         * @return
-                         *     possible object is
-                         *     {@link String }
-                         *
-                         */
-                        public String getProteinDescr() {
-                            return proteinDescr;
-                        }
-
-                        /**
-                         * Sets the value of the proteinDescr property.
-                         *
-                         * @param value
-                         *     allowed object is
-                         *     {@link String }
-                         *
-                         */
-                        public void setProteinDescr(String value) {
-                            this.proteinDescr = value;
-                        }
-
-                        /**
-                         * Gets the value of the numTolTerm property.
-                         *
-                         * @return
-                         *     possible object is
-                         *     {@link String }
-                         *
-                         */
-                        public Integer getNumTolTerm() {
-                            return numTolTerm;
-                        }
-
-                        /**
-                         * Sets the value of the numTolTerm property.
-                         *
-                         * @param value
-                         *     allowed object is
-                         *     {@link String }
-                         *
-                         */
-                        public void setNumTolTerm(Integer value) {
-                            this.numTolTerm = value;
-                        }
-
-                        /**
-                         * Gets the value of the proteinMw property.
-                         *
-                         * @return
-                         *     possible object is
-                         *     {@link Double }
-                         *
-                         */
-                        public Double getProteinMw() {
-                            return proteinMw;
-                        }
-
-                        /**
-                         * Sets the value of the proteinMw property.
-                         *
-                         * @param value
-                         *     allowed object is
-                         *     {@link Double }
-                         *
-                         */
-                        public void setProteinMw(Double value) {
-                            this.proteinMw = value;
-                        }
-
-                        /**
-                         * Gets the value of the peptidePrevAa property.
-                         *
-                         * @return
-                         *     possible object is
-                         *     {@link String }
-                         *
-                         */
-                        public String getPeptidePrevAa() {
-                            return peptidePrevAa;
-                        }
-
-                        /**
-                         * Sets the value of the peptidePrevAa property.
-                         *
-                         * @param value
-                         *     allowed object is
-                         *     {@link String }
-                         *
-                         */
-                        public void setPeptidePrevAa(String value) {
-                            this.peptidePrevAa = value;
-                        }
-
-                        /**
-                         * Gets the value of the peptideNextAa property.
-                         *
-                         * @return
-                         *     possible object is
-                         *     {@link String }
-                         *
-                         */
-                        public String getPeptideNextAa() {
-                            return peptideNextAa;
-                        }
-
-                        /**
-                         * Sets the value of the peptideNextAa property.
-                         *
-                         * @param value
-                         *     allowed object is
-                         *     {@link String }
-                         *
-                         */
-                        public void setPeptideNextAa(String value) {
-                            this.peptideNextAa = value;
-                        }
-
-                    }
-
-
-                    /**
-                     * <p>Java class for anonymous complex type.
-                     *
-                     * <p>The following schema fragment specifies the expected content contained within this class.
-                     *
-                     * <pre>
-                     * &lt;complexType>
-                     *   &lt;complexContent>
-                     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
                      *       &lt;sequence>
-                     *         &lt;any processContents='lax'/>
+                     *         &lt;any processContents='lax' maxOccurs="unbounded"/>
                      *       &lt;/sequence>
                      *       &lt;attribute name="analysis" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
                      *       &lt;attribute name="id" type="{http://regis-web.systemsbiology.net/pepXML}positiveInt" default="1" />
@@ -5037,7 +5206,7 @@ public class MsmsPipelineAnalysis {
                     public static class AnalysisResult {
 
                         @XmlAnyElement(lax = true)
-                        protected Object any;
+                        protected List<Object> any;
                         @XmlAttribute(name = "analysis", required = true)
                         protected String analysis;
                         @XmlAttribute(name = "id")
@@ -5046,27 +5215,31 @@ public class MsmsPipelineAnalysis {
                         /**
                          * Gets the value of the any property.
                          *
-                         * @return
-                         *     possible object is
-                         *     {@link Element }
-                         *     {@link Object }
+                         * <p>
+                         * This accessor method returns a reference to the live list,
+                         * not a snapshot. Therefore any modification you make to the
+                         * returned list will be present inside the JAXB object.
+                         * This is why there is not a <CODE>set</CODE> method for the any property.
+                         *
+                         * <p>
+                         * For example, to add a new item, do as follows:
+                         * <pre>
+                         *    getAny().add(newItem);
+                         * </pre>
+                         *
+                         *
+                         * <p>
+                         * Objects of the following type(s) are allowed in the list
+                         * {@link Object }
+                         * {@link Element }
+                         *
                          *
                          */
-                        public Object getAny() {
-                            return any;
-                        }
-
-                        /**
-                         * Sets the value of the any property.
-                         *
-                         * @param value
-                         *     allowed object is
-                         *     {@link Element }
-                         *     {@link Object }
-                         *
-                         */
-                        public void setAny(Object value) {
-                            this.any = value;
+                        public List<Object> getAny() {
+                            if (any == null) {
+                                any = new ArrayList<Object>();
+                            }
+                            return this.any;
                         }
 
                         /**
@@ -5134,20 +5307,31 @@ public class MsmsPipelineAnalysis {
                      *   &lt;complexContent>
                      *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
                      *       &lt;sequence>
-                     *         &lt;element name="mod_aminoacid_mass" maxOccurs="unbounded" minOccurs="0">
+                     *         &lt;element name="linked_peptide" maxOccurs="2" minOccurs="0">
                      *           &lt;complexType>
                      *             &lt;complexContent>
                      *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-                     *                 &lt;attribute name="position" use="required" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
-                     *                 &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+                     *                 &lt;sequence>
+                     *                   &lt;element name="alternative_protein" type="{http://regis-web.systemsbiology.net/pepXML}altProteinDataType" maxOccurs="unbounded" minOccurs="0"/>
+                     *                   &lt;element name="modification_info" type="{http://regis-web.systemsbiology.net/pepXML}modInfoDataType" minOccurs="0"/>
+                     *                   &lt;element name="xlink_score" type="{http://regis-web.systemsbiology.net/pepXML}nameValueType" maxOccurs="unbounded" minOccurs="0"/>
+                     *                 &lt;/sequence>
+                     *                 &lt;attribute name="peptide" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+                     *                 &lt;attribute name="peptide_prev_aa" type="{http://www.w3.org/2001/XMLSchema}string" />
+                     *                 &lt;attribute name="peptide_next_aa" type="{http://www.w3.org/2001/XMLSchema}string" />
+                     *                 &lt;attribute name="protein" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+                     *                 &lt;attribute name="num_tot_proteins" use="required" type="{http://www.w3.org/2001/XMLSchema}unsignedInt" />
+                     *                 &lt;attribute name="calc_neutral_pep_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+                     *                 &lt;attribute name="complement_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+                     *                 &lt;attribute name="designation" type="{http://www.w3.org/2001/XMLSchema}string" />
                      *               &lt;/restriction>
                      *             &lt;/complexContent>
                      *           &lt;/complexType>
                      *         &lt;/element>
+                     *         &lt;element name="xlink_score" type="{http://regis-web.systemsbiology.net/pepXML}nameValueType" maxOccurs="unbounded" minOccurs="0"/>
                      *       &lt;/sequence>
-                     *       &lt;attribute name="mod_nterm_mass" type="{http://www.w3.org/2001/XMLSchema}double" />
-                     *       &lt;attribute name="mod_cterm_mass" type="{http://www.w3.org/2001/XMLSchema}double" />
-                     *       &lt;attribute name="modified_peptide" type="{http://www.w3.org/2001/XMLSchema}string" />
+                     *       &lt;attribute name="identifier" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+                     *       &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
                      *     &lt;/restriction>
                      *   &lt;/complexContent>
                      * &lt;/complexType>
@@ -5157,118 +5341,116 @@ public class MsmsPipelineAnalysis {
                      */
                     @XmlAccessorType(XmlAccessType.FIELD)
                     @XmlType(name = "", propOrder = {
-                        "modAminoacidMass"
+                        "linkedPeptide",
+                        "xlinkScore"
                     })
-                    public static class ModificationInfo {
+                    public static class Xlink {
 
-                        @XmlElement(name = "mod_aminoacid_mass")
-                        protected List<MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.ModificationInfo.ModAminoacidMass> modAminoacidMass;
-                        @XmlAttribute(name = "mod_nterm_mass")
-                        protected Double modNtermMass;
-                        @XmlAttribute(name = "mod_cterm_mass")
-                        protected Double modCtermMass;
-                        @XmlAttribute(name = "modified_peptide")
-                        protected String modifiedPeptide;
+                        @XmlElement(name = "linked_peptide")
+                        protected List<MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.Xlink.LinkedPeptide> linkedPeptide;
+                        @XmlElement(name = "xlink_score")
+                        protected List<NameValueType> xlinkScore;
+                        @XmlAttribute(name = "identifier", required = true)
+                        protected String identifier;
+                        @XmlAttribute(name = "mass", required = true)
+                        protected float mass;
 
                         /**
-                         * Gets the value of the modAminoacidMass property.
+                         * Gets the value of the linkedPeptide property.
                          *
                          * <p>
                          * This accessor method returns a reference to the live list,
                          * not a snapshot. Therefore any modification you make to the
                          * returned list will be present inside the JAXB object.
-                         * This is why there is not a <CODE>set</CODE> method for the modAminoacidMass property.
+                         * This is why there is not a <CODE>set</CODE> method for the linkedPeptide property.
                          *
                          * <p>
                          * For example, to add a new item, do as follows:
                          * <pre>
-                         *    getModAminoacidMass().add(newItem);
+                         *    getLinkedPeptide().add(newItem);
                          * </pre>
                          *
                          *
                          * <p>
                          * Objects of the following type(s) are allowed in the list
-                         * {@link MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.ModificationInfo.ModAminoacidMass }
+                         * {@link MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.Xlink.LinkedPeptide }
                          *
                          *
                          */
-                        public List<MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.ModificationInfo.ModAminoacidMass> getModAminoacidMass() {
-                            if (modAminoacidMass == null) {
-                                modAminoacidMass = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.ModificationInfo.ModAminoacidMass>(1);
+                        public List<MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.Xlink.LinkedPeptide> getLinkedPeptide() {
+                            if (linkedPeptide == null) {
+                                linkedPeptide = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.Xlink.LinkedPeptide>();
                             }
-                            return this.modAminoacidMass;
+                            return this.linkedPeptide;
                         }
 
                         /**
-                         * Gets the value of the modNtermMass property.
+                         * Gets the value of the xlinkScore property.
                          *
-                         * @return
-                         *     possible object is
-                         *     {@link Double }
+                         * <p>
+                         * This accessor method returns a reference to the live list,
+                         * not a snapshot. Therefore any modification you make to the
+                         * returned list will be present inside the JAXB object.
+                         * This is why there is not a <CODE>set</CODE> method for the xlinkScore property.
+                         *
+                         * <p>
+                         * For example, to add a new item, do as follows:
+                         * <pre>
+                         *    getXlinkScore().add(newItem);
+                         * </pre>
+                         *
+                         *
+                         * <p>
+                         * Objects of the following type(s) are allowed in the list
+                         * {@link NameValueType }
+                         *
                          *
                          */
-                        public Double getModNtermMass() {
-                            return modNtermMass;
+                        public List<NameValueType> getXlinkScore() {
+                            if (xlinkScore == null) {
+                                xlinkScore = new ArrayList<NameValueType>();
+                            }
+                            return this.xlinkScore;
                         }
 
                         /**
-                         * Sets the value of the modNtermMass property.
-                         *
-                         * @param value
-                         *     allowed object is
-                         *     {@link Double }
-                         *
-                         */
-                        public void setModNtermMass(Double value) {
-                            this.modNtermMass = value;
-                        }
-
-                        /**
-                         * Gets the value of the modCtermMass property.
-                         *
-                         * @return
-                         *     possible object is
-                         *     {@link Double }
-                         *
-                         */
-                        public Double getModCtermMass() {
-                            return modCtermMass;
-                        }
-
-                        /**
-                         * Sets the value of the modCtermMass property.
-                         *
-                         * @param value
-                         *     allowed object is
-                         *     {@link Double }
-                         *
-                         */
-                        public void setModCtermMass(Double value) {
-                            this.modCtermMass = value;
-                        }
-
-                        /**
-                         * Gets the value of the modifiedPeptide property.
+                         * Gets the value of the identifier property.
                          *
                          * @return
                          *     possible object is
                          *     {@link String }
                          *
                          */
-                        public String getModifiedPeptide() {
-                            return modifiedPeptide;
+                        public String getIdentifier() {
+                            return identifier;
                         }
 
                         /**
-                         * Sets the value of the modifiedPeptide property.
+                         * Sets the value of the identifier property.
                          *
                          * @param value
                          *     allowed object is
                          *     {@link String }
                          *
                          */
-                        public void setModifiedPeptide(String value) {
-                            this.modifiedPeptide = value;
+                        public void setIdentifier(String value) {
+                            this.identifier = value;
+                        }
+
+                        /**
+                         * Gets the value of the mass property.
+                         *
+                         */
+                        public float getMass() {
+                            return mass;
+                        }
+
+                        /**
+                         * Sets the value of the mass property.
+                         *
+                         */
+                        public void setMass(float value) {
+                            this.mass = value;
                         }
 
 
@@ -5281,8 +5463,19 @@ public class MsmsPipelineAnalysis {
                          * &lt;complexType>
                          *   &lt;complexContent>
                          *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-                         *       &lt;attribute name="position" use="required" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
-                         *       &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+                         *       &lt;sequence>
+                         *         &lt;element name="alternative_protein" type="{http://regis-web.systemsbiology.net/pepXML}altProteinDataType" maxOccurs="unbounded" minOccurs="0"/>
+                         *         &lt;element name="modification_info" type="{http://regis-web.systemsbiology.net/pepXML}modInfoDataType" minOccurs="0"/>
+                         *         &lt;element name="xlink_score" type="{http://regis-web.systemsbiology.net/pepXML}nameValueType" maxOccurs="unbounded" minOccurs="0"/>
+                         *       &lt;/sequence>
+                         *       &lt;attribute name="peptide" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+                         *       &lt;attribute name="peptide_prev_aa" type="{http://www.w3.org/2001/XMLSchema}string" />
+                         *       &lt;attribute name="peptide_next_aa" type="{http://www.w3.org/2001/XMLSchema}string" />
+                         *       &lt;attribute name="protein" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+                         *       &lt;attribute name="num_tot_proteins" use="required" type="{http://www.w3.org/2001/XMLSchema}unsignedInt" />
+                         *       &lt;attribute name="calc_neutral_pep_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+                         *       &lt;attribute name="complement_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+                         *       &lt;attribute name="designation" type="{http://www.w3.org/2001/XMLSchema}string" />
                          *     &lt;/restriction>
                          *   &lt;/complexContent>
                          * &lt;/complexType>
@@ -5291,54 +5484,285 @@ public class MsmsPipelineAnalysis {
                          *
                          */
                         @XmlAccessorType(XmlAccessType.FIELD)
-                        @XmlType(name = "")
-                        public static class ModAminoacidMass {
+                        @XmlType(name = "", propOrder = {
+                            "alternativeProtein",
+                            "modificationInfo",
+                            "xlinkScore"
+                        })
+                        public static class LinkedPeptide {
 
-                            @XmlAttribute(name = "position", required = true)
-                            @XmlJavaTypeAdapter(Adapter1 .class)
-                            @XmlSchemaType(name = "nonNegativeInteger")
-                            protected Integer position;
-                            @XmlAttribute(name = "mass", required = true)
-                            protected double mass;
+                            @XmlElement(name = "alternative_protein")
+                            protected List<AltProteinDataType> alternativeProtein;
+                            @XmlElement(name = "modification_info")
+                            protected ModInfoDataType modificationInfo;
+                            @XmlElement(name = "xlink_score")
+                            protected List<NameValueType> xlinkScore;
+                            @XmlAttribute(name = "peptide", required = true)
+                            protected String peptide;
+                            @XmlAttribute(name = "peptide_prev_aa")
+                            protected String peptidePrevAa;
+                            @XmlAttribute(name = "peptide_next_aa")
+                            protected String peptideNextAa;
+                            @XmlAttribute(name = "protein", required = true)
+                            protected String protein;
+                            @XmlAttribute(name = "num_tot_proteins", required = true)
+                            @XmlSchemaType(name = "unsignedInt")
+                            protected long numTotProteins;
+                            @XmlAttribute(name = "calc_neutral_pep_mass", required = true)
+                            protected float calcNeutralPepMass;
+                            @XmlAttribute(name = "complement_mass", required = true)
+                            protected float complementMass;
+                            @XmlAttribute(name = "designation")
+                            protected String designation;
 
                             /**
-                             * Gets the value of the position property.
+                             * Gets the value of the alternativeProtein property.
+                             *
+                             * <p>
+                             * This accessor method returns a reference to the live list,
+                             * not a snapshot. Therefore any modification you make to the
+                             * returned list will be present inside the JAXB object.
+                             * This is why there is not a <CODE>set</CODE> method for the alternativeProtein property.
+                             *
+                             * <p>
+                             * For example, to add a new item, do as follows:
+                             * <pre>
+                             *    getAlternativeProtein().add(newItem);
+                             * </pre>
+                             *
+                             *
+                             * <p>
+                             * Objects of the following type(s) are allowed in the list
+                             * {@link AltProteinDataType }
+                             *
+                             *
+                             */
+                            public List<AltProteinDataType> getAlternativeProtein() {
+                                if (alternativeProtein == null) {
+                                    alternativeProtein = new ArrayList<AltProteinDataType>();
+                                }
+                                return this.alternativeProtein;
+                            }
+
+                            /**
+                             * Gets the value of the modificationInfo property.
+                             *
+                             * @return
+                             *     possible object is
+                             *     {@link ModInfoDataType }
+                             *
+                             */
+                            public ModInfoDataType getModificationInfo() {
+                                return modificationInfo;
+                            }
+
+                            /**
+                             * Sets the value of the modificationInfo property.
+                             *
+                             * @param value
+                             *     allowed object is
+                             *     {@link ModInfoDataType }
+                             *
+                             */
+                            public void setModificationInfo(ModInfoDataType value) {
+                                this.modificationInfo = value;
+                            }
+
+                            /**
+                             * Gets the value of the xlinkScore property.
+                             *
+                             * <p>
+                             * This accessor method returns a reference to the live list,
+                             * not a snapshot. Therefore any modification you make to the
+                             * returned list will be present inside the JAXB object.
+                             * This is why there is not a <CODE>set</CODE> method for the xlinkScore property.
+                             *
+                             * <p>
+                             * For example, to add a new item, do as follows:
+                             * <pre>
+                             *    getXlinkScore().add(newItem);
+                             * </pre>
+                             *
+                             *
+                             * <p>
+                             * Objects of the following type(s) are allowed in the list
+                             * {@link NameValueType }
+                             *
+                             *
+                             */
+                            public List<NameValueType> getXlinkScore() {
+                                if (xlinkScore == null) {
+                                    xlinkScore = new ArrayList<NameValueType>();
+                                }
+                                return this.xlinkScore;
+                            }
+
+                            /**
+                             * Gets the value of the peptide property.
                              *
                              * @return
                              *     possible object is
                              *     {@link String }
                              *
                              */
-                            public Integer getPosition() {
-                                return position;
+                            public String getPeptide() {
+                                return peptide;
                             }
 
                             /**
-                             * Sets the value of the position property.
+                             * Sets the value of the peptide property.
                              *
                              * @param value
                              *     allowed object is
                              *     {@link String }
                              *
                              */
-                            public void setPosition(Integer value) {
-                                this.position = value;
+                            public void setPeptide(String value) {
+                                this.peptide = value;
                             }
 
                             /**
-                             * Gets the value of the mass property.
+                             * Gets the value of the peptidePrevAa property.
+                             *
+                             * @return
+                             *     possible object is
+                             *     {@link String }
                              *
                              */
-                            public double getMass() {
-                                return mass;
+                            public String getPeptidePrevAa() {
+                                return peptidePrevAa;
                             }
 
                             /**
-                             * Sets the value of the mass property.
+                             * Sets the value of the peptidePrevAa property.
+                             *
+                             * @param value
+                             *     allowed object is
+                             *     {@link String }
                              *
                              */
-                            public void setMass(double value) {
-                                this.mass = value;
+                            public void setPeptidePrevAa(String value) {
+                                this.peptidePrevAa = value;
+                            }
+
+                            /**
+                             * Gets the value of the peptideNextAa property.
+                             *
+                             * @return
+                             *     possible object is
+                             *     {@link String }
+                             *
+                             */
+                            public String getPeptideNextAa() {
+                                return peptideNextAa;
+                            }
+
+                            /**
+                             * Sets the value of the peptideNextAa property.
+                             *
+                             * @param value
+                             *     allowed object is
+                             *     {@link String }
+                             *
+                             */
+                            public void setPeptideNextAa(String value) {
+                                this.peptideNextAa = value;
+                            }
+
+                            /**
+                             * Gets the value of the protein property.
+                             *
+                             * @return
+                             *     possible object is
+                             *     {@link String }
+                             *
+                             */
+                            public String getProtein() {
+                                return protein;
+                            }
+
+                            /**
+                             * Sets the value of the protein property.
+                             *
+                             * @param value
+                             *     allowed object is
+                             *     {@link String }
+                             *
+                             */
+                            public void setProtein(String value) {
+                                this.protein = value;
+                            }
+
+                            /**
+                             * Gets the value of the numTotProteins property.
+                             *
+                             */
+                            public long getNumTotProteins() {
+                                return numTotProteins;
+                            }
+
+                            /**
+                             * Sets the value of the numTotProteins property.
+                             *
+                             */
+                            public void setNumTotProteins(long value) {
+                                this.numTotProteins = value;
+                            }
+
+                            /**
+                             * Gets the value of the calcNeutralPepMass property.
+                             *
+                             */
+                            public float getCalcNeutralPepMass() {
+                                return calcNeutralPepMass;
+                            }
+
+                            /**
+                             * Sets the value of the calcNeutralPepMass property.
+                             *
+                             */
+                            public void setCalcNeutralPepMass(float value) {
+                                this.calcNeutralPepMass = value;
+                            }
+
+                            /**
+                             * Gets the value of the complementMass property.
+                             *
+                             */
+                            public float getComplementMass() {
+                                return complementMass;
+                            }
+
+                            /**
+                             * Sets the value of the complementMass property.
+                             *
+                             */
+                            public void setComplementMass(float value) {
+                                this.complementMass = value;
+                            }
+
+                            /**
+                             * Gets the value of the designation property.
+                             *
+                             * @return
+                             *     possible object is
+                             *     {@link String }
+                             *
+                             */
+                            public String getDesignation() {
+                                return designation;
+                            }
+
+                            /**
+                             * Sets the value of the designation property.
+                             *
+                             * @param value
+                             *     allowed object is
+                             *     {@link String }
+                             *
+                             */
+                            public void setDesignation(String value) {
+                                this.designation = value;
                             }
 
                         }

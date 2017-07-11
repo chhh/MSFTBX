@@ -1,11 +1,12 @@
-/* 
- * Copyright 2016 Dmitry Avtonomov.
+
+/*
+ * Copyright (c) 2016 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package umich.ms.fileio.filetypes.pepxml.jaxb.primitive;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -27,9 +29,9 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -46,8 +48,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -75,11 +77,11 @@ public class AsapratioContribution {
 
     /**
      * Gets the value of the asapratioLcLightpeak property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link AsapratioLcLightpeak }
-     *     
+     *
      */
     public AsapratioLcLightpeak getAsapratioLcLightpeak() {
         return asapratioLcLightpeak;
@@ -87,11 +89,11 @@ public class AsapratioContribution {
 
     /**
      * Sets the value of the asapratioLcLightpeak property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link AsapratioLcLightpeak }
-     *     
+     *
      */
     public void setAsapratioLcLightpeak(AsapratioLcLightpeak value) {
         this.asapratioLcLightpeak = value;
@@ -99,11 +101,11 @@ public class AsapratioContribution {
 
     /**
      * Gets the value of the asapratioLcHeavypeak property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link AsapratioLcHeavypeak }
-     *     
+     *
      */
     public AsapratioLcHeavypeak getAsapratioLcHeavypeak() {
         return asapratioLcHeavypeak;
@@ -111,11 +113,11 @@ public class AsapratioContribution {
 
     /**
      * Sets the value of the asapratioLcHeavypeak property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link AsapratioLcHeavypeak }
-     *     
+     *
      */
     public void setAsapratioLcHeavypeak(AsapratioLcHeavypeak value) {
         this.asapratioLcHeavypeak = value;
@@ -123,7 +125,7 @@ public class AsapratioContribution {
 
     /**
      * Gets the value of the ratio property.
-     * 
+     *
      */
     public float getRatio() {
         return ratio;
@@ -131,7 +133,7 @@ public class AsapratioContribution {
 
     /**
      * Sets the value of the ratio property.
-     * 
+     *
      */
     public void setRatio(float value) {
         this.ratio = value;
@@ -139,7 +141,7 @@ public class AsapratioContribution {
 
     /**
      * Gets the value of the error property.
-     * 
+     *
      */
     public float getError() {
         return error;
@@ -147,7 +149,7 @@ public class AsapratioContribution {
 
     /**
      * Sets the value of the error property.
-     * 
+     *
      */
     public void setError(float value) {
         this.error = value;
@@ -155,11 +157,11 @@ public class AsapratioContribution {
 
     /**
      * Gets the value of the charge property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public Integer getCharge() {
         return charge;
@@ -167,11 +169,11 @@ public class AsapratioContribution {
 
     /**
      * Sets the value of the charge property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setCharge(Integer value) {
         this.charge = value;
@@ -179,7 +181,7 @@ public class AsapratioContribution {
 
     /**
      * Gets the value of the use property.
-     * 
+     *
      */
     public short getUse() {
         return use;
@@ -187,7 +189,7 @@ public class AsapratioContribution {
 
     /**
      * Sets the value of the use property.
-     * 
+     *
      */
     public void setUse(short value) {
         this.use = value;
