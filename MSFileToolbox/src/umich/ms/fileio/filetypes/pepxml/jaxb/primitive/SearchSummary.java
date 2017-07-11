@@ -240,7 +240,7 @@ public class SearchSummary {
      */
     public List<SequenceSearchConstraint> getSequenceSearchConstraint() {
         if (sequenceSearchConstraint == null) {
-            sequenceSearchConstraint = new ArrayList<SequenceSearchConstraint>();
+            sequenceSearchConstraint = new ArrayList<SequenceSearchConstraint>(1);
         }
         return this.sequenceSearchConstraint;
     }
@@ -269,7 +269,7 @@ public class SearchSummary {
      */
     public List<AminoacidModification> getAminoacidModification() {
         if (aminoacidModification == null) {
-            aminoacidModification = new ArrayList<AminoacidModification>();
+            aminoacidModification = new ArrayList<AminoacidModification>(1);
         }
         return this.aminoacidModification;
     }
@@ -298,7 +298,7 @@ public class SearchSummary {
      */
     public List<TerminalModification> getTerminalModification() {
         if (terminalModification == null) {
-            terminalModification = new ArrayList<TerminalModification>();
+            terminalModification = new ArrayList<TerminalModification>(1);
         }
         return this.terminalModification;
     }
@@ -327,7 +327,7 @@ public class SearchSummary {
      */
     public List<NameValueType> getParameter() {
         if (parameter == null) {
-            parameter = new ArrayList<NameValueType>();
+            parameter = new ArrayList<NameValueType>(1);
         }
         return this.parameter;
     }

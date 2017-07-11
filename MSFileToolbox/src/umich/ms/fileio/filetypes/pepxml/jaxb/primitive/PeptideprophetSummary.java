@@ -210,7 +210,7 @@ public class PeptideprophetSummary {
      */
     public List<InputFileType> getInputfile() {
         if (inputfile == null) {
-            inputfile = new ArrayList<InputFileType>();
+            inputfile = new ArrayList<InputFileType>(1);
         }
         return this.inputfile;
     }
@@ -239,7 +239,7 @@ public class PeptideprophetSummary {
      */
     public List<RocErrorDataType> getRocErrorData() {
         if (rocErrorData == null) {
-            rocErrorData = new ArrayList<RocErrorDataType>();
+            rocErrorData = new ArrayList<RocErrorDataType>(1);
         }
         return this.rocErrorData;
     }
@@ -268,7 +268,7 @@ public class PeptideprophetSummary {
      */
     public List<DistributionPoint> getDistributionPoint() {
         if (distributionPoint == null) {
-            distributionPoint = new ArrayList<DistributionPoint>();
+            distributionPoint = new ArrayList<DistributionPoint>(1);
         }
         return this.distributionPoint;
     }
@@ -297,7 +297,7 @@ public class PeptideprophetSummary {
      */
     public List<MixtureModelling> getMixtureModel() {
         if (mixtureModel == null) {
-            mixtureModel = new ArrayList<MixtureModelling>();
+            mixtureModel = new ArrayList<MixtureModelling>(1);
         }
         return this.mixtureModel;
     }

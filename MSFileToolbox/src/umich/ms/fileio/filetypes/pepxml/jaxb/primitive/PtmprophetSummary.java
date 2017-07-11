@@ -89,7 +89,7 @@ public class PtmprophetSummary {
      */
     public List<InputFileType> getInputfile() {
         if (inputfile == null) {
-            inputfile = new ArrayList<InputFileType>();
+            inputfile = new ArrayList<InputFileType>(1);
         }
         return this.inputfile;
     }
@@ -118,7 +118,7 @@ public class PtmprophetSummary {
      */
     public List<MixtureModelType> getMixturemodel() {
         if (mixturemodel == null) {
-            mixturemodel = new ArrayList<MixtureModelType>();
+            mixturemodel = new ArrayList<MixtureModelType>(1);
         }
         return this.mixturemodel;
     }

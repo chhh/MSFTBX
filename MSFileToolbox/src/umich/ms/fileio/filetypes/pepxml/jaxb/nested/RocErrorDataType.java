@@ -114,7 +114,7 @@ public class RocErrorDataType {
      */
     public List<RocErrorDataType.RocDataPoint> getRocDataPoint() {
         if (rocDataPoint == null) {
-            rocDataPoint = new ArrayList<RocErrorDataType.RocDataPoint>();
+            rocDataPoint = new ArrayList<RocErrorDataType.RocDataPoint>(1);
         }
         return this.rocDataPoint;
     }
@@ -143,7 +143,7 @@ public class RocErrorDataType {
      */
     public List<RocErrorDataType.ErrorPoint> getErrorPoint() {
         if (errorPoint == null) {
-            errorPoint = new ArrayList<RocErrorDataType.ErrorPoint>();
+            errorPoint = new ArrayList<RocErrorDataType.ErrorPoint>(1);
         }
         return this.errorPoint;
     }

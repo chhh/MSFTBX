@@ -102,7 +102,7 @@ public class AltProteinDataType {
      */
     public List<SubInfoDataType> getAminoacidSubstitution() {
         if (aminoacidSubstitution == null) {
-            aminoacidSubstitution = new ArrayList<SubInfoDataType>();
+            aminoacidSubstitution = new ArrayList<SubInfoDataType>(1);
         }
         return this.aminoacidSubstitution;
     }

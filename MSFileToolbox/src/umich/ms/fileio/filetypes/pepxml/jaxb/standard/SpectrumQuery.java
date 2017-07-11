@@ -227,7 +227,7 @@ public class SpectrumQuery {
      */
     public List<SearchResult> getSearchResult() {
         if (searchResult == null) {
-            searchResult = new ArrayList<SearchResult>();
+            searchResult = new ArrayList<SearchResult>(1);
         }
         return this.searchResult;
     }

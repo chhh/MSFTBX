@@ -108,7 +108,7 @@ public class Xlink {
      */
     public List<LinkedPeptide> getLinkedPeptide() {
         if (linkedPeptide == null) {
-            linkedPeptide = new ArrayList<LinkedPeptide>();
+            linkedPeptide = new ArrayList<LinkedPeptide>(1);
         }
         return this.linkedPeptide;
     }
@@ -137,7 +137,7 @@ public class Xlink {
      */
     public List<NameValueType> getXlinkScore() {
         if (xlinkScore == null) {
-            xlinkScore = new ArrayList<NameValueType>();
+            xlinkScore = new ArrayList<NameValueType>(1);
         }
         return this.xlinkScore;
     }

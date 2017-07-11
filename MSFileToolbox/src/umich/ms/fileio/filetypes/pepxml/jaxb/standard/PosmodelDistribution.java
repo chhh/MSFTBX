@@ -81,7 +81,7 @@ public class PosmodelDistribution {
      */
     public List<NameValueType> getParameter() {
         if (parameter == null) {
-            parameter = new ArrayList<NameValueType>();
+            parameter = new ArrayList<NameValueType>(1);
         }
         return this.parameter;
     }

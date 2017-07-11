@@ -105,7 +105,7 @@ public class ModInfoDataType {
      */
     public List<SubInfoDataType> getAminoacidSubstitution() {
         if (aminoacidSubstitution == null) {
-            aminoacidSubstitution = new ArrayList<SubInfoDataType>();
+            aminoacidSubstitution = new ArrayList<SubInfoDataType>(1);
         }
         return this.aminoacidSubstitution;
     }
@@ -134,7 +134,7 @@ public class ModInfoDataType {
      */
     public List<ModInfoDataType.ModAminoacidMass> getModAminoacidMass() {
         if (modAminoacidMass == null) {
-            modAminoacidMass = new ArrayList<ModInfoDataType.ModAminoacidMass>();
+            modAminoacidMass = new ArrayList<ModInfoDataType.ModAminoacidMass>(1);
         }
         return this.modAminoacidMass;
     }

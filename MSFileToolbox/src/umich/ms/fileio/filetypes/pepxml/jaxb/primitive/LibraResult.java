@@ -95,7 +95,7 @@ public class LibraResult {
      */
     public List<Intensity> getIntensity() {
         if (intensity == null) {
-            intensity = new ArrayList<Intensity>();
+            intensity = new ArrayList<Intensity>(1);
         }
         return this.intensity;
     }

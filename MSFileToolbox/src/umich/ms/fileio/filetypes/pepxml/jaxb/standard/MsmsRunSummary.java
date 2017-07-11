@@ -482,7 +482,7 @@ public class MsmsRunSummary {
      */
     public List<SearchSummary> getSearchSummary() {
         if (searchSummary == null) {
-            searchSummary = new ArrayList<SearchSummary>();
+            searchSummary = new ArrayList<SearchSummary>(1);
         }
         return this.searchSummary;
     }
@@ -511,7 +511,7 @@ public class MsmsRunSummary {
      */
     public List<AnalysisTimestamp> getAnalysisTimestamp() {
         if (analysisTimestamp == null) {
-            analysisTimestamp = new ArrayList<AnalysisTimestamp>();
+            analysisTimestamp = new ArrayList<AnalysisTimestamp>(1);
         }
         return this.analysisTimestamp;
     }
@@ -540,7 +540,7 @@ public class MsmsRunSummary {
      */
     public List<SpectrumQuery> getSpectrumQuery() {
         if (spectrumQuery == null) {
-            spectrumQuery = new ArrayList<SpectrumQuery>();
+            spectrumQuery = new ArrayList<SpectrumQuery>(1);
         }
         return this.spectrumQuery;
     }

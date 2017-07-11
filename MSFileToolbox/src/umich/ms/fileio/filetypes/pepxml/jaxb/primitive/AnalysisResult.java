@@ -86,7 +86,7 @@ public class AnalysisResult {
      */
     public List<Object> getAny() {
         if (any == null) {
-            any = new ArrayList<Object>();
+            any = new ArrayList<Object>(1);
         }
         return this.any;
     }

@@ -139,7 +139,7 @@ public class LibraSummary {
      */
     public List<FragmentMasses> getFragmentMasses() {
         if (fragmentMasses == null) {
-            fragmentMasses = new ArrayList<FragmentMasses>();
+            fragmentMasses = new ArrayList<FragmentMasses>(1);
         }
         return this.fragmentMasses;
     }

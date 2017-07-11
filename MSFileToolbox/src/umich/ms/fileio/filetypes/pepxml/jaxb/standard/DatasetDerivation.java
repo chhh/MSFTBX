@@ -96,7 +96,7 @@ public class DatasetDerivation {
      */
     public List<DataFilter> getDataFilter() {
         if (dataFilter == null) {
-            dataFilter = new ArrayList<DataFilter>();
+            dataFilter = new ArrayList<DataFilter>(1);
         }
         return this.dataFilter;
     }

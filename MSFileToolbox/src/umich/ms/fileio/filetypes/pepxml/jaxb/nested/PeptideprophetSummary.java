@@ -213,7 +213,7 @@ public class PeptideprophetSummary {
      */
     public List<InputFileType> getInputfile() {
         if (inputfile == null) {
-            inputfile = new ArrayList<InputFileType>();
+            inputfile = new ArrayList<InputFileType>(1);
         }
         return this.inputfile;
     }
@@ -242,7 +242,7 @@ public class PeptideprophetSummary {
      */
     public List<RocErrorDataType> getRocErrorData() {
         if (rocErrorData == null) {
-            rocErrorData = new ArrayList<RocErrorDataType>();
+            rocErrorData = new ArrayList<RocErrorDataType>(1);
         }
         return this.rocErrorData;
     }
@@ -271,7 +271,7 @@ public class PeptideprophetSummary {
      */
     public List<PeptideprophetSummary.DistributionPoint> getDistributionPoint() {
         if (distributionPoint == null) {
-            distributionPoint = new ArrayList<PeptideprophetSummary.DistributionPoint>();
+            distributionPoint = new ArrayList<PeptideprophetSummary.DistributionPoint>(1);
         }
         return this.distributionPoint;
     }
@@ -300,7 +300,7 @@ public class PeptideprophetSummary {
      */
     public List<PeptideprophetSummary.MixtureModelling> getMixtureModel() {
         if (mixtureModel == null) {
-            mixtureModel = new ArrayList<PeptideprophetSummary.MixtureModelling>();
+            mixtureModel = new ArrayList<PeptideprophetSummary.MixtureModelling>(1);
         }
         return this.mixtureModel;
     }
@@ -1068,7 +1068,7 @@ public class PeptideprophetSummary {
          */
         public List<Object> getMixturemodelDistributionOrMixturemodel() {
             if (mixturemodelDistributionOrMixturemodel == null) {
-                mixturemodelDistributionOrMixturemodel = new ArrayList<Object>();
+                mixturemodelDistributionOrMixturemodel = new ArrayList<Object>(1);
             }
             return this.mixturemodelDistributionOrMixturemodel;
         }
@@ -1273,7 +1273,7 @@ public class PeptideprophetSummary {
              */
             public List<PeptideprophetSummary.MixtureModelling.Mixturemodel.Point> getPoint() {
                 if (point == null) {
-                    point = new ArrayList<PeptideprophetSummary.MixtureModelling.Mixturemodel.Point>();
+                    point = new ArrayList<PeptideprophetSummary.MixtureModelling.Mixturemodel.Point>(1);
                 }
                 return this.point;
             }
@@ -1627,7 +1627,7 @@ public class PeptideprophetSummary {
                  */
                 public List<NameValueType> getParameter() {
                     if (parameter == null) {
-                        parameter = new ArrayList<NameValueType>();
+                        parameter = new ArrayList<NameValueType>(1);
                     }
                     return this.parameter;
                 }
@@ -1714,7 +1714,7 @@ public class PeptideprophetSummary {
                  */
                 public List<NameValueType> getParameter() {
                     if (parameter == null) {
-                        parameter = new ArrayList<NameValueType>();
+                        parameter = new ArrayList<NameValueType>(1);
                     }
                     return this.parameter;
                 }

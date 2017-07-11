@@ -476,7 +476,7 @@ public class MsmsPipelineAnalysis {
      */
     public List<MsmsPipelineAnalysis.AnalysisSummary> getAnalysisSummary() {
         if (analysisSummary == null) {
-            analysisSummary = new ArrayList<MsmsPipelineAnalysis.AnalysisSummary>();
+            analysisSummary = new ArrayList<MsmsPipelineAnalysis.AnalysisSummary>(1);
         }
         return this.analysisSummary;
     }
@@ -529,7 +529,7 @@ public class MsmsPipelineAnalysis {
      */
     public List<MsmsPipelineAnalysis.MsmsRunSummary> getMsmsRunSummary() {
         if (msmsRunSummary == null) {
-            msmsRunSummary = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary>();
+            msmsRunSummary = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary>(1);
         }
         return this.msmsRunSummary;
     }
@@ -668,7 +668,7 @@ public class MsmsPipelineAnalysis {
          */
         public List<NameValueType> getParameter() {
             if (parameter == null) {
-                parameter = new ArrayList<NameValueType>();
+                parameter = new ArrayList<NameValueType>(1);
             }
             return this.parameter;
         }
@@ -816,7 +816,7 @@ public class MsmsPipelineAnalysis {
          */
         public List<MsmsPipelineAnalysis.DatasetDerivation.DataFilter> getDataFilter() {
             if (dataFilter == null) {
-                dataFilter = new ArrayList<MsmsPipelineAnalysis.DatasetDerivation.DataFilter>();
+                dataFilter = new ArrayList<MsmsPipelineAnalysis.DatasetDerivation.DataFilter>(1);
             }
             return this.dataFilter;
         }
@@ -1438,7 +1438,7 @@ public class MsmsPipelineAnalysis {
          */
         public List<MsmsPipelineAnalysis.MsmsRunSummary.SearchSummary> getSearchSummary() {
             if (searchSummary == null) {
-                searchSummary = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary.SearchSummary>();
+                searchSummary = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary.SearchSummary>(1);
             }
             return this.searchSummary;
         }
@@ -1467,7 +1467,7 @@ public class MsmsPipelineAnalysis {
          */
         public List<MsmsPipelineAnalysis.MsmsRunSummary.AnalysisTimestamp> getAnalysisTimestamp() {
             if (analysisTimestamp == null) {
-                analysisTimestamp = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary.AnalysisTimestamp>();
+                analysisTimestamp = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary.AnalysisTimestamp>(1);
             }
             return this.analysisTimestamp;
         }
@@ -1496,7 +1496,7 @@ public class MsmsPipelineAnalysis {
          */
         public List<MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery> getSpectrumQuery() {
             if (spectrumQuery == null) {
-                spectrumQuery = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery>();
+                spectrumQuery = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery>(1);
             }
             return this.spectrumQuery;
         }
@@ -1896,7 +1896,7 @@ public class MsmsPipelineAnalysis {
              */
             public List<NameValueType> getCrossLinkerInfo() {
                 if (crossLinkerInfo == null) {
-                    crossLinkerInfo = new ArrayList<NameValueType>();
+                    crossLinkerInfo = new ArrayList<NameValueType>(1);
                 }
                 return this.crossLinkerInfo;
             }
@@ -2102,7 +2102,7 @@ public class MsmsPipelineAnalysis {
              */
             public List<MsmsPipelineAnalysis.MsmsRunSummary.SampleEnzyme.Specificity> getSpecificity() {
                 if (specificity == null) {
-                    specificity = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary.SampleEnzyme.Specificity>();
+                    specificity = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary.SampleEnzyme.Specificity>(1);
                 }
                 return this.specificity;
             }
@@ -2588,7 +2588,7 @@ public class MsmsPipelineAnalysis {
              */
             public List<MsmsPipelineAnalysis.MsmsRunSummary.SearchSummary.SequenceSearchConstraint> getSequenceSearchConstraint() {
                 if (sequenceSearchConstraint == null) {
-                    sequenceSearchConstraint = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary.SearchSummary.SequenceSearchConstraint>();
+                    sequenceSearchConstraint = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary.SearchSummary.SequenceSearchConstraint>(1);
                 }
                 return this.sequenceSearchConstraint;
             }
@@ -2617,7 +2617,7 @@ public class MsmsPipelineAnalysis {
              */
             public List<MsmsPipelineAnalysis.MsmsRunSummary.SearchSummary.AminoacidModification> getAminoacidModification() {
                 if (aminoacidModification == null) {
-                    aminoacidModification = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary.SearchSummary.AminoacidModification>();
+                    aminoacidModification = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary.SearchSummary.AminoacidModification>(1);
                 }
                 return this.aminoacidModification;
             }
@@ -2646,7 +2646,7 @@ public class MsmsPipelineAnalysis {
              */
             public List<MsmsPipelineAnalysis.MsmsRunSummary.SearchSummary.TerminalModification> getTerminalModification() {
                 if (terminalModification == null) {
-                    terminalModification = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary.SearchSummary.TerminalModification>();
+                    terminalModification = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary.SearchSummary.TerminalModification>(1);
                 }
                 return this.terminalModification;
             }
@@ -2675,7 +2675,7 @@ public class MsmsPipelineAnalysis {
              */
             public List<NameValueType> getParameter() {
                 if (parameter == null) {
-                    parameter = new ArrayList<NameValueType>();
+                    parameter = new ArrayList<NameValueType>(1);
                 }
                 return this.parameter;
             }
@@ -3961,7 +3961,7 @@ public class MsmsPipelineAnalysis {
              */
             public List<MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult> getSearchResult() {
                 if (searchResult == null) {
-                    searchResult = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult>();
+                    searchResult = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult>(1);
                 }
                 return this.searchResult;
             }
@@ -4395,7 +4395,7 @@ public class MsmsPipelineAnalysis {
                  */
                 public List<MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit> getSearchHit() {
                     if (searchHit == null) {
-                        searchHit = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit>();
+                        searchHit = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit>(1);
                     }
                     return this.searchHit;
                 }
@@ -4625,7 +4625,7 @@ public class MsmsPipelineAnalysis {
                      */
                     public List<AltProteinDataType> getAlternativeProtein() {
                         if (alternativeProtein == null) {
-                            alternativeProtein = new ArrayList<AltProteinDataType>();
+                            alternativeProtein = new ArrayList<AltProteinDataType>(1);
                         }
                         return this.alternativeProtein;
                     }
@@ -4702,7 +4702,7 @@ public class MsmsPipelineAnalysis {
                      */
                     public List<NameValueType> getSearchScore() {
                         if (searchScore == null) {
-                            searchScore = new ArrayList<NameValueType>();
+                            searchScore = new ArrayList<NameValueType>(1);
                         }
                         return this.searchScore;
                     }
@@ -4731,7 +4731,7 @@ public class MsmsPipelineAnalysis {
                      */
                     public List<MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.AnalysisResult> getAnalysisResult() {
                         if (analysisResult == null) {
-                            analysisResult = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.AnalysisResult>();
+                            analysisResult = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.AnalysisResult>(1);
                         }
                         return this.analysisResult;
                     }
@@ -4760,7 +4760,7 @@ public class MsmsPipelineAnalysis {
                      */
                     public List<NameValueType> getParameter() {
                         if (parameter == null) {
-                            parameter = new ArrayList<NameValueType>();
+                            parameter = new ArrayList<NameValueType>(1);
                         }
                         return this.parameter;
                     }
@@ -5237,7 +5237,7 @@ public class MsmsPipelineAnalysis {
                          */
                         public List<Object> getAny() {
                             if (any == null) {
-                                any = new ArrayList<Object>();
+                                any = new ArrayList<Object>(1);
                             }
                             return this.any;
                         }
@@ -5379,7 +5379,7 @@ public class MsmsPipelineAnalysis {
                          */
                         public List<MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.Xlink.LinkedPeptide> getLinkedPeptide() {
                             if (linkedPeptide == null) {
-                                linkedPeptide = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.Xlink.LinkedPeptide>();
+                                linkedPeptide = new ArrayList<MsmsPipelineAnalysis.MsmsRunSummary.SpectrumQuery.SearchResult.SearchHit.Xlink.LinkedPeptide>(1);
                             }
                             return this.linkedPeptide;
                         }
@@ -5408,7 +5408,7 @@ public class MsmsPipelineAnalysis {
                          */
                         public List<NameValueType> getXlinkScore() {
                             if (xlinkScore == null) {
-                                xlinkScore = new ArrayList<NameValueType>();
+                                xlinkScore = new ArrayList<NameValueType>(1);
                             }
                             return this.xlinkScore;
                         }
@@ -5539,7 +5539,7 @@ public class MsmsPipelineAnalysis {
                              */
                             public List<AltProteinDataType> getAlternativeProtein() {
                                 if (alternativeProtein == null) {
-                                    alternativeProtein = new ArrayList<AltProteinDataType>();
+                                    alternativeProtein = new ArrayList<AltProteinDataType>(1);
                                 }
                                 return this.alternativeProtein;
                             }
@@ -5592,7 +5592,7 @@ public class MsmsPipelineAnalysis {
                              */
                             public List<NameValueType> getXlinkScore() {
                                 if (xlinkScore == null) {
-                                    xlinkScore = new ArrayList<NameValueType>();
+                                    xlinkScore = new ArrayList<NameValueType>(1);
                                 }
                                 return this.xlinkScore;
                             }

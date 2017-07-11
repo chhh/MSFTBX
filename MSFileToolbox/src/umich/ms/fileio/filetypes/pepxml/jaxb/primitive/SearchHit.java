@@ -224,7 +224,7 @@ public class SearchHit {
      */
     public List<AltProteinDataType> getAlternativeProtein() {
         if (alternativeProtein == null) {
-            alternativeProtein = new ArrayList<AltProteinDataType>();
+            alternativeProtein = new ArrayList<AltProteinDataType>(1);
         }
         return this.alternativeProtein;
     }
@@ -301,7 +301,7 @@ public class SearchHit {
      */
     public List<NameValueType> getSearchScore() {
         if (searchScore == null) {
-            searchScore = new ArrayList<NameValueType>();
+            searchScore = new ArrayList<NameValueType>(1);
         }
         return this.searchScore;
     }
@@ -330,7 +330,7 @@ public class SearchHit {
      */
     public List<AnalysisResult> getAnalysisResult() {
         if (analysisResult == null) {
-            analysisResult = new ArrayList<AnalysisResult>();
+            analysisResult = new ArrayList<AnalysisResult>(1);
         }
         return this.analysisResult;
     }
@@ -359,7 +359,7 @@ public class SearchHit {
      */
     public List<NameValueType> getParameter() {
         if (parameter == null) {
-            parameter = new ArrayList<NameValueType>();
+            parameter = new ArrayList<NameValueType>(1);
         }
         return this.parameter;
     }

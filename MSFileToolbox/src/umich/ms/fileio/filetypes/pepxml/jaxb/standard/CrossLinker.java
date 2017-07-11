@@ -97,7 +97,7 @@ public class CrossLinker {
      */
     public List<NameValueType> getCrossLinkerInfo() {
         if (crossLinkerInfo == null) {
-            crossLinkerInfo = new ArrayList<NameValueType>();
+            crossLinkerInfo = new ArrayList<NameValueType>(1);
         }
         return this.crossLinkerInfo;
     }

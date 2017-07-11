@@ -167,7 +167,7 @@ public class MixtureModelling {
      */
     public List<Object> getMixturemodelDistributionOrMixturemodel() {
         if (mixturemodelDistributionOrMixturemodel == null) {
-            mixturemodelDistributionOrMixturemodel = new ArrayList<Object>();
+            mixturemodelDistributionOrMixturemodel = new ArrayList<Object>(1);
         }
         return this.mixturemodelDistributionOrMixturemodel;
     }

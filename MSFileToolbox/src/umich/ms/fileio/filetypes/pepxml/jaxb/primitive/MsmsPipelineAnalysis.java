@@ -473,7 +473,7 @@ public class MsmsPipelineAnalysis {
      */
     public List<AnalysisSummary> getAnalysisSummary() {
         if (analysisSummary == null) {
-            analysisSummary = new ArrayList<AnalysisSummary>();
+            analysisSummary = new ArrayList<AnalysisSummary>(1);
         }
         return this.analysisSummary;
     }
@@ -526,7 +526,7 @@ public class MsmsPipelineAnalysis {
      */
     public List<MsmsRunSummary> getMsmsRunSummary() {
         if (msmsRunSummary == null) {
-            msmsRunSummary = new ArrayList<MsmsRunSummary>();
+            msmsRunSummary = new ArrayList<MsmsRunSummary>(1);
         }
         return this.msmsRunSummary;
     }

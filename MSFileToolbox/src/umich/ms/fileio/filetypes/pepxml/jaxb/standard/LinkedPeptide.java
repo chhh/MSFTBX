@@ -112,7 +112,7 @@ public class LinkedPeptide {
      */
     public List<AltProteinDataType> getAlternativeProtein() {
         if (alternativeProtein == null) {
-            alternativeProtein = new ArrayList<AltProteinDataType>();
+            alternativeProtein = new ArrayList<AltProteinDataType>(1);
         }
         return this.alternativeProtein;
     }
@@ -165,7 +165,7 @@ public class LinkedPeptide {
      */
     public List<NameValueType> getXlinkScore() {
         if (xlinkScore == null) {
-            xlinkScore = new ArrayList<NameValueType>();
+            xlinkScore = new ArrayList<NameValueType>(1);
         }
         return this.xlinkScore;
     }

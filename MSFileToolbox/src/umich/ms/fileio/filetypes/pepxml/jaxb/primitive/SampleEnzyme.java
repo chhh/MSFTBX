@@ -135,7 +135,7 @@ public class SampleEnzyme {
      */
     public List<Specificity> getSpecificity() {
         if (specificity == null) {
-            specificity = new ArrayList<Specificity>();
+            specificity = new ArrayList<Specificity>(1);
         }
         return this.specificity;
     }

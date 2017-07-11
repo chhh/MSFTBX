@@ -97,7 +97,7 @@ public class IsotopicContributions {
      */
     public List<ContributingChannel> getContributingChannel() {
         if (contributingChannel == null) {
-            contributingChannel = new ArrayList<ContributingChannel>();
+            contributingChannel = new ArrayList<ContributingChannel>(1);
         }
         return this.contributingChannel;
     }

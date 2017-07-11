@@ -174,7 +174,7 @@ public class SearchResult {
      */
     public List<SearchHit> getSearchHit() {
         if (searchHit == null) {
-            searchHit = new ArrayList<SearchHit>();
+            searchHit = new ArrayList<SearchHit>(1);
         }
         return this.searchHit;
     }

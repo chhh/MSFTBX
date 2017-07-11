@@ -97,7 +97,7 @@ public class MixtureModelType {
      */
     public List<MixtureModelType.MixtureModelPoint> getPoint() {
         if (point == null) {
-            point = new ArrayList<MixtureModelType.MixtureModelPoint>();
+            point = new ArrayList<MixtureModelType.MixtureModelPoint>(1);
         }
         return this.point;
     }

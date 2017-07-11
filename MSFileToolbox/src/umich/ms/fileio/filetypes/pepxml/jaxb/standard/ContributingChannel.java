@@ -90,7 +90,7 @@ public class ContributingChannel {
      */
     public List<AffectedChannel> getAffectedChannel() {
         if (affectedChannel == null) {
-            affectedChannel = new ArrayList<AffectedChannel>();
+            affectedChannel = new ArrayList<AffectedChannel>(1);
         }
         return this.affectedChannel;
     }

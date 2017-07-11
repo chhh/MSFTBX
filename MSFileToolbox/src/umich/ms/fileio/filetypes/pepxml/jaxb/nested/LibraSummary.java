@@ -139,7 +139,7 @@ public class LibraSummary {
      */
     public List<LibraSummary.FragmentMasses> getFragmentMasses() {
         if (fragmentMasses == null) {
-            fragmentMasses = new ArrayList<LibraSummary.FragmentMasses>();
+            fragmentMasses = new ArrayList<LibraSummary.FragmentMasses>(1);
         }
         return this.fragmentMasses;
     }
@@ -418,7 +418,7 @@ public class LibraSummary {
          */
         public List<LibraSummary.IsotopicContributions.ContributingChannel> getContributingChannel() {
             if (contributingChannel == null) {
-                contributingChannel = new ArrayList<LibraSummary.IsotopicContributions.ContributingChannel>();
+                contributingChannel = new ArrayList<LibraSummary.IsotopicContributions.ContributingChannel>(1);
             }
             return this.contributingChannel;
         }
@@ -488,7 +488,7 @@ public class LibraSummary {
              */
             public List<LibraSummary.IsotopicContributions.ContributingChannel.AffectedChannel> getAffectedChannel() {
                 if (affectedChannel == null) {
-                    affectedChannel = new ArrayList<LibraSummary.IsotopicContributions.ContributingChannel.AffectedChannel>();
+                    affectedChannel = new ArrayList<LibraSummary.IsotopicContributions.ContributingChannel.AffectedChannel>(1);
                 }
                 return this.affectedChannel;
             }

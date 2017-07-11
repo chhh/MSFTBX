@@ -98,7 +98,7 @@ public class PtmprophetResult {
      */
     public List<ModAminoacidProbability> getModAminoacidProbability() {
         if (modAminoacidProbability == null) {
-            modAminoacidProbability = new ArrayList<ModAminoacidProbability>();
+            modAminoacidProbability = new ArrayList<ModAminoacidProbability>(1);
         }
         return this.modAminoacidProbability;
     }
