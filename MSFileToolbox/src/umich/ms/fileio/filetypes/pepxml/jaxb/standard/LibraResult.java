@@ -108,7 +108,7 @@ public class LibraResult {
      *     {@link Boolean }
      *
      */
-    public Boolean getIsRejected() {
+    public boolean isIsRejected() {
         if (isRejected == null) {
             return false;
         } else {

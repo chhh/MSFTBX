@@ -39,11 +39,11 @@ Execute from `MSFTBX\MSFileToolbox\src\umich\ms\fileio\filetypes\pepxml\resource
 Will overwrite existing java jaxb files without warning.  
 
 * Standard
-  * `"C:\Programs\Java\jdk1.8.0_60\bin\xjc.exe" -no-header -encoding UTF-8 -enableIntrospection -b bindings_pepxml_standard.xml -d "D:\projects\BatMass\MSFTBX\MSFileToolbox\src" -p umich.ms.fileio.filetypes.pepxml.jaxb.standard pepXML_v120-fixed.xsd`
+  * `"C:\Programs\Java\jdk1.8.0_60\bin\xjc.exe" -no-header -encoding UTF-8 -d "D:\projects\BatMass\MSFTBX\MSFileToolbox\src" -b bindings_pepxml_standard.xml -p umich.ms.fileio.filetypes.pepxml.jaxb.standard pepXML_v120-fixed.xsd`
 * Primitive 
-  * `"C:\Programs\Java\jdk1.8.0_60\bin\xjc.exe" -no-header -encoding UTF-8 -b bindings_pepxml_primitive.xml -d "D:\projects\BatMass\MSFTBX\MSFileToolbox\src" -p umich.ms.fileio.filetypes.pepxml.jaxb.primitive pepXML_v120-fixed.xsd`
+  * `"C:\Programs\Java\jdk1.8.0_60\bin\xjc.exe" -no-header -encoding UTF-8 -d "D:\projects\BatMass\MSFTBX\MSFileToolbox\src" -b bindings_pepxml_primitive.xml -p umich.ms.fileio.filetypes.pepxml.jaxb.primitive pepXML_v120-fixed.xsd`
 * Nested 
-  * `"C:\Programs\Java\jdk1.8.0_60\bin\xjc.exe" -no-header -encoding UTF-8 -b bindings_pepxml_nested.xml -d "D:\projects\BatMass\MSFTBX\MSFileToolbox\src" -p umich.ms.fileio.filetypes.pepxml.jaxb.nested pepXML_v120-fixed.xsd`
+  * `"C:\Programs\Java\jdk1.8.0_60\bin\xjc.exe" -no-header -encoding UTF-8 -d "D:\projects\BatMass\MSFTBX\MSFileToolbox\src" -b bindings_pepxml_nested.xml -p umich.ms.fileio.filetypes.pepxml.jaxb.nested pepXML_v120-fixed.xsd`
 * After generation all occurrences of  `new ArrayList<>()` were replaced with `new ArrayList<>(1)` to avoid lots of lists
  of default size, which is 10. As in pepxml there might be tens of thousands of such lists which only hold a single element.
   * Use the following regex in IDEA for replacement (use _Replace in path_). Search pattern `(new ArrayList<.*?>)\(\)`,

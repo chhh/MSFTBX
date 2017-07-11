@@ -123,7 +123,7 @@ public class AnalysisResult {
      *     {@link Long }
      *
      */
-    public Long getId() {
+    public long getId() {
         if (id == null) {
             return  1L;
         } else {

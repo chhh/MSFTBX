@@ -224,7 +224,7 @@ public class SampleEnzyme {
      *     {@link Boolean }
      *
      */
-    public Boolean getIndependent() {
+    public boolean isIndependent() {
         if (independent == null) {
             return true;
         } else {

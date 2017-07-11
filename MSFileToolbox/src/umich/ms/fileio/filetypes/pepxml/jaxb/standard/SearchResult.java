@@ -187,7 +187,7 @@ public class SearchResult {
      *     {@link Long }
      *
      */
-    public Long getSearchId() {
+    public long getSearchId() {
         if (searchId == null) {
             return  1L;
         } else {

@@ -1737,8 +1737,8 @@ public class MsmsPipelineAnalysis {
              *
              * @return
              *     possible object is
-             *     {@link Object }
              *     {@link Element }
+             *     {@link Object }
              *
              */
             public Object getAny() {
@@ -1750,8 +1750,8 @@ public class MsmsPipelineAnalysis {
              *
              * @param value
              *     allowed object is
-             *     {@link Object }
              *     {@link Element }
+             *     {@link Object }
              *
              */
             public void setAny(Object value) {
@@ -5230,8 +5230,8 @@ public class MsmsPipelineAnalysis {
                          *
                          * <p>
                          * Objects of the following type(s) are allowed in the list
-                         * {@link Object }
                          * {@link Element }
+                         * {@link Object }
                          *
                          *
                          */

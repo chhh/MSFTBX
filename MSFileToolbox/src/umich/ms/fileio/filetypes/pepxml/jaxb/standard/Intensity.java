@@ -131,7 +131,7 @@ public class Intensity {
      *     {@link Boolean }
      *
      */
-    public Boolean getReject() {
+    public boolean isReject() {
         if (reject == null) {
             return false;
         } else {

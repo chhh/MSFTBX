@@ -114,7 +114,7 @@ public class Specificity {
      *     {@link String }
      *
      */
-    public Integer getMinSpacing() {
+    public int getMinSpacing() {
         if (minSpacing == null) {
             return new Adapter1().unmarshal("1");
         } else {
