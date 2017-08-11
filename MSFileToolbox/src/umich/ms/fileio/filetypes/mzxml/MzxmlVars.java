@@ -36,7 +36,8 @@ class MzxmlVars {
     int precisionInt;
 
     // vars for Index Building
-    Long offset;
+    Long offsetLo;
+    Long offsetHi;
     Integer length;
 
     /**
@@ -58,7 +59,8 @@ class MzxmlVars {
         precisionMz = 32;
         precisionInt = 32;
 
-        offset = null;
+        offsetLo = null;
+        offsetHi = null;
         length = null;
     }
 }

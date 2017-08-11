@@ -56,10 +56,9 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
 //    private final int INDEX_BUILDER_MIN_READ_SIZE = 1000;
     /** 512 byte overlaps between readers. */
     private final int INDEX_BUILDER_MIN_OVERLAP = 1 << 9;
-//    private final int INDEX_BUILDER_MIN_OVERLAP = 500;
+//    private final int INDEX_BUILDER_MIN_OVERLAP = 512;
     /** 8MB read buffer. */
     private final int INDEX_BUILDER_READ_BUF_SIZE = 1 << 23;
-//    private final int INDEX_BUILDER_READ_BUF_SIZE = 1000000;
     protected transient ObjectPool<XMLStreamReaderImpl> readerPool = instantiateReaderPool();
     // TODO: WARNING: ACHTUNG: remove this field, was here for testing
     public volatile transient long time_reading = 0;
@@ -830,16 +829,10 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
                             }
                             numOpen += result.getStartTagLocs().size();
                             for(E ie : result.getStartTagLocs()) {
-                                if (unfinishedLo.containsKey(ie.getOffsetLength().offset)) {
-                                    int a = 1;
-                                }
                                 unfinishedLo.put(ie.getOffsetLength().offset, ie);
                             }
                             numClose += result.getCloseTagLocs().size();
                             for(E ie : result.getCloseTagLocs()) {
-                                if (unfinishedHi.containsKey(ie.getOffsetLength().offset)) {
-                                    int a = 1;
-                                }
                                 unfinishedHi.put(ie.getOffsetLength().offset, ie);
                             }
                         } else {
@@ -853,20 +846,33 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
                 readBuf1.clear();
             } while (readBuf2.filled());
 
+            // In theory for each unfinished starting element there should be a corresponding
+            // unfinished ending element. But just for the sake of integrity, we'll also use the starting
+            // positions of existing finished scans.
+
+            final TreeMap<Long, E> finishedIndexOffsets = new TreeMap<>();
+            for (Map.Entry<Integer, E> e : idx.getMapByRawNum().entrySet()) {
+                OffsetLength offLen = e.getValue().getOffsetLength();
+                finishedIndexOffsets.put(offLen.offset, e.getValue());
+            }
+
             for (E ie : unfinishedLo.values()) {
                 final OffsetLength ol = ie.getOffsetLength();
                 if (ol.length < 0) {
                     // this is an unfinished element geenrated from a start tag
-                    final Map.Entry<Long, E> nextLo = unfinishedLo.higherEntry(ol.offset);
+
+                    // TODO: Continute here. This is not finished - the unfinishedLo.higherEntry() is not ok!!!
+
+                    final Map.Entry<Long, E> nextFin = finishedIndexOffsets.higherEntry(ol.offset);
                     final Map.Entry<Long, E> nextHi = unfinishedHi.higherEntry(ol.offset);
 
                     OffsetLength ol2;
-                    if (nextLo != null && nextHi != null) {
-                        final OffsetLength offsetLo = nextLo.getValue().getOffsetLength();
+                    if (nextFin != null && nextHi != null) {
+                        final OffsetLength offsetLo = nextFin.getValue().getOffsetLength();
                         final OffsetLength offsetHi = nextHi.getValue().getOffsetLength();
                         ol2 = offsetLo.offset <= offsetHi.offset ? offsetLo : offsetHi;
-                    } else if (nextLo != null) {
-                        ol2 = nextLo.getValue().getOffsetLength();
+                    } else if (nextFin != null) {
+                        ol2 = nextFin.getValue().getOffsetLength();
                     } else if (nextHi != null) {
                         ol2 = nextHi.getValue().getOffsetLength();
                     } else {

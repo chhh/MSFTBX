@@ -121,8 +121,7 @@ public class MZMLIndexBuilder implements IndexBuilder<MZMLIndexElement> {
                         localName = reader.getLocalName();
 
                         if (localName.contentEquals(MZMLMultiSpectraParser.TAG.SPECTRUM.name)) {
-                            final XMLStreamReaderImpl.LocationImpl loc = reader.getLocation();
-                            vars.offsetHi = (long)loc.getCharacterOffset();
+                            vars.offsetHi = reader.getLocation().getTotalCharsRead();
                             addAndFlush(result, info.offsetInFile);
                         }
 
@@ -134,6 +133,7 @@ public class MZMLIndexBuilder implements IndexBuilder<MZMLIndexElement> {
         } finally {
             addAndFlush(result, info.offsetInFile);
 
+            // we need to return the reaer to the pool, if we borrowed it from there
             if (pool != null && reader != null) {
                 pool.returnObject(reader);
             }

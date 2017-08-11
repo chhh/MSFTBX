@@ -27,6 +27,7 @@ import org.apache.commons.pool2.ObjectPool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import umich.ms.fileio.exceptions.FileParsingException;
+import umich.ms.fileio.filetypes.mzml.MZMLIndexElement;
 import umich.ms.fileio.filetypes.xmlbased.IndexBuilder;
 import umich.ms.fileio.filetypes.xmlbased.OffsetLength;
 import umich.ms.logging.LogHelper;
@@ -73,6 +74,7 @@ public class MZXMLIndexBuilder implements IndexBuilder<MZXMLIndexElement> {
             reader.setInput(info.is, StandardCharsets.UTF_8.name());
             LogHelper.setJavolutionLogLevelFatal();
 
+            final XMLStreamReaderImpl.LocationImpl location = reader.getLocation();
             int eventType = XMLStreamConstants.END_DOCUMENT;
             CharArray localName, attr;
             Attributes attrs;
@@ -81,18 +83,16 @@ public class MZXMLIndexBuilder implements IndexBuilder<MZXMLIndexElement> {
                 try {
                     eventType = reader.next();
                 } catch (XMLStreamException e) {
+
                     if (e instanceof XMLUnexpectedEndTagException) {
-                        eventType = XMLStreamConstants.END_ELEMENT;
-                        continue;
-                    }
-                    if (e instanceof XMLUnexpectedEndOfDocumentException) {
+                        // it's ok to have unexpected closing tags
+                        eventType = reader.getEventType();
+                    } else if (e instanceof XMLUnexpectedEndOfDocumentException) {
                         // as we're reading arbitrary chunks of file, we will almost always finish parsing by hitting this condition
-                        if (vars.offset != null) {
-                            addCurIndexElementAndFlushVars(result, info.offsetInFile);
-                        }
-                        return result;
+                        break;
+                    } else {
+                        throw new FileParsingException(e);
                     }
-                    throw new FileParsingException(e);
                 }
 
 
@@ -103,18 +103,18 @@ public class MZXMLIndexBuilder implements IndexBuilder<MZXMLIndexElement> {
                         localName = reader.getLocalName();
                         attrs = reader.getAttributes();
 
-                        if (localName.equals(MZXMLMultiSpectraParser.TAG.SCAN.name)) {
-                            if (vars.offset != null) {
+                        if (localName.contentEquals(MZXMLMultiSpectraParser.TAG.SCAN.name)) {
+                            if (vars.offsetLo != null) {
                                 // this means we've encountered nested Spectrum tags
-                                long lastStartTagPos = reader.getLocation().getLastStartTagPos();
-                                vars.length = (int)(vars.offset - lastStartTagPos);
-                                addCurIndexElementAndFlushVars(result, info.offsetInFile);
+                                long lastStartTagPos = location.getLastStartTagPos();
+                                vars.length = (int)(vars.offsetLo - lastStartTagPos);
+                                addAndFlush(result, info.offsetInFile);
                             }
 
                             //tagScanStart(reader);
+                            vars.offsetLo = location.getLastStartTagPos();
                             try {
                                 vars.scanNumRaw = attrs.getValue(MZXMLMultiSpectraParser.ATTR.SCAN_NUM.name).toInt();
-                                vars.offset = reader.getLocation().getLastStartTagPos();
                             } catch (NumberFormatException e) {
                                 throw new FileParsingException("Malformed scan number while building index", e);
                             }
@@ -128,10 +128,9 @@ public class MZXMLIndexBuilder implements IndexBuilder<MZXMLIndexElement> {
                     case XMLStreamConstants.END_ELEMENT:
                         localName = reader.getLocalName();
 
-                        if (localName.equals(MZXMLMultiSpectraParser.TAG.SCAN.name)) {
-                            final XMLStreamReaderImpl.LocationImpl loc = reader.getLocation();
-                            vars.length = (int)(loc.getCharacterOffset() + loc.getBomLength() - vars.offset);
-                            addCurIndexElementAndFlushVars(result, info.offsetInFile);
+                        if (localName.contentEquals(MZXMLMultiSpectraParser.TAG.SCAN.name)) {
+                            vars.offsetHi = location.getTotalCharsRead();
+                            addAndFlush(result, info.offsetInFile);
                         }
 
                         break;
@@ -139,8 +138,10 @@ public class MZXMLIndexBuilder implements IndexBuilder<MZXMLIndexElement> {
             } while (eventType != XMLStreamConstants.END_DOCUMENT);
 
         } finally {
+            addAndFlush(result, info.offsetInFile);
+
             // we need to return the reaer to the pool, if we borrowed it from there
-            if (pool != null) {
+            if (pool != null && reader != null) {
                 pool.returnObject(reader);
             }
         }
@@ -148,19 +149,53 @@ public class MZXMLIndexBuilder implements IndexBuilder<MZXMLIndexElement> {
         return result;
     }
 
-    private void addCurIndexElementAndFlushVars(IndexBuilder.Result<MZXMLIndexElement> result, long offsetInFile) {
-        if (vars.scanNumRaw == -1 || vars.offset == null) {
-            throw new IllegalStateException("When building index some variables were not set");
+    private void addAndFlush(Result<MZXMLIndexElement> result, long offsetInFile) throws FileParsingException {
+//        if (vars.scanNumRaw == -1 || vars.offsetLo == null) {
+//            throw new IllegalStateException("When building index some variables were not set");
+//        }
+//
+//        int len = vars.length != null ? vars.length : -1;
+//        OffsetLength offsetLength = new OffsetLength(offsetInFile + vars.offset, len);
+//        MZXMLIndexElement idxElem = new MZXMLIndexElement(vars.scanNumRaw, vars.scanNumRaw, offsetLength);
+//        if (len != -1) {
+//            result.addIndexElement(idxElem);
+//        } else {
+//            result.addStartTag(idxElem);
+//        }
+
+        //---------------------------------------------------------------
+
+        if (vars.offsetLo != null) {
+            // start tag was there
+            if (vars.scanNumRaw == -1) {
+                throw new IllegalStateException("When building index raw scan number was not found for offset: " +
+                        offsetInFile + vars.offsetLo);
+            }
+            if (vars.offsetHi != null) {
+                // fully enclosed scan
+                long len = vars.offsetHi - vars.offsetLo;
+                if (len < 0)
+                    throw new FileParsingException("Calculated length was less than zero");
+                if (len > Integer.MAX_VALUE)
+                    throw new FileParsingException("Calculated length was larger than Integer.MAX_VALUE");
+                result.addIndexElement(new MZXMLIndexElement(
+                        vars.scanNumRaw, vars.scanNumRaw, new OffsetLength(offsetInFile + vars.offsetLo, (int)len)));
+
+            } else {
+                // start tag only
+                result.addStartTag(new MZXMLIndexElement(
+                        vars.scanNumRaw, vars.scanNumRaw, new OffsetLength(offsetInFile + vars.offsetLo, -1)));
+            }
+        } else if (vars.offsetHi != null){
+            // end tag only
+            result.addCloseTag(new MZXMLIndexElement(
+                    -1, -1, new OffsetLength(offsetInFile + vars.offsetHi, 0)));
         }
 
-        int len = vars.length != null ? vars.length : -1;
-        OffsetLength offsetLength = new OffsetLength(offsetInFile + vars.offset, len);
-        MZXMLIndexElement idxElem = new MZXMLIndexElement(vars.scanNumRaw, vars.scanNumRaw, offsetLength);
-        if (len != -1) {
-            result.addIndexElement(idxElem);
-        } else {
-            result.addStartTag(idxElem);
-        }
+        vars.reset();
+
+        //---------------------------------------------------------------
+
 
         vars.reset();
     }
