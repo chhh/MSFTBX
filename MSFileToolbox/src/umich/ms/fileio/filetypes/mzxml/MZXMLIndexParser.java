@@ -90,6 +90,7 @@ public class MZXMLIndexParser {
             int readResult = fileHandle.read(bytes); // this string is supposed to be in US-ASCII by convention
 
             this.parseIndexEntries(bytes, scanIndex);
+            validateScanIndex(scanIndex);
 
         } catch (IOException e) {
             throw new FileParsingException(e);
@@ -154,6 +155,23 @@ public class MZXMLIndexParser {
         }
 
         return index;
+    }
+
+    private void validateScanIndex(TreeMap<Integer, Long> map) throws IndexBrokenException, IndexNotFoundException {
+        if (map.size() == 1) { // we didn't read any index entries, it's just our lonely last EndOfScans entry
+            throw new IndexNotFoundException("We found the index list offset, but could not parse any index entries.");
+        }
+        long prevOffset = Long.MIN_VALUE;
+        for (Map.Entry<Integer, Long> e : map.entrySet()) {
+            Integer k = e.getKey();
+            Long v = e.getValue();
+            if (v <= 0)
+                throw new IndexBrokenException(String.format(
+                        "While parsing index found element [%d, %d] with negative offset", k, v));
+            if (v == prevOffset)
+                throw new IndexBrokenException("While parsing index found consecutive elements with the same offset.");
+            prevOffset = v;
+        }
     }
 
     /**
@@ -284,7 +302,7 @@ public class MZXMLIndexParser {
                             // moved to bottom, because this should be less frequent of an event
                             CharArray name = reader.getAttributeValue(null, "name");
                             if (name == null)
-                                throw new IndexBrokenException("mzML file index list did not contain a 'name' attribute for one of its indexes");
+                                throw new IndexBrokenException("mzXML file index list did not contain a 'name' attribute for one of its indexes");
                             if (name.equals(INDEX_NAME)) {
                                 isInsideSpectrumIndex = true;
                             }

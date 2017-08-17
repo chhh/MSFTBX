@@ -94,8 +94,11 @@ public class MZXMLRunHeaderParser extends XmlBasedRunHeaderParser {
                         while (uriPath.startsWith("/")) uriPath = uriPath.substring(1);
 
                         Path path = Paths.get(uriPath);
-                        location = path.getParent().toString();
                         fileName = path.getFileName().toString();
+                        Path parent = path.getParent();
+                        if (parent != null) {
+                            location = toString();
+                        }
                     } catch (IllegalArgumentException e2) {
                         // URI also didn't work, forget it
                     }

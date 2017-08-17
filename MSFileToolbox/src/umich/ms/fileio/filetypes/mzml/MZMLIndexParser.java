@@ -98,10 +98,8 @@ public class MZMLIndexParser {
             int readResult = fileHandle.read(bytes); // this string is supposed to be in US-ASCII by convention
 
             this.parseIndexEntries(bytes, scanIndex);
-            if (scanIndex.size() == 1) { // we didn't read any index entries, it's just our lonely last EndOfScans entry
-                throw new IndexNotFoundException("We found the index list offset, but could not parse any index entries.");
-            }
-            source.close();
+            validateScanIndex(scanIndex);
+
         } catch (IOException e) {
             throw new FileParsingException(e);
         } catch (IndexNotFoundException | IndexBrokenException ex) {
@@ -173,6 +171,23 @@ public class MZMLIndexParser {
         }
 
         return index;
+    }
+
+    private void validateScanIndex(TreeMap<Integer, OffsetId> map) throws IndexBrokenException, IndexNotFoundException {
+        if (map.size() == 1) { // we didn't read any index entries, it's just our lonely last EndOfScans entry
+            throw new IndexNotFoundException("We found the index list offset, but could not parse any index entries.");
+        }
+        long prevOffset = Long.MIN_VALUE;
+        for (Map.Entry<Integer, OffsetId> e : map.entrySet()) {
+            Integer k = e.getKey();
+            OffsetId v = e.getValue();
+            if (v.offset <= 0)
+                throw new IndexBrokenException(String.format(
+                        "While parsing index found element [%d, %d] with negative offset", k, v));
+            if (v.offset == prevOffset)
+                throw new IndexBrokenException("While parsing index found consecutive elements with the same offset.");
+            prevOffset = v.offset;
+        }
     }
 
     /**

@@ -87,8 +87,7 @@ public class MZXMLFile extends AbstractXMLBasedDataSource<MZXMLIndexElement, MZX
     @Override
     public MZXMLIndex parseIndex() throws FileParsingException {
         MZXMLIndexParser parser = new MZXMLIndexParser(this);
-        MZXMLIndex parsed = parser.parse();
-        return parsed;
+        return parser.parse();
     }
 
     @Override
