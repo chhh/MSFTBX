@@ -22,12 +22,17 @@ import java.util.*;
  * @author Dmitry Avtonomov
  */
 public class MsftbxInfo {
-    public static final String version = "1.3.1";
+    public static final String version = "1.4.0";
 
     private static TreeMap<String, List<String>> changelog = new TreeMap<>();
     private static Map<String, List<String>> changelogImmutable = Collections.unmodifiableMap(changelog);
 
     static {
+        String v140 = "v1.4.0";
+        List<String> v140notes = new LinkedList<>();
+        v140notes.add("Fixed regression bug in mzXML header parsing. Original files without parent location were causing NPEs.");
+        changelog.put(v140, v140notes);
+
         String v131 = "v1.3.1";
         List<String> v131notes = new LinkedList<>();
         v131notes.add("PepXML parser updated to pepxml schema v120. Includes PTM Prophet and related changes.");
