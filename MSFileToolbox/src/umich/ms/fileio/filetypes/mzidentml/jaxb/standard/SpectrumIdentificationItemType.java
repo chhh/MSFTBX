@@ -1,11 +1,12 @@
-/* 
- * Copyright 2016 Dmitry Avtonomov.
+
+/*
+ * Copyright (c) 2017 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package umich.ms.fileio.filetypes.mzidentml.jaxb.standard;
 
 import java.util.ArrayList;
@@ -27,36 +29,36 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * An identification of a single (poly)peptide, resulting from querying an input spectra, along with the set of confidence values for that identification.
- * PeptideEvidence elements should be given for all mappings of the corresponding Peptide sequence within protein sequences.
- *
+ * PeptideEvidence elements should be given for all mappings of the corresponding Peptide sequence within protein sequences. 
+ * 
  * <p>Java class for SpectrumIdentificationItemType complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
- * &lt;complexType name="SpectrumIdentificationItemType"&gt;
- *   &lt;complexContent&gt;
- *     &lt;extension base="{http://psidev.info/psi/pi/mzIdentML/1.2}IdentifiableType"&gt;
- *       &lt;sequence&gt;
- *         &lt;element name="PeptideEvidenceRef" type="{http://psidev.info/psi/pi/mzIdentML/1.2}PeptideEvidenceRefType" maxOccurs="unbounded" minOccurs="0"/&gt;
- *         &lt;element name="Fragmentation" type="{http://psidev.info/psi/pi/mzIdentML/1.2}FragmentationType" minOccurs="0"/&gt;
- *         &lt;group ref="{http://psidev.info/psi/pi/mzIdentML/1.2}ParamGroup" maxOccurs="unbounded" minOccurs="0"/&gt;
- *       &lt;/sequence&gt;
- *       &lt;attribute name="chargeState" use="required" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
- *       &lt;attribute name="experimentalMassToCharge" use="required" type="{http://www.w3.org/2001/XMLSchema}double" /&gt;
- *       &lt;attribute name="calculatedMassToCharge" type="{http://www.w3.org/2001/XMLSchema}double" /&gt;
- *       &lt;attribute name="calculatedPI" type="{http://www.w3.org/2001/XMLSchema}float" /&gt;
- *       &lt;attribute name="peptide_ref" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *       &lt;attribute name="rank" use="required" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
- *       &lt;attribute name="passThreshold" use="required" type="{http://www.w3.org/2001/XMLSchema}boolean" /&gt;
- *       &lt;attribute name="massTable_ref" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *       &lt;attribute name="sample_ref" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *     &lt;/extension&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
+ * &lt;complexType name="SpectrumIdentificationItemType">
+ *   &lt;complexContent>
+ *     &lt;extension base="{http://psidev.info/psi/pi/mzIdentML/1.2}IdentifiableType">
+ *       &lt;sequence>
+ *         &lt;element name="PeptideEvidenceRef" type="{http://psidev.info/psi/pi/mzIdentML/1.2}PeptideEvidenceRefType" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="Fragmentation" type="{http://psidev.info/psi/pi/mzIdentML/1.2}FragmentationType" minOccurs="0"/>
+ *         &lt;group ref="{http://psidev.info/psi/pi/mzIdentML/1.2}ParamGroup" maxOccurs="unbounded" minOccurs="0"/>
+ *       &lt;/sequence>
+ *       &lt;attribute name="chargeState" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
+ *       &lt;attribute name="experimentalMassToCharge" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="calculatedMassToCharge" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="calculatedPI" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="peptide_ref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="rank" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
+ *       &lt;attribute name="passThreshold" use="required" type="{http://www.w3.org/2001/XMLSchema}boolean" />
+ *       &lt;attribute name="massTable_ref" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="sample_ref" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *     &lt;/extension>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
  * </pre>
- *
- *
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "SpectrumIdentificationItemType", propOrder = {
@@ -85,7 +87,7 @@ public class SpectrumIdentificationItemType
     protected Double calculatedMassToCharge;
     @XmlAttribute(name = "calculatedPI")
     protected Float calculatedPI;
-    @XmlAttribute(name = "peptide_ref")
+    @XmlAttribute(name = "peptide_ref", required = true)
     protected String peptideRef;
     @XmlAttribute(name = "rank", required = true)
     protected int rank;
@@ -98,40 +100,40 @@ public class SpectrumIdentificationItemType
 
     /**
      * Gets the value of the peptideEvidenceRef property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the peptideEvidenceRef property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getPeptideEvidenceRef().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link PeptideEvidenceRefType }
-     *
-     *
+     * 
+     * 
      */
     public List<PeptideEvidenceRefType> getPeptideEvidenceRef() {
         if (peptideEvidenceRef == null) {
-            peptideEvidenceRef = new ArrayList<PeptideEvidenceRefType>(1);
+            peptideEvidenceRef = new ArrayList<PeptideEvidenceRefType>();
         }
         return this.peptideEvidenceRef;
     }
 
     /**
      * Gets the value of the fragmentation property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link FragmentationType }
-     *
+     *     
      */
     public FragmentationType getFragmentation() {
         return fragmentation;
@@ -139,11 +141,11 @@ public class SpectrumIdentificationItemType
 
     /**
      * Sets the value of the fragmentation property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link FragmentationType }
-     *
+     *     
      */
     public void setFragmentation(FragmentationType value) {
         this.fragmentation = value;
@@ -151,37 +153,37 @@ public class SpectrumIdentificationItemType
 
     /**
      * Scores or attributes associated with the SpectrumIdentificationItem e.g. e-value, p-value, score.Gets the value of the paramGroup property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the paramGroup property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getParamGroup().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link CVParamType }
      * {@link UserParamType }
-     *
-     *
+     * 
+     * 
      */
     public List<AbstractParamType> getParamGroup() {
         if (paramGroup == null) {
-            paramGroup = new ArrayList<AbstractParamType>(1);
+            paramGroup = new ArrayList<AbstractParamType>();
         }
         return this.paramGroup;
     }
 
     /**
      * Gets the value of the chargeState property.
-     *
+     * 
      */
     public int getChargeState() {
         return chargeState;
@@ -189,7 +191,7 @@ public class SpectrumIdentificationItemType
 
     /**
      * Sets the value of the chargeState property.
-     *
+     * 
      */
     public void setChargeState(int value) {
         this.chargeState = value;
@@ -197,7 +199,7 @@ public class SpectrumIdentificationItemType
 
     /**
      * Gets the value of the experimentalMassToCharge property.
-     *
+     * 
      */
     public double getExperimentalMassToCharge() {
         return experimentalMassToCharge;
@@ -205,7 +207,7 @@ public class SpectrumIdentificationItemType
 
     /**
      * Sets the value of the experimentalMassToCharge property.
-     *
+     * 
      */
     public void setExperimentalMassToCharge(double value) {
         this.experimentalMassToCharge = value;
@@ -213,11 +215,11 @@ public class SpectrumIdentificationItemType
 
     /**
      * Gets the value of the calculatedMassToCharge property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link Double }
-     *
+     *     
      */
     public Double getCalculatedMassToCharge() {
         return calculatedMassToCharge;
@@ -225,11 +227,11 @@ public class SpectrumIdentificationItemType
 
     /**
      * Sets the value of the calculatedMassToCharge property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link Double }
-     *
+     *     
      */
     public void setCalculatedMassToCharge(Double value) {
         this.calculatedMassToCharge = value;
@@ -237,11 +239,11 @@ public class SpectrumIdentificationItemType
 
     /**
      * Gets the value of the calculatedPI property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link Float }
-     *
+     *     
      */
     public Float getCalculatedPI() {
         return calculatedPI;
@@ -249,11 +251,11 @@ public class SpectrumIdentificationItemType
 
     /**
      * Sets the value of the calculatedPI property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link Float }
-     *
+     *     
      */
     public void setCalculatedPI(Float value) {
         this.calculatedPI = value;
@@ -261,11 +263,11 @@ public class SpectrumIdentificationItemType
 
     /**
      * Gets the value of the peptideRef property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getPeptideRef() {
         return peptideRef;
@@ -273,11 +275,11 @@ public class SpectrumIdentificationItemType
 
     /**
      * Sets the value of the peptideRef property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setPeptideRef(String value) {
         this.peptideRef = value;
@@ -285,7 +287,7 @@ public class SpectrumIdentificationItemType
 
     /**
      * Gets the value of the rank property.
-     *
+     * 
      */
     public int getRank() {
         return rank;
@@ -293,7 +295,7 @@ public class SpectrumIdentificationItemType
 
     /**
      * Sets the value of the rank property.
-     *
+     * 
      */
     public void setRank(int value) {
         this.rank = value;
@@ -301,7 +303,7 @@ public class SpectrumIdentificationItemType
 
     /**
      * Gets the value of the passThreshold property.
-     *
+     * 
      */
     public boolean isPassThreshold() {
         return passThreshold;
@@ -309,7 +311,7 @@ public class SpectrumIdentificationItemType
 
     /**
      * Sets the value of the passThreshold property.
-     *
+     * 
      */
     public void setPassThreshold(boolean value) {
         this.passThreshold = value;
@@ -317,11 +319,11 @@ public class SpectrumIdentificationItemType
 
     /**
      * Gets the value of the massTableRef property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getMassTableRef() {
         return massTableRef;
@@ -329,11 +331,11 @@ public class SpectrumIdentificationItemType
 
     /**
      * Sets the value of the massTableRef property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setMassTableRef(String value) {
         this.massTableRef = value;
@@ -341,11 +343,11 @@ public class SpectrumIdentificationItemType
 
     /**
      * Gets the value of the sampleRef property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getSampleRef() {
         return sampleRef;
@@ -353,11 +355,11 @@ public class SpectrumIdentificationItemType
 
     /**
      * Sets the value of the sampleRef property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setSampleRef(String value) {
         this.sampleRef = value;

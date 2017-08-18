@@ -1,7 +1,6 @@
-<jaxb:bindings xmlns:xs="http://www.w3.org/2001/XMLSchema"
+<jaxb:bindings version="2.1"
                xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
-               jaxb:version="1.0"
-               xmlns:xjc= "http://java.sun.com/xml/ns/jaxb/xjc"
+               xmlns:xs="http://www.w3.org/2001/XMLSchema"
                jaxb:extensionBindingPrefixes="xjc">
 
     <jaxb:globalBindings localScoping="toplevel" optionalProperty="primitive">
@@ -37,7 +36,7 @@
         <!--<xjc:simple/>-->
     </jaxb:globalBindings>
 
-    <jaxb:bindings schemaLocation="mzIdentML1.2.0-candidate.xsd" node="/xs:schema">
+    <jaxb:bindings schemaLocation="mzIdentML1.2.0.xsd" node="/xs:schema">
 
     </jaxb:bindings>
 

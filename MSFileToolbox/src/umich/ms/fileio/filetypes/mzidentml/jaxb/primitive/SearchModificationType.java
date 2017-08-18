@@ -1,11 +1,12 @@
-/* 
- * Copyright 2016 Dmitry Avtonomov.
+
+/*
+ * Copyright (c) 2017 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package umich.ms.fileio.filetypes.mzidentml.jaxb.primitive;
 
 import java.util.ArrayList;
@@ -25,12 +27,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * Specification of a search modification as parameter for a spectra search. Contains the name of the modification, the mass, the specificity and whether it is a static modification.
- *
+ * Specification of a search modification as parameter for a spectra search. Contains the name of the modification, the mass, the specificity and whether it is a static modification. 
+ * 
  * <p>Java class for SearchModificationType complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType name="SearchModificationType">
  *   &lt;complexContent>
@@ -46,8 +48,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "SearchModificationType", propOrder = {
@@ -69,65 +71,65 @@ public class SearchModificationType {
 
     /**
      * Gets the value of the specificityRules property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the specificityRules property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getSpecificityRules().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link SpecificityRulesType }
-     *
-     *
+     * 
+     * 
      */
     public List<SpecificityRulesType> getSpecificityRules() {
         if (specificityRules == null) {
-            specificityRules = new ArrayList<SpecificityRulesType>(1);
+            specificityRules = new ArrayList<SpecificityRulesType>();
         }
         return this.specificityRules;
     }
 
     /**
      * Gets the value of the cvParam property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the cvParam property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getCvParam().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link CVParamType }
-     *
-     *
+     * 
+     * 
      */
     public List<CVParamType> getCvParam() {
         if (cvParam == null) {
-            cvParam = new ArrayList<CVParamType>(1);
+            cvParam = new ArrayList<CVParamType>();
         }
         return this.cvParam;
     }
 
     /**
      * Gets the value of the fixedMod property.
-     *
+     * 
      */
     public boolean isFixedMod() {
         return fixedMod;
@@ -135,7 +137,7 @@ public class SearchModificationType {
 
     /**
      * Sets the value of the fixedMod property.
-     *
+     * 
      */
     public void setFixedMod(boolean value) {
         this.fixedMod = value;
@@ -143,7 +145,7 @@ public class SearchModificationType {
 
     /**
      * Gets the value of the massDelta property.
-     *
+     * 
      */
     public float getMassDelta() {
         return massDelta;
@@ -151,7 +153,7 @@ public class SearchModificationType {
 
     /**
      * Sets the value of the massDelta property.
-     *
+     * 
      */
     public void setMassDelta(float value) {
         this.massDelta = value;
@@ -159,29 +161,29 @@ public class SearchModificationType {
 
     /**
      * Gets the value of the residues property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the residues property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getResidues().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link String }
-     *
-     *
+     * 
+     * 
      */
     public List<String> getResidues() {
         if (residues == null) {
-            residues = new ArrayList<String>(1);
+            residues = new ArrayList<String>();
         }
         return this.residues;
     }

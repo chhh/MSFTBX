@@ -1,11 +1,12 @@
-/* 
- * Copyright 2016 Dmitry Avtonomov.
+
+/*
+ * Copyright (c) 2017 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package umich.ms.fileio.filetypes.mzidentml.jaxb.primitive;
 
 import java.util.ArrayList;
@@ -27,12 +29,12 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
- * A database for searching mass spectra. Examples include a set of amino acid sequence entries, nucleotide databases (e.g. 6 frame translated) or annotated spectra libraries.
- *
+ * A database for searching mass spectra. Examples include a set of amino acid sequence entries, nucleotide databases (e.g. 6 frame translated) or annotated spectra libraries. 
+ * 
  * <p>Java class for SearchDatabaseType complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType name="SearchDatabaseType">
  *   &lt;complexContent>
@@ -49,8 +51,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "SearchDatabaseType", propOrder = {
@@ -76,11 +78,11 @@ public class SearchDatabaseType
 
     /**
      * Gets the value of the databaseName property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link ParamType }
-     *
+     *     
      */
     public ParamType getDatabaseName() {
         return databaseName;
@@ -88,11 +90,11 @@ public class SearchDatabaseType
 
     /**
      * Sets the value of the databaseName property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link ParamType }
-     *
+     *     
      */
     public void setDatabaseName(ParamType value) {
         this.databaseName = value;
@@ -100,40 +102,40 @@ public class SearchDatabaseType
 
     /**
      * Gets the value of the cvParam property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the cvParam property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getCvParam().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link CVParamType }
-     *
-     *
+     * 
+     * 
      */
     public List<CVParamType> getCvParam() {
         if (cvParam == null) {
-            cvParam = new ArrayList<CVParamType>(1);
+            cvParam = new ArrayList<CVParamType>();
         }
         return this.cvParam;
     }
 
     /**
      * Gets the value of the version property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getVersion() {
         return version;
@@ -141,11 +143,11 @@ public class SearchDatabaseType
 
     /**
      * Sets the value of the version property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setVersion(String value) {
         this.version = value;
@@ -153,11 +155,11 @@ public class SearchDatabaseType
 
     /**
      * Gets the value of the releaseDate property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link XMLGregorianCalendar }
-     *
+     *     
      */
     public XMLGregorianCalendar getReleaseDate() {
         return releaseDate;
@@ -165,11 +167,11 @@ public class SearchDatabaseType
 
     /**
      * Sets the value of the releaseDate property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link XMLGregorianCalendar }
-     *
+     *     
      */
     public void setReleaseDate(XMLGregorianCalendar value) {
         this.releaseDate = value;
@@ -177,7 +179,7 @@ public class SearchDatabaseType
 
     /**
      * Gets the value of the numDatabaseSequences property.
-     *
+     * 
      */
     public long getNumDatabaseSequences() {
         return numDatabaseSequences;
@@ -185,7 +187,7 @@ public class SearchDatabaseType
 
     /**
      * Sets the value of the numDatabaseSequences property.
-     *
+     * 
      */
     public void setNumDatabaseSequences(long value) {
         this.numDatabaseSequences = value;
@@ -193,7 +195,7 @@ public class SearchDatabaseType
 
     /**
      * Gets the value of the numResidues property.
-     *
+     * 
      */
     public long getNumResidues() {
         return numResidues;
@@ -201,7 +203,7 @@ public class SearchDatabaseType
 
     /**
      * Sets the value of the numResidues property.
-     *
+     * 
      */
     public void setNumResidues(long value) {
         this.numResidues = value;

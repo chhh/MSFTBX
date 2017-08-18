@@ -1,11 +1,12 @@
-/* 
- * Copyright 2016 Dmitry Avtonomov.
+
+/*
+ * Copyright (c) 2017 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package umich.ms.fileio.filetypes.mzidentml.jaxb.primitive;
 
 import java.util.ArrayList;
@@ -24,12 +26,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * An array of values for a given type of measure and for a particular ion type, in parallel to the index of ions identified.
- *
+ * An array of values for a given type of measure and for a particular ion type, in parallel to the index of ions identified. 
+ * 
  * <p>Java class for FragmentArrayType complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType name="FragmentArrayType">
  *   &lt;complexContent>
@@ -40,8 +42,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "FragmentArrayType")
@@ -54,40 +56,40 @@ public class FragmentArrayType {
 
     /**
      * Gets the value of the values property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the values property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getValues().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link Float }
-     *
-     *
+     * 
+     * 
      */
     public List<Float> getValues() {
         if (values == null) {
-            values = new ArrayList<Float>(1);
+            values = new ArrayList<Float>();
         }
         return this.values;
     }
 
     /**
      * Gets the value of the measureRef property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getMeasureRef() {
         return measureRef;
@@ -95,11 +97,11 @@ public class FragmentArrayType {
 
     /**
      * Sets the value of the measureRef property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setMeasureRef(String value) {
         this.measureRef = value;
