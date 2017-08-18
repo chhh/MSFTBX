@@ -19,20 +19,12 @@ import umich.ms.fileio.exceptions.FileParsingException;
 import umich.ms.fileio.filetypes.mzidentml.jaxb.standard.MzIdentMLType;
 import umich.ms.fileio.util.jaxb.JaxbUtils;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
-import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
-import javax.xml.transform.stream.StreamSource;
 import java.nio.file.Path;
 
 /**
- * A very simple parser for MzIdentML.
- *
- * Created by Dmitry Avtonomov on 2016-04-13.
+ * A parser for MzIdentML (mzid) files.
  */
 public class MzIdentMLParser {
     private MzIdentMLParser() {} // no instances
