@@ -10,6 +10,10 @@ The acronym stands for `Mass Spectrometry File Toolbox`. This is a library for a
 
 This library is what drives [BatMass](https://github.com/chhh/batmass).
 
+## Citing
+Please cite the following paper if you used [MSFTBX](https://github.com/chhh/msftbx) or [BatMass](https://github.com/chhh/batmass) in your work:  
+[Avtonomov D.M. et al: J. Proteome Res. June 16, 2016. DOI: 10.1021/acs.jproteome.6b00021](https://dx.doi.org/10.1021/acs.jproteome.6b00021)
+
 ## Maven dependency
 ```
 <dependency>
