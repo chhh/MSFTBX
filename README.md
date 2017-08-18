@@ -54,8 +54,7 @@ To get started quickly, follow the tutorial: http://www.batmass.org/tutorial/dat
 - Agilent .cef files parser
 
 ## Binary distribution
-Get jars from [Maven Central](https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.github.chhh%22%20AND%20a%3A%22msftbx%22).  
-Some older pre-compiled binaries can be found [here](https://github.com/chhh/MSFTBX/releases/latest).  
+Get pre-built jars from [Maven Central](https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.github.chhh%22%20AND%20a%3A%22msftbx%22).  
 
 ### Building with Maven (preferred)
 `cd ./MSFileToolbox && mvn clean package`  
@@ -72,3 +71,26 @@ The latter can be used as is, it includes all the needed dependencies.
 - OboParser from [Biojava](http://biojava.org/)'s submodule [Ontology](https://github.com/biojava/biojava/tree/master/biojava-ontology)
 - [Javolution](http://javolution.org/) Core (slightly modified, sources are [here](https://github.com/chhh/javolution-msftbx), this modified dependency is
 published on Maven Central)
+
+
+
+## Notes
+When dealing with mzIdentML files (.mzid) you will encounter `AbstractParamType`.
+In the definition of mzIdentML both `cvParam` and `userParam` inherit from it
+and both `cvParam` and `userParam` can be stored in the same list. Thus, when
+you get such a list, you'll need to cast manually to the concrete type like so:
+```java
+List<AbstractParamType> paramGroup = blabla.getParamGroup();
+for (AbstractParamType param : paramGroup) {
+
+	if (param instanceof CVParamType) {
+		CVParamType p = (CVParamType)param;
+		// do something with cvParam
+
+	} else if (param instanceof UserParamType) {
+		UserParamType p = (UserParamType)param;
+		// do something with userParam
+
+	}
+}
+```

@@ -16,9 +16,10 @@
 
 package umich.ms.fileio.filetypes.mzid;
 
+import org.junit.Assert;
 import org.junit.Test;
 import umich.ms.fileio.filetypes.mzidentml.MzIdentMLParser;
-import umich.ms.fileio.filetypes.mzidentml.jaxb.standard.MzIdentMLType;
+import umich.ms.fileio.filetypes.mzidentml.jaxb.standard.*;
 
 import java.io.IOException;
 import java.net.URI;
@@ -73,7 +74,26 @@ public class MzIdTest {
         for (Path path : paths) {
             MzIdentMLType mzid = MzIdentMLParser.parse(path);
 
-            int a = 1;
+            Assert.assertFalse(String.format("Peptide list was empty for file '%s'", path), mzid.getSequenceCollection().getPeptide().isEmpty());
+            Assert.assertFalse(String.format("Peptide Evidence list was empty for file '%s'", path), mzid.getSequenceCollection().getPeptideEvidence().isEmpty());
+
+
+//            List<PeptideEvidenceType> peptideEvidence = mzid.getSequenceCollection().getPeptideEvidence();
+//            for (PeptideEvidenceType pe : peptideEvidence) {
+//                List<AbstractParamType> paramGroup = pe.getParamGroup();
+//                for (AbstractParamType param : paramGroup) {
+//                    if (param instanceof CVParamType) {
+//                        CVParamType p = (CVParamType)param;
+//                        // do something with cvParam
+//                        int a = 1;
+//                    } else if (param instanceof UserParamType) {
+//                        UserParamType p = (UserParamType)param;
+//                        // do something with userParam
+//                        int a = 1;
+//                    }
+//                }
+//            }
         }
     }
+
 }
