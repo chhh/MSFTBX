@@ -80,7 +80,7 @@ public class DatabaseFiltersType {
      */
     public List<FilterType> getFilter() {
         if (filter == null) {
-            filter = new ArrayList<FilterType>();
+            filter = new ArrayList<FilterType>(1);
         }
         return this.filter;
     }

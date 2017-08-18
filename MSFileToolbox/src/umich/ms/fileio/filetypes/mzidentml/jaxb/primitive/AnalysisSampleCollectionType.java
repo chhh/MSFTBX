@@ -79,7 +79,7 @@ public class AnalysisSampleCollectionType {
      */
     public List<SampleType> getSample() {
         if (sample == null) {
-            sample = new ArrayList<SampleType>();
+            sample = new ArrayList<SampleType>(1);
         }
         return this.sample;
     }

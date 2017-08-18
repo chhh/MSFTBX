@@ -92,7 +92,7 @@ public class SpectrumIdentificationType
      */
     public List<InputSpectraType> getInputSpectra() {
         if (inputSpectra == null) {
-            inputSpectra = new ArrayList<InputSpectraType>();
+            inputSpectra = new ArrayList<InputSpectraType>(1);
         }
         return this.inputSpectra;
     }
@@ -121,7 +121,7 @@ public class SpectrumIdentificationType
      */
     public List<SearchDatabaseRefType> getSearchDatabaseRef() {
         if (searchDatabaseRef == null) {
-            searchDatabaseRef = new ArrayList<SearchDatabaseRefType>();
+            searchDatabaseRef = new ArrayList<SearchDatabaseRefType>(1);
         }
         return this.searchDatabaseRef;
     }

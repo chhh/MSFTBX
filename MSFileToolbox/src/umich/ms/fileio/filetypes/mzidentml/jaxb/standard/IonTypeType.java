@@ -93,7 +93,7 @@ public class IonTypeType {
      */
     public List<FragmentArrayType> getFragmentArray() {
         if (fragmentArray == null) {
-            fragmentArray = new ArrayList<FragmentArrayType>();
+            fragmentArray = new ArrayList<FragmentArrayType>(1);
         }
         return this.fragmentArray;
     }
@@ -122,7 +122,7 @@ public class IonTypeType {
      */
     public List<UserParamType> getUserParam() {
         if (userParam == null) {
-            userParam = new ArrayList<UserParamType>();
+            userParam = new ArrayList<UserParamType>(1);
         }
         return this.userParam;
     }
@@ -151,7 +151,7 @@ public class IonTypeType {
      */
     public List<CVParamType> getCvParam() {
         if (cvParam == null) {
-            cvParam = new ArrayList<CVParamType>();
+            cvParam = new ArrayList<CVParamType>(1);
         }
         return this.cvParam;
     }
@@ -180,7 +180,7 @@ public class IonTypeType {
      */
     public List<String> getIndex() {
         if (index == null) {
-            index = new ArrayList<String>();
+            index = new ArrayList<String>(1);
         }
         return this.index;
     }

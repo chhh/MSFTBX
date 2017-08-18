@@ -83,7 +83,7 @@ public class AnalysisDataType {
      */
     public List<SpectrumIdentificationListType> getSpectrumIdentificationList() {
         if (spectrumIdentificationList == null) {
-            spectrumIdentificationList = new ArrayList<SpectrumIdentificationListType>();
+            spectrumIdentificationList = new ArrayList<SpectrumIdentificationListType>(1);
         }
         return this.spectrumIdentificationList;
     }

@@ -89,7 +89,7 @@ public class ProteinDetectionListType
      */
     public List<ProteinAmbiguityGroupType> getProteinAmbiguityGroup() {
         if (proteinAmbiguityGroup == null) {
-            proteinAmbiguityGroup = new ArrayList<ProteinAmbiguityGroupType>();
+            proteinAmbiguityGroup = new ArrayList<ProteinAmbiguityGroupType>(1);
         }
         return this.proteinAmbiguityGroup;
     }
@@ -119,7 +119,7 @@ public class ProteinDetectionListType
      */
     public List<AbstractParamType> getParamGroup() {
         if (paramGroup == null) {
-            paramGroup = new ArrayList<AbstractParamType>();
+            paramGroup = new ArrayList<AbstractParamType>(1);
         }
         return this.paramGroup;
     }

@@ -217,7 +217,7 @@ public class SpectrumIdentificationProtocolType
      */
     public List<MassTableType> getMassTable() {
         if (massTable == null) {
-            massTable = new ArrayList<MassTableType>();
+            massTable = new ArrayList<MassTableType>(1);
         }
         return this.massTable;
     }

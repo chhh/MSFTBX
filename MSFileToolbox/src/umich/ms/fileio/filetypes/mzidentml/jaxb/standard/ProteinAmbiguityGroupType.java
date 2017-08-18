@@ -90,7 +90,7 @@ public class ProteinAmbiguityGroupType
      */
     public List<ProteinDetectionHypothesisType> getProteinDetectionHypothesis() {
         if (proteinDetectionHypothesis == null) {
-            proteinDetectionHypothesis = new ArrayList<ProteinDetectionHypothesisType>();
+            proteinDetectionHypothesis = new ArrayList<ProteinDetectionHypothesisType>(1);
         }
         return this.proteinDetectionHypothesis;
     }
@@ -120,7 +120,7 @@ public class ProteinAmbiguityGroupType
      */
     public List<AbstractParamType> getParamGroup() {
         if (paramGroup == null) {
-            paramGroup = new ArrayList<AbstractParamType>();
+            paramGroup = new ArrayList<AbstractParamType>(1);
         }
         return this.paramGroup;
     }

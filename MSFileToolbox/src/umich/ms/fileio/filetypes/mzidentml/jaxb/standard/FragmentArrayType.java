@@ -78,7 +78,7 @@ public class FragmentArrayType {
      */
     public List<Float> getValues() {
         if (values == null) {
-            values = new ArrayList<Float>();
+            values = new ArrayList<Float>(1);
         }
         return this.values;
     }

@@ -80,7 +80,7 @@ public class AnalysisSoftwareListType {
      */
     public List<AnalysisSoftwareType> getAnalysisSoftware() {
         if (analysisSoftware == null) {
-            analysisSoftware = new ArrayList<AnalysisSoftwareType>();
+            analysisSoftware = new ArrayList<AnalysisSoftwareType>(1);
         }
         return this.analysisSoftware;
     }

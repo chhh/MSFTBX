@@ -96,7 +96,7 @@ public class ProteinDetectionHypothesisType
      */
     public List<PeptideHypothesisType> getPeptideHypothesis() {
         if (peptideHypothesis == null) {
-            peptideHypothesis = new ArrayList<PeptideHypothesisType>();
+            peptideHypothesis = new ArrayList<PeptideHypothesisType>(1);
         }
         return this.peptideHypothesis;
     }
@@ -126,7 +126,7 @@ public class ProteinDetectionHypothesisType
      */
     public List<AbstractParamType> getParamGroup() {
         if (paramGroup == null) {
-            paramGroup = new ArrayList<AbstractParamType>();
+            paramGroup = new ArrayList<AbstractParamType>(1);
         }
         return this.paramGroup;
     }

@@ -343,7 +343,7 @@ public class MzIdentMLType
      */
     public List<BibliographicReferenceType> getBibliographicReference() {
         if (bibliographicReference == null) {
-            bibliographicReference = new ArrayList<BibliographicReferenceType>();
+            bibliographicReference = new ArrayList<BibliographicReferenceType>(1);
         }
         return this.bibliographicReference;
     }

@@ -81,7 +81,7 @@ public class MeasureType
      */
     public List<CVParamType> getCvParam() {
         if (cvParam == null) {
-            cvParam = new ArrayList<CVParamType>();
+            cvParam = new ArrayList<CVParamType>(1);
         }
         return this.cvParam;
     }

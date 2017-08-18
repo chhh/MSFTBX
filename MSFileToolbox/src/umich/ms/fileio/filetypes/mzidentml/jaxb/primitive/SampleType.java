@@ -93,7 +93,7 @@ public class SampleType
      */
     public List<ContactRoleType> getContactRole() {
         if (contactRole == null) {
-            contactRole = new ArrayList<ContactRoleType>();
+            contactRole = new ArrayList<ContactRoleType>(1);
         }
         return this.contactRole;
     }
@@ -122,7 +122,7 @@ public class SampleType
      */
     public List<SubSampleType> getSubSample() {
         if (subSample == null) {
-            subSample = new ArrayList<SubSampleType>();
+            subSample = new ArrayList<SubSampleType>(1);
         }
         return this.subSample;
     }
@@ -153,7 +153,7 @@ public class SampleType
      */
     public List<AbstractParamType> getParamGroup() {
         if (paramGroup == null) {
-            paramGroup = new ArrayList<AbstractParamType>();
+            paramGroup = new ArrayList<AbstractParamType>(1);
         }
         return this.paramGroup;
     }

@@ -83,7 +83,7 @@ public class PeptideHypothesisType {
      */
     public List<SpectrumIdentificationItemRefType> getSpectrumIdentificationItemRef() {
         if (spectrumIdentificationItemRef == null) {
-            spectrumIdentificationItemRef = new ArrayList<SpectrumIdentificationItemRefType>();
+            spectrumIdentificationItemRef = new ArrayList<SpectrumIdentificationItemRefType>(1);
         }
         return this.spectrumIdentificationItemRef;
     }

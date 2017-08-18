@@ -96,7 +96,7 @@ public class SpectrumIdentificationResultType
      */
     public List<SpectrumIdentificationItemType> getSpectrumIdentificationItem() {
         if (spectrumIdentificationItem == null) {
-            spectrumIdentificationItem = new ArrayList<SpectrumIdentificationItemType>();
+            spectrumIdentificationItem = new ArrayList<SpectrumIdentificationItemType>(1);
         }
         return this.spectrumIdentificationItem;
     }
@@ -126,7 +126,7 @@ public class SpectrumIdentificationResultType
      */
     public List<AbstractParamType> getParamGroup() {
         if (paramGroup == null) {
-            paramGroup = new ArrayList<AbstractParamType>();
+            paramGroup = new ArrayList<AbstractParamType>(1);
         }
         return this.paramGroup;
     }

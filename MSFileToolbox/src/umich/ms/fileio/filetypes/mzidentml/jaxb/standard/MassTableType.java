@@ -97,7 +97,7 @@ public class MassTableType
      */
     public List<ResidueType> getResidue() {
         if (residue == null) {
-            residue = new ArrayList<ResidueType>();
+            residue = new ArrayList<ResidueType>(1);
         }
         return this.residue;
     }
@@ -126,7 +126,7 @@ public class MassTableType
      */
     public List<AmbiguousResidueType> getAmbiguousResidue() {
         if (ambiguousResidue == null) {
-            ambiguousResidue = new ArrayList<AmbiguousResidueType>();
+            ambiguousResidue = new ArrayList<AmbiguousResidueType>(1);
         }
         return this.ambiguousResidue;
     }
@@ -156,7 +156,7 @@ public class MassTableType
      */
     public List<AbstractParamType> getParamGroup() {
         if (paramGroup == null) {
-            paramGroup = new ArrayList<AbstractParamType>();
+            paramGroup = new ArrayList<AbstractParamType>(1);
         }
         return this.paramGroup;
     }
@@ -185,7 +185,7 @@ public class MassTableType
      */
     public List<String> getMsLevel() {
         if (msLevel == null) {
-            msLevel = new ArrayList<String>();
+            msLevel = new ArrayList<String>(1);
         }
         return this.msLevel;
     }

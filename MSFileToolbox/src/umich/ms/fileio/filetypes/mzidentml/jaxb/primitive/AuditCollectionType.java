@@ -85,7 +85,7 @@ public class AuditCollectionType {
      */
     public List<AbstractContactType> getPersonOrOrganization() {
         if (personOrOrganization == null) {
-            personOrOrganization = new ArrayList<AbstractContactType>();
+            personOrOrganization = new ArrayList<AbstractContactType>(1);
         }
         return this.personOrOrganization;
     }

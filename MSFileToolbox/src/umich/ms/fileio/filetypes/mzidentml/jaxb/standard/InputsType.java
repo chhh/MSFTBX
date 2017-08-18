@@ -87,7 +87,7 @@ public class InputsType {
      */
     public List<SourceFileType> getSourceFile() {
         if (sourceFile == null) {
-            sourceFile = new ArrayList<SourceFileType>();
+            sourceFile = new ArrayList<SourceFileType>(1);
         }
         return this.sourceFile;
     }
@@ -116,7 +116,7 @@ public class InputsType {
      */
     public List<SearchDatabaseType> getSearchDatabase() {
         if (searchDatabase == null) {
-            searchDatabase = new ArrayList<SearchDatabaseType>();
+            searchDatabase = new ArrayList<SearchDatabaseType>(1);
         }
         return this.searchDatabase;
     }
@@ -145,7 +145,7 @@ public class InputsType {
      */
     public List<SpectraDataType> getSpectraData() {
         if (spectraData == null) {
-            spectraData = new ArrayList<SpectraDataType>();
+            spectraData = new ArrayList<SpectraDataType>(1);
         }
         return this.spectraData;
     }

@@ -121,7 +121,7 @@ public class PeptideType
      */
     public List<ModificationType> getModification() {
         if (modification == null) {
-            modification = new ArrayList<ModificationType>();
+            modification = new ArrayList<ModificationType>(1);
         }
         return this.modification;
     }
@@ -150,7 +150,7 @@ public class PeptideType
      */
     public List<SubstitutionModificationType> getSubstitutionModification() {
         if (substitutionModification == null) {
-            substitutionModification = new ArrayList<SubstitutionModificationType>();
+            substitutionModification = new ArrayList<SubstitutionModificationType>(1);
         }
         return this.substitutionModification;
     }
@@ -180,7 +180,7 @@ public class PeptideType
      */
     public List<AbstractParamType> getParamGroup() {
         if (paramGroup == null) {
-            paramGroup = new ArrayList<AbstractParamType>();
+            paramGroup = new ArrayList<AbstractParamType>(1);
         }
         return this.paramGroup;
     }

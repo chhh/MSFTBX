@@ -92,7 +92,7 @@ public class ModificationType {
      */
     public List<CVParamType> getCvParam() {
         if (cvParam == null) {
-            cvParam = new ArrayList<CVParamType>();
+            cvParam = new ArrayList<CVParamType>(1);
         }
         return this.cvParam;
     }
@@ -137,7 +137,7 @@ public class ModificationType {
      */
     public List<String> getResidues() {
         if (residues == null) {
-            residues = new ArrayList<String>();
+            residues = new ArrayList<String>(1);
         }
         return this.residues;
     }

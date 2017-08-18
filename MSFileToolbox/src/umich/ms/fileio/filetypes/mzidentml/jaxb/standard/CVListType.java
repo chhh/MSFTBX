@@ -79,7 +79,7 @@ public class CVListType {
      */
     public List<CvType> getCv() {
         if (cv == null) {
-            cv = new ArrayList<CvType>();
+            cv = new ArrayList<CvType>(1);
         }
         return this.cv;
     }

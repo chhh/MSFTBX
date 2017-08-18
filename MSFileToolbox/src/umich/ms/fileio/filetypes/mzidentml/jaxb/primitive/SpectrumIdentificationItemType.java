@@ -122,7 +122,7 @@ public class SpectrumIdentificationItemType
      */
     public List<PeptideEvidenceRefType> getPeptideEvidenceRef() {
         if (peptideEvidenceRef == null) {
-            peptideEvidenceRef = new ArrayList<PeptideEvidenceRefType>();
+            peptideEvidenceRef = new ArrayList<PeptideEvidenceRefType>(1);
         }
         return this.peptideEvidenceRef;
     }
@@ -176,7 +176,7 @@ public class SpectrumIdentificationItemType
      */
     public List<AbstractParamType> getParamGroup() {
         if (paramGroup == null) {
-            paramGroup = new ArrayList<AbstractParamType>();
+            paramGroup = new ArrayList<AbstractParamType>(1);
         }
         return this.paramGroup;
     }

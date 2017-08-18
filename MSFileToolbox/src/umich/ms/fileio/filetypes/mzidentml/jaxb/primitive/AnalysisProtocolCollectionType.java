@@ -83,7 +83,7 @@ public class AnalysisProtocolCollectionType {
      */
     public List<SpectrumIdentificationProtocolType> getSpectrumIdentificationProtocol() {
         if (spectrumIdentificationProtocol == null) {
-            spectrumIdentificationProtocol = new ArrayList<SpectrumIdentificationProtocolType>();
+            spectrumIdentificationProtocol = new ArrayList<SpectrumIdentificationProtocolType>(1);
         }
         return this.spectrumIdentificationProtocol;
     }

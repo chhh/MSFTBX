@@ -83,7 +83,7 @@ public class DatabaseTranslationType {
      */
     public List<TranslationTableType> getTranslationTable() {
         if (translationTable == null) {
-            translationTable = new ArrayList<TranslationTableType>();
+            translationTable = new ArrayList<TranslationTableType>(1);
         }
         return this.translationTable;
     }
@@ -112,7 +112,7 @@ public class DatabaseTranslationType {
      */
     public List<Integer> getFrames() {
         if (frames == null) {
-            frames = new ArrayList<Integer>();
+            frames = new ArrayList<Integer>(1);
         }
         return this.frames;
     }

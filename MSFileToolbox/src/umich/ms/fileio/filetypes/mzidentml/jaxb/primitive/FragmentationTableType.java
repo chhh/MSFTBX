@@ -79,7 +79,7 @@ public class FragmentationTableType {
      */
     public List<MeasureType> getMeasure() {
         if (measure == null) {
-            measure = new ArrayList<MeasureType>();
+            measure = new ArrayList<MeasureType>(1);
         }
         return this.measure;
     }
