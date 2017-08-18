@@ -22,6 +22,7 @@ import umich.ms.datatypes.lcmsrun.LCMSRunInfo;
 import umich.ms.datatypes.scan.StorageStrategy;
 import umich.ms.datatypes.scancollection.IScanCollection;
 import umich.ms.datatypes.scancollection.impl.ScanCollectionDefault;
+import umich.ms.fileio.ResourceUtils;
 
 import java.io.IOException;
 import java.net.URI;
@@ -42,32 +43,11 @@ import static org.junit.Assert.assertEquals;
  */
 public class MZXMLFileTest {
     List<Path> paths;
-
-    private Path getResource(String name) throws Exception {
-        ClassLoader classLoader = getClass().getClassLoader();
-        final URI uri = classLoader.getResource("mzxml").toURI();
-        final Path path = Paths.get(uri).toAbsolutePath();
-        return Paths.get(path.toString(), name);
-    }
+    private static final String RESOURCE_LOCATION = "mzxml";
 
     @org.junit.Before
     public void setUp() throws Exception {
-        try {
-            ClassLoader classLoader = getClass().getClassLoader();
-            final URI uri = classLoader.getResource("mzxml").toURI();
-            final Path path = Paths.get(uri);
-
-            final DirectoryStream<Path> stream = Files.newDirectoryStream(path);
-            paths = new ArrayList<>();
-            for (Path p : stream) {
-                //if (Files.isRegularFile(p) && p.getFileName().toString().equals("DDA-10-scans-no-index.mzXML")) {
-                if (Files.isRegularFile(p)) {
-                    paths.add(p);
-                }
-            }
-        } catch (IOException | URISyntaxException e) {
-            throw new IllegalStateException("Could not set up test env in MZXMLFileTest");
-        }
+        paths = ResourceUtils.getResources(this.getClass(), RESOURCE_LOCATION);
     }
 
     @org.junit.After
@@ -84,7 +64,7 @@ public class MZXMLFileTest {
         long expectedOffset = 1426;
         int expectedLen = 11721;
 
-        final Path path = getResource(file);
+        final Path path = ResourceUtils.getResource(this.getClass(), RESOURCE_LOCATION, file);
         if (!Files.exists(path)) {
             throw new IllegalStateException("Test file " + file + " was probably deleted.");
         }
@@ -105,7 +85,7 @@ public class MZXMLFileTest {
         for (Map.Entry<String, Integer> e : file2scanCount.entrySet()) {
             int expectedCount = e.getValue();
             String file = e.getKey();
-            final Path path = getResource(file);
+            final Path path = ResourceUtils.getResource(this.getClass(), RESOURCE_LOCATION, file);
             if (!Files.exists(path)) {
                 throw new IllegalStateException("Test file " + file + " was probably deleted.");
             }

@@ -24,6 +24,7 @@ import umich.ms.datatypes.scan.StorageStrategy;
 import umich.ms.datatypes.scancollection.IScanCollection;
 import umich.ms.datatypes.scancollection.impl.ScanCollectionDefault;
 import umich.ms.datatypes.spectrum.ISpectrum;
+import umich.ms.fileio.ResourceUtils;
 
 import java.io.IOException;
 import java.net.URI;
@@ -41,36 +42,11 @@ import static org.junit.Assert.*;
  */
 public class MZMLFileTest {
     List<Path> paths;
-
-    private Path getResource(String name) throws Exception {
-        ClassLoader classLoader = getClass().getClassLoader();
-        final URI uri = classLoader.getResource("mzml").toURI();
-        final Path path = Paths.get(uri).toAbsolutePath();
-        return Paths.get(path.toString(), name);
-    }
+    private static final String RESOURCE_LOCATION = "mzml";
 
     @org.junit.Before
     public void setUp() throws Exception {
-        try {
-            ClassLoader classLoader = getClass().getClassLoader();
-            final URI uri = classLoader.getResource("mzml").toURI();
-            final Path path = Paths.get(uri);
-
-            final DirectoryStream<Path> stream = Files.newDirectoryStream(path);
-            paths = new ArrayList<>();
-            for (Path p : stream) {
-                //if (Files.isRegularFile(p) && p.getFileName().toString().equals("RawCentriodCidWithMsLevelInRefParamGroup.mzML")) {
-                //if (Files.isRegularFile(p) && p.getFileName().toString().equals("RawCentriodCidWithMsLevelInRefParamGroup_BOM_formatted.mzML")) {
-                //if (Files.isRegularFile(p) && p.getFileName().toString().equals("tiny.pwiz.idx.mzML")) {
-                //if (Files.isRegularFile(p) && p.getFileName().toString().equals("mzML_with_UV.mzML")) {
-                //if (Files.isRegularFile(p) && p.getFileName().toString().equals("SRM.mzML")) {
-                if (Files.isRegularFile(p)) {
-                    paths.add(p);
-                }
-            }
-        } catch (IOException | URISyntaxException e) {
-            throw new IllegalStateException("Could not set up test env in MZMLFileTest");
-        }
+        paths = ResourceUtils.getResources(this.getClass(), RESOURCE_LOCATION);
     }
 
     @org.junit.After
@@ -118,7 +94,7 @@ public class MZMLFileTest {
         long expectedOffset = 4224;
         int expectedLen = 4754;
 
-        final Path path = getResource(file);
+        final Path path = ResourceUtils.getResource(this.getClass(), RESOURCE_LOCATION, file);
 
         final MZMLFile mzml = new MZMLFile(path.toString());
         final MZMLIndex index = mzml.fetchIndex();
@@ -137,7 +113,7 @@ public class MZMLFileTest {
         for (Map.Entry<String, Integer> e : file2scanCount.entrySet()) {
             int expectedCount = e.getValue();
             String file = e.getKey();
-            final Path path = getResource(file);
+            final Path path = ResourceUtils.getResource(this.getClass(), RESOURCE_LOCATION, file);
 
             final MZMLFile mzml = new MZMLFile(path.toString());
             final MZMLIndex index = mzml.fetchIndex();

@@ -18,6 +18,7 @@ package umich.ms.fileio.filetypes.mzid;
 
 import org.junit.Assert;
 import org.junit.Test;
+import umich.ms.fileio.ResourceUtils;
 import umich.ms.fileio.filetypes.mzidentml.MzIdentMLParser;
 import umich.ms.fileio.filetypes.mzidentml.jaxb.standard.*;
 
@@ -35,31 +36,9 @@ public class MzIdTest {
 
     List<Path> paths;
 
-    private Path getResource(String name) throws Exception {
-        ClassLoader classLoader = getClass().getClassLoader();
-        final URI uri = classLoader.getResource("mzid").toURI();
-        final Path path = Paths.get(uri).toAbsolutePath();
-        return Paths.get(path.toString(), name);
-    }
-
     @org.junit.Before
     public void setUp() throws Exception {
-        try {
-            ClassLoader classLoader = getClass().getClassLoader();
-            final URI uri = classLoader.getResource("mzid").toURI();
-            final Path path = Paths.get(uri);
-
-            final DirectoryStream<Path> stream = Files.newDirectoryStream(path);
-            paths = new ArrayList<>();
-            for (Path p : stream) {
-                //if (Files.isRegularFile(p) && p.getFileName().toString().equals("mzidLib_rosetta_2a_uniprot_proteogrouped.mzid")) {
-                if (Files.isRegularFile(p)) {
-                    paths.add(p);
-                }
-            }
-        } catch (IOException | URISyntaxException e) {
-            throw new IllegalStateException("Could not set up test env in MZMLFileTest");
-        }
+        paths = ResourceUtils.getResources(this.getClass(), "mzid");
     }
 
     @org.junit.After
@@ -72,11 +51,13 @@ public class MzIdTest {
     public void testParsing() throws Exception {
 
         for (Path path : paths) {
+            System.out.printf("Test parsing ");
             MzIdentMLType mzid = MzIdentMLParser.parse(path);
 
-            Assert.assertFalse(String.format("Peptide list was empty for file '%s'", path), mzid.getSequenceCollection().getPeptide().isEmpty());
-            Assert.assertFalse(String.format("Peptide Evidence list was empty for file '%s'", path), mzid.getSequenceCollection().getPeptideEvidence().isEmpty());
+            Assert.assertFalse(String.format("Peptide List was empty for file '%s'", path), mzid.getSequenceCollection().getPeptide().isEmpty());
+            Assert.assertFalse(String.format("Peptide Evidence List was empty for file '%s'", path), mzid.getSequenceCollection().getPeptideEvidence().isEmpty());
 
+            Assert.assertFalse(String.format("Spectrum Identification List was empty for file '%s'", path), mzid.getDataCollection().getAnalysisData().getSpectrumIdentificationList().isEmpty());
 
 //            List<PeptideEvidenceType> peptideEvidence = mzid.getSequenceCollection().getPeptideEvidence();
 //            for (PeptideEvidenceType pe : peptideEvidence) {
