@@ -14,5 +14,5 @@
  * limitations under the License.
  */
 
-@javax.xml.bind.annotation.XmlSchema(namespace = "http://psidev.info/psi/pi/mzIdentML/1.2", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
+@javax.xml.bind.annotation.XmlSchema(namespace = "", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
 package umich.ms.fileio.filetypes.mzidentml.jaxb.primitive;
