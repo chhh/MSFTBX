@@ -57,11 +57,11 @@ public abstract class AbstractParamType {
     protected String name;
     @XmlAttribute(name = "value")
     protected String value;
-    @XmlAttribute(name = "unitAccession")
+    @XmlAttribute(name = "accession")//Upadate attribute name;
     protected String unitAccession;
-    @XmlAttribute(name = "unitName")
+    @XmlAttribute(name = "name")//Upadate attribute name;
     protected String unitName;
-    @XmlAttribute(name = "unitCvRef")
+    @XmlAttribute(name = "cvRef")//Upadate attribute name;
     protected String unitCvRef;
 
     /**
