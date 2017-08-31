@@ -1,11 +1,12 @@
-/* 
- * Copyright 2016 Dmitry Avtonomov.
+
+/*
+ * Copyright (c) 2017 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package umich.ms.fileio.filetypes.protxml.jaxb.primitive;
 
 import java.util.ArrayList;
@@ -28,9 +30,9 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -79,8 +81,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -113,25 +115,25 @@ public class ASAPSeq {
 
     /**
      * Gets the value of the asapPeak property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the asapPeak property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getASAPPeak().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link ASAPPeak }
-     *
-     *
+     * 
+     * 
      */
     public List<ASAPPeak> getASAPPeak() {
         if (asapPeak == null) {
@@ -142,11 +144,11 @@ public class ASAPSeq {
 
     /**
      * Gets the value of the status property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getStatus() {
         return status;
@@ -154,11 +156,11 @@ public class ASAPSeq {
 
     /**
      * Sets the value of the status property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setStatus(String value) {
         this.status = value;
@@ -166,11 +168,11 @@ public class ASAPSeq {
 
     /**
      * Gets the value of the include property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getInclude() {
         return include;
@@ -178,11 +180,11 @@ public class ASAPSeq {
 
     /**
      * Sets the value of the include property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setInclude(String value) {
         this.include = value;
@@ -190,11 +192,11 @@ public class ASAPSeq {
 
     /**
      * Gets the value of the datanum property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public Integer getDatanum() {
         return datanum;
@@ -202,11 +204,11 @@ public class ASAPSeq {
 
     /**
      * Sets the value of the datanum property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setDatanum(Integer value) {
         this.datanum = value;
@@ -214,7 +216,7 @@ public class ASAPSeq {
 
     /**
      * Gets the value of the ratioMean property.
-     *
+     * 
      */
     public double getRatioMean() {
         return ratioMean;
@@ -222,7 +224,7 @@ public class ASAPSeq {
 
     /**
      * Sets the value of the ratioMean property.
-     *
+     * 
      */
     public void setRatioMean(double value) {
         this.ratioMean = value;
@@ -230,7 +232,7 @@ public class ASAPSeq {
 
     /**
      * Gets the value of the ratioStandardDev property.
-     *
+     * 
      */
     public double getRatioStandardDev() {
         return ratioStandardDev;
@@ -238,7 +240,7 @@ public class ASAPSeq {
 
     /**
      * Sets the value of the ratioStandardDev property.
-     *
+     * 
      */
     public void setRatioStandardDev(double value) {
         this.ratioStandardDev = value;
@@ -246,7 +248,7 @@ public class ASAPSeq {
 
     /**
      * Gets the value of the heavy2LightRatioMean property.
-     *
+     * 
      */
     public double getHeavy2LightRatioMean() {
         return heavy2LightRatioMean;
@@ -254,7 +256,7 @@ public class ASAPSeq {
 
     /**
      * Sets the value of the heavy2LightRatioMean property.
-     *
+     * 
      */
     public void setHeavy2LightRatioMean(double value) {
         this.heavy2LightRatioMean = value;
@@ -262,7 +264,7 @@ public class ASAPSeq {
 
     /**
      * Gets the value of the heavy2LightRatioStandardDev property.
-     *
+     * 
      */
     public double getHeavy2LightRatioStandardDev() {
         return heavy2LightRatioStandardDev;
@@ -270,7 +272,7 @@ public class ASAPSeq {
 
     /**
      * Sets the value of the heavy2LightRatioStandardDev property.
-     *
+     * 
      */
     public void setHeavy2LightRatioStandardDev(double value) {
         this.heavy2LightRatioStandardDev = value;
@@ -278,7 +280,7 @@ public class ASAPSeq {
 
     /**
      * Gets the value of the weight property.
-     *
+     * 
      */
     public double getWeight() {
         return weight;
@@ -286,7 +288,7 @@ public class ASAPSeq {
 
     /**
      * Sets the value of the weight property.
-     *
+     * 
      */
     public void setWeight(double value) {
         this.weight = value;
@@ -294,11 +296,11 @@ public class ASAPSeq {
 
     /**
      * Gets the value of the lightSequence property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getLightSequence() {
         return lightSequence;
@@ -306,11 +308,11 @@ public class ASAPSeq {
 
     /**
      * Sets the value of the lightSequence property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setLightSequence(String value) {
         this.lightSequence = value;

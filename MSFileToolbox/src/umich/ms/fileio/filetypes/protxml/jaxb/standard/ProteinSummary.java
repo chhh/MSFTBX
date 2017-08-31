@@ -1,11 +1,12 @@
-/* 
- * Copyright 2016 Dmitry Avtonomov.
+
+/*
+ * Copyright (c) 2017 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package umich.ms.fileio.filetypes.protxml.jaxb.standard;
 
 import java.util.ArrayList;
@@ -27,9 +29,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -238,8 +240,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -264,11 +266,11 @@ public class ProteinSummary {
 
     /**
      * Gets the value of the proteinSummaryHeader property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link ProteinSummaryHeader }
-     *
+     *     
      */
     public ProteinSummaryHeader getProteinSummaryHeader() {
         return proteinSummaryHeader;
@@ -276,11 +278,11 @@ public class ProteinSummary {
 
     /**
      * Sets the value of the proteinSummaryHeader property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link ProteinSummaryHeader }
-     *
+     *     
      */
     public void setProteinSummaryHeader(ProteinSummaryHeader value) {
         this.proteinSummaryHeader = value;
@@ -288,25 +290,25 @@ public class ProteinSummary {
 
     /**
      * Gets the value of the analysisSummary property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the analysisSummary property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getAnalysisSummary().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link AnalysisSummary }
-     *
-     *
+     * 
+     * 
      */
     public List<AnalysisSummary> getAnalysisSummary() {
         if (analysisSummary == null) {
@@ -317,11 +319,11 @@ public class ProteinSummary {
 
     /**
      * Gets the value of the datasetDerivation property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link DatasetDerivation }
-     *
+     *     
      */
     public DatasetDerivation getDatasetDerivation() {
         return datasetDerivation;
@@ -329,11 +331,11 @@ public class ProteinSummary {
 
     /**
      * Sets the value of the datasetDerivation property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link DatasetDerivation }
-     *
+     *     
      */
     public void setDatasetDerivation(DatasetDerivation value) {
         this.datasetDerivation = value;
@@ -341,25 +343,25 @@ public class ProteinSummary {
 
     /**
      * Gets the value of the proteinGroup property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the proteinGroup property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getProteinGroup().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link ProteinGroup }
-     *
-     *
+     * 
+     * 
      */
     public List<ProteinGroup> getProteinGroup() {
         if (proteinGroup == null) {
@@ -370,11 +372,11 @@ public class ProteinSummary {
 
     /**
      * Gets the value of the summaryXml property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getSummaryXml() {
         return summaryXml;
@@ -382,11 +384,11 @@ public class ProteinSummary {
 
     /**
      * Sets the value of the summaryXml property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setSummaryXml(String value) {
         this.summaryXml = value;

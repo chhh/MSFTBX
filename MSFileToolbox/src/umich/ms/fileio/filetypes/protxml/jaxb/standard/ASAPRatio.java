@@ -1,11 +1,12 @@
-/* 
- * Copyright 2016 Dmitry Avtonomov.
+
+/*
+ * Copyright (c) 2017 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package umich.ms.fileio.filetypes.protxml.jaxb.standard;
 
 import java.util.ArrayList;
@@ -29,9 +31,9 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -98,8 +100,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -131,25 +133,25 @@ public class ASAPRatio {
 
     /**
      * Gets the value of the asapSeq property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the asapSeq property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getASAPSeq().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link ASAPSeq }
-     *
-     *
+     * 
+     * 
      */
     public List<ASAPSeq> getASAPSeq() {
         if (asapSeq == null) {
@@ -160,7 +162,7 @@ public class ASAPRatio {
 
     /**
      * Gets the value of the ratioMean property.
-     *
+     * 
      */
     public double getRatioMean() {
         return ratioMean;
@@ -168,7 +170,7 @@ public class ASAPRatio {
 
     /**
      * Sets the value of the ratioMean property.
-     *
+     * 
      */
     public void setRatioMean(double value) {
         this.ratioMean = value;
@@ -176,7 +178,7 @@ public class ASAPRatio {
 
     /**
      * Gets the value of the ratioStandardDev property.
-     *
+     * 
      */
     public double getRatioStandardDev() {
         return ratioStandardDev;
@@ -184,7 +186,7 @@ public class ASAPRatio {
 
     /**
      * Sets the value of the ratioStandardDev property.
-     *
+     * 
      */
     public void setRatioStandardDev(double value) {
         this.ratioStandardDev = value;
@@ -192,11 +194,11 @@ public class ASAPRatio {
 
     /**
      * Gets the value of the ratioNumberPeptides property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public Integer getRatioNumberPeptides() {
         return ratioNumberPeptides;
@@ -204,11 +206,11 @@ public class ASAPRatio {
 
     /**
      * Sets the value of the ratioNumberPeptides property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setRatioNumberPeptides(Integer value) {
         this.ratioNumberPeptides = value;
@@ -216,11 +218,11 @@ public class ASAPRatio {
 
     /**
      * Gets the value of the heavy2LightRatioMean property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link Double }
-     *
+     *     
      */
     public Double getHeavy2LightRatioMean() {
         return heavy2LightRatioMean;
@@ -228,11 +230,11 @@ public class ASAPRatio {
 
     /**
      * Sets the value of the heavy2LightRatioMean property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link Double }
-     *
+     *     
      */
     public void setHeavy2LightRatioMean(Double value) {
         this.heavy2LightRatioMean = value;
@@ -240,11 +242,11 @@ public class ASAPRatio {
 
     /**
      * Gets the value of the heavy2LightRatioStandardDev property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link Double }
-     *
+     *     
      */
     public Double getHeavy2LightRatioStandardDev() {
         return heavy2LightRatioStandardDev;
@@ -252,11 +254,11 @@ public class ASAPRatio {
 
     /**
      * Sets the value of the heavy2LightRatioStandardDev property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link Double }
-     *
+     *     
      */
     public void setHeavy2LightRatioStandardDev(Double value) {
         this.heavy2LightRatioStandardDev = value;
@@ -264,11 +266,11 @@ public class ASAPRatio {
 
     /**
      * Gets the value of the description property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getDescription() {
         return description;
@@ -276,11 +278,11 @@ public class ASAPRatio {
 
     /**
      * Sets the value of the description property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setDescription(String value) {
         this.description = value;
@@ -288,11 +290,11 @@ public class ASAPRatio {
 
     /**
      * Gets the value of the status property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getStatus() {
         return status;
@@ -300,11 +302,11 @@ public class ASAPRatio {
 
     /**
      * Sets the value of the status property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setStatus(String value) {
         this.status = value;
@@ -312,11 +314,11 @@ public class ASAPRatio {
 
     /**
      * Gets the value of the peptideInds property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getPeptideInds() {
         return peptideInds;
@@ -324,11 +326,11 @@ public class ASAPRatio {
 
     /**
      * Sets the value of the peptideInds property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setPeptideInds(String value) {
         this.peptideInds = value;

@@ -1,11 +1,12 @@
-/* 
- * Copyright 2016 Dmitry Avtonomov.
+
+/*
+ * Copyright (c) 2017 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package umich.ms.fileio.filetypes.protxml.jaxb.standard;
 
 import java.util.ArrayList;
@@ -28,9 +30,9 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -135,8 +137,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -188,25 +190,25 @@ public class Protein {
 
     /**
      * Gets the value of the analysisResult property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the analysisResult property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getAnalysisResult().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link AnalysisResult }
-     *
-     *
+     * 
+     * 
      */
     public List<AnalysisResult> getAnalysisResult() {
         if (analysisResult == null) {
@@ -217,25 +219,25 @@ public class Protein {
 
     /**
      * Gets the value of the parameter property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the parameter property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getParameter().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link NameValueType }
-     *
-     *
+     * 
+     * 
      */
     public List<NameValueType> getParameter() {
         if (parameter == null) {
@@ -246,11 +248,11 @@ public class Protein {
 
     /**
      * Gets the value of the proteinAnnotation property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link ProteinAnnotation }
-     *
+     *     
      */
     public ProteinAnnotation getProteinAnnotation() {
         return proteinAnnotation;
@@ -258,11 +260,11 @@ public class Protein {
 
     /**
      * Sets the value of the proteinAnnotation property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link ProteinAnnotation }
-     *
+     *     
      */
     public void setProteinAnnotation(ProteinAnnotation value) {
         this.proteinAnnotation = value;
@@ -270,25 +272,25 @@ public class Protein {
 
     /**
      * Gets the value of the indistinguishableProtein property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the indistinguishableProtein property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getIndistinguishableProtein().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link IndistinguishableProtein }
-     *
-     *
+     * 
+     * 
      */
     public List<IndistinguishableProtein> getIndistinguishableProtein() {
         if (indistinguishableProtein == null) {
@@ -299,25 +301,25 @@ public class Protein {
 
     /**
      * Gets the value of the peptide property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the peptide property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getPeptide().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link Peptide }
-     *
-     *
+     * 
+     * 
      */
     public List<Peptide> getPeptide() {
         if (peptide == null) {
@@ -328,11 +330,11 @@ public class Protein {
 
     /**
      * Gets the value of the proteinName property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getProteinName() {
         return proteinName;
@@ -340,11 +342,11 @@ public class Protein {
 
     /**
      * Sets the value of the proteinName property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setProteinName(String value) {
         this.proteinName = value;
@@ -352,7 +354,7 @@ public class Protein {
 
     /**
      * Gets the value of the probability property.
-     *
+     * 
      */
     public double getProbability() {
         return probability;
@@ -360,7 +362,7 @@ public class Protein {
 
     /**
      * Sets the value of the probability property.
-     *
+     * 
      */
     public void setProbability(double value) {
         this.probability = value;
@@ -368,11 +370,11 @@ public class Protein {
 
     /**
      * Gets the value of the percentCoverage property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link Double }
-     *
+     *     
      */
     public Double getPercentCoverage() {
         return percentCoverage;
@@ -380,11 +382,11 @@ public class Protein {
 
     /**
      * Sets the value of the percentCoverage property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link Double }
-     *
+     *     
      */
     public void setPercentCoverage(Double value) {
         this.percentCoverage = value;
@@ -392,11 +394,11 @@ public class Protein {
 
     /**
      * Gets the value of the nIndistinguishableProteins property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public Integer getNIndistinguishableProteins() {
         return nIndistinguishableProteins;
@@ -404,11 +406,11 @@ public class Protein {
 
     /**
      * Sets the value of the nIndistinguishableProteins property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setNIndistinguishableProteins(Integer value) {
         this.nIndistinguishableProteins = value;
@@ -416,11 +418,11 @@ public class Protein {
 
     /**
      * Gets the value of the uniqueStrippedPeptides property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getUniqueStrippedPeptides() {
         return uniqueStrippedPeptides;
@@ -428,11 +430,11 @@ public class Protein {
 
     /**
      * Sets the value of the uniqueStrippedPeptides property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setUniqueStrippedPeptides(String value) {
         this.uniqueStrippedPeptides = value;
@@ -440,11 +442,11 @@ public class Protein {
 
     /**
      * Gets the value of the groupSiblingId property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getGroupSiblingId() {
         return groupSiblingId;
@@ -452,11 +454,11 @@ public class Protein {
 
     /**
      * Sets the value of the groupSiblingId property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setGroupSiblingId(String value) {
         this.groupSiblingId = value;
@@ -464,11 +466,11 @@ public class Protein {
 
     /**
      * Gets the value of the totalNumberPeptides property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public Integer getTotalNumberPeptides() {
         return totalNumberPeptides;
@@ -476,11 +478,11 @@ public class Protein {
 
     /**
      * Sets the value of the totalNumberPeptides property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setTotalNumberPeptides(Integer value) {
         this.totalNumberPeptides = value;
@@ -488,11 +490,11 @@ public class Protein {
 
     /**
      * Gets the value of the totalNumberDistinctPeptides property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public Integer getTotalNumberDistinctPeptides() {
         return totalNumberDistinctPeptides;
@@ -500,11 +502,11 @@ public class Protein {
 
     /**
      * Sets the value of the totalNumberDistinctPeptides property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setTotalNumberDistinctPeptides(Integer value) {
         this.totalNumberDistinctPeptides = value;
@@ -512,11 +514,11 @@ public class Protein {
 
     /**
      * Gets the value of the subsumingProteinEntry property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getSubsumingProteinEntry() {
         return subsumingProteinEntry;
@@ -524,11 +526,11 @@ public class Protein {
 
     /**
      * Sets the value of the subsumingProteinEntry property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setSubsumingProteinEntry(String value) {
         this.subsumingProteinEntry = value;
@@ -536,11 +538,11 @@ public class Protein {
 
     /**
      * Gets the value of the pctSpectrumIds property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getPctSpectrumIds() {
         return pctSpectrumIds;
@@ -548,11 +550,11 @@ public class Protein {
 
     /**
      * Sets the value of the pctSpectrumIds property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setPctSpectrumIds(String value) {
         this.pctSpectrumIds = value;
@@ -560,11 +562,11 @@ public class Protein {
 
     /**
      * Gets the value of the confidence property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link Double }
-     *
+     *     
      */
     public Double getConfidence() {
         return confidence;
@@ -572,11 +574,11 @@ public class Protein {
 
     /**
      * Sets the value of the confidence property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link Double }
-     *
+     *     
      */
     public void setConfidence(Double value) {
         this.confidence = value;

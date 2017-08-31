@@ -1,11 +1,12 @@
-/* 
- * Copyright 2016 Dmitry Avtonomov.
+
+/*
+ * Copyright (c) 2017 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package umich.ms.fileio.filetypes.protxml.jaxb.primitive;
 
 import javax.xml.bind.annotation.XmlRegistry;
@@ -124,35 +126,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Point }
+     * Create an instance of {@link ASAPPoint }
      * 
      */
-    public Point createPoint() {
-        return new Point();
+    public ASAPPoint createASAPPoint() {
+        return new ASAPPoint();
     }
 
     /**
-     * Create an instance of {@link LibraSummary }
+     * Create an instance of {@link StPeterQuant }
      * 
      */
-    public LibraSummary createLibraSummary() {
-        return new LibraSummary();
+    public StPeterQuant createStPeterQuant() {
+        return new StPeterQuant();
     }
 
     /**
-     * Create an instance of {@link FragmentMasses }
+     * Create an instance of {@link StPeterQuantPeptide }
      * 
      */
-    public FragmentMasses createFragmentMasses() {
-        return new FragmentMasses();
-    }
-
-    /**
-     * Create an instance of {@link IsotopicContributions }
-     * 
-     */
-    public IsotopicContributions createIsotopicContributions() {
-        return new IsotopicContributions();
+    public StPeterQuantPeptide createStPeterQuantPeptide() {
+        return new StPeterQuantPeptide();
     }
 
     /**
@@ -196,19 +190,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link XPressAnalysisSummary }
+     * Create an instance of {@link ErrorPoint }
      * 
      */
-    public XPressAnalysisSummary createXPressAnalysisSummary() {
-        return new XPressAnalysisSummary();
-    }
-
-    /**
-     * Create an instance of {@link ASAPProtAnalysisSummary }
-     * 
-     */
-    public ASAPProtAnalysisSummary createASAPProtAnalysisSummary() {
-        return new ASAPProtAnalysisSummary();
+    public ErrorPoint createErrorPoint() {
+        return new ErrorPoint();
     }
 
     /**
@@ -225,6 +211,78 @@ public class ObjectFactory {
      */
     public Intensity createIntensity() {
         return new Intensity();
+    }
+
+    /**
+     * Create an instance of {@link LibraSummary }
+     * 
+     */
+    public LibraSummary createLibraSummary() {
+        return new LibraSummary();
+    }
+
+    /**
+     * Create an instance of {@link FragmentMasses }
+     * 
+     */
+    public FragmentMasses createFragmentMasses() {
+        return new FragmentMasses();
+    }
+
+    /**
+     * Create an instance of {@link IsotopicContributions }
+     * 
+     */
+    public IsotopicContributions createIsotopicContributions() {
+        return new IsotopicContributions();
+    }
+
+    /**
+     * Create an instance of {@link DecoyAnalysis }
+     * 
+     */
+    public DecoyAnalysis createDecoyAnalysis() {
+        return new DecoyAnalysis();
+    }
+
+    /**
+     * Create an instance of {@link Point }
+     * 
+     */
+    public Point createPoint() {
+        return new Point();
+    }
+
+    /**
+     * Create an instance of {@link StPeterAnalysisSummary }
+     * 
+     */
+    public StPeterAnalysisSummary createStPeterAnalysisSummary() {
+        return new StPeterAnalysisSummary();
+    }
+
+    /**
+     * Create an instance of {@link XPressAnalysisSummary }
+     * 
+     */
+    public XPressAnalysisSummary createXPressAnalysisSummary() {
+        return new XPressAnalysisSummary();
+    }
+
+    /**
+     * Create an instance of {@link DecoyAnalysisSummary }
+     * 
+     */
+    public DecoyAnalysisSummary createDecoyAnalysisSummary() {
+        return new DecoyAnalysisSummary();
+    }
+
+    /**
+     * Create an instance of {@link ASAPProtAnalysisSummary }
+     * 
+     */
+    public ASAPProtAnalysisSummary createASAPProtAnalysisSummary() {
+        return new ASAPProtAnalysisSummary();
     }
 
     /**
@@ -268,6 +326,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ContributingChannel }
+     * 
+     */
+    public ContributingChannel createContributingChannel() {
+        return new ContributingChannel();
+    }
+
+    /**
+     * Create an instance of {@link AffectedChannel }
+     * 
+     */
+    public AffectedChannel createAffectedChannel() {
+        return new AffectedChannel();
+    }
+
+    /**
      * Create an instance of {@link NiDistribution }
      * 
      */
@@ -289,22 +363,6 @@ public class ObjectFactory {
      */
     public NspDistribution createNspDistribution() {
         return new NspDistribution();
-    }
-
-    /**
-     * Create an instance of {@link ContributingChannel }
-     * 
-     */
-    public ContributingChannel createContributingChannel() {
-        return new ContributingChannel();
-    }
-
-    /**
-     * Create an instance of {@link AffectedChannel }
-     * 
-     */
-    public AffectedChannel createAffectedChannel() {
-        return new AffectedChannel();
     }
 
     /**

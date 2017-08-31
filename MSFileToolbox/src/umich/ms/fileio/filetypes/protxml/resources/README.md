@@ -2,9 +2,34 @@
 Use `xjc` as usual.  
 
 # Generated with
-`"C:\Programs\Java\jdk1.8.0_60\bin\xjc.exe" -b bindings_protxml_standard.xml 
--d "D:\projects\BatMass\MSFTBX\MSFileToolbox\src" -p umich.ms.fileio.filetypes.protxml.jaxb.standard protXML_v7-fixed.xsd`
+### v7
+`xjc.exe -b bindings_protxml_standard.xml 
+-d "D:\projects\BatMass\MSFTBX\MSFileToolbox\src" -p umich.ms.fileio.filetypes.protxml.jaxb.standard protXML_v7-fixed.xsd`  
 
+### v8
+- Standard:  
+  `xjc.exe -b bindings_protxml_standard.xml 
+-no-header -encoding UTF-8 -extension 
+-d "C:\projects\BatMass\MSFTBX\MSFileToolbox\src" 
+-p umich.ms.fileio.filetypes.protxml.jaxb.standard 
+protXML_v8-fixed.xsd`  
+
+- Primitive:    
+  `xjc.exe -b bindings_protxml_primitive.xml 
+-no-header -encoding UTF-8 -extension 
+-d "C:\projects\BatMass\MSFTBX\MSFileToolbox\src" 
+-p umich.ms.fileio.filetypes.protxml.jaxb.primitive 
+protXML_v8-fixed.xsd`  
+
+##  After generation
+* All occurrences of  `new ArrayList<>()` were replaced with `new ArrayList<>(1)` to avoid lots of lists
+    of default size, which is 10. As in pepxml there might be tens of thousands of such lists which only 
+    hold a single element.  
+    Regex in IDEA for replacement (use _Replace in path_). Search pattern `(new ArrayList<.*?>)\(\)`,
+    replacement pattern `$1\(1\)`
+* Delete the `namespace` and `attributeFormDefault` from `package-info.java` that sits next to `ObjectFactory.java`
+
+# Modifications to the original schema
 The schema has repetitive elements, so I manually extracted two types:
 ```xml
 <xs:complexType name="modification_info">

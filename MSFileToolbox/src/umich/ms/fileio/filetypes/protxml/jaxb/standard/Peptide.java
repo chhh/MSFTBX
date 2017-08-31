@@ -1,11 +1,12 @@
-/* 
- * Copyright 2016 Dmitry Avtonomov.
+
+/*
+ * Copyright (c) 2017 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package umich.ms.fileio.filetypes.protxml.jaxb.standard;
 
 import java.util.ArrayList;
@@ -28,9 +30,9 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -86,8 +88,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -158,25 +160,25 @@ public class Peptide {
 
     /**
      * Gets the value of the parameter property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the parameter property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getParameter().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link NameValueType }
-     *
-     *
+     * 
+     * 
      */
     public List<NameValueType> getParameter() {
         if (parameter == null) {
@@ -187,25 +189,25 @@ public class Peptide {
 
     /**
      * Gets the value of the modificationInfo property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the modificationInfo property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getModificationInfo().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link ModificationInfo }
-     *
-     *
+     * 
+     * 
      */
     public List<ModificationInfo> getModificationInfo() {
         if (modificationInfo == null) {
@@ -216,25 +218,25 @@ public class Peptide {
 
     /**
      * Gets the value of the peptideParentProtein property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the peptideParentProtein property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getPeptideParentProtein().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link PeptideParentProtein }
-     *
-     *
+     * 
+     * 
      */
     public List<PeptideParentProtein> getPeptideParentProtein() {
         if (peptideParentProtein == null) {
@@ -245,25 +247,25 @@ public class Peptide {
 
     /**
      * Gets the value of the indistinguishablePeptide property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the indistinguishablePeptide property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getIndistinguishablePeptide().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link IndistinguishablePeptide }
-     *
-     *
+     * 
+     * 
      */
     public List<IndistinguishablePeptide> getIndistinguishablePeptide() {
         if (indistinguishablePeptide == null) {
@@ -274,11 +276,11 @@ public class Peptide {
 
     /**
      * Gets the value of the peptideSequence property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getPeptideSequence() {
         return peptideSequence;
@@ -286,11 +288,11 @@ public class Peptide {
 
     /**
      * Sets the value of the peptideSequence property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setPeptideSequence(String value) {
         this.peptideSequence = value;
@@ -298,11 +300,11 @@ public class Peptide {
 
     /**
      * Gets the value of the charge property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public Integer getCharge() {
         return charge;
@@ -310,11 +312,11 @@ public class Peptide {
 
     /**
      * Sets the value of the charge property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setCharge(Integer value) {
         this.charge = value;
@@ -322,7 +324,7 @@ public class Peptide {
 
     /**
      * Gets the value of the initialProbability property.
-     *
+     * 
      */
     public double getInitialProbability() {
         return initialProbability;
@@ -330,7 +332,7 @@ public class Peptide {
 
     /**
      * Sets the value of the initialProbability property.
-     *
+     * 
      */
     public void setInitialProbability(double value) {
         this.initialProbability = value;
@@ -338,11 +340,11 @@ public class Peptide {
 
     /**
      * Gets the value of the nspAdjustedProbability property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link Double }
-     *
+     *     
      */
     public Double getNspAdjustedProbability() {
         return nspAdjustedProbability;
@@ -350,11 +352,11 @@ public class Peptide {
 
     /**
      * Sets the value of the nspAdjustedProbability property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link Double }
-     *
+     *     
      */
     public void setNspAdjustedProbability(Double value) {
         this.nspAdjustedProbability = value;
@@ -362,11 +364,11 @@ public class Peptide {
 
     /**
      * Gets the value of the fpkmAdjustedProbability property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link Double }
-     *
+     *     
      */
     public Double getFpkmAdjustedProbability() {
         return fpkmAdjustedProbability;
@@ -374,11 +376,11 @@ public class Peptide {
 
     /**
      * Sets the value of the fpkmAdjustedProbability property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link Double }
-     *
+     *     
      */
     public void setFpkmAdjustedProbability(Double value) {
         this.fpkmAdjustedProbability = value;
@@ -386,11 +388,11 @@ public class Peptide {
 
     /**
      * Gets the value of the niAdjustedProbability property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link Double }
-     *
+     *     
      */
     public Double getNiAdjustedProbability() {
         return niAdjustedProbability;
@@ -398,11 +400,11 @@ public class Peptide {
 
     /**
      * Sets the value of the niAdjustedProbability property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link Double }
-     *
+     *     
      */
     public void setNiAdjustedProbability(Double value) {
         this.niAdjustedProbability = value;
@@ -410,11 +412,11 @@ public class Peptide {
 
     /**
      * Gets the value of the expSiblingIonInstances property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link Double }
-     *
+     *     
      */
     public Double getExpSiblingIonInstances() {
         return expSiblingIonInstances;
@@ -422,11 +424,11 @@ public class Peptide {
 
     /**
      * Sets the value of the expSiblingIonInstances property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link Double }
-     *
+     *     
      */
     public void setExpSiblingIonInstances(Double value) {
         this.expSiblingIonInstances = value;
@@ -434,11 +436,11 @@ public class Peptide {
 
     /**
      * Gets the value of the expSiblingIonBin property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link Double }
-     *
+     *     
      */
     public Double getExpSiblingIonBin() {
         return expSiblingIonBin;
@@ -446,11 +448,11 @@ public class Peptide {
 
     /**
      * Sets the value of the expSiblingIonBin property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link Double }
-     *
+     *     
      */
     public void setExpSiblingIonBin(Double value) {
         this.expSiblingIonBin = value;
@@ -458,11 +460,11 @@ public class Peptide {
 
     /**
      * Gets the value of the expTotInstances property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link Double }
-     *
+     *     
      */
     public Double getExpTotInstances() {
         return expTotInstances;
@@ -470,11 +472,11 @@ public class Peptide {
 
     /**
      * Sets the value of the expTotInstances property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link Double }
-     *
+     *     
      */
     public void setExpTotInstances(Double value) {
         this.expTotInstances = value;
@@ -482,11 +484,11 @@ public class Peptide {
 
     /**
      * Gets the value of the peptideGroupDesignator property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getPeptideGroupDesignator() {
         return peptideGroupDesignator;
@@ -494,11 +496,11 @@ public class Peptide {
 
     /**
      * Sets the value of the peptideGroupDesignator property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setPeptideGroupDesignator(String value) {
         this.peptideGroupDesignator = value;
@@ -506,11 +508,11 @@ public class Peptide {
 
     /**
      * Gets the value of the weight property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link Double }
-     *
+     *     
      */
     public double getWeight() {
         if (weight == null) {
@@ -522,11 +524,11 @@ public class Peptide {
 
     /**
      * Sets the value of the weight property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link Double }
-     *
+     *     
      */
     public void setWeight(Double value) {
         this.weight = value;
@@ -534,11 +536,11 @@ public class Peptide {
 
     /**
      * Gets the value of the isNondegenerateEvidence property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getIsNondegenerateEvidence() {
         return isNondegenerateEvidence;
@@ -546,11 +548,11 @@ public class Peptide {
 
     /**
      * Sets the value of the isNondegenerateEvidence property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setIsNondegenerateEvidence(String value) {
         this.isNondegenerateEvidence = value;
@@ -558,11 +560,11 @@ public class Peptide {
 
     /**
      * Gets the value of the nEnzymaticTermini property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public Integer getNEnzymaticTermini() {
         return nEnzymaticTermini;
@@ -570,11 +572,11 @@ public class Peptide {
 
     /**
      * Sets the value of the nEnzymaticTermini property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setNEnzymaticTermini(Integer value) {
         this.nEnzymaticTermini = value;
@@ -582,11 +584,11 @@ public class Peptide {
 
     /**
      * Gets the value of the nSiblingPeptides property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link Double }
-     *
+     *     
      */
     public Double getNSiblingPeptides() {
         return nSiblingPeptides;
@@ -594,11 +596,11 @@ public class Peptide {
 
     /**
      * Sets the value of the nSiblingPeptides property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link Double }
-     *
+     *     
      */
     public void setNSiblingPeptides(Double value) {
         this.nSiblingPeptides = value;
@@ -606,11 +608,11 @@ public class Peptide {
 
     /**
      * Gets the value of the nSiblingPeptidesBin property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public int getNSiblingPeptidesBin() {
         if (nSiblingPeptidesBin == null) {
@@ -622,11 +624,11 @@ public class Peptide {
 
     /**
      * Sets the value of the nSiblingPeptidesBin property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setNSiblingPeptidesBin(Integer value) {
         this.nSiblingPeptidesBin = value;
@@ -634,11 +636,11 @@ public class Peptide {
 
     /**
      * Gets the value of the maxFpkm property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link Double }
-     *
+     *     
      */
     public Double getMaxFpkm() {
         return maxFpkm;
@@ -646,11 +648,11 @@ public class Peptide {
 
     /**
      * Sets the value of the maxFpkm property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link Double }
-     *
+     *     
      */
     public void setMaxFpkm(Double value) {
         this.maxFpkm = value;
@@ -658,11 +660,11 @@ public class Peptide {
 
     /**
      * Gets the value of the fpkmBin property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public int getFpkmBin() {
         if (fpkmBin == null) {
@@ -674,11 +676,11 @@ public class Peptide {
 
     /**
      * Sets the value of the fpkmBin property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setFpkmBin(Integer value) {
         this.fpkmBin = value;
@@ -686,11 +688,11 @@ public class Peptide {
 
     /**
      * Gets the value of the nInstances property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public Integer getNInstances() {
         return nInstances;
@@ -698,11 +700,11 @@ public class Peptide {
 
     /**
      * Sets the value of the nInstances property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setNInstances(Integer value) {
         this.nInstances = value;
@@ -710,11 +712,11 @@ public class Peptide {
 
     /**
      * Gets the value of the calcNeutralPepMass property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link Double }
-     *
+     *     
      */
     public Double getCalcNeutralPepMass() {
         return calcNeutralPepMass;
@@ -722,11 +724,11 @@ public class Peptide {
 
     /**
      * Sets the value of the calcNeutralPepMass property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link Double }
-     *
+     *     
      */
     public void setCalcNeutralPepMass(Double value) {
         this.calcNeutralPepMass = value;
@@ -734,11 +736,11 @@ public class Peptide {
 
     /**
      * Gets the value of the isContributingEvidence property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getIsContributingEvidence() {
         return isContributingEvidence;
@@ -746,11 +748,11 @@ public class Peptide {
 
     /**
      * Sets the value of the isContributingEvidence property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setIsContributingEvidence(String value) {
         this.isContributingEvidence = value;
