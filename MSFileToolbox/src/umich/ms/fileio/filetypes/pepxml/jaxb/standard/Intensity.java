@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2016 Dmitry Avtonomov
+ * Copyright (c) 2017 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,9 +25,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -41,8 +41,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
@@ -61,7 +61,7 @@ public class Intensity {
 
     /**
      * Gets the value of the channel property.
-     *
+     * 
      */
     public long getChannel() {
         return channel;
@@ -69,7 +69,7 @@ public class Intensity {
 
     /**
      * Sets the value of the channel property.
-     *
+     * 
      */
     public void setChannel(long value) {
         this.channel = value;
@@ -77,7 +77,7 @@ public class Intensity {
 
     /**
      * Gets the value of the targetMass property.
-     *
+     * 
      */
     public float getTargetMass() {
         return targetMass;
@@ -85,7 +85,7 @@ public class Intensity {
 
     /**
      * Sets the value of the targetMass property.
-     *
+     * 
      */
     public void setTargetMass(float value) {
         this.targetMass = value;
@@ -93,7 +93,7 @@ public class Intensity {
 
     /**
      * Gets the value of the absolute property.
-     *
+     * 
      */
     public float getAbsolute() {
         return absolute;
@@ -101,7 +101,7 @@ public class Intensity {
 
     /**
      * Sets the value of the absolute property.
-     *
+     * 
      */
     public void setAbsolute(float value) {
         this.absolute = value;
@@ -109,7 +109,7 @@ public class Intensity {
 
     /**
      * Gets the value of the normalized property.
-     *
+     * 
      */
     public float getNormalized() {
         return normalized;
@@ -117,7 +117,7 @@ public class Intensity {
 
     /**
      * Sets the value of the normalized property.
-     *
+     * 
      */
     public void setNormalized(float value) {
         this.normalized = value;
@@ -125,11 +125,11 @@ public class Intensity {
 
     /**
      * Gets the value of the reject property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link Boolean }
-     *
+     *     
      */
     public boolean isReject() {
         if (reject == null) {
@@ -141,11 +141,11 @@ public class Intensity {
 
     /**
      * Sets the value of the reject property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link Boolean }
-     *
+     *     
      */
     public void setReject(Boolean value) {
         this.reject = value;

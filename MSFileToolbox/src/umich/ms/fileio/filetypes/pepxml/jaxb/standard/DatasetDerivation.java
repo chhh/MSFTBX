@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2016 Dmitry Avtonomov
+ * Copyright (c) 2017 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,9 +30,9 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -56,8 +56,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -74,25 +74,25 @@ public class DatasetDerivation {
 
     /**
      * Gets the value of the dataFilter property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the dataFilter property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getDataFilter().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link DataFilter }
-     *
-     *
+     * 
+     * 
      */
     public List<DataFilter> getDataFilter() {
         if (dataFilter == null) {
@@ -103,11 +103,11 @@ public class DatasetDerivation {
 
     /**
      * Gets the value of the generationNo property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public Integer getGenerationNo() {
         return generationNo;
@@ -115,11 +115,11 @@ public class DatasetDerivation {
 
     /**
      * Sets the value of the generationNo property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setGenerationNo(Integer value) {
         this.generationNo = value;

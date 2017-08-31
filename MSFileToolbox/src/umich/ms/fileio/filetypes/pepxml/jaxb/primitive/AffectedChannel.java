@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2016 Dmitry Avtonomov
+ * Copyright (c) 2017 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,9 +25,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -38,8 +38,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
@@ -52,7 +52,7 @@ public class AffectedChannel {
 
     /**
      * Gets the value of the channel property.
-     *
+     * 
      */
     public long getChannel() {
         return channel;
@@ -60,7 +60,7 @@ public class AffectedChannel {
 
     /**
      * Sets the value of the channel property.
-     *
+     * 
      */
     public void setChannel(long value) {
         this.channel = value;
@@ -68,7 +68,7 @@ public class AffectedChannel {
 
     /**
      * Gets the value of the correction property.
-     *
+     * 
      */
     public float getCorrection() {
         return correction;
@@ -76,7 +76,7 @@ public class AffectedChannel {
 
     /**
      * Sets the value of the correction property.
-     *
+     * 
      */
     public void setCorrection(float value) {
         this.correction = value;

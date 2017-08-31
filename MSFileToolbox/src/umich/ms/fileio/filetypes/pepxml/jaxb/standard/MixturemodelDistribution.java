@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2016 Dmitry Avtonomov
+ * Copyright (c) 2017 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,9 +26,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -64,8 +64,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -83,11 +83,11 @@ public class MixturemodelDistribution {
 
     /**
      * Gets the value of the posmodelDistribution property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link PosmodelDistribution }
-     *
+     *     
      */
     public PosmodelDistribution getPosmodelDistribution() {
         return posmodelDistribution;
@@ -95,11 +95,11 @@ public class MixturemodelDistribution {
 
     /**
      * Sets the value of the posmodelDistribution property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link PosmodelDistribution }
-     *
+     *     
      */
     public void setPosmodelDistribution(PosmodelDistribution value) {
         this.posmodelDistribution = value;
@@ -107,11 +107,11 @@ public class MixturemodelDistribution {
 
     /**
      * Gets the value of the negmodelDistribution property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link NegmodelDistribution }
-     *
+     *     
      */
     public NegmodelDistribution getNegmodelDistribution() {
         return negmodelDistribution;
@@ -119,11 +119,11 @@ public class MixturemodelDistribution {
 
     /**
      * Sets the value of the negmodelDistribution property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link NegmodelDistribution }
-     *
+     *     
      */
     public void setNegmodelDistribution(NegmodelDistribution value) {
         this.negmodelDistribution = value;
@@ -131,11 +131,11 @@ public class MixturemodelDistribution {
 
     /**
      * Gets the value of the name property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getName() {
         return name;
@@ -143,11 +143,11 @@ public class MixturemodelDistribution {
 
     /**
      * Sets the value of the name property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setName(String value) {
         this.name = value;

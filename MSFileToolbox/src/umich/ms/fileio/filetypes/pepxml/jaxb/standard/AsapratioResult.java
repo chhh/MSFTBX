@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2016 Dmitry Avtonomov
+ * Copyright (c) 2017 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,9 +27,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -45,8 +45,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -68,11 +68,11 @@ public class AsapratioResult {
 
     /**
      * Gets the value of the asapratioPeptideData property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link AsapratioPeptideData }
-     *
+     *     
      */
     public AsapratioPeptideData getAsapratioPeptideData() {
         return asapratioPeptideData;
@@ -80,11 +80,11 @@ public class AsapratioResult {
 
     /**
      * Sets the value of the asapratioPeptideData property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link AsapratioPeptideData }
-     *
+     *     
      */
     public void setAsapratioPeptideData(AsapratioPeptideData value) {
         this.asapratioPeptideData = value;
@@ -92,7 +92,7 @@ public class AsapratioResult {
 
     /**
      * Gets the value of the mean property.
-     *
+     * 
      */
     public float getMean() {
         return mean;
@@ -100,7 +100,7 @@ public class AsapratioResult {
 
     /**
      * Sets the value of the mean property.
-     *
+     * 
      */
     public void setMean(float value) {
         this.mean = value;
@@ -108,7 +108,7 @@ public class AsapratioResult {
 
     /**
      * Gets the value of the error property.
-     *
+     * 
      */
     public float getError() {
         return error;
@@ -116,7 +116,7 @@ public class AsapratioResult {
 
     /**
      * Sets the value of the error property.
-     *
+     * 
      */
     public void setError(float value) {
         this.error = value;
@@ -124,7 +124,7 @@ public class AsapratioResult {
 
     /**
      * Gets the value of the heavy2LightMean property.
-     *
+     * 
      */
     public float getHeavy2LightMean() {
         return heavy2LightMean;
@@ -132,7 +132,7 @@ public class AsapratioResult {
 
     /**
      * Sets the value of the heavy2LightMean property.
-     *
+     * 
      */
     public void setHeavy2LightMean(float value) {
         this.heavy2LightMean = value;
@@ -140,7 +140,7 @@ public class AsapratioResult {
 
     /**
      * Gets the value of the heavy2LightError property.
-     *
+     * 
      */
     public float getHeavy2LightError() {
         return heavy2LightError;
@@ -148,7 +148,7 @@ public class AsapratioResult {
 
     /**
      * Sets the value of the heavy2LightError property.
-     *
+     * 
      */
     public void setHeavy2LightError(float value) {
         this.heavy2LightError = value;

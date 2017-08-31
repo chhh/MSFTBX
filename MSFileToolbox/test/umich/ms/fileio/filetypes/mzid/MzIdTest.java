@@ -51,7 +51,7 @@ public class MzIdTest {
     public void testParsing() throws Exception {
 
         for (Path path : paths) {
-            System.out.printf("Test parsing ");
+            System.out.printf("Test parsing file: %s\n", path);
             MzIdentMLType mzid = MzIdentMLParser.parse(path);
 
             Assert.assertFalse(String.format("Peptide List was empty for file '%s'", path), mzid.getSequenceCollection().getPeptide().isEmpty());
@@ -74,6 +74,7 @@ public class MzIdTest {
 //                    }
 //                }
 //            }
+            System.out.println("Done.");
         }
     }
 

@@ -45,16 +45,18 @@ Execute from `MSFTBX\MSFileToolbox\src\umich\ms\fileio\filetypes\pepxml\resource
 Will overwrite existing java jaxb files without warning.  
 
 * Standard
-  * `"C:\Programs\Java\jdk1.8.0_60\bin\xjc.exe" -no-header -encoding UTF-8 -d "D:\projects\BatMass\MSFTBX\MSFileToolbox\src" -b bindings_pepxml_standard.xml -p umich.ms.fileio.filetypes.pepxml.jaxb.standard pepXML_v120-fixed.xsd`
+  * `xjc -b bindings_pepxml_standard.xml  -no-header -encoding UTF-8 -extension -d "C:\projects\BatMass\MSFTBX\MSFileToolbox\src" -p umich.ms.fileio.filetypes.pepxml.jaxb.standard  pepXML_v120-fixed.xsd`
 * Primitive 
-  * `"C:\Programs\Java\jdk1.8.0_60\bin\xjc.exe" -no-header -encoding UTF-8 -d "D:\projects\BatMass\MSFTBX\MSFileToolbox\src" -b bindings_pepxml_primitive.xml -p umich.ms.fileio.filetypes.pepxml.jaxb.primitive pepXML_v120-fixed.xsd`
-* Nested 
-  * `"C:\Programs\Java\jdk1.8.0_60\bin\xjc.exe" -no-header -encoding UTF-8 -d "D:\projects\BatMass\MSFTBX\MSFileToolbox\src" -b bindings_pepxml_nested.xml -p umich.ms.fileio.filetypes.pepxml.jaxb.nested pepXML_v120-fixed.xsd`
-* __After generation__
-  * all occurrences of  `new ArrayList<>()` were replaced with `new ArrayList<>(1)` to avoid lots of lists
-    of default size, which is 10. As in pepxml there might be tens of thousands of such lists which only hold a single element.
-  * Use the following regex in IDEA for replacement (use _Replace in path_). Search pattern `(new ArrayList<.*?>)\(\)`,
+  * `xjc -b bindings_pepxml_primitive.xml -no-header -encoding UTF-8 -extension -d "C:\projects\BatMass\MSFTBX\MSFileToolbox\src" -p umich.ms.fileio.filetypes.pepxml.jaxb.primitive pepXML_v120-fixed.xsd`
+* __DEPRECATED__ (Nested) 
+  * `xjc -no-header -encoding UTF-8 -d "C:\projects\BatMass\MSFTBX\MSFileToolbox\src" -b bindings_pepxml_nested.xml -p umich.ms.fileio.filetypes.pepxml.jaxb.nested pepXML_v120-fixed.xsd`
+##  After generation
+* All occurrences of  `new ArrayList<>()` were replaced with `new ArrayList<>(1)` to avoid lots of lists
+    of default size, which is 10. As in pepxml there might be tens of thousands of such lists which only 
+    hold a single element.
+* Use the following regex in IDEA for replacement (use _Replace in path_). Search pattern `(new ArrayList<.*?>)\(\)`,
     replacement pattern `$1\(1\)`
+* Delete the `namespace` and `attributeFormDefault` from `package-info.java` that sits next to `ObjectFactory.java`
 
 # Use like this:
 

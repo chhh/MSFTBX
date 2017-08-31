@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2016 Dmitry Avtonomov
+ * Copyright (c) 2017 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,11 +28,11 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * Positions and masses of modifications
- *
+ * 
  * <p>Java class for modInfoDataType complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType name="modInfoDataType">
  *   &lt;complexContent>
@@ -58,8 +58,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "modInfoDataType", propOrder = {
@@ -81,25 +81,25 @@ public class ModificationInfo {
 
     /**
      * Gets the value of the aminoacidSubstitution property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the aminoacidSubstitution property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getAminoacidSubstitution().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link SubInfoDataType }
-     *
-     *
+     * 
+     * 
      */
     public List<SubInfoDataType> getAminoacidSubstitution() {
         if (aminoacidSubstitution == null) {
@@ -110,25 +110,25 @@ public class ModificationInfo {
 
     /**
      * Gets the value of the modAminoacidMass property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the modAminoacidMass property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getModAminoacidMass().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link ModAminoacidMass }
-     *
-     *
+     * 
+     * 
      */
     public List<ModAminoacidMass> getModAminoacidMass() {
         if (modAminoacidMass == null) {
@@ -139,7 +139,7 @@ public class ModificationInfo {
 
     /**
      * Gets the value of the modNtermMass property.
-     *
+     * 
      */
     public double getModNtermMass() {
         return modNtermMass;
@@ -147,7 +147,7 @@ public class ModificationInfo {
 
     /**
      * Sets the value of the modNtermMass property.
-     *
+     * 
      */
     public void setModNtermMass(double value) {
         this.modNtermMass = value;
@@ -155,7 +155,7 @@ public class ModificationInfo {
 
     /**
      * Gets the value of the modCtermMass property.
-     *
+     * 
      */
     public double getModCtermMass() {
         return modCtermMass;
@@ -163,7 +163,7 @@ public class ModificationInfo {
 
     /**
      * Sets the value of the modCtermMass property.
-     *
+     * 
      */
     public void setModCtermMass(double value) {
         this.modCtermMass = value;
@@ -171,11 +171,11 @@ public class ModificationInfo {
 
     /**
      * Gets the value of the modifiedPeptide property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getModifiedPeptide() {
         return modifiedPeptide;
@@ -183,11 +183,11 @@ public class ModificationInfo {
 
     /**
      * Sets the value of the modifiedPeptide property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setModifiedPeptide(String value) {
         this.modifiedPeptide = value;

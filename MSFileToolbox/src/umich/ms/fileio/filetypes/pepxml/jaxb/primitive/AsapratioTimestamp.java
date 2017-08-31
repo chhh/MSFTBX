@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2016 Dmitry Avtonomov
+ * Copyright (c) 2017 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,9 +26,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -39,8 +39,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
@@ -54,11 +54,11 @@ public class AsapratioTimestamp {
 
     /**
      * Gets the value of the quantLabelMasses property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getQuantLabelMasses() {
         return quantLabelMasses;
@@ -66,11 +66,11 @@ public class AsapratioTimestamp {
 
     /**
      * Sets the value of the quantLabelMasses property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setQuantLabelMasses(String value) {
         this.quantLabelMasses = value;
@@ -78,11 +78,11 @@ public class AsapratioTimestamp {
 
     /**
      * Gets the value of the staticQuantLabel property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getStaticQuantLabel() {
         return staticQuantLabel;
@@ -90,11 +90,11 @@ public class AsapratioTimestamp {
 
     /**
      * Sets the value of the staticQuantLabel property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setStaticQuantLabel(String value) {
         this.staticQuantLabel = value;

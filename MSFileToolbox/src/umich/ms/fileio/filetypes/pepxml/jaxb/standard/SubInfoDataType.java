@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2016 Dmitry Avtonomov
+ * Copyright (c) 2017 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,11 +27,11 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * Peptide found via aminoacid substitution. Can apply to represent a substitution within peptide sequence, and/or on flanking residues
- *
+ * 
  * <p>Java class for subInfoDataType complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType name="subInfoDataType">
  *   &lt;complexContent>
@@ -45,8 +45,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "subInfoDataType")
@@ -69,11 +69,11 @@ public class SubInfoDataType {
 
     /**
      * Gets the value of the position property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public Integer getPosition() {
         return position;
@@ -81,11 +81,11 @@ public class SubInfoDataType {
 
     /**
      * Sets the value of the position property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setPosition(Integer value) {
         this.position = value;
@@ -93,11 +93,11 @@ public class SubInfoDataType {
 
     /**
      * Gets the value of the origAa property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getOrigAa() {
         return origAa;
@@ -105,11 +105,11 @@ public class SubInfoDataType {
 
     /**
      * Sets the value of the origAa property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setOrigAa(String value) {
         this.origAa = value;
@@ -117,11 +117,11 @@ public class SubInfoDataType {
 
     /**
      * Gets the value of the numTolTerm property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public Integer getNumTolTerm() {
         return numTolTerm;
@@ -129,11 +129,11 @@ public class SubInfoDataType {
 
     /**
      * Sets the value of the numTolTerm property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setNumTolTerm(Integer value) {
         this.numTolTerm = value;
@@ -141,11 +141,11 @@ public class SubInfoDataType {
 
     /**
      * Gets the value of the peptidePrevAa property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getPeptidePrevAa() {
         return peptidePrevAa;
@@ -153,11 +153,11 @@ public class SubInfoDataType {
 
     /**
      * Sets the value of the peptidePrevAa property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setPeptidePrevAa(String value) {
         this.peptidePrevAa = value;
@@ -165,11 +165,11 @@ public class SubInfoDataType {
 
     /**
      * Gets the value of the peptideNextAa property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getPeptideNextAa() {
         return peptideNextAa;
@@ -177,11 +177,11 @@ public class SubInfoDataType {
 
     /**
      * Sets the value of the peptideNextAa property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setPeptideNextAa(String value) {
         this.peptideNextAa = value;

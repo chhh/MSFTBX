@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2016 Dmitry Avtonomov
+ * Copyright (c) 2017 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,9 +27,9 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -41,8 +41,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
@@ -61,11 +61,11 @@ public class EnzymaticSearchConstraint {
 
     /**
      * Gets the value of the enzyme property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getEnzyme() {
         return enzyme;
@@ -73,11 +73,11 @@ public class EnzymaticSearchConstraint {
 
     /**
      * Sets the value of the enzyme property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setEnzyme(String value) {
         this.enzyme = value;
@@ -85,11 +85,11 @@ public class EnzymaticSearchConstraint {
 
     /**
      * Gets the value of the maxNumInternalCleavages property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public Integer getMaxNumInternalCleavages() {
         return maxNumInternalCleavages;
@@ -97,11 +97,11 @@ public class EnzymaticSearchConstraint {
 
     /**
      * Sets the value of the maxNumInternalCleavages property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setMaxNumInternalCleavages(Integer value) {
         this.maxNumInternalCleavages = value;
@@ -109,11 +109,11 @@ public class EnzymaticSearchConstraint {
 
     /**
      * Gets the value of the minNumberTermini property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public Integer getMinNumberTermini() {
         return minNumberTermini;
@@ -121,11 +121,11 @@ public class EnzymaticSearchConstraint {
 
     /**
      * Sets the value of the minNumberTermini property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setMinNumberTermini(Integer value) {
         this.minNumberTermini = value;

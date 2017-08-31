@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2016 Dmitry Avtonomov
+ * Copyright (c) 2017 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,11 +26,11 @@ import javax.xml.bind.annotation.XmlValue;
 
 /**
  * Input file
- *
+ * 
  * <p>Java class for inputFileType complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType name="inputFileType">
  *   &lt;simpleContent>
@@ -41,8 +41,8 @@ import javax.xml.bind.annotation.XmlValue;
  *   &lt;/simpleContent>
  * &lt;/complexType>
  * </pre>
- *
- *
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "inputFileType", propOrder = {
@@ -59,11 +59,11 @@ public class InputFileType {
 
     /**
      * Gets the value of the value property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getValue() {
         return value;
@@ -71,11 +71,11 @@ public class InputFileType {
 
     /**
      * Sets the value of the value property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setValue(String value) {
         this.value = value;
@@ -83,11 +83,11 @@ public class InputFileType {
 
     /**
      * Gets the value of the name property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getName() {
         return name;
@@ -95,11 +95,11 @@ public class InputFileType {
 
     /**
      * Sets the value of the name property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setName(String value) {
         this.name = value;
@@ -107,11 +107,11 @@ public class InputFileType {
 
     /**
      * Gets the value of the directory property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getDirectory() {
         return directory;
@@ -119,11 +119,11 @@ public class InputFileType {
 
     /**
      * Sets the value of the directory property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setDirectory(String value) {
         this.directory = value;

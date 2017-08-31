@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2016 Dmitry Avtonomov
+ * Copyright (c) 2017 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,9 +30,9 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -127,8 +127,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -202,25 +202,25 @@ public class SearchHit {
 
     /**
      * Gets the value of the alternativeProtein property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the alternativeProtein property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getAlternativeProtein().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link AltProteinDataType }
-     *
-     *
+     * 
+     * 
      */
     public List<AltProteinDataType> getAlternativeProtein() {
         if (alternativeProtein == null) {
@@ -231,11 +231,11 @@ public class SearchHit {
 
     /**
      * Gets the value of the modificationInfo property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link ModificationInfo }
-     *
+     *     
      */
     public ModificationInfo getModificationInfo() {
         return modificationInfo;
@@ -243,11 +243,11 @@ public class SearchHit {
 
     /**
      * Sets the value of the modificationInfo property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link ModificationInfo }
-     *
+     *     
      */
     public void setModificationInfo(ModificationInfo value) {
         this.modificationInfo = value;
@@ -255,11 +255,11 @@ public class SearchHit {
 
     /**
      * Gets the value of the xlink property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link Xlink }
-     *
+     *     
      */
     public Xlink getXlink() {
         return xlink;
@@ -267,11 +267,11 @@ public class SearchHit {
 
     /**
      * Sets the value of the xlink property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link Xlink }
-     *
+     *     
      */
     public void setXlink(Xlink value) {
         this.xlink = value;
@@ -279,25 +279,25 @@ public class SearchHit {
 
     /**
      * Gets the value of the searchScore property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the searchScore property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getSearchScore().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link NameValueType }
-     *
-     *
+     * 
+     * 
      */
     public List<NameValueType> getSearchScore() {
         if (searchScore == null) {
@@ -308,25 +308,25 @@ public class SearchHit {
 
     /**
      * Gets the value of the analysisResult property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the analysisResult property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getAnalysisResult().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link AnalysisResult }
-     *
-     *
+     * 
+     * 
      */
     public List<AnalysisResult> getAnalysisResult() {
         if (analysisResult == null) {
@@ -337,25 +337,25 @@ public class SearchHit {
 
     /**
      * Gets the value of the parameter property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the parameter property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getParameter().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link NameValueType }
-     *
-     *
+     * 
+     * 
      */
     public List<NameValueType> getParameter() {
         if (parameter == null) {
@@ -366,7 +366,7 @@ public class SearchHit {
 
     /**
      * Gets the value of the hitRank property.
-     *
+     * 
      */
     public long getHitRank() {
         return hitRank;
@@ -374,7 +374,7 @@ public class SearchHit {
 
     /**
      * Sets the value of the hitRank property.
-     *
+     * 
      */
     public void setHitRank(long value) {
         this.hitRank = value;
@@ -382,11 +382,11 @@ public class SearchHit {
 
     /**
      * Gets the value of the peptide property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getPeptide() {
         return peptide;
@@ -394,11 +394,11 @@ public class SearchHit {
 
     /**
      * Sets the value of the peptide property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setPeptide(String value) {
         this.peptide = value;
@@ -406,11 +406,11 @@ public class SearchHit {
 
     /**
      * Gets the value of the peptidePrevAa property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getPeptidePrevAa() {
         return peptidePrevAa;
@@ -418,11 +418,11 @@ public class SearchHit {
 
     /**
      * Sets the value of the peptidePrevAa property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setPeptidePrevAa(String value) {
         this.peptidePrevAa = value;
@@ -430,11 +430,11 @@ public class SearchHit {
 
     /**
      * Gets the value of the peptideNextAa property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getPeptideNextAa() {
         return peptideNextAa;
@@ -442,11 +442,11 @@ public class SearchHit {
 
     /**
      * Sets the value of the peptideNextAa property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setPeptideNextAa(String value) {
         this.peptideNextAa = value;
@@ -454,11 +454,11 @@ public class SearchHit {
 
     /**
      * Gets the value of the protein property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getProtein() {
         return protein;
@@ -466,11 +466,11 @@ public class SearchHit {
 
     /**
      * Sets the value of the protein property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setProtein(String value) {
         this.protein = value;
@@ -478,7 +478,7 @@ public class SearchHit {
 
     /**
      * Gets the value of the numTotProteins property.
-     *
+     * 
      */
     public long getNumTotProteins() {
         return numTotProteins;
@@ -486,7 +486,7 @@ public class SearchHit {
 
     /**
      * Sets the value of the numTotProteins property.
-     *
+     * 
      */
     public void setNumTotProteins(long value) {
         this.numTotProteins = value;
@@ -494,11 +494,11 @@ public class SearchHit {
 
     /**
      * Gets the value of the numMatchedIons property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public Integer getNumMatchedIons() {
         return numMatchedIons;
@@ -506,11 +506,11 @@ public class SearchHit {
 
     /**
      * Sets the value of the numMatchedIons property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setNumMatchedIons(Integer value) {
         this.numMatchedIons = value;
@@ -518,11 +518,11 @@ public class SearchHit {
 
     /**
      * Gets the value of the totNumIons property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public Integer getTotNumIons() {
         return totNumIons;
@@ -530,11 +530,11 @@ public class SearchHit {
 
     /**
      * Sets the value of the totNumIons property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setTotNumIons(Integer value) {
         this.totNumIons = value;
@@ -542,7 +542,7 @@ public class SearchHit {
 
     /**
      * Gets the value of the calcNeutralPepMass property.
-     *
+     * 
      */
     public float getCalcNeutralPepMass() {
         return calcNeutralPepMass;
@@ -550,7 +550,7 @@ public class SearchHit {
 
     /**
      * Sets the value of the calcNeutralPepMass property.
-     *
+     * 
      */
     public void setCalcNeutralPepMass(float value) {
         this.calcNeutralPepMass = value;
@@ -558,7 +558,7 @@ public class SearchHit {
 
     /**
      * Gets the value of the massdiff property.
-     *
+     * 
      */
     public float getMassdiff() {
         return massdiff;
@@ -566,7 +566,7 @@ public class SearchHit {
 
     /**
      * Sets the value of the massdiff property.
-     *
+     * 
      */
     public void setMassdiff(float value) {
         this.massdiff = value;
@@ -574,11 +574,11 @@ public class SearchHit {
 
     /**
      * Gets the value of the numTolTerm property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public Integer getNumTolTerm() {
         return numTolTerm;
@@ -586,11 +586,11 @@ public class SearchHit {
 
     /**
      * Sets the value of the numTolTerm property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setNumTolTerm(Integer value) {
         this.numTolTerm = value;
@@ -598,11 +598,11 @@ public class SearchHit {
 
     /**
      * Gets the value of the numMissedCleavages property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public Integer getNumMissedCleavages() {
         return numMissedCleavages;
@@ -610,11 +610,11 @@ public class SearchHit {
 
     /**
      * Sets the value of the numMissedCleavages property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setNumMissedCleavages(Integer value) {
         this.numMissedCleavages = value;
@@ -622,11 +622,11 @@ public class SearchHit {
 
     /**
      * Gets the value of the numMatchedPeptides property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public Integer getNumMatchedPeptides() {
         return numMatchedPeptides;
@@ -634,11 +634,11 @@ public class SearchHit {
 
     /**
      * Sets the value of the numMatchedPeptides property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setNumMatchedPeptides(Integer value) {
         this.numMatchedPeptides = value;
@@ -646,11 +646,11 @@ public class SearchHit {
 
     /**
      * Gets the value of the xlinkType property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getXlinkType() {
         return xlinkType;
@@ -658,11 +658,11 @@ public class SearchHit {
 
     /**
      * Sets the value of the xlinkType property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setXlinkType(String value) {
         this.xlinkType = value;
@@ -670,11 +670,11 @@ public class SearchHit {
 
     /**
      * Gets the value of the isRejected property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public int getIsRejected() {
         if (isRejected == null) {
@@ -686,11 +686,11 @@ public class SearchHit {
 
     /**
      * Sets the value of the isRejected property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setIsRejected(Integer value) {
         this.isRejected = value;
@@ -698,11 +698,11 @@ public class SearchHit {
 
     /**
      * Gets the value of the proteinDescr property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getProteinDescr() {
         return proteinDescr;
@@ -710,11 +710,11 @@ public class SearchHit {
 
     /**
      * Sets the value of the proteinDescr property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setProteinDescr(String value) {
         this.proteinDescr = value;
@@ -722,11 +722,11 @@ public class SearchHit {
 
     /**
      * Gets the value of the calcPI property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getCalcPI() {
         return calcPI;
@@ -734,11 +734,11 @@ public class SearchHit {
 
     /**
      * Sets the value of the calcPI property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setCalcPI(String value) {
         this.calcPI = value;
@@ -746,11 +746,11 @@ public class SearchHit {
 
     /**
      * Gets the value of the proteinMw property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link Double }
-     *
+     *     
      */
     public Double getProteinMw() {
         return proteinMw;
@@ -758,11 +758,11 @@ public class SearchHit {
 
     /**
      * Sets the value of the proteinMw property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link Double }
-     *
+     *     
      */
     public void setProteinMw(Double value) {
         this.proteinMw = value;

@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2016 Dmitry Avtonomov
+ * Copyright (c) 2017 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,9 +29,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -55,8 +55,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -76,25 +76,25 @@ public class PtmprophetResult {
 
     /**
      * Gets the value of the modAminoacidProbability property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the modAminoacidProbability property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getModAminoacidProbability().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link ModAminoacidProbability }
-     *
-     *
+     * 
+     * 
      */
     public List<ModAminoacidProbability> getModAminoacidProbability() {
         if (modAminoacidProbability == null) {
@@ -105,7 +105,7 @@ public class PtmprophetResult {
 
     /**
      * Gets the value of the prior property.
-     *
+     * 
      */
     public float getPrior() {
         return prior;
@@ -113,7 +113,7 @@ public class PtmprophetResult {
 
     /**
      * Sets the value of the prior property.
-     *
+     * 
      */
     public void setPrior(float value) {
         this.prior = value;
@@ -121,11 +121,11 @@ public class PtmprophetResult {
 
     /**
      * Gets the value of the ptm property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getPtm() {
         return ptm;
@@ -133,11 +133,11 @@ public class PtmprophetResult {
 
     /**
      * Sets the value of the ptm property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setPtm(String value) {
         this.ptm = value;
@@ -145,11 +145,11 @@ public class PtmprophetResult {
 
     /**
      * Gets the value of the ptmPeptide property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getPtmPeptide() {
         return ptmPeptide;
@@ -157,11 +157,11 @@ public class PtmprophetResult {
 
     /**
      * Sets the value of the ptmPeptide property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setPtmPeptide(String value) {
         this.ptmPeptide = value;

@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2016 Dmitry Avtonomov
+ * Copyright (c) 2017 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,9 +27,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -54,8 +54,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -75,11 +75,11 @@ public class PeptideprophetResult {
 
     /**
      * Gets the value of the searchScoreSummary property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link SearchScoreSummary }
-     *
+     *     
      */
     public SearchScoreSummary getSearchScoreSummary() {
         return searchScoreSummary;
@@ -87,11 +87,11 @@ public class PeptideprophetResult {
 
     /**
      * Sets the value of the searchScoreSummary property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link SearchScoreSummary }
-     *
+     *     
      */
     public void setSearchScoreSummary(SearchScoreSummary value) {
         this.searchScoreSummary = value;
@@ -99,7 +99,7 @@ public class PeptideprophetResult {
 
     /**
      * Gets the value of the probability property.
-     *
+     * 
      */
     public float getProbability() {
         return probability;
@@ -107,7 +107,7 @@ public class PeptideprophetResult {
 
     /**
      * Sets the value of the probability property.
-     *
+     * 
      */
     public void setProbability(float value) {
         this.probability = value;
@@ -115,11 +115,11 @@ public class PeptideprophetResult {
 
     /**
      * Gets the value of the allNttProb property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getAllNttProb() {
         return allNttProb;
@@ -127,11 +127,11 @@ public class PeptideprophetResult {
 
     /**
      * Sets the value of the allNttProb property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setAllNttProb(String value) {
         this.allNttProb = value;
@@ -139,11 +139,11 @@ public class PeptideprophetResult {
 
     /**
      * Gets the value of the analysis property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getAnalysis() {
         return analysis;
@@ -151,11 +151,11 @@ public class PeptideprophetResult {
 
     /**
      * Sets the value of the analysis property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setAnalysis(String value) {
         this.analysis = value;

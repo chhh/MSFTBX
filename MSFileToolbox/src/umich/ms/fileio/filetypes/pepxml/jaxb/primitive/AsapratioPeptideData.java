@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2016 Dmitry Avtonomov
+ * Copyright (c) 2017 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,9 +30,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -49,8 +49,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -75,25 +75,25 @@ public class AsapratioPeptideData {
 
     /**
      * Gets the value of the asapratioContribution property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the asapratioContribution property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getAsapratioContribution().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link AsapratioContribution }
-     *
-     *
+     * 
+     * 
      */
     public List<AsapratioContribution> getAsapratioContribution() {
         if (asapratioContribution == null) {
@@ -104,7 +104,7 @@ public class AsapratioPeptideData {
 
     /**
      * Gets the value of the status property.
-     *
+     * 
      */
     public byte getStatus() {
         return status;
@@ -112,7 +112,7 @@ public class AsapratioPeptideData {
 
     /**
      * Sets the value of the status property.
-     *
+     * 
      */
     public void setStatus(byte value) {
         this.status = value;
@@ -120,7 +120,7 @@ public class AsapratioPeptideData {
 
     /**
      * Gets the value of the cidIndex property.
-     *
+     * 
      */
     public int getCidIndex() {
         return cidIndex;
@@ -128,7 +128,7 @@ public class AsapratioPeptideData {
 
     /**
      * Sets the value of the cidIndex property.
-     *
+     * 
      */
     public void setCidIndex(int value) {
         this.cidIndex = value;
@@ -136,7 +136,7 @@ public class AsapratioPeptideData {
 
     /**
      * Gets the value of the lightMass property.
-     *
+     * 
      */
     public float getLightMass() {
         return lightMass;
@@ -144,7 +144,7 @@ public class AsapratioPeptideData {
 
     /**
      * Sets the value of the lightMass property.
-     *
+     * 
      */
     public void setLightMass(float value) {
         this.lightMass = value;
@@ -152,7 +152,7 @@ public class AsapratioPeptideData {
 
     /**
      * Gets the value of the heavyMass property.
-     *
+     * 
      */
     public float getHeavyMass() {
         return heavyMass;
@@ -160,7 +160,7 @@ public class AsapratioPeptideData {
 
     /**
      * Sets the value of the heavyMass property.
-     *
+     * 
      */
     public void setHeavyMass(float value) {
         this.heavyMass = value;
@@ -168,7 +168,7 @@ public class AsapratioPeptideData {
 
     /**
      * Gets the value of the areaFlag property.
-     *
+     * 
      */
     public long getAreaFlag() {
         return areaFlag;
@@ -176,7 +176,7 @@ public class AsapratioPeptideData {
 
     /**
      * Sets the value of the areaFlag property.
-     *
+     * 
      */
     public void setAreaFlag(long value) {
         this.areaFlag = value;

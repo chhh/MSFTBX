@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2016 Dmitry Avtonomov
+ * Copyright (c) 2017 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,9 +31,9 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -109,8 +109,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -144,26 +144,26 @@ public class MixtureModelling {
 
     /**
      * Gets the value of the mixturemodelDistributionOrMixturemodel property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the mixturemodelDistributionOrMixturemodel property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getMixturemodelDistributionOrMixturemodel().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link MixturemodelDistribution }
      * {@link Mixturemodel }
-     *
-     *
+     * 
+     * 
      */
     public List<Object> getMixturemodelDistributionOrMixturemodel() {
         if (mixturemodelDistributionOrMixturemodel == null) {
@@ -174,11 +174,11 @@ public class MixtureModelling {
 
     /**
      * Gets the value of the precursorIonCharge property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public Integer getPrecursorIonCharge() {
         return precursorIonCharge;
@@ -186,11 +186,11 @@ public class MixtureModelling {
 
     /**
      * Sets the value of the precursorIonCharge property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setPrecursorIonCharge(Integer value) {
         this.precursorIonCharge = value;
@@ -198,11 +198,11 @@ public class MixtureModelling {
 
     /**
      * Gets the value of the comments property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getComments() {
         return comments;
@@ -210,11 +210,11 @@ public class MixtureModelling {
 
     /**
      * Sets the value of the comments property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setComments(String value) {
         this.comments = value;
@@ -222,7 +222,7 @@ public class MixtureModelling {
 
     /**
      * Gets the value of the priorProbability property.
-     *
+     * 
      */
     public float getPriorProbability() {
         return priorProbability;
@@ -230,7 +230,7 @@ public class MixtureModelling {
 
     /**
      * Sets the value of the priorProbability property.
-     *
+     * 
      */
     public void setPriorProbability(float value) {
         this.priorProbability = value;
@@ -238,7 +238,7 @@ public class MixtureModelling {
 
     /**
      * Gets the value of the estTotCorrect property.
-     *
+     * 
      */
     public float getEstTotCorrect() {
         return estTotCorrect;
@@ -246,7 +246,7 @@ public class MixtureModelling {
 
     /**
      * Sets the value of the estTotCorrect property.
-     *
+     * 
      */
     public void setEstTotCorrect(float value) {
         this.estTotCorrect = value;
@@ -254,11 +254,11 @@ public class MixtureModelling {
 
     /**
      * Gets the value of the totNumSpectra property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public Integer getTotNumSpectra() {
         return totNumSpectra;
@@ -266,11 +266,11 @@ public class MixtureModelling {
 
     /**
      * Sets the value of the totNumSpectra property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setTotNumSpectra(Integer value) {
         this.totNumSpectra = value;
@@ -278,11 +278,11 @@ public class MixtureModelling {
 
     /**
      * Gets the value of the numIterations property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public Integer getNumIterations() {
         return numIterations;
@@ -290,11 +290,11 @@ public class MixtureModelling {
 
     /**
      * Sets the value of the numIterations property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setNumIterations(Integer value) {
         this.numIterations = value;

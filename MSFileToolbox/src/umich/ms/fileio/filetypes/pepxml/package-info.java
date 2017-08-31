@@ -16,7 +16,6 @@
 /**
  * There are 3 packages generated with JAXB:
  * <ul>
- *     <li>{@link umich.ms.fileio.filetypes.pepxml.jaxb.nested}</li>
  *     <li>{@link umich.ms.fileio.filetypes.pepxml.jaxb.primitive}</li>
  *     <li>{@link umich.ms.fileio.filetypes.pepxml.jaxb.standard}</li>
  * </ul>

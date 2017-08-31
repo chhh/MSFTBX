@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2016 Dmitry Avtonomov
+ * Copyright (c) 2017 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,9 +27,9 @@ import javax.xml.bind.annotation.XmlValue;
 
 /**
  * <p>Java class for nameValueType complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType name="nameValueType">
  *   &lt;simpleContent>
@@ -41,8 +41,8 @@ import javax.xml.bind.annotation.XmlValue;
  *   &lt;/simpleContent>
  * &lt;/complexType>
  * </pre>
- *
- *
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "nameValueType", propOrder = {
@@ -64,11 +64,11 @@ public class NameValueType {
 
     /**
      * Gets the value of the value property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link Object }
-     *
+     *     
      */
     public Object getValue() {
         return value;
@@ -76,11 +76,11 @@ public class NameValueType {
 
     /**
      * Sets the value of the value property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link Object }
-     *
+     *     
      */
     public void setValue(Object value) {
         this.value = value;
@@ -88,11 +88,11 @@ public class NameValueType {
 
     /**
      * Gets the value of the name property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getName() {
         return name;
@@ -100,11 +100,11 @@ public class NameValueType {
 
     /**
      * Sets the value of the name property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setName(String value) {
         this.name = value;
@@ -112,11 +112,11 @@ public class NameValueType {
 
     /**
      * Gets the value of the valueStr property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getValueStr() {
         return valueStr;
@@ -124,11 +124,11 @@ public class NameValueType {
 
     /**
      * Sets the value of the valueStr property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setValueStr(String value) {
         this.valueStr = value;
@@ -136,11 +136,11 @@ public class NameValueType {
 
     /**
      * Gets the value of the type property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getType() {
         return type;
@@ -148,11 +148,11 @@ public class NameValueType {
 
     /**
      * Sets the value of the type property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setType(String value) {
         this.type = value;

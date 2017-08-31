@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2016 Dmitry Avtonomov
+ * Copyright (c) 2017 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,9 +31,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -423,8 +423,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -451,25 +451,25 @@ public class MsmsPipelineAnalysis {
 
     /**
      * Gets the value of the analysisSummary property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the analysisSummary property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getAnalysisSummary().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link AnalysisSummary }
-     *
-     *
+     * 
+     * 
      */
     public List<AnalysisSummary> getAnalysisSummary() {
         if (analysisSummary == null) {
@@ -480,11 +480,11 @@ public class MsmsPipelineAnalysis {
 
     /**
      * Gets the value of the datasetDerivation property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link DatasetDerivation }
-     *
+     *     
      */
     public DatasetDerivation getDatasetDerivation() {
         return datasetDerivation;
@@ -492,11 +492,11 @@ public class MsmsPipelineAnalysis {
 
     /**
      * Sets the value of the datasetDerivation property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link DatasetDerivation }
-     *
+     *     
      */
     public void setDatasetDerivation(DatasetDerivation value) {
         this.datasetDerivation = value;
@@ -504,25 +504,25 @@ public class MsmsPipelineAnalysis {
 
     /**
      * Gets the value of the msmsRunSummary property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the msmsRunSummary property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getMsmsRunSummary().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link MsmsRunSummary }
-     *
-     *
+     * 
+     * 
      */
     public List<MsmsRunSummary> getMsmsRunSummary() {
         if (msmsRunSummary == null) {
@@ -533,11 +533,11 @@ public class MsmsPipelineAnalysis {
 
     /**
      * Gets the value of the name property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getName() {
         return name;
@@ -545,11 +545,11 @@ public class MsmsPipelineAnalysis {
 
     /**
      * Sets the value of the name property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setName(String value) {
         this.name = value;
@@ -557,11 +557,11 @@ public class MsmsPipelineAnalysis {
 
     /**
      * Gets the value of the date property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link XMLGregorianCalendar }
-     *
+     *     
      */
     public XMLGregorianCalendar getDate() {
         return date;
@@ -569,11 +569,11 @@ public class MsmsPipelineAnalysis {
 
     /**
      * Sets the value of the date property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link XMLGregorianCalendar }
-     *
+     *     
      */
     public void setDate(XMLGregorianCalendar value) {
         this.date = value;
@@ -581,11 +581,11 @@ public class MsmsPipelineAnalysis {
 
     /**
      * Gets the value of the summaryXml property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getSummaryXml() {
         return summaryXml;
@@ -593,11 +593,11 @@ public class MsmsPipelineAnalysis {
 
     /**
      * Sets the value of the summaryXml property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setSummaryXml(String value) {
         this.summaryXml = value;

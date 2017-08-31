@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2016 Dmitry Avtonomov
+ * Copyright (c) 2017 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,9 +28,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -126,8 +126,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -170,11 +170,11 @@ public class SearchSummary {
 
     /**
      * Gets the value of the searchDatabase property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link SearchDatabase }
-     *
+     *     
      */
     public SearchDatabase getSearchDatabase() {
         return searchDatabase;
@@ -182,11 +182,11 @@ public class SearchSummary {
 
     /**
      * Sets the value of the searchDatabase property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link SearchDatabase }
-     *
+     *     
      */
     public void setSearchDatabase(SearchDatabase value) {
         this.searchDatabase = value;
@@ -194,11 +194,11 @@ public class SearchSummary {
 
     /**
      * Gets the value of the enzymaticSearchConstraint property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link EnzymaticSearchConstraint }
-     *
+     *     
      */
     public EnzymaticSearchConstraint getEnzymaticSearchConstraint() {
         return enzymaticSearchConstraint;
@@ -206,11 +206,11 @@ public class SearchSummary {
 
     /**
      * Sets the value of the enzymaticSearchConstraint property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link EnzymaticSearchConstraint }
-     *
+     *     
      */
     public void setEnzymaticSearchConstraint(EnzymaticSearchConstraint value) {
         this.enzymaticSearchConstraint = value;
@@ -218,25 +218,25 @@ public class SearchSummary {
 
     /**
      * Gets the value of the sequenceSearchConstraint property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the sequenceSearchConstraint property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getSequenceSearchConstraint().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link SequenceSearchConstraint }
-     *
-     *
+     * 
+     * 
      */
     public List<SequenceSearchConstraint> getSequenceSearchConstraint() {
         if (sequenceSearchConstraint == null) {
@@ -247,25 +247,25 @@ public class SearchSummary {
 
     /**
      * Gets the value of the aminoacidModification property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the aminoacidModification property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getAminoacidModification().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link AminoacidModification }
-     *
-     *
+     * 
+     * 
      */
     public List<AminoacidModification> getAminoacidModification() {
         if (aminoacidModification == null) {
@@ -276,25 +276,25 @@ public class SearchSummary {
 
     /**
      * Gets the value of the terminalModification property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the terminalModification property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getTerminalModification().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link TerminalModification }
-     *
-     *
+     * 
+     * 
      */
     public List<TerminalModification> getTerminalModification() {
         if (terminalModification == null) {
@@ -305,25 +305,25 @@ public class SearchSummary {
 
     /**
      * Gets the value of the parameter property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the parameter property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getParameter().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link NameValueType }
-     *
-     *
+     * 
+     * 
      */
     public List<NameValueType> getParameter() {
         if (parameter == null) {
@@ -334,11 +334,11 @@ public class SearchSummary {
 
     /**
      * Gets the value of the baseName property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getBaseName() {
         return baseName;
@@ -346,11 +346,11 @@ public class SearchSummary {
 
     /**
      * Sets the value of the baseName property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setBaseName(String value) {
         this.baseName = value;
@@ -358,11 +358,11 @@ public class SearchSummary {
 
     /**
      * Gets the value of the searchEngine property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link EngineType }
-     *
+     *     
      */
     public EngineType getSearchEngine() {
         return searchEngine;
@@ -370,11 +370,11 @@ public class SearchSummary {
 
     /**
      * Sets the value of the searchEngine property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link EngineType }
-     *
+     *     
      */
     public void setSearchEngine(EngineType value) {
         this.searchEngine = value;
@@ -382,11 +382,11 @@ public class SearchSummary {
 
     /**
      * Gets the value of the searchEngineVersion property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getSearchEngineVersion() {
         return searchEngineVersion;
@@ -394,11 +394,11 @@ public class SearchSummary {
 
     /**
      * Sets the value of the searchEngineVersion property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setSearchEngineVersion(String value) {
         this.searchEngineVersion = value;
@@ -406,11 +406,11 @@ public class SearchSummary {
 
     /**
      * Gets the value of the precursorMassType property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link MassType }
-     *
+     *     
      */
     public MassType getPrecursorMassType() {
         return precursorMassType;
@@ -418,11 +418,11 @@ public class SearchSummary {
 
     /**
      * Sets the value of the precursorMassType property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link MassType }
-     *
+     *     
      */
     public void setPrecursorMassType(MassType value) {
         this.precursorMassType = value;
@@ -430,11 +430,11 @@ public class SearchSummary {
 
     /**
      * Gets the value of the fragmentMassType property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link MassType }
-     *
+     *     
      */
     public MassType getFragmentMassType() {
         return fragmentMassType;
@@ -442,11 +442,11 @@ public class SearchSummary {
 
     /**
      * Sets the value of the fragmentMassType property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link MassType }
-     *
+     *     
      */
     public void setFragmentMassType(MassType value) {
         this.fragmentMassType = value;
@@ -454,11 +454,11 @@ public class SearchSummary {
 
     /**
      * Gets the value of the outDataType property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getOutDataType() {
         return outDataType;
@@ -466,11 +466,11 @@ public class SearchSummary {
 
     /**
      * Sets the value of the outDataType property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setOutDataType(String value) {
         this.outDataType = value;
@@ -478,11 +478,11 @@ public class SearchSummary {
 
     /**
      * Gets the value of the outData property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getOutData() {
         return outData;
@@ -490,11 +490,11 @@ public class SearchSummary {
 
     /**
      * Sets the value of the outData property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setOutData(String value) {
         this.outData = value;
@@ -502,7 +502,7 @@ public class SearchSummary {
 
     /**
      * Gets the value of the searchId property.
-     *
+     * 
      */
     public long getSearchId() {
         return searchId;
@@ -510,7 +510,7 @@ public class SearchSummary {
 
     /**
      * Sets the value of the searchId property.
-     *
+     * 
      */
     public void setSearchId(long value) {
         this.searchId = value;

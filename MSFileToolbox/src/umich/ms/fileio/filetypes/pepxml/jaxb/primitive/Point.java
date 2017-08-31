@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2016 Dmitry Avtonomov
+ * Copyright (c) 2017 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,9 +25,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -39,8 +39,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
@@ -55,7 +55,7 @@ public class Point {
 
     /**
      * Gets the value of the value property.
-     *
+     * 
      */
     public float getValue() {
         return value;
@@ -63,7 +63,7 @@ public class Point {
 
     /**
      * Sets the value of the value property.
-     *
+     * 
      */
     public void setValue(float value) {
         this.value = value;
@@ -71,7 +71,7 @@ public class Point {
 
     /**
      * Gets the value of the posDens property.
-     *
+     * 
      */
     public float getPosDens() {
         return posDens;
@@ -79,7 +79,7 @@ public class Point {
 
     /**
      * Sets the value of the posDens property.
-     *
+     * 
      */
     public void setPosDens(float value) {
         this.posDens = value;
@@ -87,7 +87,7 @@ public class Point {
 
     /**
      * Gets the value of the negDens property.
-     *
+     * 
      */
     public float getNegDens() {
         return negDens;
@@ -95,7 +95,7 @@ public class Point {
 
     /**
      * Sets the value of the negDens property.
-     *
+     * 
      */
     public void setNegDens(float value) {
         this.negDens = value;

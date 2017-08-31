@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2016 Dmitry Avtonomov
+ * Copyright (c) 2017 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,9 +28,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -65,8 +65,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -86,25 +86,25 @@ public class Xlink {
 
     /**
      * Gets the value of the linkedPeptide property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the linkedPeptide property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getLinkedPeptide().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link LinkedPeptide }
-     *
-     *
+     * 
+     * 
      */
     public List<LinkedPeptide> getLinkedPeptide() {
         if (linkedPeptide == null) {
@@ -115,25 +115,25 @@ public class Xlink {
 
     /**
      * Gets the value of the xlinkScore property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the xlinkScore property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getXlinkScore().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link NameValueType }
-     *
-     *
+     * 
+     * 
      */
     public List<NameValueType> getXlinkScore() {
         if (xlinkScore == null) {
@@ -144,11 +144,11 @@ public class Xlink {
 
     /**
      * Gets the value of the identifier property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getIdentifier() {
         return identifier;
@@ -156,11 +156,11 @@ public class Xlink {
 
     /**
      * Sets the value of the identifier property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setIdentifier(String value) {
         this.identifier = value;
@@ -168,7 +168,7 @@ public class Xlink {
 
     /**
      * Gets the value of the mass property.
-     *
+     * 
      */
     public float getMass() {
         return mass;
@@ -176,7 +176,7 @@ public class Xlink {
 
     /**
      * Sets the value of the mass property.
-     *
+     * 
      */
     public void setMass(float value) {
         this.mass = value;

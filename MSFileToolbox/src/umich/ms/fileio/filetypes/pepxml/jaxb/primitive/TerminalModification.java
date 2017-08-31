@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2016 Dmitry Avtonomov
+ * Copyright (c) 2017 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,9 +25,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -43,8 +43,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
@@ -67,11 +67,11 @@ public class TerminalModification {
 
     /**
      * Gets the value of the terminus property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getTerminus() {
         return terminus;
@@ -79,11 +79,11 @@ public class TerminalModification {
 
     /**
      * Sets the value of the terminus property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setTerminus(String value) {
         this.terminus = value;
@@ -91,7 +91,7 @@ public class TerminalModification {
 
     /**
      * Gets the value of the massdiff property.
-     *
+     * 
      */
     public float getMassdiff() {
         return massdiff;
@@ -99,7 +99,7 @@ public class TerminalModification {
 
     /**
      * Sets the value of the massdiff property.
-     *
+     * 
      */
     public void setMassdiff(float value) {
         this.massdiff = value;
@@ -107,7 +107,7 @@ public class TerminalModification {
 
     /**
      * Gets the value of the mass property.
-     *
+     * 
      */
     public float getMass() {
         return mass;
@@ -115,7 +115,7 @@ public class TerminalModification {
 
     /**
      * Sets the value of the mass property.
-     *
+     * 
      */
     public void setMass(float value) {
         this.mass = value;
@@ -123,11 +123,11 @@ public class TerminalModification {
 
     /**
      * Gets the value of the variable property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getVariable() {
         return variable;
@@ -135,11 +135,11 @@ public class TerminalModification {
 
     /**
      * Sets the value of the variable property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setVariable(String value) {
         this.variable = value;
@@ -147,11 +147,11 @@ public class TerminalModification {
 
     /**
      * Gets the value of the symbol property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getSymbol() {
         return symbol;
@@ -159,11 +159,11 @@ public class TerminalModification {
 
     /**
      * Sets the value of the symbol property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setSymbol(String value) {
         this.symbol = value;
@@ -171,11 +171,11 @@ public class TerminalModification {
 
     /**
      * Gets the value of the proteinTerminus property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getProteinTerminus() {
         return proteinTerminus;
@@ -183,11 +183,11 @@ public class TerminalModification {
 
     /**
      * Sets the value of the proteinTerminus property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setProteinTerminus(String value) {
         this.proteinTerminus = value;
@@ -195,11 +195,11 @@ public class TerminalModification {
 
     /**
      * Gets the value of the description property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getDescription() {
         return description;
@@ -207,11 +207,11 @@ public class TerminalModification {
 
     /**
      * Sets the value of the description property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setDescription(String value) {
         this.description = value;

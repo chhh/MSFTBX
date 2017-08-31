@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2016 Dmitry Avtonomov
+ * Copyright (c) 2017 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,9 +29,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -49,8 +49,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -77,25 +77,25 @@ public class InterprophetSummary {
 
     /**
      * Gets the value of the inputfile property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the inputfile property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getInputfile().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link InputFileType }
-     *
-     *
+     * 
+     * 
      */
     public List<InputFileType> getInputfile() {
         if (inputfile == null) {
@@ -106,25 +106,25 @@ public class InterprophetSummary {
 
     /**
      * Gets the value of the rocErrorData property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the rocErrorData property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getRocErrorData().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link RocErrorDataType }
-     *
-     *
+     * 
+     * 
      */
     public List<RocErrorDataType> getRocErrorData() {
         if (rocErrorData == null) {
@@ -135,25 +135,25 @@ public class InterprophetSummary {
 
     /**
      * Gets the value of the mixturemodel property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the mixturemodel property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getMixturemodel().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link MixtureModelType }
-     *
-     *
+     * 
+     * 
      */
     public List<MixtureModelType> getMixturemodel() {
         if (mixturemodel == null) {
@@ -164,11 +164,11 @@ public class InterprophetSummary {
 
     /**
      * Gets the value of the version property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getVersion() {
         return version;
@@ -176,11 +176,11 @@ public class InterprophetSummary {
 
     /**
      * Sets the value of the version property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setVersion(String value) {
         this.version = value;
@@ -188,11 +188,11 @@ public class InterprophetSummary {
 
     /**
      * Gets the value of the options property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getOptions() {
         return options;
@@ -200,11 +200,11 @@ public class InterprophetSummary {
 
     /**
      * Sets the value of the options property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setOptions(String value) {
         this.options = value;
@@ -212,11 +212,11 @@ public class InterprophetSummary {
 
     /**
      * Gets the value of the estTotNumCorrectPsm property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link Float }
-     *
+     *     
      */
     public Float getEstTotNumCorrectPsm() {
         return estTotNumCorrectPsm;
@@ -224,11 +224,11 @@ public class InterprophetSummary {
 
     /**
      * Sets the value of the estTotNumCorrectPsm property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link Float }
-     *
+     *     
      */
     public void setEstTotNumCorrectPsm(Float value) {
         this.estTotNumCorrectPsm = value;
@@ -236,11 +236,11 @@ public class InterprophetSummary {
 
     /**
      * Gets the value of the estTotNumCorrectPep property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link Float }
-     *
+     *     
      */
     public Float getEstTotNumCorrectPep() {
         return estTotNumCorrectPep;
@@ -248,11 +248,11 @@ public class InterprophetSummary {
 
     /**
      * Sets the value of the estTotNumCorrectPep property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link Float }
-     *
+     *     
      */
     public void setEstTotNumCorrectPep(Float value) {
         this.estTotNumCorrectPep = value;

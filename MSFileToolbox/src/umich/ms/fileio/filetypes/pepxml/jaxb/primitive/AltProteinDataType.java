@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2016 Dmitry Avtonomov
+ * Copyright (c) 2017 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,11 +30,11 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * Other protein in search database that contains peptide
- *
+ * 
  * <p>Java class for altProteinDataType complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType name="altProteinDataType">
  *   &lt;complexContent>
@@ -52,8 +52,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "altProteinDataType", propOrder = {
@@ -80,25 +80,25 @@ public class AltProteinDataType {
 
     /**
      * Gets the value of the aminoacidSubstitution property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the aminoacidSubstitution property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getAminoacidSubstitution().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link SubInfoDataType }
-     *
-     *
+     * 
+     * 
      */
     public List<SubInfoDataType> getAminoacidSubstitution() {
         if (aminoacidSubstitution == null) {
@@ -109,11 +109,11 @@ public class AltProteinDataType {
 
     /**
      * Gets the value of the protein property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getProtein() {
         return protein;
@@ -121,11 +121,11 @@ public class AltProteinDataType {
 
     /**
      * Sets the value of the protein property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setProtein(String value) {
         this.protein = value;
@@ -133,11 +133,11 @@ public class AltProteinDataType {
 
     /**
      * Gets the value of the proteinDescr property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getProteinDescr() {
         return proteinDescr;
@@ -145,11 +145,11 @@ public class AltProteinDataType {
 
     /**
      * Sets the value of the proteinDescr property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setProteinDescr(String value) {
         this.proteinDescr = value;
@@ -157,11 +157,11 @@ public class AltProteinDataType {
 
     /**
      * Gets the value of the numTolTerm property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public Integer getNumTolTerm() {
         return numTolTerm;
@@ -169,11 +169,11 @@ public class AltProteinDataType {
 
     /**
      * Sets the value of the numTolTerm property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setNumTolTerm(Integer value) {
         this.numTolTerm = value;
@@ -181,7 +181,7 @@ public class AltProteinDataType {
 
     /**
      * Gets the value of the proteinMw property.
-     *
+     * 
      */
     public double getProteinMw() {
         return proteinMw;
@@ -189,7 +189,7 @@ public class AltProteinDataType {
 
     /**
      * Sets the value of the proteinMw property.
-     *
+     * 
      */
     public void setProteinMw(double value) {
         this.proteinMw = value;
@@ -197,11 +197,11 @@ public class AltProteinDataType {
 
     /**
      * Gets the value of the peptidePrevAa property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getPeptidePrevAa() {
         return peptidePrevAa;
@@ -209,11 +209,11 @@ public class AltProteinDataType {
 
     /**
      * Sets the value of the peptidePrevAa property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setPeptidePrevAa(String value) {
         this.peptidePrevAa = value;
@@ -221,11 +221,11 @@ public class AltProteinDataType {
 
     /**
      * Gets the value of the peptideNextAa property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getPeptideNextAa() {
         return peptideNextAa;
@@ -233,11 +233,11 @@ public class AltProteinDataType {
 
     /**
      * Sets the value of the peptideNextAa property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setPeptideNextAa(String value) {
         this.peptideNextAa = value;

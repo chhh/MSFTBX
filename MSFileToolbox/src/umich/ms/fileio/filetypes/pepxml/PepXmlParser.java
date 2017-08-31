@@ -1,5 +1,5 @@
 /* 
- * Copyright 2016 Dmitry Avtonomov.
+ * Copyright 2017 Dmitry Avtonomov.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,20 +19,12 @@ import umich.ms.fileio.exceptions.FileParsingException;
 import umich.ms.fileio.filetypes.pepxml.jaxb.standard.MsmsPipelineAnalysis;
 import umich.ms.fileio.util.jaxb.JaxbUtils;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
-import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
-import javax.xml.transform.stream.StreamSource;
 import java.nio.file.Path;
 
 /**
  * A very simple parser for PepXML files.
- *
- * Created by Dmitry Avtonomov on 2016-04-13.
  */
 public class PepXmlParser {
     private PepXmlParser() {}
@@ -40,7 +32,7 @@ public class PepXmlParser {
     public static MsmsPipelineAnalysis parse(Path path) throws FileParsingException {
 
         try {
-            XMLStreamReader xsr = JaxbUtils.createXmlStreamReader(path, true);
+            XMLStreamReader xsr = JaxbUtils.createXmlStreamReader(path, false);
             MsmsPipelineAnalysis msmsPipelineAnalysis = JaxbUtils.unmarshall(MsmsPipelineAnalysis.class, xsr);
             return msmsPipelineAnalysis;
         } catch (JAXBException e) {

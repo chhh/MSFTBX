@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2016 Dmitry Avtonomov
+ * Copyright (c) 2017 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,9 +30,9 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -161,8 +161,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -205,25 +205,25 @@ public class SpectrumQuery {
 
     /**
      * Gets the value of the searchResult property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the searchResult property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getSearchResult().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link SearchResult }
-     *
-     *
+     * 
+     * 
      */
     public List<SearchResult> getSearchResult() {
         if (searchResult == null) {
@@ -234,11 +234,11 @@ public class SpectrumQuery {
 
     /**
      * Gets the value of the spectrum property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getSpectrum() {
         return spectrum;
@@ -246,11 +246,11 @@ public class SpectrumQuery {
 
     /**
      * Sets the value of the spectrum property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setSpectrum(String value) {
         this.spectrum = value;
@@ -258,11 +258,11 @@ public class SpectrumQuery {
 
     /**
      * Gets the value of the spectrumNativeID property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getSpectrumNativeID() {
         return spectrumNativeID;
@@ -270,11 +270,11 @@ public class SpectrumQuery {
 
     /**
      * Sets the value of the spectrumNativeID property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setSpectrumNativeID(String value) {
         this.spectrumNativeID = value;
@@ -282,7 +282,7 @@ public class SpectrumQuery {
 
     /**
      * Gets the value of the startScan property.
-     *
+     * 
      */
     public long getStartScan() {
         return startScan;
@@ -290,7 +290,7 @@ public class SpectrumQuery {
 
     /**
      * Sets the value of the startScan property.
-     *
+     * 
      */
     public void setStartScan(long value) {
         this.startScan = value;
@@ -298,7 +298,7 @@ public class SpectrumQuery {
 
     /**
      * Gets the value of the endScan property.
-     *
+     * 
      */
     public long getEndScan() {
         return endScan;
@@ -306,7 +306,7 @@ public class SpectrumQuery {
 
     /**
      * Sets the value of the endScan property.
-     *
+     * 
      */
     public void setEndScan(long value) {
         this.endScan = value;
@@ -314,11 +314,11 @@ public class SpectrumQuery {
 
     /**
      * Gets the value of the retentionTimeSec property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link Float }
-     *
+     *     
      */
     public Float getRetentionTimeSec() {
         return retentionTimeSec;
@@ -326,11 +326,11 @@ public class SpectrumQuery {
 
     /**
      * Sets the value of the retentionTimeSec property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link Float }
-     *
+     *     
      */
     public void setRetentionTimeSec(Float value) {
         this.retentionTimeSec = value;
@@ -338,11 +338,11 @@ public class SpectrumQuery {
 
     /**
      * Gets the value of the collisionEnergy property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link Float }
-     *
+     *     
      */
     public Float getCollisionEnergy() {
         return collisionEnergy;
@@ -350,11 +350,11 @@ public class SpectrumQuery {
 
     /**
      * Sets the value of the collisionEnergy property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link Float }
-     *
+     *     
      */
     public void setCollisionEnergy(Float value) {
         this.collisionEnergy = value;
@@ -362,11 +362,11 @@ public class SpectrumQuery {
 
     /**
      * Gets the value of the compensationVoltage property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link Float }
-     *
+     *     
      */
     public Float getCompensationVoltage() {
         return compensationVoltage;
@@ -374,11 +374,11 @@ public class SpectrumQuery {
 
     /**
      * Sets the value of the compensationVoltage property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link Float }
-     *
+     *     
      */
     public void setCompensationVoltage(Float value) {
         this.compensationVoltage = value;
@@ -386,11 +386,11 @@ public class SpectrumQuery {
 
     /**
      * Gets the value of the precursorIntensity property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link Float }
-     *
+     *     
      */
     public Float getPrecursorIntensity() {
         return precursorIntensity;
@@ -398,11 +398,11 @@ public class SpectrumQuery {
 
     /**
      * Sets the value of the precursorIntensity property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link Float }
-     *
+     *     
      */
     public void setPrecursorIntensity(Float value) {
         this.precursorIntensity = value;
@@ -410,11 +410,11 @@ public class SpectrumQuery {
 
     /**
      * Gets the value of the activationMethod property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link ActivationMethodType }
-     *
+     *     
      */
     public ActivationMethodType getActivationMethod() {
         return activationMethod;
@@ -422,11 +422,11 @@ public class SpectrumQuery {
 
     /**
      * Sets the value of the activationMethod property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link ActivationMethodType }
-     *
+     *     
      */
     public void setActivationMethod(ActivationMethodType value) {
         this.activationMethod = value;
@@ -434,7 +434,7 @@ public class SpectrumQuery {
 
     /**
      * Gets the value of the precursorNeutralMass property.
-     *
+     * 
      */
     public float getPrecursorNeutralMass() {
         return precursorNeutralMass;
@@ -442,7 +442,7 @@ public class SpectrumQuery {
 
     /**
      * Sets the value of the precursorNeutralMass property.
-     *
+     * 
      */
     public void setPrecursorNeutralMass(float value) {
         this.precursorNeutralMass = value;
@@ -450,11 +450,11 @@ public class SpectrumQuery {
 
     /**
      * Gets the value of the assumedCharge property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public Integer getAssumedCharge() {
         return assumedCharge;
@@ -462,11 +462,11 @@ public class SpectrumQuery {
 
     /**
      * Sets the value of the assumedCharge property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setAssumedCharge(Integer value) {
         this.assumedCharge = value;
@@ -474,11 +474,11 @@ public class SpectrumQuery {
 
     /**
      * Gets the value of the searchSpecification property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getSearchSpecification() {
         return searchSpecification;
@@ -486,11 +486,11 @@ public class SpectrumQuery {
 
     /**
      * Sets the value of the searchSpecification property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setSearchSpecification(String value) {
         this.searchSpecification = value;
@@ -498,7 +498,7 @@ public class SpectrumQuery {
 
     /**
      * Gets the value of the index property.
-     *
+     * 
      */
     public long getIndex() {
         return index;
@@ -506,7 +506,7 @@ public class SpectrumQuery {
 
     /**
      * Sets the value of the index property.
-     *
+     * 
      */
     public void setIndex(long value) {
         this.index = value;

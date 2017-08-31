@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2016 Dmitry Avtonomov
+ * Copyright (c) 2017 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,9 +28,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -55,8 +55,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
@@ -88,11 +88,11 @@ public class SearchDatabase {
 
     /**
      * Gets the value of the localPath property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getLocalPath() {
         return localPath;
@@ -100,11 +100,11 @@ public class SearchDatabase {
 
     /**
      * Sets the value of the localPath property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setLocalPath(String value) {
         this.localPath = value;
@@ -112,11 +112,11 @@ public class SearchDatabase {
 
     /**
      * Gets the value of the url property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getURL() {
         return url;
@@ -124,11 +124,11 @@ public class SearchDatabase {
 
     /**
      * Sets the value of the url property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setURL(String value) {
         this.url = value;
@@ -136,11 +136,11 @@ public class SearchDatabase {
 
     /**
      * Gets the value of the databaseName property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getDatabaseName() {
         return databaseName;
@@ -148,11 +148,11 @@ public class SearchDatabase {
 
     /**
      * Sets the value of the databaseName property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setDatabaseName(String value) {
         this.databaseName = value;
@@ -160,11 +160,11 @@ public class SearchDatabase {
 
     /**
      * Gets the value of the origDatabaseUrl property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getOrigDatabaseUrl() {
         return origDatabaseUrl;
@@ -172,11 +172,11 @@ public class SearchDatabase {
 
     /**
      * Sets the value of the origDatabaseUrl property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setOrigDatabaseUrl(String value) {
         this.origDatabaseUrl = value;
@@ -184,11 +184,11 @@ public class SearchDatabase {
 
     /**
      * Gets the value of the databaseReleaseDate property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link XMLGregorianCalendar }
-     *
+     *     
      */
     public XMLGregorianCalendar getDatabaseReleaseDate() {
         return databaseReleaseDate;
@@ -196,11 +196,11 @@ public class SearchDatabase {
 
     /**
      * Sets the value of the databaseReleaseDate property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link XMLGregorianCalendar }
-     *
+     *     
      */
     public void setDatabaseReleaseDate(XMLGregorianCalendar value) {
         this.databaseReleaseDate = value;
@@ -208,11 +208,11 @@ public class SearchDatabase {
 
     /**
      * Gets the value of the databaseReleaseIdentifier property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getDatabaseReleaseIdentifier() {
         return databaseReleaseIdentifier;
@@ -220,11 +220,11 @@ public class SearchDatabase {
 
     /**
      * Sets the value of the databaseReleaseIdentifier property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setDatabaseReleaseIdentifier(String value) {
         this.databaseReleaseIdentifier = value;
@@ -232,11 +232,11 @@ public class SearchDatabase {
 
     /**
      * Gets the value of the sizeInDbEntries property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public Integer getSizeInDbEntries() {
         return sizeInDbEntries;
@@ -244,11 +244,11 @@ public class SearchDatabase {
 
     /**
      * Sets the value of the sizeInDbEntries property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setSizeInDbEntries(Integer value) {
         this.sizeInDbEntries = value;
@@ -256,11 +256,11 @@ public class SearchDatabase {
 
     /**
      * Gets the value of the sizeOfResidues property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public Integer getSizeOfResidues() {
         return sizeOfResidues;
@@ -268,11 +268,11 @@ public class SearchDatabase {
 
     /**
      * Sets the value of the sizeOfResidues property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setSizeOfResidues(Integer value) {
         this.sizeOfResidues = value;
@@ -280,11 +280,11 @@ public class SearchDatabase {
 
     /**
      * Gets the value of the type property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getType() {
         return type;
@@ -292,11 +292,11 @@ public class SearchDatabase {
 
     /**
      * Sets the value of the type property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setType(String value) {
         this.type = value;

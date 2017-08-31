@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2016 Dmitry Avtonomov
+ * Copyright (c) 2017 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,9 +28,9 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -41,8 +41,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
@@ -58,11 +58,11 @@ public class DatabaseRefreshTimestamp {
 
     /**
      * Gets the value of the database property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getDatabase() {
         return database;
@@ -70,11 +70,11 @@ public class DatabaseRefreshTimestamp {
 
     /**
      * Sets the value of the database property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setDatabase(String value) {
         this.database = value;
@@ -82,11 +82,11 @@ public class DatabaseRefreshTimestamp {
 
     /**
      * Gets the value of the minNumEnzTerm property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public Integer getMinNumEnzTerm() {
         return minNumEnzTerm;
@@ -94,11 +94,11 @@ public class DatabaseRefreshTimestamp {
 
     /**
      * Sets the value of the minNumEnzTerm property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setMinNumEnzTerm(Integer value) {
         this.minNumEnzTerm = value;

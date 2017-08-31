@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2016 Dmitry Avtonomov
+ * Copyright (c) 2017 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,9 +27,9 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -42,8 +42,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
@@ -62,11 +62,11 @@ public class DataFilter {
 
     /**
      * Gets the value of the number property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public Integer getNumber() {
         return number;
@@ -74,11 +74,11 @@ public class DataFilter {
 
     /**
      * Sets the value of the number property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setNumber(Integer value) {
         this.number = value;
@@ -86,11 +86,11 @@ public class DataFilter {
 
     /**
      * Gets the value of the parentFile property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getParentFile() {
         return parentFile;
@@ -98,11 +98,11 @@ public class DataFilter {
 
     /**
      * Sets the value of the parentFile property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setParentFile(String value) {
         this.parentFile = value;
@@ -110,11 +110,11 @@ public class DataFilter {
 
     /**
      * Gets the value of the windowsParent property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getWindowsParent() {
         return windowsParent;
@@ -122,11 +122,11 @@ public class DataFilter {
 
     /**
      * Sets the value of the windowsParent property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setWindowsParent(String value) {
         this.windowsParent = value;
@@ -134,11 +134,11 @@ public class DataFilter {
 
     /**
      * Gets the value of the description property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getDescription() {
         return description;
@@ -146,11 +146,11 @@ public class DataFilter {
 
     /**
      * Sets the value of the description property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setDescription(String value) {
         this.description = value;

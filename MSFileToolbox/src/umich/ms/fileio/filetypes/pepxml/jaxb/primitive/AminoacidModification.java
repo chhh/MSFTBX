@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2016 Dmitry Avtonomov
+ * Copyright (c) 2017 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,9 +25,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -45,8 +45,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
@@ -73,11 +73,11 @@ public class AminoacidModification {
 
     /**
      * Gets the value of the aminoacid property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getAminoacid() {
         return aminoacid;
@@ -85,11 +85,11 @@ public class AminoacidModification {
 
     /**
      * Sets the value of the aminoacid property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setAminoacid(String value) {
         this.aminoacid = value;
@@ -97,7 +97,7 @@ public class AminoacidModification {
 
     /**
      * Gets the value of the massdiff property.
-     *
+     * 
      */
     public float getMassdiff() {
         return massdiff;
@@ -105,7 +105,7 @@ public class AminoacidModification {
 
     /**
      * Sets the value of the massdiff property.
-     *
+     * 
      */
     public void setMassdiff(float value) {
         this.massdiff = value;
@@ -113,7 +113,7 @@ public class AminoacidModification {
 
     /**
      * Gets the value of the mass property.
-     *
+     * 
      */
     public float getMass() {
         return mass;
@@ -121,7 +121,7 @@ public class AminoacidModification {
 
     /**
      * Sets the value of the mass property.
-     *
+     * 
      */
     public void setMass(float value) {
         this.mass = value;
@@ -129,11 +129,11 @@ public class AminoacidModification {
 
     /**
      * Gets the value of the variable property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getVariable() {
         return variable;
@@ -141,11 +141,11 @@ public class AminoacidModification {
 
     /**
      * Sets the value of the variable property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setVariable(String value) {
         this.variable = value;
@@ -153,11 +153,11 @@ public class AminoacidModification {
 
     /**
      * Gets the value of the peptideTerminus property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getPeptideTerminus() {
         return peptideTerminus;
@@ -165,11 +165,11 @@ public class AminoacidModification {
 
     /**
      * Sets the value of the peptideTerminus property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setPeptideTerminus(String value) {
         this.peptideTerminus = value;
@@ -177,11 +177,11 @@ public class AminoacidModification {
 
     /**
      * Gets the value of the proteinTerminus property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getProteinTerminus() {
         return proteinTerminus;
@@ -189,11 +189,11 @@ public class AminoacidModification {
 
     /**
      * Sets the value of the proteinTerminus property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setProteinTerminus(String value) {
         this.proteinTerminus = value;
@@ -201,11 +201,11 @@ public class AminoacidModification {
 
     /**
      * Gets the value of the symbol property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getSymbol() {
         return symbol;
@@ -213,11 +213,11 @@ public class AminoacidModification {
 
     /**
      * Sets the value of the symbol property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setSymbol(String value) {
         this.symbol = value;
@@ -225,11 +225,11 @@ public class AminoacidModification {
 
     /**
      * Gets the value of the binary property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getBinary() {
         return binary;
@@ -237,11 +237,11 @@ public class AminoacidModification {
 
     /**
      * Sets the value of the binary property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setBinary(String value) {
         this.binary = value;
@@ -249,11 +249,11 @@ public class AminoacidModification {
 
     /**
      * Gets the value of the description property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getDescription() {
         return description;
@@ -261,11 +261,11 @@ public class AminoacidModification {
 
     /**
      * Sets the value of the description property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setDescription(String value) {
         this.description = value;

@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2016 Dmitry Avtonomov
+ * Copyright (c) 2017 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,9 +25,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -41,8 +41,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
@@ -61,11 +61,11 @@ public class MixtureModelPoint {
 
     /**
      * Gets the value of the value property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link Float }
-     *
+     *     
      */
     public Float getValue() {
         return value;
@@ -73,11 +73,11 @@ public class MixtureModelPoint {
 
     /**
      * Sets the value of the value property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link Float }
-     *
+     *     
      */
     public void setValue(Float value) {
         this.value = value;
@@ -85,11 +85,11 @@ public class MixtureModelPoint {
 
     /**
      * Gets the value of the posDens property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link Float }
-     *
+     *     
      */
     public Float getPosDens() {
         return posDens;
@@ -97,11 +97,11 @@ public class MixtureModelPoint {
 
     /**
      * Sets the value of the posDens property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link Float }
-     *
+     *     
      */
     public void setPosDens(Float value) {
         this.posDens = value;
@@ -109,11 +109,11 @@ public class MixtureModelPoint {
 
     /**
      * Gets the value of the negDens property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link Float }
-     *
+     *     
      */
     public Float getNegDens() {
         return negDens;
@@ -121,11 +121,11 @@ public class MixtureModelPoint {
 
     /**
      * Sets the value of the negDens property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link Float }
-     *
+     *     
      */
     public void setNegDens(Float value) {
         this.negDens = value;
@@ -133,11 +133,11 @@ public class MixtureModelPoint {
 
     /**
      * Gets the value of the negObsDens property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link Float }
-     *
+     *     
      */
     public Float getNegObsDens() {
         return negObsDens;
@@ -145,11 +145,11 @@ public class MixtureModelPoint {
 
     /**
      * Sets the value of the negObsDens property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link Float }
-     *
+     *     
      */
     public void setNegObsDens(Float value) {
         this.negObsDens = value;
@@ -157,11 +157,11 @@ public class MixtureModelPoint {
 
     /**
      * Gets the value of the posObsDens property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link Float }
-     *
+     *     
      */
     public Float getPosObsDens() {
         return posObsDens;
@@ -169,11 +169,11 @@ public class MixtureModelPoint {
 
     /**
      * Sets the value of the posObsDens property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link Float }
-     *
+     *     
      */
     public void setPosObsDens(Float value) {
         this.posObsDens = value;

@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2016 Dmitry Avtonomov
+ * Copyright (c) 2017 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,9 +28,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -370,8 +370,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -412,11 +412,11 @@ public class MsmsRunSummary {
 
     /**
      * Gets the value of the sampleEnzyme property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link SampleEnzyme }
-     *
+     *     
      */
     public SampleEnzyme getSampleEnzyme() {
         return sampleEnzyme;
@@ -424,11 +424,11 @@ public class MsmsRunSummary {
 
     /**
      * Sets the value of the sampleEnzyme property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link SampleEnzyme }
-     *
+     *     
      */
     public void setSampleEnzyme(SampleEnzyme value) {
         this.sampleEnzyme = value;
@@ -436,11 +436,11 @@ public class MsmsRunSummary {
 
     /**
      * Gets the value of the crossLinker property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link CrossLinker }
-     *
+     *     
      */
     public CrossLinker getCrossLinker() {
         return crossLinker;
@@ -448,11 +448,11 @@ public class MsmsRunSummary {
 
     /**
      * Sets the value of the crossLinker property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link CrossLinker }
-     *
+     *     
      */
     public void setCrossLinker(CrossLinker value) {
         this.crossLinker = value;
@@ -460,25 +460,25 @@ public class MsmsRunSummary {
 
     /**
      * Gets the value of the searchSummary property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the searchSummary property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getSearchSummary().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link SearchSummary }
-     *
-     *
+     * 
+     * 
      */
     public List<SearchSummary> getSearchSummary() {
         if (searchSummary == null) {
@@ -489,25 +489,25 @@ public class MsmsRunSummary {
 
     /**
      * Gets the value of the analysisTimestamp property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the analysisTimestamp property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getAnalysisTimestamp().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link AnalysisTimestamp }
-     *
-     *
+     * 
+     * 
      */
     public List<AnalysisTimestamp> getAnalysisTimestamp() {
         if (analysisTimestamp == null) {
@@ -518,25 +518,25 @@ public class MsmsRunSummary {
 
     /**
      * Gets the value of the spectrumQuery property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the spectrumQuery property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getSpectrumQuery().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link SpectrumQuery }
-     *
-     *
+     * 
+     * 
      */
     public List<SpectrumQuery> getSpectrumQuery() {
         if (spectrumQuery == null) {
@@ -547,11 +547,11 @@ public class MsmsRunSummary {
 
     /**
      * Gets the value of the baseName property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getBaseName() {
         return baseName;
@@ -559,11 +559,11 @@ public class MsmsRunSummary {
 
     /**
      * Sets the value of the baseName property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setBaseName(String value) {
         this.baseName = value;
@@ -571,11 +571,11 @@ public class MsmsRunSummary {
 
     /**
      * Gets the value of the rawDataType property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getRawDataType() {
         return rawDataType;
@@ -583,11 +583,11 @@ public class MsmsRunSummary {
 
     /**
      * Sets the value of the rawDataType property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setRawDataType(String value) {
         this.rawDataType = value;
@@ -595,11 +595,11 @@ public class MsmsRunSummary {
 
     /**
      * Gets the value of the rawData property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getRawData() {
         return rawData;
@@ -607,11 +607,11 @@ public class MsmsRunSummary {
 
     /**
      * Sets the value of the rawData property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setRawData(String value) {
         this.rawData = value;
@@ -619,11 +619,11 @@ public class MsmsRunSummary {
 
     /**
      * Gets the value of the msManufacturer property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getMsManufacturer() {
         return msManufacturer;
@@ -631,11 +631,11 @@ public class MsmsRunSummary {
 
     /**
      * Sets the value of the msManufacturer property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setMsManufacturer(String value) {
         this.msManufacturer = value;
@@ -643,11 +643,11 @@ public class MsmsRunSummary {
 
     /**
      * Gets the value of the msModel property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getMsModel() {
         return msModel;
@@ -655,11 +655,11 @@ public class MsmsRunSummary {
 
     /**
      * Sets the value of the msModel property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setMsModel(String value) {
         this.msModel = value;
@@ -667,11 +667,11 @@ public class MsmsRunSummary {
 
     /**
      * Gets the value of the msIonization property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getMsIonization() {
         return msIonization;
@@ -679,11 +679,11 @@ public class MsmsRunSummary {
 
     /**
      * Sets the value of the msIonization property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setMsIonization(String value) {
         this.msIonization = value;
@@ -691,11 +691,11 @@ public class MsmsRunSummary {
 
     /**
      * Gets the value of the msMassAnalyzer property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getMsMassAnalyzer() {
         return msMassAnalyzer;
@@ -703,11 +703,11 @@ public class MsmsRunSummary {
 
     /**
      * Sets the value of the msMassAnalyzer property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setMsMassAnalyzer(String value) {
         this.msMassAnalyzer = value;
@@ -715,11 +715,11 @@ public class MsmsRunSummary {
 
     /**
      * Gets the value of the msDetector property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getMsDetector() {
         return msDetector;
@@ -727,11 +727,11 @@ public class MsmsRunSummary {
 
     /**
      * Sets the value of the msDetector property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setMsDetector(String value) {
         this.msDetector = value;

@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2016 Dmitry Avtonomov
+ * Copyright (c) 2017 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,9 +27,9 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -60,8 +60,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
@@ -128,7 +128,7 @@ public class DistributionPoint {
 
     /**
      * Gets the value of the fvalue property.
-     *
+     * 
      */
     public float getFvalue() {
         return fvalue;
@@ -136,7 +136,7 @@ public class DistributionPoint {
 
     /**
      * Sets the value of the fvalue property.
-     *
+     * 
      */
     public void setFvalue(float value) {
         this.fvalue = value;
@@ -144,11 +144,11 @@ public class DistributionPoint {
 
     /**
      * Gets the value of the obs1Distr property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public Integer getObs1Distr() {
         return obs1Distr;
@@ -156,11 +156,11 @@ public class DistributionPoint {
 
     /**
      * Sets the value of the obs1Distr property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setObs1Distr(Integer value) {
         this.obs1Distr = value;
@@ -168,7 +168,7 @@ public class DistributionPoint {
 
     /**
      * Gets the value of the model1PosDistr property.
-     *
+     * 
      */
     public float getModel1PosDistr() {
         return model1PosDistr;
@@ -176,7 +176,7 @@ public class DistributionPoint {
 
     /**
      * Sets the value of the model1PosDistr property.
-     *
+     * 
      */
     public void setModel1PosDistr(float value) {
         this.model1PosDistr = value;
@@ -184,7 +184,7 @@ public class DistributionPoint {
 
     /**
      * Gets the value of the model1NegDistr property.
-     *
+     * 
      */
     public float getModel1NegDistr() {
         return model1NegDistr;
@@ -192,7 +192,7 @@ public class DistributionPoint {
 
     /**
      * Sets the value of the model1NegDistr property.
-     *
+     * 
      */
     public void setModel1NegDistr(float value) {
         this.model1NegDistr = value;
@@ -200,11 +200,11 @@ public class DistributionPoint {
 
     /**
      * Gets the value of the obs2Distr property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public Integer getObs2Distr() {
         return obs2Distr;
@@ -212,11 +212,11 @@ public class DistributionPoint {
 
     /**
      * Sets the value of the obs2Distr property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setObs2Distr(Integer value) {
         this.obs2Distr = value;
@@ -224,7 +224,7 @@ public class DistributionPoint {
 
     /**
      * Gets the value of the model2PosDistr property.
-     *
+     * 
      */
     public float getModel2PosDistr() {
         return model2PosDistr;
@@ -232,7 +232,7 @@ public class DistributionPoint {
 
     /**
      * Sets the value of the model2PosDistr property.
-     *
+     * 
      */
     public void setModel2PosDistr(float value) {
         this.model2PosDistr = value;
@@ -240,7 +240,7 @@ public class DistributionPoint {
 
     /**
      * Gets the value of the model2NegDistr property.
-     *
+     * 
      */
     public float getModel2NegDistr() {
         return model2NegDistr;
@@ -248,7 +248,7 @@ public class DistributionPoint {
 
     /**
      * Sets the value of the model2NegDistr property.
-     *
+     * 
      */
     public void setModel2NegDistr(float value) {
         this.model2NegDistr = value;
@@ -256,11 +256,11 @@ public class DistributionPoint {
 
     /**
      * Gets the value of the obs3Distr property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public Integer getObs3Distr() {
         return obs3Distr;
@@ -268,11 +268,11 @@ public class DistributionPoint {
 
     /**
      * Sets the value of the obs3Distr property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setObs3Distr(Integer value) {
         this.obs3Distr = value;
@@ -280,7 +280,7 @@ public class DistributionPoint {
 
     /**
      * Gets the value of the model3PosDistr property.
-     *
+     * 
      */
     public float getModel3PosDistr() {
         return model3PosDistr;
@@ -288,7 +288,7 @@ public class DistributionPoint {
 
     /**
      * Sets the value of the model3PosDistr property.
-     *
+     * 
      */
     public void setModel3PosDistr(float value) {
         this.model3PosDistr = value;
@@ -296,7 +296,7 @@ public class DistributionPoint {
 
     /**
      * Gets the value of the model3NegDistr property.
-     *
+     * 
      */
     public float getModel3NegDistr() {
         return model3NegDistr;
@@ -304,7 +304,7 @@ public class DistributionPoint {
 
     /**
      * Sets the value of the model3NegDistr property.
-     *
+     * 
      */
     public void setModel3NegDistr(float value) {
         this.model3NegDistr = value;
@@ -312,11 +312,11 @@ public class DistributionPoint {
 
     /**
      * Gets the value of the obs4Distr property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public Integer getObs4Distr() {
         return obs4Distr;
@@ -324,11 +324,11 @@ public class DistributionPoint {
 
     /**
      * Sets the value of the obs4Distr property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setObs4Distr(Integer value) {
         this.obs4Distr = value;
@@ -336,7 +336,7 @@ public class DistributionPoint {
 
     /**
      * Gets the value of the model4PosDistr property.
-     *
+     * 
      */
     public float getModel4PosDistr() {
         return model4PosDistr;
@@ -344,7 +344,7 @@ public class DistributionPoint {
 
     /**
      * Sets the value of the model4PosDistr property.
-     *
+     * 
      */
     public void setModel4PosDistr(float value) {
         this.model4PosDistr = value;
@@ -352,7 +352,7 @@ public class DistributionPoint {
 
     /**
      * Gets the value of the model4NegDistr property.
-     *
+     * 
      */
     public float getModel4NegDistr() {
         return model4NegDistr;
@@ -360,7 +360,7 @@ public class DistributionPoint {
 
     /**
      * Sets the value of the model4NegDistr property.
-     *
+     * 
      */
     public void setModel4NegDistr(float value) {
         this.model4NegDistr = value;
@@ -368,11 +368,11 @@ public class DistributionPoint {
 
     /**
      * Gets the value of the obs5Distr property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public Integer getObs5Distr() {
         return obs5Distr;
@@ -380,11 +380,11 @@ public class DistributionPoint {
 
     /**
      * Sets the value of the obs5Distr property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setObs5Distr(Integer value) {
         this.obs5Distr = value;
@@ -392,7 +392,7 @@ public class DistributionPoint {
 
     /**
      * Gets the value of the model5PosDistr property.
-     *
+     * 
      */
     public float getModel5PosDistr() {
         return model5PosDistr;
@@ -400,7 +400,7 @@ public class DistributionPoint {
 
     /**
      * Sets the value of the model5PosDistr property.
-     *
+     * 
      */
     public void setModel5PosDistr(float value) {
         this.model5PosDistr = value;
@@ -408,7 +408,7 @@ public class DistributionPoint {
 
     /**
      * Gets the value of the model5NegDistr property.
-     *
+     * 
      */
     public float getModel5NegDistr() {
         return model5NegDistr;
@@ -416,7 +416,7 @@ public class DistributionPoint {
 
     /**
      * Sets the value of the model5NegDistr property.
-     *
+     * 
      */
     public void setModel5NegDistr(float value) {
         this.model5NegDistr = value;
@@ -424,11 +424,11 @@ public class DistributionPoint {
 
     /**
      * Gets the value of the obs6Distr property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public Integer getObs6Distr() {
         return obs6Distr;
@@ -436,11 +436,11 @@ public class DistributionPoint {
 
     /**
      * Sets the value of the obs6Distr property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setObs6Distr(Integer value) {
         this.obs6Distr = value;
@@ -448,7 +448,7 @@ public class DistributionPoint {
 
     /**
      * Gets the value of the model6PosDistr property.
-     *
+     * 
      */
     public float getModel6PosDistr() {
         return model6PosDistr;
@@ -456,7 +456,7 @@ public class DistributionPoint {
 
     /**
      * Sets the value of the model6PosDistr property.
-     *
+     * 
      */
     public void setModel6PosDistr(float value) {
         this.model6PosDistr = value;
@@ -464,7 +464,7 @@ public class DistributionPoint {
 
     /**
      * Gets the value of the model6NegDistr property.
-     *
+     * 
      */
     public float getModel6NegDistr() {
         return model6NegDistr;
@@ -472,7 +472,7 @@ public class DistributionPoint {
 
     /**
      * Sets the value of the model6NegDistr property.
-     *
+     * 
      */
     public void setModel6NegDistr(float value) {
         this.model6NegDistr = value;
@@ -480,11 +480,11 @@ public class DistributionPoint {
 
     /**
      * Gets the value of the obs7Distr property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public Integer getObs7Distr() {
         return obs7Distr;
@@ -492,11 +492,11 @@ public class DistributionPoint {
 
     /**
      * Sets the value of the obs7Distr property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setObs7Distr(Integer value) {
         this.obs7Distr = value;
@@ -504,7 +504,7 @@ public class DistributionPoint {
 
     /**
      * Gets the value of the model7PosDistr property.
-     *
+     * 
      */
     public float getModel7PosDistr() {
         return model7PosDistr;
@@ -512,7 +512,7 @@ public class DistributionPoint {
 
     /**
      * Sets the value of the model7PosDistr property.
-     *
+     * 
      */
     public void setModel7PosDistr(float value) {
         this.model7PosDistr = value;
@@ -520,7 +520,7 @@ public class DistributionPoint {
 
     /**
      * Gets the value of the model7NegDistr property.
-     *
+     * 
      */
     public float getModel7NegDistr() {
         return model7NegDistr;
@@ -528,7 +528,7 @@ public class DistributionPoint {
 
     /**
      * Sets the value of the model7NegDistr property.
-     *
+     * 
      */
     public void setModel7NegDistr(float value) {
         this.model7NegDistr = value;

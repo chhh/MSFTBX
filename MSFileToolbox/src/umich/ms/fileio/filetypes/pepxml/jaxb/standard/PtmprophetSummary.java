@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2016 Dmitry Avtonomov
+ * Copyright (c) 2017 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,9 +29,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -46,8 +46,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -67,25 +67,25 @@ public class PtmprophetSummary {
 
     /**
      * Gets the value of the inputfile property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the inputfile property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getInputfile().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link InputFileType }
-     *
-     *
+     * 
+     * 
      */
     public List<InputFileType> getInputfile() {
         if (inputfile == null) {
@@ -96,25 +96,25 @@ public class PtmprophetSummary {
 
     /**
      * Gets the value of the mixturemodel property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the mixturemodel property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getMixturemodel().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link MixtureModelType }
-     *
-     *
+     * 
+     * 
      */
     public List<MixtureModelType> getMixturemodel() {
         if (mixturemodel == null) {
@@ -125,11 +125,11 @@ public class PtmprophetSummary {
 
     /**
      * Gets the value of the version property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getVersion() {
         return version;
@@ -137,11 +137,11 @@ public class PtmprophetSummary {
 
     /**
      * Sets the value of the version property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setVersion(String value) {
         this.version = value;
@@ -149,11 +149,11 @@ public class PtmprophetSummary {
 
     /**
      * Gets the value of the options property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getOptions() {
         return options;
@@ -161,11 +161,11 @@ public class PtmprophetSummary {
 
     /**
      * Sets the value of the options property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setOptions(String value) {
         this.options = value;

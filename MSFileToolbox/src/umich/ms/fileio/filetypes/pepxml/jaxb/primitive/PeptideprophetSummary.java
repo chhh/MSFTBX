@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2016 Dmitry Avtonomov
+ * Copyright (c) 2017 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,9 +29,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -154,8 +154,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -188,25 +188,25 @@ public class PeptideprophetSummary {
 
     /**
      * Gets the value of the inputfile property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the inputfile property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getInputfile().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link InputFileType }
-     *
-     *
+     * 
+     * 
      */
     public List<InputFileType> getInputfile() {
         if (inputfile == null) {
@@ -217,25 +217,25 @@ public class PeptideprophetSummary {
 
     /**
      * Gets the value of the rocErrorData property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the rocErrorData property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getRocErrorData().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link RocErrorDataType }
-     *
-     *
+     * 
+     * 
      */
     public List<RocErrorDataType> getRocErrorData() {
         if (rocErrorData == null) {
@@ -246,25 +246,25 @@ public class PeptideprophetSummary {
 
     /**
      * Gets the value of the distributionPoint property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the distributionPoint property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getDistributionPoint().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link DistributionPoint }
-     *
-     *
+     * 
+     * 
      */
     public List<DistributionPoint> getDistributionPoint() {
         if (distributionPoint == null) {
@@ -275,25 +275,25 @@ public class PeptideprophetSummary {
 
     /**
      * Gets the value of the mixtureModel property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the mixtureModel property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getMixtureModel().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link MixtureModelling }
-     *
-     *
+     * 
+     * 
      */
     public List<MixtureModelling> getMixtureModel() {
         if (mixtureModel == null) {
@@ -304,11 +304,11 @@ public class PeptideprophetSummary {
 
     /**
      * Gets the value of the version property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getVersion() {
         return version;
@@ -316,11 +316,11 @@ public class PeptideprophetSummary {
 
     /**
      * Sets the value of the version property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setVersion(String value) {
         this.version = value;
@@ -328,11 +328,11 @@ public class PeptideprophetSummary {
 
     /**
      * Gets the value of the author property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getAuthor() {
         return author;
@@ -340,11 +340,11 @@ public class PeptideprophetSummary {
 
     /**
      * Sets the value of the author property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setAuthor(String value) {
         this.author = value;
@@ -352,7 +352,7 @@ public class PeptideprophetSummary {
 
     /**
      * Gets the value of the minProb property.
-     *
+     * 
      */
     public float getMinProb() {
         return minProb;
@@ -360,7 +360,7 @@ public class PeptideprophetSummary {
 
     /**
      * Sets the value of the minProb property.
-     *
+     * 
      */
     public void setMinProb(float value) {
         this.minProb = value;
@@ -368,11 +368,11 @@ public class PeptideprophetSummary {
 
     /**
      * Gets the value of the options property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getOptions() {
         return options;
@@ -380,11 +380,11 @@ public class PeptideprophetSummary {
 
     /**
      * Sets the value of the options property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setOptions(String value) {
         this.options = value;
@@ -392,7 +392,7 @@ public class PeptideprophetSummary {
 
     /**
      * Gets the value of the estTotNumCorrect property.
-     *
+     * 
      */
     public float getEstTotNumCorrect() {
         return estTotNumCorrect;
@@ -400,7 +400,7 @@ public class PeptideprophetSummary {
 
     /**
      * Sets the value of the estTotNumCorrect property.
-     *
+     * 
      */
     public void setEstTotNumCorrect(float value) {
         this.estTotNumCorrect = value;

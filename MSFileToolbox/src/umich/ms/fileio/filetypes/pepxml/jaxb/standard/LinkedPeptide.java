@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2016 Dmitry Avtonomov
+ * Copyright (c) 2017 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,9 +29,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -53,8 +53,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -90,25 +90,25 @@ public class LinkedPeptide {
 
     /**
      * Gets the value of the alternativeProtein property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the alternativeProtein property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getAlternativeProtein().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link AltProteinDataType }
-     *
-     *
+     * 
+     * 
      */
     public List<AltProteinDataType> getAlternativeProtein() {
         if (alternativeProtein == null) {
@@ -119,11 +119,11 @@ public class LinkedPeptide {
 
     /**
      * Gets the value of the modificationInfo property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link ModificationInfo }
-     *
+     *     
      */
     public ModificationInfo getModificationInfo() {
         return modificationInfo;
@@ -131,11 +131,11 @@ public class LinkedPeptide {
 
     /**
      * Sets the value of the modificationInfo property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link ModificationInfo }
-     *
+     *     
      */
     public void setModificationInfo(ModificationInfo value) {
         this.modificationInfo = value;
@@ -143,25 +143,25 @@ public class LinkedPeptide {
 
     /**
      * Gets the value of the xlinkScore property.
-     *
+     * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the xlinkScore property.
-     *
+     * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getXlinkScore().add(newItem);
      * </pre>
-     *
-     *
+     * 
+     * 
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link NameValueType }
-     *
-     *
+     * 
+     * 
      */
     public List<NameValueType> getXlinkScore() {
         if (xlinkScore == null) {
@@ -172,11 +172,11 @@ public class LinkedPeptide {
 
     /**
      * Gets the value of the peptide property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getPeptide() {
         return peptide;
@@ -184,11 +184,11 @@ public class LinkedPeptide {
 
     /**
      * Sets the value of the peptide property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setPeptide(String value) {
         this.peptide = value;
@@ -196,11 +196,11 @@ public class LinkedPeptide {
 
     /**
      * Gets the value of the peptidePrevAa property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getPeptidePrevAa() {
         return peptidePrevAa;
@@ -208,11 +208,11 @@ public class LinkedPeptide {
 
     /**
      * Sets the value of the peptidePrevAa property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setPeptidePrevAa(String value) {
         this.peptidePrevAa = value;
@@ -220,11 +220,11 @@ public class LinkedPeptide {
 
     /**
      * Gets the value of the peptideNextAa property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getPeptideNextAa() {
         return peptideNextAa;
@@ -232,11 +232,11 @@ public class LinkedPeptide {
 
     /**
      * Sets the value of the peptideNextAa property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setPeptideNextAa(String value) {
         this.peptideNextAa = value;
@@ -244,11 +244,11 @@ public class LinkedPeptide {
 
     /**
      * Gets the value of the protein property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getProtein() {
         return protein;
@@ -256,11 +256,11 @@ public class LinkedPeptide {
 
     /**
      * Sets the value of the protein property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setProtein(String value) {
         this.protein = value;
@@ -268,7 +268,7 @@ public class LinkedPeptide {
 
     /**
      * Gets the value of the numTotProteins property.
-     *
+     * 
      */
     public long getNumTotProteins() {
         return numTotProteins;
@@ -276,7 +276,7 @@ public class LinkedPeptide {
 
     /**
      * Sets the value of the numTotProteins property.
-     *
+     * 
      */
     public void setNumTotProteins(long value) {
         this.numTotProteins = value;
@@ -284,7 +284,7 @@ public class LinkedPeptide {
 
     /**
      * Gets the value of the calcNeutralPepMass property.
-     *
+     * 
      */
     public float getCalcNeutralPepMass() {
         return calcNeutralPepMass;
@@ -292,7 +292,7 @@ public class LinkedPeptide {
 
     /**
      * Sets the value of the calcNeutralPepMass property.
-     *
+     * 
      */
     public void setCalcNeutralPepMass(float value) {
         this.calcNeutralPepMass = value;
@@ -300,7 +300,7 @@ public class LinkedPeptide {
 
     /**
      * Gets the value of the complementMass property.
-     *
+     * 
      */
     public float getComplementMass() {
         return complementMass;
@@ -308,7 +308,7 @@ public class LinkedPeptide {
 
     /**
      * Sets the value of the complementMass property.
-     *
+     * 
      */
     public void setComplementMass(float value) {
         this.complementMass = value;
@@ -316,11 +316,11 @@ public class LinkedPeptide {
 
     /**
      * Gets the value of the designation property.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getDesignation() {
         return designation;
@@ -328,11 +328,11 @@ public class LinkedPeptide {
 
     /**
      * Sets the value of the designation property.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setDesignation(String value) {
         this.designation = value;
