@@ -22,12 +22,20 @@ import java.util.*;
  * @author Dmitry Avtonomov
  */
 public class MsftbxInfo {
-    public static final String version = "1.4.0";
+    public static final String version = "1.5.0";
 
-    private static TreeMap<String, List<String>> changelog = new TreeMap<>();
-    private static Map<String, List<String>> changelogImmutable = Collections.unmodifiableMap(changelog);
+    private static final TreeMap<String, List<String>> changelog = new TreeMap<>();
+    private static final Map<String, List<String>> changelogImmutable = Collections.unmodifiableMap(changelog);
 
     static {
+
+        String v150 = "v1.5.0";
+        List<String> v150notes = new LinkedList<>();
+        v150notes.add("Changed how precursor ions are reported. PrecursorInfo now provides `mzTarget` " +
+                              "as the actual targeted m/z, and also `mzTargetMono`, which is the assumed " +
+                              "monoisotopic m/z of that ion.");
+        changelog.put(v150, v150notes);
+
         String v140 = "v1.4.0";
         List<String> v140notes = new LinkedList<>();
         v140notes.add("Fixed regression bug in mzXML header parsing. Original files without parent location were causing NPEs.");

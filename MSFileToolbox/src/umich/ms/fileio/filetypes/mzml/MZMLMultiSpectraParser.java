@@ -339,7 +339,10 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
                             precursorInfo.setMzRangeEnd(val.toDouble());
                             break;
                         case MS_PRECURSOR_MZ:
-                            precursorInfo.setMzTarget(val.toDouble());
+                            double v = val.toDouble();
+                            if (v != 0.0) {
+                                precursorInfo.setMzTargetMono(v);
+                            }
                             break;
                         case MS_PRECURSOR_CHARGE:
                             precursorInfo.setCharge(val.toInt());
@@ -361,30 +364,15 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
             }
 
         } while (!(eventType == XMLStreamConstants.END_ELEMENT && localName.contentEquals(TAG.PRECURSOR.name)));
+
         // now we've reached the end of <precursor> tag, so we can check if precursor isolation window
         // bounds were found
-                            if (precursorInfo.getMzRangeStart() == null) {
-                                if (vars.precursorIsoWndLoOffset != null) {
-                                    if (vars.precursorIsoWndTarget != null) {
-                                        precursorInfo.setMzRangeStart(vars.precursorIsoWndTarget - vars.precursorIsoWndLoOffset);
-                                    } else if (precursorInfo.getMzTarget() != null) {
-                                        precursorInfo.setMzRangeStart(precursorInfo.getMzTarget() - vars.precursorIsoWndLoOffset);
-                                    }
-                                } else if (precursorInfo.getMzTarget() != null) {
-                                    precursorInfo.setMzRangeStart(precursorInfo.getMzTarget());
-                                }
-                            }
-        if (precursorInfo.getMzRangeEnd() == null) {
-                                if (vars.precursorIsoWndHiOffset != null) {
-                                    if (vars.precursorIsoWndTarget != null) {
-                                        precursorInfo.setMzRangeEnd(vars.precursorIsoWndTarget + vars.precursorIsoWndHiOffset);
-                                    } else if (precursorInfo.getMzTarget() != null) {
-                                        precursorInfo.setMzRangeEnd(precursorInfo.getMzTarget() + vars.precursorIsoWndHiOffset);
-                                    }
-                                } else if (precursorInfo.getMzTarget() != null) {
-                                    precursorInfo.setMzRangeEnd(precursorInfo.getMzTarget());
-                                }
+        if (vars.precursorIsoWndTarget != null && vars.precursorIsoWndLoOffset != null && vars.precursorIsoWndHiOffset != null) {
+            precursorInfo.setMzTarget(vars.precursorIsoWndTarget);
+            precursorInfo.setMzRangeStart(vars.precursorIsoWndTarget - vars.precursorIsoWndLoOffset);
+            precursorInfo.setMzRangeEnd(vars.precursorIsoWndTarget + vars.precursorIsoWndHiOffset);
         }
+
         vars.precursors.add(precursorInfo);
         vars.curScan.setPrecursor(precursorInfo);
     }

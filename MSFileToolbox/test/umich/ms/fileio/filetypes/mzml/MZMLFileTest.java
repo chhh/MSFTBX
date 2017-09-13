@@ -47,6 +47,9 @@ public class MZMLFileTest {
     @org.junit.Before
     public void setUp() throws Exception {
         paths = ResourceUtils.getResources(this.getClass(), RESOURCE_LOCATION);
+
+        paths.clear();
+        paths.add(Paths.get("E:\\Venky\\Test-MS2-Windows\\ms2-only\\Dimitry_Offset_test_Fusion-MS2-only-02.mzML"));
     }
 
     @org.junit.After

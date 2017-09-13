@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright 2016 Dmitry Avtonomov.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -31,9 +31,10 @@ public class PrecursorInfo implements Serializable {
      * not present in the file (e.g. it was not included during conversion with ProteoWizard).
      */
     private String parentScanRefRaw;
-    private Double mzRangeStart;
-    private Double mzRangeEnd;
+    private Double isolationWindowMzLo;
+    private Double isolationWindowMzHi;
     private Double mzTarget;
+    private Double mzTargetMono;
     private Integer charge;
     private ActivationInfo activationInfo;
     private Double intensity;
@@ -64,7 +65,8 @@ public class PrecursorInfo implements Serializable {
     }
 
     /**
-     * m/z of the precursor that was targeted.
+     * In case of DDA runs, the m/z value for the actual peak that triggered fragmentation.
+     * For DIA runs doesn't really mean anything, will likely be the center of the selection window.
      * @return
      */
     public Double getMzTarget() {
@@ -73,6 +75,20 @@ public class PrecursorInfo implements Serializable {
 
     public void setMzTarget(Double mzTarget) {
         this.mzTarget = mzTarget;
+    }
+
+    /**
+     * The assumed monoisotopic m/z of the selected ion. Oftentimes will be almost exactly the same as as
+     * 'mzTarget', however, if the instrument makes a mistake or just the most intense ion is not the monoisotope,
+     * as is the case with larger peptides, then this value will be different from 'mzTarget'.
+     * @return Null in case this value was not reported or in case it was reported as zero.
+     */
+    public Double getMzTargetMono() {
+        return mzTargetMono;
+    }
+
+    public void setMzTargetMono(Double mzTargetMono) {
+        this.mzTargetMono = mzTargetMono;
     }
 
     /** Precursor charge is optional in mzXML/mzML, so it can be null. */
@@ -89,11 +105,11 @@ public class PrecursorInfo implements Serializable {
      * @return
      */
     public Double getMzRangeStart() {
-        return mzRangeStart;
+        return isolationWindowMzLo;
     }
 
     public void setMzRangeStart(Double mzRangeStart) {
-        this.mzRangeStart = mzRangeStart;
+        this.isolationWindowMzLo = mzRangeStart;
     }
 
     /**
@@ -101,24 +117,24 @@ public class PrecursorInfo implements Serializable {
      * @return
      */
     public Double getMzRangeEnd() {
-        return mzRangeEnd;
+        return isolationWindowMzHi;
     }
 
     /**
      * TODO: might be better to treat null values as infinity and always return non-null DoubleRange.
-     * Convenience method to get the precursor range.
+     * Convenience method to get the precursor isolation window ange.
      * @return null, if at least one range end is null (not set). Otherwise a new instance of
      * {@link umich.ms.util.DoubleRange}
      */
     public DoubleRange getMzRange() {
-        if (mzRangeStart != null && mzRangeEnd != null) {
-            return new DoubleRange(mzRangeStart, mzRangeEnd);
+        if (isolationWindowMzLo != null && isolationWindowMzHi != null) {
+            return new DoubleRange(isolationWindowMzLo, isolationWindowMzHi);
         }
         return null;
     }
 
     public void setMzRangeEnd(Double mzRangeEnd) {
-        this.mzRangeEnd = mzRangeEnd;
+        this.isolationWindowMzHi = mzRangeEnd;
     }
 
     public ActivationInfo getActivationInfo() {
