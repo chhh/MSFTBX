@@ -59,7 +59,7 @@ public class PepXmlTest {
     @Test
     public void testParsing() throws Exception {
 
-        System.out.printf("Test parsing whole files.");
+        System.out.println("Test parsing whole files.");
         for (Path path : paths) {
             String p = path.toString().toLowerCase();
             if (!p.endsWith(".zip") && !p.endsWith(".gz")) {
