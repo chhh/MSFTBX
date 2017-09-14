@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright 2016 Dmitry Avtonomov.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -34,7 +34,7 @@ import java.util.Set;
  * Generic serializer (marshaller/unmarshaller) class that uses JAXB.
  *
  * @see JAXB
- * 
+ *
  * @author Arno Moonen <info@arnom.nl>
  * @author Dmitry Avtonomov
  */
@@ -160,6 +160,11 @@ public class JaxbUtils
         JAXBContext jaxb = getContext(clazz);
 
         Unmarshaller unmarshaller = jaxb.createUnmarshaller();
+        JAXBElement<T> jaxbElement = unmarshaller.unmarshal(xsr, clazz);
+        return jaxbElement.getValue();
+    }
+
+    public static <T> T unmarshall(Class<T> clazz, XMLStreamReader xsr, Unmarshaller unmarshaller) throws JAXBException {
         JAXBElement<T> jaxbElement = unmarshaller.unmarshal(xsr, clazz);
         return jaxbElement.getValue();
     }

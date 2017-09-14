@@ -64,11 +64,9 @@ class PepXmlStreamIterator implements Iterator<MsmsRunSummary> {
         } catch (JAXBException e) {
             throw new FileParsingException("Could not create JAXBContext/Unmarshaller for " + PepXmlParser.TAG_MSMS_RUN_SUMMARY, e);
         }
-        XMLInputFactory xif = XMLInputFactory.newFactory();
-        StreamSource ss = new StreamSource(it.bis);
         try {
-            it.xsr = xif.createXMLStreamReader(ss);
-        } catch (XMLStreamException e) {
+            it.xsr = JaxbUtils.createXmlStreamReader(it.bis, false);
+        } catch (JAXBException e) {
             throw new FileParsingException("Could not create XMLStreamReader for " + PepXmlParser.TAG_MSMS_RUN_SUMMARY, e);
         }
         try {
@@ -91,7 +89,7 @@ class PepXmlStreamIterator implements Iterator<MsmsRunSummary> {
             throw new NoSuchElementException("Can't advance iterator, reached end");
         MsmsRunSummary unmarshalled;
         try {
-            unmarshalled = JaxbUtils.unmarshall(MsmsRunSummary.class, xsr);
+            unmarshalled = JaxbUtils.unmarshall(MsmsRunSummary.class, xsr, unmarshaller);
         } catch (JAXBException e) {
             throw new IllegalStateException("Could not unmarshall next XML element", e);
         }
