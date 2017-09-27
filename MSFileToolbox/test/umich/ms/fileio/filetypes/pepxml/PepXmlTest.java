@@ -36,6 +36,7 @@ import java.io.FileInputStream;
 import java.nio.file.Path;
 import java.util.Iterator;
 import java.util.List;
+import java.util.zip.Inflater;
 import java.util.zip.InflaterInputStream;
 
 /**
@@ -83,18 +84,25 @@ public class PepXmlTest {
         System.out.println("Test parsing files iteratively.");
         for (Path path : paths) {
             String p = path.toString().toLowerCase();
-            if (p.endsWith(".zip") || p.endsWith(".gz")) {
+            if (p.endsWith(".zip") || p.endsWith(".gz1")) {
                 // compressed pepxml files
-//                System.out.printf("Compressed file detected, parsing iteratively: %s\n", path);
-//                try (InflaterInputStream iis = new InflaterInputStream(new FileInputStream(path.toString()))) {
-//                    Iterator<MsmsRunSummary> it = PepXmlParser.parse(iis);
-//                    while (it.hasNext()) {
-//                        MsmsRunSummary msmsRunSummary = it.next();
-//                        assertMsMsRunSummaryOk(msmsRunSummary);
-//                    }
-//                }
+                System.out.printf("Compressed file detected, parsing iteratively: %s\n", path);
+
+                final FileInputStream fis = new FileInputStream(path.toString());
+                final Inflater inflater = new Inflater(false);
+                //final InflaterInputStream iis = new InflaterInputStream(fis, inflater);
+
+                try (final InflaterInputStream iis = new InflaterInputStream(fis, inflater)) {
+                    Iterator<MsmsRunSummary> it = PepXmlParser.parse(iis);
+                    while (it.hasNext()) {
+                        MsmsRunSummary msmsRunSummary = it.next();
+                        assertMsMsRunSummaryOk(msmsRunSummary);
+                    }
+                }
 
             } else {
+
+                if (true) continue;
 
                 // non-compressed pepxml files, just parse the whole thing at once
                 // compressed pepxml files
