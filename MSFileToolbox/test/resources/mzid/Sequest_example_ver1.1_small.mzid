@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- created by ProCon (http://www.medizinisches-proteom-center.de/software) -->
+<MzIdentML id="SEQUEST_use_case"
+  creationDate="2011-06-09T15:38:43"
+  xmlns="http://psidev.info/psi/pi/mzIdentML/1.1"
+  xmlns:pf="http://psidev.info/fuge-light/1.1"
+  xmlns:psi-pi="http://psidev.info/psi/pi/mzIdentML/1.1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://psidev.info/psi/pi/mzIdentML/1.1 ../../schema/mzIdentML1.1.0.xsd"
+  version="1.1.0">
+<cvList>
+  <cv id="PSI-MS" fullName="Proteomics Standards Initiative Mass Spectrometry Vocabularies" uri="http://psidev.cvs.sourceforge.net/viewvc/*checkout*/psidev/psi/psi-ms/mzML/controlledVocabulary/psi-ms.obo" version="2.32.0"/>
+  <cv id="NEWT" fullName="NEWT taxonomy database" uri="http://www.ebi.ac.uk/newt/display"/>
+  <cv id="UO" fullName="Unit Ontology" uri="http://obo.cvs.sourceforge.net/*checkout*/obo/obo/ontology/phenotype/unit.obo"/>
+  <cv id="UNIMOD" fullName="unimod modifications ontology" uri="http://www.unimod.org/obo/unimod.obo"/>
+</cvList>
+<AnalysisSoftwareList>
+  <AnalysisSoftware id="AnaSoft_Sequest" name="ThermoFisher TurboSequest" version="PVM Master v.27 (rev. 12), (c) 1998-2007" uri="http://www.thermo.com/com/cda/product/detail/1,,16483,00.html">
+    <ContactRole contact_ref="THERMOCORP">
+      <Role>
+        <cvParam accession="MS:1001267" name="software vendor" cvRef="PSI-MS"/>
+      </Role>
+    </ContactRole>
+    <SoftwareName>
+      <cvParam accession="MS:1001208" name="Sequest" cvRef="PSI-MS"/>
+    </SoftwareName>
+  </AnalysisSoftware>
+</AnalysisSoftwareList>
+<Provider id="PROVID">
+  <ContactRole contact_ref="PERSON_ID">
+    <Role>
+      <cvParam accession="MS:1001271" name="researcher" cvRef="PSI-MS"/>
+    </Role>
+  </ContactRole>
+</Provider>
+<AuditCollection>
+  <Organization id="THERMOCORP" name="Thermo Corporation">
+    <cvParam accession="MS:1000587" name="contact address" cvRef="PSI-MS" value="Bremen, Germany"/>
+  </Organization>
+  <Person id="PERSON_ID" name="Prof. Qwe Hoho" firstName="Hoho" midInitials="E." lastName="Qwe">
+	<cvParam accession="MS:1000587" name="contact address" cvRef="PSI-MS" value="123 Some Street, Some City, Some Country"/>
+    <cvParam accession="MS:1000589" name="contact email" cvRef="PSI-MS" value="some@email.com"/>
+	<cvParam accession="MS:1001755" name="contact phone number" cvRef="PSI-MS" value="+1/234/567-8910"/>
+	<cvParam accession="MS:1001756" name="contact fax number" cvRef="PSI-MS" value="+1/234/567-8911"/>
+	<cvParam accession="MS:1000588" name="contact URL" cvRef="PSI-MS" value="http://www.lab.org/"/>
+	<Affiliation organization_ref="SOME-DEPARTMENT"/>
+  </Person>
+  <Organization id="SOME-DEPARTMENT" name="Some Great Department">
+	<cvParam accession="MS:1000587" name="contact address" cvRef="PSI-MS" value="345 Some Address, City, Country"/>
+	<cvParam accession="MS:1001755" name="contact phone number" cvRef="PSI-MS" value="+1/234/567-8910"/>
+	<cvParam accession="MS:1001756" name="contact fax number" cvRef="PSI-MS" value="+1/234/567-8911"/>
+	<cvParam accession="MS:1000588" name="contact URL" cvRef="PSI-MS" value="http://www.university.edu/department"/>
+    <Parent organization_ref="SOME-UNIVERSITY"/>
+  </Organization>
+  <Organization id="SOME-UNIVERSITY" name="Some Great University">
+	<cvParam accession="MS:1000587" name="contact address" cvRef="PSI-MS" value="123 Some Other Address, City, Country"/>
+	<cvParam accession="MS:1000588" name="contact URL" cvRef="PSI-MS" value="http://www.university.edu/"/>
+  </Organization>
+</AuditCollection>
+<SequenceCollection>
+    <DBSequence id="DBSeq1" searchDatabase_ref="StdCry_nr.fasta1" accession="gi|1754755|gb|AAB39372.1|" >
+      <cvParam accession="MS:1001088" name="protein description" cvRef="PSI-MS" value="dummyDescription" />
+    </DBSequence>
+    <DBSequence id="DBSeq2" searchDatabase_ref="StdCry_nr.fasta1" accession="gi|13879432|gb|AAH06696.1|" >
+      <cvParam accession="MS:1001088" name="protein description" cvRef="PSI-MS" value="dummyDescription" />
+    </DBSequence>
+    <DBSequence id="DBSeq3" searchDatabase_ref="StdCry_nr.fasta1" accession="gi|28493926|ref|XP_286726.1|" >
+      <cvParam accession="MS:1001088" name="protein description" cvRef="PSI-MS" value="dummyDescription" />
+    </DBSequence>
+    <DBSequence id="DBSeq4" searchDatabase_ref="StdCry_nr.fasta1" accession="gi|25052359|ref|XP_194833.1|" >
+      <cvParam accession="MS:1001088" name="protein description" cvRef="PSI-MS" value="dummyDescription" />
+    </DBSequence>
+  <Peptide id="Pep1">
+    <PeptideSequence>VCGCLAPMTCSR</PeptideSequence>
+    <Modification location="3" avgMassDelta="57.0" residues="C">
+      <cvParam accession="UNIMOD:4" name="Carbamidomethyl" cvRef="UNIMOD" />
+    </Modification>
+  </Peptide>
+  <Peptide id="Pep2">
+    <PeptideSequence>VCGCLAPMTCSR</PeptideSequence>
+    <Modification location="1" avgMassDelta="57.0" residues="C">
+      <cvParam accession="UNIMOD:4" name="Carbamidomethyl" cvRef="UNIMOD" />
+    </Modification>
+    <Modification location="9" avgMassDelta="57.0" residues="C">
+      <cvParam accession="UNIMOD:4" name="Carbamidomethyl" cvRef="UNIMOD" />
+    </Modification>
+  </Peptide>
+  <Peptide id="Pep3">
+    <PeptideSequence>PSSPIPLLPPPKKR</PeptideSequence>
+  </Peptide>
+        <PeptideEvidence id="PepEv1" pre="R" post="-" dBSequence_ref="DBSeq1" peptide_ref="Pep1"/>
+        <PeptideEvidence id="PepEv2" pre="K" post="-" dBSequence_ref="DBSeq2" peptide_ref="Pep2"/>
+        <PeptideEvidence id="PepEv3" pre="R" post="T" dBSequence_ref="DBSeq3" peptide_ref="Pep3"/>
+</SequenceCollection>
+<AnalysisCollection>
+  <SpectrumIdentification id="SpecIdent1" spectrumIdentificationProtocol_ref="SpecIdentProt1" spectrumIdentificationList_ref="SpIdLi1" activityDate="2008-06-24T11:32:27">
+    <InputSpectra spectraData_ref="DTA1"/>
+    <InputSpectra spectraData_ref="DTA2"/>
+    <SearchDatabaseRef searchDatabase_ref="StdCry_nr.fasta1"/>
+  </SpectrumIdentification>
+</AnalysisCollection>
+<AnalysisProtocolCollection>
+  <SpectrumIdentificationProtocol id="SpecIdentProt1" analysisSoftware_ref="AnaSoft_Sequest">
+    <SearchType>
+      <cvParam accession="MS:1001083" name="ms-ms search" cvRef="PSI-MS" />
+    </SearchType>
+    <AdditionalSearchParams>
+      <cvParam accession="MS:1001212" name="parent mass type average" cvRef="PSI-MS"/>
+      <cvParam accession="MS:1001256" name="fragment mass type mono" cvRef="PSI-MS"/>
+      <userParam name="Sequest:database_name" value="D:/Database/StdCry.fasta"/> <!-- taken from sequest.params file -->
+      <userParam name="Sequest:first_database_name" value="D:/Database/StdCry.fasta"/> <!-- taken from sequest.params file -->
+    </AdditionalSearchParams>
+  <ModificationParams>
+      <SearchModification fixedMod="false" massDelta="57.0" residues="C">
+            <cvParam accession="UNIMOD:4" name="Carbamidomethyl" cvRef="UNIMOD" />
+      </SearchModification>
+      <SearchModification fixedMod="false" massDelta="15.9949" residues="M">
+            <cvParam accession="UNIMOD:35" name="Oxidation" cvRef="UNIMOD" />
+      </SearchModification>
+      <SearchModification fixedMod="true" massDelta="57.02146" residues="C">
+            <cvParam accession="UNIMOD:4" name="Carbamidomethyl" cvRef="UNIMOD" />
+      </SearchModification>
+  </ModificationParams>
+  <Enzymes>
+      <Enzyme id="ENZ1" cTermGain="OH" nTermGain="H" minDistance="1" missedCleavages="5" semiSpecific="false">
+        <EnzymeName>
+          <cvParam accession="MS:1001251" name="Trypsin" cvRef="PSI-MS"/>
+        </EnzymeName>
+      </Enzyme>
+  </Enzymes>
+    <MassTable id="MT1" msLevel="1 2"> <!-- values taken from sequest_massvalues.txt, being part of the ProCon distribution -->
+      <Residue code="A" mass="71.078225"/>
+      <Residue code="B" mass="114.5954835"/> <!-- Sequest special amino acid symbol for N or D, mass averaged -->
+      <Residue code="C" mass="103.143725"/>
+      <Residue code="D" mass="115.087865"/>
+      <Residue code="E" mass="129.114539"/>
+      <Residue code="F" mass="147.174693"/>
+      <Residue code="G" mass="57.051551"/>
+      <Residue code="H" mass="137.139899"/>
+      <Residue code="I" mass="113.158247"/>
+      <Residue code="K" mass="128.172914"/>
+      <Residue code="L" mass="113.158247"/>
+      <Residue code="M" mass="131.197073"/>
+      <Residue code="N" mass="114.103102"/>
+      <Residue code="O" mass="114.1472"/> <!-- Sequest special amino acid symbol for Ornithine -->
+      <Residue code="P" mass="97.115679"/>
+      <Residue code="Q" mass="128.129776"/>
+      <Residue code="R" mass="156.186354"/>
+      <Residue code="S" mass="87.077655"/>
+      <Residue code="T" mass="101.104329"/>
+      <Residue code="U" mass="118.89"/> <!-- Sequest special amino acid symbol for user defined mass -->
+      <Residue code="V" mass="99.131573"/>
+      <Residue code="W" mass="186.21092"/>
+      <Residue code="X" mass="113.1594"/> <!-- Sequest special amino acid symbol for L or I -->
+      <Residue code="Y" mass="163.174123"/>
+      <Residue code="Z" mass="129.114539"/> <!-- Sequest special amino acid symbol for Q or E, mass averaged -->
+    </MassTable>
+    <FragmentTolerance>
+      <cvParam accession="MS:1001412" name="search tolerance plus value" cvRef="PSI-MS" value="1.5" unitAccession="UO:0000221" unitName="dalton" unitCvRef="UO"/>
+      <cvParam accession="MS:1001413" name="search tolerance minus value" cvRef="PSI-MS" value="1.5" unitAccession="UO:0000221" unitName="dalton" unitCvRef="UO"/>
+    </FragmentTolerance>
+    <ParentTolerance>
+      <cvParam accession="MS:1001412" name="search tolerance plus value" cvRef="PSI-MS" value="1.5" unitAccession="UO:0000221" unitName="dalton" unitCvRef="UO"/>
+      <cvParam accession="MS:1001413" name="search tolerance minus value" cvRef="PSI-MS" value="1.5" unitAccession="UO:0000221" unitName="dalton" unitCvRef="UO"/>
+    </ParentTolerance>
+    <Threshold>
+      <cvParam accession="MS:1001494" name="no threshold" cvRef="PSI-MS"/>
+    </Threshold>
+  </SpectrumIdentificationProtocol>
+</AnalysisProtocolCollection>
+<DataCollection>
+  <Inputs>
+    <SourceFile id="SFOUT1" location="file://www.medizinisches-proteom-center.de/martinlap/C/Eisi/MPC/ProCon/SEQUEST/example_folder/PMXPWE080620_38.187.257.1.out">
+      <FileFormat>
+        <cvParam accession="MS:1001200" name="Sequest out file" cvRef="PSI-MS"/>
+      </FileFormat>
+    </SourceFile>
+    <SourceFile id="SFOUT2" location="file://www.medizinisches-proteom-center.de/martinlap/C/Eisi/MPC/ProCon/SEQUEST/example_folder/PMXPWE080620_38.2.69.1.out">
+      <FileFormat>
+        <cvParam accession="MS:1001200" name="Sequest out file" cvRef="PSI-MS"/>
+      </FileFormat>
+    </SourceFile>
+    <!-- list of SearchDatabases actually occurring in out files (may differ from sequest.params, e.g. if searched on cluster): -->
+    <SearchDatabase id="StdCry_nr.fasta1" location="file://www.medizinisches-proteom-center.de/sequestmaster/work/Datenbank/StdCry_nr.fasta" name="StdCry_nr.fasta" numDatabaseSequences="119815" numResidues="43207894">
+      <DatabaseName>
+        <userParam name="StdCry_nr.fasta"/>
+      </DatabaseName>
+    </SearchDatabase>
+    <SpectraData id="DTA1" location="file://www.medizinisches-proteom-center.de/martinlap/C/Eisi/MPC/ProCon/SEQUEST/example_folder/PMXPWE080620_38.187.257.1.dta">
+      <FileFormat>
+        <cvParam accession="MS:1000613" name="DTA file" cvRef="PSI-MS"/>
+      </FileFormat>
+      <SpectrumIDFormat>
+        <cvParam accession="MS:1000775" name="single peak list nativeID format" cvRef="PSI-MS"/>
+      </SpectrumIDFormat>
+    </SpectraData>
+    <SpectraData id="DTA2" location="file://www.medizinisches-proteom-center.de/martinlap/C/Eisi/MPC/ProCon/SEQUEST/example_folder/PMXPWE080620_38.2.69.1.dta">
+      <FileFormat>
+        <cvParam accession="MS:1000613" name="DTA file" cvRef="PSI-MS"/>
+      </FileFormat>
+      <SpectrumIDFormat>
+        <cvParam accession="MS:1000775" name="single peak list nativeID format" cvRef="PSI-MS"/>
+      </SpectrumIDFormat>
+    </SpectraData>
+  </Inputs>
+  <AnalysisData>
+    <SpectrumIdentificationList id="SpIdLi1">
+      <SpectrumIdentificationResult id="SpIdLi1_Res1" spectrumID="file=DTA1" spectraData_ref="DTA1" name="01CPTAC3_Benchmarking_W_BI_20170508_BL_f01.01748.01748">
+        <SpectrumIdentificationItem id="SpIdLi1_Res1_It1" peptide_ref="Pep1" chargeState="1" massTable_ref="MT1" experimentalMassToCharge="538.723900" calculatedMassToCharge="539.517470" passThreshold="true" rank="1">
+          <PeptideEvidenceRef peptideEvidence_ref="PepEv1"/>
+          <cvParam accession="MS:1001218" name="sequest:PeptideNumber" cvRef="PSI-MS" value="1"/>
+          <userParam name="sequest:PeptideRank" value="1"/>
+          <cvParam accession="MS:1001217" name="sequest:PeptideRankSp" cvRef="PSI-MS" value="6"/>
+          <cvParam accession="MS:1001219" name="sequest:PeptideIdnumber" cvRef="PSI-MS" value="0"/>
+          <cvParam accession="MS:1001156" name="sequest:deltacn" cvRef="PSI-MS" value="0.0"/>
+          <cvParam accession="MS:1001155" name="sequest:xcorr" cvRef="PSI-MS" value="1.0383"/>
+          <cvParam accession="MS:1001215" name="sequest:PeptideSp" cvRef="PSI-MS" value="122.8"/>
+          <cvParam accession="MS:1001161" name="sequest:matched ions" cvRef="PSI-MS" value="5"/>
+          <cvParam accession="MS:1001162" name="sequest:total ions" cvRef="PSI-MS" value="8"/>
+        </SpectrumIdentificationItem>
+        <SpectrumIdentificationItem id="SpIdLi1_Res1_It2" peptide_ref="Pep2" chargeState="2" massTable_ref="MT1" experimentalMassToCharge="538.723900" calculatedMassToCharge="537.579570" passThreshold="true" rank="2">
+          <PeptideEvidenceRef peptideEvidence_ref="PepEv2"/>
+          <cvParam accession="MS:1001218" name="sequest:PeptideNumber" cvRef="PSI-MS" value="2"/>
+          <userParam name="sequest:PeptideRank" value="2"/>
+          <cvParam accession="MS:1001217" name="sequest:PeptideRankSp" cvRef="PSI-MS" value="64"/>
+          <cvParam accession="MS:1001219" name="sequest:PeptideIdnumber" cvRef="PSI-MS" value="0"/>
+          <cvParam accession="MS:1001156" name="sequest:deltacn" cvRef="PSI-MS" value="0.4834"/>
+          <cvParam accession="MS:1001155" name="sequest:xcorr" cvRef="PSI-MS" value="0.5364"/>
+          <cvParam accession="MS:1001215" name="sequest:PeptideSp" cvRef="PSI-MS" value="21.5"/>
+          <cvParam accession="MS:1001161" name="sequest:matched ions" cvRef="PSI-MS" value="3"/>
+          <cvParam accession="MS:1001162" name="sequest:total ions" cvRef="PSI-MS" value="8"/>
+        </SpectrumIdentificationItem>
+      </SpectrumIdentificationResult>
+    </SpectrumIdentificationList>
+  </AnalysisData>
+</DataCollection>
+</MzIdentML>

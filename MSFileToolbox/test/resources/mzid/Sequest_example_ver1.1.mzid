@@ -27,7 +27,7 @@
   </AnalysisSoftware>
 </AnalysisSoftwareList>
 <Provider id="PROVID">
-  <ContactRole contact_ref="MPCMEYER">
+  <ContactRole contact_ref="PERSON_ID">
     <Role>
       <cvParam accession="MS:1001271" name="researcher" cvRef="PSI-MS"/>
     </Role>
@@ -37,24 +37,24 @@
   <Organization id="THERMOCORP" name="Thermo Corporation">
     <cvParam accession="MS:1000587" name="contact address" cvRef="PSI-MS" value="Bremen, Germany"/>
   </Organization>
-  <Person id="MPCMEYER" name="Prof. Dr. Helmut E. Meyer" firstName="Helmut" midInitials="E." lastName="Meyer">
-	<cvParam accession="MS:1000587" name="contact address" cvRef="PSI-MS" value="Universitaetsstr. 150, D-44795 Bochum, Germany"/>
-    <cvParam accession="MS:1000589" name="contact email" cvRef="PSI-MS" value="helmut.e.meyer@rub.de"/>
-	<cvParam accession="MS:1001755" name="contact phone number" cvRef="PSI-MS" value="+49/234/32-22427"/>
-	<cvParam accession="MS:1001756" name="contact fax number" cvRef="PSI-MS" value="+49/234/32-14554"/>
-	<cvParam accession="MS:1000588" name="contact URL" cvRef="PSI-MS" value="http://www.medizinisches-proteom-center.de/"/>
-	<Affiliation organization_ref="MPCINSTITUTE"/>
+  <Person id="PERSON_ID" name="Prof. Qwe Hoho" firstName="Hoho" midInitials="E." lastName="Qwe">
+	<cvParam accession="MS:1000587" name="contact address" cvRef="PSI-MS" value="123 Some Street, Some City, Some Country"/>
+    <cvParam accession="MS:1000589" name="contact email" cvRef="PSI-MS" value="some@email.com"/>
+	<cvParam accession="MS:1001755" name="contact phone number" cvRef="PSI-MS" value="+1/234/567-8910"/>
+	<cvParam accession="MS:1001756" name="contact fax number" cvRef="PSI-MS" value="+1/234/567-8911"/>
+	<cvParam accession="MS:1000588" name="contact URL" cvRef="PSI-MS" value="http://www.lab.org/"/>
+	<Affiliation organization_ref="SOME-DEPARTMENT"/>
   </Person>
-  <Organization id="MPCINSTITUTE" name="Medizinisches Proteom-Center">
-	<cvParam accession="MS:1000587" name="contact address" cvRef="PSI-MS" value="Zentrum Klinische Forschung (building: ZKF), room: E.043, Bochum, Germany"/>
-	<cvParam accession="MS:1001755" name="contact phone number" cvRef="PSI-MS" value="+49/234/32-22427"/>
-	<cvParam accession="MS:1001756" name="contact fax number" cvRef="PSI-MS" value="+49/234/32-14554"/>
-	<cvParam accession="MS:1000588" name="contact URL" cvRef="PSI-MS" value="http://www.medizinisches-proteom-center.de/"/>
-    <Parent organization_ref="RUBUNIVERSITY"/>
+  <Organization id="SOME-DEPARTMENT" name="Some Great Department">
+	<cvParam accession="MS:1000587" name="contact address" cvRef="PSI-MS" value="345 Some Address, City, Country"/>
+	<cvParam accession="MS:1001755" name="contact phone number" cvRef="PSI-MS" value="+1/234/567-8910"/>
+	<cvParam accession="MS:1001756" name="contact fax number" cvRef="PSI-MS" value="+1/234/567-8911"/>
+	<cvParam accession="MS:1000588" name="contact URL" cvRef="PSI-MS" value="http://www.university.edu/department"/>
+    <Parent organization_ref="SOME-UNIVERSITY"/>
   </Organization>
-  <Organization id="RUBUNIVERSITY" name="Ruhr-Universitaet Bochum">
-	<cvParam accession="MS:1000587" name="contact address" cvRef="PSI-MS" value="Universitaetsstr. 150, D-44795 Bochum, Germany"/>
-	<cvParam accession="MS:1000588" name="contact URL" cvRef="PSI-MS" value="http://www.ruhr-uni-bochum.de/"/>
+  <Organization id="SOME-UNIVERSITY" name="Some Great University">
+	<cvParam accession="MS:1000587" name="contact address" cvRef="PSI-MS" value="123 Some Other Address, City, Country"/>
+	<cvParam accession="MS:1000588" name="contact URL" cvRef="PSI-MS" value="http://www.university.edu/"/>
   </Organization>
 </AuditCollection>
 <SequenceCollection>
