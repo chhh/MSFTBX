@@ -12,4 +12,4 @@ These schemas are much better than pepxml, they actually compile without errors 
 ## After generation 
 * Replace `(new ArrayList<.*?>)\(\)` with `$1\(1\)` to default all ArrayList initializations to a single element.
 * Delete the `namespace` and `attributeFormDefault` from `package-info.java` that sits next to `ObjectFactory.java`
-
+* For writer to work properly `MzIdentMLType` (both standard and primitive) need to be annotated with `@XmlRootElement(name = "MzIdentML")`.

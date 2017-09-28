@@ -22,12 +22,17 @@ import java.util.*;
  * @author Dmitry Avtonomov
  */
 public class MsftbxInfo {
-    public static final String version = "1.5.0";
+    public static final String version = "1.6.0";
 
     private static final TreeMap<String, List<String>> changelog = new TreeMap<>();
     private static final Map<String, List<String>> changelogImmutable = Collections.unmodifiableMap(changelog);
 
     static {
+        String v160 = "v1.6.0";
+        List<String> v160notes = new LinkedList<>();
+        v160notes.add("Added @XmlRootElement annotation to MzIdentMlType JAXB class to enable proper marshalling.");
+        changelog.put(v160, v160notes);
+
 
         String v150 = "v1.5.0";
         List<String> v150notes = new LinkedList<>();
