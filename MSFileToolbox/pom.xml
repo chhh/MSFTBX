@@ -96,6 +96,16 @@
             <groupId>org.biojava</groupId>
             <artifactId>biojava-ontology</artifactId>
             <version>4.2.7</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.logging.log4j</groupId>
+                    <artifactId>log4j-slf4j-impl</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency> <!-- for experimental Thermo RAW support -->
             <groupId>org.jvnet.com4j</groupId>
