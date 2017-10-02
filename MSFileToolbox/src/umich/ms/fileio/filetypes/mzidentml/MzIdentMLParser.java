@@ -16,7 +16,6 @@
 package umich.ms.fileio.filetypes.mzidentml;
 
 import umich.ms.fileio.exceptions.FileParsingException;
-import umich.ms.fileio.filetypes.mzidentml.jaxb.standard.MzIdentMLType;
 import umich.ms.fileio.util.jaxb.JaxbUtils;
 
 import javax.xml.bind.JAXBException;
@@ -34,14 +33,15 @@ public class MzIdentMLParser {
      * @param path path to the file to parse
      * @return auto-generated representation of the file, read the MzIdentML schema for details.
      */
-    public static MzIdentMLType parse(Path path) throws FileParsingException {
+    public static umich.ms.fileio.filetypes.mzidentml.jaxb.standard.MzIdentMLType parse(Path path) throws FileParsingException {
         try {
             XMLStreamReader xsr = JaxbUtils.createXmlStreamReader(path, false);
-            MzIdentMLType mzIdentMLType = JaxbUtils.unmarshall(MzIdentMLType.class, xsr);
+            umich.ms.fileio.filetypes.mzidentml.jaxb.standard.MzIdentMLType mzIdentMLType = JaxbUtils.unmarshall(umich.ms.fileio.filetypes.mzidentml.jaxb.standard.MzIdentMLType.class, xsr);
             return mzIdentMLType;
         } catch (JAXBException e) {
             throw new FileParsingException(
                     String.format("JAXB parsing of MzIdentML file failed (%s)", path.toAbsolutePath().toString()), e);
         }
     }
+
 }
