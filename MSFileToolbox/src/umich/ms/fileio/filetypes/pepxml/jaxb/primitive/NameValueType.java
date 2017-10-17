@@ -45,14 +45,9 @@ import javax.xml.bind.annotation.XmlValue;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "nameValueType", propOrder = {
-    "value"
-})
+@XmlType()
 public class NameValueType {
 
-    @XmlValue
-    @XmlSchemaType(name = "anySimpleType")
-    protected Object value;
     @XmlAttribute(name = "name", required = true)
     protected String name;
     @XmlAttribute(name = "value", required = true)
@@ -61,30 +56,6 @@ public class NameValueType {
     @XmlAttribute(name = "type")
     @XmlSchemaType(name = "anySimpleType")
     protected String type;
-
-    /**
-     * Gets the value of the value property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Object }
-     *     
-     */
-    public Object getValue() {
-        return value;
-    }
-
-    /**
-     * Sets the value of the value property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Object }
-     *     
-     */
-    public void setValue(Object value) {
-        this.value = value;
-    }
 
     /**
      * Gets the value of the name property.
