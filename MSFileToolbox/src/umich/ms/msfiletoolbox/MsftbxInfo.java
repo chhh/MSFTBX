@@ -31,6 +31,8 @@ public class MsftbxInfo {
         String v160 = "v1.6.0";
         List<String> v160notes = new LinkedList<>();
         v160notes.add("Added @XmlRootElement annotation to MzIdentMlType JAXB class to enable proper marshalling.");
+        v160notes.add("Changes to NameValueType in PepXml definition. Was causing some strange error on some systems " +
+                "about incorrect annotations.");
         changelog.put(v160, v160notes);
 
 

@@ -19,7 +19,7 @@ Please cite the following paper if you used [MSFTBX](https://github.com/chhh/msf
 <dependency>
     <groupId>com.github.chhh</groupId>
     <artifactId>msftbx</artifactId>
-    <version>1.4.0</version>
+    <version>1.6.0</version>
 </dependency>
 ```
 
