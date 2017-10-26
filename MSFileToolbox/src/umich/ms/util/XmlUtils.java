@@ -27,13 +27,13 @@ public class XmlUtils {
     private XmlUtils() {}
 
     /**
-     * Advances the Stream Reader to the closest first occurrence of a tag.
+     * Advances the Stream Reader to the next occurrence of a user-specified tag.
      * @param xsr The reader to advance.
-     * @param tag The tag to advance to.
+     * @param tag The tag to advance to. No brackets, just the name.
      * @return True if advanced successfully, false when the end of document was successfully reached.
      * @throws XMLStreamException In all cases other than described by 'return'.
      */
-    public static boolean advanceReaderToNextRunSummary(XMLStreamReader xsr, String tag) throws XMLStreamException {
+    public static boolean advanceReaderToNext(XMLStreamReader xsr, String tag) throws XMLStreamException {
         if (tag == null)
             throw new IllegalArgumentException("Tag name can't be null");
         if (xsr == null)

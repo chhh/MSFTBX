@@ -36,7 +36,7 @@ public class MzIdentMLParser {
     public static umich.ms.fileio.filetypes.mzidentml.jaxb.standard.MzIdentMLType parse(Path path) throws FileParsingException {
         try {
             XMLStreamReader xsr = JaxbUtils.createXmlStreamReader(path, false);
-            umich.ms.fileio.filetypes.mzidentml.jaxb.standard.MzIdentMLType mzIdentMLType = JaxbUtils.unmarshall(umich.ms.fileio.filetypes.mzidentml.jaxb.standard.MzIdentMLType.class, xsr);
+            umich.ms.fileio.filetypes.mzidentml.jaxb.standard.MzIdentMLType mzIdentMLType = JaxbUtils.unmarshal(umich.ms.fileio.filetypes.mzidentml.jaxb.standard.MzIdentMLType.class, xsr);
             return mzIdentMLType;
         } catch (JAXBException e) {
             throw new FileParsingException(

@@ -105,6 +105,24 @@ public class JaxbUtils
     }
 
     /**
+     * Creates a <b>NON namespace aware</b> XMLStreamReader based on a file path.
+     *
+     * @param path the path to the file to be parsed
+     * @return platform-specific XMLStreamReader implementation
+     * @throws JAXBException if the XMLStreamReader could not be created
+     */
+    public static XMLStreamReader createXmlStreamReader(Path path) throws JAXBException {
+        XMLInputFactory xif = getXmlInputFactory(false);
+        XMLStreamReader xsr = null;
+        try {
+            xsr = xif.createXMLStreamReader(new StreamSource(path.toFile()));
+        } catch (XMLStreamException e) {
+            throw new JAXBException(e);
+        }
+        return xsr;
+    }
+
+    /**
      * Creates an XMLStreamReader based on an input stream.
      *
      * @param is the input stream from which the data to be parsed will be taken
@@ -124,6 +142,26 @@ public class JaxbUtils
     }
 
     /**
+     * Creates a <b>NON namespace aware</b> XMLStreamReader based on an input stream.
+     *
+     * @param is the input stream from which the data to be parsed will be taken
+     * @return platform-specific XMLStreamReader implementation
+     * @throws JAXBException if the XMLStreamReader could not be created
+     */
+    public static XMLStreamReader createXmlStreamReader(InputStream is) throws JAXBException {
+        XMLInputFactory xif = getXmlInputFactory(false);
+        XMLStreamReader xsr = null;
+        try {
+            xsr = xif.createXMLStreamReader(is);
+        } catch (XMLStreamException e) {
+            throw new JAXBException(e);
+        }
+        return xsr;
+    }
+
+
+
+    /**
      * Creates an XMLStreamReader based on a Reader.
      *
      * @param reader Note that XMLStreamReader, despite the name, does not implement the Reader interface!
@@ -133,6 +171,24 @@ public class JaxbUtils
      */
     public static XMLStreamReader createXmlStreamReader(Reader reader, boolean namespaceAware) throws JAXBException {
         XMLInputFactory xif = getXmlInputFactory(namespaceAware);
+        XMLStreamReader xsr = null;
+        try {
+            xsr = xif.createXMLStreamReader(reader);
+        } catch (XMLStreamException e) {
+            throw new JAXBException(e);
+        }
+        return xsr;
+    }
+
+    /**
+     * Creates an <b>NON namespace aware</b> XMLStreamReader based on a Reader.
+     *
+     * @param reader Note that XMLStreamReader, despite the name, does not implement the Reader interface!
+     * @return platform-specific XMLStreamReader implementation
+     * @throws JAXBException if the XMLStreamReader could not be created
+     */
+    public static XMLStreamReader createXmlStreamReader(Reader reader) throws JAXBException {
+        XMLInputFactory xif = getXmlInputFactory(false);
         XMLStreamReader xsr = null;
         try {
             xsr = xif.createXMLStreamReader(reader);
@@ -156,7 +212,7 @@ public class JaxbUtils
         return xif;
     }
 
-    public static <T> T unmarshall(Class<T> clazz, XMLStreamReader xsr) throws JAXBException {
+    public static <T> T unmarshal(Class<T> clazz, XMLStreamReader xsr) throws JAXBException {
         JAXBContext jaxb = getContext(clazz);
 
         Unmarshaller unmarshaller = jaxb.createUnmarshaller();
@@ -164,7 +220,7 @@ public class JaxbUtils
         return jaxbElement.getValue();
     }
 
-    public static <T> T unmarshall(Class<T> clazz, XMLStreamReader xsr, Unmarshaller unmarshaller) throws JAXBException {
+    public static <T> T unmarshal(Class<T> clazz, XMLStreamReader xsr, Unmarshaller unmarshaller) throws JAXBException {
         JAXBElement<T> jaxbElement = unmarshaller.unmarshal(xsr, clazz);
         return jaxbElement.getValue();
     }
@@ -438,7 +494,7 @@ public class JaxbUtils
      */
     protected static <T> Class[] findTypes(Collection<T> c)
     {
-        Set<Class> types = new HashSet<Class>();
+        Set<Class> types = new HashSet<>();
         types.add(JAXBCollection.class);
         for (T o : c)
         {
@@ -463,7 +519,7 @@ public class JaxbUtils
     protected static <T> JAXBElement createCollectionElement(String rootName, Collection<T> c)
     {
         JAXBCollection collection = new JAXBCollection(c);
-        return new JAXBElement<JAXBCollection>(new QName(rootName), JAXBCollection.class, collection);
+        return new JAXBElement<>(new QName(rootName), JAXBCollection.class, collection);
     }
 
 }

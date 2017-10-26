@@ -34,7 +34,7 @@ public class GPMDBParser {
     public static Bioml parse(Path path) throws FileParsingException {
         try {
             XMLStreamReader xsr = JaxbUtils.createXmlStreamReader(path, false);
-            Bioml bioml = JaxbUtils.unmarshall(Bioml.class, xsr);
+            Bioml bioml = JaxbUtils.unmarshal(Bioml.class, xsr);
             return bioml;
         } catch (JAXBException e) {
             throw new FileParsingException(e);

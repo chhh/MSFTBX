@@ -36,7 +36,7 @@ public class ProtXmlParser {
         XMLStreamReader xsr = null;
         try {
             xsr = JaxbUtils.createXmlStreamReader(path, false);
-            ProteinSummary proteinSummary = JaxbUtils.unmarshall(ProteinSummary.class, xsr);
+            ProteinSummary proteinSummary = JaxbUtils.unmarshal(ProteinSummary.class, xsr);
             return proteinSummary;
         } catch (JAXBException e) {
             throw new FileParsingException(e);

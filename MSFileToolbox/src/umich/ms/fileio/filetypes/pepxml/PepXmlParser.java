@@ -45,7 +45,7 @@ public class PepXmlParser {
 
         try {
             XMLStreamReader xsr = JaxbUtils.createXmlStreamReader(path, false);
-            MsmsPipelineAnalysis msmsPipelineAnalysis = JaxbUtils.unmarshall(MsmsPipelineAnalysis.class, xsr);
+            MsmsPipelineAnalysis msmsPipelineAnalysis = JaxbUtils.unmarshal(MsmsPipelineAnalysis.class, xsr);
             return msmsPipelineAnalysis;
         } catch (JAXBException e) {
             throw new FileParsingException(
