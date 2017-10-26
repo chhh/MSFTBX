@@ -22,12 +22,18 @@ import java.util.*;
  * @author Dmitry Avtonomov
  */
 public class MsftbxInfo {
-    public static final String version = "1.6.0";
+    public static final String version = "1.6.1";
 
     private static final TreeMap<String, List<String>> changelog = new TreeMap<>();
     private static final Map<String, List<String>> changelogImmutable = Collections.unmodifiableMap(changelog);
 
     static {
+        String v161 = "v1.6.1";
+        List<String> v161notes = new LinkedList<>();
+        v161notes.add("Minor changes in XmlUtils and an example of unmarshalling 'peptideprophet_summary'," +
+                " which is not a part of standard unmarshalled data object (because of a flaw in pepxml schema).");
+        changelog.put(v161, v161notes);
+
         String v160 = "v1.6.0";
         List<String> v160notes = new LinkedList<>();
         v160notes.add("Added @XmlRootElement annotation to MzIdentMlType JAXB class to enable proper marshalling.");

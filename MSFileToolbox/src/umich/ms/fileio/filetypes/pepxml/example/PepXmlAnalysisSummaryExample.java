@@ -22,7 +22,6 @@ import umich.ms.util.StringUtils;
 import umich.ms.util.XmlUtils;
 
 import javax.xml.stream.XMLStreamReader;
-import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
