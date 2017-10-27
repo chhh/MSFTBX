@@ -1,3 +1,5 @@
+[![Maven Central](https://img.shields.io/maven-central/v/com.github.chhh/msftbx.svg)]()
+
 # MSFTBX
 The acronym stands for `Mass Spectrometry File Toolbox`. This is a library for access to some common mass-spectrometry/proteomics data formats from Java:  
  - mzML
@@ -15,11 +17,11 @@ Please cite the following paper if you used [MSFTBX](https://github.com/chhh/msf
 [Avtonomov D.M. et al: J. Proteome Res. June 16, 2016. DOI: 10.1021/acs.jproteome.6b00021](https://dx.doi.org/10.1021/acs.jproteome.6b00021)
 
 ## Maven dependency
-```
+```xml
 <dependency>
     <groupId>com.github.chhh</groupId>
     <artifactId>msftbx</artifactId>
-    <version>1.6.0</version>
+    <version>1.6.1</version>
 </dependency>
 ```
 
