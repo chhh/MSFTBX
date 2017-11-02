@@ -57,6 +57,22 @@ Will overwrite existing java jaxb files without warning.
 * Use the following regex in IDEA for replacement (use _Replace in path_). Search pattern `(new ArrayList<.*?>)\(\)`,
     replacement pattern `$1\(1\)`
 * Delete the `namespace` and `attributeFormDefault` from `package-info.java` that sits next to `ObjectFactory.java`
+* In `NameValueType.java` (both *standard* and *primitive*) apply the following changes:  
+  Change these lines (i.e. remove arguemnts from `@XmlType` annotation):  
+  ```java
+  -@XmlType(name = "nameValueType", propOrder = {
+  -    "value"
+  -})
+  
+  +@XmlType()
+  ```
+  Remove these lines:
+  ```java
+  -    @XmlValue
+  -    @XmlSchemaType(name = "anySimpleType")
+  -    protected Object value;
+  ```
+  and remove methods `public Object getValue()` and `public void setValue(Object value)`.
 
 # Use like this:
 
