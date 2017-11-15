@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright 2016 Dmitry Avtonomov.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,7 +18,7 @@ package umich.ms.fileio.filetypes;
 import umich.ms.datatypes.index.Index;
 import umich.ms.datatypes.lcmsrun.LCMSRunInfo;
 import umich.ms.fileio.exceptions.FileParsingException;
-import umich.ms.fileio.filetypes.util.AbstractFile;
+import umich.ms.fileio.util.AbstractFile;
 
 import java.io.Serializable;
 

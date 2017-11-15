@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright 2016 Dmitry Avtonomov.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,7 +21,7 @@ import java.util.zip.DataFormatException;
 import umich.ms.datatypes.scan.PeaksCompression;
 import umich.ms.external.msnumpress.MSNumpress;
 import umich.ms.fileio.exceptions.FileParsingException;
-import umich.ms.fileio.filetypes.util.ZlibInflater;
+import umich.ms.fileio.util.ZlibInflater;
 import umich.ms.util.ByteArrayHolder;
 
 /**
@@ -85,7 +85,7 @@ public class MZMLPeaksDecoder {
         if (compressions == null) {
             compressions = EnumSet.noneOf(PeaksCompression.class);
         }
-        
+
         /////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////
         //////                                             //////
@@ -99,12 +99,12 @@ public class MZMLPeaksDecoder {
         /////////////////////////////////////////////////////////
         ByteArrayHolder bytes = null;
         boolean isBytesFromPool = false;
-        
+
 
         try { // try/catch to return the byte array, possibly borrowed from a pool
 
             double[] data = new double[numPoints];
-        
+
             // first check for zlib compression, inflation must be done before NumPress
             if (compressions.contains(PeaksCompression.ZLIB)) {
                 bytes = ZlibInflater.zlibUncompressBuffer(bytesIn, lengthIn, null);
@@ -155,7 +155,7 @@ public class MZMLPeaksDecoder {
                 case (32): {
                     int asInt;
                     float asFloat;
-                    
+
                     for (int i = 0; i < numPoints; i++) {
                         offset = i * chunkSize;
 

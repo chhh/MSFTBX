@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright 2016 Dmitry Avtonomov.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -28,7 +28,7 @@ import umich.ms.fileio.filetypes.mzml.jaxb.*;
 import umich.ms.fileio.filetypes.mzml.util.InstrumentModelCVTerm;
 import umich.ms.fileio.filetypes.mzml.util.PSIMSCV;
 import umich.ms.fileio.filetypes.mzxml.XmlBasedRunHeaderParser;
-import umich.ms.fileio.filetypes.util.AbstractFile;
+import umich.ms.fileio.util.AbstractFile;
 import umich.ms.fileio.filetypes.xmlbased.OffsetLength;
 import umich.ms.logging.LogHelper;
 import umich.ms.util.StringUtils;

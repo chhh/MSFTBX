@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright 2016 Dmitry Avtonomov.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,7 +25,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import umich.ms.fileio.filetypes.gpmdb.jaxb.Bioml;
 import umich.ms.fileio.exceptions.FileParsingException;
-import umich.ms.fileio.filetypes.util.AbstractFile;
+import umich.ms.fileio.util.AbstractFile;
 
 /**
  * Data source for GPMDB XML files with identifications.
@@ -33,11 +33,11 @@ import umich.ms.fileio.filetypes.util.AbstractFile;
  * @author Dmitry Avtonomov
  */
 public class GPMDBFile extends AbstractFile {
-    
+
     public GPMDBFile(String path) {
         super(path);
     }
-    
+
     public Bioml parse() throws FileParsingException {
         //ClassLoader classLoaderOrig = Thread.currentThread().getContextClassLoader();
         try {
@@ -63,7 +63,7 @@ public class GPMDBFile extends AbstractFile {
 //            Thread.currentThread().setContextClassLoader(classLoaderOrig);
         }
     }
-    
+
     @SuppressWarnings("unchecked")
     protected <T> T convertJAXBObjectToDomain(Class<T> clazz, Object unmarshalled) {
         if (unmarshalled == null) {
@@ -74,7 +74,7 @@ public class GPMDBFile extends AbstractFile {
             throw new RuntimeException(String.format(
                     "When parsing XML, JAXB object's declared type was wrong. Expected: %s; Found: %s",
                     clazz.getSimpleName(), unmarshalled.getClass().getSimpleName()));
-            
+
         }
         return (T) unmarshalled;
     }

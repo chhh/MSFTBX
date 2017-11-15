@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2017 Dmitry Avtonomov
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~    http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<jaxb:bindings version="2.1"
+               xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+               xmlns:xs="http://www.w3.org/2001/XMLSchema"
+               xs:schemaLocation="http://java.sun.com/xml/ns/jaxb http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/jaxb/bindingschema_2_0.xsd">
+
+    <!--<jaxb:globalBindings localScoping="toplevel" optionalProperty="primitive">-->
+    <jaxb:globalBindings localScoping="toplevel">
+        <!-- No nonsense like BigDecimal and the likes -->
+        <jaxb:javaType name="java.lang.Double"
+                       xmlType="xs:decimal"
+                       parseMethod="javax.xml.bind.DatatypeConverter.parseDouble"
+                       printMethod="javax.xml.bind.DatatypeConverter.printDouble" />
+
+        <jaxb:javaType name="java.lang.Integer"
+                       xmlType="xs:integer"
+                       parseMethod="javax.xml.bind.DatatypeConverter.parseInt"
+                       printMethod="javax.xml.bind.DatatypeConverter.printInt" />
+
+        <!--<jaxb:javaType name="java.lang.Double"-->
+                       <!--xmlType="xs:double"-->
+                       <!--parseMethod="javax.xml.bind.DatatypeConverter.parseDouble"-->
+                       <!--printMethod="javax.xml.bind.DatatypeConverter.printDouble" />-->
+        <!--<jaxb:javaType name="java.lang.Float"-->
+                       <!--xmlType="xs:float"-->
+                       <!--parseMethod="javax.xml.bind.DatatypeConverter.parseFloat"-->
+                       <!--printMethod="javax.xml.bind.DatatypeConverter.printFloat" />-->
+        <!--<jaxb:javaType name="java.lang.Integer"-->
+                       <!--xmlType="xs:int"-->
+                       <!--parseMethod="javax.xml.bind.DatatypeConverter.parseInt"-->
+                       <!--printMethod="javax.xml.bind.DatatypeConverter.printInt" />-->
+        <!--<jaxb:javaType name="java.lang.Long"-->
+                       <!--xmlType="xs:positiveInteger"-->
+                       <!--parseMethod="javax.xml.bind.DatatypeConverter.parseUnsignedInt"-->
+                       <!--printMethod="javax.xml.bind.DatatypeConverter.printUnsignedInt" />-->
+    </jaxb:globalBindings>
+
+    <jaxb:bindings schemaLocation="mzML1.1.0.xsd" node="/xs:schema">
+        <!--<jaxb:bindings node="//xs:complexType[@name='nameValueType']//xs:attribute[@name='value']">-->
+            <!--&lt;!&ndash; This one has to be renamed because in the schema nameValueType extends anySimpleValue-->
+             <!--and that class already has an attribute called 'value' &ndash;&gt;-->
+            <!--<jaxb:property name="valueStr"/>-->
+        <!--</jaxb:bindings>-->
+    </jaxb:bindings>
+
+
+</jaxb:bindings>
