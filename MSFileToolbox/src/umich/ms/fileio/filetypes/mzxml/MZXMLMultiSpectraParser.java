@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright 2016 Dmitry Avtonomov.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -34,9 +34,7 @@ import umich.ms.datatypes.scan.props.ScanType;
 import umich.ms.datatypes.spectrum.ISpectrum;
 import umich.ms.datatypes.spectrum.impl.SpectrumDefault;
 import umich.ms.fileio.exceptions.FileParsingException;
-import umich.ms.fileio.filetypes.util.MultiSpectraParser;
-import umich.ms.fileio.filetypes.xmlbased.IndexBuilder;
-import umich.ms.fileio.filetypes.xmlbased.OffsetLength;
+import umich.ms.fileio.filetypes.xmlbased.MultiSpectraParser;
 import umich.ms.logging.LogHelper;
 import umich.ms.util.ByteArrayHolder;
 import umich.ms.util.base64.Base64;

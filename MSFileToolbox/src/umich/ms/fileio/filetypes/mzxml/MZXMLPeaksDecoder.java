@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright 2016 Dmitry Avtonomov.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,15 +23,14 @@ import java.util.Arrays;
 import java.util.zip.DataFormatException;
 import umich.ms.datatypes.scan.PeaksCompression;
 import umich.ms.fileio.exceptions.FileParsingException;
-import umich.ms.fileio.filetypes.mzml.MZMLPeaksDecoder;
-import umich.ms.fileio.filetypes.util.ZlibInflater;
+import umich.ms.fileio.util.ZlibInflater;
 import umich.ms.util.ByteArrayHolder;
 
 /**
  * Author: Dmitry Avtonomov (dmitriya)
  */
 public class MZXMLPeaksDecoder {
-    
+
     // Suppress default constructor for noninstantiability
     private MZXMLPeaksDecoder() {
         throw new AssertionError();
@@ -82,7 +81,7 @@ public class MZXMLPeaksDecoder {
 
         ByteArrayHolder bytes;
         boolean isBytesFromPool = false;
-        
+
         switch (compression) {
             case ZLIB:
                 bytes = ZlibInflater.zlibUncompressBuffer(bytesIn, lengthIn, null);
@@ -136,7 +135,7 @@ public class MZXMLPeaksDecoder {
                 case (32): {
                     int asInt;
                     float mzAsFloat, intAsFloat;
-                    
+
                     for (int i = 0; i < numPeaks; i++) {
                         offset = i * 2 * chunkSize;
 

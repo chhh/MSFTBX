@@ -20,13 +20,13 @@ out. It was useless anyways as `<any>` can only be mapped to plain `Object` in j
 was changed to from `xs:string` to `xs:float`, never seen it being a string.
 
 This portion in the beginning had to be changed as well from:
-```xml
+```
 <xs:element name="msms_pipeline_analysis">
     <xs:complexType>
         <xs:sequence maxOccurs="unbounded">
 ```
 to
-```xml
+```
 <xs:element name="msms_pipeline_analysis">
     <xs:complexType>
         <xs:sequence>
@@ -59,7 +59,7 @@ Will overwrite existing java jaxb files without warning.
 * Delete the `namespace` and `attributeFormDefault` from `package-info.java` that sits next to `ObjectFactory.java`
 * In `NameValueType.java` (both *standard* and *primitive*) apply the following changes:  
   Change these lines (i.e. remove arguemnts from `@XmlType` annotation):  
-  ```java
+  ```
   -@XmlType(name = "nameValueType", propOrder = {
   -    "value"
   -})
@@ -67,7 +67,7 @@ Will overwrite existing java jaxb files without warning.
   +@XmlType()
   ```
   Remove these lines:
-  ```java
+  ```
   -    @XmlValue
   -    @XmlSchemaType(name = "anySimpleType")
   -    protected Object value;
@@ -76,7 +76,7 @@ Will overwrite existing java jaxb files without warning.
 
 # Use like this:
 
-```java
+```
 // input file
 String path = "G:\\tmp\\pepxml\\test_data\\interact-20130328_EXQ8_NaNa_SA_HeLa_rep04_06.pep.xml";
 Path p = Paths.get(path).toAbsolutePath();

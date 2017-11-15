@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright 2016 Dmitry Avtonomov.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -37,7 +37,7 @@ import umich.ms.fileio.exceptions.RunHeaderParsingException;
 import umich.ms.fileio.filetypes.mzxml.jaxb.MsRun;
 import umich.ms.fileio.filetypes.mzxml.jaxb.OntologyEntryType;
 import umich.ms.fileio.filetypes.mzxml.jaxb.Software;
-import umich.ms.fileio.filetypes.util.AbstractFile;
+import umich.ms.fileio.util.AbstractFile;
 import umich.ms.fileio.filetypes.xmlbased.OffsetLength;
 import umich.ms.logging.LogHelper;
 

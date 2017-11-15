@@ -24,15 +24,19 @@ import umich.ms.datatypes.scan.StorageStrategy;
 import umich.ms.datatypes.scancollection.IScanCollection;
 import umich.ms.datatypes.scancollection.impl.ScanCollectionDefault;
 import umich.ms.datatypes.spectrum.ISpectrum;
+import umich.ms.fileio.Opts;
 import umich.ms.fileio.ResourceUtils;
+import umich.ms.fileio.util.FileListing;
+import umich.ms.util.IntervalST;
 
+import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.nio.file.Paths;
+import java.text.DecimalFormat;
+import java.util.*;
 
 import static org.junit.Assert.assertEquals;
+import static umich.ms.logging.LogHelper.configureJavaUtilLogging;
 
 /**
  * @author Dmitry Avtonomov
@@ -163,4 +167,146 @@ public class MZMLFileTest {
         System.out.printf("Parsing %s took %.4fs\n", file, (timeHi-timeLo)/1e9);
     }
 
+    @Test
+    public void MzmlFileOldMainMethod() throws Exception {
+        configureJavaUtilLogging();
+
+        String[] filenames = {"E:\\andy\\broken-venky-mzml\\HELA_1µg_onColumn_OT120K.mzML"};
+        Integer numThreads = null;
+        Integer numSpectraPerThread = 50;
+        List<Path> paths = new ArrayList<>();
+        for (int i = 0; i < filenames.length; i++) {
+            String filename = filenames[i];
+            if (i == 0) {
+                try {
+                    int numThreadsParsed = Integer.parseInt(filename);
+                    numThreads = numThreadsParsed;
+                    System.out.printf("Setting number of threads to: %d\n", numThreadsParsed);
+                    continue;
+                } catch (NumberFormatException e) {
+                    // no worries, it's ok
+                }
+            }
+            if (i == 1) {
+                try {
+                    int numSpectraPerThreadParsed = Integer.parseInt(filename);
+                    numSpectraPerThread = numSpectraPerThreadParsed;
+                    System.out.printf("Setting number of spectra per thread to: %d\n", numSpectraPerThreadParsed);
+                    continue;
+                } catch (NumberFormatException e) {
+                    // it's ok
+                }
+            }
+
+            Path path = Paths.get(filename).toAbsolutePath();
+            if (!Files.exists(path)) {
+                System.err.println("File does not exist: " + path.toString());
+                System.exit(1);
+            }
+            if (Files.isRegularFile(path)) {
+                paths.add(path);
+            } else if (Files.isDirectory(path)) {
+                FileListing fileListing = new FileListing(path, ".*\\.mzML");
+                fileListing.setFollowLinks(false);
+                fileListing.setRecursive(false);
+                paths.addAll(fileListing.findFiles());
+            }
+        }
+
+        IScanCollection scans;
+        for (Path path : paths) {
+            if (Opts.DEBUG || true) {
+                double fileSize = path.toFile().length() / (1024 * 1024);
+                System.out.printf("File: %s (%.2fMb)\n", path.toString(), fileSize);
+            }
+
+            MZMLFile mzml = new MZMLFile(path.toString());
+            LCMSRunInfo lcmsRunInfo = mzml.fetchRunInfo();
+            System.out.println(lcmsRunInfo.toString());
+
+
+            mzml.setNumThreadsForParsing(numThreads);
+            mzml.setTasksPerCpuPerBatch(numSpectraPerThread);
+            mzml.setParsingTimeout(30 * 1000);
+            long startTime = System.nanoTime();
+
+
+            MZMLIndex index = mzml.fetchIndex();
+            if (index.size() > 0) {
+                MZMLIndexElement byNum = index.getByNum(1);
+                MZMLIndexElement byRawNum = index.getByRawNum(byNum.getRawNumber());
+                MZMLIndexElement byId = index.getById(byNum.getId());
+
+            } else {
+                System.err.println("Parsed index was empty!");
+            }
+            System.out.println("It took: " + (System.nanoTime() - startTime) / 1e9
+                                       + " seconds to parse index (" + index.size() + " spectra)");
+
+
+            startTime = System.nanoTime();
+            scans = new ScanCollectionDefault(true);
+            scans.setDataSource(mzml);
+            scans.loadData(LCMSDataSubset.WHOLE_RUN, StorageStrategy.STRONG);
+            System.out.println("It took: " + (System.nanoTime() - startTime) / 1e9
+                                       + " seconds to parse all scans (" + scans.getScanCount() + " spectra)");
+
+            TreeMap<Integer, IScan> num2scanMap = scans.getMapNum2scan();
+            Set<Map.Entry<Integer, IScan>> num2scanEntries = num2scanMap.entrySet();
+            int counterMzIntPairs = 0;
+            for (Map.Entry<Integer, IScan> next : num2scanEntries) {
+                IScan scan = next.getValue();
+                if (scan.getSpectrum() != null) {
+                    counterMzIntPairs += scan.getSpectrum().getMZs().length;
+                }
+            }
+
+            IScan scan = scans.getMapNum2scan().firstEntry().getValue();
+            ISpectrum spectrum = scan.fetchSpectrum();
+            double[] mzs = spectrum.getMZs();
+            double[] intensities = spectrum.getIntensities();
+            System.out.print("First ten valus of m/z and intensity arrays of the 1st scan:\n\t");
+            for (int i = 0; i < mzs.length && i < 10; i++) {
+                System.out.printf("%.3f=%.1f; ", mzs[i], intensities[i]);
+            }
+            System.out.println();
+
+
+            System.out.printf("Total number of mz-intensity pairs: %d\n", counterMzIntPairs);
+            DecimalFormat formatter = new DecimalFormat("0.##E0");
+            double doubleArraysSizeMb = ((double) counterMzIntPairs * 2 * 8) / (double) (1024 * 1024);
+            System.out.printf("Thas is: %s (%.2fMB)\n", formatter.format(counterMzIntPairs), doubleArraysSizeMb);
+
+            TreeMap<Integer, IntervalST<Double, TreeMap<Integer, IScan>>> mapMsLevel2rangeGroups = scans.getMapMsLevel2rangeGroups();
+            Set<Map.Entry<Integer, IntervalST<Double, TreeMap<Integer, IScan>>>> entries = mapMsLevel2rangeGroups.entrySet();
+            for (Map.Entry<Integer, IntervalST<Double, TreeMap<Integer, IScan>>> next : entries) {
+                Integer msLevel = next.getKey();
+                IntervalST<Double, TreeMap<Integer, IScan>> mzRangesAtMsLevel = next.getValue();
+                System.out.printf("Tree at MS level: %d\n", msLevel);
+                Iterator<IntervalST.Node<Double, TreeMap<Integer, IScan>>> iterIntervalTree = mzRangesAtMsLevel.iterator();
+                while (iterIntervalTree.hasNext()) {
+                    IntervalST.Node<Double, TreeMap<Integer, IScan>> range = iterIntervalTree.next();
+                    System.out.printf("Interval: %s contains %d scans\n", range.getInterval().toString(), range.getValue().size());
+                }
+
+                System.out.println("=================");
+                System.out.println();
+            }
+
+            TreeMap<Integer, IScan> mapNum2scan = scans.getMapNum2scan();
+            int counter = 0;
+
+
+            if (false) {
+                ArrayList<Integer> scanNums = new ArrayList<>();
+                for (Map.Entry<Integer, IScan> num2scan : mapNum2scan.entrySet()) {
+                    counter++;
+                    if (counter % 2 == 0) {
+                        scanNums.add(num2scan.getKey());
+                    }
+                }
+                mzml.parse(scanNums);
+            }
+        }
+    }
 }

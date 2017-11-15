@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright 2016 Dmitry Avtonomov.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -27,7 +27,7 @@ import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLReaderFactory;
 import umich.ms.datatypes.scan.IScan;
 import umich.ms.fileio.filetypes.mzxml.MZXMLMultiSpectraParser;
-import umich.ms.fileio.filetypes.util.MultiSpectraParser;
+import umich.ms.fileio.filetypes.xmlbased.MultiSpectraParser;
 
 /**
  * Takes a string with possibly many {@code <scan>} elements and returns parsed
