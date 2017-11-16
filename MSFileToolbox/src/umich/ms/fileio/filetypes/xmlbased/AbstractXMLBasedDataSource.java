@@ -38,6 +38,7 @@ import umich.ms.datatypes.scan.IScan;
 import umich.ms.datatypes.spectrum.ISpectrum;
 import umich.ms.fileio.exceptions.FileParsingException;
 import umich.ms.fileio.filetypes.AbstractLCMSDataSource;
+import umich.ms.util.OffsetLength;
 import umich.ms.util.ByteArrayHolder;
 import umich.ms.util.PooledByteArrayHolders;
 

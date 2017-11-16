@@ -23,15 +23,7 @@ import umich.ms.fileio.filetypes.pepxml.jaxb.standard.MsmsPipelineAnalysis;
 import umich.ms.fileio.filetypes.pepxml.jaxb.standard.MsmsRunSummary;
 import umich.ms.fileio.filetypes.pepxml.jaxb.standard.SearchSummary;
 import umich.ms.fileio.filetypes.pepxml.jaxb.standard.SpectrumQuery;
-import umich.ms.fileio.util.jaxb.JaxbUtils;
-import umich.ms.util.XmlUtils;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.Unmarshaller;
-import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.XMLStreamReader;
-import javax.xml.transform.stream.StreamSource;
 import java.io.FileInputStream;
 import java.nio.file.Path;
 import java.util.Iterator;

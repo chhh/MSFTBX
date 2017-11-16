@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright 2016 Dmitry Avtonomov.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -46,7 +46,7 @@ import umich.ms.fileio.filetypes.xmlbased.IndexBuilder;
 
 import static umich.ms.logging.LogHelper.configureJavaUtilLogging;
 
-import umich.ms.fileio.util.FileListing;
+import umich.ms.util.file.FileListing;
 import umich.ms.util.DoubleRange;
 import umich.ms.util.Interval1D;
 import umich.ms.util.IntervalST;

@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright 2016 Dmitry Avtonomov.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -38,7 +38,7 @@ import umich.ms.datatypes.LCMSDataSubset;
 import umich.ms.fileio.exceptions.FileParsingException;
 import umich.ms.fileio.exceptions.IndexBrokenException;
 import umich.ms.fileio.exceptions.IndexNotFoundException;
-import umich.ms.fileio.filetypes.xmlbased.OffsetLength;
+import umich.ms.util.OffsetLength;
 import umich.ms.logging.LogHelper;
 
 /**

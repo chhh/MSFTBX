@@ -27,9 +27,8 @@ import org.apache.commons.pool2.ObjectPool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import umich.ms.fileio.exceptions.FileParsingException;
-import umich.ms.fileio.filetypes.mzml.MZMLIndexElement;
 import umich.ms.fileio.filetypes.xmlbased.IndexBuilder;
-import umich.ms.fileio.filetypes.xmlbased.OffsetLength;
+import umich.ms.util.OffsetLength;
 import umich.ms.logging.LogHelper;
 
 import java.nio.charset.StandardCharsets;

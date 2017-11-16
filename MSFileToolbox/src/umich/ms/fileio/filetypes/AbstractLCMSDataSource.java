@@ -18,7 +18,7 @@ package umich.ms.fileio.filetypes;
 import umich.ms.datatypes.index.Index;
 import umich.ms.datatypes.lcmsrun.LCMSRunInfo;
 import umich.ms.fileio.exceptions.FileParsingException;
-import umich.ms.fileio.util.AbstractFile;
+import umich.ms.util.file.AbstractFile;
 
 import java.io.Serializable;
 

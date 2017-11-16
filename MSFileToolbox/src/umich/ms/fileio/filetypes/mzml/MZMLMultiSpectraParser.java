@@ -190,7 +190,6 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
                         localName = reader.getLocalName();
                         attrs = reader.getAttributes();
 
-                        // TODO: consider changing to .contentEquals(), that method doesn't store any references
                         if (localName.contentEquals(TAG.SPECTRUM.name)) {
                             tagSpectrumStart(attrs);
 

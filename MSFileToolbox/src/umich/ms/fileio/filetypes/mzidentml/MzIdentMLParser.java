@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright 2016 Dmitry Avtonomov.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,7 +16,7 @@
 package umich.ms.fileio.filetypes.mzidentml;
 
 import umich.ms.fileio.exceptions.FileParsingException;
-import umich.ms.fileio.util.jaxb.JaxbUtils;
+import umich.ms.util.jaxb.JaxbUtils;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.stream.XMLStreamReader;

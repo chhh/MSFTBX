@@ -18,8 +18,7 @@ package umich.ms.fileio.filetypes.pepxml;
 
 import umich.ms.fileio.exceptions.FileParsingException;
 import umich.ms.fileio.filetypes.pepxml.jaxb.standard.MsmsRunSummary;
-import umich.ms.fileio.util.jaxb.JaxbUtils;
-import umich.ms.util.XmlUtils;
+import umich.ms.util.jaxb.JaxbUtils;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -66,7 +65,7 @@ class PepXmlStreamIterator implements Iterator<MsmsRunSummary> {
             throw new FileParsingException("Could not create XMLStreamReader for " + PepXmlParser.TAG_MSMS_RUN_SUMMARY, e);
         }
         try {
-            it.hasNext = XmlUtils.advanceReaderToNext(it.xsr, PepXmlParser.TAG_MSMS_RUN_SUMMARY);
+            it.hasNext = umich.ms.util.xml.XmlUtils.advanceReaderToNext(it.xsr, PepXmlParser.TAG_MSMS_RUN_SUMMARY);
         } catch (XMLStreamException e) {
             throw new FileParsingException("Could not advance stream reader to the first" + PepXmlParser.TAG_MSMS_RUN_SUMMARY, e);
         }
@@ -90,7 +89,7 @@ class PepXmlStreamIterator implements Iterator<MsmsRunSummary> {
             throw new IllegalStateException("Could not unmarshal next XML element", e);
         }
         try {
-            hasNext = XmlUtils.advanceReaderToNext(xsr, PepXmlParser.TAG_MSMS_RUN_SUMMARY);
+            hasNext = umich.ms.util.xml.XmlUtils.advanceReaderToNext(xsr, PepXmlParser.TAG_MSMS_RUN_SUMMARY);
         } catch (XMLStreamException e) {
             throw new IllegalStateException("Could not advance stream reader to the next " + PepXmlParser.TAG_MSMS_RUN_SUMMARY, e);
         }

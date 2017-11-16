@@ -25,7 +25,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import umich.ms.fileio.filetypes.gpmdb.jaxb.Bioml;
 import umich.ms.fileio.exceptions.FileParsingException;
-import umich.ms.fileio.util.AbstractFile;
+import umich.ms.util.file.AbstractFile;
 
 /**
  * Data source for GPMDB XML files with identifications.

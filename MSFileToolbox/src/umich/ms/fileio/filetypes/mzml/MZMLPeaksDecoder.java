@@ -21,7 +21,7 @@ import java.util.zip.DataFormatException;
 import umich.ms.datatypes.scan.PeaksCompression;
 import umich.ms.external.msnumpress.MSNumpress;
 import umich.ms.fileio.exceptions.FileParsingException;
-import umich.ms.fileio.util.ZlibInflater;
+import umich.ms.util.ZlibInflater;
 import umich.ms.util.ByteArrayHolder;
 
 /**

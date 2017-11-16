@@ -18,7 +18,7 @@ package umich.ms.fileio.filetypes.pepxml;
 import umich.ms.fileio.exceptions.FileParsingException;
 import umich.ms.fileio.filetypes.pepxml.jaxb.standard.MsmsPipelineAnalysis;
 import umich.ms.fileio.filetypes.pepxml.jaxb.standard.MsmsRunSummary;
-import umich.ms.fileio.util.jaxb.JaxbUtils;
+import umich.ms.util.jaxb.JaxbUtils;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.stream.XMLStreamReader;

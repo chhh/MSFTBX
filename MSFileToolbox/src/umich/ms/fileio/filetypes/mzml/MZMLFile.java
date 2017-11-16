@@ -16,34 +16,13 @@
 package umich.ms.fileio.filetypes.mzml;
 
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
+
 import javolution.xml.internal.stream.XMLStreamReaderImpl;
 import org.apache.commons.pool2.ObjectPool;
 import umich.ms.datatypes.LCMSDataSubset;
-import umich.ms.datatypes.lcmsrun.LCMSRunInfo;
-import umich.ms.datatypes.scan.IScan;
-import umich.ms.datatypes.scan.StorageStrategy;
-import umich.ms.datatypes.scancollection.IScanCollection;
-import umich.ms.datatypes.scancollection.impl.ScanCollectionDefault;
-import umich.ms.datatypes.spectrum.ISpectrum;
-import umich.ms.fileio.Opts;
 import umich.ms.fileio.exceptions.FileParsingException;
 import umich.ms.fileio.filetypes.xmlbased.AbstractXMLBasedDataSource;
 import umich.ms.fileio.filetypes.xmlbased.IndexBuilder;
-
-import static umich.ms.logging.LogHelper.configureJavaUtilLogging;
-
-import umich.ms.fileio.util.FileListing;
-import umich.ms.util.IntervalST;
 
 /**
  *

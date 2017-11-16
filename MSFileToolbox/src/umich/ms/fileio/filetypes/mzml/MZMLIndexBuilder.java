@@ -26,7 +26,7 @@ import javolution.xml.stream.XMLUnexpectedEndTagException;
 import org.apache.commons.pool2.ObjectPool;
 import umich.ms.fileio.exceptions.FileParsingException;
 import umich.ms.fileio.filetypes.xmlbased.IndexBuilder;
-import umich.ms.fileio.filetypes.xmlbased.OffsetLength;
+import umich.ms.util.OffsetLength;
 import umich.ms.logging.LogHelper;
 
 import java.nio.charset.StandardCharsets;

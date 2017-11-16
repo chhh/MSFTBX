@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright 2016 Dmitry Avtonomov.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -295,8 +295,7 @@ public class ScanCollectionDefault implements IScanCollection {
                         tmp = source.fetchRunInfo();
                         runInfo = tmp;
                     } catch (FileParsingException e) {
-                        // TODO: uh oh, I don't know what to do here... This means that we could not parse the run info
-                        // but I don't want to throw an error in this case
+                        return LCMSRunInfo.createDummyInfo(); // safety net, most users don't use need run info anyway
                     }
                 }
             }

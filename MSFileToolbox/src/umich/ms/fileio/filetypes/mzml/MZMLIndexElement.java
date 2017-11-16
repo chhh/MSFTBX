@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright 2016 Dmitry Avtonomov.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,7 +16,7 @@
 package umich.ms.fileio.filetypes.mzml;
 
 import umich.ms.fileio.filetypes.xmlbased.AbstractXMLBasedIndexElement;
-import umich.ms.fileio.filetypes.xmlbased.OffsetLength;
+import umich.ms.util.OffsetLength;
 
 /**
  *

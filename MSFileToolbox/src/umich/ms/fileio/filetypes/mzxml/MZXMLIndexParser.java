@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright 2016 Dmitry Avtonomov.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,7 +21,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.RandomAccessFile;
 import java.nio.channels.Channels;
-import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -31,11 +30,10 @@ import javolution.xml.stream.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import umich.ms.datatypes.LCMSDataSubset;
-import umich.ms.datatypes.index.Index;
 import umich.ms.fileio.exceptions.FileParsingException;
 import umich.ms.fileio.exceptions.IndexBrokenException;
 import umich.ms.fileio.exceptions.IndexNotFoundException;
-import umich.ms.fileio.filetypes.xmlbased.OffsetLength;
+import umich.ms.util.OffsetLength;
 import umich.ms.logging.LogHelper;
 
 /**

@@ -17,9 +17,8 @@
 package umich.ms.fileio.filetypes.pepxml.example;
 
 import umich.ms.fileio.filetypes.pepxml.jaxb.standard.*;
-import umich.ms.fileio.util.jaxb.JaxbUtils;
+import umich.ms.util.jaxb.JaxbUtils;
 import umich.ms.util.StringUtils;
-import umich.ms.util.XmlUtils;
 
 import javax.xml.stream.XMLStreamReader;
 import java.nio.file.Files;
@@ -50,7 +49,7 @@ public class PepXmlAnalysisSummaryExample {
         // prepare the input stream
         final XMLStreamReader xsr = JaxbUtils.createXmlStreamReader(p, false);
         // advance the input stream to the beginning of <peptideprophet_summary>
-        final boolean foundPepProphSummary = XmlUtils.advanceReaderToNext(xsr, "peptideprophet_summary");
+        final boolean foundPepProphSummary = umich.ms.util.xml.XmlUtils.advanceReaderToNext(xsr, "peptideprophet_summary");
         if (!foundPepProphSummary)
             throw new IllegalStateException("Could not advance the reader to the beginning of a peptideprophet_summary tag.");
 
