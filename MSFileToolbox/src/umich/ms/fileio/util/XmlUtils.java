@@ -16,6 +16,7 @@
 
 package umich.ms.fileio.util;
 
+import com.sun.istack.internal.NotNull;
 import javolution.text.CharArray;
 import javolution.xml.internal.stream.XMLStreamReaderImpl;
 import javolution.xml.stream.XMLStreamConstants;
@@ -29,6 +30,9 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * @author Dmitry Avtonomov
@@ -45,6 +49,53 @@ public class XmlUtils {
      * Describes if the beginning or the end of a text element should be reported as location.
      */
     public enum LOCATION_TYPE {ELEMENT_START, ELEMENT_END}
+
+    public static class SearchLocation {
+        char[] needle;
+        LOCATION_TYPE type;
+    }
+
+    /**
+     * Locates specific sequences of bytes in the input stream.
+     * @param targets Sequences of bytes to be searched for. The returned list will be of the same size if all
+     *                are found.
+     * @param is The stream to search in. It will be buffered.
+     * @param maxOffset How far down the stream to search? if maxOffset <= 0, then search
+     *                  indefinitely up to Long.MAX_VALUE bytes.
+     * @return Null in case the exact sub-sequence was not found in the stream or if the 'maxOffset' has been reached.
+     * @throws FileParsingException In case IO errors occur.
+     */
+    public static List<Long> locate(List<byte[]> targets, List<LOCATION_TYPE> locations,
+                                    InputStream is, long maxOffset) throws FileParsingException {
+        if (targets.isEmpty())
+            throw new IllegalArgumentException("Targets argument can't be empty");
+        if (locations.size() != targets.size())
+            throw new IllegalArgumentException("Targets and Locations arguments must be of equal length");
+        if (maxOffset <= 0)
+            maxOffset = Long.MAX_VALUE;
+
+        try (BufferedInputStream bis = new BufferedInputStream(is)) {
+            long posSource = -1;
+            long posTarget = -1;
+            int read;
+            List<Long> result = new ArrayList<>(targets.size());
+            for (byte[] target : targets) {
+                while ((read = bis.read()) >= 0) {
+                    posSource++;
+                    if (posSource > maxOffset)
+                        return null;
+                    if (read == target[++posTarget]) {
+                        
+                    }
+                }
+            }
+
+
+
+        } catch (IOException e) {
+            throw new FileParsingException(e);
+        }
+    }
 
     /**
      * Reads the run header from the file, locating positions of {@code <firstTag>} and first {@code <lastTag>} tags.

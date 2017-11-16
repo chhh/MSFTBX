@@ -168,10 +168,11 @@ public class MZMLFileTest {
     }
 
     @Test
-    public void MzmlFileOldMainMethod() throws Exception {
+    public void mzmlFileOldMainMethod() throws Exception {
         configureJavaUtilLogging();
 
-        String[] filenames = {"E:\\andy\\broken-venky-mzml\\HELA_1µg_onColumn_OT120K.mzML"};
+        //String[] filenames = {"E:\\andy\\broken-venky-mzml\\HELA_1µg_onColumn_OT120K.mzML"};
+        String[] filenames = {"C:\\tmp\\_garbage\\HELA_1µg_onColumn_OT120K.mzML_h"};
         Integer numThreads = null;
         Integer numSpectraPerThread = 50;
         List<Path> paths = new ArrayList<>();

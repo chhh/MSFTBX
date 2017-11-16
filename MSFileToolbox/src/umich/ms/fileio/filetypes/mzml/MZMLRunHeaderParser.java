@@ -81,7 +81,7 @@ public class MZMLRunHeaderParser implements XmlBasedRunHeaderParser {
                 header = headerBody + closingTag;
             } finally {
                 if (raf != null)
-                    raf.close();
+                    source.close();
             }
         } catch (FileParsingException |IOException e) {
             // if we can't locate the header, use a dummy instead
