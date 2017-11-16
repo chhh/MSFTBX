@@ -3,8 +3,9 @@
 ```
 cd MSFTBX\MSFileToolbox\src 
 xjc.exe 
-    -b D:\projects\BatMass\MSFTBX\MSFileToolbox\src\umich\ms\fileio\filetypes\mzml\resources\bindings_mzml_standard.xml 
+    -b bindings_mzml_standard.xml -no-header -encoding UTF-8 -extension   
     -p umich.ms.fileio.filetypes.mzml.jaxb 
+    -d D:\projects\BatMass\MSFTBX\MSFileToolbox\src\ 
     D:\projects\BatMass\MSFTBX\MSFileToolbox\src\umich\ms\fileio\filetypes\mzml\resources\mzML1.1.0.xsd
 ```
 
