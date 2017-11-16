@@ -22,12 +22,18 @@ import java.util.*;
  * @author Dmitry Avtonomov
  */
 public class MsftbxInfo {
-    public static final String version = "1.6.1";
+    public static final String version = "1.7.0";
 
     private static final TreeMap<String, List<String>> changelog = new TreeMap<>();
     private static final Map<String, List<String>> changelogImmutable = Collections.unmodifiableMap(changelog);
 
     static {
+        String v170 = "v1.7.0";
+        List<String> v170notes = new LinkedList<>();
+        v170notes.add("Complete overhaul of how run header is parsed for mzML and mzXML. Should now be completely " +
+                  "tolerant to character encoding issues, e.g. full set of UTF-8 chars is supported.");
+        changelog.put(v170, v170notes);
+
         String v161 = "v1.6.1";
         List<String> v161notes = new LinkedList<>();
         v161notes.add("Minor changes in XmlUtils and an example of unmarshalling 'peptideprophet_summary'," +
