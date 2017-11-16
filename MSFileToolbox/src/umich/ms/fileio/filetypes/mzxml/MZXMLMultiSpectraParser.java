@@ -69,9 +69,9 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
     protected LCMSRunInfo runInfo;
     protected MZXMLIndex index;
 
-    protected ArrayList<IScan> parsedScans;
-    protected MzxmlVars vars;
-    protected ObjectPool<XMLStreamReaderImpl> readerPool = null;
+    private ArrayList<IScan> parsedScans;
+    private MzxmlVars vars;
+    private ObjectPool<XMLStreamReaderImpl> readerPool = null;
 
     /** This var is used to count the number of times {@code <scan>} tags were encountered during one parsing run.
      *  If this number is greater than the number of Scans in {@code #parsedScans} field by the time an
@@ -135,9 +135,8 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
      * Set the pool of readers. If you'll be parsing lots of scans, it is more efficient to reuse the readers,
      * as their internal buffers will not be reinitialised, they will already be grown to some reasonable size
      * which was enough for previous parsing to complete.
-     * @param readerPool
      */
-    public void setReaderPool(ObjectPool<XMLStreamReaderImpl> readerPool) {
+    void setReaderPool(ObjectPool<XMLStreamReaderImpl> readerPool) {
         this.readerPool = readerPool;
     }
 
@@ -149,7 +148,7 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
      * @param source
      * @throws FileParsingException
      */
-    public MZXMLMultiSpectraParser(InputStream is, LCMSDataSubset subset, MZXMLFile source) throws FileParsingException {
+    MZXMLMultiSpectraParser(InputStream is, LCMSDataSubset subset, MZXMLFile source) throws FileParsingException {
         super(is, subset);
         this.source = source;
     }
@@ -178,8 +177,7 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
             LogHelper.setJavolutionLogLevelFatal();
 
             int eventType = XMLStreamConstants.END_DOCUMENT;
-            CharArray localName, attr;
-            Attributes attrs;
+            CharArray localName;
             do {
                 // if we've read enough spectra already, then stop processing the stream
                 if (numScansToProcess != null && parsedScans.size() == numScansToProcess) {
@@ -223,12 +221,11 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
                     case XMLStreamConstants.START_ELEMENT:
                         localName = reader.getLocalName();
 
-                        // TODO: consider changing to .contentEquals(), that method doesn't store any references
-                        if (localName.equals(TAG.SCAN.name)) {
+                        if (localName.contentEquals(TAG.SCAN.name)) {
                             tagScanStart(reader);
-                        } else if (localName.equals(TAG.PRECURSOR.name)) {
+                        } else if (localName.contentEquals(TAG.PRECURSOR.name)) {
                             eventType = tagPrecursorStart(reader);
-                        } else if (localName.equals(TAG.PEAKS.name)) {
+                        } else if (localName.contentEquals(TAG.PEAKS.name)) {
                             eventType = tagPeaksStart(reader, eventType);
                         }
                         break;
@@ -239,7 +236,7 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
                     case XMLStreamConstants.END_ELEMENT:
                         localName = reader.getLocalName();
 
-                        if (localName.equals(TAG.SCAN.name)) {
+                        if (localName.contentEquals(TAG.SCAN.name)) {
                             addCurScanAndFlushVars();
                             break;
                         }
@@ -350,7 +347,7 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
         return eventType;
     }
 
-    protected int tagPrecursorStart(XMLStreamReaderImpl reader) throws FileParsingException, XMLStreamException {
+    private int tagPrecursorStart(XMLStreamReaderImpl reader) throws FileParsingException, XMLStreamException {
         Attributes attrs;
         CharArray attr;
         int eventType;
@@ -408,7 +405,7 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
         return eventType;
     }
 
-    protected void tagScanStart(XMLStreamReaderImpl reader) throws FileParsingException {
+    private void tagScanStart(XMLStreamReaderImpl reader) throws FileParsingException {
         Attributes attrs;
         CharArray attr;
         numOpeningScanTagsFound += 1;
@@ -522,7 +519,7 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
         }
     }
 
-    protected void addCurScanAndFlushVars() {
+    private void addCurScanAndFlushVars() {
         if (vars.curScan != null && vars.isPeaksTagReached) {
             if (source.isExcludeEmptyScans() && vars.peaksCount == 0) {
                 // Don't add this Scan
@@ -558,7 +555,7 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
         return value;
     }
 
-    protected boolean doesNeedSpectrumParsing(IScan scan) {
+    private boolean doesNeedSpectrumParsing(IScan scan) {
         return subset.isInSubset(scan);
     }
 
@@ -578,7 +575,7 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
      * Or -1 if no matching pair of 'scan' tags was found.
      * @throws FileParsingException
      */
-    public int findThisStreamFirstScanLen() throws FileParsingException {
+    int findThisStreamFirstScanLen() throws FileParsingException {
         int length = -1;
         numOpeningScanTagsFound = 0;
         XMLStreamReaderImpl reader = null;
@@ -611,7 +608,7 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
                     case XMLStreamConstants.START_ELEMENT:
                         localName = reader.getLocalName();
 
-                        if (localName.equals(TAG.SCAN.name)) {
+                        if (localName.contentEquals(TAG.SCAN.name)) {
                             numOpeningScanTagsFound += 1;
                             break;
                         }
@@ -620,7 +617,7 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
                     case XMLStreamConstants.END_ELEMENT:
                         localName = reader.getLocalName();
 
-                        if (localName.equals(TAG.SCAN.name)) {
+                        if (localName.contentEquals(TAG.SCAN.name)) {
                             if (numOpeningScanTagsFound == 1) {
                                 final XMLStreamReaderImpl.LocationImpl loc = reader.getLocation();
                                 length = loc.getCharacterOffset() + loc.getBomLength();
@@ -632,8 +629,6 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
             } while (eventType != XMLStreamConstants.END_DOCUMENT);
 
 
-        } catch (XMLStreamException e) {
-            throw new FileParsingException(e);
         } catch (Exception e) {
             throw new FileParsingException(e);
         } finally {
@@ -657,7 +652,7 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
      * @return
      * @throws umich.ms.fileio.exceptions.FileParsingException
      */
-    protected int mapRawNumToInternalScanNum(int rawScanNum) throws FileParsingException {
+    private int mapRawNumToInternalScanNum(int rawScanNum) throws FileParsingException {
         MZXMLIndexElement byRawNum = index.getByRawNum(rawScanNum);
         if (byRawNum == null) {
             String msg = String.format("Could not find a mapping from spectrum index"

@@ -60,10 +60,8 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
     /** 8MB read buffer. */
     private final int INDEX_BUILDER_READ_BUF_SIZE = 1 << 23;
     protected transient ObjectPool<XMLStreamReaderImpl> readerPool = instantiateReaderPool();
-    // TODO: WARNING: ACHTUNG: remove this field, was here for testing
-    public volatile transient long time_reading = 0;
 
-    Logger log = LoggerFactory.getLogger(AbstractXMLBasedDataSource.class);
+    private Logger log = LoggerFactory.getLogger(AbstractXMLBasedDataSource.class);
 
     public AbstractXMLBasedDataSource(String path) {
         super(path);
@@ -90,7 +88,7 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
      */
     protected abstract void releaseResources();
 
-    protected ObjectPool<XMLStreamReaderImpl> instantiateReaderPool() {
+    private ObjectPool<XMLStreamReaderImpl> instantiateReaderPool() {
         return new SoftReferenceObjectPool<>(new XMLStreamReaderFactory());
     }
 
@@ -226,7 +224,6 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
      */
     protected I fixIndex(I idx) {
         //return idx;
-        int count = 0;
         if (idx.size() < 2) {
             return idx;
         }
@@ -311,7 +308,7 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
         OffsetLength readLast = readTasks.get(readTasks.size() - 1);
 
         long readOffset = readFirst.offset;
-        // TODO: WARNING ACHTUNG - possible overflow here if single spectra are very large, this has finally bitten me in the ass
+        // TODO: WARNING ACHTUNG - possible overflow here if single spectra are very large
         int readLength = (int) (readLast.offset - readOffset + readLast.length);
         // check if the buffer size is enough and expand accordingly, or clean the old buffer
         if (readBuf.length < readLength) {
@@ -319,11 +316,11 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
         } else {
             Arrays.fill(readBuf, (byte) 0);
         }
-        long time_start = System.nanoTime();
+
         // read everything into the buffer
         file.seek(readOffset);
         file.readFully(readBuf, 0, readLength);
-        time_reading = time_reading + (System.nanoTime() - time_start);
+
         return readBuf;
     }
 
@@ -340,9 +337,9 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
      * accommodate all spectra from the iterator.
      * @throws IOException
      */
-    protected byte[] readListOfSpectra(ListIterator<Integer> scanNumsIter, int maxScansToReadInBatch,
-            ArrayList<OffsetLength> readTasks, NavigableMap<Integer, ? extends XMLBasedIndexElement> index,
-            RandomAccessFile file, byte[] readBuf) throws IOException {
+    private byte[] readListOfSpectra(ListIterator<Integer> scanNumsIter, int maxScansToReadInBatch,
+                                     ArrayList<OffsetLength> readTasks, NavigableMap<Integer, ? extends XMLBasedIndexElement> index,
+                                     RandomAccessFile file, byte[] readBuf) throws IOException {
         if (!scanNumsIter.hasNext()) {
             throw new IllegalArgumentException("Scan number iterator had no active elements");
         }
@@ -674,8 +671,7 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
             if (scansParsed.size() != 1) {
                 throw new FileParsingException("Somehow more than one scan was parsed, when we tried to parse a single spectrumRef");
             }
-            IScan scan = scansParsed.get(0);
-            return scan;
+            return scansParsed.get(0);
         } catch (Exception e) {
             throw new FileParsingException(e);
         } finally {
@@ -704,7 +700,7 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
         int read = -1;
         long offsetInFile = -1;
 
-        public ReadBuf(byte[] buf) {
+        ReadBuf(byte[] buf) {
             this.buf = buf;
         }
 
@@ -783,11 +779,7 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
                 throw new FileParsingException("File size was zero when trying to build index.");
             }
             readBuf1.offsetInFile = bomLength; // start at the end of BOM
-            int iteration = 0;
-            int numOpen = 0;
-            int numClose = 0;
             do {
-                iteration++;
                 // This is needed for cancellable tasks
                 if (Thread.interrupted()) {
                     throw new FileParsingException("Thread interrupted, parsing was cancelled.");
@@ -827,11 +819,9 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
                             for (E ie : result.getIndexElements()) {
                                 idx.add(ie);
                             }
-                            numOpen += result.getStartTagLocs().size();
                             for(E ie : result.getStartTagLocs()) {
                                 unfinishedLo.put(ie.getOffsetLength().offset, ie);
                             }
-                            numClose += result.getCloseTagLocs().size();
                             for(E ie : result.getCloseTagLocs()) {
                                 unfinishedHi.put(ie.getOffsetLength().offset, ie);
                             }
@@ -859,7 +849,7 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
             for (E ie : unfinishedLo.values()) {
                 final OffsetLength ol = ie.getOffsetLength();
                 if (ol.length < 0) {
-                    // this is an unfinished element geenrated from a start tag
+                    // this is an unfinished element generated from a start tag
 
                     // TODO: Continute here. This is not finished - the unfinishedLo.higherEntry() is not ok!!!
 

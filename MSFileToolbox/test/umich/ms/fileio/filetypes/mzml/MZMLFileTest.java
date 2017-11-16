@@ -26,8 +26,8 @@ import umich.ms.datatypes.scancollection.impl.ScanCollectionDefault;
 import umich.ms.datatypes.spectrum.ISpectrum;
 import umich.ms.fileio.Opts;
 import umich.ms.fileio.ResourceUtils;
-import umich.ms.util.file.FileListing;
 import umich.ms.util.IntervalST;
+import umich.ms.util.file.FileListing;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -42,8 +42,8 @@ import static umich.ms.logging.LogHelper.configureJavaUtilLogging;
  * @author Dmitry Avtonomov
  */
 public class MZMLFileTest {
-    List<Path> paths;
     private static final String RESOURCE_LOCATION = "mzml";
+    List<Path> paths;
 
     @org.junit.Before
     public void setUp() throws Exception {
@@ -99,7 +99,7 @@ public class MZMLFileTest {
 
         final MZMLFile mzml = new MZMLFile(path.toString());
         final MZMLIndex index = mzml.fetchIndex();
-        assertEquals("Wrong number of scans in the build index: " + file ,expectedCount, index.size());
+        assertEquals("Wrong number of scans in the build index: " + file, expectedCount, index.size());
         final MZMLIndexElement elem = index.getMapByNum().firstEntry().getValue();
         assertEquals("Wrong offset: " + file, expectedOffset, elem.getOffsetLength().offset);
         assertEquals("Wrong length: " + file, expectedLen, elem.getOffsetLength().length);
@@ -118,7 +118,7 @@ public class MZMLFileTest {
 
             final MZMLFile mzml = new MZMLFile(path.toString());
             final MZMLIndex index = mzml.fetchIndex();
-            assertEquals("Wrong number of scans returned after building index: " + file ,expectedCount, index.size());
+            assertEquals("Wrong number of scans returned after building index: " + file, expectedCount, index.size());
         }
     }
 
@@ -138,7 +138,7 @@ public class MZMLFileTest {
         long timeLo = System.nanoTime();
         final MZMLIndex index = mzml.fetchIndex();
         long timeHi = System.nanoTime();
-        System.out.printf("Index parsing took %.2fs\n", (timeHi-timeLo)/1e9);
+        System.out.printf("Index parsing took %.2fs\n", (timeHi - timeLo) / 1e9);
 
         timeLo = System.nanoTime();
         IScanCollection scans = new ScanCollectionDefault(true);
@@ -164,7 +164,7 @@ public class MZMLFileTest {
         }
         timeHi = System.nanoTime();
         System.out.printf("Sum is %.4f\n", sum);
-        System.out.printf("Parsing %s took %.4fs\n", file, (timeHi-timeLo)/1e9);
+        System.out.printf("Parsing %s took %.4fs\n", file, (timeHi - timeLo) / 1e9);
     }
 
     //@Test
