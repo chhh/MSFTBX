@@ -32,7 +32,7 @@ public abstract class AbstractFile implements Closeable {
     private BufferedInputStream bis;
     private RandomAccessFile raf;
 
-    protected static int BUF_SIZE = 8192;
+    protected static final int BUF_SIZE = 8192;
 
 
     public AbstractFile(String path) {

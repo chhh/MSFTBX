@@ -15,41 +15,41 @@
  */
 package umich.ms.fileio.filetypes.mzxml;
 
-import java.io.BufferedInputStream;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.RandomAccessFile;
-import java.net.URI;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.InvalidPathException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.List;
-
 import umich.ms.datatypes.lcmsrun.Hash;
 import umich.ms.datatypes.lcmsrun.LCMSRunInfo;
 import umich.ms.datatypes.lcmsrun.MsSoftware;
 import umich.ms.datatypes.lcmsrun.OriginalFile;
 import umich.ms.datatypes.scan.props.Instrument;
-import umich.ms.fileio.exceptions.RunHeaderBoundsNotFound;
+import umich.ms.fileio.exceptions.FileParsingException;
 import umich.ms.fileio.exceptions.RunHeaderParsingException;
+import umich.ms.fileio.filetypes.mzml.MZMLRunInfo;
 import umich.ms.fileio.filetypes.mzxml.jaxb.MsRun;
 import umich.ms.fileio.filetypes.mzxml.jaxb.OntologyEntryType;
 import umich.ms.fileio.filetypes.mzxml.jaxb.Software;
-import umich.ms.fileio.util.AbstractFile;
 import umich.ms.fileio.filetypes.xmlbased.OffsetLength;
+import umich.ms.fileio.util.XmlUtils;
+import umich.ms.fileio.util.jaxb.JaxbUtils;
 import umich.ms.logging.LogHelper;
+
+import javax.xml.bind.JAXBException;
+import javax.xml.stream.XMLStreamReader;
+import java.io.*;
+import java.net.URI;
+import java.nio.charset.Charset;
+import java.nio.file.InvalidPathException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
 
 /**
  * Parses the header of the file to get isntrument information.
  * @author Dmitry Avtonomov
  */
-public class MZXMLRunHeaderParser extends XmlBasedRunHeaderParser {
+public class MZXMLRunHeaderParser implements XmlBasedRunHeaderParser {
     protected MZXMLFile source;
 
-    public static final String TAG_MSRUN = "msRun";
-    public static final String TAG_SCAN = "scan";
+    private static final String TAG_MSRUN = "msRun";
+    private static final String TAG_SCAN = "scan";
 
 
     public MZXMLRunHeaderParser(MZXMLFile source) {
@@ -60,22 +60,40 @@ public class MZXMLRunHeaderParser extends XmlBasedRunHeaderParser {
 
     @Override
     public LCMSRunInfo parse() throws RunHeaderParsingException {
-        OffsetLength msRunLocation;
-        try {
-            msRunLocation = locateRunHeader(TAG_MSRUN, true, true, TAG_SCAN, true, true);
-        } catch (RunHeaderParsingException e) {
-            if (e instanceof RunHeaderBoundsNotFound) {
-                return LCMSRunInfo.createDummyInfo();
+        String header;
+        try (FileInputStream fis = new FileInputStream(source.getPath())) {
+            final long maxOffset = 10 * 1024 * 1024; // 10MB
+            OffsetLength loc = XmlUtils.locate(TAG_MSRUN, XmlUtils.TAG_TYPE.OPENING, XmlUtils.LOCATION_TYPE.ELEMENT_START,
+                                               TAG_SCAN, XmlUtils.TAG_TYPE.OPENING, XmlUtils.LOCATION_TYPE.ELEMENT_START,
+                                               maxOffset, fis);
+            fis.close();
+            try (RandomAccessFile raf = source.getRandomAccessFile()) {
+                raf.seek(loc.offset);
+                byte[] bytes = new byte[loc.length];
+                raf.readFully(bytes);
+                final String closingTag = "</" + TAG_MSRUN + ">";
+                header = new String(bytes, Charset.forName("UTF-8")) + closingTag;
             }
-            throw e;
+        } catch (FileParsingException |IOException e) {
+            // if we can't locate the header, use a dummy instead
+            final LCMSRunInfo dummyInfo = LCMSRunInfo.createDummyInfo();
+            return new MZMLRunInfo(dummyInfo);
         }
 
-        MsRun parsedInfo = parseHeaderWithJAXB(MsRun.class, msRunLocation);
+        // parsing with JAXB
+        MsRun msRun;
+        try (InputStream is = new ByteArrayInputStream(header.getBytes(Charset.forName("UTF-8")))) {
+            XMLStreamReader xsr = JaxbUtils.createXmlStreamReader(is, false);
+            msRun = JaxbUtils.unmarshal(MsRun.class, xsr);
+        } catch (IOException | JAXBException e1) {
+            final LCMSRunInfo dummyInfo = LCMSRunInfo.createDummyInfo();
+            return new MZMLRunInfo(dummyInfo);
+        }
+
         LCMSRunInfo runInfo = new LCMSRunInfo();
 
-
         // original files
-        List<MsRun.ParentFile> parentFiles = parsedInfo.getParentFile();
+        List<MsRun.ParentFile> parentFiles = msRun.getParentFile();
         if (parentFiles != null) {
             for (MsRun.ParentFile parentFile : parentFiles) {
                 String file = parentFile.getFileName();
@@ -113,7 +131,7 @@ public class MZXMLRunHeaderParser extends XmlBasedRunHeaderParser {
         }
 
 
-        List<MsRun.MsInstrument> msInstruments = parsedInfo.getMsInstrument();
+        List<MsRun.MsInstrument> msInstruments = msRun.getMsInstrument();
         if (msInstruments != null && msInstruments.size() > 0) {
             for (MsRun.MsInstrument i : msInstruments) {
                 String msInstrumentID;
@@ -158,7 +176,7 @@ public class MZXMLRunHeaderParser extends XmlBasedRunHeaderParser {
             runInfo.addInstrument(Instrument.getDummy(), Instrument.ID_UNKNOWN);
         }
 
-        List<MsRun.DataProcessing> dataProcessings = parsedInfo.getDataProcessing();
+        List<MsRun.DataProcessing> dataProcessings = msRun.getDataProcessing();
         if (dataProcessings != null) {
             for (MsRun.DataProcessing dataProcessing : dataProcessings) {
                 if (dataProcessing.isCentroided() != null) {
@@ -174,58 +192,6 @@ public class MZXMLRunHeaderParser extends XmlBasedRunHeaderParser {
         }
 
         return runInfo;
-    }
-
-
-    @SuppressWarnings("unchecked")
-    @Override
-    protected <T> T convertJAXBObjectToDomain(Class<T> clazz, Object unmarshalled) throws RunHeaderParsingException {
-        if (unmarshalled == null) {
-            throw new RunHeaderParsingException("Unmarshalled run header object was null");
-        }
-
-        if (!(clazz.isAssignableFrom(unmarshalled.getClass()))) {
-            throw new RunHeaderParsingException(String.format("When parsing mzML run header, " +
-                            "JAXB object's declared type was wrong. Expected: %s; Found: %s",
-                    clazz.getSimpleName(), unmarshalled.getClass().getSimpleName()));
-        }
-        return (T) unmarshalled;
-    }
-
-
-    /**
-     * Reads the whole msRun header portion from the file, appending a closing {@code </msRun>} tag to the end,
-     * so that it could be unmarshalled using JAXB without errors.
-     * @param msRunLocation
-     * @return
-     * @throws umich.ms.fileio.exceptions.RunHeaderParsingException
-     */
-    @Override
-    protected InputStream getRunHeaderInputStream(OffsetLength msRunLocation) throws RunHeaderParsingException {
-        try {
-            RandomAccessFile raf = source.getRandomAccessFile();
-            raf.seek(msRunLocation.offset);
-
-            String closingTags = "</" + TAG_MSRUN + ">";
-            byte[] msRunCloseBytes = closingTags.getBytes(StandardCharsets.UTF_8);
-            byte[] bytes = new byte[msRunLocation.length + msRunCloseBytes.length];
-
-//            byte[] bytes = new byte[msRunLocation.length];
-
-            raf.readFully(bytes, 0, bytes.length);
-            System.arraycopy(msRunCloseBytes, 0, bytes, msRunLocation.length, msRunCloseBytes.length);
-
-            return new BufferedInputStream(new ByteArrayInputStream(bytes));
-        } catch (IOException e) {
-            throw new RunHeaderParsingException(e);
-        } finally {
-            source.close();
-        }
-    }
-
-    @Override
-    public AbstractFile getAbstractFile() {
-        return source;
     }
 
 }
