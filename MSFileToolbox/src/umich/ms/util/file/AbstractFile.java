@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package umich.ms.fileio.util;
+package umich.ms.util.file;
 
 
 import java.io.BufferedInputStream;

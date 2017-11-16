@@ -22,15 +22,15 @@ import umich.ms.datatypes.lcmsrun.LCMSRunInfo;
 import umich.ms.datatypes.lcmsrun.MsSoftware;
 import umich.ms.datatypes.lcmsrun.OriginalFile;
 import umich.ms.datatypes.scan.props.Instrument;
-import umich.ms.fileio.exceptions.FileParsingException;
 import umich.ms.fileio.exceptions.RunHeaderParsingException;
 import umich.ms.fileio.filetypes.mzml.jaxb.*;
 import umich.ms.fileio.filetypes.mzml.util.InstrumentModelCVTerm;
 import umich.ms.fileio.filetypes.mzml.util.PSIMSCV;
 import umich.ms.fileio.filetypes.mzxml.XmlBasedRunHeaderParser;
-import umich.ms.fileio.filetypes.xmlbased.OffsetLength;
-import umich.ms.fileio.util.XmlUtils;
-import umich.ms.fileio.util.jaxb.JaxbUtils;
+import umich.ms.util.OffsetLength;
+import umich.ms.util.xml.POSITION;
+import umich.ms.util.xml.XmlUtils;
+import umich.ms.util.jaxb.JaxbUtils;
 import umich.ms.logging.LogHelper;
 import umich.ms.util.StringUtils;
 
@@ -61,32 +61,46 @@ public class MZMLRunHeaderParser implements XmlBasedRunHeaderParser {
 
     @Override
     public MZMLRunInfo parse() throws RunHeaderParsingException {
-        String header;
-        try (FileInputStream fis = new FileInputStream(source.getPath())) {
-            final long maxOffset = 10 * 1024 * 1024; // 10MB
-            OffsetLength loc = XmlUtils.locate(TAG_MZML, XmlUtils.TAG_TYPE.OPENING, XmlUtils.LOCATION_TYPE.ELEMENT_START,
-                                             TAG_RUN, XmlUtils.TAG_TYPE.OPENING, XmlUtils.LOCATION_TYPE.ELEMENT_END,
-                                             maxOffset, fis);
-            fis.close();
-            RandomAccessFile raf = source.getRandomAccessFile();
-            try {
-                raf.seek(loc.offset);
-                byte[] bytes = new byte[loc.length];
-                raf.readFully(bytes);
-                int[] chars1 = {'<', '?', 'x'};
-                int[] chars2 = {'R', 'A', 'W', '1', '"', '>'};
-                byte[] lastBytes = Arrays.copyOfRange(bytes, bytes.length - 7, bytes.length);
-                final String closingTag = String.format("</%s></%s>", TAG_RUN, TAG_MZML);
-                String headerBody = new String(bytes, Charset.forName("UTF-8"));
-                header = headerBody + closingTag;
-            } finally {
-                if (raf != null)
-                    source.close();
+
+        Charset utf8 = Charset.forName("UTF-8");
+        final long maxOffset = 10 * 1024 * 1024; // 10MB
+
+        OffsetLength loc;
+        try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(source.getPath()))) {
+            String search1 = "<" + TAG_MZML;
+            String search2 = "<" + TAG_RUN;
+            String search3 = ">";
+            List<byte[]> targets = Arrays.asList(search1.getBytes(utf8), search2.getBytes(utf8), search3.getBytes(utf8));
+            List<POSITION> locations = Arrays.asList(POSITION.START, POSITION.START, POSITION.END);
+            List<Long> locate = XmlUtils.locate(targets, locations, bis, maxOffset);
+            if (locate == null || locate.size() != targets.size()) {
+                throw new RunHeaderParsingException("Could not locate the header within " + maxOffset + " bytes of the file.");
             }
-        } catch (FileParsingException |IOException e) {
+            loc = new OffsetLength(locate.get(0), (int)(locate.get(2)-locate.get(0)+1));
+
+        } catch (IOException | RunHeaderParsingException e) {
             // if we can't locate the header, use a dummy instead
             final LCMSRunInfo dummyInfo = LCMSRunInfo.createDummyInfo();
             return new MZMLRunInfo(dummyInfo);
+        }
+
+        String header;
+        RandomAccessFile raf = null;
+        try {
+            raf = source.getRandomAccessFile();
+            raf.seek(loc.offset);
+            byte[] bytes = new byte[loc.length];
+            raf.readFully(bytes);
+            String body = new String(bytes, utf8);
+            String suffix = String.format("</%s></%s>", TAG_RUN, TAG_MZML);
+            header = body + suffix;
+        } catch (IOException e) {
+            // if we can't read the header
+            final LCMSRunInfo dummyInfo = LCMSRunInfo.createDummyInfo();
+            return new MZMLRunInfo(dummyInfo);
+        } finally {
+            if (raf != null)
+                source.close();
         }
 
         // parsing with JAXB

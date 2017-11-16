@@ -26,7 +26,7 @@ import umich.ms.datatypes.scancollection.impl.ScanCollectionDefault;
 import umich.ms.datatypes.spectrum.ISpectrum;
 import umich.ms.fileio.Opts;
 import umich.ms.fileio.ResourceUtils;
-import umich.ms.fileio.util.FileListing;
+import umich.ms.util.file.FileListing;
 import umich.ms.util.IntervalST;
 
 import java.nio.file.Files;
@@ -167,12 +167,12 @@ public class MZMLFileTest {
         System.out.printf("Parsing %s took %.4fs\n", file, (timeHi-timeLo)/1e9);
     }
 
-    @Test
+    //@Test
     public void mzmlFileOldMainMethod() throws Exception {
         configureJavaUtilLogging();
 
-        //String[] filenames = {"E:\\andy\\broken-venky-mzml\\HELA_1µg_onColumn_OT120K.mzML"};
-        String[] filenames = {"C:\\tmp\\_garbage\\HELA_1µg_onColumn_OT120K.mzML_h"};
+        String[] filenames = {"E:\\andy\\broken-venky-mzml\\HELA_1µg_onColumn_OT120K.mzML"};
+//        String[] filenames = {"C:\\tmp\\_garbage\\HELA_1µg_onColumn_OT120K.mzML_h"};
         Integer numThreads = null;
         Integer numSpectraPerThread = 50;
         List<Path> paths = new ArrayList<>();

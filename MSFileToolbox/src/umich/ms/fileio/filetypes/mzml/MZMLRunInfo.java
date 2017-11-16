@@ -16,8 +16,6 @@
 
 package umich.ms.fileio.filetypes.mzml;
 
-import javolution.text.CharArray;
-import javolution.xml.internal.stream.AttributesImpl;
 import javolution.xml.sax.Attributes;
 import umich.ms.datatypes.lcmsrun.LCMSRunInfo;
 import umich.ms.fileio.filetypes.mzml.jaxb.CVParamType;
