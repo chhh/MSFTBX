@@ -33,8 +33,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;attribute name="terminus" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *       &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *       &lt;attribute name="variable" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="symbol" type="{http://regis-web.systemsbiology.net/pepXML}term_symbolType" />
  *       &lt;attribute name="protein_terminus" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
@@ -53,9 +53,9 @@ public class TerminalModification {
     @XmlAttribute(name = "terminus", required = true)
     protected String terminus;
     @XmlAttribute(name = "massdiff", required = true)
-    protected float massdiff;
+    protected double massdiff;
     @XmlAttribute(name = "mass", required = true)
-    protected float mass;
+    protected double mass;
     @XmlAttribute(name = "variable", required = true)
     protected String variable;
     @XmlAttribute(name = "symbol")
@@ -93,7 +93,7 @@ public class TerminalModification {
      * Gets the value of the massdiff property.
      * 
      */
-    public float getMassdiff() {
+    public double getMassdiff() {
         return massdiff;
     }
 
@@ -101,7 +101,7 @@ public class TerminalModification {
      * Sets the value of the massdiff property.
      * 
      */
-    public void setMassdiff(float value) {
+    public void setMassdiff(double value) {
         this.massdiff = value;
     }
 
@@ -109,7 +109,7 @@ public class TerminalModification {
      * Gets the value of the mass property.
      * 
      */
-    public float getMass() {
+    public double getMass() {
         return mass;
     }
 
@@ -117,7 +117,7 @@ public class TerminalModification {
      * Sets the value of the mass property.
      * 
      */
-    public void setMass(float value) {
+    public void setMass(double value) {
         this.mass = value;
     }
 

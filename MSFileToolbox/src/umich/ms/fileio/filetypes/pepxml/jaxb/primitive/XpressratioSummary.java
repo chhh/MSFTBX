@@ -40,9 +40,9 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *       &lt;attribute name="same_scan_range" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="labeled_residues" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="xpress_light" use="required" type="{http://www.w3.org/2001/XMLSchema}unsignedInt" />
- *       &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *       &lt;attribute name="masstol" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *       &lt;attribute name="ppmtol" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="masstol" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="ppmtol" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *       &lt;attribute name="min_num_chromatogram_points" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
  *       &lt;attribute name="min_num_isotope_peaks" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
  *     &lt;/restriction>
@@ -69,11 +69,11 @@ public class XpressratioSummary {
     @XmlSchemaType(name = "unsignedInt")
     protected long xpressLight;
     @XmlAttribute(name = "massdiff", required = true)
-    protected float massdiff;
+    protected double massdiff;
     @XmlAttribute(name = "masstol", required = true)
-    protected float masstol;
+    protected double masstol;
     @XmlAttribute(name = "ppmtol", required = true)
-    protected float ppmtol;
+    protected double ppmtol;
     @XmlAttribute(name = "min_num_chromatogram_points", required = true)
     @XmlJavaTypeAdapter(Adapter1 .class)
     @XmlSchemaType(name = "integer")
@@ -199,7 +199,7 @@ public class XpressratioSummary {
      * Gets the value of the massdiff property.
      * 
      */
-    public float getMassdiff() {
+    public double getMassdiff() {
         return massdiff;
     }
 
@@ -207,7 +207,7 @@ public class XpressratioSummary {
      * Sets the value of the massdiff property.
      * 
      */
-    public void setMassdiff(float value) {
+    public void setMassdiff(double value) {
         this.massdiff = value;
     }
 
@@ -215,7 +215,7 @@ public class XpressratioSummary {
      * Gets the value of the masstol property.
      * 
      */
-    public float getMasstol() {
+    public double getMasstol() {
         return masstol;
     }
 
@@ -223,7 +223,7 @@ public class XpressratioSummary {
      * Sets the value of the masstol property.
      * 
      */
-    public void setMasstol(float value) {
+    public void setMasstol(double value) {
         this.masstol = value;
     }
 
@@ -231,7 +231,7 @@ public class XpressratioSummary {
      * Gets the value of the ppmtol property.
      * 
      */
-    public float getPpmtol() {
+    public double getPpmtol() {
         return ppmtol;
     }
 
@@ -239,7 +239,7 @@ public class XpressratioSummary {
      * Sets the value of the ppmtol property.
      * 
      */
-    public void setPpmtol(float value) {
+    public void setPpmtol(double value) {
         this.ppmtol = value;
     }
 

@@ -32,11 +32,11 @@ import javax.xml.bind.annotation.XmlType;
  * &lt;complexType>
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;attribute name="value" type="{http://www.w3.org/2001/XMLSchema}float" />
- *       &lt;attribute name="pos_dens" type="{http://www.w3.org/2001/XMLSchema}float" />
- *       &lt;attribute name="neg_dens" type="{http://www.w3.org/2001/XMLSchema}float" />
- *       &lt;attribute name="neg_obs_dens" type="{http://www.w3.org/2001/XMLSchema}float" />
- *       &lt;attribute name="pos_obs_dens" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="value" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="pos_dens" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="neg_dens" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="neg_obs_dens" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="pos_obs_dens" type="{http://www.w3.org/2001/XMLSchema}double" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -49,21 +49,21 @@ import javax.xml.bind.annotation.XmlType;
 public class MixtureModelPoint {
 
     @XmlAttribute(name = "value")
-    protected float value;
+    protected double value;
     @XmlAttribute(name = "pos_dens")
-    protected float posDens;
+    protected double posDens;
     @XmlAttribute(name = "neg_dens")
-    protected float negDens;
+    protected double negDens;
     @XmlAttribute(name = "neg_obs_dens")
-    protected float negObsDens;
+    protected double negObsDens;
     @XmlAttribute(name = "pos_obs_dens")
-    protected float posObsDens;
+    protected double posObsDens;
 
     /**
      * Gets the value of the value property.
      * 
      */
-    public float getValue() {
+    public double getValue() {
         return value;
     }
 
@@ -71,7 +71,7 @@ public class MixtureModelPoint {
      * Sets the value of the value property.
      * 
      */
-    public void setValue(float value) {
+    public void setValue(double value) {
         this.value = value;
     }
 
@@ -79,7 +79,7 @@ public class MixtureModelPoint {
      * Gets the value of the posDens property.
      * 
      */
-    public float getPosDens() {
+    public double getPosDens() {
         return posDens;
     }
 
@@ -87,7 +87,7 @@ public class MixtureModelPoint {
      * Sets the value of the posDens property.
      * 
      */
-    public void setPosDens(float value) {
+    public void setPosDens(double value) {
         this.posDens = value;
     }
 
@@ -95,7 +95,7 @@ public class MixtureModelPoint {
      * Gets the value of the negDens property.
      * 
      */
-    public float getNegDens() {
+    public double getNegDens() {
         return negDens;
     }
 
@@ -103,7 +103,7 @@ public class MixtureModelPoint {
      * Sets the value of the negDens property.
      * 
      */
-    public void setNegDens(float value) {
+    public void setNegDens(double value) {
         this.negDens = value;
     }
 
@@ -111,7 +111,7 @@ public class MixtureModelPoint {
      * Gets the value of the negObsDens property.
      * 
      */
-    public float getNegObsDens() {
+    public double getNegObsDens() {
         return negObsDens;
     }
 
@@ -119,7 +119,7 @@ public class MixtureModelPoint {
      * Sets the value of the negObsDens property.
      * 
      */
-    public void setNegObsDens(float value) {
+    public void setNegObsDens(double value) {
         this.negObsDens = value;
     }
 
@@ -127,7 +127,7 @@ public class MixtureModelPoint {
      * Gets the value of the posObsDens property.
      * 
      */
-    public float getPosObsDens() {
+    public double getPosObsDens() {
         return posObsDens;
     }
 
@@ -135,7 +135,7 @@ public class MixtureModelPoint {
      * Sets the value of the posObsDens property.
      * 
      */
-    public void setPosObsDens(float value) {
+    public void setPosObsDens(double value) {
         this.posObsDens = value;
     }
 

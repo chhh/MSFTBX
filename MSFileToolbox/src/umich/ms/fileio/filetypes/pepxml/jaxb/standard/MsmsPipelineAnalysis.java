@@ -151,7 +151,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *                             &lt;element name="cross_linker_info" type="{http://regis-web.systemsbiology.net/pepXML}nameValueType" maxOccurs="unbounded"/>
  *                           &lt;/sequence>
  *                           &lt;attribute name="identifier" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *                           &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *                           &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *                           &lt;attribute name="link_sites" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *                           &lt;attribute name="isotope_labeled" use="required">
  *                             &lt;simpleType>
@@ -219,8 +219,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *                                 &lt;complexContent>
  *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                                     &lt;attribute name="aminoacid" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *                                     &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *                                     &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *                                     &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *                                     &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *                                     &lt;attribute name="variable" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *                                     &lt;attribute name="peptide_terminus" type="{http://www.w3.org/2001/XMLSchema}string" />
  *                                     &lt;attribute name="protein_terminus" type="{http://www.w3.org/2001/XMLSchema}string" />
@@ -236,8 +236,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *                                 &lt;complexContent>
  *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                                     &lt;attribute name="terminus" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *                                     &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *                                     &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *                                     &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *                                     &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *                                     &lt;attribute name="variable" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *                                     &lt;attribute name="symbol" type="{http://regis-web.systemsbiology.net/pepXML}term_symbolType" />
  *                                     &lt;attribute name="protein_terminus" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
@@ -310,8 +310,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *                                                                   &lt;attribute name="peptide_next_aa" type="{http://www.w3.org/2001/XMLSchema}string" />
  *                                                                   &lt;attribute name="protein" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *                                                                   &lt;attribute name="num_tot_proteins" use="required" type="{http://www.w3.org/2001/XMLSchema}unsignedInt" />
- *                                                                   &lt;attribute name="calc_neutral_pep_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *                                                                   &lt;attribute name="complement_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *                                                                   &lt;attribute name="calc_neutral_pep_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *                                                                   &lt;attribute name="complement_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *                                                                   &lt;attribute name="designation" type="{http://www.w3.org/2001/XMLSchema}string" />
  *                                                                 &lt;/restriction>
  *                                                               &lt;/complexContent>
@@ -320,7 +320,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *                                                           &lt;element name="xlink_score" type="{http://regis-web.systemsbiology.net/pepXML}nameValueType" maxOccurs="unbounded" minOccurs="0"/>
  *                                                         &lt;/sequence>
  *                                                         &lt;attribute name="identifier" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *                                                         &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *                                                         &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *                                                       &lt;/restriction>
  *                                                     &lt;/complexContent>
  *                                                   &lt;/complexType>
@@ -349,8 +349,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *                                               &lt;attribute name="num_tot_proteins" use="required" type="{http://www.w3.org/2001/XMLSchema}unsignedInt" />
  *                                               &lt;attribute name="num_matched_ions" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
  *                                               &lt;attribute name="tot_num_ions" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
- *                                               &lt;attribute name="calc_neutral_pep_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *                                               &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *                                               &lt;attribute name="calc_neutral_pep_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *                                               &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *                                               &lt;attribute name="num_tol_term" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
  *                                               &lt;attribute name="num_missed_cleavages" type="{http://www.w3.org/2001/XMLSchema}integer" />
  *                                               &lt;attribute name="num_matched_peptides" type="{http://www.w3.org/2001/XMLSchema}integer" />
@@ -389,12 +389,12 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *                           &lt;attribute name="spectrumNativeID" type="{http://www.w3.org/2001/XMLSchema}string" />
  *                           &lt;attribute name="start_scan" use="required" type="{http://www.w3.org/2001/XMLSchema}unsignedInt" />
  *                           &lt;attribute name="end_scan" use="required" type="{http://www.w3.org/2001/XMLSchema}unsignedInt" />
- *                           &lt;attribute name="retention_time_sec" type="{http://www.w3.org/2001/XMLSchema}float" />
- *                           &lt;attribute name="collision_energy" type="{http://www.w3.org/2001/XMLSchema}float" />
- *                           &lt;attribute name="compensation_voltage" type="{http://www.w3.org/2001/XMLSchema}float" />
- *                           &lt;attribute name="precursor_intensity" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *                           &lt;attribute name="retention_time_sec" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *                           &lt;attribute name="collision_energy" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *                           &lt;attribute name="compensation_voltage" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *                           &lt;attribute name="precursor_intensity" type="{http://www.w3.org/2001/XMLSchema}double" />
  *                           &lt;attribute name="activation_method" type="{http://regis-web.systemsbiology.net/pepXML}activationMethodType" />
- *                           &lt;attribute name="precursor_neutral_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *                           &lt;attribute name="precursor_neutral_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *                           &lt;attribute name="assumed_charge" use="required" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
  *                           &lt;attribute name="search_specification" type="{http://www.w3.org/2001/XMLSchema}string" />
  *                           &lt;attribute name="index" use="required" type="{http://regis-web.systemsbiology.net/pepXML}positiveInt" />

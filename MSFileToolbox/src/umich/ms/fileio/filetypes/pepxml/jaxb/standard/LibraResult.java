@@ -42,9 +42,9 @@ import javax.xml.bind.annotation.XmlType;
  *             &lt;complexContent>
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                 &lt;attribute name="channel" use="required" type="{http://regis-web.systemsbiology.net/pepXML}positiveInt" />
- *                 &lt;attribute name="target_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *                 &lt;attribute name="absolute" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *                 &lt;attribute name="normalized" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *                 &lt;attribute name="target_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *                 &lt;attribute name="absolute" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *                 &lt;attribute name="normalized" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *                 &lt;attribute name="reject" type="{http://www.w3.org/2001/XMLSchema}boolean" default="0" />
  *               &lt;/restriction>
  *             &lt;/complexContent>

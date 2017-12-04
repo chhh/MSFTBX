@@ -33,9 +33,9 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;attribute name="channel" use="required" type="{http://regis-web.systemsbiology.net/pepXML}positiveInt" />
- *       &lt;attribute name="target_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *       &lt;attribute name="absolute" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *       &lt;attribute name="normalized" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="target_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="absolute" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="normalized" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *       &lt;attribute name="reject" type="{http://www.w3.org/2001/XMLSchema}boolean" default="0" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -51,11 +51,11 @@ public class Intensity {
     @XmlAttribute(name = "channel", required = true)
     protected long channel;
     @XmlAttribute(name = "target_mass", required = true)
-    protected float targetMass;
+    protected double targetMass;
     @XmlAttribute(name = "absolute", required = true)
-    protected float absolute;
+    protected double absolute;
     @XmlAttribute(name = "normalized", required = true)
-    protected float normalized;
+    protected double normalized;
     @XmlAttribute(name = "reject")
     protected boolean reject;
 
@@ -79,7 +79,7 @@ public class Intensity {
      * Gets the value of the targetMass property.
      * 
      */
-    public float getTargetMass() {
+    public double getTargetMass() {
         return targetMass;
     }
 
@@ -87,7 +87,7 @@ public class Intensity {
      * Sets the value of the targetMass property.
      * 
      */
-    public void setTargetMass(float value) {
+    public void setTargetMass(double value) {
         this.targetMass = value;
     }
 
@@ -95,7 +95,7 @@ public class Intensity {
      * Gets the value of the absolute property.
      * 
      */
-    public float getAbsolute() {
+    public double getAbsolute() {
         return absolute;
     }
 
@@ -103,7 +103,7 @@ public class Intensity {
      * Sets the value of the absolute property.
      * 
      */
-    public void setAbsolute(float value) {
+    public void setAbsolute(double value) {
         this.absolute = value;
     }
 
@@ -111,7 +111,7 @@ public class Intensity {
      * Gets the value of the normalized property.
      * 
      */
-    public float getNormalized() {
+    public double getNormalized() {
         return normalized;
     }
 
@@ -119,7 +119,7 @@ public class Intensity {
      * Sets the value of the normalized property.
      * 
      */
-    public void setNormalized(float value) {
+    public void setNormalized(double value) {
         this.normalized = value;
     }
 

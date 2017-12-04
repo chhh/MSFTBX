@@ -43,7 +43,7 @@ public class PepXmlWriteExample {
         SpectrumQuery spectrumQuery = new SpectrumQuery();
         spectrumQueryList.add(spectrumQuery);
 
-        spectrumQuery.setRetentionTimeSec(15f);
+        spectrumQuery.setRetentionTimeSec(15d);
         spectrumQuery.setActivationMethod(ActivationMethodType.HCD);
         spectrumQuery.setAssumedCharge(3);
         spectrumQuery.setStartScan(301);

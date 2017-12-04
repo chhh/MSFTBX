@@ -43,8 +43,8 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;/sequence>
  *       &lt;attribute name="version" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="options" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="est_tot_num_correct_psm" type="{http://www.w3.org/2001/XMLSchema}float" />
- *       &lt;attribute name="est_tot_num_correct_pep" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="est_tot_num_correct_psm" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="est_tot_num_correct_pep" type="{http://www.w3.org/2001/XMLSchema}double" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -71,9 +71,9 @@ public class InterprophetSummary {
     @XmlAttribute(name = "options")
     protected String options;
     @XmlAttribute(name = "est_tot_num_correct_psm")
-    protected Float estTotNumCorrectPsm;
+    protected Double estTotNumCorrectPsm;
     @XmlAttribute(name = "est_tot_num_correct_pep")
-    protected Float estTotNumCorrectPep;
+    protected Double estTotNumCorrectPep;
 
     /**
      * Gets the value of the inputfile property.
@@ -215,10 +215,10 @@ public class InterprophetSummary {
      * 
      * @return
      *     possible object is
-     *     {@link Float }
+     *     {@link Double }
      *     
      */
-    public Float getEstTotNumCorrectPsm() {
+    public Double getEstTotNumCorrectPsm() {
         return estTotNumCorrectPsm;
     }
 
@@ -227,10 +227,10 @@ public class InterprophetSummary {
      * 
      * @param value
      *     allowed object is
-     *     {@link Float }
+     *     {@link Double }
      *     
      */
-    public void setEstTotNumCorrectPsm(Float value) {
+    public void setEstTotNumCorrectPsm(Double value) {
         this.estTotNumCorrectPsm = value;
     }
 
@@ -239,10 +239,10 @@ public class InterprophetSummary {
      * 
      * @return
      *     possible object is
-     *     {@link Float }
+     *     {@link Double }
      *     
      */
-    public Float getEstTotNumCorrectPep() {
+    public Double getEstTotNumCorrectPep() {
         return estTotNumCorrectPep;
     }
 
@@ -251,10 +251,10 @@ public class InterprophetSummary {
      * 
      * @param value
      *     allowed object is
-     *     {@link Float }
+     *     {@link Double }
      *     
      */
-    public void setEstTotNumCorrectPep(Float value) {
+    public void setEstTotNumCorrectPep(Double value) {
         this.estTotNumCorrectPep = value;
     }
 

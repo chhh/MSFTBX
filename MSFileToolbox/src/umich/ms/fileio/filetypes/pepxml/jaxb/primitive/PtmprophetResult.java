@@ -42,13 +42,13 @@ import javax.xml.bind.annotation.XmlType;
  *             &lt;complexContent>
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                 &lt;attribute name="position" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
- *                 &lt;attribute name="probability" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *                 &lt;attribute name="probability" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *               &lt;/restriction>
  *             &lt;/complexContent>
  *           &lt;/complexType>
  *         &lt;/element>
  *       &lt;/sequence>
- *       &lt;attribute name="prior" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="prior" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *       &lt;attribute name="ptm" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="ptm_peptide" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
@@ -68,7 +68,7 @@ public class PtmprophetResult {
     @XmlElement(name = "mod_aminoacid_probability", required = true)
     protected List<ModAminoacidProbability> modAminoacidProbability;
     @XmlAttribute(name = "prior", required = true)
-    protected float prior;
+    protected double prior;
     @XmlAttribute(name = "ptm", required = true)
     protected String ptm;
     @XmlAttribute(name = "ptm_peptide", required = true)
@@ -107,7 +107,7 @@ public class PtmprophetResult {
      * Gets the value of the prior property.
      * 
      */
-    public float getPrior() {
+    public double getPrior() {
         return prior;
     }
 
@@ -115,7 +115,7 @@ public class PtmprophetResult {
      * Sets the value of the prior property.
      * 
      */
-    public void setPrior(float value) {
+    public void setPrior(double value) {
         this.prior = value;
     }
 

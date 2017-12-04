@@ -32,9 +32,9 @@ import javax.xml.bind.annotation.XmlType;
  * &lt;complexType>
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;attribute name="value" type="{http://www.w3.org/2001/XMLSchema}float" />
- *       &lt;attribute name="pos_dens" type="{http://www.w3.org/2001/XMLSchema}float" />
- *       &lt;attribute name="neg_dens" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="value" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="pos_dens" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="neg_dens" type="{http://www.w3.org/2001/XMLSchema}double" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -47,21 +47,21 @@ import javax.xml.bind.annotation.XmlType;
 public class Point {
 
     @XmlAttribute(name = "value")
-    protected Float value;
+    protected Double value;
     @XmlAttribute(name = "pos_dens")
-    protected Float posDens;
+    protected Double posDens;
     @XmlAttribute(name = "neg_dens")
-    protected Float negDens;
+    protected Double negDens;
 
     /**
      * Gets the value of the value property.
      * 
      * @return
      *     possible object is
-     *     {@link Float }
+     *     {@link Double }
      *     
      */
-    public Float getValue() {
+    public Double getValue() {
         return value;
     }
 
@@ -70,10 +70,10 @@ public class Point {
      * 
      * @param value
      *     allowed object is
-     *     {@link Float }
+     *     {@link Double }
      *     
      */
-    public void setValue(Float value) {
+    public void setValue(Double value) {
         this.value = value;
     }
 
@@ -82,10 +82,10 @@ public class Point {
      * 
      * @return
      *     possible object is
-     *     {@link Float }
+     *     {@link Double }
      *     
      */
-    public Float getPosDens() {
+    public Double getPosDens() {
         return posDens;
     }
 
@@ -94,10 +94,10 @@ public class Point {
      * 
      * @param value
      *     allowed object is
-     *     {@link Float }
+     *     {@link Double }
      *     
      */
-    public void setPosDens(Float value) {
+    public void setPosDens(Double value) {
         this.posDens = value;
     }
 
@@ -106,10 +106,10 @@ public class Point {
      * 
      * @return
      *     possible object is
-     *     {@link Float }
+     *     {@link Double }
      *     
      */
-    public Float getNegDens() {
+    public Double getNegDens() {
         return negDens;
     }
 
@@ -118,10 +118,10 @@ public class Point {
      * 
      * @param value
      *     allowed object is
-     *     {@link Float }
+     *     {@link Double }
      *     
      */
-    public void setNegDens(Float value) {
+    public void setNegDens(Double value) {
         this.negDens = value;
     }
 

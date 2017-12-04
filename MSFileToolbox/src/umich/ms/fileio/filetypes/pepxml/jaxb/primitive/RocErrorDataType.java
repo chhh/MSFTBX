@@ -42,9 +42,9 @@ import javax.xml.bind.annotation.XmlType;
  *           &lt;complexType>
  *             &lt;complexContent>
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                 &lt;attribute name="min_prob" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *                 &lt;attribute name="sensitivity" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *                 &lt;attribute name="error" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *                 &lt;attribute name="min_prob" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *                 &lt;attribute name="sensitivity" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *                 &lt;attribute name="error" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *                 &lt;attribute name="num_corr" use="required" type="{http://www.w3.org/2001/XMLSchema}unsignedInt" />
  *                 &lt;attribute name="num_incorr" use="required" type="{http://www.w3.org/2001/XMLSchema}unsignedInt" />
  *               &lt;/restriction>
@@ -55,8 +55,8 @@ import javax.xml.bind.annotation.XmlType;
  *           &lt;complexType>
  *             &lt;complexContent>
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                 &lt;attribute name="error" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *                 &lt;attribute name="min_prob" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *                 &lt;attribute name="error" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *                 &lt;attribute name="min_prob" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *                 &lt;attribute name="num_corr" use="required" type="{http://www.w3.org/2001/XMLSchema}unsignedInt" />
  *                 &lt;attribute name="num_incorr" use="required" type="{http://www.w3.org/2001/XMLSchema}unsignedInt" />
  *               &lt;/restriction>
@@ -65,7 +65,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;/element>
  *       &lt;/sequence>
  *       &lt;attribute name="charge" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="charge_est_correct" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="charge_est_correct" type="{http://www.w3.org/2001/XMLSchema}double" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -87,7 +87,7 @@ public class RocErrorDataType {
     @XmlAttribute(name = "charge", required = true)
     protected String charge;
     @XmlAttribute(name = "charge_est_correct")
-    protected float chargeEstCorrect;
+    protected double chargeEstCorrect;
 
     /**
      * Gets the value of the rocDataPoint property.
@@ -175,7 +175,7 @@ public class RocErrorDataType {
      * Gets the value of the chargeEstCorrect property.
      * 
      */
-    public float getChargeEstCorrect() {
+    public double getChargeEstCorrect() {
         return chargeEstCorrect;
     }
 
@@ -183,7 +183,7 @@ public class RocErrorDataType {
      * Sets the value of the chargeEstCorrect property.
      * 
      */
-    public void setChargeEstCorrect(float value) {
+    public void setChargeEstCorrect(double value) {
         this.chargeEstCorrect = value;
     }
 

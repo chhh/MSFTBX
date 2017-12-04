@@ -47,7 +47,7 @@ import javax.xml.bind.annotation.XmlType;
  *           &lt;/complexType>
  *         &lt;/element>
  *       &lt;/sequence>
- *       &lt;attribute name="probability" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="probability" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *       &lt;attribute name="all_ntt_prob" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -66,7 +66,7 @@ public class InterprophetResult {
     @XmlElement(name = "search_score_summary")
     protected SearchScoreSummaryIProphet searchScoreSummary;
     @XmlAttribute(name = "probability", required = true)
-    protected float probability;
+    protected double probability;
     @XmlAttribute(name = "all_ntt_prob")
     protected String allNttProb;
 
@@ -98,7 +98,7 @@ public class InterprophetResult {
      * Gets the value of the probability property.
      * 
      */
-    public float getProbability() {
+    public double getProbability() {
         return probability;
     }
 
@@ -106,7 +106,7 @@ public class InterprophetResult {
      * Sets the value of the probability property.
      * 
      */
-    public void setProbability(float value) {
+    public void setProbability(double value) {
         this.probability = value;
     }
 

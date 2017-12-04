@@ -42,8 +42,8 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;/sequence>
  *       &lt;attribute name="status" use="required" type="{http://www.w3.org/2001/XMLSchema}byte" />
  *       &lt;attribute name="cidIndex" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
- *       &lt;attribute name="light_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *       &lt;attribute name="heavy_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="light_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="heavy_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *       &lt;attribute name="area_flag" use="required" type="{http://www.w3.org/2001/XMLSchema}unsignedInt" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -66,9 +66,9 @@ public class AsapratioPeptideData {
     @XmlAttribute(name = "cidIndex", required = true)
     protected int cidIndex;
     @XmlAttribute(name = "light_mass", required = true)
-    protected float lightMass;
+    protected double lightMass;
     @XmlAttribute(name = "heavy_mass", required = true)
-    protected float heavyMass;
+    protected double heavyMass;
     @XmlAttribute(name = "area_flag", required = true)
     @XmlSchemaType(name = "unsignedInt")
     protected long areaFlag;
@@ -138,7 +138,7 @@ public class AsapratioPeptideData {
      * Gets the value of the lightMass property.
      * 
      */
-    public float getLightMass() {
+    public double getLightMass() {
         return lightMass;
     }
 
@@ -146,7 +146,7 @@ public class AsapratioPeptideData {
      * Sets the value of the lightMass property.
      * 
      */
-    public void setLightMass(float value) {
+    public void setLightMass(double value) {
         this.lightMass = value;
     }
 
@@ -154,7 +154,7 @@ public class AsapratioPeptideData {
      * Gets the value of the heavyMass property.
      * 
      */
-    public float getHeavyMass() {
+    public double getHeavyMass() {
         return heavyMass;
     }
 
@@ -162,7 +162,7 @@ public class AsapratioPeptideData {
      * Sets the value of the heavyMass property.
      * 
      */
-    public void setHeavyMass(float value) {
+    public void setHeavyMass(double value) {
         this.heavyMass = value;
     }
 

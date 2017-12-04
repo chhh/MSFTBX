@@ -69,8 +69,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *                                               &lt;attribute name="peptide_next_aa" type="{http://www.w3.org/2001/XMLSchema}string" />
  *                                               &lt;attribute name="protein" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *                                               &lt;attribute name="num_tot_proteins" use="required" type="{http://www.w3.org/2001/XMLSchema}unsignedInt" />
- *                                               &lt;attribute name="calc_neutral_pep_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *                                               &lt;attribute name="complement_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *                                               &lt;attribute name="calc_neutral_pep_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *                                               &lt;attribute name="complement_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *                                               &lt;attribute name="designation" type="{http://www.w3.org/2001/XMLSchema}string" />
  *                                             &lt;/restriction>
  *                                           &lt;/complexContent>
@@ -79,7 +79,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *                                       &lt;element name="xlink_score" type="{http://regis-web.systemsbiology.net/pepXML}nameValueType" maxOccurs="unbounded" minOccurs="0"/>
  *                                     &lt;/sequence>
  *                                     &lt;attribute name="identifier" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *                                     &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *                                     &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *                                   &lt;/restriction>
  *                                 &lt;/complexContent>
  *                               &lt;/complexType>
@@ -108,8 +108,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *                           &lt;attribute name="num_tot_proteins" use="required" type="{http://www.w3.org/2001/XMLSchema}unsignedInt" />
  *                           &lt;attribute name="num_matched_ions" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
  *                           &lt;attribute name="tot_num_ions" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
- *                           &lt;attribute name="calc_neutral_pep_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *                           &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *                           &lt;attribute name="calc_neutral_pep_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *                           &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *                           &lt;attribute name="num_tol_term" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
  *                           &lt;attribute name="num_missed_cleavages" type="{http://www.w3.org/2001/XMLSchema}integer" />
  *                           &lt;attribute name="num_matched_peptides" type="{http://www.w3.org/2001/XMLSchema}integer" />
@@ -148,12 +148,12 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *       &lt;attribute name="spectrumNativeID" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="start_scan" use="required" type="{http://www.w3.org/2001/XMLSchema}unsignedInt" />
  *       &lt;attribute name="end_scan" use="required" type="{http://www.w3.org/2001/XMLSchema}unsignedInt" />
- *       &lt;attribute name="retention_time_sec" type="{http://www.w3.org/2001/XMLSchema}float" />
- *       &lt;attribute name="collision_energy" type="{http://www.w3.org/2001/XMLSchema}float" />
- *       &lt;attribute name="compensation_voltage" type="{http://www.w3.org/2001/XMLSchema}float" />
- *       &lt;attribute name="precursor_intensity" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="retention_time_sec" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="collision_energy" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="compensation_voltage" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="precursor_intensity" type="{http://www.w3.org/2001/XMLSchema}double" />
  *       &lt;attribute name="activation_method" type="{http://regis-web.systemsbiology.net/pepXML}activationMethodType" />
- *       &lt;attribute name="precursor_neutral_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="precursor_neutral_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *       &lt;attribute name="assumed_charge" use="required" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
  *       &lt;attribute name="search_specification" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="index" use="required" type="{http://regis-web.systemsbiology.net/pepXML}positiveInt" />
@@ -183,17 +183,17 @@ public class SpectrumQuery {
     @XmlSchemaType(name = "unsignedInt")
     protected long endScan;
     @XmlAttribute(name = "retention_time_sec")
-    protected float retentionTimeSec;
+    protected double retentionTimeSec;
     @XmlAttribute(name = "collision_energy")
-    protected float collisionEnergy;
+    protected double collisionEnergy;
     @XmlAttribute(name = "compensation_voltage")
-    protected float compensationVoltage;
+    protected double compensationVoltage;
     @XmlAttribute(name = "precursor_intensity")
-    protected float precursorIntensity;
+    protected double precursorIntensity;
     @XmlAttribute(name = "activation_method")
     protected ActivationMethodType activationMethod;
     @XmlAttribute(name = "precursor_neutral_mass", required = true)
-    protected float precursorNeutralMass;
+    protected double precursorNeutralMass;
     @XmlAttribute(name = "assumed_charge", required = true)
     @XmlJavaTypeAdapter(Adapter1 .class)
     @XmlSchemaType(name = "nonNegativeInteger")
@@ -316,7 +316,7 @@ public class SpectrumQuery {
      * Gets the value of the retentionTimeSec property.
      * 
      */
-    public float getRetentionTimeSec() {
+    public double getRetentionTimeSec() {
         return retentionTimeSec;
     }
 
@@ -324,7 +324,7 @@ public class SpectrumQuery {
      * Sets the value of the retentionTimeSec property.
      * 
      */
-    public void setRetentionTimeSec(float value) {
+    public void setRetentionTimeSec(double value) {
         this.retentionTimeSec = value;
     }
 
@@ -332,7 +332,7 @@ public class SpectrumQuery {
      * Gets the value of the collisionEnergy property.
      * 
      */
-    public float getCollisionEnergy() {
+    public double getCollisionEnergy() {
         return collisionEnergy;
     }
 
@@ -340,7 +340,7 @@ public class SpectrumQuery {
      * Sets the value of the collisionEnergy property.
      * 
      */
-    public void setCollisionEnergy(float value) {
+    public void setCollisionEnergy(double value) {
         this.collisionEnergy = value;
     }
 
@@ -348,7 +348,7 @@ public class SpectrumQuery {
      * Gets the value of the compensationVoltage property.
      * 
      */
-    public float getCompensationVoltage() {
+    public double getCompensationVoltage() {
         return compensationVoltage;
     }
 
@@ -356,7 +356,7 @@ public class SpectrumQuery {
      * Sets the value of the compensationVoltage property.
      * 
      */
-    public void setCompensationVoltage(float value) {
+    public void setCompensationVoltage(double value) {
         this.compensationVoltage = value;
     }
 
@@ -364,7 +364,7 @@ public class SpectrumQuery {
      * Gets the value of the precursorIntensity property.
      * 
      */
-    public float getPrecursorIntensity() {
+    public double getPrecursorIntensity() {
         return precursorIntensity;
     }
 
@@ -372,7 +372,7 @@ public class SpectrumQuery {
      * Sets the value of the precursorIntensity property.
      * 
      */
-    public void setPrecursorIntensity(float value) {
+    public void setPrecursorIntensity(double value) {
         this.precursorIntensity = value;
     }
 
@@ -404,7 +404,7 @@ public class SpectrumQuery {
      * Gets the value of the precursorNeutralMass property.
      * 
      */
-    public float getPrecursorNeutralMass() {
+    public double getPrecursorNeutralMass() {
         return precursorNeutralMass;
     }
 
@@ -412,7 +412,7 @@ public class SpectrumQuery {
      * Sets the value of the precursorNeutralMass property.
      * 
      */
-    public void setPrecursorNeutralMass(float value) {
+    public void setPrecursorNeutralMass(double value) {
         this.precursorNeutralMass = value;
     }
 

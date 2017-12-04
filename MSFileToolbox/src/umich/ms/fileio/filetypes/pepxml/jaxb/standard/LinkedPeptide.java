@@ -46,8 +46,8 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;attribute name="peptide_next_aa" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="protein" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="num_tot_proteins" use="required" type="{http://www.w3.org/2001/XMLSchema}unsignedInt" />
- *       &lt;attribute name="calc_neutral_pep_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *       &lt;attribute name="complement_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="calc_neutral_pep_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="complement_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *       &lt;attribute name="designation" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -82,9 +82,9 @@ public class LinkedPeptide {
     @XmlSchemaType(name = "unsignedInt")
     protected long numTotProteins;
     @XmlAttribute(name = "calc_neutral_pep_mass", required = true)
-    protected float calcNeutralPepMass;
+    protected double calcNeutralPepMass;
     @XmlAttribute(name = "complement_mass", required = true)
-    protected float complementMass;
+    protected double complementMass;
     @XmlAttribute(name = "designation")
     protected String designation;
 
@@ -286,7 +286,7 @@ public class LinkedPeptide {
      * Gets the value of the calcNeutralPepMass property.
      * 
      */
-    public float getCalcNeutralPepMass() {
+    public double getCalcNeutralPepMass() {
         return calcNeutralPepMass;
     }
 
@@ -294,7 +294,7 @@ public class LinkedPeptide {
      * Sets the value of the calcNeutralPepMass property.
      * 
      */
-    public void setCalcNeutralPepMass(float value) {
+    public void setCalcNeutralPepMass(double value) {
         this.calcNeutralPepMass = value;
     }
 
@@ -302,7 +302,7 @@ public class LinkedPeptide {
      * Gets the value of the complementMass property.
      * 
      */
-    public float getComplementMass() {
+    public double getComplementMass() {
         return complementMass;
     }
 
@@ -310,7 +310,7 @@ public class LinkedPeptide {
      * Sets the value of the complementMass property.
      * 
      */
-    public void setComplementMass(float value) {
+    public void setComplementMass(double value) {
         this.complementMass = value;
     }
 

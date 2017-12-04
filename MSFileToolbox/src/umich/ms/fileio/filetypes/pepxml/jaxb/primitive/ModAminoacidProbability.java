@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;attribute name="position" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
- *       &lt;attribute name="probability" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="probability" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -52,7 +52,7 @@ public class ModAminoacidProbability {
     @XmlSchemaType(name = "integer")
     protected Integer position;
     @XmlAttribute(name = "probability", required = true)
-    protected float probability;
+    protected double probability;
 
     /**
      * Gets the value of the position property.
@@ -82,7 +82,7 @@ public class ModAminoacidProbability {
      * Gets the value of the probability property.
      * 
      */
-    public float getProbability() {
+    public double getProbability() {
         return probability;
     }
 
@@ -90,7 +90,7 @@ public class ModAminoacidProbability {
      * Sets the value of the probability property.
      * 
      */
-    public void setProbability(float value) {
+    public void setProbability(double value) {
         this.probability = value;
     }
 

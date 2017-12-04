@@ -42,8 +42,8 @@ import javax.xml.bind.annotation.XmlType;
  *             &lt;complexContent>
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                 &lt;attribute name="channel" use="required" type="{http://regis-web.systemsbiology.net/pepXML}positiveInt" />
- *                 &lt;attribute name="mz" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *                 &lt;attribute name="offset" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *                 &lt;attribute name="mz" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *                 &lt;attribute name="offset" type="{http://www.w3.org/2001/XMLSchema}double" />
  *               &lt;/restriction>
  *             &lt;/complexContent>
  *           &lt;/complexType>
@@ -63,7 +63,7 @@ import javax.xml.bind.annotation.XmlType;
  *                                 &lt;complexContent>
  *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                                     &lt;attribute name="channel" use="required" type="{http://regis-web.systemsbiology.net/pepXML}positiveInt" />
- *                                     &lt;attribute name="correction" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *                                     &lt;attribute name="correction" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *                                   &lt;/restriction>
  *                                 &lt;/complexContent>
  *                               &lt;/complexType>
@@ -80,7 +80,7 @@ import javax.xml.bind.annotation.XmlType;
  *           &lt;/complexType>
  *         &lt;/element>
  *       &lt;/sequence>
- *       &lt;attribute name="mass_tolerance" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="mass_tolerance" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *       &lt;attribute name="centroiding_preference" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
  *       &lt;attribute name="normalization" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
  *       &lt;attribute name="output_type" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
@@ -105,7 +105,7 @@ public class LibraSummary {
     @XmlElement(name = "isotopic_contributions")
     protected IsotopicContributions isotopicContributions;
     @XmlAttribute(name = "mass_tolerance", required = true)
-    protected float massTolerance;
+    protected double massTolerance;
     @XmlAttribute(name = "centroiding_preference", required = true)
     protected int centroidingPreference;
     @XmlAttribute(name = "normalization", required = true)
@@ -172,7 +172,7 @@ public class LibraSummary {
      * Gets the value of the massTolerance property.
      * 
      */
-    public float getMassTolerance() {
+    public double getMassTolerance() {
         return massTolerance;
     }
 
@@ -180,7 +180,7 @@ public class LibraSummary {
      * Sets the value of the massTolerance property.
      * 
      */
-    public void setMassTolerance(float value) {
+    public void setMassTolerance(double value) {
         this.massTolerance = value;
     }
 

@@ -36,11 +36,11 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;attribute name="status" use="required" type="{http://www.w3.org/2001/XMLSchema}byte" />
  *       &lt;attribute name="left_valley" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
  *       &lt;attribute name="right_valley" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
- *       &lt;attribute name="background" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *       &lt;attribute name="area" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *       &lt;attribute name="area_error" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *       &lt;attribute name="time" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *       &lt;attribute name="time_width" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="background" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="area" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="area_error" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="time" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="time_width" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *       &lt;attribute name="is_heavy" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -61,15 +61,15 @@ public class AsapratioLcHeavypeak {
     @XmlAttribute(name = "right_valley", required = true)
     protected int rightValley;
     @XmlAttribute(name = "background", required = true)
-    protected float background;
+    protected double background;
     @XmlAttribute(name = "area", required = true)
-    protected float area;
+    protected double area;
     @XmlAttribute(name = "area_error", required = true)
-    protected float areaError;
+    protected double areaError;
     @XmlAttribute(name = "time", required = true)
-    protected float time;
+    protected double time;
     @XmlAttribute(name = "time_width", required = true)
-    protected float timeWidth;
+    protected double timeWidth;
     @XmlAttribute(name = "is_heavy", required = true)
     protected String isHeavy;
 
@@ -125,7 +125,7 @@ public class AsapratioLcHeavypeak {
      * Gets the value of the background property.
      * 
      */
-    public float getBackground() {
+    public double getBackground() {
         return background;
     }
 
@@ -133,7 +133,7 @@ public class AsapratioLcHeavypeak {
      * Sets the value of the background property.
      * 
      */
-    public void setBackground(float value) {
+    public void setBackground(double value) {
         this.background = value;
     }
 
@@ -141,7 +141,7 @@ public class AsapratioLcHeavypeak {
      * Gets the value of the area property.
      * 
      */
-    public float getArea() {
+    public double getArea() {
         return area;
     }
 
@@ -149,7 +149,7 @@ public class AsapratioLcHeavypeak {
      * Sets the value of the area property.
      * 
      */
-    public void setArea(float value) {
+    public void setArea(double value) {
         this.area = value;
     }
 
@@ -157,7 +157,7 @@ public class AsapratioLcHeavypeak {
      * Gets the value of the areaError property.
      * 
      */
-    public float getAreaError() {
+    public double getAreaError() {
         return areaError;
     }
 
@@ -165,7 +165,7 @@ public class AsapratioLcHeavypeak {
      * Sets the value of the areaError property.
      * 
      */
-    public void setAreaError(float value) {
+    public void setAreaError(double value) {
         this.areaError = value;
     }
 
@@ -173,7 +173,7 @@ public class AsapratioLcHeavypeak {
      * Gets the value of the time property.
      * 
      */
-    public float getTime() {
+    public double getTime() {
         return time;
     }
 
@@ -181,7 +181,7 @@ public class AsapratioLcHeavypeak {
      * Sets the value of the time property.
      * 
      */
-    public void setTime(float value) {
+    public void setTime(double value) {
         this.time = value;
     }
 
@@ -189,7 +189,7 @@ public class AsapratioLcHeavypeak {
      * Gets the value of the timeWidth property.
      * 
      */
-    public float getTimeWidth() {
+    public double getTimeWidth() {
         return timeWidth;
     }
 
@@ -197,7 +197,7 @@ public class AsapratioLcHeavypeak {
      * Sets the value of the timeWidth property.
      * 
      */
-    public void setTimeWidth(float value) {
+    public void setTimeWidth(double value) {
         this.timeWidth = value;
     }
 

@@ -39,19 +39,19 @@ import javax.xml.bind.annotation.XmlType;
  *           &lt;complexType>
  *             &lt;complexContent>
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                 &lt;attribute name="value" type="{http://www.w3.org/2001/XMLSchema}float" />
- *                 &lt;attribute name="pos_dens" type="{http://www.w3.org/2001/XMLSchema}float" />
- *                 &lt;attribute name="neg_dens" type="{http://www.w3.org/2001/XMLSchema}float" />
- *                 &lt;attribute name="neg_obs_dens" type="{http://www.w3.org/2001/XMLSchema}float" />
- *                 &lt;attribute name="pos_obs_dens" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *                 &lt;attribute name="value" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *                 &lt;attribute name="pos_dens" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *                 &lt;attribute name="neg_dens" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *                 &lt;attribute name="neg_obs_dens" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *                 &lt;attribute name="pos_obs_dens" type="{http://www.w3.org/2001/XMLSchema}double" />
  *               &lt;/restriction>
  *             &lt;/complexContent>
  *           &lt;/complexType>
  *         &lt;/element>
  *       &lt;/sequence>
  *       &lt;attribute name="name" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="pos_bandwidth" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *       &lt;attribute name="neg_bandwidth" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="pos_bandwidth" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="neg_bandwidth" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -69,9 +69,9 @@ public class MixtureModelType {
     @XmlAttribute(name = "name", required = true)
     protected String name;
     @XmlAttribute(name = "pos_bandwidth", required = true)
-    protected float posBandwidth;
+    protected double posBandwidth;
     @XmlAttribute(name = "neg_bandwidth", required = true)
-    protected float negBandwidth;
+    protected double negBandwidth;
 
     /**
      * Gets the value of the point property.
@@ -130,7 +130,7 @@ public class MixtureModelType {
      * Gets the value of the posBandwidth property.
      * 
      */
-    public float getPosBandwidth() {
+    public double getPosBandwidth() {
         return posBandwidth;
     }
 
@@ -138,7 +138,7 @@ public class MixtureModelType {
      * Sets the value of the posBandwidth property.
      * 
      */
-    public void setPosBandwidth(float value) {
+    public void setPosBandwidth(double value) {
         this.posBandwidth = value;
     }
 
@@ -146,7 +146,7 @@ public class MixtureModelType {
      * Gets the value of the negBandwidth property.
      * 
      */
-    public float getNegBandwidth() {
+    public double getNegBandwidth() {
         return negBandwidth;
     }
 
@@ -154,7 +154,7 @@ public class MixtureModelType {
      * Sets the value of the negBandwidth property.
      * 
      */
-    public void setNegBandwidth(float value) {
+    public void setNegBandwidth(double value) {
         this.negBandwidth = value;
     }
 

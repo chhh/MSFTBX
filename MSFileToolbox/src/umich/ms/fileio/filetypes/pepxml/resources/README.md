@@ -1,13 +1,7 @@
 # How to generate java classes from the xml schema
+PepXml schema can be found [here](https://sourceforge.net/p/sashimi/code/HEAD/tree/trunk/trans_proteomic_pipeline/schema/).
 The bindings file will resolve name clashes in the `.xsd`.
-pepXML schemas can be found [here](https://sourceforge.net/p/sashimi/code/HEAD/tree/trunk/trans_proteomic_pipeline/schema/).
 
-`G:\tmp\pepxml>
-	"<path/to/jdk>/jdk1.x.x/bin/xjc.exe"
-	-b bindings_pepxml_standard_.xml
-	-d generated
-	-p umich.ms.fileio.filetypes.pepxml.jaxb.standard
-	pepXML_v119-fixed.xsd`
 
 # Errors in original file
 The original schema contains `<xs:any namespace="##any" processContents="lax" minOccurs="0">`
@@ -45,16 +39,17 @@ Execute from `MSFTBX\MSFileToolbox\src\umich\ms\fileio\filetypes\pepxml\resource
 Will overwrite existing java jaxb files without warning.  
 
 * Standard
-  * `xjc -b bindings_pepxml_standard.xml  -no-header -encoding UTF-8 -extension -d "C:\projects\BatMass\MSFTBX\MSFileToolbox\src" -p umich.ms.fileio.filetypes.pepxml.jaxb.standard  pepXML_v120-fixed.xsd`
+  * `xjc -b bindings_pepxml_standard.xml  -no-header -encoding UTF-8 -extension -d "C:\projects\BatMass\MSFTBX\MSFileToolbox\src" -p umich.ms.fileio.filetypes.pepxml.jaxb.standard  pepXML_v120-fixed-double.xsd`
 * Primitive 
-  * `xjc -b bindings_pepxml_primitive.xml -no-header -encoding UTF-8 -extension -d "C:\projects\BatMass\MSFTBX\MSFileToolbox\src" -p umich.ms.fileio.filetypes.pepxml.jaxb.primitive pepXML_v120-fixed.xsd`
+  * `xjc -b bindings_pepxml_primitive.xml -no-header -encoding UTF-8 -extension -d "C:\projects\BatMass\MSFTBX\MSFileToolbox\src" -p umich.ms.fileio.filetypes.pepxml.jaxb.primitive pepXML_v120-fixed-double.xsd`
 * __DEPRECATED__ (Nested) 
   * `xjc -no-header -encoding UTF-8 -d "C:\projects\BatMass\MSFTBX\MSFileToolbox\src" -b bindings_pepxml_nested.xml -p umich.ms.fileio.filetypes.pepxml.jaxb.nested pepXML_v120-fixed.xsd`
+
 ##  After generation
 * All occurrences of  `new ArrayList<>()` were replaced with `new ArrayList<>(1)` to avoid lots of lists
     of default size, which is 10. As in pepxml there might be tens of thousands of such lists which only 
     hold a single element.
-* Use the following regex in IDEA for replacement (use _Replace in path_). Search pattern `(new ArrayList<.*?>)\(\)`,
+  * Use the following regex in IDEA for replacement (use _Replace in path_). Search pattern `(new ArrayList<.*?>)\(\)`,
     replacement pattern `$1\(1\)`
 * Delete the `namespace` and `attributeFormDefault` from `package-info.java` that sits next to `ObjectFactory.java`
 * In `NameValueType.java` (both *standard* and *primitive*) apply the following changes:  

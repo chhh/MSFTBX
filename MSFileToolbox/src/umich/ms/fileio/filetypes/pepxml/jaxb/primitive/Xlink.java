@@ -50,8 +50,8 @@ import javax.xml.bind.annotation.XmlType;
  *                 &lt;attribute name="peptide_next_aa" type="{http://www.w3.org/2001/XMLSchema}string" />
  *                 &lt;attribute name="protein" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *                 &lt;attribute name="num_tot_proteins" use="required" type="{http://www.w3.org/2001/XMLSchema}unsignedInt" />
- *                 &lt;attribute name="calc_neutral_pep_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *                 &lt;attribute name="complement_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *                 &lt;attribute name="calc_neutral_pep_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *                 &lt;attribute name="complement_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *                 &lt;attribute name="designation" type="{http://www.w3.org/2001/XMLSchema}string" />
  *               &lt;/restriction>
  *             &lt;/complexContent>
@@ -60,7 +60,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="xlink_score" type="{http://regis-web.systemsbiology.net/pepXML}nameValueType" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *       &lt;attribute name="identifier" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -82,7 +82,7 @@ public class Xlink {
     @XmlAttribute(name = "identifier", required = true)
     protected String identifier;
     @XmlAttribute(name = "mass", required = true)
-    protected float mass;
+    protected double mass;
 
     /**
      * Gets the value of the linkedPeptide property.
@@ -170,7 +170,7 @@ public class Xlink {
      * Gets the value of the mass property.
      * 
      */
-    public float getMass() {
+    public double getMass() {
         return mass;
     }
 
@@ -178,7 +178,7 @@ public class Xlink {
      * Sets the value of the mass property.
      * 
      */
-    public void setMass(float value) {
+    public void setMass(double value) {
         this.mass = value;
     }
 

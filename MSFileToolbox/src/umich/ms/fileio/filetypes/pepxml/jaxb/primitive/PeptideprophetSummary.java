@@ -43,28 +43,28 @@ import javax.xml.bind.annotation.XmlType;
  *           &lt;complexType>
  *             &lt;complexContent>
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                 &lt;attribute name="fvalue" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *                 &lt;attribute name="fvalue" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *                 &lt;attribute name="obs_1_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
- *                 &lt;attribute name="model_1_pos_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *                 &lt;attribute name="model_1_neg_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *                 &lt;attribute name="model_1_pos_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *                 &lt;attribute name="model_1_neg_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *                 &lt;attribute name="obs_2_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
- *                 &lt;attribute name="model_2_pos_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *                 &lt;attribute name="model_2_neg_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *                 &lt;attribute name="model_2_pos_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *                 &lt;attribute name="model_2_neg_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *                 &lt;attribute name="obs_3_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
- *                 &lt;attribute name="model_3_pos_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *                 &lt;attribute name="model_3_neg_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *                 &lt;attribute name="model_3_pos_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *                 &lt;attribute name="model_3_neg_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *                 &lt;attribute name="obs_4_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
- *                 &lt;attribute name="model_4_pos_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *                 &lt;attribute name="model_4_neg_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *                 &lt;attribute name="model_4_pos_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *                 &lt;attribute name="model_4_neg_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *                 &lt;attribute name="obs_5_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
- *                 &lt;attribute name="model_5_pos_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *                 &lt;attribute name="model_5_neg_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *                 &lt;attribute name="model_5_pos_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *                 &lt;attribute name="model_5_neg_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *                 &lt;attribute name="obs_6_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
- *                 &lt;attribute name="model_6_pos_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *                 &lt;attribute name="model_6_neg_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *                 &lt;attribute name="model_6_pos_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *                 &lt;attribute name="model_6_neg_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *                 &lt;attribute name="obs_7_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
- *                 &lt;attribute name="model_7_pos_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *                 &lt;attribute name="model_7_neg_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *                 &lt;attribute name="model_7_pos_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *                 &lt;attribute name="model_7_neg_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *               &lt;/restriction>
  *             &lt;/complexContent>
  *           &lt;/complexType>
@@ -118,17 +118,17 @@ import javax.xml.bind.annotation.XmlType;
  *                               &lt;complexType>
  *                                 &lt;complexContent>
  *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                                     &lt;attribute name="value" type="{http://www.w3.org/2001/XMLSchema}float" />
- *                                     &lt;attribute name="pos_dens" type="{http://www.w3.org/2001/XMLSchema}float" />
- *                                     &lt;attribute name="neg_dens" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *                                     &lt;attribute name="value" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *                                     &lt;attribute name="pos_dens" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *                                     &lt;attribute name="neg_dens" type="{http://www.w3.org/2001/XMLSchema}double" />
  *                                   &lt;/restriction>
  *                                 &lt;/complexContent>
  *                               &lt;/complexType>
  *                             &lt;/element>
  *                           &lt;/sequence>
  *                           &lt;attribute name="name" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *                           &lt;attribute name="pos_bandwidth" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *                           &lt;attribute name="neg_bandwidth" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *                           &lt;attribute name="pos_bandwidth" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *                           &lt;attribute name="neg_bandwidth" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *                         &lt;/restriction>
  *                       &lt;/complexContent>
  *                     &lt;/complexType>
@@ -136,8 +136,8 @@ import javax.xml.bind.annotation.XmlType;
  *                 &lt;/choice>
  *                 &lt;attribute name="precursor_ion_charge" use="required" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
  *                 &lt;attribute name="comments" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *                 &lt;attribute name="prior_probability" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *                 &lt;attribute name="est_tot_correct" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *                 &lt;attribute name="prior_probability" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *                 &lt;attribute name="est_tot_correct" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *                 &lt;attribute name="tot_num_spectra" use="required" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
  *                 &lt;attribute name="num_iterations" use="required" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
  *               &lt;/restriction>
@@ -147,9 +147,9 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;/sequence>
  *       &lt;attribute name="version" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="author" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="min_prob" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="min_prob" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *       &lt;attribute name="options" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="est_tot_num_correct" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="est_tot_num_correct" type="{http://www.w3.org/2001/XMLSchema}double" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -180,11 +180,11 @@ public class PeptideprophetSummary {
     @XmlAttribute(name = "author", required = true)
     protected String author;
     @XmlAttribute(name = "min_prob", required = true)
-    protected float minProb;
+    protected double minProb;
     @XmlAttribute(name = "options")
     protected String options;
     @XmlAttribute(name = "est_tot_num_correct")
-    protected float estTotNumCorrect;
+    protected double estTotNumCorrect;
 
     /**
      * Gets the value of the inputfile property.
@@ -354,7 +354,7 @@ public class PeptideprophetSummary {
      * Gets the value of the minProb property.
      * 
      */
-    public float getMinProb() {
+    public double getMinProb() {
         return minProb;
     }
 
@@ -362,7 +362,7 @@ public class PeptideprophetSummary {
      * Sets the value of the minProb property.
      * 
      */
-    public void setMinProb(float value) {
+    public void setMinProb(double value) {
         this.minProb = value;
     }
 
@@ -394,7 +394,7 @@ public class PeptideprophetSummary {
      * Gets the value of the estTotNumCorrect property.
      * 
      */
-    public float getEstTotNumCorrect() {
+    public double getEstTotNumCorrect() {
         return estTotNumCorrect;
     }
 
@@ -402,7 +402,7 @@ public class PeptideprophetSummary {
      * Sets the value of the estTotNumCorrect property.
      * 
      */
-    public void setEstTotNumCorrect(float value) {
+    public void setEstTotNumCorrect(double value) {
         this.estTotNumCorrect = value;
     }
 

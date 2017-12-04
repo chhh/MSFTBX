@@ -40,8 +40,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *         &lt;element ref="{http://regis-web.systemsbiology.net/pepXML}asapratio_lc_lightpeak"/>
  *         &lt;element ref="{http://regis-web.systemsbiology.net/pepXML}asapratio_lc_heavypeak"/>
  *       &lt;/sequence>
- *       &lt;attribute name="ratio" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *       &lt;attribute name="error" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="ratio" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="error" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *       &lt;attribute name="charge" use="required" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
  *       &lt;attribute name="use" use="required" type="{http://www.w3.org/2001/XMLSchema}unsignedByte" />
  *     &lt;/restriction>
@@ -64,9 +64,9 @@ public class AsapratioContribution {
     @XmlElement(name = "asapratio_lc_heavypeak", required = true)
     protected AsapratioLcHeavypeak asapratioLcHeavypeak;
     @XmlAttribute(name = "ratio", required = true)
-    protected float ratio;
+    protected double ratio;
     @XmlAttribute(name = "error", required = true)
-    protected float error;
+    protected double error;
     @XmlAttribute(name = "charge", required = true)
     @XmlJavaTypeAdapter(Adapter1 .class)
     @XmlSchemaType(name = "nonNegativeInteger")
@@ -127,7 +127,7 @@ public class AsapratioContribution {
      * Gets the value of the ratio property.
      * 
      */
-    public float getRatio() {
+    public double getRatio() {
         return ratio;
     }
 
@@ -135,7 +135,7 @@ public class AsapratioContribution {
      * Sets the value of the ratio property.
      * 
      */
-    public void setRatio(float value) {
+    public void setRatio(double value) {
         this.ratio = value;
     }
 
@@ -143,7 +143,7 @@ public class AsapratioContribution {
      * Gets the value of the error property.
      * 
      */
-    public float getError() {
+    public double getError() {
         return error;
     }
 
@@ -151,7 +151,7 @@ public class AsapratioContribution {
      * Sets the value of the error property.
      * 
      */
-    public void setError(float value) {
+    public void setError(double value) {
         this.error = value;
     }
 

@@ -32,9 +32,9 @@ import javax.xml.bind.annotation.XmlType;
  * &lt;complexType>
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;attribute name="value" type="{http://www.w3.org/2001/XMLSchema}float" />
- *       &lt;attribute name="pos_dens" type="{http://www.w3.org/2001/XMLSchema}float" />
- *       &lt;attribute name="neg_dens" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="value" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="pos_dens" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="neg_dens" type="{http://www.w3.org/2001/XMLSchema}double" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -47,17 +47,17 @@ import javax.xml.bind.annotation.XmlType;
 public class Point {
 
     @XmlAttribute(name = "value")
-    protected float value;
+    protected double value;
     @XmlAttribute(name = "pos_dens")
-    protected float posDens;
+    protected double posDens;
     @XmlAttribute(name = "neg_dens")
-    protected float negDens;
+    protected double negDens;
 
     /**
      * Gets the value of the value property.
      * 
      */
-    public float getValue() {
+    public double getValue() {
         return value;
     }
 
@@ -65,7 +65,7 @@ public class Point {
      * Sets the value of the value property.
      * 
      */
-    public void setValue(float value) {
+    public void setValue(double value) {
         this.value = value;
     }
 
@@ -73,7 +73,7 @@ public class Point {
      * Gets the value of the posDens property.
      * 
      */
-    public float getPosDens() {
+    public double getPosDens() {
         return posDens;
     }
 
@@ -81,7 +81,7 @@ public class Point {
      * Sets the value of the posDens property.
      * 
      */
-    public void setPosDens(float value) {
+    public void setPosDens(double value) {
         this.posDens = value;
     }
 
@@ -89,7 +89,7 @@ public class Point {
      * Gets the value of the negDens property.
      * 
      */
-    public float getNegDens() {
+    public double getNegDens() {
         return negDens;
     }
 
@@ -97,7 +97,7 @@ public class Point {
      * Sets the value of the negDens property.
      * 
      */
-    public void setNegDens(float value) {
+    public void setNegDens(double value) {
         this.negDens = value;
     }
 

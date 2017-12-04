@@ -83,17 +83,17 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *                     &lt;complexType>
  *                       &lt;complexContent>
  *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                           &lt;attribute name="value" type="{http://www.w3.org/2001/XMLSchema}float" />
- *                           &lt;attribute name="pos_dens" type="{http://www.w3.org/2001/XMLSchema}float" />
- *                           &lt;attribute name="neg_dens" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *                           &lt;attribute name="value" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *                           &lt;attribute name="pos_dens" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *                           &lt;attribute name="neg_dens" type="{http://www.w3.org/2001/XMLSchema}double" />
  *                         &lt;/restriction>
  *                       &lt;/complexContent>
  *                     &lt;/complexType>
  *                   &lt;/element>
  *                 &lt;/sequence>
  *                 &lt;attribute name="name" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *                 &lt;attribute name="pos_bandwidth" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *                 &lt;attribute name="neg_bandwidth" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *                 &lt;attribute name="pos_bandwidth" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *                 &lt;attribute name="neg_bandwidth" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *               &lt;/restriction>
  *             &lt;/complexContent>
  *           &lt;/complexType>
@@ -101,8 +101,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *       &lt;/choice>
  *       &lt;attribute name="precursor_ion_charge" use="required" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
  *       &lt;attribute name="comments" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="prior_probability" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *       &lt;attribute name="est_tot_correct" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="prior_probability" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="est_tot_correct" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *       &lt;attribute name="tot_num_spectra" use="required" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
  *       &lt;attribute name="num_iterations" use="required" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
  *     &lt;/restriction>
@@ -130,9 +130,9 @@ public class MixtureModelling {
     @XmlAttribute(name = "comments", required = true)
     protected String comments;
     @XmlAttribute(name = "prior_probability", required = true)
-    protected float priorProbability;
+    protected double priorProbability;
     @XmlAttribute(name = "est_tot_correct", required = true)
-    protected float estTotCorrect;
+    protected double estTotCorrect;
     @XmlAttribute(name = "tot_num_spectra", required = true)
     @XmlJavaTypeAdapter(Adapter1 .class)
     @XmlSchemaType(name = "nonNegativeInteger")
@@ -224,7 +224,7 @@ public class MixtureModelling {
      * Gets the value of the priorProbability property.
      * 
      */
-    public float getPriorProbability() {
+    public double getPriorProbability() {
         return priorProbability;
     }
 
@@ -232,7 +232,7 @@ public class MixtureModelling {
      * Sets the value of the priorProbability property.
      * 
      */
-    public void setPriorProbability(float value) {
+    public void setPriorProbability(double value) {
         this.priorProbability = value;
     }
 
@@ -240,7 +240,7 @@ public class MixtureModelling {
      * Gets the value of the estTotCorrect property.
      * 
      */
-    public float getEstTotCorrect() {
+    public double getEstTotCorrect() {
         return estTotCorrect;
     }
 
@@ -248,7 +248,7 @@ public class MixtureModelling {
      * Sets the value of the estTotCorrect property.
      * 
      */
-    public void setEstTotCorrect(float value) {
+    public void setEstTotCorrect(double value) {
         this.estTotCorrect = value;
     }
 

@@ -33,8 +33,8 @@ import javax.xml.bind.annotation.XmlType;
  * &lt;complexType>
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;attribute name="error" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *       &lt;attribute name="min_prob" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="error" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="min_prob" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *       &lt;attribute name="num_corr" use="required" type="{http://www.w3.org/2001/XMLSchema}unsignedInt" />
  *       &lt;attribute name="num_incorr" use="required" type="{http://www.w3.org/2001/XMLSchema}unsignedInt" />
  *     &lt;/restriction>
@@ -49,9 +49,9 @@ import javax.xml.bind.annotation.XmlType;
 public class ErrorPoint {
 
     @XmlAttribute(name = "error", required = true)
-    protected float error;
+    protected double error;
     @XmlAttribute(name = "min_prob", required = true)
-    protected float minProb;
+    protected double minProb;
     @XmlAttribute(name = "num_corr", required = true)
     @XmlSchemaType(name = "unsignedInt")
     protected long numCorr;
@@ -63,7 +63,7 @@ public class ErrorPoint {
      * Gets the value of the error property.
      * 
      */
-    public float getError() {
+    public double getError() {
         return error;
     }
 
@@ -71,7 +71,7 @@ public class ErrorPoint {
      * Sets the value of the error property.
      * 
      */
-    public void setError(float value) {
+    public void setError(double value) {
         this.error = value;
     }
 
@@ -79,7 +79,7 @@ public class ErrorPoint {
      * Gets the value of the minProb property.
      * 
      */
-    public float getMinProb() {
+    public double getMinProb() {
         return minProb;
     }
 
@@ -87,7 +87,7 @@ public class ErrorPoint {
      * Sets the value of the minProb property.
      * 
      */
-    public void setMinProb(float value) {
+    public void setMinProb(double value) {
         this.minProb = value;
     }
 

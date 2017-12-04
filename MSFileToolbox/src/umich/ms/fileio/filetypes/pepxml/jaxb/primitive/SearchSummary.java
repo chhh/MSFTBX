@@ -85,8 +85,8 @@ import javax.xml.bind.annotation.XmlType;
  *             &lt;complexContent>
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                 &lt;attribute name="aminoacid" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *                 &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *                 &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *                 &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *                 &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *                 &lt;attribute name="variable" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *                 &lt;attribute name="peptide_terminus" type="{http://www.w3.org/2001/XMLSchema}string" />
  *                 &lt;attribute name="protein_terminus" type="{http://www.w3.org/2001/XMLSchema}string" />
@@ -102,8 +102,8 @@ import javax.xml.bind.annotation.XmlType;
  *             &lt;complexContent>
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                 &lt;attribute name="terminus" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *                 &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *                 &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *                 &lt;attribute name="massdiff" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *                 &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *                 &lt;attribute name="variable" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *                 &lt;attribute name="symbol" type="{http://regis-web.systemsbiology.net/pepXML}term_symbolType" />
  *                 &lt;attribute name="protein_terminus" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />

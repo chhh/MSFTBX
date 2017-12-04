@@ -37,15 +37,15 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;attribute name="light_firstscan" use="required" type="{http://www.w3.org/2001/XMLSchema}unsignedInt" />
  *       &lt;attribute name="light_lastscan" use="required" type="{http://www.w3.org/2001/XMLSchema}unsignedInt" />
- *       &lt;attribute name="light_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="light_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *       &lt;attribute name="heavy_firstscan" use="required" type="{http://www.w3.org/2001/XMLSchema}unsignedInt" />
  *       &lt;attribute name="heavy_lastscan" use="required" type="{http://www.w3.org/2001/XMLSchema}unsignedInt" />
- *       &lt;attribute name="heavy_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *       &lt;attribute name="mass_tol" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="heavy_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="mass_tol" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *       &lt;attribute name="ratio" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="heavy2light_ratio" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="light_area" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *       &lt;attribute name="heavy_area" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="light_area" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="heavy_area" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *       &lt;attribute name="decimal_ratio" use="required" type="{http://www.w3.org/2001/XMLSchema}decimal" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -66,7 +66,7 @@ public class XpressratioResult {
     @XmlSchemaType(name = "unsignedInt")
     protected long lightLastscan;
     @XmlAttribute(name = "light_mass", required = true)
-    protected float lightMass;
+    protected double lightMass;
     @XmlAttribute(name = "heavy_firstscan", required = true)
     @XmlSchemaType(name = "unsignedInt")
     protected long heavyFirstscan;
@@ -74,17 +74,17 @@ public class XpressratioResult {
     @XmlSchemaType(name = "unsignedInt")
     protected long heavyLastscan;
     @XmlAttribute(name = "heavy_mass", required = true)
-    protected float heavyMass;
+    protected double heavyMass;
     @XmlAttribute(name = "mass_tol", required = true)
-    protected float massTol;
+    protected double massTol;
     @XmlAttribute(name = "ratio", required = true)
     protected String ratio;
     @XmlAttribute(name = "heavy2light_ratio", required = true)
     protected String heavy2LightRatio;
     @XmlAttribute(name = "light_area", required = true)
-    protected float lightArea;
+    protected double lightArea;
     @XmlAttribute(name = "heavy_area", required = true)
-    protected float heavyArea;
+    protected double heavyArea;
     @XmlAttribute(name = "decimal_ratio", required = true)
     @XmlJavaTypeAdapter(Adapter2 .class)
     @XmlSchemaType(name = "decimal")
@@ -126,7 +126,7 @@ public class XpressratioResult {
      * Gets the value of the lightMass property.
      * 
      */
-    public float getLightMass() {
+    public double getLightMass() {
         return lightMass;
     }
 
@@ -134,7 +134,7 @@ public class XpressratioResult {
      * Sets the value of the lightMass property.
      * 
      */
-    public void setLightMass(float value) {
+    public void setLightMass(double value) {
         this.lightMass = value;
     }
 
@@ -174,7 +174,7 @@ public class XpressratioResult {
      * Gets the value of the heavyMass property.
      * 
      */
-    public float getHeavyMass() {
+    public double getHeavyMass() {
         return heavyMass;
     }
 
@@ -182,7 +182,7 @@ public class XpressratioResult {
      * Sets the value of the heavyMass property.
      * 
      */
-    public void setHeavyMass(float value) {
+    public void setHeavyMass(double value) {
         this.heavyMass = value;
     }
 
@@ -190,7 +190,7 @@ public class XpressratioResult {
      * Gets the value of the massTol property.
      * 
      */
-    public float getMassTol() {
+    public double getMassTol() {
         return massTol;
     }
 
@@ -198,7 +198,7 @@ public class XpressratioResult {
      * Sets the value of the massTol property.
      * 
      */
-    public void setMassTol(float value) {
+    public void setMassTol(double value) {
         this.massTol = value;
     }
 
@@ -254,7 +254,7 @@ public class XpressratioResult {
      * Gets the value of the lightArea property.
      * 
      */
-    public float getLightArea() {
+    public double getLightArea() {
         return lightArea;
     }
 
@@ -262,7 +262,7 @@ public class XpressratioResult {
      * Sets the value of the lightArea property.
      * 
      */
-    public void setLightArea(float value) {
+    public void setLightArea(double value) {
         this.lightArea = value;
     }
 
@@ -270,7 +270,7 @@ public class XpressratioResult {
      * Gets the value of the heavyArea property.
      * 
      */
-    public float getHeavyArea() {
+    public double getHeavyArea() {
         return heavyArea;
     }
 
@@ -278,7 +278,7 @@ public class XpressratioResult {
      * Sets the value of the heavyArea property.
      * 
      */
-    public void setHeavyArea(float value) {
+    public void setHeavyArea(double value) {
         this.heavyArea = value;
     }
 

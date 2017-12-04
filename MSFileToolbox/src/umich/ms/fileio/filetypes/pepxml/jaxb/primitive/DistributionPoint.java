@@ -34,28 +34,28 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * &lt;complexType>
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;attribute name="fvalue" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="fvalue" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *       &lt;attribute name="obs_1_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
- *       &lt;attribute name="model_1_pos_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *       &lt;attribute name="model_1_neg_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="model_1_pos_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="model_1_neg_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *       &lt;attribute name="obs_2_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
- *       &lt;attribute name="model_2_pos_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *       &lt;attribute name="model_2_neg_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="model_2_pos_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="model_2_neg_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *       &lt;attribute name="obs_3_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
- *       &lt;attribute name="model_3_pos_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *       &lt;attribute name="model_3_neg_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="model_3_pos_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="model_3_neg_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *       &lt;attribute name="obs_4_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
- *       &lt;attribute name="model_4_pos_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *       &lt;attribute name="model_4_neg_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="model_4_pos_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="model_4_neg_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *       &lt;attribute name="obs_5_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
- *       &lt;attribute name="model_5_pos_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *       &lt;attribute name="model_5_neg_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="model_5_pos_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="model_5_neg_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *       &lt;attribute name="obs_6_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
- *       &lt;attribute name="model_6_pos_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *       &lt;attribute name="model_6_neg_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="model_6_pos_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="model_6_neg_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *       &lt;attribute name="obs_7_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
- *       &lt;attribute name="model_7_pos_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *       &lt;attribute name="model_7_neg_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="model_7_pos_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="model_7_neg_distr" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -68,69 +68,69 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 public class DistributionPoint {
 
     @XmlAttribute(name = "fvalue", required = true)
-    protected float fvalue;
+    protected double fvalue;
     @XmlAttribute(name = "obs_1_distr", required = true)
     @XmlJavaTypeAdapter(Adapter1 .class)
     @XmlSchemaType(name = "nonNegativeInteger")
     protected Integer obs1Distr;
     @XmlAttribute(name = "model_1_pos_distr", required = true)
-    protected float model1PosDistr;
+    protected double model1PosDistr;
     @XmlAttribute(name = "model_1_neg_distr", required = true)
-    protected float model1NegDistr;
+    protected double model1NegDistr;
     @XmlAttribute(name = "obs_2_distr", required = true)
     @XmlJavaTypeAdapter(Adapter1 .class)
     @XmlSchemaType(name = "nonNegativeInteger")
     protected Integer obs2Distr;
     @XmlAttribute(name = "model_2_pos_distr", required = true)
-    protected float model2PosDistr;
+    protected double model2PosDistr;
     @XmlAttribute(name = "model_2_neg_distr", required = true)
-    protected float model2NegDistr;
+    protected double model2NegDistr;
     @XmlAttribute(name = "obs_3_distr", required = true)
     @XmlJavaTypeAdapter(Adapter1 .class)
     @XmlSchemaType(name = "nonNegativeInteger")
     protected Integer obs3Distr;
     @XmlAttribute(name = "model_3_pos_distr", required = true)
-    protected float model3PosDistr;
+    protected double model3PosDistr;
     @XmlAttribute(name = "model_3_neg_distr", required = true)
-    protected float model3NegDistr;
+    protected double model3NegDistr;
     @XmlAttribute(name = "obs_4_distr", required = true)
     @XmlJavaTypeAdapter(Adapter1 .class)
     @XmlSchemaType(name = "nonNegativeInteger")
     protected Integer obs4Distr;
     @XmlAttribute(name = "model_4_pos_distr", required = true)
-    protected float model4PosDistr;
+    protected double model4PosDistr;
     @XmlAttribute(name = "model_4_neg_distr", required = true)
-    protected float model4NegDistr;
+    protected double model4NegDistr;
     @XmlAttribute(name = "obs_5_distr", required = true)
     @XmlJavaTypeAdapter(Adapter1 .class)
     @XmlSchemaType(name = "nonNegativeInteger")
     protected Integer obs5Distr;
     @XmlAttribute(name = "model_5_pos_distr", required = true)
-    protected float model5PosDistr;
+    protected double model5PosDistr;
     @XmlAttribute(name = "model_5_neg_distr", required = true)
-    protected float model5NegDistr;
+    protected double model5NegDistr;
     @XmlAttribute(name = "obs_6_distr", required = true)
     @XmlJavaTypeAdapter(Adapter1 .class)
     @XmlSchemaType(name = "nonNegativeInteger")
     protected Integer obs6Distr;
     @XmlAttribute(name = "model_6_pos_distr", required = true)
-    protected float model6PosDistr;
+    protected double model6PosDistr;
     @XmlAttribute(name = "model_6_neg_distr", required = true)
-    protected float model6NegDistr;
+    protected double model6NegDistr;
     @XmlAttribute(name = "obs_7_distr", required = true)
     @XmlJavaTypeAdapter(Adapter1 .class)
     @XmlSchemaType(name = "nonNegativeInteger")
     protected Integer obs7Distr;
     @XmlAttribute(name = "model_7_pos_distr", required = true)
-    protected float model7PosDistr;
+    protected double model7PosDistr;
     @XmlAttribute(name = "model_7_neg_distr", required = true)
-    protected float model7NegDistr;
+    protected double model7NegDistr;
 
     /**
      * Gets the value of the fvalue property.
      * 
      */
-    public float getFvalue() {
+    public double getFvalue() {
         return fvalue;
     }
 
@@ -138,7 +138,7 @@ public class DistributionPoint {
      * Sets the value of the fvalue property.
      * 
      */
-    public void setFvalue(float value) {
+    public void setFvalue(double value) {
         this.fvalue = value;
     }
 
@@ -170,7 +170,7 @@ public class DistributionPoint {
      * Gets the value of the model1PosDistr property.
      * 
      */
-    public float getModel1PosDistr() {
+    public double getModel1PosDistr() {
         return model1PosDistr;
     }
 
@@ -178,7 +178,7 @@ public class DistributionPoint {
      * Sets the value of the model1PosDistr property.
      * 
      */
-    public void setModel1PosDistr(float value) {
+    public void setModel1PosDistr(double value) {
         this.model1PosDistr = value;
     }
 
@@ -186,7 +186,7 @@ public class DistributionPoint {
      * Gets the value of the model1NegDistr property.
      * 
      */
-    public float getModel1NegDistr() {
+    public double getModel1NegDistr() {
         return model1NegDistr;
     }
 
@@ -194,7 +194,7 @@ public class DistributionPoint {
      * Sets the value of the model1NegDistr property.
      * 
      */
-    public void setModel1NegDistr(float value) {
+    public void setModel1NegDistr(double value) {
         this.model1NegDistr = value;
     }
 
@@ -226,7 +226,7 @@ public class DistributionPoint {
      * Gets the value of the model2PosDistr property.
      * 
      */
-    public float getModel2PosDistr() {
+    public double getModel2PosDistr() {
         return model2PosDistr;
     }
 
@@ -234,7 +234,7 @@ public class DistributionPoint {
      * Sets the value of the model2PosDistr property.
      * 
      */
-    public void setModel2PosDistr(float value) {
+    public void setModel2PosDistr(double value) {
         this.model2PosDistr = value;
     }
 
@@ -242,7 +242,7 @@ public class DistributionPoint {
      * Gets the value of the model2NegDistr property.
      * 
      */
-    public float getModel2NegDistr() {
+    public double getModel2NegDistr() {
         return model2NegDistr;
     }
 
@@ -250,7 +250,7 @@ public class DistributionPoint {
      * Sets the value of the model2NegDistr property.
      * 
      */
-    public void setModel2NegDistr(float value) {
+    public void setModel2NegDistr(double value) {
         this.model2NegDistr = value;
     }
 
@@ -282,7 +282,7 @@ public class DistributionPoint {
      * Gets the value of the model3PosDistr property.
      * 
      */
-    public float getModel3PosDistr() {
+    public double getModel3PosDistr() {
         return model3PosDistr;
     }
 
@@ -290,7 +290,7 @@ public class DistributionPoint {
      * Sets the value of the model3PosDistr property.
      * 
      */
-    public void setModel3PosDistr(float value) {
+    public void setModel3PosDistr(double value) {
         this.model3PosDistr = value;
     }
 
@@ -298,7 +298,7 @@ public class DistributionPoint {
      * Gets the value of the model3NegDistr property.
      * 
      */
-    public float getModel3NegDistr() {
+    public double getModel3NegDistr() {
         return model3NegDistr;
     }
 
@@ -306,7 +306,7 @@ public class DistributionPoint {
      * Sets the value of the model3NegDistr property.
      * 
      */
-    public void setModel3NegDistr(float value) {
+    public void setModel3NegDistr(double value) {
         this.model3NegDistr = value;
     }
 
@@ -338,7 +338,7 @@ public class DistributionPoint {
      * Gets the value of the model4PosDistr property.
      * 
      */
-    public float getModel4PosDistr() {
+    public double getModel4PosDistr() {
         return model4PosDistr;
     }
 
@@ -346,7 +346,7 @@ public class DistributionPoint {
      * Sets the value of the model4PosDistr property.
      * 
      */
-    public void setModel4PosDistr(float value) {
+    public void setModel4PosDistr(double value) {
         this.model4PosDistr = value;
     }
 
@@ -354,7 +354,7 @@ public class DistributionPoint {
      * Gets the value of the model4NegDistr property.
      * 
      */
-    public float getModel4NegDistr() {
+    public double getModel4NegDistr() {
         return model4NegDistr;
     }
 
@@ -362,7 +362,7 @@ public class DistributionPoint {
      * Sets the value of the model4NegDistr property.
      * 
      */
-    public void setModel4NegDistr(float value) {
+    public void setModel4NegDistr(double value) {
         this.model4NegDistr = value;
     }
 
@@ -394,7 +394,7 @@ public class DistributionPoint {
      * Gets the value of the model5PosDistr property.
      * 
      */
-    public float getModel5PosDistr() {
+    public double getModel5PosDistr() {
         return model5PosDistr;
     }
 
@@ -402,7 +402,7 @@ public class DistributionPoint {
      * Sets the value of the model5PosDistr property.
      * 
      */
-    public void setModel5PosDistr(float value) {
+    public void setModel5PosDistr(double value) {
         this.model5PosDistr = value;
     }
 
@@ -410,7 +410,7 @@ public class DistributionPoint {
      * Gets the value of the model5NegDistr property.
      * 
      */
-    public float getModel5NegDistr() {
+    public double getModel5NegDistr() {
         return model5NegDistr;
     }
 
@@ -418,7 +418,7 @@ public class DistributionPoint {
      * Sets the value of the model5NegDistr property.
      * 
      */
-    public void setModel5NegDistr(float value) {
+    public void setModel5NegDistr(double value) {
         this.model5NegDistr = value;
     }
 
@@ -450,7 +450,7 @@ public class DistributionPoint {
      * Gets the value of the model6PosDistr property.
      * 
      */
-    public float getModel6PosDistr() {
+    public double getModel6PosDistr() {
         return model6PosDistr;
     }
 
@@ -458,7 +458,7 @@ public class DistributionPoint {
      * Sets the value of the model6PosDistr property.
      * 
      */
-    public void setModel6PosDistr(float value) {
+    public void setModel6PosDistr(double value) {
         this.model6PosDistr = value;
     }
 
@@ -466,7 +466,7 @@ public class DistributionPoint {
      * Gets the value of the model6NegDistr property.
      * 
      */
-    public float getModel6NegDistr() {
+    public double getModel6NegDistr() {
         return model6NegDistr;
     }
 
@@ -474,7 +474,7 @@ public class DistributionPoint {
      * Sets the value of the model6NegDistr property.
      * 
      */
-    public void setModel6NegDistr(float value) {
+    public void setModel6NegDistr(double value) {
         this.model6NegDistr = value;
     }
 
@@ -506,7 +506,7 @@ public class DistributionPoint {
      * Gets the value of the model7PosDistr property.
      * 
      */
-    public float getModel7PosDistr() {
+    public double getModel7PosDistr() {
         return model7PosDistr;
     }
 
@@ -514,7 +514,7 @@ public class DistributionPoint {
      * Sets the value of the model7PosDistr property.
      * 
      */
-    public void setModel7PosDistr(float value) {
+    public void setModel7PosDistr(double value) {
         this.model7PosDistr = value;
     }
 
@@ -522,7 +522,7 @@ public class DistributionPoint {
      * Gets the value of the model7NegDistr property.
      * 
      */
-    public float getModel7NegDistr() {
+    public double getModel7NegDistr() {
         return model7NegDistr;
     }
 
@@ -530,7 +530,7 @@ public class DistributionPoint {
      * Sets the value of the model7NegDistr property.
      * 
      */
-    public void setModel7NegDistr(float value) {
+    public void setModel7NegDistr(double value) {
         this.model7NegDistr = value;
     }
 

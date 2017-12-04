@@ -37,10 +37,10 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element ref="{http://regis-web.systemsbiology.net/pepXML}asapratio_peptide_data"/>
  *       &lt;/sequence>
- *       &lt;attribute name="mean" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *       &lt;attribute name="error" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *       &lt;attribute name="heavy2light_mean" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *       &lt;attribute name="heavy2light_error" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="mean" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="error" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="heavy2light_mean" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="heavy2light_error" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -58,13 +58,13 @@ public class AsapratioResult {
     @XmlElement(name = "asapratio_peptide_data", required = true)
     protected AsapratioPeptideData asapratioPeptideData;
     @XmlAttribute(name = "mean", required = true)
-    protected float mean;
+    protected double mean;
     @XmlAttribute(name = "error", required = true)
-    protected float error;
+    protected double error;
     @XmlAttribute(name = "heavy2light_mean", required = true)
-    protected float heavy2LightMean;
+    protected double heavy2LightMean;
     @XmlAttribute(name = "heavy2light_error", required = true)
-    protected float heavy2LightError;
+    protected double heavy2LightError;
 
     /**
      * Gets the value of the asapratioPeptideData property.
@@ -94,7 +94,7 @@ public class AsapratioResult {
      * Gets the value of the mean property.
      * 
      */
-    public float getMean() {
+    public double getMean() {
         return mean;
     }
 
@@ -102,7 +102,7 @@ public class AsapratioResult {
      * Sets the value of the mean property.
      * 
      */
-    public void setMean(float value) {
+    public void setMean(double value) {
         this.mean = value;
     }
 
@@ -110,7 +110,7 @@ public class AsapratioResult {
      * Gets the value of the error property.
      * 
      */
-    public float getError() {
+    public double getError() {
         return error;
     }
 
@@ -118,7 +118,7 @@ public class AsapratioResult {
      * Sets the value of the error property.
      * 
      */
-    public void setError(float value) {
+    public void setError(double value) {
         this.error = value;
     }
 
@@ -126,7 +126,7 @@ public class AsapratioResult {
      * Gets the value of the heavy2LightMean property.
      * 
      */
-    public float getHeavy2LightMean() {
+    public double getHeavy2LightMean() {
         return heavy2LightMean;
     }
 
@@ -134,7 +134,7 @@ public class AsapratioResult {
      * Sets the value of the heavy2LightMean property.
      * 
      */
-    public void setHeavy2LightMean(float value) {
+    public void setHeavy2LightMean(double value) {
         this.heavy2LightMean = value;
     }
 
@@ -142,7 +142,7 @@ public class AsapratioResult {
      * Gets the value of the heavy2LightError property.
      * 
      */
-    public float getHeavy2LightError() {
+    public double getHeavy2LightError() {
         return heavy2LightError;
     }
 
@@ -150,7 +150,7 @@ public class AsapratioResult {
      * Sets the value of the heavy2LightError property.
      * 
      */
-    public void setHeavy2LightError(float value) {
+    public void setHeavy2LightError(double value) {
         this.heavy2LightError = value;
     }
 
