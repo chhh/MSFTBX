@@ -35,9 +35,9 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;attribute name="channel" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
- *       &lt;attribute name="mz" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *       &lt;attribute name="ratio" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *       &lt;attribute name="error" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="mz" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="ratio" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="error" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -54,11 +54,11 @@ public class Intensity {
     @XmlSchemaType(name = "integer")
     protected Integer channel;
     @XmlAttribute(name = "mz", required = true)
-    protected float mz;
+    protected double mz;
     @XmlAttribute(name = "ratio", required = true)
-    protected float ratio;
+    protected double ratio;
     @XmlAttribute(name = "error", required = true)
-    protected float error;
+    protected double error;
 
     /**
      * Gets the value of the channel property.
@@ -88,7 +88,7 @@ public class Intensity {
      * Gets the value of the mz property.
      * 
      */
-    public float getMz() {
+    public double getMz() {
         return mz;
     }
 
@@ -96,7 +96,7 @@ public class Intensity {
      * Sets the value of the mz property.
      * 
      */
-    public void setMz(float value) {
+    public void setMz(double value) {
         this.mz = value;
     }
 
@@ -104,7 +104,7 @@ public class Intensity {
      * Gets the value of the ratio property.
      * 
      */
-    public float getRatio() {
+    public double getRatio() {
         return ratio;
     }
 
@@ -112,7 +112,7 @@ public class Intensity {
      * Sets the value of the ratio property.
      * 
      */
-    public void setRatio(float value) {
+    public void setRatio(double value) {
         this.ratio = value;
     }
 
@@ -120,7 +120,7 @@ public class Intensity {
      * Gets the value of the error property.
      * 
      */
-    public float getError() {
+    public double getError() {
         return error;
     }
 
@@ -128,7 +128,7 @@ public class Intensity {
      * Sets the value of the error property.
      * 
      */
-    public void setError(float value) {
+    public void setError(double value) {
         this.error = value;
     }
 

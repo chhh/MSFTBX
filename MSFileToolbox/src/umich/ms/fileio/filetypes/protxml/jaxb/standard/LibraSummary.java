@@ -42,7 +42,7 @@ import javax.xml.bind.annotation.XmlType;
  *             &lt;complexContent>
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                 &lt;attribute name="channel" use="required" type="{http://regis-web.systemsbiology.net/protXML}positiveInt" />
- *                 &lt;attribute name="mz" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *                 &lt;attribute name="mz" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *               &lt;/restriction>
  *             &lt;/complexContent>
  *           &lt;/complexType>
@@ -62,7 +62,7 @@ import javax.xml.bind.annotation.XmlType;
  *                                 &lt;complexContent>
  *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                                     &lt;attribute name="channel" use="required" type="{http://regis-web.systemsbiology.net/protXML}positiveInt" />
- *                                     &lt;attribute name="correction" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *                                     &lt;attribute name="correction" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *                                   &lt;/restriction>
  *                                 &lt;/complexContent>
  *                               &lt;/complexType>
@@ -80,14 +80,14 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;/element>
  *       &lt;/sequence>
  *       &lt;attribute name="version" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="mass_tolerance" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="mass_tolerance" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *       &lt;attribute name="centroiding_preference" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
  *       &lt;attribute name="normalization" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
  *       &lt;attribute name="output_type" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
  *       &lt;attribute name="channel_code" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="min_pep_prob" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *       &lt;attribute name="min_pep_wt" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
- *       &lt;attribute name="min_prot_prob" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="min_pep_prob" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="min_pep_wt" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="min_prot_prob" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -110,7 +110,7 @@ public class LibraSummary {
     @XmlAttribute(name = "version")
     protected String version;
     @XmlAttribute(name = "mass_tolerance", required = true)
-    protected float massTolerance;
+    protected double massTolerance;
     @XmlAttribute(name = "centroiding_preference", required = true)
     protected int centroidingPreference;
     @XmlAttribute(name = "normalization", required = true)
@@ -120,11 +120,11 @@ public class LibraSummary {
     @XmlAttribute(name = "channel_code")
     protected String channelCode;
     @XmlAttribute(name = "min_pep_prob", required = true)
-    protected float minPepProb;
+    protected double minPepProb;
     @XmlAttribute(name = "min_pep_wt", required = true)
-    protected float minPepWt;
+    protected double minPepWt;
     @XmlAttribute(name = "min_prot_prob", required = true)
-    protected float minProtProb;
+    protected double minProtProb;
 
     /**
      * Gets the value of the fragmentMasses property.
@@ -207,7 +207,7 @@ public class LibraSummary {
      * Gets the value of the massTolerance property.
      * 
      */
-    public float getMassTolerance() {
+    public double getMassTolerance() {
         return massTolerance;
     }
 
@@ -215,7 +215,7 @@ public class LibraSummary {
      * Sets the value of the massTolerance property.
      * 
      */
-    public void setMassTolerance(float value) {
+    public void setMassTolerance(double value) {
         this.massTolerance = value;
     }
 
@@ -295,7 +295,7 @@ public class LibraSummary {
      * Gets the value of the minPepProb property.
      * 
      */
-    public float getMinPepProb() {
+    public double getMinPepProb() {
         return minPepProb;
     }
 
@@ -303,7 +303,7 @@ public class LibraSummary {
      * Sets the value of the minPepProb property.
      * 
      */
-    public void setMinPepProb(float value) {
+    public void setMinPepProb(double value) {
         this.minPepProb = value;
     }
 
@@ -311,7 +311,7 @@ public class LibraSummary {
      * Gets the value of the minPepWt property.
      * 
      */
-    public float getMinPepWt() {
+    public double getMinPepWt() {
         return minPepWt;
     }
 
@@ -319,7 +319,7 @@ public class LibraSummary {
      * Sets the value of the minPepWt property.
      * 
      */
-    public void setMinPepWt(float value) {
+    public void setMinPepWt(double value) {
         this.minPepWt = value;
     }
 
@@ -327,7 +327,7 @@ public class LibraSummary {
      * Gets the value of the minProtProb property.
      * 
      */
-    public float getMinProtProb() {
+    public double getMinProtProb() {
         return minProtProb;
     }
 
@@ -335,7 +335,7 @@ public class LibraSummary {
      * Sets the value of the minProtProb property.
      * 
      */
-    public void setMinProtProb(float value) {
+    public void setMinProtProb(double value) {
         this.minProtProb = value;
     }
 

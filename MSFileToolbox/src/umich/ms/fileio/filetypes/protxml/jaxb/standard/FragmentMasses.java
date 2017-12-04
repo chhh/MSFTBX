@@ -33,7 +33,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;attribute name="channel" use="required" type="{http://regis-web.systemsbiology.net/protXML}positiveInt" />
- *       &lt;attribute name="mz" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="mz" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -48,7 +48,7 @@ public class FragmentMasses {
     @XmlAttribute(name = "channel", required = true)
     protected long channel;
     @XmlAttribute(name = "mz", required = true)
-    protected float mz;
+    protected double mz;
 
     /**
      * Gets the value of the channel property.
@@ -70,7 +70,7 @@ public class FragmentMasses {
      * Gets the value of the mz property.
      * 
      */
-    public float getMz() {
+    public double getMz() {
         return mz;
     }
 
@@ -78,7 +78,7 @@ public class FragmentMasses {
      * Sets the value of the mz property.
      * 
      */
-    public void setMz(float value) {
+    public void setMz(double value) {
         this.mz = value;
     }
 

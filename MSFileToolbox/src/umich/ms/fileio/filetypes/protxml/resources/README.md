@@ -6,26 +6,22 @@ Use `xjc` as usual.
 `xjc.exe -b bindings_protxml_standard.xml 
 -d "D:\projects\BatMass\MSFTBX\MSFileToolbox\src" -p umich.ms.fileio.filetypes.protxml.jaxb.standard protXML_v7-fixed.xsd`  
 
-### v8
+### v8 (double)
 - Standard:  
-  `xjc.exe -b bindings_protxml_standard.xml 
--no-header -encoding UTF-8 -extension 
--d "C:\projects\BatMass\MSFTBX\MSFileToolbox\src" 
--p umich.ms.fileio.filetypes.protxml.jaxb.standard 
-protXML_v8-fixed.xsd`  
+  `xjc.exe -b bindings_protxml_standard.xml -no-header -encoding UTF-8 -extension -d "C:\projects\BatMass\MSFTBX\MSFileToolbox\src" -p umich.ms.fileio.filetypes.protxml.jaxb.standard protXML_v8-fixed-double.xsd`
 
-- Primitive:    
-  `xjc.exe -b bindings_protxml_primitive.xml 
+- Primitive (deprecated):
+~~`xjc.exe -b bindings_protxml_primitive.xml
 -no-header -encoding UTF-8 -extension 
 -d "C:\projects\BatMass\MSFTBX\MSFileToolbox\src" 
 -p umich.ms.fileio.filetypes.protxml.jaxb.primitive 
-protXML_v8-fixed.xsd`  
+protXML_v8-fixed.xsd`~~
 
 ##  After generation
 * All occurrences of  `new ArrayList<>()` were replaced with `new ArrayList<>(1)` to avoid lots of lists
     of default size, which is 10. As in pepxml there might be tens of thousands of such lists which only 
     hold a single element.  
-    Regex in IDEA for replacement (use _Replace in path_). Search pattern `(new ArrayList<.*?>)\(\)`,
+  * Regex in IDEA for replacement (use _Replace in path_). Search pattern `(new ArrayList<.*?>)\(\)`,
     replacement pattern `$1\(1\)`
 * Delete the `namespace` and `attributeFormDefault` from `package-info.java` that sits next to `ObjectFactory.java`
 
