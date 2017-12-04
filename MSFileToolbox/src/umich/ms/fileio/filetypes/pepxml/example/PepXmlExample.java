@@ -15,7 +15,7 @@
  */
 package umich.ms.fileio.filetypes.pepxml.example;
 
-import umich.ms.fileio.filetypes.pepxml.jaxb.primitive.*;
+import umich.ms.fileio.filetypes.pepxml.jaxb.standard.*;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Unmarshaller;
@@ -24,7 +24,6 @@ import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
