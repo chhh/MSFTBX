@@ -33,7 +33,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;attribute name="code" use="required" type="{http://psidev.info/psi/pi/mzIdentML/1.2}chars" />
- *       &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="mass" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -48,7 +48,7 @@ public class ResidueType {
     @XmlAttribute(name = "code", required = true)
     protected String code;
     @XmlAttribute(name = "mass", required = true)
-    protected float mass;
+    protected double mass;
 
     /**
      * Gets the value of the code property.
@@ -78,7 +78,7 @@ public class ResidueType {
      * Gets the value of the mass property.
      * 
      */
-    public float getMass() {
+    public double getMass() {
         return mass;
     }
 
@@ -86,7 +86,7 @@ public class ResidueType {
      * Sets the value of the mass property.
      * 
      */
-    public void setMass(float value) {
+    public void setMass(double value) {
         this.mass = value;
     }
 

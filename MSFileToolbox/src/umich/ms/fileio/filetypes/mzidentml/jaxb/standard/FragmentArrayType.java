@@ -50,7 +50,7 @@ import javax.xml.bind.annotation.XmlType;
 public class FragmentArrayType {
 
     @XmlAttribute(name = "values", required = true)
-    protected List<Float> values;
+    protected List<Double> values;
     @XmlAttribute(name = "measure_ref", required = true)
     protected String measureRef;
 
@@ -72,13 +72,13 @@ public class FragmentArrayType {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Float }
+     * {@link Double }
      * 
      * 
      */
-    public List<Float> getValues() {
+    public List<Double> getValues() {
         if (values == null) {
-            values = new ArrayList<Float>(1);
+            values = new ArrayList<Double>(1);
         }
         return this.values;
     }

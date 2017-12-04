@@ -42,7 +42,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="cvParam" type="{http://psidev.info/psi/pi/mzIdentML/1.2}CVParamType" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *       &lt;attribute name="fixedMod" use="required" type="{http://www.w3.org/2001/XMLSchema}boolean" />
- *       &lt;attribute name="massDelta" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="massDelta" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *       &lt;attribute name="residues" use="required" type="{http://psidev.info/psi/pi/mzIdentML/1.2}listOfCharsOrAny" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -65,7 +65,7 @@ public class SearchModificationType {
     @XmlAttribute(name = "fixedMod", required = true)
     protected boolean fixedMod;
     @XmlAttribute(name = "massDelta", required = true)
-    protected float massDelta;
+    protected double massDelta;
     @XmlAttribute(name = "residues", required = true)
     protected List<String> residues;
 
@@ -147,7 +147,7 @@ public class SearchModificationType {
      * Gets the value of the massDelta property.
      * 
      */
-    public float getMassDelta() {
+    public double getMassDelta() {
         return massDelta;
     }
 
@@ -155,7 +155,7 @@ public class SearchModificationType {
      * Sets the value of the massDelta property.
      * 
      */
-    public void setMassDelta(float value) {
+    public void setMassDelta(double value) {
         this.massDelta = value;
     }
 

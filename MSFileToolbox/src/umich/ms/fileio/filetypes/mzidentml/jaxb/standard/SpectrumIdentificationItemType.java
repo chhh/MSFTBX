@@ -47,7 +47,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;attribute name="chargeState" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
  *       &lt;attribute name="experimentalMassToCharge" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
  *       &lt;attribute name="calculatedMassToCharge" type="{http://www.w3.org/2001/XMLSchema}double" />
- *       &lt;attribute name="calculatedPI" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="calculatedPI" type="{http://www.w3.org/2001/XMLSchema}double" />
  *       &lt;attribute name="peptide_ref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="rank" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
  *       &lt;attribute name="passThreshold" use="required" type="{http://www.w3.org/2001/XMLSchema}boolean" />
@@ -86,7 +86,7 @@ public class SpectrumIdentificationItemType
     @XmlAttribute(name = "calculatedMassToCharge")
     protected Double calculatedMassToCharge;
     @XmlAttribute(name = "calculatedPI")
-    protected Float calculatedPI;
+    protected Double calculatedPI;
     @XmlAttribute(name = "peptide_ref", required = true)
     protected String peptideRef;
     @XmlAttribute(name = "rank", required = true)
@@ -242,10 +242,10 @@ public class SpectrumIdentificationItemType
      * 
      * @return
      *     possible object is
-     *     {@link Float }
+     *     {@link Double }
      *     
      */
-    public Float getCalculatedPI() {
+    public Double getCalculatedPI() {
         return calculatedPI;
     }
 
@@ -254,10 +254,10 @@ public class SpectrumIdentificationItemType
      * 
      * @param value
      *     allowed object is
-     *     {@link Float }
+     *     {@link Double }
      *     
      */
-    public void setCalculatedPI(Float value) {
+    public void setCalculatedPI(Double value) {
         this.calculatedPI = value;
     }
 
