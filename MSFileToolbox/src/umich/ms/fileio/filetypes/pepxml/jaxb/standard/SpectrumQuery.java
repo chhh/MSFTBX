@@ -193,7 +193,7 @@ public class SpectrumQuery {
     @XmlAttribute(name = "activation_method")
     protected ActivationMethodType activationMethod;
     @XmlAttribute(name = "precursor_neutral_mass", required = true)
-    protected float precursorNeutralMass;
+    protected double precursorNeutralMass;
     @XmlAttribute(name = "assumed_charge", required = true)
     @XmlJavaTypeAdapter(Adapter1 .class)
     @XmlSchemaType(name = "nonNegativeInteger")
@@ -436,7 +436,7 @@ public class SpectrumQuery {
      * Gets the value of the precursorNeutralMass property.
      * 
      */
-    public float getPrecursorNeutralMass() {
+    public double getPrecursorNeutralMass() {
         return precursorNeutralMass;
     }
 
@@ -444,7 +444,7 @@ public class SpectrumQuery {
      * Sets the value of the precursorNeutralMass property.
      * 
      */
-    public void setPrecursorNeutralMass(float value) {
+    public void setPrecursorNeutralMass(double value) {
         this.precursorNeutralMass = value;
     }
 

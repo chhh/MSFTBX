@@ -26,6 +26,7 @@ import umich.ms.fileio.filetypes.pepxml.jaxb.standard.SpectrumQuery;
 
 import java.io.FileInputStream;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Iterator;
 import java.util.List;
 import java.util.zip.Inflater;
@@ -47,6 +48,13 @@ public class PepXmlTest {
     public void tearDown() throws Exception {
         paths.clear();
         paths = null;
+    }
+
+    //@Test
+    public void testRandomFile() throws Exception {
+        final Path path = Paths.get("C:\\tmp", "b1906_293T_proteinID_01A_QE3_122212.pepXML");
+        final MsmsPipelineAnalysis parse = PepXmlParser.parse(path);
+        int a = 1;
     }
 
     @Test
