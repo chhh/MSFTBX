@@ -22,12 +22,18 @@ import java.util.*;
  * @author Dmitry Avtonomov
  */
 public class MsftbxInfo {
-    public static final String version = "1.7.0";
+    public static final String version = "1.8.0";
 
     private static final TreeMap<String, List<String>> changelog = new TreeMap<>();
     private static final Map<String, List<String>> changelogImmutable = Collections.unmodifiableMap(changelog);
 
     static {
+        String v180 = "v1.8.0";
+        List<String> v180notes = new LinkedList<>();
+        v180notes.add("PepXml, ProtXml, MzIdentMl parsers updated to use Doubles instead of Floats everywhere. This " +
+                "will break old code that used some of the values as floats.");
+        changelog.put(v180, v180notes);
+
         String v170 = "v1.7.0";
         List<String> v170notes = new LinkedList<>();
         v170notes.add("Complete overhaul of how run header is parsed for mzML and mzXML. Should now be completely " +

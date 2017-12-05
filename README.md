@@ -21,9 +21,14 @@ Please cite the following paper if you used [MSFTBX](https://github.com/chhh/msf
 <dependency>
     <groupId>com.github.chhh</groupId>
     <artifactId>msftbx</artifactId>
-    <version>1.7.0</version>
+    <version>1.8.0</version>
 </dependency>
 ```
+
+## Release notes
+#### v1.8.0
+ - **Incompatible change to previous versions**. PepXml, ProtXml, MzIdentMl parsers now use Doubles instead of Floats everywhere. Any old code using old Float properties
+ might break now.
 
 ## How to use
 To get started quickly, follow the tutorial: http://www.batmass.org/tutorial/data-access-layer/#parsing-lc-ms-data-mzml-mzxml-files
