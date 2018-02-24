@@ -22,7 +22,7 @@ import java.util.*;
  * @author Dmitry Avtonomov
  */
 public class MsftbxInfo {
-    public static final String version = "1.8.2";
+    public static final String version = "1.8.3-SNAPSHOT";
 
     private static final TreeMap<String, List<String>> changelog = new TreeMap<>();
     private static final Map<String, List<String>> changelogImmutable = Collections.unmodifiableMap(changelog);

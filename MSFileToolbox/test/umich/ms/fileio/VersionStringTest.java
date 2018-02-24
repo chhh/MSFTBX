@@ -29,7 +29,7 @@ import java.nio.file.Paths;
 /**
  * @author Dmitry Avtonomov
  */
-public class VersionString {
+public class VersionStringTest {
 
     @Test
     public void VerifyVersionStringUpdatedBeforeRelease() throws Exception {
@@ -53,11 +53,11 @@ public class VersionString {
             System.err.println("Could not load pom.xml as Model");
             return;
         }
-        System.out.println("Info in pom.xml:");
-        System.out.println(pom.getId());
-        System.out.println(pom.getGroupId());
-        System.out.println(pom.getArtifactId());
-        System.out.println(pom.getVersion());
+        System.out.printf("Info in pom.xml:\n");
+        System.out.printf("\t%s\n", pom.getId());
+        System.out.printf("\t%s\n", pom.getGroupId());
+        System.out.printf("\t%s\n", pom.getArtifactId());
+        System.out.printf("\t%s\n", pom.getVersion());
 
         Assert.assertEquals("Version info in pom.xml does not match version info " +
                 "returned by MsftbxInfo.getVersion()", pom.getVersion(), MsftbxInfo.getVersion());
