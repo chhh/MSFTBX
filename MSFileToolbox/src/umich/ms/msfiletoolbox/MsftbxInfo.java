@@ -22,12 +22,18 @@ import java.util.*;
  * @author Dmitry Avtonomov
  */
 public class MsftbxInfo {
-    public static final String version = "1.8.0";
+    public static final String version = "1.8.2";
 
     private static final TreeMap<String, List<String>> changelog = new TreeMap<>();
     private static final Map<String, List<String>> changelogImmutable = Collections.unmodifiableMap(changelog);
 
     static {
+        changelog.put("v1.8.2", Arrays.asList(
+                "Include JAXB dependency that's required to run with Java 9. Jaxb is removed from the Java SE " +
+                        "SDK and moved into Java EE. For future-proofing, including the jaxb-api dependency. " +
+                        "Other jaxb stuff seems to be unnecessary."
+        ));
+
         String v180 = "v1.8.0";
         List<String> v180notes = new LinkedList<>();
         v180notes.add("PepXml, ProtXml, MzIdentMl parsers updated to use Doubles instead of Floats everywhere. This " +
