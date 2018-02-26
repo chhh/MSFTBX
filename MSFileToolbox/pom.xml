@@ -30,7 +30,7 @@
         <!--<relativePath>../../sonatype-ossrh</relativePath>-->
     </parent>
 
-    <!--<groupId>com.github.chhh</groupId>-->
+    <groupId>com.github.chhh</groupId>
     <artifactId>msftbx</artifactId>
     <version>1.8.3-SNAPSHOT</version>
     <packaging>jar</packaging>

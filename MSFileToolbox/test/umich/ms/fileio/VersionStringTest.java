@@ -40,24 +40,16 @@ public class VersionStringTest {
         if (Files.exists(Paths.get("pom.xml"))) {
             pom = reader.read(new FileReader("pom.xml"));
         }
-//        // can be also used for loading pom from jar file
-//        else
-//            model = reader.read(
-//                    new InputStreamReader(
-//                            VersionString.class.getResourceAsStream(
-//                                    "/META-INF/maven/de.scrum-master.stackoverflow/aspectj-introduce-method/pom.xml"
-//                            )
-//                    )
-//            );
         if (pom == null) {
             System.err.println("Could not load pom.xml as Model");
             return;
         }
-        System.out.printf("Info in pom.xml:\n");
-        System.out.printf("\t%s\n", pom.getId());
-        System.out.printf("\t%s\n", pom.getGroupId());
-        System.out.printf("\t%s\n", pom.getArtifactId());
-        System.out.printf("\t%s\n", pom.getVersion());
+        System.out.printf("%nInfo in pom.xml:%n");
+        System.out.printf("\tGroup Id: %s%n", pom.getGroupId());
+        System.out.printf("\tArtifact Id: %s%n", pom.getArtifactId());
+        System.out.printf("\tVersion: %s%n", pom.getVersion());
+        System.out.printf("%nInfo in MsftbxInfo:%n");
+        System.out.printf("\tVersion: %s%n", MsftbxInfo.getVersion());
 
         Assert.assertEquals("Version info in pom.xml does not match version info " +
                 "returned by MsftbxInfo.getVersion()", pom.getVersion(), MsftbxInfo.getVersion());
