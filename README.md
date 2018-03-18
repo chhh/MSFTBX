@@ -107,4 +107,4 @@ for (AbstractParamType param : paramGroup) {
  - **Incompatible change to previous versions**. PepXml, ProtXml, MzIdentMl parsers now use Doubles instead of Floats everywhere. Any old code using old Float properties
  might break now.
 
-[![Analytics](https://ga-beacon.appspot.com/UA-5572974-15/github/chhh/msftbx/landing-page?pixel&useReferer)](https://github.com/igrigorik/ga-beacon)
+[![Analytics](https://ga-beacon-nocache.appspot.com/UA-5572974-15/github/chhh/msftbx/landing-page?flat&useReferer)](https://github.com/igrigorik/ga-beacon)
