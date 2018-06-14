@@ -11,7 +11,7 @@
                     <build-prerequisite/>
                     <compile-dependency/>
                     <run-dependency>
-                        <specification-version>2.1</specification-version>
+                        <specification-version>2.2</specification-version>
                     </run-dependency>
                 </dependency>
             </module-dependencies>
@@ -37,18 +37,21 @@
                 <package>umich.ms.fileio.filetypes.mzidentml.jaxb.standard</package>
                 <package>umich.ms.fileio.filetypes.mzml</package>
                 <package>umich.ms.fileio.filetypes.mzml.jaxb</package>
+                <package>umich.ms.fileio.filetypes.mzml.util</package>
                 <package>umich.ms.fileio.filetypes.mzxml</package>
                 <package>umich.ms.fileio.filetypes.mzxml.jaxb</package>
                 <package>umich.ms.fileio.filetypes.pepxml</package>
                 <package>umich.ms.fileio.filetypes.pepxml.jaxb.standard</package>
                 <package>umich.ms.fileio.filetypes.protxml</package>
                 <package>umich.ms.fileio.filetypes.protxml.jaxb.standard</package>
-                <package>umich.ms.fileio.filetypes.util</package>
                 <package>umich.ms.fileio.filetypes.xmlbased</package>
-                <package>umich.ms.fileio.util</package>
-                <package>umich.ms.util.jaxb</package>
+                <package>umich.ms.logging</package>
+                <package>umich.ms.msfiletoolbox</package>
                 <package>umich.ms.util</package>
                 <package>umich.ms.util.base64</package>
+                <package>umich.ms.util.file</package>
+                <package>umich.ms.util.jaxb</package>
+                <package>umich.ms.util.xml</package>
             </public-packages>
         </data>
     </configuration>

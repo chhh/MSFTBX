@@ -85,8 +85,8 @@
                 <binary-origin>release/modules/ext/com4j-2.2-SNAPSHOT.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/javolution-core-java-msftbx-6.11.7.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/javolution-core-java-msftbx-6.11.7.jar</binary-origin>
+                <runtime-relative-path>ext/javolution-core-java-msftbx-6.11.8.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/javolution-core-java-msftbx-6.11.8.jar</binary-origin>
             </class-path-extension>
         </data>
     </configuration>
