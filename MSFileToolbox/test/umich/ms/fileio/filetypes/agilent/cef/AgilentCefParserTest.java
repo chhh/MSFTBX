@@ -16,16 +16,13 @@
 
 package umich.ms.fileio.filetypes.agilent.cef;
 
-import org.junit.After;
-import org.junit.Before;
+import org.junit.Assert;
 import org.junit.Test;
 import umich.ms.fileio.ResourceUtils;
 import umich.ms.fileio.filetypes.agilent.cef.jaxb.CEF;
 
 import java.nio.file.Path;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 public class AgilentCefParserTest {
 
@@ -46,7 +43,7 @@ public class AgilentCefParserTest {
     public void parse() throws Exception {
         for (Path path : paths) {
             CEF cef = AgilentCefParser.parse(path);
-            int a = 1;
+            Assert.assertFalse(cef.getCompoundList().getCompound().isEmpty());
         }
     }
 }

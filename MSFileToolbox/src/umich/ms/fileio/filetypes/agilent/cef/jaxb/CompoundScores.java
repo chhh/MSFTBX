@@ -19,11 +19,9 @@ package umich.ms.fileio.filetypes.agilent.cef.jaxb;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 /**
@@ -35,8 +33,9 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * &lt;complexType>
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;attribute name="max" use="required" type="{http://www.w3.org/2001/XMLSchema}decimal" />
- *       &lt;attribute name="min" use="required" type="{http://www.w3.org/2001/XMLSchema}decimal" />
+ *       &lt;sequence>
+ *         &lt;element ref="{}CpdScore"/>
+ *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -45,65 +44,37 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "")
-@XmlRootElement(name = "RTRange")
-public class RTRange {
+@XmlType(name = "", propOrder = {
+    "cpdScore"
+})
+@XmlRootElement(name = "CompoundScores")
+public class CompoundScores {
 
-    @XmlAttribute(name = "max", required = true)
-    @XmlJavaTypeAdapter(Adapter2 .class)
-    @XmlSchemaType(name = "decimal")
-    protected Double max;
-    @XmlAttribute(name = "min", required = true)
-    @XmlJavaTypeAdapter(Adapter2 .class)
-    @XmlSchemaType(name = "decimal")
-    protected Double min;
+    @XmlElement(name = "CpdScore", required = true)
+    protected CpdScore cpdScore;
 
     /**
-     * Gets the value of the max property.
+     * Gets the value of the cpdScore property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link CpdScore }
      *     
      */
-    public Double getMax() {
-        return max;
+    public CpdScore getCpdScore() {
+        return cpdScore;
     }
 
     /**
-     * Sets the value of the max property.
+     * Sets the value of the cpdScore property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link CpdScore }
      *     
      */
-    public void setMax(Double value) {
-        this.max = value;
-    }
-
-    /**
-     * Gets the value of the min property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public Double getMin() {
-        return min;
-    }
-
-    /**
-     * Sets the value of the min property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setMin(Double value) {
-        this.min = value;
+    public void setCpdScore(CpdScore value) {
+        this.cpdScore = value;
     }
 
 }

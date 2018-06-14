@@ -23,6 +23,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
@@ -35,8 +36,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * &lt;complexType>
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;attribute name="max" use="required" type="{http://www.w3.org/2001/XMLSchema}decimal" />
- *       &lt;attribute name="min" use="required" type="{http://www.w3.org/2001/XMLSchema}decimal" />
+ *       &lt;attribute name="algo" use="required" type="{http://www.w3.org/2001/XMLSchema}NCName" />
+ *       &lt;attribute name="score" use="required" type="{http://www.w3.org/2001/XMLSchema}decimal" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -46,64 +47,64 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
-@XmlRootElement(name = "RTRange")
-public class RTRange {
+@XmlRootElement(name = "CpdScore")
+public class CpdScore {
 
-    @XmlAttribute(name = "max", required = true)
+    @XmlAttribute(name = "algo", required = true)
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @XmlSchemaType(name = "NCName")
+    protected String algo;
+    @XmlAttribute(name = "score", required = true)
     @XmlJavaTypeAdapter(Adapter2 .class)
     @XmlSchemaType(name = "decimal")
-    protected Double max;
-    @XmlAttribute(name = "min", required = true)
-    @XmlJavaTypeAdapter(Adapter2 .class)
-    @XmlSchemaType(name = "decimal")
-    protected Double min;
+    protected Double score;
 
     /**
-     * Gets the value of the max property.
+     * Gets the value of the algo property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public Double getMax() {
-        return max;
+    public String getAlgo() {
+        return algo;
     }
 
     /**
-     * Sets the value of the max property.
+     * Sets the value of the algo property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setMax(Double value) {
-        this.max = value;
+    public void setAlgo(String value) {
+        this.algo = value;
     }
 
     /**
-     * Gets the value of the min property.
+     * Gets the value of the score property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public Double getMin() {
-        return min;
+    public Double getScore() {
+        return score;
     }
 
     /**
-     * Sets the value of the min property.
+     * Sets the value of the score property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setMin(Double value) {
-        this.min = value;
+    public void setScore(Double value) {
+        this.score = value;
     }
 
 }

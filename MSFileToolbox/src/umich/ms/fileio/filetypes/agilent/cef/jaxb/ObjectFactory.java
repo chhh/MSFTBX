@@ -1,11 +1,12 @@
-/* 
- * Copyright 2016 Dmitry Avtonomov.
+
+/*
+ * Copyright (c) 2018 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package umich.ms.fileio.filetypes.agilent.cef.jaxb;
 
 import javax.xml.bind.annotation.XmlRegistry;
@@ -44,35 +46,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link MSPeaks }
+     * Create an instance of {@link MatchScores }
      * 
      */
-    public MSPeaks createMSPeaks() {
-        return new MSPeaks();
+    public MatchScores createMatchScores() {
+        return new MatchScores();
     }
 
     /**
-     * Create an instance of {@link P }
+     * Create an instance of {@link Match }
      * 
      */
-    public P createP() {
-        return new P();
+    public Match createMatch() {
+        return new Match();
     }
 
     /**
-     * Create an instance of {@link MSDetails }
+     * Create an instance of {@link CEF }
      * 
      */
-    public MSDetails createMSDetails() {
-        return new MSDetails();
-    }
-
-    /**
-     * Create an instance of {@link Device }
-     * 
-     */
-    public Device createDevice() {
-        return new Device();
+    public CEF createCEF() {
+        return new CEF();
     }
 
     /**
@@ -100,11 +94,51 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link CompoundScores }
+     * 
+     */
+    public CompoundScores createCompoundScores() {
+        return new CompoundScores();
+    }
+
+    /**
+     * Create an instance of {@link CpdScore }
+     * 
+     */
+    public CpdScore createCpdScore() {
+        return new CpdScore();
+    }
+
+    /**
+     * Create an instance of {@link Results }
+     * 
+     */
+    public Results createResults() {
+        return new Results();
+    }
+
+    /**
+     * Create an instance of {@link Molecule }
+     * 
+     */
+    public Molecule createMolecule() {
+        return new Molecule();
+    }
+
+    /**
      * Create an instance of {@link Spectrum }
      * 
      */
     public Spectrum createSpectrum() {
         return new Spectrum();
+    }
+
+    /**
+     * Create an instance of {@link MSDetails }
+     * 
+     */
+    public MSDetails createMSDetails() {
+        return new MSDetails();
     }
 
     /**
@@ -124,11 +158,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link CEF }
+     * Create an instance of {@link Device }
      * 
      */
-    public CEF createCEF() {
-        return new CEF();
+    public Device createDevice() {
+        return new Device();
+    }
+
+    /**
+     * Create an instance of {@link MSPeaks }
+     * 
+     */
+    public MSPeaks createMSPeaks() {
+        return new MSPeaks();
+    }
+
+    /**
+     * Create an instance of {@link P }
+     * 
+     */
+    public P createP() {
+        return new P();
     }
 
 }

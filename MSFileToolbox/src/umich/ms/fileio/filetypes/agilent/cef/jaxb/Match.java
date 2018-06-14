@@ -20,7 +20,6 @@ package umich.ms.fileio.filetypes.agilent.cef.jaxb;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
@@ -37,15 +36,10 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * &lt;complexType>
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element ref="{}Location"/>
- *         &lt;choice minOccurs="0">
- *           &lt;element ref="{}CompoundScores"/>
- *           &lt;element ref="{}Results"/>
- *         &lt;/choice>
- *         &lt;element ref="{}Spectrum"/>
- *       &lt;/sequence>
  *       &lt;attribute name="algo" use="required" type="{http://www.w3.org/2001/XMLSchema}NCName" />
+ *       &lt;attribute name="score" use="required" type="{http://www.w3.org/2001/XMLSchema}decimal" />
+ *       &lt;attribute name="tgtFlagsSeverity" type="{http://www.w3.org/2001/XMLSchema}integer" />
+ *       &lt;attribute name="tgtFlagsString" type="{http://www.w3.org/2001/XMLSchema}anySimpleType" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -54,123 +48,25 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "location",
-    "compoundScores",
-    "results",
-    "spectrum"
-})
-@XmlRootElement(name = "Compound")
-public class Compound {
+@XmlType(name = "")
+@XmlRootElement(name = "Match")
+public class Match {
 
-    @XmlElement(name = "Location", required = true)
-    protected Location location;
-    @XmlElement(name = "CompoundScores")
-    protected CompoundScores compoundScores;
-    @XmlElement(name = "Results")
-    protected Results results;
-    @XmlElement(name = "Spectrum", required = true)
-    protected Spectrum spectrum;
     @XmlAttribute(name = "algo", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     @XmlSchemaType(name = "NCName")
     protected String algo;
-
-    /**
-     * Gets the value of the location property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Location }
-     *     
-     */
-    public Location getLocation() {
-        return location;
-    }
-
-    /**
-     * Sets the value of the location property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Location }
-     *     
-     */
-    public void setLocation(Location value) {
-        this.location = value;
-    }
-
-    /**
-     * Gets the value of the compoundScores property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link CompoundScores }
-     *     
-     */
-    public CompoundScores getCompoundScores() {
-        return compoundScores;
-    }
-
-    /**
-     * Sets the value of the compoundScores property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link CompoundScores }
-     *     
-     */
-    public void setCompoundScores(CompoundScores value) {
-        this.compoundScores = value;
-    }
-
-    /**
-     * Gets the value of the results property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Results }
-     *     
-     */
-    public Results getResults() {
-        return results;
-    }
-
-    /**
-     * Sets the value of the results property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Results }
-     *     
-     */
-    public void setResults(Results value) {
-        this.results = value;
-    }
-
-    /**
-     * Gets the value of the spectrum property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Spectrum }
-     *     
-     */
-    public Spectrum getSpectrum() {
-        return spectrum;
-    }
-
-    /**
-     * Sets the value of the spectrum property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Spectrum }
-     *     
-     */
-    public void setSpectrum(Spectrum value) {
-        this.spectrum = value;
-    }
+    @XmlAttribute(name = "score", required = true)
+    @XmlJavaTypeAdapter(Adapter2 .class)
+    @XmlSchemaType(name = "decimal")
+    protected Double score;
+    @XmlAttribute(name = "tgtFlagsSeverity")
+    @XmlJavaTypeAdapter(Adapter1 .class)
+    @XmlSchemaType(name = "integer")
+    protected Integer tgtFlagsSeverity;
+    @XmlAttribute(name = "tgtFlagsString")
+    @XmlSchemaType(name = "anySimpleType")
+    protected String tgtFlagsString;
 
     /**
      * Gets the value of the algo property.
@@ -194,6 +90,78 @@ public class Compound {
      */
     public void setAlgo(String value) {
         this.algo = value;
+    }
+
+    /**
+     * Gets the value of the score property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public Double getScore() {
+        return score;
+    }
+
+    /**
+     * Sets the value of the score property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setScore(Double value) {
+        this.score = value;
+    }
+
+    /**
+     * Gets the value of the tgtFlagsSeverity property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public Integer getTgtFlagsSeverity() {
+        return tgtFlagsSeverity;
+    }
+
+    /**
+     * Sets the value of the tgtFlagsSeverity property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setTgtFlagsSeverity(Integer value) {
+        this.tgtFlagsSeverity = value;
+    }
+
+    /**
+     * Gets the value of the tgtFlagsString property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getTgtFlagsString() {
+        return tgtFlagsString;
+    }
+
+    /**
+     * Sets the value of the tgtFlagsString property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setTgtFlagsString(String value) {
+        this.tgtFlagsString = value;
     }
 
 }
