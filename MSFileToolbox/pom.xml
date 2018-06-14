@@ -32,7 +32,7 @@
 
     <groupId>com.github.chhh</groupId>
     <artifactId>msftbx</artifactId>
-    <version>1.8.3-SNAPSHOT</version>
+    <version>1.8.3</version>
     <packaging>jar</packaging>
 
     <name>MSFTBX</name>
@@ -44,7 +44,7 @@
         <connection>${scm.url}</connection>
         <developerConnection>${scm.url}</developerConnection>
         <url>${scm.url}</url>
-        <tag>v1.8.2</tag>
+        <tag>v1.8.3</tag>
     </scm>
 
 
@@ -114,7 +114,7 @@
         <dependency>
             <groupId>com.github.chhh</groupId>
             <artifactId>javolution-core-java-msftbx</artifactId>
-            <version>6.11.7</version>
+            <version>6.11.8</version>
         </dependency>
         <dependency>
             <groupId>org.biojava</groupId>

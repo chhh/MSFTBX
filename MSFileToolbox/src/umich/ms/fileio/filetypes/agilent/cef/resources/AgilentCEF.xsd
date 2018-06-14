@@ -28,7 +28,8 @@
     <xs:complexType>
       <xs:attribute name="m" use="required" type="xs:decimal"/>
       <xs:attribute name="rt" use="required" type="xs:decimal"/>
-      <xs:attribute name="v" use="required" type="xs:integer"/>
+      <xs:attribute name="v" use="optional" type="xs:integer"/>
+      <xs:attribute name="a" use="optional" type="xs:integer"/>
       <xs:attribute name="y" use="required" type="xs:integer"/>
     </xs:complexType>
   </xs:element>

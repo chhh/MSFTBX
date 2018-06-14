@@ -15,20 +15,15 @@
  */
 package umich.ms.fileio.filetypes.agilent.cef.example;
 
+import umich.ms.fileio.filetypes.agilent.cef.jaxb.*;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
-import java.util.regex.Pattern;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
-import umich.ms.fileio.filetypes.agilent.cef.jaxb.CEF;
-import umich.ms.fileio.filetypes.agilent.cef.jaxb.Compound;
-import umich.ms.fileio.filetypes.agilent.cef.jaxb.Location;
-import umich.ms.fileio.filetypes.agilent.cef.jaxb.P;
-import umich.ms.fileio.filetypes.agilent.cef.jaxb.RTRange;
-import umich.ms.fileio.filetypes.agilent.cef.jaxb.Spectrum;
 
 /**
  * Factory for features detected by Agilent MassHunter, stored as .cef files.
@@ -46,7 +41,7 @@ public class AgilentCefFile {
 //            "(?<%1$s>(?<%2$s>\\d*?M\\+(?<%3$s>\\d*?)(?<%4$s>[a-zA-Z\\d]+?)\\+?(?<%5s>\\[[^\\]]+?\\])\\+?(?<%6$s>\\d*)))",
 //            GRP_MOL_IDENTITY, GRP_M_COUNT, GRP_Z_COUNT, GRP_Z_CARRIER, GRP_ADDUCT, GRP_ISOTOPE_NUM));
 
-    Path path;
+    final Path path;
 
     public AgilentCefFile(Path path) {
         this.path = path;
@@ -77,13 +72,29 @@ public class AgilentCefFile {
             List<P> ps;
             for (Compound c : compList) {
                 AgilentCompound ac = new AgilentCompound();
+
                 l = c.getLocation();
+                if (l == null) {
+                    continue;
+                }
                 ac.setMass(l.getM());
                 ac.setRt(l.getRt());
                 ac.setAbMax(l.getY());
-                ac.setAbTot(l.getV());
+                Integer v = l.getV();
+                if (v == null)
+                    ac.setAbTot(0);
+                else
+                    ac.setAbTot(v);
                 s = c.getSpectrum();
+                if (s == null) {
+                    continue;
+                }
+                if (s.getRTRanges() == null)
+                    continue;
                 r = s.getRTRanges().getRTRange();
+                if (r == null) {
+                    continue;
+                }
                 ac.setRtLo(r.getMin());
                 ac.setRtHi(r.getMax());
                 ps = c.getSpectrum().getMSPeaks().getP();

@@ -57,10 +57,14 @@ public class Location {
     @XmlJavaTypeAdapter(Adapter2 .class)
     @XmlSchemaType(name = "decimal")
     protected Double rt;
-    @XmlAttribute(name = "v", required = true)
+    @XmlAttribute(name = "v", required = false)
     @XmlJavaTypeAdapter(Adapter1 .class)
     @XmlSchemaType(name = "integer")
     protected Integer v;
+    @XmlAttribute(name = "a", required = false)
+    @XmlJavaTypeAdapter(Adapter1 .class)
+    @XmlSchemaType(name = "integer")
+    protected Integer a;
     @XmlAttribute(name = "y", required = true)
     @XmlJavaTypeAdapter(Adapter1 .class)
     @XmlSchemaType(name = "integer")
@@ -137,6 +141,10 @@ public class Location {
     public void setV(Integer value) {
         this.v = value;
     }
+
+    public Integer getA() { return a; }
+
+    public void setA(Integer value) { this.a = value; }
 
     /**
      * Gets the value of the y property.

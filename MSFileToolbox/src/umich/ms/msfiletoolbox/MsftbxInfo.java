@@ -22,12 +22,16 @@ import java.util.*;
  * @author Dmitry Avtonomov
  */
 public class MsftbxInfo {
-    public static final String version = "1.8.3-SNAPSHOT";
+    public static final String version = "1.8.3";
 
     private static final TreeMap<String, List<String>> changelog = new TreeMap<>();
     private static final Map<String, List<String>> changelogImmutable = Collections.unmodifiableMap(changelog);
 
     static {
+        changelog.put("v1.8.3", Arrays.asList(
+                "Minor updates to Agilent CEF parsing. Added AgilentCefParser class for simplicity."
+        ));
+
         changelog.put("v1.8.2", Arrays.asList(
                 "Include JAXB dependency that's required to run with Java 9. Jaxb is removed from the Java SE " +
                         "SDK and moved into Java EE. For future-proofing, including the jaxb-api dependency. " +

@@ -52,16 +52,16 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlRootElement(name = "p")
 public class P {
 
-    @XmlAttribute(name = "rt", required = true)
+    @XmlAttribute(name = "rt", required = false)
     @XmlJavaTypeAdapter(Adapter2 .class)
     @XmlSchemaType(name = "decimal")
     protected Double rt;
     @XmlAttribute(name = "s", required = true)
-    @XmlSchemaType(name = "anySimpleType")
+    @XmlSchemaType(name = "string")
     protected String s;
     @XmlAttribute(name = "sat")
     protected Boolean sat;
-    @XmlAttribute(name = "v", required = true)
+    @XmlAttribute(name = "v", required = false)
     @XmlJavaTypeAdapter(Adapter1 .class)
     @XmlSchemaType(name = "integer")
     protected Integer v;
