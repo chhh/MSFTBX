@@ -1,0 +1,2662 @@
+﻿<CEF version="1.0.0.0">
+  <CompoundList>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="202.0330" rt="0.347" y="64840" v="163996" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="0.326" max="0.372" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="0.347" x="203.0403" y="64840.34" v="120047" z="1" s="M+H" />
+          <p rt="0.346" x="204.0416" y="12164.79" v="11282" z="1" s="M+H+1" />
+          <p rt="0.347" x="205.0341" y="17130.07" v="32668" z="1" s="M+H+2" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="175.9998" rt="0.347" y="202585" v="468427" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="0.280" max="0.379" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="0.347" x="158.9965" y="202584.91" v="392613" z="1" s="M+H+[-H2O]" />
+          <p rt="0.346" x="159.9997" y="10524.72" v="4241" z="1" s="M+H+[-H2O]+1" />
+          <p rt="0.347" x="177.0071" y="42543.80" v="71573" z="1" s="M+H" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="174.0379" rt="0.347" y="181415" v="448679" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="0.316" max="0.382" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="0.347" x="175.0452" y="181414.58" v="345601" z="1" s="M+H" />
+          <p rt="0.346" x="176.0468" y="31774.81" v="52744" z="1" s="M+H+1" />
+          <p rt="0.348" x="177.0414" y="28737.84" v="50334" z="1" s="M+H+2" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="218.0106" rt="0.348" y="262745" v="537167" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="0.306" max="0.386" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="0.348" x="219.0178" y="262744.59" v="509327" z="1" s="M+H" />
+          <p rt="0.346" x="220.0206" y="18569.21" v="27840" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="958.9584" rt="0.379" y="86833" v="347151" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="0.349" max="0.419" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="0.379" x="959.9657" y="86833.05" v="297112" z="1" s="M+H" />
+          <p rt="0.382" x="960.9677" y="16205.11" v="50039" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="251.0387" rt="0.386" y="480620" v="1853807" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="0.266" max="0.445" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="0.386" x="252.0459" y="480620.09" v="1516427" z="1" s="M+H" />
+          <p rt="0.387" x="253.0489" y="56588.16" v="170084" z="1" s="M+H+1" />
+          <p rt="0.386" x="254.0439" y="54896.64" v="167297" z="1" s="M+H+2" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="235.0655" rt="0.387" y="1426564" v="5729409" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="0.283" max="0.452" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="0.387" x="236.0728" y="1426563.63" v="4917869" z="1" s="M+H" />
+          <p rt="0.387" x="237.0753" y="184550.53" v="624431" z="1" s="M+H+1" />
+          <p rt="0.386" x="238.0699" y="56226.25" v="187108" z="1" s="M+H+2" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="146.0688" rt="0.437" y="309552" v="794925" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="0.406" max="0.492" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="0.438" x="147.0760" y="309551.56" v="781211" z="1" s="M+H" />
+          <p rt="0.425" x="169.0580" y="15008.14" v="13714" z="1" s="M+Na" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="197.0899" rt="0.456" y="120583" v="450221" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="0.419" max="0.505" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="0.458" x="180.0863" y="32690.50" v="86526" z="1" s="M+H+[-H2O]" />
+          <p rt="0.456" x="198.0972" y="120582.53" v="363695" z="1" s="M+H" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="161.1049" rt="0.460" y="557150" v="1649424" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="0.422" max="0.541" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="0.460" x="162.1121" y="557150.00" v="1551420" z="1" s="M+H" />
+          <p rt="0.460" x="163.1155" y="39804.44" v="98004" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="117.0788" rt="0.460" y="309704" v="1275552" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="0.412" max="0.555" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="0.460" x="118.0861" y="309704.13" v="1224807" z="1" s="M+H" />
+          <p rt="0.462" x="119.0893" y="18118.33" v="50745" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="113.0590" rt="0.486" y="331498" v="835627" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="0.455" max="0.541" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="0.486" x="114.0663" y="331498.47" v="802964" z="1" s="M+H" />
+          <p rt="0.485" x="115.0694" y="16918.05" v="32663" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="115.0634" rt="0.513" y="233511" v="757745" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="0.475" max="0.588" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="0.513" x="116.0706" y="233511.23" v="698970" z="1" s="M+H" />
+          <p rt="0.511" x="117.0739" y="13042.15" v="21014" z="1" s="M+H+1" />
+          <p rt="0.522" x="138.0539" y="17567.08" v="37761" z="1" s="M+Na" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="251.0382" rt="0.536" y="71931" v="208570" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="0.469" max="0.571" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="0.536" x="252.0455" y="71930.73" v="202085" z="1" s="M+H" />
+          <p rt="0.541" x="253.0482" y="11556.84" v="6485" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="345.0020" rt="0.562" y="145381" v="318426" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="0.545" max="0.614" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="0.562" x="346.0092" y="145381.30" v="285860" z="1" s="M+H" />
+          <p rt="0.562" x="347.0117" y="22379.62" v="32566" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="143.0945" rt="0.564" y="222519" v="354110" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="0.535" max="0.604" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="0.564" x="144.1017" y="222519.39" v="335829" z="1" s="M+H" />
+          <p rt="0.564" x="145.1049" y="16903.91" v="18281" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="364.0977" rt="0.579" y="189047" v="374514" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="0.558" max="0.618" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="0.579" x="365.1050" y="189047.42" v="338906" z="1" s="M+H" />
+          <p rt="0.579" x="366.1083" y="24384.44" v="35608" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="359.1425" rt="0.579" y="108241" v="221778" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="0.561" max="0.618" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="0.579" x="360.1498" y="108240.99" v="203376" z="1" s="M+H" />
+          <p rt="0.579" x="361.1529" y="15805.88" v="18402" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="223.1209" rt="1.215" y="110668" v="559194" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="1.125" max="1.337" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="1.215" x="224.1282" y="110668.43" v="521320" z="1" s="M+H" />
+          <p rt="1.214" x="225.1313" y="16826.00" v="37874" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="194.1153" rt="1.578" y="267381" v="1750328" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="1.486" max="1.718" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="1.577" x="195.1228" y="267381.44" v="1130434" z="1" s="M+H" />
+          <p rt="1.580" x="196.1258" y="27389.13" v="102414" z="1" s="M+H+1" />
+          <p rt="1.580" x="217.1042" y="119130.48" v="489869" z="1" s="M+Na" />
+          <p rt="1.582" x="218.1075" y="13471.51" v="27611" z="1" s="M+Na+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="255.1681" rt="1.674" y="165078" v="481009" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="1.645" max="1.808" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="1.674" x="256.1754" y="165078.48" v="440858" z="1" s="M+H" />
+          <p rt="1.675" x="257.1787" y="21325.62" v="40150" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="238.1416" rt="1.675" y="255632" v="982517" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="1.635" max="1.748" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="1.675" x="239.1488" y="255632.11" v="691277" z="1" s="M+H" />
+          <p rt="1.677" x="240.1521" y="28548.64" v="67336" z="1" s="M+H+1" />
+          <p rt="1.676" x="261.1309" y="81507.09" v="216715" z="1" s="M+Na" />
+          <p rt="1.673" x="262.1338" y="12209.67" v="7190" z="1" s="M+Na+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="129.1516" rt="1.735" y="105486" v="338316" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="1.692" max="1.781" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="1.735" x="130.1589" y="105485.84" v="323094" z="1" s="M+H" />
+          <p rt="1.734" x="131.1621" y="11578.47" v="15222" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="299.1943" rt="1.743" y="97426" v="317825" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="1.712" max="1.818" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="1.744" x="300.2016" y="97426.24" v="289468" z="1" s="M+H" />
+          <p rt="1.742" x="301.2044" y="14894.94" v="28357" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="113.0839" rt="1.781" y="735155" v="5550482" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="1.662" max="1.891" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="1.780" x="114.0912" y="735154.75" v="4622914" z="1" s="M+H" />
+          <p rt="1.783" x="115.0942" y="56368.86" v="357257" z="1" s="M+H+1" />
+          <p rt="1.784" x="136.0730" y="91746.09" v="570311" z="1" s="M+Na" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="226.1678" rt="1.815" y="74006" v="385790" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="1.738" max="1.878" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="1.816" x="227.1751" y="74005.93" v="337125" z="1" s="M+H" />
+          <p rt="1.808" x="249.1568" y="17051.50" v="48665" z="1" s="M+Na" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="148.1097" rt="1.922" y="260120" v="1488116" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="1.854" max="1.984" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="1.922" x="131.1062" y="20810.09" v="52064" z="1" s="M+H+[-H2O]" />
+          <p rt="1.921" x="149.1169" y="147049.73" v="414426" z="1" s="M+H" />
+          <p rt="1.921" x="150.1208" y="15268.29" v="25918" z="1" s="M+H+1" />
+          <p rt="1.923" x="171.0990" y="260119.91" v="932500" z="1" s="M+Na" />
+          <p rt="1.923" x="172.1023" y="22438.53" v="63208" z="1" s="M+Na+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="142.0990" rt="1.922" y="25332" v="175384" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="1.838" max="1.980" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="1.922" x="143.1061" y="25331.88" v="157616" z="1" s="M+H" />
+          <p rt="1.927" x="165.0896" y="12296.73" v="17769" z="1" s="M+Na" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="192.1340" rt="1.945" y="163886" v="457640" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="1.911" max="1.984" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="1.945" x="193.1428" y="29844.48" v="96308" z="1" s="M+H" />
+          <p rt="1.945" x="215.1228" y="163885.75" v="361332" z="1" s="M+Na" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="144.0783" rt="1.960" y="29033" v="92557" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="1.934" max="1.994" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="1.961" x="145.0855" y="29032.55" v="74529" z="1" s="M+H" />
+          <p rt="1.959" x="167.0678" y="12725.04" v="18028" z="1" s="M+Na" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="452.3358" rt="2.049" y="165558" v="739317" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.020" max="2.106" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.048" x="453.3432" y="165557.97" v="475929" z="1" s="M+H" />
+          <p rt="2.049" x="454.3461" y="45560.93" v="122725" z="1" s="M+H+1" />
+          <p rt="2.050" x="475.3247" y="42954.32" v="120784" z="1" s="M+Na" />
+          <p rt="2.047" x="476.3274" y="12748.90" v="19879" z="1" s="M+Na+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="176.1048" rt="2.068" y="65918" v="397827" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.027" max="2.153" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.067" x="177.1119" y="60010.84" v="166173" z="1" s="M+H" />
+          <p rt="2.069" x="199.0942" y="65917.84" v="231654" z="1" s="M+Na" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="250.1778" rt="2.112" y="83507" v="562650" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.066" max="2.222" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.111" x="251.1848" y="44590.11" v="150505" z="1" s="M+H" />
+          <p rt="2.113" x="273.1671" y="83507.35" v="338381" z="1" s="M+Na" />
+          <p rt="2.112" x="274.1679" y="22983.96" v="73763" z="1" s="M+Na+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="182.0713" rt="2.130" y="125632" v="386352" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.100" max="2.182" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.129" x="183.0787" y="125631.68" v="340339" z="1" s="M+H" />
+          <p rt="2.132" x="184.0817" y="10757.94" v="6297" z="1" s="M+H+1" />
+          <p rt="2.128" x="205.0593" y="19500.50" v="39716" z="1" s="M+Na" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="210.0892" rt="2.143" y="164511" v="762111" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.103" max="2.222" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.144" x="211.0958" y="60573.49" v="196848" z="1" s="M+H" />
+          <p rt="2.134" x="212.0976" y="12254.77" v="8988" z="1" s="M+H+1" />
+          <p rt="2.144" x="233.0787" y="164510.89" v="514198" z="1" s="M+Na" />
+          <p rt="2.142" x="234.0816" y="19686.08" v="42078" z="1" s="M+Na+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="162.1255" rt="2.153" y="453665" v="2329233" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.116" max="2.252" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.153" x="163.1327" y="453664.75" v="1314433" z="1" s="M+H" />
+          <p rt="2.153" x="164.1363" y="38772.31" v="96685" z="1" s="M+H+1" />
+          <p rt="2.153" x="185.1148" y="301928.44" v="850440" z="1" s="M+Na" />
+          <p rt="2.153" x="186.1181" y="27312.43" v="67675" z="1" s="M+Na+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="106.0642" rt="2.153" y="54975" v="259603" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.119" max="2.192" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.155" x="89.0602" y="28282.06" v="81815" z="1" s="M+H+[-H2O]" />
+          <p rt="2.153" x="107.0717" y="54974.65" v="177788" z="1" s="M+H" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="194.0580" rt="2.169" y="39494" v="142822" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.143" max="2.202" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.169" x="195.0652" y="39493.95" v="103787" z="1" s="M+H" />
+          <p rt="2.169" x="217.0472" y="20622.66" v="39035" z="1" s="M+Na" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="206.1519" rt="2.188" y="85960" v="520155" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.149" max="2.259" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.183" x="207.1590" y="85959.79" v="276174" z="1" s="M+H" />
+          <p rt="2.236" x="208.1555" y="11406.23" v="55617" z="1" s="M+H+1" />
+          <p rt="2.181" x="229.1414" y="62742.59" v="188364" z="1" s="M+Na" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="308.2187" rt="2.218" y="30369" v="156637" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.189" max="2.255" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.216" x="309.2251" y="23071.72" v="58582" z="1" s="M+H" />
+          <p rt="2.219" x="331.2086" y="30369.25" v="87317" z="1" s="M+Na" />
+          <p rt="2.219" x="332.2099" y="11698.25" v="10738" z="1" s="M+Na+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="192.0767" rt="2.223" y="37713" v="148066" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.179" max="2.269" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.223" x="175.0751" y="13381.19" v="25777" z="1" s="M+H+[-H2O]" />
+          <p rt="2.223" x="193.0836" y="37713.25" v="122289" z="1" s="M+H" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="190.1201" rt="2.238" y="45040" v="282006" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.199" max="2.328" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.239" x="173.1150" y="16467.53" v="72204" z="1" s="M+H+[-H2O]" />
+          <p rt="2.238" x="191.1277" y="45039.73" v="110729" z="1" s="M+H" />
+          <p rt="2.239" x="213.1103" y="30266.08" v="99074" z="1" s="M+Na" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="184.1468" rt="2.263" y="36415" v="285673" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.209" max="2.345" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.253" x="185.1538" y="36415.03" v="192476" z="1" s="M+H" />
+          <p rt="2.293" x="186.1505" y="18892.73" v="10745" z="1" s="M+H+1" />
+          <p rt="2.266" x="207.1366" y="16320.97" v="82452" z="1" s="M+Na" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="162.0678" rt="2.303" y="207487" v="687188" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.252" max="2.398" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.303" x="163.0751" y="207486.86" v="632833" z="1" s="M+H" />
+          <p rt="2.301" x="164.0786" y="22713.22" v="54354" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="238.1219" rt="2.304" y="461416" v="2501869" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.245" max="2.365" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.304" x="239.1299" y="234461.55" v="835827" z="1" s="M+H" />
+          <p rt="2.305" x="240.1326" y="34985.64" v="103653" z="1" s="M+H+1" />
+          <p rt="2.305" x="261.1106" y="461415.56" v="1378968" z="1" s="M+Na" />
+          <p rt="2.306" x="262.1140" y="62752.79" v="183421" z="1" s="M+Na+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="180.0423" rt="2.328" y="117422" v="488535" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.299" max="2.378" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.328" x="163.0390" y="117422.08" v="279779" z="1" s="M+H+[-H2O]" />
+          <p rt="2.329" x="164.0422" y="11920.24" v="13279" z="1" s="M+H+[-H2O]+1" />
+          <p rt="2.329" x="181.0495" y="69215.83" v="195477" z="1" s="M+H" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="194.0579" rt="2.328" y="498164" v="1564945" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.295" max="2.378" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.328" x="177.0546" y="498164.31" v="1316369" z="1" s="M+H+[-H2O]" />
+          <p rt="2.329" x="178.0578" y="48725.56" v="124586" z="1" s="M+H+[-H2O]+1" />
+          <p rt="2.329" x="195.0652" y="47742.89" v="123989" z="1" s="M+H" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="222.0893" rt="2.329" y="518768" v="2605434" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.292" max="2.385" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.329" x="223.0966" y="518767.84" v="1362371" z="1" s="M+H" />
+          <p rt="2.329" x="224.1003" y="67193.94" v="173209" z="1" s="M+H+1" />
+          <p rt="2.329" x="245.0785" y="357836.00" v="958453" z="1" s="M+Na" />
+          <p rt="2.329" x="246.0819" y="45036.94" v="111401" z="1" s="M+Na+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="254.1875" rt="2.348" y="35226" v="144687" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.315" max="2.375" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.347" x="255.1945" y="35226.18" v="100801" z="1" s="M+H" />
+          <p rt="2.351" x="277.1774" y="15509.77" v="43886" z="1" s="M+Na" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="190.1573" rt="2.351" y="94397" v="518033" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.285" max="2.418" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.351" x="191.1643" y="57342.30" v="172082" z="1" s="M+H" />
+          <p rt="2.350" x="213.1466" y="94397.17" v="345951" z="1" s="M+Na" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="170.1320" rt="2.351" y="42766" v="613017" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.236" max="2.464" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.349" x="171.1393" y="42765.90" v="402047" z="1" s="M+H" />
+          <p rt="2.356" x="193.1211" y="27025.12" v="210970" z="1" s="M+Na" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="254.1508" rt="2.353" y="40807" v="181517" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.315" max="2.405" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.350" x="255.1577" y="40806.85" v="124149" z="1" s="M+H" />
+          <p rt="2.358" x="277.1409" y="16765.85" v="57368" z="1" s="M+Na" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="403.1997" rt="2.353" y="100323" v="335694" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.325" max="2.398" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.354" x="404.2070" y="100323.33" v="266845" z="1" s="M+H" />
+          <p rt="2.353" x="405.2122" y="27355.48" v="68849" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="386.1746" rt="2.354" y="77098" v="344034" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.322" max="2.398" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.354" x="387.1818" y="77098.27" v="211450" z="1" s="M+H" />
+          <p rt="2.354" x="388.1853" y="17576.35" v="39102" z="1" s="M+H+1" />
+          <p rt="2.354" x="409.1640" y="38153.39" v="93481" z="1" s="M+Na" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="157.1466" rt="2.367" y="279224" v="850923" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.335" max="2.418" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.367" x="158.1539" y="279223.97" v="728340" z="1" s="M+H" />
+          <p rt="2.368" x="159.1570" y="27732.28" v="64777" z="1" s="M+H+1" />
+          <p rt="2.368" x="180.1360" y="25624.62" v="57806" z="1" s="M+Na" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="287.2825" rt="2.368" y="121058" v="406609" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.328" max="2.415" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.368" x="288.2898" y="121057.50" v="350726" z="1" s="M+H" />
+          <p rt="2.368" x="289.2927" y="23479.85" v="55883" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="326.0008" rt="2.384" y="164832" v="1110356" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.352" max="2.434" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.383" x="327.0082" y="164831.78" v="433860" z="1" s="M+H" />
+          <p rt="2.383" x="328.0117" y="16189.93" v="32406" z="1" s="M+H+1" />
+          <p rt="2.384" x="329.0054" y="158324.00" v="412701" z="1" s="M+H+2" />
+          <p rt="2.384" x="330.0086" y="14518.62" v="29060" z="1" s="M+H+3" />
+          <p rt="2.384" x="331.0021" y="50758.75" v="127264" z="1" s="M+H+4" />
+          <p rt="2.384" x="348.9896" y="32723.31" v="75066" z="1" s="M+Na" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="246.0897" rt="2.386" y="48895" v="238917" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.362" max="2.418" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.387" x="247.0968" y="46019.95" v="113132" z="1" s="M+H" />
+          <p rt="2.380" x="248.1023" y="12459.46" v="13400" z="1" s="M+H+1" />
+          <p rt="2.387" x="269.0790" y="48895.10" v="112385" z="1" s="M+Na" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="224.1399" rt="2.393" y="36465" v="149725" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.355" max="2.441" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.393" x="225.1474" y="36465.29" v="129966" z="1" s="M+H" />
+          <p rt="2.389" x="247.1272" y="13960.00" v="19759" z="1" s="M+Na" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="214.1571" rt="2.429" y="87012" v="762398" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.365" max="2.537" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.430" x="215.1643" y="87012.30" v="469124" z="1" s="M+H" />
+          <p rt="2.426" x="216.1669" y="13583.41" v="34109" z="1" s="M+H+1" />
+          <p rt="2.427" x="237.1464" y="45769.24" v="259164" z="1" s="M+Na" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="459.2626" rt="2.433" y="74630" v="290896" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.405" max="2.478" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.433" x="460.2699" y="74630.05" v="226141" z="1" s="M+H" />
+          <p rt="2.433" x="461.2731" y="23265.19" v="64755" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="431.2322" rt="2.435" y="1696515" v="7703446" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.395" max="2.501" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.435" x="432.2395" y="1696515.13" v="5624671" z="1" s="M+H" />
+          <p rt="2.434" x="433.2416" y="543645.13" v="1741953" z="1" s="M+H+1" />
+          <p rt="2.434" x="434.2448" y="88333.70" v="286931" z="1" s="M+H+2" />
+          <p rt="2.434" x="435.2531" y="15609.90" v="49890" z="1" s="M+H+3" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="315.3137" rt="2.435" y="59963" v="186931" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.401" max="2.474" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.435" x="316.3209" y="59963.19" v="169134" z="1" s="M+H" />
+          <p rt="2.435" x="317.3244" y="12280.74" v="17798" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="414.2049" rt="2.436" y="1288109" v="9333826" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.395" max="2.534" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.435" x="415.2124" y="1288108.50" v="4380412" z="1" s="M+H" />
+          <p rt="2.435" x="416.2150" y="354870.75" v="1187694" z="1" s="M+H+1" />
+          <p rt="2.435" x="417.2178" y="63250.75" v="206527" z="1" s="M+H+2" />
+          <p rt="2.437" x="437.1938" y="694668.94" v="2487733" z="1" s="M+Na" />
+          <p rt="2.437" x="438.1971" y="175879.59" v="641960" z="1" s="M+Na+1" />
+          <p rt="2.436" x="439.2037" y="35913.72" v="130141" z="1" s="M+Na+2" />
+          <p rt="2.437" x="453.1682" y="43380.76" v="130225" z="1" s="M+K" />
+          <p rt="2.434" x="454.1712" y="11681.88" v="13319" z="1" s="M+K+1" />
+          <p rt="2.434" x="851.3974" y="25299.09" v="56397" z="1" s="2M+Na" />
+          <p rt="2.434" x="852.4006" y="13056.96" v="21511" z="1" s="2M+Na+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="336.0971" rt="2.456" y="86267" v="355990" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.415" max="2.531" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.457" x="337.1044" y="86267.20" v="317101" z="1" s="M+H" />
+          <p rt="2.456" x="338.1075" y="16882.04" v="38889" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="250.1209" rt="2.470" y="109857" v="565328" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.431" max="2.537" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.470" x="251.1280" y="109856.88" v="314150" z="1" s="M+H" />
+          <p rt="2.470" x="252.1311" y="22298.14" v="50714" z="1" s="M+H+1" />
+          <p rt="2.471" x="273.1103" y="71475.41" v="200465" z="1" s="M+Na" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="184.1469" rt="2.473" y="32706" v="306602" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.421" max="2.524" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.472" x="167.1428" y="24970.73" v="89554" z="1" s="M+H+[-H2O]" />
+          <p rt="2.473" x="185.1540" y="32706.24" v="132973" z="1" s="M+H" />
+          <p rt="2.472" x="207.1371" y="21328.84" v="84076" z="1" s="M+Na" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="216.1725" rt="2.473" y="297969" v="1415975" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.421" max="2.564" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.475" x="199.1698" y="94305.63" v="363853" z="1" s="M+H+[-H2O]" />
+          <p rt="2.474" x="200.1725" y="13243.36" v="20414" z="1" s="M+H+[-H2O]+1" />
+          <p rt="2.473" x="217.1775" y="21477.54" v="49250" z="1" s="M+H" />
+          <p rt="2.473" x="239.1616" y="297969.38" v="847428" z="1" s="M+Na" />
+          <p rt="2.473" x="240.1651" y="48415.66" v="135030" z="1" s="M+Na+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="228.1710" rt="2.477" y="37720" v="250801" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.425" max="2.547" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.480" x="229.1797" y="26161.66" v="85280" z="1" s="M+H" />
+          <p rt="2.476" x="251.1595" y="37719.67" v="165521" z="1" s="M+Na" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="342.2870" rt="2.479" y="27120" v="127964" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.451" max="2.521" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.479" x="343.2955" y="23149.18" v="52149" z="1" s="M+H" />
+          <p rt="2.480" x="365.2753" y="27120.28" v="75815" z="1" s="M+Na" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="326.0708" rt="2.491" y="80022" v="279022" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.461" max="2.531" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.492" x="327.0781" y="80022.19" v="214368" z="1" s="M+H" />
+          <p rt="2.491" x="328.0814" y="15553.57" v="28842" z="1" s="M+H+1" />
+          <p rt="2.490" x="349.0596" y="17613.08" v="35812" z="1" s="M+Na" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="293.1997" rt="2.492" y="135873" v="501707" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.431" max="2.554" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.493" x="294.2070" y="135873.44" v="405892" z="1" s="M+H" />
+          <p rt="2.488" x="295.2132" y="28552.96" v="95815" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="296.2348" rt="2.492" y="33909" v="159402" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.458" max="2.550" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.492" x="297.2421" y="33909.28" v="123032" z="1" s="M+H" />
+          <p rt="2.493" x="319.2239" y="14895.00" v="36371" z="1" s="M+Na" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="210.1619" rt="2.501" y="28563" v="134944" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.448" max="2.544" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.500" x="211.1688" y="28563.04" v="108563" z="1" s="M+H" />
+          <p rt="2.502" x="233.1526" y="12343.94" v="26381" z="1" s="M+Na" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="451.3142" rt="2.530" y="55878" v="187907" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.504" max="2.567" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.531" x="452.3215" y="55878.43" v="147644" z="1" s="M+H" />
+          <p rt="2.529" x="453.3237" y="18058.94" v="40263" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="287.2462" rt="2.539" y="47590" v="240006" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.514" max="2.580" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.542" x="288.2534" y="46741.86" v="121666" z="1" s="M+H" />
+          <p rt="2.536" x="310.2355" y="47589.71" v="118340" z="1" s="M+Na" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="162.0679" rt="2.547" y="195451" v="807522" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.468" max="2.633" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.547" x="163.0752" y="195451.47" v="742805" z="1" s="M+H" />
+          <p rt="2.548" x="164.0787" y="22988.03" v="64717" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="342.1475" rt="2.547" y="197304" v="1106382" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.507" max="2.620" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.547" x="343.1556" y="90602.95" v="274285" z="1" s="M+H" />
+          <p rt="2.547" x="344.1608" y="23157.35" v="61815" z="1" s="M+H+1" />
+          <p rt="2.548" x="365.1364" y="197303.77" v="649643" z="1" s="M+Na" />
+          <p rt="2.547" x="366.1394" y="41046.43" v="120639" z="1" s="M+Na+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="359.1736" rt="2.548" y="55499" v="204282" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.514" max="2.607" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.548" x="360.1809" y="55498.55" v="177282" z="1" s="M+H" />
+          <p rt="2.546" x="361.1852" y="14326.20" v="27000" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="357.1944" rt="2.557" y="38509" v="150662" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.524" max="2.617" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.560" x="358.2017" y="38508.93" v="138060" z="1" s="M+H" />
+          <p rt="2.549" x="359.2049" y="11549.47" v="12602" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="312.1371" rt="2.561" y="1468623" v="12603587" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.468" max="2.657" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.561" x="313.1447" y="1468623.25" v="5466386" z="1" s="M+H" />
+          <p rt="2.560" x="314.1471" y="360799.81" v="1376927" z="1" s="M+H+1" />
+          <p rt="2.561" x="315.1506" y="51506.11" v="181829" z="1" s="M+H+2" />
+          <p rt="2.561" x="335.1260" y="948937.00" v="3766460" z="1" s="M+Na" />
+          <p rt="2.560" x="336.1289" y="197901.50" v="763394" z="1" s="M+Na+1" />
+          <p rt="2.558" x="337.1300" y="31566.40" v="102739" z="1" s="M+Na+2" />
+          <p rt="2.562" x="351.0992" y="49520.87" v="173219" z="1" s="M+K" />
+          <p rt="2.561" x="352.1023" y="10886.79" v="8608" z="1" s="M+K+1" />
+          <p rt="2.558" x="647.2619" y="111220.03" v="269520" z="1" s="2M+Na" />
+          <p rt="2.558" x="648.2648" y="45710.28" v="101971" z="1" s="2M+Na+1" />
+          <p rt="2.558" x="649.2676" y="11199.83" v="10521" z="1" s="2M+Na+2" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="90.0472" rt="2.561" y="157240" v="527555" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.521" max="2.620" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.561" x="91.0545" y="157240.47" v="508948" z="1" s="M+H" />
+          <p rt="2.560" x="92.0578" y="12755.64" v="18607" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="612.2704" rt="2.570" y="199264" v="664199" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.537" max="2.613" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.570" x="613.2777" y="199263.88" v="470599" z="1" s="M+H" />
+          <p rt="2.570" x="614.2809" y="70757.91" v="162073" z="1" s="M+H+1" />
+          <p rt="2.569" x="615.2846" y="17019.78" v="31528" z="1" s="M+H+2" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="268.2403" rt="2.570" y="51184" v="286380" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.524" max="2.710" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.571" x="269.2475" y="51184.02" v="276240" z="1" s="M+H" />
+          <p rt="2.567" x="270.2505" y="10741.47" v="10139" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="204.0789" rt="2.572" y="415917" v="1633713" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.501" max="2.627" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.572" x="205.0862" y="415916.72" v="1457740" z="1" s="M+H" />
+          <p rt="2.572" x="206.0896" y="52856.80" v="175973" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="194.0585" rt="2.572" y="120566" v="455827" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.521" max="2.660" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.572" x="195.0657" y="120566.24" v="432932" z="1" s="M+H" />
+          <p rt="2.571" x="196.0685" y="14286.34" v="22895" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="148.0161" rt="2.573" y="488444" v="1726318" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.521" max="2.620" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.573" x="149.0234" y="488444.38" v="1591583" z="1" s="M+H" />
+          <p rt="2.572" x="150.0267" y="43178.20" v="134735" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="180.0424" rt="2.573" y="315028" v="2191889" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.514" max="2.663" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.572" x="163.0391" y="307047.19" v="937423" z="1" s="M+H+[-H2O]" />
+          <p rt="2.573" x="164.0424" y="27603.78" v="73948" z="1" s="M+H+[-H2O]+1" />
+          <p rt="2.573" x="181.0498" y="315027.88" v="1092021" z="1" s="M+H" />
+          <p rt="2.573" x="182.0531" y="30969.00" v="88498" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="278.1528" rt="2.578" y="1451459" v="10670901" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.468" max="2.657" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.578" x="279.1603" y="1451458.63" v="5512074" z="1" s="M+H" />
+          <p rt="2.578" x="280.1629" y="280142.25" v="1015218" z="1" s="M+H+1" />
+          <p rt="2.578" x="281.1672" y="43951.58" v="140807" z="1" s="M+H+2" />
+          <p rt="2.580" x="301.1416" y="728057.75" v="2676760" z="1" s="M+Na" />
+          <p rt="2.579" x="302.1452" y="122638.55" v="399614" z="1" s="M+Na+1" />
+          <p rt="2.578" x="303.1479" y="18132.31" v="52042" z="1" s="M+Na+2" />
+          <p rt="2.582" x="317.1154" y="21878.71" v="49720" z="1" s="M+K" />
+          <p rt="2.578" x="579.2938" y="132907.30" v="306150" z="1" s="2M+Na" />
+          <p rt="2.577" x="580.2967" y="42495.11" v="99883" z="1" s="2M+Na+1" />
+          <p rt="2.585" x="581.3069" y="10971.51" v="6299" z="1" s="2M+Na+2" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="323.2098" rt="2.582" y="39122" v="138770" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.541" max="2.623" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.580" x="324.2171" y="39122.27" v="131789" z="1" s="M+H" />
+          <p rt="2.587" x="325.2186" y="12334.90" v="6981" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="296.1963" rt="2.606" y="70059" v="223684" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.570" max="2.650" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.606" x="297.2036" y="70058.50" v="207526" z="1" s="M+H" />
+          <p rt="2.604" x="298.2072" y="12352.50" v="16158" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="372.2875" rt="2.609" y="32738" v="122834" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.580" max="2.650" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.609" x="355.2842" y="32738.06" v="96069" z="1" s="M+H+[-H2O]" />
+          <p rt="2.610" x="373.2948" y="15685.09" v="26765" z="1" s="M+H" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="356.2926" rt="2.613" y="49635" v="161756" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.584" max="2.657" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.614" x="357.2999" y="49635.48" v="142773" z="1" s="M+H" />
+          <p rt="2.612" x="358.3022" y="13528.93" v="18983" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="394.2695" rt="2.615" y="111116" v="495139" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.574" max="2.686" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.615" x="395.2768" y="111115.82" v="412542" z="1" s="M+H" />
+          <p rt="2.615" x="396.2799" y="26779.78" v="82597" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="396.2853" rt="2.615" y="159112" v="584297" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.577" max="2.673" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.615" x="397.2925" y="159111.98" v="483686" z="1" s="M+H" />
+          <p rt="2.616" x="398.2958" y="36505.14" v="100610" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="299.9848" rt="2.661" y="41983" v="126065" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.630" max="2.703" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.661" x="300.9921" y="41982.78" v="119816" z="1" s="M+H" />
+          <p rt="2.663" x="322.9726" y="10976.26" v="6249" z="1" s="M+Na" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="493.3169" rt="2.669" y="40817" v="195890" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.637" max="2.716" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.670" x="494.3241" y="40816.79" v="129080" z="1" s="M+H" />
+          <p rt="2.664" x="495.3270" y="13635.48" v="23521" z="1" s="M+H+1" />
+          <p rt="2.671" x="516.3063" y="16504.55" v="43290" z="1" s="M+Na" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="543.3323" rt="2.692" y="201979" v="1407798" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.633" max="2.759" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.692" x="544.3395" y="201978.52" v="801258" z="1" s="M+H" />
+          <p rt="2.692" x="545.3430" y="59757.88" v="230701" z="1" s="M+H+1" />
+          <p rt="2.691" x="566.3219" y="83255.72" v="293737" z="1" s="M+Na" />
+          <p rt="2.692" x="567.3254" y="27438.94" v="82101" z="1" s="M+Na+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="250.0398" rt="2.700" y="82221" v="304288" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.663" max="2.759" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.700" x="251.0471" y="82220.54" v="266822" z="1" s="M+H" />
+          <p rt="2.697" x="252.0487" y="15500.07" v="37466" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="609.3019" rt="2.703" y="38944" v="127707" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.673" max="2.749" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.704" x="610.3091" y="38943.96" v="116351" z="1" s="M+H" />
+          <p rt="2.701" x="611.3124" y="12040.04" v="11356" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="310.2872" rt="2.706" y="50399" v="239037" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.670" max="2.759" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.707" x="311.2944" y="50399.08" v="163602" z="1" s="M+H" />
+          <p rt="2.703" x="312.2976" y="12046.49" v="10800" z="1" s="M+H+1" />
+          <p rt="2.707" x="333.2764" y="22389.66" v="64635" z="1" s="M+Na" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="519.3328" rt="2.707" y="760988" v="5627513" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.637" max="2.879" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.707" x="520.3402" y="760988.19" v="3070182" z="1" s="M+H" />
+          <p rt="2.707" x="521.3437" y="226371.36" v="871158" z="1" s="M+H+1" />
+          <p rt="2.702" x="522.3460" y="41441.27" v="96988" z="1" s="M+H+2" />
+          <p rt="2.706" x="542.3219" y="356073.84" v="1263912" z="1" s="M+Na" />
+          <p rt="2.706" x="543.3253" y="99683.82" v="325274" z="1" s="M+Na+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="319.2723" rt="2.730" y="82229" v="252372" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.700" max="2.779" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.730" x="320.2796" y="82229.45" v="215873" z="1" s="M+H" />
+          <p rt="2.728" x="321.2822" y="18414.93" v="36499" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="302.2459" rt="2.730" y="674179" v="3022074" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.680" max="2.812" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.729" x="285.2428" y="56013.70" v="159166" z="1" s="M+H+[-H2O]" />
+          <p rt="2.729" x="303.2532" y="178698.09" v="468599" z="1" s="M+H" />
+          <p rt="2.729" x="304.2559" y="35528.29" v="84515" z="1" s="M+H+1" />
+          <p rt="2.730" x="325.2351" y="674178.75" v="1933155" z="1" s="M+Na" />
+          <p rt="2.730" x="326.2391" y="114991.59" v="320068" z="1" s="M+Na+1" />
+          <p rt="2.728" x="327.2443" y="20378.13" v="45944" z="1" s="M+Na+2" />
+          <p rt="2.729" x="341.2050" y="11157.59" v="10628" z="1" s="M+K" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="545.3479" rt="2.755" y="51792" v="305914" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.676" max="2.829" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.756" x="546.3551" y="51792.23" v="254640" z="1" s="M+H" />
+          <p rt="2.754" x="547.3592" y="17552.65" v="51274" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="103.0999" rt="2.760" y="494861" v="3803536" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.630" max="2.862" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.760" x="104.1072" y="494861.16" v="3621009" z="1" s="M+H" />
+          <p rt="2.764" x="105.1105" y="28078.58" v="182526" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="495.3333" rt="2.771" y="1238747" v="9650263" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.690" max="2.855" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.771" x="496.3408" y="1238747.00" v="5099525" z="1" s="M+H" />
+          <p rt="2.771" x="497.3433" y="344879.94" v="1425170" z="1" s="M+H+1" />
+          <p rt="2.771" x="498.3461" y="59897.75" v="234748" z="1" s="M+H+2" />
+          <p rt="2.771" x="518.3221" y="620445.19" v="2278624" z="1" s="M+Na" />
+          <p rt="2.771" x="519.3257" y="166578.84" v="612197" z="1" s="M+Na+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="585.3020" rt="2.771" y="72937" v="313060" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.733" max="2.832" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.772" x="586.3093" y="72937.27" v="252124" z="1" s="M+H" />
+          <p rt="2.771" x="587.3123" y="21433.79" v="60936" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="316.2615" rt="2.810" y="161782" v="669983" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.759" max="2.869" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.808" x="317.2685" y="37445.80" v="93341" z="1" s="M+H" />
+          <p rt="2.810" x="339.2508" y="161782.23" v="495924" z="1" s="M+Na" />
+          <p rt="2.810" x="340.2538" y="31958.54" v="80718" z="1" s="M+Na+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="521.3484" rt="2.811" y="304157" v="2362724" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.736" max="2.905" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.809" x="522.3556" y="304157.00" v="1273772" z="1" s="M+H" />
+          <p rt="2.809" x="523.3589" y="84118.98" v="334825" z="1" s="M+H+1" />
+          <p rt="2.864" x="524.3673" y="16056.23" v="85461" z="1" s="M+H+2" />
+          <p rt="2.807" x="544.3380" y="133845.00" v="515077" z="1" s="M+Na" />
+          <p rt="2.807" x="545.3406" y="40709.52" v="153590" z="1" s="M+Na+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="349.2052" rt="2.812" y="50450" v="195833" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.783" max="2.859" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.812" x="350.2125" y="50450.38" v="146720" z="1" s="M+H" />
+          <p rt="2.815" x="351.2138" y="19085.92" v="49113" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="334.2140" rt="2.825" y="52174" v="351111" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.773" max="2.885" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.824" x="335.2214" y="52174.27" v="208329" z="1" s="M+H" />
+          <p rt="2.824" x="336.2225" y="12386.08" v="24285" z="1" s="M+H+1" />
+          <p rt="2.826" x="357.2028" y="32289.65" v="114251" z="1" s="M+Na" />
+          <p rt="2.825" x="358.2067" y="11255.76" v="4246" z="1" s="M+Na+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="426.2954" rt="2.847" y="47010" v="129268" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.822" max="2.885" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.848" x="427.3027" y="47009.64" v="117982" z="1" s="M+H" />
+          <p rt="2.846" x="428.3052" y="12043.29" v="11285" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="255.2563" rt="2.862" y="64524" v="178394" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.832" max="2.918" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.862" x="256.2636" y="64523.94" v="171678" z="1" s="M+H" />
+          <p rt="2.862" x="257.2666" y="11552.59" v="6716" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="553.5433" rt="2.872" y="52159" v="223094" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.846" max="2.965" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.872" x="554.5506" y="52158.73" v="185869" z="1" s="M+H" />
+          <p rt="2.870" x="555.5536" y="20274.32" v="37226" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="347.3046" rt="2.899" y="1459095" v="6389314" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.849" max="2.991" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.899" x="348.3119" y="1459095.00" v="5054431" z="1" s="M+H" />
+          <p rt="2.898" x="349.3143" y="344755.78" v="1185647" z="1" s="M+H+1" />
+          <p rt="2.898" x="350.3172" y="46530.10" v="149236" z="1" s="M+H+2" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="420.2469" rt="2.901" y="141028" v="619538" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.855" max="2.978" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.901" x="421.2541" y="141028.31" v="516123" z="1" s="M+H" />
+          <p rt="2.900" x="422.2574" y="31936.24" v="103415" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="565.3416" rt="2.901" y="94755" v="542276" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.836" max="2.975" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.901" x="566.3488" y="94754.53" v="418706" z="1" s="M+H" />
+          <p rt="2.900" x="567.3518" y="32001.16" v="123570" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="434.2623" rt="2.901" y="76288" v="406764" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.862" max="3.025" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.901" x="435.2696" y="76287.56" v="349173" z="1" s="M+H" />
+          <p rt="2.900" x="436.2726" y="18483.28" v="57592" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="330.2784" rt="2.902" y="3087939" v="34344204" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.819" max="3.031" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.899" x="313.2740" y="480475.44" v="1661126" z="1" s="M+H+[-H2O]" />
+          <p rt="2.899" x="314.2775" y="91479.11" v="306155" z="1" s="M+H+[-H2O]+1" />
+          <p rt="2.895" x="315.2781" y="12811.57" v="20776" z="1" s="M+H+[-H2O]+2" />
+          <p rt="2.900" x="331.2859" y="1832721.50" v="6786875" z="1" s="M+H" />
+          <p rt="2.899" x="332.2881" y="450636.44" v="1641611" z="1" s="M+H+1" />
+          <p rt="2.899" x="333.2907" y="60051.18" v="208377" z="1" s="M+H+2" />
+          <p rt="2.904" x="353.2677" y="3087939.00" v="15454168" z="1" sat="true" s="M+Na" />
+          <p rt="2.901" x="354.2704" y="978513.38" v="4721634" z="1" s="M+Na+1" />
+          <p rt="2.900" x="355.2730" y="135819.22" v="623706" z="1" s="M+Na+2" />
+          <p rt="2.900" x="356.2756" y="12129.01" v="55705" z="1" s="M+Na+3" />
+          <p rt="2.907" x="369.2395" y="28011.03" v="147203" z="1" s="M+K" />
+          <p rt="2.898" x="683.5436" y="313799.66" v="922082" z="1" s="2M+Na" />
+          <p rt="2.899" x="684.5474" y="123807.13" v="361230" z="1" s="2M+Na+1" />
+          <p rt="2.898" x="685.5499" y="28916.12" v="75125" z="1" s="2M+Na+2" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="523.3639" rt="2.953" y="255512" v="1846425" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.899" max="3.071" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.953" x="524.3711" y="255512.30" v="1068837" z="1" s="M+H" />
+          <p rt="2.953" x="525.3743" y="71731.99" v="286464" z="1" s="M+H+1" />
+          <p rt="2.952" x="526.3768" y="13360.41" v="26624" z="1" s="M+H+2" />
+          <p rt="2.953" x="546.3532" y="91236.73" v="365743" z="1" s="M+Na" />
+          <p rt="2.952" x="547.3562" y="28686.82" v="98756" z="1" s="M+Na+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="361.3195" rt="2.995" y="134622" v="518365" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.942" max="3.054" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.995" x="362.3268" y="134621.53" v="425405" z="1" s="M+H" />
+          <p rt="2.995" x="363.3297" y="34883.77" v="92959" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="344.2929" rt="2.995" y="674404" v="3575320" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.932" max="3.074" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="2.996" x="327.2894" y="27047.18" v="79349" z="1" s="M+H+[-H2O]" />
+          <p rt="2.995" x="345.3003" y="153256.31" v="512605" z="1" s="M+H" />
+          <p rt="2.993" x="346.3026" y="23470.33" v="72462" z="1" s="M+H+1" />
+          <p rt="2.995" x="367.2821" y="674404.00" v="2362849" z="1" s="M+Na" />
+          <p rt="2.995" x="368.2856" y="137746.28" v="477298" z="1" s="M+Na+1" />
+          <p rt="2.995" x="369.2880" y="22071.39" v="58065" z="1" s="M+Na+2" />
+          <p rt="2.993" x="383.2536" y="11204.13" v="12693" z="1" s="M+K" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="362.2452" rt="3.003" y="53767" v="541895" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.932" max="3.078" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="3.003" x="363.2527" y="53767.18" v="300536" z="1" s="M+H" />
+          <p rt="3.003" x="364.2554" y="14204.18" v="52518" z="1" s="M+H+1" />
+          <p rt="3.004" x="385.2340" y="36056.57" v="188840" z="1" s="M+Na" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="282.2559" rt="3.032" y="22411" v="103227" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="3.005" max="3.064" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="3.032" x="283.2630" y="19615.65" v="53968" z="1" s="M+H" />
+          <p rt="3.032" x="305.2452" y="22411.15" v="49259" z="1" s="M+Na" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="581.5745" rt="3.032" y="54250" v="248412" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="2.998" max="3.081" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="3.033" x="582.5818" y="54250.00" v="185256" z="1" s="M+H" />
+          <p rt="3.030" x="583.5849" y="21238.91" v="63156" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="454.3269" rt="3.041" y="84907" v="280596" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="3.008" max="3.094" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="3.041" x="455.3341" y="84906.95" v="231406" z="1" s="M+H" />
+          <p rt="3.040" x="456.3375" y="23047.30" v="49191" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="283.2877" rt="3.064" y="99888" v="290751" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="3.034" max="3.131" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="3.063" x="284.2950" y="99888.46" v="251543" z="1" s="M+H" />
+          <p rt="3.065" x="285.2977" y="21822.14" v="39208" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="593.3730" rt="3.106" y="100697" v="685297" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="3.028" max="3.197" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="3.106" x="594.3803" y="100697.05" v="509725" z="1" s="M+H" />
+          <p rt="3.106" x="595.3831" y="34119.41" v="165012" z="1" s="M+H+1" />
+          <p rt="3.102" x="596.3831" y="11418.66" v="10559" z="1" s="M+H+2" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="340.2980" rt="3.107" y="365316" v="2003275" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="3.028" max="3.194" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="3.107" x="341.3053" y="365315.69" v="1577846" z="1" s="M+H" />
+          <p rt="3.106" x="342.3087" y="80071.45" v="408118" z="1" s="M+H+1" />
+          <p rt="3.101" x="343.3113" y="11196.17" v="17312" z="1" s="M+H+2" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="375.3366" rt="3.108" y="2022817" v="12364579" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="3.048" max="3.217" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="3.109" x="376.3438" y="2022817.38" v="9385699" z="1" sat="true" s="M+H" />
+          <p rt="3.107" x="377.3459" y="568346.13" v="2614019" z="1" s="M+H+1" />
+          <p rt="3.107" x="378.3489" y="80026.86" v="353725" z="1" s="M+H+2" />
+          <p rt="3.094" x="379.3516" y="2519.38" v="11136" z="1" s="M+H+3" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="358.3097" rt="3.109" y="3305372" v="44637756" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="3.011" max="3.227" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="3.109" x="359.3174" y="1954038.38" v="9292773" z="1" sat="true" s="M+H" />
+          <p rt="3.107" x="360.3195" y="542038.38" v="2498474" z="1" s="M+H+1" />
+          <p rt="3.109" x="361.3225" y="73851.02" v="318304" z="1" s="M+H+2" />
+          <p rt="3.110" x="381.2988" y="3305371.50" v="19411412" z="1" sat="true" s="M+Na" />
+          <p rt="3.108" x="382.3021" y="1184278.50" v="6452657" z="1" s="M+Na+1" />
+          <p rt="3.107" x="383.3044" y="179839.73" v="1002587" z="1" s="M+Na+2" />
+          <p rt="3.106" x="384.3071" y="16422.88" v="88473" z="1" s="M+Na+3" />
+          <p rt="3.111" x="397.2711" y="27684.03" v="138492" z="1" s="M+K" />
+          <p rt="3.105" x="739.6066" y="513431.28" v="1740758" z="1" s="2M+Na" />
+          <p rt="3.105" x="740.6102" y="232298.56" v="784585" z="1" s="2M+Na+1" />
+          <p rt="3.104" x="741.6131" y="57112.66" v="182962" z="1" s="2M+Na+2" />
+          <p rt="3.105" x="742.6144" y="2804.75" v="8989" z="1" s="2M+Na+3" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="462.2936" rt="3.110" y="62696" v="398428" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="3.041" max="3.187" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="3.110" x="463.3008" y="62695.94" v="330195" z="1" s="M+H" />
+          <p rt="3.109" x="464.3038" y="16725.22" v="68233" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="448.2781" rt="3.110" y="112739" v="732808" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="3.025" max="3.194" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="3.110" x="449.2854" y="112739.32" v="604380" z="1" s="M+H" />
+          <p rt="3.110" x="450.2881" y="28361.20" v="128429" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="1004.8595" rt="3.137" y="51860" v="484416" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="3.068" max="3.217" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="3.137" x="1005.8667" y="51860.43" v="287663" z="1" s="M+H" />
+          <p rt="3.137" x="1006.8703" y="34795.65" v="179105" z="1" s="M+H+1" />
+          <p rt="3.141" x="1007.8728" y="11781.18" v="17648" z="1" s="M+H+2" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="770.5670" rt="3.162" y="46621" v="140853" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="3.137" max="3.194" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="3.162" x="771.5742" y="46620.56" v="98280" z="1" s="M+H" />
+          <p rt="3.162" x="772.5774" y="23249.56" v="42574" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="390.2773" rt="3.171" y="737531" v="4742827" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="3.101" max="3.306" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="3.170" x="391.2846" y="737531.13" v="2873201" z="1" s="M+H" />
+          <p rt="3.170" x="392.2880" y="194273.36" v="754982" z="1" s="M+H+1" />
+          <p rt="3.173" x="413.2663" y="235400.89" v="862939" z="1" s="M+Na" />
+          <p rt="3.174" x="414.2697" y="63277.48" v="240381" z="1" s="M+Na+1" />
+          <p rt="3.170" x="415.2724" y="11886.75" v="11325" z="1" s="M+Na+2" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="1036.8275" rt="3.182" y="26093" v="129771" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="3.154" max="3.227" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="3.183" x="1037.8348" y="26093.43" v="81890" z="1" s="M+H" />
+          <p rt="3.181" x="1038.8381" y="18604.54" v="47882" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="370.3080" rt="3.195" y="171939" v="1307362" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="3.137" max="3.346" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="3.196" x="371.3157" y="171938.83" v="676550" z="1" s="M+H" />
+          <p rt="3.196" x="372.3188" y="43237.28" v="134220" z="1" s="M+H+1" />
+          <p rt="3.193" x="393.2967" y="101343.68" v="431921" z="1" s="M+Na" />
+          <p rt="3.193" x="394.3002" y="22679.72" v="64671" z="1" s="M+Na+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="372.3236" rt="3.225" y="83827" v="403649" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="3.167" max="3.293" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="3.223" x="373.3302" y="26512.82" v="69841" z="1" s="M+H" />
+          <p rt="3.225" x="395.3130" y="83827.49" v="288922" z="1" s="M+Na" />
+          <p rt="3.225" x="396.3159" y="19777.24" v="44886" z="1" s="M+Na+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="1271.1206" rt="3.265" y="49113" v="1209111" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="3.141" max="3.469" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="3.265" x="1272.1279" y="49113.35" v="580460" z="1" s="M+H" />
+          <p rt="3.265" x="1273.1313" y="41933.31" v="482111" z="1" s="M+H+1" />
+          <p rt="3.263" x="1274.1339" y="17858.59" v="146540" z="1" s="M+H+2" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="641.5960" rt="3.268" y="357496" v="6730651" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="3.058" max="3.555" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="3.272" x="642.6033" y="357496.44" v="4423749" z="1" s="M+H" />
+          <p rt="3.265" x="643.6068" y="142539.91" v="1758819" z="1" s="M+H+1" />
+          <p rt="3.254" x="644.6095" y="39633.73" v="548084" z="1" s="M+H+2" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="337.3346" rt="3.357" y="537551" v="3379325" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="3.313" max="3.442" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="3.357" x="338.3419" y="537551.31" v="1898422" z="1" s="M+H" />
+          <p rt="3.357" x="339.3454" y="118945.13" v="427641" z="1" s="M+H+1" />
+          <p rt="3.355" x="340.3485" y="16075.09" v="33120" z="1" s="M+H+2" />
+          <p rt="3.357" x="360.3237" y="238572.42" v="833149" z="1" s="M+Na" />
+          <p rt="3.358" x="361.3268" y="54686.21" v="186992" z="1" s="M+Na+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="403.3661" rt="3.367" y="88717" v="341192" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="3.333" max="3.439" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="3.367" x="404.3734" y="88716.96" v="284657" z="1" s="M+H" />
+          <p rt="3.366" x="405.3764" y="22438.99" v="56536" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="386.3397" rt="3.367" y="265949" v="1297297" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="3.326" max="3.442" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="3.367" x="387.3467" y="54786.55" v="176673" z="1" s="M+H" />
+          <p rt="3.365" x="388.3493" y="16572.44" v="37691" z="1" s="M+H+1" />
+          <p rt="3.367" x="409.3289" y="265948.97" v="879497" z="1" s="M+Na" />
+          <p rt="3.368" x="410.3322" y="64087.92" v="203436" z="1" s="M+Na+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="418.3081" rt="3.377" y="52149" v="476883" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="3.283" max="3.462" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="3.378" x="419.3154" y="52149.00" v="382586" z="1" s="M+H" />
+          <p rt="3.374" x="420.3191" y="15859.31" v="94297" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="604.5038" rt="3.475" y="40440" v="517971" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="3.339" max="3.628" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="3.475" x="605.5111" y="40440.38" v="415823" z="1" s="M+H" />
+          <p rt="3.475" x="606.5143" y="15565.85" v="102148" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="436.3526" rt="3.726" y="53276" v="224484" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="3.691" max="3.790" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="3.726" x="437.3599" y="53276.46" v="194910" z="1" s="M+H" />
+          <p rt="3.725" x="438.3631" y="15117.89" v="29574" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="779.5458" rt="4.097" y="25257" v="139309" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="4.052" max="4.165" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="4.097" x="780.5531" y="25257.25" v="119548" z="1" s="M+H" />
+          <p rt="4.097" x="781.5562" y="12905.65" v="19761" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="702.5676" rt="4.172" y="81919" v="791904" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="4.109" max="4.298" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="4.173" x="703.5750" y="81918.51" v="466915" z="1" s="M+H" />
+          <p rt="4.171" x="704.5780" y="35815.41" v="180744" z="1" s="M+H+1" />
+          <p rt="4.171" x="725.5563" y="29163.63" v="125806" z="1" s="M+Na" />
+          <p rt="4.168" x="726.5593" y="12447.51" v="18439" z="1" s="M+Na+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="781.5614" rt="4.200" y="31064" v="273764" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="4.142" max="4.324" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="4.200" x="782.5687" y="31063.99" v="191358" z="1" s="M+H" />
+          <p rt="4.202" x="783.5717" y="16222.24" v="69144" z="1" s="M+H+1" />
+          <p rt="4.196" x="804.5503" y="11586.60" v="13262" z="1" s="M+Na" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="805.5619" rt="4.318" y="72928" v="679770" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="4.245" max="4.410" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="4.316" x="806.5693" y="72928.30" v="356308" z="1" s="M+H" />
+          <p rt="4.321" x="807.5722" y="37894.38" v="211797" z="1" s="M+H+1" />
+          <p rt="4.320" x="808.5763" y="11644.38" v="25612" z="1" s="M+H+2" />
+          <p rt="4.318" x="828.5506" y="21205.78" v="86053" z="1" s="M+Na" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="578.5279" rt="4.369" y="155881" v="2200049" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="4.235" max="4.606" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="4.368" x="579.5352" y="155881.33" v="1508135" z="1" s="M+H" />
+          <p rt="4.371" x="580.5382" y="61986.93" v="643096" z="1" s="M+H+1" />
+          <p rt="4.370" x="581.5408" y="14062.71" v="48818" z="1" s="M+H+2" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="618.5203" rt="4.409" y="509056" v="10201046" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="4.191" max="4.702" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="4.408" x="619.5276" y="509055.50" v="6664012" z="1" s="M+H" />
+          <p rt="4.408" x="620.5310" y="208611.03" v="2808497" z="1" s="M+H+1" />
+          <p rt="4.417" x="621.5338" y="55434.93" v="728538" z="1" s="M+H+2" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="781.5623" rt="4.416" y="214145" v="2748794" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="4.334" max="4.566" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="4.418" x="782.5696" y="214145.08" v="1316998" z="1" s="M+H" />
+          <p rt="4.416" x="783.5733" y="98749.92" v="608728" z="1" s="M+H+1" />
+          <p rt="4.415" x="784.5758" y="14190.22" v="78488" z="1" s="M+H+2" />
+          <p rt="4.420" x="804.5515" y="62178.79" v="441896" z="1" s="M+Na" />
+          <p rt="4.419" x="805.5546" y="30229.84" v="200035" z="1" s="M+Na+1" />
+          <p rt="4.398" x="806.5673" y="20895.64" v="102649" z="1" s="M+Na+2" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="609.1765" rt="4.418" y="36392" v="284477" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="4.374" max="4.500" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="4.420" x="610.1838" y="36391.84" v="167458" z="1" s="M+H" />
+          <p rt="4.417" x="611.1848" y="20724.63" v="71282" z="1" s="M+H+1" />
+          <p rt="4.416" x="612.1828" y="15725.50" v="45737" z="1" s="M+H+2" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="613.5648" rt="4.419" y="425427" v="7782361" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="4.185" max="4.689" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="4.418" x="614.5721" y="425427.06" v="5089740" z="1" s="M+H" />
+          <p rt="4.422" x="615.5756" y="181039.70" v="2187077" z="1" s="M+H+1" />
+          <p rt="4.424" x="616.5783" y="43906.85" v="505544" z="1" s="M+H+2" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="1215.0586" rt="4.425" y="64987" v="1163349" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="4.304" max="4.573" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="4.431" x="1216.0659" y="64987.11" v="499845" z="1" s="M+H" />
+          <p rt="4.420" x="1217.0691" y="53035.82" v="497411" z="1" s="M+H+1" />
+          <p rt="4.419" x="1218.0718" y="21362.70" v="166093" z="1" s="M+H+2" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="847.5310" rt="4.506" y="22997" v="149944" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="4.453" max="4.599" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="4.509" x="848.5383" y="22997.40" v="141348" z="1" s="M+H" />
+          <p rt="4.498" x="849.5412" y="11305.33" v="8597" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="757.5626" rt="4.509" y="515440" v="9161942" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="4.400" max="4.785" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="4.507" x="758.5698" y="515439.84" v="4225159" z="1" s="M+H" />
+          <p rt="4.505" x="759.5733" y="242343.59" v="1844239" z="1" s="M+H+1" />
+          <p rt="4.506" x="760.5761" y="60517.65" v="481102" z="1" s="M+H+2" />
+          <p rt="4.496" x="761.5786" y="3129.20" v="23473" z="1" s="M+H+3" />
+          <p rt="4.508" x="780.5520" y="168016.38" v="1425201" z="1" s="M+Na" />
+          <p rt="4.507" x="781.5551" y="77664.50" v="602233" z="1" s="M+Na+1" />
+          <p rt="4.539" x="782.5676" y="78993.22" v="405807" z="1" s="M+Na+2" />
+          <p rt="4.531" x="783.5713" y="30499.26" v="144161" z="1" s="M+Na+3" />
+          <p rt="4.546" x="784.5820" y="2235.93" v="10566" z="1" s="M+Na+4" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="807.5774" rt="4.536" y="37996" v="382104" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="4.463" max="4.649" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="4.531" x="808.5848" y="37996.33" v="202055" z="1" s="M+H" />
+          <p rt="4.544" x="809.5875" y="18835.85" v="147733" z="1" s="M+H+1" />
+          <p rt="4.541" x="830.5661" y="13975.70" v="32316" z="1" s="M+Na" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="783.5779" rt="4.690" y="115034" v="2227341" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="4.553" max="4.888" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="4.688" x="784.5853" y="115033.67" v="1119935" z="1" s="M+H" />
+          <p rt="4.696" x="785.5883" y="61889.39" v="378388" z="1" s="M+H+1" />
+          <p rt="4.686" x="786.5912" y="16814.90" v="93538" z="1" s="M+H+2" />
+          <p rt="4.682" x="806.5666" y="26892.85" v="234748" z="1" s="M+Na" />
+          <p rt="4.683" x="807.5697" y="20554.29" v="165679" z="1" s="M+Na+1" />
+          <p rt="4.694" x="808.5829" y="29208.95" v="190466" z="1" s="M+Na+2" />
+          <p rt="4.684" x="809.5869" y="8015.41" v="44588" z="1" s="M+Na+3" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="662.4465" rt="4.987" y="283499" v="3603761" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="4.894" max="5.179" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="4.989" x="663.4538" y="283498.66" v="1774251" z="1" s="M+H" />
+          <p rt="4.990" x="664.4575" y="125065.17" v="831597" z="1" s="M+H+1" />
+          <p rt="4.989" x="665.4601" y="34362.22" v="197129" z="1" s="M+H+2" />
+          <p rt="4.990" x="685.4358" y="101716.93" v="695769" z="1" s="M+Na" />
+          <p rt="4.960" x="686.4387" y="48396.78" v="85987" z="1" s="M+Na+1" />
+          <p rt="4.982" x="687.4416" y="11725.07" v="19029" z="1" s="M+Na+2" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="679.4725" rt="4.987" y="45658" v="352572" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="4.917" max="5.057" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="4.986" x="680.4798" y="45657.95" v="248152" z="1" s="M+H" />
+          <p rt="4.988" x="681.4830" y="21384.84" v="104420" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="759.5781" rt="5.019" y="163943" v="3060855" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="4.911" max="5.236" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="5.016" x="760.5855" y="163943.22" v="1562956" z="1" s="M+H" />
+          <p rt="5.019" x="761.5885" y="73960.24" v="721912" z="1" s="M+H+1" />
+          <p rt="5.014" x="762.5906" y="19086.74" v="125508" z="1" s="M+H+2" />
+          <p rt="5.020" x="782.5669" y="52383.91" v="493999" z="1" s="M+Na" />
+          <p rt="5.046" x="783.5699" y="24734.62" v="103524" z="1" s="M+Na+1" />
+          <p rt="5.024" x="784.5802" y="10946.10" v="52956" z="1" s="M+Na+2" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="683.1951" rt="5.158" y="30998" v="333780" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="5.097" max="5.226" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="5.157" x="684.2024" y="30997.91" v="157353" z="1" s="M+H" />
+          <p rt="5.160" x="685.2032" y="20634.63" v="109752" z="1" s="M+H+1" />
+          <p rt="5.157" x="686.2013" y="15874.41" v="66675" z="1" s="M+H+2" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="809.5934" rt="5.170" y="107921" v="1728318" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="5.067" max="5.362" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="5.168" x="810.6008" y="107920.73" v="811110" z="1" s="M+H" />
+          <p rt="5.173" x="811.6038" y="53186.11" v="497314" z="1" s="M+H+1" />
+          <p rt="5.168" x="812.6065" y="14988.66" v="81276" z="1" s="M+H+2" />
+          <p rt="5.171" x="832.5821" y="32624.13" v="250584" z="1" s="M+Na" />
+          <p rt="5.167" x="833.5857" y="16882.01" v="88035" z="1" s="M+Na+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="785.5936" rt="5.293" y="209478" v="5054387" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="5.160" max="5.600" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="5.291" x="786.6009" y="209478.19" v="2152794" z="1" s="M+H" />
+          <p rt="5.295" x="787.6044" y="108339.16" v="1241453" z="1" s="M+H+1" />
+          <p rt="5.291" x="788.6066" y="28551.88" v="252051" z="1" s="M+H+2" />
+          <p rt="5.293" x="808.5825" y="71116.77" v="750639" z="1" s="M+Na" />
+          <p rt="5.291" x="809.5858" y="35383.91" v="322033" z="1" s="M+Na+1" />
+          <p rt="5.295" x="810.5986" y="44646.18" v="335417" z="1" s="M+Na+2" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="562.4571" rt="5.295" y="51585" v="481121" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="5.206" max="5.411" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="5.296" x="563.4643" y="51584.82" v="380664" z="1" s="M+H" />
+          <p rt="5.294" x="564.4683" y="18805.39" v="100457" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="557.5016" rt="5.308" y="25735" v="150984" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="5.239" max="5.375" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="5.306" x="558.5089" y="25734.65" v="146730" z="1" s="M+H" />
+          <p rt="5.312" x="559.5115" y="12205.27" v="4254" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="632.5353" rt="5.587" y="50992" v="951624" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="5.408" max="5.823" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="5.589" x="633.5425" y="50991.57" v="724951" z="1" s="M+H" />
+          <p rt="5.584" x="634.5456" y="21081.96" v="226673" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="627.5798" rt="5.597" y="32418" v="467008" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="5.461" max="5.750" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="5.598" x="628.5871" y="32418.22" v="375955" z="1" s="M+H" />
+          <p rt="5.595" x="629.5902" y="13933.10" v="91053" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="811.6081" rt="5.598" y="29308" v="353370" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="5.498" max="5.703" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="5.599" x="812.6154" y="29308.06" v="263204" z="1" s="M+H" />
+          <p rt="5.595" x="813.6187" y="14748.18" v="90166" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="550.4962" rt="6.439" y="78689" v="906506" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="6.326" max="6.582" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="6.439" x="551.5035" y="78688.80" v="671203" z="1" s="M+H" />
+          <p rt="6.439" x="552.5067" y="30609.57" v="235303" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="590.4887" rt="6.470" y="326692" v="5083127" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="6.287" max="6.704" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="6.470" x="591.4960" y="326692.19" v="3580217" z="1" s="M+H" />
+          <p rt="6.469" x="592.4997" y="120731.66" v="1276756" z="1" s="M+H+1" />
+          <p rt="6.470" x="593.5021" y="25270.40" v="226155" z="1" s="M+H+2" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByMolecularFeature">
+      <Location m="585.5334" rt="6.481" y="228569" v="2856141" />
+      <Spectrum type="MFE" satLimit="4776960" cpdAlgo="FindByMolecularFeature">
+        <MSDetails scanType="Scan" is="ESI" p="+" fv="125.0V" />
+        <RTRanges>
+          <RTRange min="6.323" max="6.641" />
+        </RTRanges>
+        <Device type="TimeOfFlight" num="1" />
+        <MSPeaks>
+          <p rt="6.481" x="586.5407" y="228568.67" v="2017494" z="1" s="M+H" />
+          <p rt="6.481" x="587.5439" y="85355.70" v="732463" z="1" s="M+H+1" />
+          <p rt="6.484" x="588.5466" y="17834.22" v="106184" z="1" s="M+H+2" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+  </CompoundList>
+</CEF>
