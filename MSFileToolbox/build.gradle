@@ -1,0 +1,73 @@
+plugins {
+    id 'com.github.johnrengelman.shadow' version '4.0.0'
+    id "com.github.ben-manes.versions" version "0.20.0"
+    id 'java-library'
+    id 'maven'
+    id 'idea'
+}
+
+group = 'com.github.chhh'
+version = '1.8.5'
+
+description = """MSFTBX"""
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+
+repositories {
+
+    //maven { url "http://repo.maven.apache.org/maven2" }
+    mavenLocal()
+    mavenCentral()
+}
+
+sourceSets {
+    main {
+        resources {
+            srcDirs = ["src/main/java", "src/main/resources"]
+            includes = ["**/*.obo", "**/*.properties"]
+        }
+    }
+}
+
+shadowJar {
+    exclude '**/*.java'
+    exclude '**/*.html'
+    exclude '**/OSGI-OPT/'
+    minimize()
+}
+
+dependencies {
+
+    implementation project(':lib-msftbx-javolution')
+
+    implementation(group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25')
+    implementation(group: 'com.google.guava', name: 'guava', version: '26.0-jre') {
+        exclude(module: 'animal-sniffer-annotations')
+        exclude(module: 'j2objc-annotations')
+        exclude(module: 'error_prone_annotations')
+        exclude(module: 'jsr305')
+        exclude(module: 'checker-qual')
+        transitive = false
+    }
+    implementation(group: 'org.apache.commons', name: 'commons-pool2', version: '2.6.0')
+    implementation(group: 'com.github.chhh', name: 'javolution-core-java-msftbx', version: '6.11.8')
+    implementation(group: 'org.biojava', name: 'biojava-ontology', version: '5.1.0') {
+        exclude(module: 'slf4j-api')
+        exclude(module: 'log4j-slf4j-impl')
+        exclude(module: 'log4j-core')
+        exclude(module: 'log4j-api')
+        transitive = false
+    }
+    implementation group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.0'
+    compileOnly group: 'org.jvnet.com4j', name: 'com4j', version: '2.1'
+
+    //implementation group: 'org.slf4j', name: 'slf4j-simple', version:'1.7.25'
+    testImplementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+    testImplementation group: 'org.apache.maven', name: 'maven-model', version: '3.5.4'
+}
