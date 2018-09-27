@@ -1,0 +1,30 @@
+<jxb:bindings xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+  version="2.1"
+>
+  <jxb:globalBindings>
+    <jxb:javaType name="java.lang.Double"
+      parseMethod="javax.xml.bind.DatatypeConverter.parseDouble"
+      printMethod="javax.xml.bind.DatatypeConverter.printDouble"
+      xmlType="xs:decimal"/>
+    <jxb:javaType name="java.lang.Double"
+      parseMethod="javax.xml.bind.DatatypeConverter.parseDouble"
+      printMethod="javax.xml.bind.DatatypeConverter.printDouble"
+      xmlType="xs:double"/>
+    <jxb:javaType name="java.lang.Float"
+      parseMethod="javax.xml.bind.DatatypeConverter.parseFloat"
+      printMethod="javax.xml.bind.DatatypeConverter.printFloat"
+      xmlType="xs:float"/>
+    <jxb:javaType name="java.lang.Integer"
+      parseMethod="javax.xml.bind.DatatypeConverter.parseInt"
+      printMethod="javax.xml.bind.DatatypeConverter.printInt"
+      xmlType="xs:integer"/>
+    <jxb:javaType name="java.lang.Integer"
+      parseMethod="javax.xml.bind.DatatypeConverter.parseInt"
+      printMethod="javax.xml.bind.DatatypeConverter.printInt"
+      xmlType="xs:int"/>
+    <jxb:javaType name="java.lang.Long"
+      parseMethod="javax.xml.bind.DatatypeConverter.parseUnsignedInt"
+      printMethod="javax.xml.bind.DatatypeConverter.printUnsignedInt"
+      xmlType="xs:positiveInteger"/>
+  </jxb:globalBindings>
+</jxb:bindings>

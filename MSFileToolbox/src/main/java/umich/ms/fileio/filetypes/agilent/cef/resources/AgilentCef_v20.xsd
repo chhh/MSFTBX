@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="CEF">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="CompoundList"/>
+      </xs:sequence>
+      <xs:attribute name="version" type="xs:NMTOKEN" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CompoundList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="Compound"/>
+      </xs:sequence>
+      <xs:attribute name="instrumentConfiguration"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Compound">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Location"/>
+        <xs:choice minOccurs="0">
+          <xs:element ref="CompoundScores"/>
+          <xs:element ref="Results"/>
+        </xs:choice>
+        <xs:element ref="Spectrum"/>
+      </xs:sequence>
+      <xs:attribute name="algo" type="xs:NCName" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Location">
+    <xs:complexType>
+      <xs:attribute name="a" type="xs:integer"/>
+      <xs:attribute name="m" type="xs:decimal" use="required"/>
+      <xs:attribute name="rt" type="xs:decimal" use="required"/>
+      <xs:attribute name="v" type="xs:integer"/>
+      <xs:attribute name="y" type="xs:integer" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CompoundScores">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="CpdScore"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CpdScore">
+    <xs:complexType>
+      <xs:attribute name="algo" type="xs:NCName" use="required"/>
+      <xs:attribute name="score" type="xs:decimal" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Results">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Molecule"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Molecule">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="MatchScores"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MatchScores">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="Match"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Match">
+    <xs:complexType>
+      <xs:attribute name="algo" type="xs:NCName" use="required"/>
+      <xs:attribute name="score" type="xs:decimal" use="required"/>
+      <xs:attribute name="tgtFlagsSeverity" type="xs:integer"/>
+      <xs:attribute name="tgtFlagsString"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Spectrum">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="MSDetails"/>
+        <xs:element minOccurs="0" ref="RTRanges"/>
+        <xs:element ref="Device"/>
+        <xs:element ref="MSPeaks"/>
+      </xs:sequence>
+      <xs:attribute name="cpdAlgo" type="xs:NCName" use="required"/>
+      <xs:attribute name="satLimit" type="xs:integer"/>
+      <xs:attribute name="type" type="xs:NCName" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MSDetails">
+    <xs:complexType>
+      <xs:attribute name="fv" type="xs:NMTOKEN"/>
+      <xs:attribute name="is" type="xs:NCName"/>
+      <xs:attribute name="p" use="required"/>
+      <xs:attribute name="scanType" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RTRanges">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="RTRange"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RTRange">
+    <xs:complexType>
+      <xs:attribute name="max" type="xs:decimal" use="required"/>
+      <xs:attribute name="min" type="xs:decimal" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Device">
+    <xs:complexType>
+      <xs:attribute name="num" type="xs:integer"/>
+      <xs:attribute name="type" type="xs:NCName" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MSPeaks">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="p"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="p">
+    <xs:complexType>
+      <xs:attribute name="rt" type="xs:decimal"/>
+      <xs:attribute name="s" use="required"/>
+      <xs:attribute name="sat" type="xs:boolean"/>
+      <xs:attribute name="v" type="xs:integer"/>
+      <xs:attribute name="x" type="xs:decimal" use="required"/>
+      <xs:attribute name="y" type="xs:decimal" use="required"/>
+      <xs:attribute name="z" type="xs:integer" use="required"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,19 @@
+<jxb:bindings xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  version="2.0">
+  <jxb:bindings node="/xsd:schema" schemaLocation="AgilentCEF_v20.xsd">
+
+  </jxb:bindings>
+
+  <jxb:globalBindings localScoping="toplevel">
+    <!-- No nonsense like BigDecimal and the likes -->
+    <jxb:javaType name="java.lang.Double"
+      parseMethod="javax.xml.bind.DatatypeConverter.parseDouble"
+      printMethod="javax.xml.bind.DatatypeConverter.printDouble"
+      xmlType="xs:decimal"/>
+    <jxb:javaType name="java.lang.Integer"
+      parseMethod="javax.xml.bind.DatatypeConverter.parseInt"
+      printMethod="javax.xml.bind.DatatypeConverter.printInt"
+      xmlType="xs:integer"/>
+  </jxb:globalBindings>
+</jxb:bindings>

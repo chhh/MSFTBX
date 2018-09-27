@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:GAML="http://www.bioml.com/gaml/" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="qualified" targetNamespace="http://www.bioml.com/gaml/">
+  <xs:import schemaLocation="biomol.full.xsd"/>
+  <xs:element name="trace">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" minOccurs="0" ref="GAML:attribute"/>
+        <xs:element ref="GAML:Xdata"/>
+        <xs:element ref="GAML:Ydata"/>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:integer"/>
+      <xs:attribute name="label" type="xs:NMTOKEN" use="required"/>
+      <xs:attribute name="type" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="attribute">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:decimal">
+          <xs:attribute name="type" use="required"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Xdata">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="GAML.values">
+          <xs:attribute name="label" type="xs:NMTOKEN" use="required"/>
+          <xs:attribute name="units" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Ydata">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="GAML.values">
+          <xs:attribute name="label" type="xs:NMTOKEN" use="required"/>
+          <xs:attribute name="units" type="xs:NCName" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="values">
+    <xs:complexType mixed="true">
+      <xs:attribute name="byteorder" type="xs:NCName" use="required"/>
+      <xs:attribute name="format" type="xs:NCName" use="required"/>
+      <xs:attribute name="numvalues" type="xs:integer" use="required"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

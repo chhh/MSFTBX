@@ -1,0 +1,20 @@
+<jxb:bindings xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  version="2.0">
+  <jxb:bindings
+    node="/xsd:schema"
+    schemaLocation="http://sashimi.sourceforge.net/schema_revision/mzXML_3.2/general_types_1.0.xsd">
+
+    <jxb:bindings node="//xsd:complexType[@name='namevalueType']">
+      <jxb:bindings node=".//xsd:attribute[@name='value']">
+        <jxb:property name="value_namevalueType"/>
+      </jxb:bindings>
+    </jxb:bindings>
+
+    <jxb:bindings node="//xsd:complexType[@name='ontologyEntryType']">
+      <jxb:bindings node=".//xsd:attribute[@name='value']">
+        <jxb:property name="value_ontologyEntryType"/>
+      </jxb:bindings>
+    </jxb:bindings>
+  </jxb:bindings>
+</jxb:bindings>

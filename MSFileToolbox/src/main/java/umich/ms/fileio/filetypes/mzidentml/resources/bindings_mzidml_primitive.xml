@@ -1,0 +1,43 @@
+<jaxb:bindings xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  version="2.1"
+  jaxb:extensionBindingPrefixes="xjc">
+
+  <jaxb:globalBindings localScoping="toplevel" optionalProperty="primitive">
+    <!--<jaxb:globalBindings localScoping="toplevel">-->
+
+    <!-- No nonsense like BigDecimal and the likes -->
+    <jaxb:javaType name="java.lang.Double"
+      parseMethod="javax.xml.bind.DatatypeConverter.parseDouble"
+      printMethod="javax.xml.bind.DatatypeConverter.printDouble"
+      xmlType="xs:decimal"/>
+
+    <jaxb:javaType name="java.lang.Integer"
+      parseMethod="javax.xml.bind.DatatypeConverter.parseInt"
+      printMethod="javax.xml.bind.DatatypeConverter.printInt"
+      xmlType="xs:integer"/>
+
+    <!--<jaxb:javaType name="java.lang.Double"-->
+    <!--xmlType="xs:double"-->
+    <!--parseMethod="javax.xml.bind.DatatypeConverter.parseDouble"-->
+    <!--printMethod="javax.xml.bind.DatatypeConverter.printDouble" />-->
+    <!--<jaxb:javaType name="java.lang.Float"-->
+    <!--xmlType="xs:float"-->
+    <!--parseMethod="javax.xml.bind.DatatypeConverter.parseFloat"-->
+    <!--printMethod="javax.xml.bind.DatatypeConverter.printFloat" />-->
+    <!--<jaxb:javaType name="java.lang.Integer"-->
+    <!--xmlType="xs:int"-->
+    <!--parseMethod="javax.xml.bind.DatatypeConverter.parseInt"-->
+    <!--printMethod="javax.xml.bind.DatatypeConverter.printInt" />-->
+    <!--<jaxb:javaType name="java.lang.Long"-->
+    <!--xmlType="xs:positiveInteger"-->
+    <!--parseMethod="javax.xml.bind.DatatypeConverter.parseUnsignedInt"-->
+    <!--printMethod="javax.xml.bind.DatatypeConverter.printUnsignedInt" />-->
+    <!--<xjc:simple/>-->
+  </jaxb:globalBindings>
+
+  <jaxb:bindings node="/xs:schema" schemaLocation="mzIdentML1.2.0.xsd">
+
+  </jaxb:bindings>
+
+</jaxb:bindings>
