@@ -21,7 +21,7 @@ Please cite the following paper if you used [MSFTBX](https://github.com/chhh/msf
 <dependency>
     <groupId>com.github.chhh</groupId>
     <artifactId>msftbx</artifactId>
-    <version>1.8.2</version>
+    <version>1.8.5</version>
 </dependency>
 ```
 
