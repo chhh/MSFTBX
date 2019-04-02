@@ -51,6 +51,10 @@ public interface IScan extends Serializable {
 
   void setRt(Double rt);
 
+  Double getIm();
+
+  void setIm(Double im);
+
   Integer getMsLevel();
 
   void setMsLevel(Integer msLevel);

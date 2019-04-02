@@ -28,6 +28,7 @@ public class SpectrumDefault extends AbstractSpectrum implements Serializable {
 
   protected double[] mz;
   protected double[] intensity;
+  protected double[] im;
 
   /**
    * The provided mz and intensity arrays must be sorted properly
@@ -36,13 +37,19 @@ public class SpectrumDefault extends AbstractSpectrum implements Serializable {
    * spectrumRef contains no peaks
    * @param basePeakIntensity Base-peak intensity
    */
-  public SpectrumDefault(double[] mz, double[] intensity, double intLo, double intLoNonZero,
+  public SpectrumDefault(double[] mz, double[] intensity, double[] im, double intLo, double intLoNonZero,
       double basePeakIntensity, double basePeakMz, double intSum) {
     if (mz.length != intensity.length) {
       throw new IllegalArgumentException("M/z and Intensity arrays must be of equal length");
     }
+
+    if (im != null && mz.length != im.length) {
+      throw new IllegalArgumentException("M/z and Ion Mobility arrays must be of equal length");
+    }
+
     this.mz = mz;
     this.intensity = intensity;
+    this.im = im;
     if (mz.length > 0) {
       init(mz[0], mz[mz.length - 1], intLo, intLoNonZero, basePeakIntensity, basePeakMz, intSum);
     } else {
@@ -50,12 +57,18 @@ public class SpectrumDefault extends AbstractSpectrum implements Serializable {
     }
   }
 
-  public SpectrumDefault(double[] mz, double[] intensity) {
+  public SpectrumDefault(double[] mz, double[] intensity, double[] im) {
     if (mz.length != intensity.length) {
       throw new IllegalArgumentException("M/z and Intensity arrays must be of equal length");
     }
+
+    if (im != null && mz.length != im.length) {
+      throw new IllegalArgumentException("M/z and Ion Mobility arrays must be of equal length");
+    }
+
     this.mz = mz;
     this.intensity = intensity;
+    this.im = im;
     if (mz.length <= 0) {
       init(0, 0, 0, 0, 0, 0, 0);
     } else {
@@ -100,6 +113,11 @@ public class SpectrumDefault extends AbstractSpectrum implements Serializable {
   @Override
   public double[] getIntensities() {
     return intensity;
+  }
+
+  @Override
+  public double[] getIMs() {
+    return im;
   }
 
   public void setIntensities(double[] intensity) {

@@ -420,6 +420,9 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
             case MS_DATA_ARRAY_INTENSITY:
               vars.binDataType = MzmlVars.BIN_DATA_TYPE.INTENSITY;
               break;
+            case MS_DATA_ARRAY_IM:
+              vars.binDataType = MzmlVars.BIN_DATA_TYPE.IM;
+              break;
           }
 
 
@@ -427,7 +430,7 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
 
           try {
             if (vars.binDataType == null) {
-              // not an m/z data array or intensity array
+              // not an m/z data array, intensity array, or ion mobility array
               continue;
             }
 
@@ -445,10 +448,13 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
                     case INTENSITY:
                       vars.intensityData = MZMLPeaksDecoder.DecodedData.createEmpty();
                       break;
+                    case IM:
+                      vars.imData = MZMLPeaksDecoder.DecodedData.createEmpty();
+                      break;
                     default:
                       throw new IllegalStateException(
                           "Binary data was decoded, but we did not find" +
-                              "a specification if this was mz or intensity data.");
+                              "a specification if this was mz, intensity, or ion mobility data.");
                   }
                 }
               } else {
@@ -478,9 +484,12 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
                 case INTENSITY:
                   vars.intensityData = decoded;
                   break;
+                case IM:
+                  vars.imData = decoded;
+                  break;
                 default:
                   throw new IllegalStateException("Binary data was decoded, but we did not find" +
-                      "a specification if this was mz or intensity data.");
+                      "a specification if this was mz, intensity, or ion mobility data.");
               }
             }
           } catch (XMLStreamException e) {
@@ -504,7 +513,7 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
       double basePeakMz =
           vars.intensityData.valMaxPos < 0 ? 0d : vars.mzData.arr[vars.intensityData.valMaxPos];
       ISpectrum spectrum = new SpectrumDefault(
-          vars.mzData.arr, vars.intensityData.arr,
+          vars.mzData.arr, vars.intensityData.arr, vars.imData.arr,
           vars.intensityData.valMin, vars.intensityData.valMinNonZero,
           vars.intensityData.valMax, basePeakMz,
           vars.intensityData.sum);
@@ -642,6 +651,9 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
             injectionInfo.setDuration(val.toDouble() * 60d * 1e6d);
             break;
         }
+        break;
+      case MS_IM:
+        vars.curScan.setIm(val.toDouble());
         break;
 
       case MS_RT_SCAN_START:

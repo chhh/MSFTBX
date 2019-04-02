@@ -58,6 +58,10 @@ public abstract class AbstractScan implements IScan {
    * Retention time in minutes
    */
   protected Double rt;
+  /**
+   * Inverse reduced ion mobility
+   */
+  protected Double im;
   protected Integer msLevel;
   protected Polarity polarity;
   /**
@@ -176,6 +180,16 @@ public abstract class AbstractScan implements IScan {
   @Override
   public void setRt(Double rt) {
     this.rt = rt;
+  }
+
+  @Override
+  public Double getIm() {
+    return im;
+  }
+
+  @Override
+  public void setIm(Double im) {
+    this.im = im;
   }
 
   @Override
