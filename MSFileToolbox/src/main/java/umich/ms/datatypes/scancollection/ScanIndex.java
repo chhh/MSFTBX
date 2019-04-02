@@ -57,7 +57,7 @@ public class ScanIndex implements Serializable {
     int num = scan.getNum();
 
     IScan oldScan = getNum2scan().put(num, scan);
-    log.debug("Adding scan #{} to ScanIndex. num2scan map already contained a scan for scanNum: {}",
+    log.trace("Adding scan #{} to ScanIndex. num2scan map already contained a scan for scanNum: {}",
         num, num);
 
     final Double rt = scan.getRt();

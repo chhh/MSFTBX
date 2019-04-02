@@ -32,14 +32,14 @@ public abstract class StringUtils {
   }
 
   public static boolean isNullOrWhitespace(CharSequence s) {
-    return s == null || isWhitespace(s);
+    return isNullOrBlank(s);
   }
 
   public static boolean isNullOrBlank(CharSequence s) {
     return s == null || s.length() == 0 || isWhitespace(s);
   }
 
-  private static boolean isWhitespace(CharSequence s) {
+  public static boolean isWhitespace(CharSequence s) {
     int length = s.length();
     if (length > 0) {
       for (int i = 0; i < length; i++) {

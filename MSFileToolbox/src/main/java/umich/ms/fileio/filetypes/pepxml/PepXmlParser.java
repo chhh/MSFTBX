@@ -16,8 +16,13 @@
 package umich.ms.fileio.filetypes.pepxml;
 
 import java.io.InputStream;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
+import java.util.stream.Collectors;
 import javax.xml.bind.JAXBException;
 import javax.xml.stream.XMLStreamReader;
 import umich.ms.fileio.exceptions.FileParsingException;
@@ -67,5 +72,30 @@ public class PepXmlParser {
    */
   public static Iterator<MsmsRunSummary> parse(InputStream is) throws FileParsingException {
     return PepXmlStreamIterator.create(is);
+  }
+
+  /**
+   * This entry point may be used to test if JAXB is functioning properly after all
+   * the java packaging and minification.<br/>
+   * To run use `java -cp path-to.jar umich.ms.fileio.filetypes.pepxml.PepXmlParser`.<br/>
+   * @param args List of existing filesystem paths.
+   */
+  public static void main(String[] args) throws FileParsingException {
+    if (args.length == 0)
+      System.err.println("Supply arguments that are paths to pepxml files");
+    List<Path> paths = Arrays.stream(args).map(s -> Paths.get(s)).collect(Collectors.toList());
+    if (paths.stream().anyMatch(p -> !Files.exists(p)))
+      System.err.println("Not all input files exist");
+
+    for (Path p : paths) {
+      System.out.println("\nParsing: " + p.toString());
+      MsmsPipelineAnalysis pepxml = PepXmlParser.parse(p);
+      int sum = pepxml.getMsmsRunSummary().stream()
+          .flatMapToInt(msmsRunSummary -> msmsRunSummary.getSpectrumQuery().stream()
+              .flatMapToInt(spectrumQuery -> spectrumQuery.getSearchResult().stream()
+                  .mapToInt(value -> value.getSearchHit().size()))
+          ).sum();
+      System.out.printf("Done, found %d PSMs\n", sum);
+    }
   }
 }

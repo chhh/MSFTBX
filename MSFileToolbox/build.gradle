@@ -1,5 +1,5 @@
 plugins {
-    id 'com.github.johnrengelman.shadow' version '4.0.0'
+    id 'com.github.johnrengelman.shadow' version '4.0.1'
     id "com.github.ben-manes.versions" version "0.20.0"
     id 'java-library'
     id 'maven'
@@ -7,7 +7,7 @@ plugins {
 }
 
 group = 'com.github.chhh'
-version = '1.8.5'
+version = '1.8.6'
 
 description = """MSFTBX"""
 
@@ -38,7 +38,13 @@ shadowJar {
     exclude '**/*.java'
     exclude '**/*.html'
     exclude '**/OSGI-OPT/'
-    minimize()
+    classifier = null
+    minimize {
+        exclude(dependency('javax.xml.bind:jaxb-api:.*'))
+        exclude(dependency('org.glassfish.jaxb:jaxb-runtime:.*'))
+        exclude(dependency('javax.activation:javax.activation-api:.*'))
+        exclude(dependency('com.sun.istack:istack-commons-runtime:.*'))
+    }
 }
 
 dependencies {
@@ -52,7 +58,6 @@ dependencies {
         exclude(module: 'error_prone_annotations')
         exclude(module: 'jsr305')
         exclude(module: 'checker-qual')
-        transitive = false
     }
     implementation(group: 'org.apache.commons', name: 'commons-pool2', version: '2.6.0')
     implementation(group: 'com.github.chhh', name: 'javolution-core-java-msftbx', version: '6.11.8')
@@ -61,10 +66,10 @@ dependencies {
         exclude(module: 'log4j-slf4j-impl')
         exclude(module: 'log4j-core')
         exclude(module: 'log4j-api')
-        transitive = false
     }
-    implementation group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.0'
-    compileOnly group: 'org.jvnet.com4j', name: 'com4j', version: '2.1'
+    compile 'javax.xml.bind:jaxb-api:2.3.1'
+    compile 'org.glassfish.jaxb:jaxb-runtime:2.3.1'
+    compile 'javax.activation:javax.activation-api:1.2.0'
 
     //implementation group: 'org.slf4j', name: 'slf4j-simple', version:'1.7.25'
     testImplementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'

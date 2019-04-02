@@ -28,13 +28,19 @@ import java.util.TreeMap;
  */
 public class MsftbxInfo {
 
-  public static final String version = "1.8.5";
+  public static final String version = "1.8.6";
 
   private static final TreeMap<String, List<String>> changelog = new TreeMap<>();
   private static final Map<String, List<String>> changelogImmutable = Collections
       .unmodifiableMap(changelog);
 
   static {
+
+    changelog.put("v1.8.6", Arrays.asList(
+        "Force include JAXB API implementation from Glassfish.",
+        "Remove unsued Thermo RAW experiments."
+    ));
+
     changelog.put("v1.8.5", Arrays.asList(
         "Update dependencies. Update build systems."
     ));
