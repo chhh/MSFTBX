@@ -286,7 +286,7 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
       ctx.close(); // close the context, so it could return it's ByteArrayHolder to the pool
 
       ISpectrum spectrum = new SpectrumDefault(
-          decoded.mzs, decoded.intensities,
+          decoded.mzs, decoded.intensities, null,
           decoded.minIntensity, decoded.minIntensityNonZero,
           decoded.maxIntensity, decoded.maxIntensityMz, decoded.intensitySum);
       vars.curScan.setSpectrum(spectrum, false);

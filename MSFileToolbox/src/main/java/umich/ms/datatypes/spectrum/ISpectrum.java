@@ -72,6 +72,11 @@ public interface ISpectrum extends Serializable {
   double[] getIntensities();
 
   /**
+   * Array of mean inverse reduced ion mobility. Might be of zero length, if the spectrumRef had no peaks in it.
+   */
+  double[] getIMs();
+
+  /**
    * Finds the idx of MZ that is equal or less than the provided one.
    *
    * @return null, if there is no value equal or less

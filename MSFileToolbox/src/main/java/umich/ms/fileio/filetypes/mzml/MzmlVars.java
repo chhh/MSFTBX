@@ -50,6 +50,7 @@ public class MzmlVars {
   BIN_DATA_TYPE binDataType;
   MZMLPeaksDecoder.DecodedData mzData;
   MZMLPeaksDecoder.DecodedData intensityData;
+  MZMLPeaksDecoder.DecodedData imData;
   public MzmlVars() {
     reset();
   }
@@ -86,6 +87,7 @@ public class MzmlVars {
     binDataType = null;
     mzData = null;
     intensityData = null;
+    imData = null;
   }
 
   public EnumSet<PeaksCompression> getCompressions() {
@@ -95,5 +97,5 @@ public class MzmlVars {
     return compressions;
   }
 
-  public enum BIN_DATA_TYPE {MZ, INTENSITY}
+  public enum BIN_DATA_TYPE {MZ, INTENSITY, IM}
 }
