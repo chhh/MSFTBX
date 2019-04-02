@@ -1,5 +1,6 @@
 # this is for old (original) netbeans platform implementation for BatMass 
 updates-backup
+**/*.iml
 
 # Created by https://www.gitignore.io/api/vim,java,maven,macos,linux,emacs,csharp,gradle,eclipse,windows,netbeans,intellij+all,notepadpp,visualstudio,visualstudiocode
 # Edit at https://www.gitignore.io/?templates=vim,java,maven,macos,linux,emacs,csharp,gradle,eclipse,windows,netbeans,intellij+all,notepadpp,visualstudio,visualstudiocode
