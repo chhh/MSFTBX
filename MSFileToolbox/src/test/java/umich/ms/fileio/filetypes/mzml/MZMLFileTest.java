@@ -96,8 +96,11 @@ public class MZMLFileTest {
   }
 
   @Test
-  public void parstTimsTOF() throws Exception {
-    final MZMLFile mzml = new MZMLFile((new File("src/test/resources/mzml/timsTOF.mzML")).getAbsolutePath());
+  public void parseTimsTOF() throws Exception {
+    final String location = "mzml";
+    final String fn = "timsTOF.mzML";
+    Path path = ResourceUtils.getResource(this.getClass(), location, fn).toAbsolutePath();
+    final MZMLFile mzml = new MZMLFile(path.toString());
     mzml.setNumThreadsForParsing(null);
     IScanCollection scans = new ScanCollectionDefault(true);
     scans.setDataSource(mzml);
