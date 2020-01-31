@@ -17,11 +17,12 @@ Please cite the following paper if you used [MSFTBX](https://github.com/chhh/msf
 [Avtonomov D.M. et al: J. Proteome Res. June 16, 2016. DOI: 10.1021/acs.jproteome.6b00021](https://dx.doi.org/10.1021/acs.jproteome.6b00021)
 
 ## Maven dependency
+Latest [version on Maven Central](https://search.maven.org/search?q=g:com.github.chhh%20AND%20a:msftbx)
 ```xml
 <dependency>
     <groupId>com.github.chhh</groupId>
     <artifactId>msftbx</artifactId>
-    <version>1.8.5</version>
+    <version>1.8.8</version>
 </dependency>
 ```
 
