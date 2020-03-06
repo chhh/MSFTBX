@@ -28,7 +28,9 @@ Latest [version on Maven Central](https://search.maven.org/search?q=g:com.github
 
 
 ## How to use
-To get started quickly, follow the tutorial: http://www.batmass.org/tutorial/data-access-layer/#parsing-lc-ms-data-mzml-mzxml-files
+- To get started, follow the tutorial: http://www.batmass.org/tutorial/data-access-layer/#parsing-lc-ms-data-mzml-mzxml-files
+- Check out a fully working example repo: https://github.com/chhh/msftbx-examples
+  - The exmaple compiles and runs with a single command, only requires java to be installed, nothing else.
 
 ## Features
 - Parsers for mzML/mzXML with unified API
