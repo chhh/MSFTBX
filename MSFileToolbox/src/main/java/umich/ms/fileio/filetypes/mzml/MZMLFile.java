@@ -16,9 +16,15 @@
 package umich.ms.fileio.filetypes.mzml;
 
 import java.io.InputStream;
+import java.util.*;
+
 import javolution.xml.internal.stream.XMLStreamReaderImpl;
 import org.apache.commons.pool2.ObjectPool;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import umich.ms.datatypes.IScanFlux;
 import umich.ms.datatypes.LCMSDataSubset;
+import umich.ms.datatypes.scan.IScan;
 import umich.ms.fileio.exceptions.FileParsingException;
 import umich.ms.fileio.filetypes.xmlbased.AbstractXMLBasedDataSource;
 import umich.ms.fileio.filetypes.xmlbased.IndexBuilder;
@@ -27,6 +33,7 @@ import umich.ms.fileio.filetypes.xmlbased.IndexBuilder;
  * @author Dmitry Avtonomov
  */
 public class MZMLFile extends AbstractXMLBasedDataSource<MZMLIndexElement, MZMLIndex> {
+  private static final Logger log = LoggerFactory.getLogger(MZMLFile.class);
 
   private MZMLIndex index;
 
@@ -106,5 +113,10 @@ public class MZMLFile extends AbstractXMLBasedDataSource<MZMLIndexElement, MZMLI
   @Override
   public IndexBuilder<MZMLIndexElement> getIndexBuilder(IndexBuilder.Info info) {
     return new MZMLIndexBuilder(info, getReaderPool());
+  }
+
+  @Override
+  public IScanFlux getFlux() {
+    return new MzmlFlux(this.path);
   }
 }

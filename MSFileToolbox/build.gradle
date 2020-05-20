@@ -71,8 +71,8 @@ dependencies {
     compile 'org.glassfish.jaxb:jaxb-runtime:2.3.1'
     compile 'javax.activation:javax.activation-api:1.2.0'
 
-    //implementation group: 'org.slf4j', name: 'slf4j-simple', version:'1.7.25'
-    testImplementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
+    //testImplementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
+    testImplementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
     testImplementation group: 'junit', name: 'junit', version: '4.12'
     testImplementation group: 'org.apache.maven', name: 'maven-model', version: '3.5.4'
 }

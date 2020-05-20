@@ -16,6 +16,9 @@
 package umich.ms.fileio.filetypes;
 
 import java.util.List;
+
+import umich.ms.datatypes.IScanFlux;
+import umich.ms.datatypes.IScanIterator;
 import umich.ms.datatypes.LCMSDataSubset;
 import umich.ms.datatypes.index.Index;
 import umich.ms.datatypes.lcmsrun.LCMSRunInfo;
@@ -167,4 +170,13 @@ public interface LCMSDataSource<T extends Index<?>> {
    * method).
    */
   List<IScan> parse(List<Integer> scanNums) throws FileParsingException;
+
+  default IScanFlux getFlux() {
+    return NoFlux.Instance;
+  }
+
+  public static class NoFlux implements IScanFlux {
+    public static final NoFlux Instance = new NoFlux();
+    private NoFlux() {}
+  }
 }
