@@ -100,11 +100,7 @@ public class MZMLFile extends AbstractXMLBasedDataSource<MZMLIndexElement, MZMLI
   public MZMLMultiSpectraParser getSpectraParser(InputStream inputStream,
       LCMSDataSubset subset, ObjectPool<XMLStreamReaderImpl> readerPool, Integer numSpectra) {
     MZMLMultiSpectraParser parser;
-    try {
-      parser = new MZMLMultiSpectraParser(inputStream, subset, this);
-    } catch (FileParsingException ex) {
-      throw new IllegalStateException(ex);
-    }
+    parser = new MZMLMultiSpectraParser(inputStream, subset, this);
     parser.setNumScansToProcess(numSpectra);
     parser.setReaderPool(readerPool);
     return parser;

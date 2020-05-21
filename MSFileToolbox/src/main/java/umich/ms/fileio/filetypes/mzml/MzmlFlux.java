@@ -1,17 +1,19 @@
 package umich.ms.fileio.filetypes.mzml;
 
+import kotlin.text.Charsets;
 import okio.Buffer;
 import okio.BufferedSource;
 import okio.Okio;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import reactor.core.Disposable;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.ParallelFlux;
 import reactor.core.scheduler.Schedulers;
 import umich.ms.datatypes.IScanFlux;
+import umich.ms.datatypes.LCMSDataSubset;
 import umich.ms.datatypes.scan.IScan;
 import umich.ms.fileio.exceptions.FileParsingException;
+import umich.ms.fileio.exceptions.FluxException;
 import umich.ms.util.OffsetLength;
 
 import java.io.EOFException;
@@ -22,12 +24,11 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.Collections;
 import java.util.List;
 import java.util.StringJoiner;
 import java.util.concurrent.ConcurrentLinkedDeque;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicLong;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -103,11 +104,19 @@ public class MzmlFlux implements IScanFlux {
     final long offset;
     final long length;
     final Buffer buffer;
+    final Pool<Buffer> pool;
 
-    public BufferInfo(long offset, long length, Buffer buffer) {
+    public BufferInfo(long offset, long length, Buffer buffer, Pool<Buffer> pool) {
       this.offset = offset;
       this.length = length;
       this.buffer = buffer;
+      this.pool = pool;
+    }
+
+    public void surrender() {
+      if (pool != null) {
+        pool.surrender(buffer);
+      }
     }
 
     @Override
@@ -140,11 +149,16 @@ public class MzmlFlux implements IScanFlux {
     }
   }
 
-  public static Flux<ScanXml> tokenizeFlux(InputStream is) {
+  public static Flux<BufferInfo> fluxScanBuffers(InputStream is) {
     byte[] bytesLo = "<spectrum ".getBytes(StandardCharsets.UTF_8);
     byte[] bytesHi = "</spectrum>".getBytes(StandardCharsets.UTF_8);
     byte[] bytesHi2 = ">".getBytes(StandardCharsets.UTF_8);
     final Pool<Buffer> pool = new Pool<>(Buffer::new, Buffer::clear);
+
+    final boolean debug = false;
+    Consumer<Runnable> run = (Runnable r) -> {
+      if (debug) r.run();
+    };
 
     final int threads = 4;
     final int prefetch = 4;
@@ -157,12 +171,11 @@ public class MzmlFlux implements IScanFlux {
             long lo = find(peekSrc, bytesLo);
             state.read += lo;
             long offset = state.read - bytesLo.length;
-            //log.debug("Found start > {} @ {}", lo, offset);
 
             long hi = find(peekSrc, bytesHi);
             state.read += hi;
             long length = hi + bytesLo.length;
-            //log.debug("Found end   > {} @ {}", hi, total);
+            run.accept(() -> log.debug("Found off: {}, len: {}", offset, length));
 
             state.bs.skip(lo - bytesLo.length);
             Buffer buf = pool.borrow();
@@ -174,7 +187,103 @@ public class MzmlFlux implements IScanFlux {
             if (l.size() % printEvery == 0) {
               System.out.printf("Size: %d; %s\n", l.size(), l.subList(l.size() - 2, l.size()));
             }
-            sink.next(new BufferInfo(offset, length, buf));
+            sink.next(new BufferInfo(offset, length, buf, pool));
+          } catch (EOFException e) {
+            log.debug("Flux reader complete");
+            sink.complete();
+          } catch (IOException e) {
+            sink.error(e);
+          }
+
+          return state;
+        },
+        readState -> {
+          try {
+            readState.bs.close();
+          } catch (IOException e) {
+            throw new IllegalStateException(e);
+          }
+        });
+    gen = gen.subscribeOn(Schedulers.elastic());
+
+    return gen;
+  }
+
+  public static ParallelFlux<List<IScan>> fluxScans(MZMLFile mzml) throws IOException {
+    final int threads = mzml.getNumThreadsForParsing();
+    final int prefetch = mzml.getTasksPerCpuPerBatch();
+
+    Flux<BufferInfo> f1 = fluxScanBuffers(Files.newInputStream(Paths.get(mzml.getPath())));
+    ParallelFlux<BufferInfo> pf = f1.parallel(threads, prefetch);
+    pf = pf.runOn(Schedulers.parallel(), prefetch);
+
+    ParallelFlux<List<IScan>> parsed = pf.map(bufferInfo -> {
+
+      if (bufferInfo.offset == 6479862) {
+        int a = 1;
+        String s = bufferInfo.buffer.readUtf8();
+        bufferInfo.buffer.write(s.getBytes(Charsets.UTF_8));
+      }
+
+      InputStream is = bufferInfo.buffer.inputStream();
+      MZMLMultiSpectraParser parser = new MZMLMultiSpectraParser(is, LCMSDataSubset.WHOLE_RUN, mzml);
+      parser.setReaderPool(mzml.getReaderPool());
+
+      try {
+        List<IScan> scans = parser.call();
+        if (scans.size() != 1)
+          throw new FluxException("parsed scan count wasn't == 1");
+        return scans;
+      } catch (Exception e) {
+        log.error("Error parsing scan @ " + bufferInfo.offset, e);
+        return Collections.emptyList();
+      }
+    });
+
+    // TODO: continue
+
+    return parsed;
+  }
+
+  public static Flux<ScanXml> tokenizeFlux(InputStream is) {
+    byte[] bytesLo = "<spectrum ".getBytes(StandardCharsets.UTF_8);
+    byte[] bytesHi = "</spectrum>".getBytes(StandardCharsets.UTF_8);
+    byte[] bytesHi2 = ">".getBytes(StandardCharsets.UTF_8);
+    final Pool<Buffer> pool = new Pool<>(Buffer::new, Buffer::clear);
+
+    final boolean debug = true;
+    Consumer<Runnable> run = (Runnable r) -> {
+      if (debug) r.run();
+    };
+
+    final int threads = 4;
+    final int prefetch = 4;
+
+    Flux<BufferInfo> gen = Flux.generate(
+        () -> new ReadState(is),
+        (state, sink) -> {
+          try {
+            BufferedSource peekSrc = state.bs.peek();
+            long lo = find(peekSrc, bytesLo);
+            state.read += lo;
+            long offset = state.read - bytesLo.length;
+
+            long hi = find(peekSrc, bytesHi);
+            state.read += hi;
+            long length = hi + bytesLo.length;
+            run.accept(() -> log.debug("Found off: {}, len: {}", offset, length));
+
+            state.bs.skip(lo - bytesLo.length);
+            Buffer buf = pool.borrow();
+            buf.write(state.bs, length);
+
+            final List<OffsetLength> l = state.offsets;
+            l.add(new OffsetLength(offset, (int) (length)));
+            final int printEvery = 100;
+            if (l.size() % printEvery == 0) {
+              System.out.printf("Size: %d; %s\n", l.size(), l.subList(l.size() - 2, l.size()));
+            }
+            sink.next(new BufferInfo(offset, length, buf, pool));
           } catch (EOFException e) {
             log.debug("Flux reader complete");
             sink.complete();
@@ -196,14 +305,13 @@ public class MzmlFlux implements IScanFlux {
     pf = pf.runOn(Schedulers.parallel(), prefetch);
 
     ParallelFlux<ScanXml> pf2 = pf.map(bufferInfo -> {
-      //log.debug("Converting to string: {}", bufferInfo);
       String content = bufferInfo.buffer.readUtf8();
       ScanXml scanXml = new ScanXml(bufferInfo.offset, content);
       //log.debug("Converted to string: {}", scanXml);
       return scanXml;
     });
 
-    Flux<ScanXml> seq = pf2.sequential(prefetch * 10);
+    Flux<ScanXml> seq = pf2.sequential(1);
     //Flux<ScanXml> seq = pf2.ordered(Comparator.comparingLong(o -> o.offset), prefetch).subscribeOn(Schedulers.elastic());
     seq = seq.subscribeOn(Schedulers.elastic());
 

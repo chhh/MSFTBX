@@ -6,16 +6,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import reactor.core.Disposable;
 import reactor.core.publisher.Flux;
-import umich.ms.fileio.exceptions.FileParsingException;
+import reactor.core.publisher.ParallelFlux;
+import reactor.core.scheduler.Schedulers;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.concurrent.atomic.AtomicLong;
 
+import static umich.ms.fileio.filetypes.mzml.MzmlFlux.fluxScans;
 import static umich.ms.fileio.filetypes.mzml.MzmlFlux.sleepQuietly;
 
 
@@ -23,39 +23,49 @@ public class MzmlFluxTest {
   private static final Logger log = LoggerFactory.getLogger(MzmlFluxTest.class);
 
   @org.junit.Test
-  public void tokenizeTest() throws IOException, FileParsingException {
+  public void fluxParallelExceptionText() {
+    ParallelFlux<Integer> nums = Flux.range(1, 10)
+        .parallel(2, 1)
+        .runOn(Schedulers.parallel(), 1)
+        .map(i -> {
+          if (i == 3)
+            throw new IllegalStateException("whack!");
+          return i;
+        });
+
+    Disposable sub = nums.sequential(3)
+        .subscribeOn(Schedulers.elastic())
+        .subscribe(i -> {
+          System.out.printf("Got num %d\n", i);
+        });
+
+    while (!sub.isDisposed()) {
+      //log("Waiting pipeline to complete");
+      sleepQuietly(100);
+    }
+  }
+
+  @org.junit.Test
+  public void tokenizeTest() throws IOException {
 
     Path file = Paths.get("D:\\ms-data\\TMTIntegrator_v1.1.4\\TMT-I-Test\\03CPTAC_CCRCC_W_JHU_20171022\\03CPTAC_CCRCC_W_JHU_20171022_LUMOS_f03.mzML");
     log.debug("Using file: {}", file);
     System.out.println("File: " + file);
     Assume.assumeTrue(Files.exists(file));
 
+    MZMLFile mzml = new MZMLFile(file.toString());
+    Disposable sub = fluxScans(mzml)
+        .doOnError(throwable -> {
+          log.error("error in processing", throwable);
+        })
+        .sequential()
+        .subscribe(scans -> {
+          //log.debug("Got scan: {}", scans.toString());
+        });
 
-    try (InputStream is = Files.newInputStream(file)) {
-      Flux<MzmlFlux.ScanXml> scanXmlFlux = MzmlFlux.tokenizeFlux(is);
-
-      long timeLo = System.nanoTime();
-      final AtomicLong timeHi = new AtomicLong(-1);
-      final AtomicLong off = new AtomicLong();
-      Disposable sub = scanXmlFlux.subscribe(
-          transofrmed -> {
-            if (true || off.incrementAndGet() % 100 == 0) {
-              log.debug("Past through: {}", transofrmed);
-            }
-          },
-          err -> err.printStackTrace(),
-          () -> {
-            timeHi.set(System.nanoTime());
-            log.debug("Pipeline complete");
-          });
-
-      while (!sub.isDisposed()) {
-        //log("Waiting pipeline to complete");
-        sleepQuietly(100);
-      }
-
-      log.debug("Pipeline was running for [{}ms]", (timeHi.get() - timeLo)/1e6);
-
+    while (!sub.isDisposed()) {
+      //log("Waiting pipeline to complete");
+      sleepQuietly(100);
     }
   }
 
