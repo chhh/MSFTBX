@@ -17,6 +17,7 @@
 package umich.ms.fileio.filetypes.pepxml;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Iterator;
@@ -26,18 +27,22 @@ import java.util.zip.Inflater;
 import java.util.zip.InflaterInputStream;
 import org.junit.Assert;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import umich.ms.fileio.ResourceUtils;
-import umich.ms.fileio.filetypes.pepxml.jaxb.standard.ModificationInfo;
-import umich.ms.fileio.filetypes.pepxml.jaxb.standard.MsmsPipelineAnalysis;
-import umich.ms.fileio.filetypes.pepxml.jaxb.standard.MsmsRunSummary;
-import umich.ms.fileio.filetypes.pepxml.jaxb.standard.SearchHit;
-import umich.ms.fileio.filetypes.pepxml.jaxb.standard.SearchSummary;
-import umich.ms.fileio.filetypes.pepxml.jaxb.standard.SpectrumQuery;
+import umich.ms.fileio.filetypes.pepxml.jaxb.standard.*;
+import umich.ms.util.jaxb.JaxbUtils;
+import umich.ms.util.xml.XmlUtils;
+
+import javax.xml.bind.JAXBException;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamReader;
 
 /**
  * @author Dmitry Avtonomov
  */
 public class PepXmlTest {
+  private static final Logger log = LoggerFactory.getLogger(PepXmlTest.class);
 
   List<Path> paths;
 
@@ -126,12 +131,30 @@ public class PepXmlTest {
   }
 
   @Test
+  public void testAnalysisSummary() throws FileNotFoundException, JAXBException, XMLStreamException {
+
+    String fn = "q02261.pep.xml";
+    Path p = paths.stream().filter(path -> path.endsWith(fn)).findFirst()
+        .orElseThrow(() -> new FileNotFoundException(fn));
+
+    final XMLStreamReader xsr = JaxbUtils.createXmlStreamReader(p, false);
+    // advance the input stream to the beginning of <peptideprophet_summary>
+
+    final String tag = "analysis_summary";
+
+    while (umich.ms.util.xml.XmlUtils.advanceReaderToNext(xsr, tag)) {
+      AnalysisSummary summary = JaxbUtils.unmarshal(AnalysisSummary.class, xsr);
+      log.info("Found '{}': {}", tag, summary.getAnalysis());
+    }
+  }
+
+  @Test
   public void testIteratorParsing() throws Exception {
 
     System.out.println("Test parsing files iteratively.");
     for (Path path : paths) {
       String p = path.toString().toLowerCase();
-      if (p.endsWith(".zip") || p.endsWith(".gz1")) {
+      if (p.endsWith(".zip") || p.endsWith(".gz")) {
         // compressed pepxml files
         System.out.printf("Compressed file detected: %s\n", path);
         if (true) {
@@ -154,16 +177,10 @@ public class PepXmlTest {
 
       } else {
 
-        if (true) {
-          continue;
-        }
-
-        // non-compressed pepxml files, just parse the whole thing at once
-        // compressed pepxml files
         System.out.printf("Parsing iteratively: %s\n", path);
-
         try (FileInputStream fis = new FileInputStream(path.toString())) {
           Iterator<MsmsRunSummary> it = PepXmlParser.parse(fis);
+
           while (it.hasNext()) {
             MsmsRunSummary msmsRunSummary = it.next();
             assertMsMsRunSummaryOk(msmsRunSummary);
