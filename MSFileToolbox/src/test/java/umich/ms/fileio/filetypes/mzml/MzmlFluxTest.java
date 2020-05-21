@@ -1,6 +1,8 @@
 package umich.ms.fileio.filetypes.mzml;
 
+import org.junit.After;
 import org.junit.Assume;
+import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,12 +10,14 @@ import reactor.core.Disposable;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.ParallelFlux;
 import reactor.core.scheduler.Schedulers;
+import umich.ms.fileio.ResourceUtils;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
 
 import static umich.ms.fileio.filetypes.mzml.MzmlFlux.fluxScans;
 import static umich.ms.fileio.filetypes.mzml.MzmlFlux.sleepQuietly;
@@ -22,14 +26,31 @@ import static umich.ms.fileio.filetypes.mzml.MzmlFlux.sleepQuietly;
 public class MzmlFluxTest {
   private static final Logger log = LoggerFactory.getLogger(MzmlFluxTest.class);
 
-  @org.junit.Test
+  private static final String RESOURCE_LOCATION = "mzml";
+  private List<Path> paths;
+
+  @Before
+  public void setUp() {
+    log.debug("Running setup");
+    paths = ResourceUtils.getResources(MZMLFileTest.class, RESOURCE_LOCATION);
+  }
+
+  @After
+  public void tearDown() {
+    log.debug("Running cleanup");
+    paths.clear();
+    paths = null;
+  }
+
+  @Test
   public void fluxParallelExceptionText() {
     ParallelFlux<Integer> nums = Flux.range(1, 10)
         .parallel(2, 1)
         .runOn(Schedulers.parallel(), 1)
         .map(i -> {
-          if (i == 3)
+          if (i == 3) {
             throw new IllegalStateException("whack!");
+          }
           return i;
         });
 
@@ -45,27 +66,39 @@ public class MzmlFluxTest {
     }
   }
 
-  @org.junit.Test
-  public void tokenizeTest() throws IOException {
+  @Test
+  public void fluxTest() throws IOException {
 
-    Path file = Paths.get("D:\\ms-data\\TMTIntegrator_v1.1.4\\TMT-I-Test\\03CPTAC_CCRCC_W_JHU_20171022\\03CPTAC_CCRCC_W_JHU_20171022_LUMOS_f03.mzML");
-    log.debug("Using file: {}", file);
-    System.out.println("File: " + file);
-    Assume.assumeTrue(Files.exists(file));
+    for (Path path : paths) {
+      log.info("Flux using file: {}", path);
+      Assume.assumeTrue(Files.exists(path));
 
-    MZMLFile mzml = new MZMLFile(file.toString());
-    Disposable sub = fluxScans(mzml)
-        .doOnError(throwable -> {
-          log.error("error in processing", throwable);
-        })
-        .sequential()
-        .subscribe(scans -> {
-          //log.debug("Got scan: {}", scans.toString());
-        });
+      final AtomicLong datapointCount = new AtomicLong();
+      MZMLFile mzml = new MZMLFile(path.toString());
 
-    while (!sub.isDisposed()) {
-      //log("Waiting pipeline to complete");
-      sleepQuietly(100);
+      Disposable sub = fluxScans(mzml, false)
+          .doOnError(throwable -> {
+            log.error("Error during parsing scans", throwable);
+          })
+          .doOnSubscribe(subscription -> {
+            log.debug("Flux Scans started");
+          })
+          .doOnComplete(() -> {
+            log.debug("Flux Scans complete");
+          })
+          .subscribe(scan -> {
+            // do something with scans here`
+
+            //log.debug("Got scan: {}", scan.toString());
+            datapointCount.addAndGet(scan.getSpectrum().getMZs().length);
+          });
+
+      while (!sub.isDisposed()) {
+        //log("Waiting pipeline to complete");
+        sleepQuietly(100);
+      }
+
+      log.info("All scans have total {} data points in {}\n\n==================\n\n", datapointCount.get(), path);
     }
   }
 
@@ -85,4 +118,5 @@ public class MzmlFluxTest {
 
 
   }
+
 }

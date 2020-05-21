@@ -1,6 +1,5 @@
 package umich.ms.fileio.filetypes.mzml;
 
-import kotlin.text.Charsets;
 import okio.Buffer;
 import okio.BufferedSource;
 import okio.Okio;
@@ -13,24 +12,19 @@ import umich.ms.datatypes.IScanFlux;
 import umich.ms.datatypes.LCMSDataSubset;
 import umich.ms.datatypes.scan.IScan;
 import umich.ms.fileio.exceptions.FileParsingException;
-import umich.ms.fileio.exceptions.FluxException;
 import umich.ms.util.OffsetLength;
+import umich.ms.util.Pool;
 
-import java.io.EOFException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.ByteBuffer;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.StringJoiner;
-import java.util.concurrent.ConcurrentLinkedDeque;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 public class MzmlFlux implements IScanFlux {
   private static final Logger log = LoggerFactory.getLogger(MzmlFlux.class);
@@ -140,8 +134,8 @@ public class MzmlFlux implements IScanFlux {
 
     @Override
     public String toString() {
-       final int limit = 40;
-       final boolean chop = content.length() > limit;
+      final int limit = 40;
+      final boolean chop = content.length() > limit;
       return new StringJoiner(", ", ScanXml.class.getSimpleName() + "[", "]")
           .add("offset=" + offset)
           .add("content='" + (chop ? content.substring(0, limit) + "..." : content) + "'")
@@ -209,7 +203,7 @@ public class MzmlFlux implements IScanFlux {
     return gen;
   }
 
-  public static ParallelFlux<List<IScan>> fluxScans(MZMLFile mzml) throws IOException {
+  public static Flux<IScan> fluxScans(MZMLFile mzml, boolean ordered) throws IOException {
     final int threads = mzml.getNumThreadsForParsing();
     final int prefetch = mzml.getTasksPerCpuPerBatch();
 
@@ -217,32 +211,29 @@ public class MzmlFlux implements IScanFlux {
     ParallelFlux<BufferInfo> pf = f1.parallel(threads, prefetch);
     pf = pf.runOn(Schedulers.parallel(), prefetch);
 
-    ParallelFlux<List<IScan>> parsed = pf.map(bufferInfo -> {
+    ParallelFlux<IScan> parsed = pf.flatMap(bufferInfo -> {
+      InputStream is = new BufferedInputStream(
+          new ByteArrayInputStream(bufferInfo.buffer.readByteArray()));
+      //InputStream is = bufferInfo.buffer.inputStream(); // this causes strange bugs
 
-      if (bufferInfo.offset == 6479862) {
-        int a = 1;
-        String s = bufferInfo.buffer.readUtf8();
-        bufferInfo.buffer.write(s.getBytes(Charsets.UTF_8));
-      }
-
-      InputStream is = bufferInfo.buffer.inputStream();
       MZMLMultiSpectraParser parser = new MZMLMultiSpectraParser(is, LCMSDataSubset.WHOLE_RUN, mzml);
       parser.setReaderPool(mzml.getReaderPool());
-
       try {
         List<IScan> scans = parser.call();
-        if (scans.size() != 1)
-          throw new FluxException("parsed scan count wasn't == 1");
-        return scans;
+        if (scans.size() == 0) {
+          log.warn("No scans parsed from a file chunk @ offset {}", bufferInfo.offset);
+        } else if (scans.size() > 1) {
+          log.warn("Multiple scans [{}] were parsed from a file chunk @ offset {}", scans.size(), bufferInfo.offset);
+        }
+        return Flux.fromIterable(scans);
       } catch (Exception e) {
         log.error("Error parsing scan @ " + bufferInfo.offset, e);
-        return Collections.emptyList();
+        return Flux.empty();
+      } finally {
+        bufferInfo.surrender();
       }
     });
-
-    // TODO: continue
-
-    return parsed;
+    return ordered ? parsed.ordered(Comparator.comparing(IScan::getNum)) : parsed.sequential(prefetch);
   }
 
   public static Flux<ScanXml> tokenizeFlux(InputStream is) {
@@ -377,8 +368,6 @@ public class MzmlFlux implements IScanFlux {
         throw new FileParsingException(e);
       }
     }
-
-
     log.debug("Done reading");
   }
 
@@ -387,23 +376,6 @@ public class MzmlFlux implements IScanFlux {
     long read = 0;
     while (true) {
       byte b = source.readByte();
-      read += 1;
-      if (b == seq[pos]) {
-        pos += 1;
-        if (pos == seq.length) { // found
-          return read;
-        }
-      } else {
-        pos = 0;
-      }
-    }
-  }
-
-  private static long find(ByteBuffer source, byte[] seq) {
-    int pos = 0;
-    long read = 0;
-    while (true) {
-      byte b = source.get();
       read += 1;
       if (b == seq[pos]) {
         pos += 1;
@@ -438,25 +410,4 @@ public class MzmlFlux implements IScanFlux {
     }
   }
 
-  public static class Pool<T> {
-    private final Supplier<T> factory;
-    private final Consumer<T> cleanup;
-    private final ConcurrentLinkedDeque<T> pool = new ConcurrentLinkedDeque<>();
-
-    public Pool(Supplier<T> factory, Consumer<T> cleanup) {
-      this.factory = factory;
-      this.cleanup = cleanup != null ? cleanup : (t) -> {
-      };
-    }
-
-    public T borrow() {
-      T t = pool.pollFirst();
-      return t != null ? t : factory.get();
-    }
-
-    public void surrender(T t) {
-      cleanup.accept(t);
-      pool.addLast(t);
-    }
-  }
 }
