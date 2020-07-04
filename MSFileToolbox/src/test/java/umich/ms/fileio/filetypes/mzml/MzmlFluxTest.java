@@ -1,5 +1,6 @@
 package umich.ms.fileio.filetypes.mzml;
 
+import org.jooq.lambda.Seq;
 import org.junit.After;
 import org.junit.Assume;
 import org.junit.Before;
@@ -10,17 +11,20 @@ import reactor.core.Disposable;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.ParallelFlux;
 import reactor.core.scheduler.Schedulers;
+import umich.ms.datatypes.scan.IScan;
 import umich.ms.fileio.ResourceUtils;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
-
-import static umich.ms.fileio.filetypes.mzml.MzmlFlux.fluxScans;
-import static umich.ms.fileio.filetypes.mzml.MzmlFlux.sleepQuietly;
+import java.util.stream.Collectors;
 
 
 public class MzmlFluxTest {
@@ -62,7 +66,7 @@ public class MzmlFluxTest {
 
     while (!sub.isDisposed()) {
       //log("Waiting pipeline to complete");
-      sleepQuietly(100);
+      MzmlFlux.sleepQuietly(100);
     }
   }
 
@@ -76,7 +80,7 @@ public class MzmlFluxTest {
       final AtomicLong datapointCount = new AtomicLong();
       MZMLFile mzml = new MZMLFile(path.toString());
 
-      Disposable sub = fluxScans(mzml, false)
+      Disposable sub = MzmlFlux.fluxScans(mzml, false)
           .doOnError(throwable -> {
             log.error("Error during parsing scans", throwable);
           })
@@ -95,7 +99,7 @@ public class MzmlFluxTest {
 
       while (!sub.isDisposed()) {
         //log("Waiting pipeline to complete");
-        sleepQuietly(100);
+        MzmlFlux.sleepQuietly(100);
       }
 
       log.info("All scans have total {} data points in {}\n\n==================\n\n", datapointCount.get(), path);
@@ -117,6 +121,84 @@ public class MzmlFluxTest {
     System.out.println("Buf 2: " + buf2.readUtf8());
 
 
+  }
+
+
+  @Test
+  public void fluxTracePeaks() throws IOException {
+    Path dir = Paths.get("D:\\ms-data\\TMTIntegrator_v1.1.4\\TMT-I-Test\\01CPTAC_CCRCC_W_JHU_20171007");
+    String fn = "01CPTAC_CCRCC_W_JHU_20171007_LUMOS_f01.mzML";
+
+    Path file = dir.resolve(fn);
+    MZMLFile mzml = new MZMLFile(file.toString());
+
+    final int prefetch = 10;
+    int maxThreads = Runtime.getRuntime().availableProcessors() - 1;
+//    int maxThreads = 4;
+    final int threads = Math.max(1, maxThreads);
+    Flux<IScan> gen = MzmlFlux.fluxScans(mzml, true);
+
+
+    final AtomicInteger counter = new AtomicInteger(0);
+    final AtomicLong dataPoints = new AtomicLong(0);
+    long timeLo = System.nanoTime();
+
+    Disposable sub = gen.parallel(threads, prefetch)    // switch to parallel processing after generator
+        .runOn(Schedulers.parallel(), prefetch)         // if you don't do this, it won't run in parallel
+
+        .doOnNext(iScan -> {
+          log.info("Side effect! Scan #{}", iScan.getNum());
+        })
+        .filter(iScan -> iScan.getMsLevel() == 1)
+
+        .ordered(Comparator.comparingInt(IScan::getNum), prefetch)
+        .buffer(3, 1)
+
+        .parallel(threads, prefetch)
+        .runOn(Schedulers.parallel(), prefetch)
+
+        .map(iScans -> {
+          String scans = iScans.stream().map(IScan::getNum).map(Object::toString).collect(Collectors.joining(", "));
+          Map<Integer, List<IScan>> byMsLevel = Seq.seq(iScans).groupBy(IScan::getMsLevel);
+          String counts = Seq.seq(byMsLevel.entrySet())
+              .map(kv -> String.format("MS%d: %d scans", kv.getKey(), kv.getValue().size()))
+              .toString(", ");
+          String res = String.format("Scan #s [%05d]: %s. %s",iScans.get(0).getNum(), scans, counts);
+          //log.debug("Produced: {}", res);
+
+          //sleepQuietly(5);
+
+          return res;
+        })
+
+        .ordered(String::compareTo, prefetch)
+
+        .subscribeOn(Schedulers.elastic())      // generator will run on this scheduler (once subscribed)
+        .subscribe(o -> {
+//          String scans = o.stream().map(IScan::getNum).map(Object::toString).collect(Collectors.joining(", "));
+//          Map<Integer, List<IScan>> byMsLevel = Seq.seq(o).groupBy(IScan::getMsLevel);
+//          String counts = Seq.seq(byMsLevel.entrySet())
+//              .map(kv -> String.format("MS%d: %d scans", kv.getKey(), kv.getValue().size()))
+//              .toString(", ");
+          counter.incrementAndGet();
+          log.debug("Got final mapped result: {}", o);
+          //System.out.printf("Got scans: %s\n", scans); // do something with generated and processed item
+        });
+
+    while (!sub.isDisposed()) {
+      //log("Waiting pipeline to complete");
+      sleepQuietly(100);
+    }
+    long timeHi = System.nanoTime();
+    log.info("Counter value: {}, elapsed: {}s", counter.get(), (timeHi - timeLo)/1e9f);
+  }
+
+  static void sleepQuietly(long millis) {
+    try {
+      Thread.sleep(millis);
+    } catch (InterruptedException e) {
+      throw new IllegalStateException();
+    }
   }
 
 }

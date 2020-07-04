@@ -51,6 +51,8 @@ dependencies {
 
     implementation project(':lib-msftbx-javolution')
 
+    implementation ("org.jooq:jool-java-8:0.9.14")
+
     implementation(group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25')
     implementation(group: 'com.google.guava', name: 'guava', version: '26.0-jre') {
         exclude(module: 'animal-sniffer-annotations')
