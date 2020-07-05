@@ -1,30 +1,38 @@
 package umich.ms.fileio.filetypes.mzml;
 
+import com.google.common.base.Stopwatch;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.time.StopWatch;
 import org.jooq.lambda.Seq;
-import org.junit.After;
-import org.junit.Assume;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import reactor.core.Disposable;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.ParallelFlux;
 import reactor.core.scheduler.Schedulers;
+import umich.ms.datatypes.LCMSData;
+import umich.ms.datatypes.LCMSDataSubset;
 import umich.ms.datatypes.scan.IScan;
+import umich.ms.datatypes.scancollection.IScanCollection;
+import umich.ms.datatypes.spectrum.ISpectrum;
 import umich.ms.fileio.ResourceUtils;
+import umich.ms.fileio.exceptions.FileParsingException;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.text.DecimalFormat;
+import java.util.*;
+import java.util.concurrent.ConcurrentSkipListMap;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 
 public class MzmlFluxTest {
@@ -125,7 +133,7 @@ public class MzmlFluxTest {
 
 
   @Test
-  public void fluxTracePeaks() throws IOException {
+  public void fluxTracePeaks() throws IOException, FileParsingException {
     Path dir = Paths.get("D:\\ms-data\\TMTIntegrator_v1.1.4\\TMT-I-Test\\01CPTAC_CCRCC_W_JHU_20171007");
     String fn = "01CPTAC_CCRCC_W_JHU_20171007_LUMOS_f01.mzML";
 
@@ -143,9 +151,9 @@ public class MzmlFluxTest {
     final AtomicLong dataPoints = new AtomicLong(0);
     long timeLo = System.nanoTime();
 
-    Disposable sub = gen.parallel(threads, prefetch)    // switch to parallel processing after generator
+    Disposable sub = gen
+        .parallel(threads, prefetch)    // switch to parallel processing after generator
         .runOn(Schedulers.parallel(), prefetch)         // if you don't do this, it won't run in parallel
-
         .doOnNext(iScan -> {
           log.info("Side effect! Scan #{}", iScan.getNum());
         })
@@ -175,12 +183,75 @@ public class MzmlFluxTest {
 
         .subscribeOn(Schedulers.elastic())      // generator will run on this scheduler (once subscribed)
         .subscribe(o -> {
+          counter.incrementAndGet();
+          log.debug("Got final mapped result: {}", o);
+        });
+
+    while (!sub.isDisposed()) {
+      //log("Waiting pipeline to complete");
+      sleepQuietly(100);
+    }
+    long timeHi = System.nanoTime();
+    log.info("Counter value: {}, elapsed: {}s", counter.get(), (timeHi - timeLo)/1e9f);
+  }
+
+  @Test
+  public void fluxTracePeaks2() throws IOException, FileParsingException {
+    Path dir = Paths.get("D:\\ms-data\\TMTIntegrator_v1.1.4\\TMT-I-Test\\01CPTAC_CCRCC_W_JHU_20171007");
+    String fn = "01CPTAC_CCRCC_W_JHU_20171007_LUMOS_f01.mzML";
+
+    Path file = dir.resolve(fn);
+    MZMLFile mzml = new MZMLFile(file.toString());
+    log.debug("Working with file: {}", mzml.getPath());
+    final Stopwatch sw = Stopwatch.createUnstarted();
+
+    sw.start();
+    LCMSData lcmsData = new LCMSData(mzml);
+    lcmsData.load(LCMSDataSubset.STRUCTURE_ONLY);
+    sw.stop();
+    log.debug("Loading structure took {}s", new DecimalFormat("0.00").format(sw.elapsed(TimeUnit.NANOSECONDS)/1e9));
+    sw.reset();
+    IScanCollection s = lcmsData.getScans();
+
+    final int prefetch = 10;
+    final int threads = Math.max(1, Runtime.getRuntime().availableProcessors() - 1);
+
+    Flux<IScan> gen = MzmlFlux.fluxScans(mzml, true);
+
+
+    final AtomicInteger scanCount = new AtomicInteger(0);
+    //TreeMap<Double, Trace> tree = new TreeMap<>();
+    ConcurrentSkipListMap<Double, Trace> tracesAll = new ConcurrentSkipListMap<>();
+    ConcurrentSkipListMap<Double, Trace> tracesNew = new ConcurrentSkipListMap<>();
+
+    Disposable sub = gen
+        .doOnSubscribe(subscription -> sw.start()) // start the timer when the pipeline starts working
+        .doOnComplete(() -> sw.stop())
+
+        .filter(scan -> scan.getMsLevel() == 1)
+        .doOnNext(scan -> {
+          ISpectrum spec = scan.getSpectrum();
+          IntStream.range(0, spec.getMZs().length)
+              .parallel().forEach(index -> {
+            double mz = spec.getMZs()[index];
+            double ab = spec.getIntensities()[index];
+            if (ab <= 0)
+              return;
+            tracesAll.sub
+            Map.Entry<Double, Trace> lo = tracesAll.floorEntry(mz);
+            Map.Entry<Double, Trace> hi = tracesAll.ceilingEntry(mz);
+
+          });
+        })
+
+        .subscribeOn(Schedulers.elastic())      // generator will run on this scheduler (once subscribed)
+        .subscribe(o -> {
 //          String scans = o.stream().map(IScan::getNum).map(Object::toString).collect(Collectors.joining(", "));
 //          Map<Integer, List<IScan>> byMsLevel = Seq.seq(o).groupBy(IScan::getMsLevel);
 //          String counts = Seq.seq(byMsLevel.entrySet())
 //              .map(kv -> String.format("MS%d: %d scans", kv.getKey(), kv.getValue().size()))
 //              .toString(", ");
-          counter.incrementAndGet();
+          scanCount.incrementAndGet();
           log.debug("Got final mapped result: {}", o);
           //System.out.printf("Got scans: %s\n", scans); // do something with generated and processed item
         });
@@ -190,7 +261,7 @@ public class MzmlFluxTest {
       sleepQuietly(100);
     }
     long timeHi = System.nanoTime();
-    log.info("Counter value: {}, elapsed: {}s", counter.get(), (timeHi - timeLo)/1e9f);
+    log.info("Counter value: {}, elapsed: {}s", scanCount.get(), (sw.elapsed(TimeUnit.NANOSECONDS))/1e9f);
   }
 
   static void sleepQuietly(long millis) {
