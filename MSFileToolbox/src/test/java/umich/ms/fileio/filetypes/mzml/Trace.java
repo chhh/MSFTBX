@@ -13,7 +13,7 @@ public class Trace {
   double mzSum;
   double mzAvg;
   double mzAvgWeighted;
-  private int ptr = -1;
+  int ptr = -1;
 
   public Trace(int initSize) {
     mzs = new double[initSize];

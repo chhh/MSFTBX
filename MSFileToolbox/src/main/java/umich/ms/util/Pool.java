@@ -24,4 +24,8 @@ public class Pool<T> {
     cleanup.accept(t);
     pool.addLast(t);
   }
+
+  public void purge() {
+    pool.clear();
+  }
 }
