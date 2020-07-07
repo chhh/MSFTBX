@@ -11,6 +11,7 @@ public class Trace {
   int zeroAbStretch;
   double abSum;
   double mzSum;
+  double mzSumWeighted;
   double mzAvg;
   double mzAvgWeighted;
   int ptr = -1;
@@ -27,7 +28,21 @@ public class Trace {
     mzs[ptr] = mz;
     abs[ptr] = ab;
     scanNums[ptr] = scanNum;
+
+    if (ab > 0) {
+      countNonZeros += 1;
+      mzSum += mz;
+    }
+    abSum += ab;
+    mzSumWeighted += mz * ab;
+    mzAvg = mzSum / countNonZeros;
+    mzAvgWeighted = mzSumWeighted / abSum;
   }
+
+  public int size() {
+    return ptr + 1;
+  }
+
   public final void ensureCapacity(int extendBy) {
     if (mzs.length == ptr + 1) {
       int newLen = mzs.length + extendBy;

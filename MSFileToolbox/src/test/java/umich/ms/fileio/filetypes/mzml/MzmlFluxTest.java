@@ -41,6 +41,7 @@ import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -208,6 +209,7 @@ public class MzmlFluxTest {
   public static class TracingOpts {
     double mzTolPpm = 30;
     int maxGapLen = 1;
+    int minPtsToAdd = 3;
   }
 
   @Test
@@ -220,13 +222,12 @@ public class MzmlFluxTest {
 
     log.debug("Working with file: {}", mzml.getPath());
     final Stopwatch sw = Stopwatch.createStarted();
-    LCMSData lcmsData = new LCMSData(mzml);
-    lcmsData.load(LCMSDataSubset.STRUCTURE_ONLY);
-    sw.stop();
-    log.debug("Loading structure took {}s", new DecimalFormat("0.00").format(sw.elapsed(TimeUnit.NANOSECONDS) / 1e9));
-    sw.reset();
-    IScanCollection s = lcmsData.getScans();
+//    LCMSData lcmsData = new LCMSData(mzml);
+//    lcmsData.load(LCMSDataSubset.STRUCTURE_ONLY);
+//    log.debug("Loading structure took {}s", new DecimalFormat("0.00").format(sw.elapsed(TimeUnit.NANOSECONDS) / 1e9));
+//    IScanCollection s = lcmsData.getScans();
 
+    sw.stop().reset();
     final int prefetch = 10;
     final int threads = Math.max(1, Runtime.getRuntime().availableProcessors() - 1);
 
@@ -234,10 +235,13 @@ public class MzmlFluxTest {
     final TracingOpts opts = new TracingOpts();
     ConcurrentSkipListMap<Double, Trace> tracesAll = new ConcurrentSkipListMap<>();
     //ConcurrentSkipListMap<Double, Trace> tracesNew = new ConcurrentSkipListMap<>();
-    ConcurrentLinkedDeque<Trace> tracesNew = new ConcurrentLinkedDeque<>();
-    ConcurrentLinkedDeque<Trace> tracesUpdated = new ConcurrentLinkedDeque<>();
+    final ConcurrentLinkedDeque<Trace> tracesNew = new ConcurrentLinkedDeque<>();
+    final ConcurrentLinkedDeque<Trace> tracesUpdated = new ConcurrentLinkedDeque<>();
+    //final ConcurrentLinkedDeque<Trace> tracesComplete = new ConcurrentLinkedDeque<>();
+    final ArrayList<Trace> tracesComplete = new ArrayList<>();
 
     final Pool<Trace> pool = new Pool<>(() -> new Trace(10), Trace::reset);
+    Function<Trace, Double> traceKeyExtractor = trace -> trace.mzAvgWeighted;
 
     Flux<IScan> gen = MzmlFlux.fluxScans(mzml, true);
     Disposable sub = gen
@@ -248,18 +252,25 @@ public class MzmlFluxTest {
         })
 
         .filter(scan -> scan.getMsLevel() == 1)
-
+        .doOnNext(scan -> {
+          int i = scanCount.incrementAndGet();
+          if (i % 10 == 0) {
+            log.info("Got to scan i={} #{}@{}min, Active traces: {}, Completed traces: {}",
+                i, scan.getNum(), scan.getRt(), tracesAll.size(), tracesComplete.size());
+          }
+        })
         .doOnNext(scan -> {
           ISpectrum spec = scan.getSpectrum();
 
           // update existing traces
-          IntStream.range(0, spec.getMZs().length).parallel().forEach(index -> {
+          //IntStream.range(0, spec.getMZs().length).parallel().forEach(index -> {
+          IntStream.range(0, spec.getMZs().length).forEach(index -> {
             double mz = spec.getMZs()[index];
             double ab = spec.getIntensities()[index];
             if (ab <= 0)
               return;
             double mzTol = SpectrumUtils.ppm2amu(mz, opts.mzTolPpm);
-            ConcurrentNavigableMap<Double, Trace> range = tracesAll.subMap(mz - mzTol, true, mz + mzTol, true);
+            final ConcurrentNavigableMap<Double, Trace> range = tracesAll.subMap(mz - mzTol, true, mz + mzTol, true);
 
             if (range.isEmpty()) { // create new trace
               Trace t = pool.borrow();
@@ -270,7 +281,7 @@ public class MzmlFluxTest {
               Trace t = range.firstEntry().getValue();
               t.add(mz, (float) ab, scan.getNum());
 
-            } else { // if many possible traces match, select one with closest intensity
+            } else { // if many possible traces match, select one with closest intensity and update
               Trace bestMatch = range.firstEntry().getValue();
               double bestDiff = Math.abs(ab - bestMatch.abs[bestMatch.ptr]);
               for (Map.Entry<Double, Trace> entry : range.entrySet()) {
@@ -285,10 +296,42 @@ public class MzmlFluxTest {
             }
           });
 
+          // maintenance, done sequentially
+
           final int curScanNum = scan.getNum();
           // remove/update traces that did not get a match from this spectrum
-          tracesAll.entrySet()
+          Iterator<Map.Entry<Double, Trace>> it = tracesAll.entrySet().iterator();
+          while (it.hasNext()) {
+            Map.Entry<Double, Trace> next = it.next();
+            Trace t = next.getValue();
 
+            if (curScanNum == t.scanNums[t.ptr]) { // was updated on this iteration
+              t.zeroAbStretch = 0;
+              it.remove();
+              tracesUpdated.add(t);
+
+            } else { // was not updated on this iteration
+              t.zeroAbStretch += 1;
+              if (t.zeroAbStretch > opts.maxGapLen) { // if long gap - complete trace
+                it.remove();
+                if (t.ptr + 1 >= opts.minPtsToAdd) {
+                  tracesComplete.add(t);
+                } else { // trace didn't fit criteria, discard
+                  //pool.surrender(t);
+                }
+              }
+            }
+          }
+
+          // reinsert new and updated traces back into the tree
+          for (Trace t : tracesUpdated) {
+            tracesAll.put(traceKeyExtractor.apply(t), t);
+          }
+          tracesUpdated.clear();
+          for (Trace t : tracesNew) {
+            tracesAll.put(traceKeyExtractor.apply(t), t);
+          }
+          tracesNew.clear();
         })
 
         .subscribeOn(Schedulers.elastic())      // generator will run on this scheduler (once subscribed)
@@ -298,7 +341,6 @@ public class MzmlFluxTest {
 //          String counts = Seq.seq(byMsLevel.entrySet())
 //              .map(kv -> String.format("MS%d: %d scans", kv.getKey(), kv.getValue().size()))
 //              .toString(", ");
-          scanCount.incrementAndGet();
           log.debug("Got final mapped result: {}", o);
           //System.out.printf("Got scans: %s\n", scans); // do something with generated and processed item
         });
@@ -307,6 +349,11 @@ public class MzmlFluxTest {
       //log("Waiting pipeline to complete");
       sleepQuietly(100);
     }
+
+    // in the end add all currently active traces to Completed list as well
+    tracesComplete.addAll(tracesAll.values());
+    tracesComplete.sort((o1, o2) -> Integer.compare(o2.ptr, o1.ptr));
+
     long timeHi = System.nanoTime();
     log.info("Counter value: {}, elapsed: {}s", scanCount.get(), (sw.elapsed(TimeUnit.NANOSECONDS)) / 1e9f);
   }
