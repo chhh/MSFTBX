@@ -35,6 +35,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.DecimalFormat;
 import java.util.*;
+import java.util.concurrent.ConcurrentLinkedDeque;
 import java.util.concurrent.ConcurrentNavigableMap;
 import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.concurrent.TimeUnit;
@@ -232,7 +233,9 @@ public class MzmlFluxTest {
     final AtomicInteger scanCount = new AtomicInteger(0);
     final TracingOpts opts = new TracingOpts();
     ConcurrentSkipListMap<Double, Trace> tracesAll = new ConcurrentSkipListMap<>();
-    ConcurrentSkipListMap<Double, Trace> tracesNew = new ConcurrentSkipListMap<>();
+    //ConcurrentSkipListMap<Double, Trace> tracesNew = new ConcurrentSkipListMap<>();
+    ConcurrentLinkedDeque<Trace> tracesNew = new ConcurrentLinkedDeque<>();
+    ConcurrentLinkedDeque<Trace> tracesUpdated = new ConcurrentLinkedDeque<>();
 
     final Pool<Trace> pool = new Pool<>(() -> new Trace(10), Trace::reset);
 
@@ -261,7 +264,7 @@ public class MzmlFluxTest {
             if (range.isEmpty()) { // create new trace
               Trace t = pool.borrow();
               t.add(mz, (float) ab, scan.getNum());
-              tracesNew.put(t.mzAvgWeighted, t);
+              tracesNew.add(t);
 
             } else if (range.size() == 1) { // update an exising trace
               Trace t = range.firstEntry().getValue();
@@ -284,7 +287,7 @@ public class MzmlFluxTest {
 
           final int curScanNum = scan.getNum();
           // remove/update traces that did not get a match from this spectrum
-          tracesAll.entrySet().parallelStream()
+          tracesAll.entrySet()
 
         })
 
