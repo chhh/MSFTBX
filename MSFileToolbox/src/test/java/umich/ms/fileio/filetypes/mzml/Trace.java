@@ -14,6 +14,8 @@ public class Trace {
   double mzSumWeighted;
   double mzAvg;
   double mzAvgWeighted;
+  float rtLo;
+  float rtHi;
   int ptr = -1;
 
   public Trace(int initSize) {
@@ -22,8 +24,12 @@ public class Trace {
     scanNums = new int[initSize];
   }
 
-  public final void add(double mz, float ab, int scanNum) {
+  public final void add(double mz, float ab, int scanNum, float rt) {
     ensureCapacity(10);
+    if (ptr < 0) {
+      rtLo = rt;
+      rtHi = rt;
+    }
     ptr += 1;
     mzs[ptr] = mz;
     abs[ptr] = ab;
@@ -32,11 +38,14 @@ public class Trace {
     if (ab > 0) {
       countNonZeros += 1;
       mzSum += mz;
+      rtHi = rt;
     }
     abSum += ab;
     mzSumWeighted += mz * ab;
     mzAvg = mzSum / countNonZeros;
     mzAvgWeighted = mzSumWeighted / abSum;
+
+
   }
 
   public int size() {
@@ -57,11 +66,13 @@ public class Trace {
     mzSum = 0;
     mzAvg = 0;
     mzAvgWeighted = 0;
+    rtLo = Float.NaN;
+    rtHi = Float.NaN;
   }
 
-  public void restart(double mz, float ab, int scanNum) {
+  public void restart(double mz, float ab, int scanNum, float rt) {
     reset();
-    add(mz, ab, scanNum);
+    add(mz, ab, scanNum, rt);
   }
 
   private String makeId(double mz, int scanNum) {

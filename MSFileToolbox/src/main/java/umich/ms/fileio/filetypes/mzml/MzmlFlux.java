@@ -154,9 +154,6 @@ public class MzmlFlux implements IScanFlux {
       if (debug) r.run();
     };
 
-    final int threads = 4;
-    final int prefetch = 4;
-
     Flux<BufferInfo> gen = Flux.generate(
         () -> new ReadState(is),
         (state, sink) -> {
@@ -179,7 +176,7 @@ public class MzmlFlux implements IScanFlux {
             l.add(new OffsetLength(offset, (int) (length)));
             final int printEvery = 100;
             if (l.size() % printEvery == 0) {
-              System.out.printf("Size: %d; %s\n", l.size(), l.subList(l.size() - 2, l.size()));
+              log.trace(String.format("Size: %d; %s\n", l.size(), l.subList(l.size() - 2, l.size())));
             }
             sink.next(new BufferInfo(offset, length, buf, pool));
           } catch (EOFException e) {
@@ -203,37 +200,64 @@ public class MzmlFlux implements IScanFlux {
     return gen;
   }
 
+  public static Flux<IScan> fluxScansSeq(MZMLFile mzml) throws IOException {
+    Flux<IScan> scanFlux = fluxScanBuffers(Files.newInputStream(Paths.get(mzml.getPath())))
+        .flatMap(bufferInfo -> {
+          InputStream is = new BufferedInputStream(
+              new ByteArrayInputStream(bufferInfo.buffer.readByteArray()));
+          //InputStream is = bufferInfo.buffer.inputStream(); // this causes strange bugs
+
+          MZMLMultiSpectraParser parser = new MZMLMultiSpectraParser(is, LCMSDataSubset.WHOLE_RUN, mzml);
+          parser.setReaderPool(mzml.getReaderPool());
+          try {
+            List<IScan> scans = parser.call();
+            if (scans.size() == 0) {
+              log.warn("No scans parsed from a file chunk @ offset {}", bufferInfo.offset);
+            } else if (scans.size() > 1) {
+              log.warn("Multiple scans [{}] were parsed from a file chunk @ offset {}", scans.size(), bufferInfo.offset);
+            }
+            return Flux.fromIterable(scans);
+          } catch (Exception e) {
+            log.error("Error parsing scan @ " + bufferInfo.offset, e);
+            return Flux.empty();
+          } finally {
+            bufferInfo.surrender();
+          }
+        });
+    return scanFlux;
+  }
+
   public static Flux<IScan> fluxScans(MZMLFile mzml, boolean ordered) throws IOException {
-    final int threads = mzml.getNumThreadsForParsing();
-    final int prefetch = mzml.getTasksPerCpuPerBatch();
+    int threads = Math.max(1, Runtime.getRuntime().availableProcessors() - 1);
+    int prefetch = threads;
+    ParallelFlux<IScan> scanFlux = fluxScanBuffers(Files.newInputStream(Paths.get(mzml.getPath())))
+        .parallel(threads, prefetch)
+        .runOn(Schedulers.parallel(), prefetch)
+        .flatMap(bufferInfo -> {
+          InputStream is = new BufferedInputStream(
+              new ByteArrayInputStream(bufferInfo.buffer.readByteArray()));
+          //InputStream is = bufferInfo.buffer.inputStream(); // this causes strange bugs
 
-    Flux<BufferInfo> f1 = fluxScanBuffers(Files.newInputStream(Paths.get(mzml.getPath())));
-    ParallelFlux<BufferInfo> pf = f1.parallel(threads, prefetch);
-    pf = pf.runOn(Schedulers.parallel(), prefetch);
-
-    ParallelFlux<IScan> parsed = pf.flatMap(bufferInfo -> {
-      InputStream is = new BufferedInputStream(
-          new ByteArrayInputStream(bufferInfo.buffer.readByteArray()));
-      //InputStream is = bufferInfo.buffer.inputStream(); // this causes strange bugs
-
-      MZMLMultiSpectraParser parser = new MZMLMultiSpectraParser(is, LCMSDataSubset.WHOLE_RUN, mzml);
-      parser.setReaderPool(mzml.getReaderPool());
-      try {
-        List<IScan> scans = parser.call();
-        if (scans.size() == 0) {
-          log.warn("No scans parsed from a file chunk @ offset {}", bufferInfo.offset);
-        } else if (scans.size() > 1) {
-          log.warn("Multiple scans [{}] were parsed from a file chunk @ offset {}", scans.size(), bufferInfo.offset);
-        }
-        return Flux.fromIterable(scans);
-      } catch (Exception e) {
-        log.error("Error parsing scan @ " + bufferInfo.offset, e);
-        return Flux.empty();
-      } finally {
-        bufferInfo.surrender();
-      }
-    });
-    return ordered ? parsed.ordered(Comparator.comparing(IScan::getNum)) : parsed.sequential(prefetch);
+          MZMLMultiSpectraParser parser = new MZMLMultiSpectraParser(is, LCMSDataSubset.WHOLE_RUN, mzml);
+          parser.setReaderPool(mzml.getReaderPool());
+          try {
+            List<IScan> scans = parser.call();
+            if (scans.size() == 0) {
+              log.warn("No scans parsed from a file chunk @ offset {}", bufferInfo.offset);
+            } else if (scans.size() > 1) {
+              log.warn("Multiple scans [{}] were parsed from a file chunk @ offset {}", scans.size(), bufferInfo.offset);
+            }
+            return Flux.fromIterable(scans);
+          } catch (Exception e) {
+            log.error("Error parsing scan @ " + bufferInfo.offset, e);
+            return Flux.empty();
+          } finally {
+            bufferInfo.surrender();
+          }
+        });
+    return ordered
+        ? scanFlux.ordered(Comparator.comparing(IScan::getNum), prefetch)
+        : scanFlux.sequential(prefetch);
   }
 
   public static Flux<ScanXml> tokenizeFlux(InputStream is) {
@@ -272,7 +296,7 @@ public class MzmlFlux implements IScanFlux {
             l.add(new OffsetLength(offset, (int) (length)));
             final int printEvery = 100;
             if (l.size() % printEvery == 0) {
-              System.out.printf("Size: %d; %s\n", l.size(), l.subList(l.size() - 2, l.size()));
+              log.trace(String.format("Size: %d; %s\n", l.size(), l.subList(l.size() - 2, l.size())));
             }
             sink.next(new BufferInfo(offset, length, buf, pool));
           } catch (EOFException e) {
@@ -351,7 +375,7 @@ public class MzmlFlux implements IScanFlux {
         list.add(new OffsetLength(offset, (int) (length)));
         final int printEvery = 100;
         if (list.size() % printEvery == 0) {
-          System.out.printf("Size: %d; %s\n", list.size(), list.subList(list.size() - 2, list.size()));
+          log.trace(String.format("Size: %d; %s\n", list.size(), list.subList(list.size() - 2, list.size())));
         }
 
         int a = 1;

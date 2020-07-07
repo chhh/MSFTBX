@@ -1,6 +1,9 @@
 package umich.ms.fileio.filetypes.mzml;
 
 import com.google.common.base.Stopwatch;
+import com.google.common.util.concurrent.AtomicDouble;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.time.StopWatch;
@@ -28,6 +31,7 @@ import umich.ms.util.MathHelper;
 import umich.ms.util.Pool;
 import umich.ms.util.SpectrumUtils;
 
+import java.awt.*;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -35,6 +39,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.DecimalFormat;
 import java.util.*;
+import java.util.List;
 import java.util.concurrent.ConcurrentLinkedDeque;
 import java.util.concurrent.ConcurrentNavigableMap;
 import java.util.concurrent.ConcurrentSkipListMap;
@@ -208,13 +213,14 @@ public class MzmlFluxTest {
 
   public static class TracingOpts {
     double mzTolPpm = 30;
-    int maxGapLen = 1;
+    int maxGapLen = 5;
     int minPtsToAdd = 3;
   }
 
   @Test
-  public void fluxTracePeaks2() throws IOException, FileParsingException {
-    Path dir = Paths.get("D:\\ms-data\\TMTIntegrator_v1.1.4\\TMT-I-Test\\01CPTAC_CCRCC_W_JHU_20171007");
+  public void fluxTracePeaks2() throws IOException {
+    //Path dir = Paths.get("D:\\ms-data\\TMTIntegrator_v1.1.4\\TMT-I-Test\\01CPTAC_CCRCC_W_JHU_20171007");
+    Path dir = Paths.get("C:\\ms-data\\mzml");
     String fn = "01CPTAC_CCRCC_W_JHU_20171007_LUMOS_f01.mzML";
 
     Path file = dir.resolve(fn);
@@ -227,6 +233,8 @@ public class MzmlFluxTest {
 //    log.debug("Loading structure took {}s", new DecimalFormat("0.00").format(sw.elapsed(TimeUnit.NANOSECONDS) / 1e9));
 //    IScanCollection s = lcmsData.getScans();
 
+    AtomicInteger lastProcessedScanNum = new AtomicInteger(-1);
+
     sw.stop().reset();
     final int prefetch = 10;
     final int threads = Math.max(1, Runtime.getRuntime().availableProcessors() - 1);
@@ -234,27 +242,30 @@ public class MzmlFluxTest {
     final AtomicInteger scanCount = new AtomicInteger(0);
     final TracingOpts opts = new TracingOpts();
     ConcurrentSkipListMap<Double, Trace> tracesAll = new ConcurrentSkipListMap<>();
-    //ConcurrentSkipListMap<Double, Trace> tracesNew = new ConcurrentSkipListMap<>();
     final ConcurrentLinkedDeque<Trace> tracesNew = new ConcurrentLinkedDeque<>();
     final ConcurrentLinkedDeque<Trace> tracesUpdated = new ConcurrentLinkedDeque<>();
-    //final ConcurrentLinkedDeque<Trace> tracesComplete = new ConcurrentLinkedDeque<>();
     final ArrayList<Trace> tracesComplete = new ArrayList<>();
 
     final Pool<Trace> pool = new Pool<>(() -> new Trace(10), Trace::reset);
     Function<Trace, Double> traceKeyExtractor = trace -> trace.mzAvgWeighted;
 
-    Flux<IScan> gen = MzmlFlux.fluxScans(mzml, true);
+    Flux<IScan> gen = MzmlFlux.fluxScansSeq(mzml);
     Disposable sub = gen
         .doOnSubscribe(subscription -> sw.start()) // start the timer when the pipeline starts working
         .doOnComplete(() -> {
+          log.info("Called doOnComplete()");
           sw.stop();
           pool.purge();
         })
-
+        //.parallel(threads, prefetch)
         .filter(scan -> scan.getMsLevel() == 1)
         .doOnNext(scan -> {
           int i = scanCount.incrementAndGet();
-          if (i % 10 == 0) {
+          int prevScanNum = lastProcessedScanNum.getAndSet(scan.getNum());
+          if (prevScanNum >= scan.getNum()) {
+            log.error("Arriving scan with lower number than previous one");
+          }
+          if (i % 1000 == 0) {
             log.info("Got to scan i={} #{}@{}min, Active traces: {}, Completed traces: {}",
                 i, scan.getNum(), scan.getRt(), tracesAll.size(), tracesComplete.size());
           }
@@ -263,10 +274,12 @@ public class MzmlFluxTest {
           ISpectrum spec = scan.getSpectrum();
 
           // update existing traces
-          //IntStream.range(0, spec.getMZs().length).parallel().forEach(index -> {
+//          IntStream.range(0, spec.getMZs().length).parallel().forEach(index -> {
           IntStream.range(0, spec.getMZs().length).forEach(index -> {
             double mz = spec.getMZs()[index];
             double ab = spec.getIntensities()[index];
+            float rt = scan.getRt().floatValue();
+            int scanNum = scan.getNum();
             if (ab <= 0)
               return;
             double mzTol = SpectrumUtils.ppm2amu(mz, opts.mzTolPpm);
@@ -274,12 +287,12 @@ public class MzmlFluxTest {
 
             if (range.isEmpty()) { // create new trace
               Trace t = pool.borrow();
-              t.add(mz, (float) ab, scan.getNum());
+              t.add(mz, (float) ab, scanNum, rt);
               tracesNew.add(t);
 
             } else if (range.size() == 1) { // update an exising trace
               Trace t = range.firstEntry().getValue();
-              t.add(mz, (float) ab, scan.getNum());
+              t.add(mz, (float) ab, scanNum, rt);
 
             } else { // if many possible traces match, select one with closest intensity and update
               Trace bestMatch = range.firstEntry().getValue();
@@ -292,7 +305,7 @@ public class MzmlFluxTest {
                   bestMatch = t;
                 }
               }
-              bestMatch.add(mz, (float) ab, scan.getNum());
+              bestMatch.add(mz, (float) ab, scanNum, rt);
             }
           });
 
@@ -334,6 +347,8 @@ public class MzmlFluxTest {
           tracesNew.clear();
         })
 
+        //.ordered((o1, o2) -> Integer.compare(o1.getNum(), o2.getNum()), prefetch)
+
         .subscribeOn(Schedulers.elastic())      // generator will run on this scheduler (once subscribed)
         .subscribe(o -> {
 //          String scans = o.stream().map(IScan::getNum).map(Object::toString).collect(Collectors.joining(", "));
@@ -341,7 +356,7 @@ public class MzmlFluxTest {
 //          String counts = Seq.seq(byMsLevel.entrySet())
 //              .map(kv -> String.format("MS%d: %d scans", kv.getKey(), kv.getValue().size()))
 //              .toString(", ");
-          log.debug("Got final mapped result: {}", o);
+          //log.debug("Got final mapped result: {}", o);
           //System.out.printf("Got scans: %s\n", scans); // do something with generated and processed item
         });
 
@@ -354,8 +369,56 @@ public class MzmlFluxTest {
     tracesComplete.addAll(tracesAll.values());
     tracesComplete.sort((o1, o2) -> Integer.compare(o2.ptr, o1.ptr));
 
+    writeTraces(tracesComplete, dir.resolve(fn + ".traces.mzrt.csv"));
+
     long timeHi = System.nanoTime();
     log.info("Counter value: {}, elapsed: {}s", scanCount.get(), (sw.elapsed(TimeUnit.NANOSECONDS)) / 1e9f);
+  }
+
+  public static String colorToHex(Color color) {
+    return String.format("#%02x%02x%02x", color.getRed(), color.getGreen(), color.getBlue());
+  }
+
+  private void writeTraces(ArrayList<Trace> tracesComplete, Path path) throws IOException {
+    log.info("Writing traces to: {}", path);
+    CSVPrinter printer = null;
+    try {
+      printer = CSVFormat.DEFAULT.withHeader(
+              "mzLo",
+              "mzHi",
+              "rtLo",
+              "rtHi",
+              "color",
+              "opacity"
+      ).print(path, StandardCharsets.UTF_8);
+      for (Trace t : tracesComplete) {
+        double mzLo = Double.POSITIVE_INFINITY;
+        double mzHi = Double.NEGATIVE_INFINITY;
+        for (int i =0; i <= t.ptr; i++) {
+          double mz = t.mzs[i];
+          if (mz < mzLo) mzLo = mz;
+          if (mz > mzHi) mzHi = mz;
+        }
+        String color = colorToHex(Color.GREEN);
+        float opacity = 0.3f;
+        DecimalFormat df5 = new DecimalFormat("0.00000");
+        DecimalFormat df3 = new DecimalFormat("0.000");
+        printer.printRecord(
+                df5.format(mzLo),
+                df5.format(mzHi),
+                df3.format(t.rtLo),
+                df3.format(t.rtHi),
+                color,
+                df3.format(opacity)
+        );
+      }
+
+      printer.printRecord();
+    } finally {
+      if (printer != null) {
+        printer.close(true);
+      }
+    }
   }
 
   static void sleepQuietly(long millis) {
