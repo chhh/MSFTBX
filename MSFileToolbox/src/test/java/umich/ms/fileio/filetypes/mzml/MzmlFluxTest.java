@@ -219,9 +219,12 @@ public class MzmlFluxTest {
 
   @Test
   public void fluxTracePeaks2() throws IOException {
-    //Path dir = Paths.get("D:\\ms-data\\TMTIntegrator_v1.1.4\\TMT-I-Test\\01CPTAC_CCRCC_W_JHU_20171007");
-    Path dir = Paths.get("C:\\ms-data\\mzml");
-    String fn = "01CPTAC_CCRCC_W_JHU_20171007_LUMOS_f01.mzML";
+    Path dir = Paths.get("D:\\ms-data\\full-runs\\20171007");
+    String fn = "20171007_LUMOS_f01.mzML";
+
+//    Path dir = Paths.get("D:\\ms-data\\swath\\");
+//    String fn = "20171007_LUMOS_f01.mzML";
+
 
     Path file = dir.resolve(fn);
     MZMLFile mzml = new MZMLFile(file.toString());
@@ -371,8 +374,31 @@ public class MzmlFluxTest {
 
     writeTraces(tracesComplete, dir.resolve(fn + ".traces.mzrt.csv"));
 
+    tracesMetrics(tracesComplete);
+
     long timeHi = System.nanoTime();
     log.info("Counter value: {}, elapsed: {}s", scanCount.get(), (sw.elapsed(TimeUnit.NANOSECONDS)) / 1e9f);
+  }
+
+  public static class TracesMetrics {
+    double avgDirectionChanges = Double.NaN;
+    double avgMzVariance = Double.NaN;
+  }
+
+  public void tracesMetrics(List<Trace> traces) {
+    log.debug("Collecting metrics for {} traces", traces.size());
+    traces.parallelStream().forEach(trace -> {
+      int changes = trace.computeDirectionChanges();
+      trace.stats.countDirectionChanges = changes;
+    });
+    Double average1 = traces.stream().mapToInt(t -> t.stats.countDirectionChanges).average().orElse(Double.NaN);
+    Double average2 = traces.stream().filter(t -> t.size() > 10).mapToInt(t -> t.stats.countDirectionChanges).average().orElse(Double.NaN);
+    log.debug("Average overall: {}, Average for longer traces: {}", average1, average2);
+
+    traces.parallelStream().forEach(t -> {
+      final int windowSize = 5;
+      // TODO: continue here
+    });
   }
 
   public static String colorToHex(Color color) {
@@ -428,5 +454,4 @@ public class MzmlFluxTest {
       throw new IllegalStateException();
     }
   }
-
 }
