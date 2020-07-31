@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2017 Dmitry Avtonomov
+ * Copyright (c) 2019 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,9 +28,9 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -41,53 +41,67 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
 @XmlRootElement(name = "database_refresh_timestamp")
 public class DatabaseRefreshTimestamp {
 
-  @XmlAttribute(name = "database", required = true)
-  protected String database;
-  @XmlAttribute(name = "min_num_enz_term")
-  @XmlJavaTypeAdapter(Adapter1.class)
-  @XmlSchemaType(name = "nonNegativeInteger")
-  protected Integer minNumEnzTerm;
+    @XmlAttribute(name = "database", required = true)
+    protected String database;
+    @XmlAttribute(name = "min_num_enz_term")
+    @XmlJavaTypeAdapter(Adapter1 .class)
+    @XmlSchemaType(name = "nonNegativeInteger")
+    protected Integer minNumEnzTerm;
 
-  /**
-   * Gets the value of the database property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getDatabase() {
-    return database;
-  }
+    /**
+     * Gets the value of the database property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getDatabase() {
+        return database;
+    }
 
-  /**
-   * Sets the value of the database property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setDatabase(String value) {
-    this.database = value;
-  }
+    /**
+     * Sets the value of the database property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setDatabase(String value) {
+        this.database = value;
+    }
 
-  /**
-   * Gets the value of the minNumEnzTerm property.
-   *
-   * @return possible object is {@link String }
-   */
-  public Integer getMinNumEnzTerm() {
-    return minNumEnzTerm;
-  }
+    /**
+     * Gets the value of the minNumEnzTerm property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public Integer getMinNumEnzTerm() {
+        return minNumEnzTerm;
+    }
 
-  /**
-   * Sets the value of the minNumEnzTerm property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setMinNumEnzTerm(Integer value) {
-    this.minNumEnzTerm = value;
-  }
+    /**
+     * Sets the value of the minNumEnzTerm property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setMinNumEnzTerm(Integer value) {
+        this.minNumEnzTerm = value;
+    }
 
 }

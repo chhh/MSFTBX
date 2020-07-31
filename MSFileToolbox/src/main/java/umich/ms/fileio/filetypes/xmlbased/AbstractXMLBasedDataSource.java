@@ -111,21 +111,6 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
     return new SoftReferenceObjectPool<>(new XMLStreamReaderFactory());
   }
 
-
-  //    /**
-  //     * <b>You probably don't need that method</b>, it parses the spectra indexes (where in the file each
-  //     * spectrumRef description starts and ends).
-  //     * It will be called automatically for you if you call parsing methods that don't take an index as input.
-  //     * The index will not be stored in this MZXMLFile instance, if you want caching to work, just call {@link #fetchIndex()}.
-  //     * @return TreeMap, keys: spectrumRef number, vals: byte offset from the beginning of the file where this spectrumRef
-  //     * starts. The last element of this map holds the end position of the last spectrumRef.
-  //     * @throws umich.ms.fileio.exceptions.FileParsingException
-  //     */
-  //    public TreeMap<Integer, OffsetLength> parseIndex() throws FileParsingException {
-  //        MZXMLIndexParser parser = new MZXMLIndexParser(this);
-  //        TreeMap<Integer, OffsetLength> idx = parser.parse();
-  //        return idx;
-  //    }
   @Override
   public List<IScan> parse(LCMSDataSubset subset) throws FileParsingException {
     I idx = fetchIndex(); // make sure, that the index is parsed
@@ -334,26 +319,28 @@ public abstract class AbstractXMLBasedDataSource<E extends XMLBasedIndexElement,
   protected byte[] readContinuousBatchOfSpectra(
       Iterator<? extends Map.Entry<Integer, ? extends XMLBasedIndexElement>> entries,
       RandomAccessFile file, byte[] readBuf, ArrayList<OffsetLength> readTasks,
-      int maxScansToReadInBatch) throws IOException {
+      int maxScansToReadInBatch) throws IOException, FileParsingException {
     while (entries.hasNext() && readTasks.size() < maxScansToReadInBatch) {
       readTasks.add(entries.next().getValue().getOffsetLength());
     }
-    OffsetLength readFirst = readTasks.get(0);
-    OffsetLength readLast = readTasks.get(readTasks.size() - 1);
+    OffsetLength taskFirst = readTasks.get(0);
+    OffsetLength taskLast = readTasks.get(readTasks.size() - 1);
 
-    long readOffset = readFirst.offset;
-    // TODO: WARNING ACHTUNG - possible overflow here if single spectra are very large
-    int readLength = (int) (readLast.offset - readOffset + readLast.length);
+    long readOffset = taskFirst.offset;
+    long readLength = taskLast.offset - readOffset + taskLast.length;
+    if (readLength >= Integer.MAX_VALUE) {
+      throw new FileParsingException("Continuous batch of spectra appered to be too long to read");
+    }
     // check if the buffer size is enough and expand accordingly, or clean the old buffer
     if (readBuf.length < readLength) {
-      readBuf = new byte[readLength];
+      readBuf = new byte[(int)readLength];
     } else {
       Arrays.fill(readBuf, (byte) 0);
     }
 
     // read everything into the buffer
     file.seek(readOffset);
-    file.readFully(readBuf, 0, readLength);
+    file.readFully(readBuf, 0, (int)readLength);
 
     return readBuf;
   }

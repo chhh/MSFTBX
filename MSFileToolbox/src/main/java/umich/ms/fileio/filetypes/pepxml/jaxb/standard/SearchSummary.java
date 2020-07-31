@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2017 Dmitry Avtonomov
+ * Copyright (c) 2019 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,9 +28,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -126,6 +126,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -138,308 +140,380 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class SearchSummary {
 
-  @XmlElement(name = "search_database")
-  protected SearchDatabase searchDatabase;
-  @XmlElement(name = "enzymatic_search_constraint")
-  protected EnzymaticSearchConstraint enzymaticSearchConstraint;
-  @XmlElement(name = "sequence_search_constraint")
-  protected List<SequenceSearchConstraint> sequenceSearchConstraint;
-  @XmlElement(name = "aminoacid_modification")
-  protected List<AminoacidModification> aminoacidModification;
-  @XmlElement(name = "terminal_modification")
-  protected List<TerminalModification> terminalModification;
-  protected List<NameValueType> parameter;
-  @XmlAttribute(name = "base_name", required = true)
-  protected String baseName;
-  @XmlAttribute(name = "search_engine", required = true)
-  protected EngineType searchEngine;
-  @XmlAttribute(name = "search_engine_version")
-  protected String searchEngineVersion;
-  @XmlAttribute(name = "precursor_mass_type", required = true)
-  protected MassType precursorMassType;
-  @XmlAttribute(name = "fragment_mass_type", required = true)
-  protected MassType fragmentMassType;
-  @XmlAttribute(name = "out_data_type")
-  protected String outDataType;
-  @XmlAttribute(name = "out_data")
-  protected String outData;
-  @XmlAttribute(name = "search_id", required = true)
-  protected long searchId;
+    @XmlElement(name = "search_database")
+    protected SearchDatabase searchDatabase;
+    @XmlElement(name = "enzymatic_search_constraint")
+    protected EnzymaticSearchConstraint enzymaticSearchConstraint;
+    @XmlElement(name = "sequence_search_constraint")
+    protected List<SequenceSearchConstraint> sequenceSearchConstraint;
+    @XmlElement(name = "aminoacid_modification")
+    protected List<AminoacidModification> aminoacidModification;
+    @XmlElement(name = "terminal_modification")
+    protected List<TerminalModification> terminalModification;
+    protected List<NameValueType> parameter;
+    @XmlAttribute(name = "base_name", required = true)
+    protected String baseName;
+    @XmlAttribute(name = "search_engine", required = true)
+    protected EngineType searchEngine;
+    @XmlAttribute(name = "search_engine_version")
+    protected String searchEngineVersion;
+    @XmlAttribute(name = "precursor_mass_type", required = true)
+    protected MassType precursorMassType;
+    @XmlAttribute(name = "fragment_mass_type", required = true)
+    protected MassType fragmentMassType;
+    @XmlAttribute(name = "out_data_type")
+    protected String outDataType;
+    @XmlAttribute(name = "out_data")
+    protected String outData;
+    @XmlAttribute(name = "search_id", required = true)
+    protected long searchId;
 
-  /**
-   * Gets the value of the searchDatabase property.
-   *
-   * @return possible object is {@link SearchDatabase }
-   */
-  public SearchDatabase getSearchDatabase() {
-    return searchDatabase;
-  }
-
-  /**
-   * Sets the value of the searchDatabase property.
-   *
-   * @param value allowed object is {@link SearchDatabase }
-   */
-  public void setSearchDatabase(SearchDatabase value) {
-    this.searchDatabase = value;
-  }
-
-  /**
-   * Gets the value of the enzymaticSearchConstraint property.
-   *
-   * @return possible object is {@link EnzymaticSearchConstraint }
-   */
-  public EnzymaticSearchConstraint getEnzymaticSearchConstraint() {
-    return enzymaticSearchConstraint;
-  }
-
-  /**
-   * Sets the value of the enzymaticSearchConstraint property.
-   *
-   * @param value allowed object is {@link EnzymaticSearchConstraint }
-   */
-  public void setEnzymaticSearchConstraint(EnzymaticSearchConstraint value) {
-    this.enzymaticSearchConstraint = value;
-  }
-
-  /**
-   * Gets the value of the sequenceSearchConstraint property.
-   *
-   * <p>
-   * This accessor method returns a reference to the live list, not a snapshot. Therefore any
-   * modification you make to the returned list will be present inside the JAXB object. This is why
-   * there is not a <CODE>set</CODE> method for the sequenceSearchConstraint property.
-   *
-   * <p>
-   * For example, to add a new item, do as follows:
-   * <pre>
-   *    getSequenceSearchConstraint().add(newItem);
-   * </pre>
-   *
-   *
-   * <p>
-   * Objects of the following type(s) are allowed in the list {@link SequenceSearchConstraint }
-   */
-  public List<SequenceSearchConstraint> getSequenceSearchConstraint() {
-    if (sequenceSearchConstraint == null) {
-      sequenceSearchConstraint = new ArrayList<SequenceSearchConstraint>(1);
+    /**
+     * Gets the value of the searchDatabase property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link SearchDatabase }
+     *     
+     */
+    public SearchDatabase getSearchDatabase() {
+        return searchDatabase;
     }
-    return this.sequenceSearchConstraint;
-  }
 
-  /**
-   * Gets the value of the aminoacidModification property.
-   *
-   * <p>
-   * This accessor method returns a reference to the live list, not a snapshot. Therefore any
-   * modification you make to the returned list will be present inside the JAXB object. This is why
-   * there is not a <CODE>set</CODE> method for the aminoacidModification property.
-   *
-   * <p>
-   * For example, to add a new item, do as follows:
-   * <pre>
-   *    getAminoacidModification().add(newItem);
-   * </pre>
-   *
-   *
-   * <p>
-   * Objects of the following type(s) are allowed in the list {@link AminoacidModification }
-   */
-  public List<AminoacidModification> getAminoacidModification() {
-    if (aminoacidModification == null) {
-      aminoacidModification = new ArrayList<AminoacidModification>(1);
+    /**
+     * Sets the value of the searchDatabase property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link SearchDatabase }
+     *     
+     */
+    public void setSearchDatabase(SearchDatabase value) {
+        this.searchDatabase = value;
     }
-    return this.aminoacidModification;
-  }
 
-  /**
-   * Gets the value of the terminalModification property.
-   *
-   * <p>
-   * This accessor method returns a reference to the live list, not a snapshot. Therefore any
-   * modification you make to the returned list will be present inside the JAXB object. This is why
-   * there is not a <CODE>set</CODE> method for the terminalModification property.
-   *
-   * <p>
-   * For example, to add a new item, do as follows:
-   * <pre>
-   *    getTerminalModification().add(newItem);
-   * </pre>
-   *
-   *
-   * <p>
-   * Objects of the following type(s) are allowed in the list {@link TerminalModification }
-   */
-  public List<TerminalModification> getTerminalModification() {
-    if (terminalModification == null) {
-      terminalModification = new ArrayList<TerminalModification>(1);
+    /**
+     * Gets the value of the enzymaticSearchConstraint property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link EnzymaticSearchConstraint }
+     *     
+     */
+    public EnzymaticSearchConstraint getEnzymaticSearchConstraint() {
+        return enzymaticSearchConstraint;
     }
-    return this.terminalModification;
-  }
 
-  /**
-   * Gets the value of the parameter property.
-   *
-   * <p>
-   * This accessor method returns a reference to the live list, not a snapshot. Therefore any
-   * modification you make to the returned list will be present inside the JAXB object. This is why
-   * there is not a <CODE>set</CODE> method for the parameter property.
-   *
-   * <p>
-   * For example, to add a new item, do as follows:
-   * <pre>
-   *    getParameter().add(newItem);
-   * </pre>
-   *
-   *
-   * <p>
-   * Objects of the following type(s) are allowed in the list {@link NameValueType }
-   */
-  public List<NameValueType> getParameter() {
-    if (parameter == null) {
-      parameter = new ArrayList<NameValueType>(1);
+    /**
+     * Sets the value of the enzymaticSearchConstraint property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link EnzymaticSearchConstraint }
+     *     
+     */
+    public void setEnzymaticSearchConstraint(EnzymaticSearchConstraint value) {
+        this.enzymaticSearchConstraint = value;
     }
-    return this.parameter;
-  }
 
-  /**
-   * Gets the value of the baseName property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getBaseName() {
-    return baseName;
-  }
+    /**
+     * Gets the value of the sequenceSearchConstraint property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the sequenceSearchConstraint property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getSequenceSearchConstraint().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link SequenceSearchConstraint }
+     * 
+     * 
+     */
+    public List<SequenceSearchConstraint> getSequenceSearchConstraint() {
+        if (sequenceSearchConstraint == null) {
+            sequenceSearchConstraint = new ArrayList<SequenceSearchConstraint>(1);
+        }
+        return this.sequenceSearchConstraint;
+    }
 
-  /**
-   * Sets the value of the baseName property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setBaseName(String value) {
-    this.baseName = value;
-  }
+    /**
+     * Gets the value of the aminoacidModification property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the aminoacidModification property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getAminoacidModification().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link AminoacidModification }
+     * 
+     * 
+     */
+    public List<AminoacidModification> getAminoacidModification() {
+        if (aminoacidModification == null) {
+            aminoacidModification = new ArrayList<AminoacidModification>(1);
+        }
+        return this.aminoacidModification;
+    }
 
-  /**
-   * Gets the value of the searchEngine property.
-   *
-   * @return possible object is {@link EngineType }
-   */
-  public EngineType getSearchEngine() {
-    return searchEngine;
-  }
+    /**
+     * Gets the value of the terminalModification property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the terminalModification property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getTerminalModification().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link TerminalModification }
+     * 
+     * 
+     */
+    public List<TerminalModification> getTerminalModification() {
+        if (terminalModification == null) {
+            terminalModification = new ArrayList<TerminalModification>(1);
+        }
+        return this.terminalModification;
+    }
 
-  /**
-   * Sets the value of the searchEngine property.
-   *
-   * @param value allowed object is {@link EngineType }
-   */
-  public void setSearchEngine(EngineType value) {
-    this.searchEngine = value;
-  }
+    /**
+     * Gets the value of the parameter property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the parameter property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getParameter().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link NameValueType }
+     * 
+     * 
+     */
+    public List<NameValueType> getParameter() {
+        if (parameter == null) {
+            parameter = new ArrayList<NameValueType>(1);
+        }
+        return this.parameter;
+    }
 
-  /**
-   * Gets the value of the searchEngineVersion property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getSearchEngineVersion() {
-    return searchEngineVersion;
-  }
+    /**
+     * Gets the value of the baseName property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getBaseName() {
+        return baseName;
+    }
 
-  /**
-   * Sets the value of the searchEngineVersion property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setSearchEngineVersion(String value) {
-    this.searchEngineVersion = value;
-  }
+    /**
+     * Sets the value of the baseName property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setBaseName(String value) {
+        this.baseName = value;
+    }
 
-  /**
-   * Gets the value of the precursorMassType property.
-   *
-   * @return possible object is {@link MassType }
-   */
-  public MassType getPrecursorMassType() {
-    return precursorMassType;
-  }
+    /**
+     * Gets the value of the searchEngine property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link EngineType }
+     *     
+     */
+    public EngineType getSearchEngine() {
+        return searchEngine;
+    }
 
-  /**
-   * Sets the value of the precursorMassType property.
-   *
-   * @param value allowed object is {@link MassType }
-   */
-  public void setPrecursorMassType(MassType value) {
-    this.precursorMassType = value;
-  }
+    /**
+     * Sets the value of the searchEngine property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link EngineType }
+     *     
+     */
+    public void setSearchEngine(EngineType value) {
+        this.searchEngine = value;
+    }
 
-  /**
-   * Gets the value of the fragmentMassType property.
-   *
-   * @return possible object is {@link MassType }
-   */
-  public MassType getFragmentMassType() {
-    return fragmentMassType;
-  }
+    /**
+     * Gets the value of the searchEngineVersion property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getSearchEngineVersion() {
+        return searchEngineVersion;
+    }
 
-  /**
-   * Sets the value of the fragmentMassType property.
-   *
-   * @param value allowed object is {@link MassType }
-   */
-  public void setFragmentMassType(MassType value) {
-    this.fragmentMassType = value;
-  }
+    /**
+     * Sets the value of the searchEngineVersion property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setSearchEngineVersion(String value) {
+        this.searchEngineVersion = value;
+    }
 
-  /**
-   * Gets the value of the outDataType property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getOutDataType() {
-    return outDataType;
-  }
+    /**
+     * Gets the value of the precursorMassType property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link MassType }
+     *     
+     */
+    public MassType getPrecursorMassType() {
+        return precursorMassType;
+    }
 
-  /**
-   * Sets the value of the outDataType property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setOutDataType(String value) {
-    this.outDataType = value;
-  }
+    /**
+     * Sets the value of the precursorMassType property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link MassType }
+     *     
+     */
+    public void setPrecursorMassType(MassType value) {
+        this.precursorMassType = value;
+    }
 
-  /**
-   * Gets the value of the outData property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getOutData() {
-    return outData;
-  }
+    /**
+     * Gets the value of the fragmentMassType property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link MassType }
+     *     
+     */
+    public MassType getFragmentMassType() {
+        return fragmentMassType;
+    }
 
-  /**
-   * Sets the value of the outData property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setOutData(String value) {
-    this.outData = value;
-  }
+    /**
+     * Sets the value of the fragmentMassType property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link MassType }
+     *     
+     */
+    public void setFragmentMassType(MassType value) {
+        this.fragmentMassType = value;
+    }
 
-  /**
-   * Gets the value of the searchId property.
-   */
-  public long getSearchId() {
-    return searchId;
-  }
+    /**
+     * Gets the value of the outDataType property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getOutDataType() {
+        return outDataType;
+    }
 
-  /**
-   * Sets the value of the searchId property.
-   */
-  public void setSearchId(long value) {
-    this.searchId = value;
-  }
+    /**
+     * Sets the value of the outDataType property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setOutDataType(String value) {
+        this.outDataType = value;
+    }
+
+    /**
+     * Gets the value of the outData property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getOutData() {
+        return outData;
+    }
+
+    /**
+     * Sets the value of the outData property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setOutData(String value) {
+        this.outData = value;
+    }
+
+    /**
+     * Gets the value of the searchId property.
+     * 
+     */
+    public long getSearchId() {
+        return searchId;
+    }
+
+    /**
+     * Sets the value of the searchId property.
+     * 
+     */
+    public void setSearchId(long value) {
+        this.searchId = value;
+    }
 
 }

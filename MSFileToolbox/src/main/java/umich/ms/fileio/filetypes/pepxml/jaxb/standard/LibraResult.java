@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2017 Dmitry Avtonomov
+ * Copyright (c) 2019 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,9 +29,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -56,6 +56,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -64,56 +66,66 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement(name = "libra_result")
 public class LibraResult {
 
-  @XmlElement(required = true)
-  protected List<Intensity> intensity;
-  @XmlAttribute(name = "is_rejected")
-  protected Boolean isRejected;
+    @XmlElement(required = true)
+    protected List<Intensity> intensity;
+    @XmlAttribute(name = "is_rejected")
+    protected Boolean isRejected;
 
-  /**
-   * Gets the value of the intensity property.
-   *
-   * <p>
-   * This accessor method returns a reference to the live list, not a snapshot. Therefore any
-   * modification you make to the returned list will be present inside the JAXB object. This is why
-   * there is not a <CODE>set</CODE> method for the intensity property.
-   *
-   * <p>
-   * For example, to add a new item, do as follows:
-   * <pre>
-   *    getIntensity().add(newItem);
-   * </pre>
-   *
-   *
-   * <p>
-   * Objects of the following type(s) are allowed in the list {@link Intensity }
-   */
-  public List<Intensity> getIntensity() {
-    if (intensity == null) {
-      intensity = new ArrayList<Intensity>(1);
+    /**
+     * Gets the value of the intensity property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the intensity property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getIntensity().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link Intensity }
+     * 
+     * 
+     */
+    public List<Intensity> getIntensity() {
+        if (intensity == null) {
+            intensity = new ArrayList<Intensity>(1);
+        }
+        return this.intensity;
     }
-    return this.intensity;
-  }
 
-  /**
-   * Gets the value of the isRejected property.
-   *
-   * @return possible object is {@link Boolean }
-   */
-  public boolean isIsRejected() {
-    if (isRejected == null) {
-      return false;
-    } else {
-      return isRejected;
+    /**
+     * Gets the value of the isRejected property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public boolean isIsRejected() {
+        if (isRejected == null) {
+            return false;
+        } else {
+            return isRejected;
+        }
     }
-  }
 
-  /**
-   * Sets the value of the isRejected property.
-   *
-   * @param value allowed object is {@link Boolean }
-   */
-  public void setIsRejected(Boolean value) {
-    this.isRejected = value;
-  }
+    /**
+     * Sets the value of the isRejected property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setIsRejected(Boolean value) {
+        this.isRejected = value;
+    }
 
 }

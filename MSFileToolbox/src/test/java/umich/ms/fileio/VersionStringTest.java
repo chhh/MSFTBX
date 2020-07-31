@@ -18,29 +18,39 @@ package umich.ms.fileio;
 
 import java.io.FileReader;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import org.apache.maven.model.Model;
 import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import umich.ms.msfiletoolbox.MsftbxInfo;
 
 /**
  * @author Dmitry Avtonomov
  */
 public class VersionStringTest {
+  private static final Logger log = LoggerFactory.getLogger(VersionStringTest.class);
 
   @Test
+  @Order(Integer.MAX_VALUE)
   public void VerifyVersionStringUpdatedBeforeRelease() throws Exception {
 
     System.out.println("Verifying version information");
     MavenXpp3Reader reader = new MavenXpp3Reader();
     Model pom = null;
-    if (Files.exists(Paths.get("pom.xml"))) {
-      pom = reader.read(new FileReader("pom.xml"));
+    Path pomPath = Paths.get("pom.xml").toAbsolutePath().normalize();
+    if (Files.exists(pomPath)) {
+      pom = reader.read(Files.newBufferedReader(pomPath));
+    } else {
+      log.error("POM file not found: {}", pomPath);
+      return;
     }
     if (pom == null) {
-      System.err.println("Could not load pom.xml as Model");
+      log.error("Could not load pom.xml as Model");
       return;
     }
     System.out.printf("%nInfo in pom.xml:%n");
@@ -50,7 +60,7 @@ public class VersionStringTest {
     System.out.printf("%nInfo in MsftbxInfo:%n");
     System.out.printf("\tVersion: %s%n", MsftbxInfo.getVersion());
 
-    Assert.assertEquals("Version info in pom.xml does not match version info " +
+    Assertions.assertEquals("Version info in pom.xml does not match version info " +
         "returned by MsftbxInfo.getVersion()", pom.getVersion(), MsftbxInfo.getVersion());
   }
 }

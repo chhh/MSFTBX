@@ -1,13 +1,9 @@
 package umich.ms.fileio.filetypes.mzml;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.Arrays;
 import java.util.StringJoiner;
 
 public class Trace {
-  private static final Logger log = LoggerFactory.getLogger(Trace.class);
   double[] mzs;
   float[] abs;
   int[] scanNums;
@@ -21,11 +17,6 @@ public class Trace {
   float rtLo;
   float rtHi;
   int ptr = -1;
-
-  Stats stats = new Stats();
-  public static class Stats {
-    public int countDirectionChanges;
-  }
 
   public Trace(int initSize) {
     mzs = new double[initSize];
@@ -86,20 +77,6 @@ public class Trace {
 
   private String makeId(double mz, int scanNum) {
     return String.format("%.5f@%d", mz, scanNum);
-  }
-
-  public int computeDirectionChanges() {
-    if (size() < 3)
-      return 0;
-    float dirPrev = abs[1] - abs[0];
-    int changes = 0;
-    for (int i = 2; i < size(); i++) {
-      float dirCur = abs[i] - abs[i-1];
-      if ((dirPrev < 0 && dirCur > 0) || (dirPrev > 0 && dirCur < 0)) {
-        changes += 1;
-      }
-    }
-    return changes;
   }
 
   @Override

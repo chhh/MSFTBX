@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2017 Dmitry Avtonomov
+ * Copyright (c) 2019 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,9 +28,9 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -40,33 +40,41 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
 @XmlRootElement(name = "xpressratio_timestamp")
 public class XpressratioTimestamp {
 
-  @XmlAttribute(name = "xpress_light", required = true)
-  @XmlJavaTypeAdapter(Adapter1.class)
-  @XmlSchemaType(name = "integer")
-  protected Integer xpressLight;
+    @XmlAttribute(name = "xpress_light", required = true)
+    @XmlJavaTypeAdapter(Adapter1 .class)
+    @XmlSchemaType(name = "integer")
+    protected Integer xpressLight;
 
-  /**
-   * Gets the value of the xpressLight property.
-   *
-   * @return possible object is {@link String }
-   */
-  public Integer getXpressLight() {
-    return xpressLight;
-  }
+    /**
+     * Gets the value of the xpressLight property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public Integer getXpressLight() {
+        return xpressLight;
+    }
 
-  /**
-   * Sets the value of the xpressLight property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setXpressLight(Integer value) {
-    this.xpressLight = value;
-  }
+    /**
+     * Sets the value of the xpressLight property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setXpressLight(Integer value) {
+        this.xpressLight = value;
+    }
 
 }

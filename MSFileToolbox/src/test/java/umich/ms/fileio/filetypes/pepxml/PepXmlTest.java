@@ -17,36 +17,27 @@
 package umich.ms.fileio.filetypes.pepxml;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Iterator;
 import java.util.List;
-import java.util.OptionalLong;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import java.util.zip.Inflater;
 import java.util.zip.InflaterInputStream;
-
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import umich.ms.fileio.ResourceUtils;
-import umich.ms.fileio.filetypes.pepxml.jaxb.standard.*;
-import umich.ms.util.jaxb.JaxbUtils;
-import umich.ms.util.xml.XmlUtils;
-
-import javax.xml.bind.JAXBException;
-import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamReader;
+import umich.ms.fileio.filetypes.pepxml.jaxb.standard.ModificationInfo;
+import umich.ms.fileio.filetypes.pepxml.jaxb.standard.MsmsPipelineAnalysis;
+import umich.ms.fileio.filetypes.pepxml.jaxb.standard.MsmsRunSummary;
+import umich.ms.fileio.filetypes.pepxml.jaxb.standard.SearchHit;
+import umich.ms.fileio.filetypes.pepxml.jaxb.standard.SearchSummary;
+import umich.ms.fileio.filetypes.pepxml.jaxb.standard.SpectrumQuery;
 
 /**
  * @author Dmitry Avtonomov
  */
 public class PepXmlTest {
-  private static final Logger log = LoggerFactory.getLogger(PepXmlTest.class);
 
   List<Path> paths;
 
@@ -135,82 +126,19 @@ public class PepXmlTest {
   }
 
   @Test
-  public void testAnalysisSummary() throws FileNotFoundException, JAXBException, XMLStreamException {
-
-    String fn = "q02261.pep.xml";
-    Path p = paths.stream().filter(path -> path.endsWith(fn)).findFirst()
-        .orElseThrow(() -> new FileNotFoundException(fn));
-
-    final XMLStreamReader xsr = JaxbUtils.createXmlStreamReader(p, false);
-    final String tag = "analysis_summary";
-
-    while (umich.ms.util.xml.XmlUtils.advanceReaderToNext(xsr, tag)) {
-      AnalysisSummary summary = JaxbUtils.unmarshal(AnalysisSummary.class, xsr);
-      log.info("Found '{}': {}", tag, summary.getAnalysis());
-    }
-  }
-
-  @Test
   public void testIteratorParsing() throws Exception {
 
     System.out.println("Test parsing files iteratively.");
     for (Path path : paths) {
       String p = path.toString().toLowerCase();
-      if (p.endsWith(".zip") || p.endsWith(".gz")) {
-        continue;
-      }
-
-      log.debug("Parsing iteratively: {}", path);
-      try (FileInputStream fis = new FileInputStream(path.toString())) {
-        Iterator<MsmsRunSummary> it = PepXmlParser.parse(fis);
-        while (it.hasNext()) {
-          MsmsRunSummary msr = it.next();
-          assertMsMsRunSummaryOk(msr);
-
-          Stream<SearchHit> allHits = msr.getSpectrumQuery().stream()
-              .flatMap(spectrumQuery -> spectrumQuery.getSearchResult().stream())
-              .flatMap(searchResult -> searchResult.getSearchHit().stream());
-
-          Stream<SearchHit> topRankedHits = msr.getSpectrumQuery().stream()
-              .peek(spectrumQuery -> {
-                if (spectrumQuery.getSearchResult().isEmpty()) {
-                  log.warn("whoa, empty search result");
-                } else if (spectrumQuery.getSearchResult().size() > 1) {
-                  log.warn("hmmm, more than 1 search result per spectrum query");
-                }
-              })
-              .flatMap(spectrumQuery -> spectrumQuery.getSearchResult().stream())
-              .peek(searchResult -> {
-                if (searchResult.getSearchHit().isEmpty()) {
-                  log.warn("whoa, empty search result");
-                }
-              })
-              .filter(searchResult -> !searchResult.getSearchHit().isEmpty()) // only non-empty ones are allowed
-              .flatMap(searchResult -> {
-                long bestRank = searchResult.getSearchHit().stream()
-                    .mapToLong(SearchHit::getHitRank).min()
-                    .orElseThrow(() -> new IllegalStateException("Shouldn't happen, we checked for empty results"));
-                return searchResult.getSearchHit().stream()
-                    .filter(searchHit -> searchHit.getHitRank() <= bestRank);
-              });
-
-          long countAll = allHits.count();
-          long countTop = topRankedHits.count();
-          log.debug("Top ranked hits: {}, All hits: {}. in {}", countTop, countAll, path);
+      if (p.endsWith(".zip") || p.endsWith(".gz1")) {
+        // compressed pepxml files
+        System.out.printf("Compressed file detected: %s\n", path);
+        if (true) {
+          System.out.println("Skipping for now...");
+          continue;
         }
-      }
-      log.debug("Done: {}\n\n==================\n\n", path);
-    }
-  }
-
-  @Test @Ignore
-  public void testIteratorParsingZipped() throws Exception {
-
-    System.out.println("Test parsing files iteratively.");
-    for (Path path : paths) {
-      String p = path.toString().toLowerCase();
-      if (p.endsWith(".zip") || p.endsWith(".gz")) {
-        log.debug("Parsing iteratively: {}", path);
+        System.out.printf("Parsing iteratively: %s\n", path);
 
         final FileInputStream fis = new FileInputStream(path.toString());
         final Inflater inflater = new Inflater(false);
@@ -223,8 +151,27 @@ public class PepXmlTest {
             assertMsMsRunSummaryOk(msmsRunSummary);
           }
         }
+
+      } else {
+
+        if (true) {
+          continue;
+        }
+
+        // non-compressed pepxml files, just parse the whole thing at once
+        // compressed pepxml files
+        System.out.printf("Parsing iteratively: %s\n", path);
+
+        try (FileInputStream fis = new FileInputStream(path.toString())) {
+          Iterator<MsmsRunSummary> it = PepXmlParser.parse(fis);
+          while (it.hasNext()) {
+            MsmsRunSummary msmsRunSummary = it.next();
+            assertMsMsRunSummaryOk(msmsRunSummary);
+          }
+        }
+
       }
-      log.debug("Done: {}", path);
+      System.out.println("Done.");
     }
   }
 

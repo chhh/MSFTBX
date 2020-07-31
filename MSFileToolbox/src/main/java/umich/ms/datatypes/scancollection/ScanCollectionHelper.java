@@ -17,11 +17,16 @@ package umich.ms.datatypes.scancollection;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.NavigableMap;
 import java.util.Set;
+import java.util.SortedMap;
 import java.util.TreeMap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import umich.ms.datatypes.scan.IScan;
 import umich.ms.datatypes.scan.props.PrecursorInfo;
 import umich.ms.fileio.exceptions.FileParsingException;
@@ -33,6 +38,7 @@ import umich.ms.util.IntervalST;
  * @author Dmitry Avtonomov
  */
 public class ScanCollectionHelper {
+  private static final Logger log = LoggerFactory.getLogger(ScanCollectionHelper.class);
 
   /**
    * Defines the ratio of numbers of scans in the larges "precursor group" to the smallest
@@ -78,74 +84,69 @@ public class ScanCollectionHelper {
     for (int i = 0; i < msLevelsArr.length - 1; i++) {
       // if we're at the bottom MS level, these Scans can't have children, stop processing,
       // hence i < msLevelsArr.length - 1 in the for loop
-      int msLevel = msLevelsArr[i];
-      int msLevelNext = msLevelsArr[i + 1];
-      TreeMap<Integer, IScan> num2scan = scans.getMapMsLevel2index().get(msLevel).getNum2scan();
-      for (Map.Entry<Integer, IScan> kv : num2scan.entrySet()) {
-        int curScanNum = kv.getKey();
-        IScan curScan = kv.getValue();
-        IScan nextScan = scans.getNextScanAtSameMsLevel(curScan);
-        Integer nextScanNumGuess = null;
-        if (nextScan != null) {
-          nextScanNumGuess = nextScan.getNum();
+      final int levelCur = msLevelsArr[i];
+      final int levelNxt = msLevelsArr[i + 1];
+      final TreeMap<Integer, IScan> mapCur = scans.getMapMsLevel2index().get(levelCur).getNum2scan();
+      final TreeMap<Integer, IScan> mapNxt = scans.getMapMsLevel2index().get(levelNxt).getNum2scan();
+      for (Map.Entry<Integer, IScan> kv : mapCur.entrySet()) {
+        final IScan scanCur = kv.getValue();
+        final IScan scanNxt = scans.getNextScanAtSameMsLevel(scanCur);
+        int upperBound = scanNxt != null ? scanNxt.getNum() : Integer.MAX_VALUE; // exclusive
+        Entry<Integer, IScan> scanNxtDeeperLevel = mapNxt.ceilingEntry(scanCur.getNum() + 1);
+        SortedMap<Integer, IScan> children = mapNxt.subMap(scanCur.getNum() + 1, upperBound);
+        scanCur.setChildScans(children.isEmpty() ? Collections.emptyList() : new ArrayList<>(children.keySet()));
+
+        if (children.isEmpty()) {
+          scanCur.setChildScans(Collections.emptyList());
         } else {
-          int lastScanNumAtNextMsLevel = scans.getMapMsLevel2index().get(msLevelNext).getNum2scan()
-              .lastKey();
-            if (lastScanNumAtNextMsLevel > curScanNum) {
-                nextScanNumGuess = lastScanNumAtNextMsLevel;
-            }
-        }
-        if (nextScanNumGuess == null) {
-          continue;
-        }
-        NavigableMap<Integer, IScan> childScansGuess =
-            scans.getScansByNumSpanAtMsLevel(curScanNum, nextScanNumGuess, msLevelNext);
-        if (childScansGuess == null) {
-          // there were no children found for this parent scan, so just leave it as is
-          // with NULL instead of children List
-          continue;
-        } else {
-          curScan.setChildScans(new ArrayList<Integer>(childScansGuess.size()));
-        }
-        for (Map.Entry<Integer, IScan> childNum2scan : childScansGuess.entrySet()) {
-          int childNum = childNum2scan.getKey();
-          IScan childScan = childNum2scan.getValue();
-          curScan.getChildScans().add(childScan.getNum());
-          PrecursorInfo precursor = childScan.getPrecursor();
-          if (precursor != null) {
+          scanCur.setChildScans(new ArrayList<>(children.size()));
+          for (Map.Entry<Integer, IScan> childKv : children.entrySet()) {
+            IScan child = childKv.getValue();
+            PrecursorInfo precursor = child.getPrecursor();
+            if (precursor == null) {
+              log.debug("Skipping adding child scan for: {}\n"
+                  + "\tPotential child scan had no precursor info: {}", scanCur.toString(), child.toString());
+              // this should never happen, precursorInfo should be parsed from mzXML in the first place
+//              throw new FileParsingException(
+//                  String.format("When trying to set parent for Scan #%d, " +
+//                          "the precursor (PrecursorInfo) field was null, which should not happen.\n",
+//                      childKv.getKey()));
+            } else {
+              scanCur.getChildScans().add(child.getNum());
+              Integer levelParent = scanCur.getMsLevel();
+              Integer levelChild = child.getMsLevel();
+//              if (precursor.getParentScanNum() == null // update missing info
+//                  && levelParent != null && levelChild != null
+//                  && levelParent + 1 == levelChild) {
+//
+//                Double pLo = precursor.getMzRangeStart();
+//                Double pHi = precursor.getMzRangeEnd();
+//                Double sLo = scanCur.getScanMzWindowLower();
+//                Double sHi = scanCur.getScanMzWindowUpper();
+//                if (pLo == null || pHi == null || sLo == null || sHi == null) {
+//                  // blindly add it
+//                  precursor.setParentScanNum(scanCur.getNum());
+//                } else {
+//                  // if we know precursor isolation window and the scan's m/z scan range
+//                  // they must overlap
+//                  if (pLo > sHi || sLo > pHi) {
+//                    log.warn("Precursor isolation window and the scan's m/z scan range don't "
+//                        + "overlap. Parent scan [{}], child scan [{}]", scanCur.toString(), child.toString());
+//                  }
+//                  precursor.setParentScanNum(scanCur.getNum());
+////                  // calculate overlap
+////                  if (pLo.equals(pHi)) { // it's a single point
+////                    precursor.setParentScanNum(scanCur.getNum());
+////                  } else {
+////                    final double minOverlap = 0.75;
+////                    double overlap = Math.min(pHi, sHi) - Math.max(pLo, sLo);
+////                  }
+//                }
+//              }
 
-            Integer thisMsLevel = curScan.getMsLevel();
-            Integer chldMsLevel = childScan.getMsLevel();
-            if (precursor.getParentScanNum() == null && thisMsLevel != null && chldMsLevel != null
-                && thisMsLevel + 1 == chldMsLevel) {
-
-              Double pLo = precursor.getMzRangeStart();
-              Double pHi = precursor.getMzRangeEnd();
-              Double sLo = curScan.getScanMzWindowLower();
-              Double sHi = curScan.getScanMzWindowUpper();
-              if (pLo != null && pHi != null && sLo != null && sHi != null) {
-                // if we know precursor isolation window and the scan's m/z scan range
-                // they must overlap
-                if (pLo <= sHi && sLo <= pHi) {
-                  // they overlap!
-                  if (pLo.equals(pHi)) { // it's a single point
-                    precursor.setParentScanNum(curScanNum);
-                  } else {
-                    final double minOverlap = 0.75;
-                    double overlap = Math.min(pHi, sHi) - Math.max(pLo, sLo);
-                    precursor.setParentScanNum(curScanNum);
-                  }
-                }
-
-              } else {
-                // otherwise blindly add it
-                precursor.setParentScanNum(curScanNum);
-              }
-            }
-
-            // this else condition seems to not hold when some scans were cut out from mzXML file with ProteoWizrd.
-            // E.g. when only MS2 scans are kept and all MS1 scans were removed, then the precursor info still
-            // has that link to MS1 scan, but the scan itself is not in the file, thus the inferred value is incorrect.
+              // this else condition seems to not hold when some scans were cut out from mzXML file with ProteoWizrd.
+              // E.g. when only MS2 scans are kept and all MS1 scans were removed, then the precursor info still
+              // has that link to MS1 scan, but the scan itself is not in the file, thus the inferred value is incorrect.
 //                        else {
 //                            // well this is weird, should never happen:
 //                            // the Scan contained PrecursorInfo, but the number was different from the inferred one:
@@ -154,12 +155,7 @@ public class ScanCollectionHelper {
 //                                    "the Scan contained PrecursorInfo, but the number was different from the inferred one.\n", childNum));
 //                        }
 
-          } else {
-            // this should never happen, precursorInfo should be parsed from mzXML in the first place
-            throw new FileParsingException(
-                String.format("When trying to set parent for Scan #%d, " +
-                        "the precursor (PrecursorInfo) field was null, which should not happen.\n",
-                    childNum));
+            }
           }
         }
       }

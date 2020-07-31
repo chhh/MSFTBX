@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2017 Dmitry Avtonomov
+ * Copyright (c) 2019 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,9 +28,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -327,7 +327,7 @@ import javax.xml.bind.annotation.XmlType;
  *                                       &lt;/simpleType>
  *                                     &lt;/attribute>
  *                                     &lt;attribute name="protein_descr" type="{http://www.w3.org/2001/XMLSchema}string" />
- *                                     &lt;attribute name="calc_pI" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                                     &lt;attribute name="calc_pI" type="{http://www.w3.org/2001/XMLSchema}double" />
  *                                     &lt;attribute name="protein_mw" type="{http://www.w3.org/2001/XMLSchema}double" />
  *                                   &lt;/restriction>
  *                                 &lt;/complexContent>
@@ -350,6 +350,8 @@ import javax.xml.bind.annotation.XmlType;
  *                 &lt;attribute name="precursor_intensity" type="{http://www.w3.org/2001/XMLSchema}double" />
  *                 &lt;attribute name="activation_method" type="{http://regis-web.systemsbiology.net/pepXML}activationMethodType" />
  *                 &lt;attribute name="precursor_neutral_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *                 &lt;attribute name="uncalibrated_precursor_neutral_mass" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *                 &lt;attribute name="ion_mobility" type="{http://www.w3.org/2001/XMLSchema}double" />
  *                 &lt;attribute name="assumed_charge" use="required" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
  *                 &lt;attribute name="search_specification" type="{http://www.w3.org/2001/XMLSchema}string" />
  *                 &lt;attribute name="index" use="required" type="{http://regis-web.systemsbiology.net/pepXML}positiveInt" />
@@ -370,6 +372,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -381,286 +385,358 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class MsmsRunSummary {
 
-  @XmlElement(name = "sample_enzyme")
-  protected SampleEnzyme sampleEnzyme;
-  @XmlElement(name = "cross_linker")
-  protected CrossLinker crossLinker;
-  @XmlElement(name = "search_summary", required = true)
-  protected List<SearchSummary> searchSummary;
-  @XmlElement(name = "analysis_timestamp")
-  protected List<AnalysisTimestamp> analysisTimestamp;
-  @XmlElement(name = "spectrum_query")
-  protected List<SpectrumQuery> spectrumQuery;
-  @XmlAttribute(name = "base_name", required = true)
-  protected String baseName;
-  @XmlAttribute(name = "raw_data_type", required = true)
-  protected String rawDataType;
-  @XmlAttribute(name = "raw_data", required = true)
-  protected String rawData;
-  @XmlAttribute(name = "msManufacturer")
-  protected String msManufacturer;
-  @XmlAttribute(name = "msModel")
-  protected String msModel;
-  @XmlAttribute(name = "msIonization")
-  protected String msIonization;
-  @XmlAttribute(name = "msMassAnalyzer")
-  protected String msMassAnalyzer;
-  @XmlAttribute(name = "msDetector")
-  protected String msDetector;
+    @XmlElement(name = "sample_enzyme")
+    protected SampleEnzyme sampleEnzyme;
+    @XmlElement(name = "cross_linker")
+    protected CrossLinker crossLinker;
+    @XmlElement(name = "search_summary", required = true)
+    protected List<SearchSummary> searchSummary;
+    @XmlElement(name = "analysis_timestamp")
+    protected List<AnalysisTimestamp> analysisTimestamp;
+    @XmlElement(name = "spectrum_query")
+    protected List<SpectrumQuery> spectrumQuery;
+    @XmlAttribute(name = "base_name", required = true)
+    protected String baseName;
+    @XmlAttribute(name = "raw_data_type", required = true)
+    protected String rawDataType;
+    @XmlAttribute(name = "raw_data", required = true)
+    protected String rawData;
+    @XmlAttribute(name = "msManufacturer")
+    protected String msManufacturer;
+    @XmlAttribute(name = "msModel")
+    protected String msModel;
+    @XmlAttribute(name = "msIonization")
+    protected String msIonization;
+    @XmlAttribute(name = "msMassAnalyzer")
+    protected String msMassAnalyzer;
+    @XmlAttribute(name = "msDetector")
+    protected String msDetector;
 
-  /**
-   * Gets the value of the sampleEnzyme property.
-   *
-   * @return possible object is {@link SampleEnzyme }
-   */
-  public SampleEnzyme getSampleEnzyme() {
-    return sampleEnzyme;
-  }
-
-  /**
-   * Sets the value of the sampleEnzyme property.
-   *
-   * @param value allowed object is {@link SampleEnzyme }
-   */
-  public void setSampleEnzyme(SampleEnzyme value) {
-    this.sampleEnzyme = value;
-  }
-
-  /**
-   * Gets the value of the crossLinker property.
-   *
-   * @return possible object is {@link CrossLinker }
-   */
-  public CrossLinker getCrossLinker() {
-    return crossLinker;
-  }
-
-  /**
-   * Sets the value of the crossLinker property.
-   *
-   * @param value allowed object is {@link CrossLinker }
-   */
-  public void setCrossLinker(CrossLinker value) {
-    this.crossLinker = value;
-  }
-
-  /**
-   * Gets the value of the searchSummary property.
-   *
-   * <p>
-   * This accessor method returns a reference to the live list, not a snapshot. Therefore any
-   * modification you make to the returned list will be present inside the JAXB object. This is why
-   * there is not a <CODE>set</CODE> method for the searchSummary property.
-   *
-   * <p>
-   * For example, to add a new item, do as follows:
-   * <pre>
-   *    getSearchSummary().add(newItem);
-   * </pre>
-   *
-   *
-   * <p>
-   * Objects of the following type(s) are allowed in the list {@link SearchSummary }
-   */
-  public List<SearchSummary> getSearchSummary() {
-    if (searchSummary == null) {
-      searchSummary = new ArrayList<SearchSummary>(1);
+    /**
+     * Gets the value of the sampleEnzyme property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link SampleEnzyme }
+     *     
+     */
+    public SampleEnzyme getSampleEnzyme() {
+        return sampleEnzyme;
     }
-    return this.searchSummary;
-  }
 
-  /**
-   * Gets the value of the analysisTimestamp property.
-   *
-   * <p>
-   * This accessor method returns a reference to the live list, not a snapshot. Therefore any
-   * modification you make to the returned list will be present inside the JAXB object. This is why
-   * there is not a <CODE>set</CODE> method for the analysisTimestamp property.
-   *
-   * <p>
-   * For example, to add a new item, do as follows:
-   * <pre>
-   *    getAnalysisTimestamp().add(newItem);
-   * </pre>
-   *
-   *
-   * <p>
-   * Objects of the following type(s) are allowed in the list {@link AnalysisTimestamp }
-   */
-  public List<AnalysisTimestamp> getAnalysisTimestamp() {
-    if (analysisTimestamp == null) {
-      analysisTimestamp = new ArrayList<AnalysisTimestamp>(1);
+    /**
+     * Sets the value of the sampleEnzyme property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link SampleEnzyme }
+     *     
+     */
+    public void setSampleEnzyme(SampleEnzyme value) {
+        this.sampleEnzyme = value;
     }
-    return this.analysisTimestamp;
-  }
 
-  /**
-   * Gets the value of the spectrumQuery property.
-   *
-   * <p>
-   * This accessor method returns a reference to the live list, not a snapshot. Therefore any
-   * modification you make to the returned list will be present inside the JAXB object. This is why
-   * there is not a <CODE>set</CODE> method for the spectrumQuery property.
-   *
-   * <p>
-   * For example, to add a new item, do as follows:
-   * <pre>
-   *    getSpectrumQuery().add(newItem);
-   * </pre>
-   *
-   *
-   * <p>
-   * Objects of the following type(s) are allowed in the list {@link SpectrumQuery }
-   */
-  public List<SpectrumQuery> getSpectrumQuery() {
-    if (spectrumQuery == null) {
-      spectrumQuery = new ArrayList<SpectrumQuery>(1);
+    /**
+     * Gets the value of the crossLinker property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link CrossLinker }
+     *     
+     */
+    public CrossLinker getCrossLinker() {
+        return crossLinker;
     }
-    return this.spectrumQuery;
-  }
 
-  /**
-   * Gets the value of the baseName property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getBaseName() {
-    return baseName;
-  }
+    /**
+     * Sets the value of the crossLinker property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link CrossLinker }
+     *     
+     */
+    public void setCrossLinker(CrossLinker value) {
+        this.crossLinker = value;
+    }
 
-  /**
-   * Sets the value of the baseName property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setBaseName(String value) {
-    this.baseName = value;
-  }
+    /**
+     * Gets the value of the searchSummary property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the searchSummary property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getSearchSummary().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link SearchSummary }
+     * 
+     * 
+     */
+    public List<SearchSummary> getSearchSummary() {
+        if (searchSummary == null) {
+            searchSummary = new ArrayList<SearchSummary>(1);
+        }
+        return this.searchSummary;
+    }
 
-  /**
-   * Gets the value of the rawDataType property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getRawDataType() {
-    return rawDataType;
-  }
+    /**
+     * Gets the value of the analysisTimestamp property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the analysisTimestamp property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getAnalysisTimestamp().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link AnalysisTimestamp }
+     * 
+     * 
+     */
+    public List<AnalysisTimestamp> getAnalysisTimestamp() {
+        if (analysisTimestamp == null) {
+            analysisTimestamp = new ArrayList<AnalysisTimestamp>(1);
+        }
+        return this.analysisTimestamp;
+    }
 
-  /**
-   * Sets the value of the rawDataType property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setRawDataType(String value) {
-    this.rawDataType = value;
-  }
+    /**
+     * Gets the value of the spectrumQuery property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the spectrumQuery property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getSpectrumQuery().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link SpectrumQuery }
+     * 
+     * 
+     */
+    public List<SpectrumQuery> getSpectrumQuery() {
+        if (spectrumQuery == null) {
+            spectrumQuery = new ArrayList<SpectrumQuery>(1);
+        }
+        return this.spectrumQuery;
+    }
 
-  /**
-   * Gets the value of the rawData property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getRawData() {
-    return rawData;
-  }
+    /**
+     * Gets the value of the baseName property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getBaseName() {
+        return baseName;
+    }
 
-  /**
-   * Sets the value of the rawData property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setRawData(String value) {
-    this.rawData = value;
-  }
+    /**
+     * Sets the value of the baseName property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setBaseName(String value) {
+        this.baseName = value;
+    }
 
-  /**
-   * Gets the value of the msManufacturer property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getMsManufacturer() {
-    return msManufacturer;
-  }
+    /**
+     * Gets the value of the rawDataType property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getRawDataType() {
+        return rawDataType;
+    }
 
-  /**
-   * Sets the value of the msManufacturer property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setMsManufacturer(String value) {
-    this.msManufacturer = value;
-  }
+    /**
+     * Sets the value of the rawDataType property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setRawDataType(String value) {
+        this.rawDataType = value;
+    }
 
-  /**
-   * Gets the value of the msModel property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getMsModel() {
-    return msModel;
-  }
+    /**
+     * Gets the value of the rawData property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getRawData() {
+        return rawData;
+    }
 
-  /**
-   * Sets the value of the msModel property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setMsModel(String value) {
-    this.msModel = value;
-  }
+    /**
+     * Sets the value of the rawData property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setRawData(String value) {
+        this.rawData = value;
+    }
 
-  /**
-   * Gets the value of the msIonization property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getMsIonization() {
-    return msIonization;
-  }
+    /**
+     * Gets the value of the msManufacturer property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getMsManufacturer() {
+        return msManufacturer;
+    }
 
-  /**
-   * Sets the value of the msIonization property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setMsIonization(String value) {
-    this.msIonization = value;
-  }
+    /**
+     * Sets the value of the msManufacturer property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setMsManufacturer(String value) {
+        this.msManufacturer = value;
+    }
 
-  /**
-   * Gets the value of the msMassAnalyzer property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getMsMassAnalyzer() {
-    return msMassAnalyzer;
-  }
+    /**
+     * Gets the value of the msModel property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getMsModel() {
+        return msModel;
+    }
 
-  /**
-   * Sets the value of the msMassAnalyzer property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setMsMassAnalyzer(String value) {
-    this.msMassAnalyzer = value;
-  }
+    /**
+     * Sets the value of the msModel property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setMsModel(String value) {
+        this.msModel = value;
+    }
 
-  /**
-   * Gets the value of the msDetector property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getMsDetector() {
-    return msDetector;
-  }
+    /**
+     * Gets the value of the msIonization property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getMsIonization() {
+        return msIonization;
+    }
 
-  /**
-   * Sets the value of the msDetector property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setMsDetector(String value) {
-    this.msDetector = value;
-  }
+    /**
+     * Sets the value of the msIonization property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setMsIonization(String value) {
+        this.msIonization = value;
+    }
+
+    /**
+     * Gets the value of the msMassAnalyzer property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getMsMassAnalyzer() {
+        return msMassAnalyzer;
+    }
+
+    /**
+     * Sets the value of the msMassAnalyzer property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setMsMassAnalyzer(String value) {
+        this.msMassAnalyzer = value;
+    }
+
+    /**
+     * Gets the value of the msDetector property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getMsDetector() {
+        return msDetector;
+    }
+
+    /**
+     * Sets the value of the msDetector property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setMsDetector(String value) {
+        this.msDetector = value;
+    }
 
 }

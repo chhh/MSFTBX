@@ -1,33 +1,23 @@
 package umich.ms.fileio.filetypes.mzml;
 
 import com.google.common.base.Stopwatch;
-import com.google.common.util.concurrent.AtomicDouble;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.time.StopWatch;
-import org.apache.commons.pool2.PoolUtils;
-import org.apache.commons.pool2.PooledObject;
-import org.apache.commons.pool2.PooledObjectFactory;
-import org.apache.commons.pool2.impl.SoftReferenceObjectPool;
 import org.jooq.lambda.Seq;
-import org.junit.*;
+import org.junit.After;
+import org.junit.Assume;
+import org.junit.Before;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import reactor.core.Disposable;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.ParallelFlux;
 import reactor.core.scheduler.Schedulers;
-import umich.ms.datatypes.LCMSData;
-import umich.ms.datatypes.LCMSDataSubset;
 import umich.ms.datatypes.scan.IScan;
-import umich.ms.datatypes.scancollection.IScanCollection;
 import umich.ms.datatypes.spectrum.ISpectrum;
 import umich.ms.fileio.ResourceUtils;
 import umich.ms.fileio.exceptions.FileParsingException;
-import umich.ms.fileio.filetypes.agilent.cef.jaxb.Match;
-import umich.ms.util.MathHelper;
 import umich.ms.util.Pool;
 import umich.ms.util.SpectrumUtils;
 
@@ -38,8 +28,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.DecimalFormat;
-import java.util.*;
 import java.util.List;
+import java.util.*;
 import java.util.concurrent.ConcurrentLinkedDeque;
 import java.util.concurrent.ConcurrentNavigableMap;
 import java.util.concurrent.ConcurrentSkipListMap;
@@ -220,11 +210,8 @@ public class MzmlFluxTest {
   @Test
   public void fluxTracePeaks2() throws IOException {
     Path dir = Paths.get("D:\\ms-data\\full-runs\\20171007");
+    //Path dir = Paths.get("C:\\ms-data\\mzml");
     String fn = "20171007_LUMOS_f01.mzML";
-
-//    Path dir = Paths.get("D:\\ms-data\\swath\\");
-//    String fn = "20171007_LUMOS_f01.mzML";
-
 
     Path file = dir.resolve(fn);
     MZMLFile mzml = new MZMLFile(file.toString());
@@ -254,13 +241,13 @@ public class MzmlFluxTest {
 
     Flux<IScan> gen = MzmlFlux.fluxScansSeq(mzml);
     Disposable sub = gen
-        .doOnSubscribe(subscription -> sw.start()) // start the timer when the pipeline starts working
+        //.doOnSubscribe(subscription -> sw.start()) // start the timer when the pipeline starts working
         .doOnComplete(() -> {
           log.info("Called doOnComplete()");
           sw.stop();
           pool.purge();
         })
-        //.parallel(threads, prefetch)
+//        .parallel(threads, prefetch)
         .filter(scan -> scan.getMsLevel() == 1)
         .doOnNext(scan -> {
           int i = scanCount.incrementAndGet();
@@ -277,7 +264,7 @@ public class MzmlFluxTest {
           ISpectrum spec = scan.getSpectrum();
 
           // update existing traces
-//          IntStream.range(0, spec.getMZs().length).parallel().forEach(index -> {
+//          IntStream.range(0, spec.getMZs().length).parallel().forEach(index -> { // Try switching this line for the next one
           IntStream.range(0, spec.getMZs().length).forEach(index -> {
             double mz = spec.getMZs()[index];
             double ab = spec.getIntensities()[index];
@@ -374,31 +361,8 @@ public class MzmlFluxTest {
 
     writeTraces(tracesComplete, dir.resolve(fn + ".traces.mzrt.csv"));
 
-    tracesMetrics(tracesComplete);
-
     long timeHi = System.nanoTime();
     log.info("Counter value: {}, elapsed: {}s", scanCount.get(), (sw.elapsed(TimeUnit.NANOSECONDS)) / 1e9f);
-  }
-
-  public static class TracesMetrics {
-    double avgDirectionChanges = Double.NaN;
-    double avgMzVariance = Double.NaN;
-  }
-
-  public void tracesMetrics(List<Trace> traces) {
-    log.debug("Collecting metrics for {} traces", traces.size());
-    traces.parallelStream().forEach(trace -> {
-      int changes = trace.computeDirectionChanges();
-      trace.stats.countDirectionChanges = changes;
-    });
-    Double average1 = traces.stream().mapToInt(t -> t.stats.countDirectionChanges).average().orElse(Double.NaN);
-    Double average2 = traces.stream().filter(t -> t.size() > 10).mapToInt(t -> t.stats.countDirectionChanges).average().orElse(Double.NaN);
-    log.debug("Average overall: {}, Average for longer traces: {}", average1, average2);
-
-    traces.parallelStream().forEach(t -> {
-      final int windowSize = 5;
-      // TODO: continue here
-    });
   }
 
   public static String colorToHex(Color color) {
@@ -454,4 +418,5 @@ public class MzmlFluxTest {
       throw new IllegalStateException();
     }
   }
+
 }

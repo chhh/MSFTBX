@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2017 Dmitry Avtonomov
+ * Copyright (c) 2019 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,9 +25,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -43,142 +43,178 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
 public class TerminalModification {
 
-  @XmlAttribute(name = "terminus", required = true)
-  protected String terminus;
-  @XmlAttribute(name = "massdiff", required = true)
-  protected double massdiff;
-  @XmlAttribute(name = "mass", required = true)
-  protected double mass;
-  @XmlAttribute(name = "variable", required = true)
-  protected String variable;
-  @XmlAttribute(name = "symbol")
-  protected String symbol;
-  @XmlAttribute(name = "protein_terminus", required = true)
-  protected String proteinTerminus;
-  @XmlAttribute(name = "description")
-  protected String description;
+    @XmlAttribute(name = "terminus", required = true)
+    protected String terminus;
+    @XmlAttribute(name = "massdiff", required = true)
+    protected double massdiff;
+    @XmlAttribute(name = "mass", required = true)
+    protected double mass;
+    @XmlAttribute(name = "variable", required = true)
+    protected String variable;
+    @XmlAttribute(name = "symbol")
+    protected String symbol;
+    @XmlAttribute(name = "protein_terminus", required = true)
+    protected String proteinTerminus;
+    @XmlAttribute(name = "description")
+    protected String description;
 
-  /**
-   * Gets the value of the terminus property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getTerminus() {
-    return terminus;
-  }
+    /**
+     * Gets the value of the terminus property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getTerminus() {
+        return terminus;
+    }
 
-  /**
-   * Sets the value of the terminus property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setTerminus(String value) {
-    this.terminus = value;
-  }
+    /**
+     * Sets the value of the terminus property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setTerminus(String value) {
+        this.terminus = value;
+    }
 
-  /**
-   * Gets the value of the massdiff property.
-   */
-  public double getMassdiff() {
-    return massdiff;
-  }
+    /**
+     * Gets the value of the massdiff property.
+     * 
+     */
+    public double getMassdiff() {
+        return massdiff;
+    }
 
-  /**
-   * Sets the value of the massdiff property.
-   */
-  public void setMassdiff(double value) {
-    this.massdiff = value;
-  }
+    /**
+     * Sets the value of the massdiff property.
+     * 
+     */
+    public void setMassdiff(double value) {
+        this.massdiff = value;
+    }
 
-  /**
-   * Gets the value of the mass property.
-   */
-  public double getMass() {
-    return mass;
-  }
+    /**
+     * Gets the value of the mass property.
+     * 
+     */
+    public double getMass() {
+        return mass;
+    }
 
-  /**
-   * Sets the value of the mass property.
-   */
-  public void setMass(double value) {
-    this.mass = value;
-  }
+    /**
+     * Sets the value of the mass property.
+     * 
+     */
+    public void setMass(double value) {
+        this.mass = value;
+    }
 
-  /**
-   * Gets the value of the variable property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getVariable() {
-    return variable;
-  }
+    /**
+     * Gets the value of the variable property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getVariable() {
+        return variable;
+    }
 
-  /**
-   * Sets the value of the variable property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setVariable(String value) {
-    this.variable = value;
-  }
+    /**
+     * Sets the value of the variable property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setVariable(String value) {
+        this.variable = value;
+    }
 
-  /**
-   * Gets the value of the symbol property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getSymbol() {
-    return symbol;
-  }
+    /**
+     * Gets the value of the symbol property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getSymbol() {
+        return symbol;
+    }
 
-  /**
-   * Sets the value of the symbol property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setSymbol(String value) {
-    this.symbol = value;
-  }
+    /**
+     * Sets the value of the symbol property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setSymbol(String value) {
+        this.symbol = value;
+    }
 
-  /**
-   * Gets the value of the proteinTerminus property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getProteinTerminus() {
-    return proteinTerminus;
-  }
+    /**
+     * Gets the value of the proteinTerminus property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getProteinTerminus() {
+        return proteinTerminus;
+    }
 
-  /**
-   * Sets the value of the proteinTerminus property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setProteinTerminus(String value) {
-    this.proteinTerminus = value;
-  }
+    /**
+     * Sets the value of the proteinTerminus property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setProteinTerminus(String value) {
+        this.proteinTerminus = value;
+    }
 
-  /**
-   * Gets the value of the description property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getDescription() {
-    return description;
-  }
+    /**
+     * Gets the value of the description property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getDescription() {
+        return description;
+    }
 
-  /**
-   * Sets the value of the description property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setDescription(String value) {
-    this.description = value;
-  }
+    /**
+     * Sets the value of the description property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setDescription(String value) {
+        this.description = value;
+    }
 
 }

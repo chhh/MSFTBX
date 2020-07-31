@@ -307,7 +307,7 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
     PrecursorInfo precursorInfo = vars.curScan.getPrecursor();
     if (precursorInfo == null) {
       precursorInfo = new PrecursorInfo();
-      vars.curScan.setPrecursor(precursorInfo);
+      vars.curScan.addPrecursor(precursorInfo);
     }
 
     attr = attrs.getValue(ATTR.PRECURSOR_SCAN_NUM.name);
@@ -417,7 +417,7 @@ public class MZXMLMultiSpectraParser extends MultiSpectraParser {
       PrecursorInfo precursorInfo = vars.curScan.getPrecursor();
       if (precursorInfo == null) {
         precursorInfo = new PrecursorInfo();
-        vars.curScan.setPrecursor(precursorInfo);
+        vars.curScan.addPrecursor(precursorInfo);
       }
       precursorInfo.getActivationInfo().setActivationEnergyLo(attr.toDouble());
       precursorInfo.getActivationInfo().setActivationEnergyHi(attr.toDouble());

@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2017 Dmitry Avtonomov
+ * Copyright (c) 2019 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,9 +28,9 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -51,221 +51,259 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
 @XmlRootElement(name = "xpressratio_result")
 public class XpressratioResult {
 
-  @XmlAttribute(name = "light_firstscan", required = true)
-  @XmlSchemaType(name = "unsignedInt")
-  protected long lightFirstscan;
-  @XmlAttribute(name = "light_lastscan", required = true)
-  @XmlSchemaType(name = "unsignedInt")
-  protected long lightLastscan;
-  @XmlAttribute(name = "light_mass", required = true)
-  protected double lightMass;
-  @XmlAttribute(name = "heavy_firstscan", required = true)
-  @XmlSchemaType(name = "unsignedInt")
-  protected long heavyFirstscan;
-  @XmlAttribute(name = "heavy_lastscan", required = true)
-  @XmlSchemaType(name = "unsignedInt")
-  protected long heavyLastscan;
-  @XmlAttribute(name = "heavy_mass", required = true)
-  protected double heavyMass;
-  @XmlAttribute(name = "mass_tol", required = true)
-  protected double massTol;
-  @XmlAttribute(name = "ratio", required = true)
-  protected String ratio;
-  @XmlAttribute(name = "heavy2light_ratio", required = true)
-  protected String heavy2LightRatio;
-  @XmlAttribute(name = "light_area", required = true)
-  protected double lightArea;
-  @XmlAttribute(name = "heavy_area", required = true)
-  protected double heavyArea;
-  @XmlAttribute(name = "decimal_ratio", required = true)
-  @XmlJavaTypeAdapter(Adapter2.class)
-  @XmlSchemaType(name = "decimal")
-  protected Double decimalRatio;
+    @XmlAttribute(name = "light_firstscan", required = true)
+    @XmlSchemaType(name = "unsignedInt")
+    protected long lightFirstscan;
+    @XmlAttribute(name = "light_lastscan", required = true)
+    @XmlSchemaType(name = "unsignedInt")
+    protected long lightLastscan;
+    @XmlAttribute(name = "light_mass", required = true)
+    protected double lightMass;
+    @XmlAttribute(name = "heavy_firstscan", required = true)
+    @XmlSchemaType(name = "unsignedInt")
+    protected long heavyFirstscan;
+    @XmlAttribute(name = "heavy_lastscan", required = true)
+    @XmlSchemaType(name = "unsignedInt")
+    protected long heavyLastscan;
+    @XmlAttribute(name = "heavy_mass", required = true)
+    protected double heavyMass;
+    @XmlAttribute(name = "mass_tol", required = true)
+    protected double massTol;
+    @XmlAttribute(name = "ratio", required = true)
+    protected String ratio;
+    @XmlAttribute(name = "heavy2light_ratio", required = true)
+    protected String heavy2LightRatio;
+    @XmlAttribute(name = "light_area", required = true)
+    protected double lightArea;
+    @XmlAttribute(name = "heavy_area", required = true)
+    protected double heavyArea;
+    @XmlAttribute(name = "decimal_ratio", required = true)
+    @XmlJavaTypeAdapter(Adapter3 .class)
+    @XmlSchemaType(name = "decimal")
+    protected Double decimalRatio;
 
-  /**
-   * Gets the value of the lightFirstscan property.
-   */
-  public long getLightFirstscan() {
-    return lightFirstscan;
-  }
+    /**
+     * Gets the value of the lightFirstscan property.
+     * 
+     */
+    public long getLightFirstscan() {
+        return lightFirstscan;
+    }
 
-  /**
-   * Sets the value of the lightFirstscan property.
-   */
-  public void setLightFirstscan(long value) {
-    this.lightFirstscan = value;
-  }
+    /**
+     * Sets the value of the lightFirstscan property.
+     * 
+     */
+    public void setLightFirstscan(long value) {
+        this.lightFirstscan = value;
+    }
 
-  /**
-   * Gets the value of the lightLastscan property.
-   */
-  public long getLightLastscan() {
-    return lightLastscan;
-  }
+    /**
+     * Gets the value of the lightLastscan property.
+     * 
+     */
+    public long getLightLastscan() {
+        return lightLastscan;
+    }
 
-  /**
-   * Sets the value of the lightLastscan property.
-   */
-  public void setLightLastscan(long value) {
-    this.lightLastscan = value;
-  }
+    /**
+     * Sets the value of the lightLastscan property.
+     * 
+     */
+    public void setLightLastscan(long value) {
+        this.lightLastscan = value;
+    }
 
-  /**
-   * Gets the value of the lightMass property.
-   */
-  public double getLightMass() {
-    return lightMass;
-  }
+    /**
+     * Gets the value of the lightMass property.
+     * 
+     */
+    public double getLightMass() {
+        return lightMass;
+    }
 
-  /**
-   * Sets the value of the lightMass property.
-   */
-  public void setLightMass(double value) {
-    this.lightMass = value;
-  }
+    /**
+     * Sets the value of the lightMass property.
+     * 
+     */
+    public void setLightMass(double value) {
+        this.lightMass = value;
+    }
 
-  /**
-   * Gets the value of the heavyFirstscan property.
-   */
-  public long getHeavyFirstscan() {
-    return heavyFirstscan;
-  }
+    /**
+     * Gets the value of the heavyFirstscan property.
+     * 
+     */
+    public long getHeavyFirstscan() {
+        return heavyFirstscan;
+    }
 
-  /**
-   * Sets the value of the heavyFirstscan property.
-   */
-  public void setHeavyFirstscan(long value) {
-    this.heavyFirstscan = value;
-  }
+    /**
+     * Sets the value of the heavyFirstscan property.
+     * 
+     */
+    public void setHeavyFirstscan(long value) {
+        this.heavyFirstscan = value;
+    }
 
-  /**
-   * Gets the value of the heavyLastscan property.
-   */
-  public long getHeavyLastscan() {
-    return heavyLastscan;
-  }
+    /**
+     * Gets the value of the heavyLastscan property.
+     * 
+     */
+    public long getHeavyLastscan() {
+        return heavyLastscan;
+    }
 
-  /**
-   * Sets the value of the heavyLastscan property.
-   */
-  public void setHeavyLastscan(long value) {
-    this.heavyLastscan = value;
-  }
+    /**
+     * Sets the value of the heavyLastscan property.
+     * 
+     */
+    public void setHeavyLastscan(long value) {
+        this.heavyLastscan = value;
+    }
 
-  /**
-   * Gets the value of the heavyMass property.
-   */
-  public double getHeavyMass() {
-    return heavyMass;
-  }
+    /**
+     * Gets the value of the heavyMass property.
+     * 
+     */
+    public double getHeavyMass() {
+        return heavyMass;
+    }
 
-  /**
-   * Sets the value of the heavyMass property.
-   */
-  public void setHeavyMass(double value) {
-    this.heavyMass = value;
-  }
+    /**
+     * Sets the value of the heavyMass property.
+     * 
+     */
+    public void setHeavyMass(double value) {
+        this.heavyMass = value;
+    }
 
-  /**
-   * Gets the value of the massTol property.
-   */
-  public double getMassTol() {
-    return massTol;
-  }
+    /**
+     * Gets the value of the massTol property.
+     * 
+     */
+    public double getMassTol() {
+        return massTol;
+    }
 
-  /**
-   * Sets the value of the massTol property.
-   */
-  public void setMassTol(double value) {
-    this.massTol = value;
-  }
+    /**
+     * Sets the value of the massTol property.
+     * 
+     */
+    public void setMassTol(double value) {
+        this.massTol = value;
+    }
 
-  /**
-   * Gets the value of the ratio property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getRatio() {
-    return ratio;
-  }
+    /**
+     * Gets the value of the ratio property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getRatio() {
+        return ratio;
+    }
 
-  /**
-   * Sets the value of the ratio property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setRatio(String value) {
-    this.ratio = value;
-  }
+    /**
+     * Sets the value of the ratio property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setRatio(String value) {
+        this.ratio = value;
+    }
 
-  /**
-   * Gets the value of the heavy2LightRatio property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getHeavy2LightRatio() {
-    return heavy2LightRatio;
-  }
+    /**
+     * Gets the value of the heavy2LightRatio property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getHeavy2LightRatio() {
+        return heavy2LightRatio;
+    }
 
-  /**
-   * Sets the value of the heavy2LightRatio property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setHeavy2LightRatio(String value) {
-    this.heavy2LightRatio = value;
-  }
+    /**
+     * Sets the value of the heavy2LightRatio property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setHeavy2LightRatio(String value) {
+        this.heavy2LightRatio = value;
+    }
 
-  /**
-   * Gets the value of the lightArea property.
-   */
-  public double getLightArea() {
-    return lightArea;
-  }
+    /**
+     * Gets the value of the lightArea property.
+     * 
+     */
+    public double getLightArea() {
+        return lightArea;
+    }
 
-  /**
-   * Sets the value of the lightArea property.
-   */
-  public void setLightArea(double value) {
-    this.lightArea = value;
-  }
+    /**
+     * Sets the value of the lightArea property.
+     * 
+     */
+    public void setLightArea(double value) {
+        this.lightArea = value;
+    }
 
-  /**
-   * Gets the value of the heavyArea property.
-   */
-  public double getHeavyArea() {
-    return heavyArea;
-  }
+    /**
+     * Gets the value of the heavyArea property.
+     * 
+     */
+    public double getHeavyArea() {
+        return heavyArea;
+    }
 
-  /**
-   * Sets the value of the heavyArea property.
-   */
-  public void setHeavyArea(double value) {
-    this.heavyArea = value;
-  }
+    /**
+     * Sets the value of the heavyArea property.
+     * 
+     */
+    public void setHeavyArea(double value) {
+        this.heavyArea = value;
+    }
 
-  /**
-   * Gets the value of the decimalRatio property.
-   *
-   * @return possible object is {@link String }
-   */
-  public Double getDecimalRatio() {
-    return decimalRatio;
-  }
+    /**
+     * Gets the value of the decimalRatio property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public Double getDecimalRatio() {
+        return decimalRatio;
+    }
 
-  /**
-   * Sets the value of the decimalRatio property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setDecimalRatio(Double value) {
-    this.decimalRatio = value;
-  }
+    /**
+     * Sets the value of the decimalRatio property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setDecimalRatio(Double value) {
+        this.decimalRatio = value;
+    }
 
 }

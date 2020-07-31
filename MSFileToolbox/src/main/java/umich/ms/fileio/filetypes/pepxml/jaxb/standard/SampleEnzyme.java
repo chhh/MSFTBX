@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2017 Dmitry Avtonomov
+ * Copyright (c) 2019 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,9 +27,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -92,6 +92,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -99,119 +101,147 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class SampleEnzyme {
 
-  protected List<Specificity> specificity;
-  @XmlAttribute(name = "name", required = true)
-  protected String name;
-  @XmlAttribute(name = "description")
-  protected String description;
-  @XmlAttribute(name = "fidelity")
-  protected String fidelity;
-  @XmlAttribute(name = "independent")
-  protected Boolean independent;
+    protected List<Specificity> specificity;
+    @XmlAttribute(name = "name", required = true)
+    protected String name;
+    @XmlAttribute(name = "description")
+    protected String description;
+    @XmlAttribute(name = "fidelity")
+    protected String fidelity;
+    @XmlAttribute(name = "independent")
+    protected Boolean independent;
 
-  /**
-   * Gets the value of the specificity property.
-   *
-   * <p>
-   * This accessor method returns a reference to the live list, not a snapshot. Therefore any
-   * modification you make to the returned list will be present inside the JAXB object. This is why
-   * there is not a <CODE>set</CODE> method for the specificity property.
-   *
-   * <p>
-   * For example, to add a new item, do as follows:
-   * <pre>
-   *    getSpecificity().add(newItem);
-   * </pre>
-   *
-   *
-   * <p>
-   * Objects of the following type(s) are allowed in the list {@link Specificity }
-   */
-  public List<Specificity> getSpecificity() {
-    if (specificity == null) {
-      specificity = new ArrayList<Specificity>(1);
+    /**
+     * Gets the value of the specificity property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the specificity property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getSpecificity().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link Specificity }
+     * 
+     * 
+     */
+    public List<Specificity> getSpecificity() {
+        if (specificity == null) {
+            specificity = new ArrayList<Specificity>(1);
+        }
+        return this.specificity;
     }
-    return this.specificity;
-  }
 
-  /**
-   * Gets the value of the name property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getName() {
-    return name;
-  }
-
-  /**
-   * Sets the value of the name property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setName(String value) {
-    this.name = value;
-  }
-
-  /**
-   * Gets the value of the description property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getDescription() {
-    return description;
-  }
-
-  /**
-   * Sets the value of the description property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setDescription(String value) {
-    this.description = value;
-  }
-
-  /**
-   * Gets the value of the fidelity property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getFidelity() {
-    if (fidelity == null) {
-      return "specific";
-    } else {
-      return fidelity;
+    /**
+     * Gets the value of the name property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getName() {
+        return name;
     }
-  }
 
-  /**
-   * Sets the value of the fidelity property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setFidelity(String value) {
-    this.fidelity = value;
-  }
-
-  /**
-   * Gets the value of the independent property.
-   *
-   * @return possible object is {@link Boolean }
-   */
-  public boolean isIndependent() {
-    if (independent == null) {
-      return true;
-    } else {
-      return independent;
+    /**
+     * Sets the value of the name property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setName(String value) {
+        this.name = value;
     }
-  }
 
-  /**
-   * Sets the value of the independent property.
-   *
-   * @param value allowed object is {@link Boolean }
-   */
-  public void setIndependent(Boolean value) {
-    this.independent = value;
-  }
+    /**
+     * Gets the value of the description property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * Sets the value of the description property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setDescription(String value) {
+        this.description = value;
+    }
+
+    /**
+     * Gets the value of the fidelity property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getFidelity() {
+        if (fidelity == null) {
+            return "specific";
+        } else {
+            return fidelity;
+        }
+    }
+
+    /**
+     * Sets the value of the fidelity property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setFidelity(String value) {
+        this.fidelity = value;
+    }
+
+    /**
+     * Gets the value of the independent property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public boolean isIndependent() {
+        if (independent == null) {
+            return true;
+        } else {
+            return independent;
+        }
+    }
+
+    /**
+     * Sets the value of the independent property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setIndependent(Boolean value) {
+        this.independent = value;
+    }
 
 }

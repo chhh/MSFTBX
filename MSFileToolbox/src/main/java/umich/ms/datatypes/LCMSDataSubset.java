@@ -55,13 +55,11 @@ public class LCMSDataSubset implements Serializable {
 
     WHOLE_RUN = new LCMSDataSubset();
 
-    Set<Integer> msLvls1;
-    msLvls1 = new HashSet<>(1);
+    Set<Integer> msLvls1 = new HashSet<>(1);
     msLvls1.add(1);
     MS1_WITH_SPECTRA = new LCMSDataSubset(null, null, msLvls1, null);
 
-    Set<Integer> msLvls2;
-    msLvls2 = new HashSet<>(1);
+    Set<Integer> msLvls2 = new HashSet<>(1);
     msLvls2.add(2);
     MS2_WITH_SPECTRA = new LCMSDataSubset(null, null, msLvls2, null);
 
@@ -96,6 +94,24 @@ public class LCMSDataSubset implements Serializable {
     this.scanNumHi = scanNumHi;
     this.msLvls = msLvls;
     this.mzRanges = mzRanges;
+  }
+
+  public static boolean isStructureOnly(LCMSDataSubset subset) {
+    return STRUCTURE_ONLY == subset || (subset != null && subset.getMsLvls() != null && subset.getMsLvls().isEmpty());
+  }
+
+  public static boolean isWholeRun(LCMSDataSubset subset) {
+    return WHOLE_RUN == subset || (subset != null && subset.getScanNumLo() == null && subset.getScanNumHi() == null && subset.getMsLvls() == null);
+  }
+
+  public static boolean isInScanNumRange(LCMSDataSubset subset, int scanNum) {
+    if (subset == null)
+      return false;
+    if (subset.getScanNumLo() != null && subset.getScanNumLo() > scanNum)
+      return false;
+    if (subset.getScanNumHi() != null && subset.getScanNumHi() < scanNum)
+      return false;
+    return true;
   }
 
   public Integer getScanNumLo() {

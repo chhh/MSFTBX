@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2017 Dmitry Avtonomov
+ * Copyright (c) 2019 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,9 +29,9 @@ import org.w3c.dom.Element;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -45,6 +45,8 @@ import org.w3c.dom.Element;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -52,76 +54,93 @@ import org.w3c.dom.Element;
 })
 public class AnalysisResult {
 
-  @XmlAnyElement(lax = true)
-  protected List<Object> any;
-  @XmlAttribute(name = "analysis", required = true)
-  protected String analysis;
-  @XmlAttribute(name = "id")
-  protected Long id;
+    @XmlAnyElement(lax = true)
+    protected List<Object> any;
+    @XmlAttribute(name = "analysis", required = true)
+    protected String analysis;
+    @XmlAttribute(name = "id")
+    protected Long id;
 
-  /**
-   * Gets the value of the any property.
-   *
-   * <p>
-   * This accessor method returns a reference to the live list, not a snapshot. Therefore any
-   * modification you make to the returned list will be present inside the JAXB object. This is why
-   * there is not a <CODE>set</CODE> method for the any property.
-   *
-   * <p>
-   * For example, to add a new item, do as follows:
-   * <pre>
-   *    getAny().add(newItem);
-   * </pre>
-   *
-   *
-   * <p>
-   * Objects of the following type(s) are allowed in the list {@link Object } {@link Element }
-   */
-  public List<Object> getAny() {
-    if (any == null) {
-      any = new ArrayList<Object>(1);
+    /**
+     * Gets the value of the any property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the any property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getAny().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link Element }
+     * {@link Object }
+     * 
+     * 
+     */
+    public List<Object> getAny() {
+        if (any == null) {
+            any = new ArrayList<Object>(1);
+        }
+        return this.any;
     }
-    return this.any;
-  }
 
-  /**
-   * Gets the value of the analysis property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getAnalysis() {
-    return analysis;
-  }
-
-  /**
-   * Sets the value of the analysis property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setAnalysis(String value) {
-    this.analysis = value;
-  }
-
-  /**
-   * Gets the value of the id property.
-   *
-   * @return possible object is {@link Long }
-   */
-  public long getId() {
-    if (id == null) {
-      return 1L;
-    } else {
-      return id;
+    /**
+     * Gets the value of the analysis property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getAnalysis() {
+        return analysis;
     }
-  }
 
-  /**
-   * Sets the value of the id property.
-   *
-   * @param value allowed object is {@link Long }
-   */
-  public void setId(Long value) {
-    this.id = value;
-  }
+    /**
+     * Sets the value of the analysis property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setAnalysis(String value) {
+        this.analysis = value;
+    }
+
+    /**
+     * Gets the value of the id property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Long }
+     *     
+     */
+    public long getId() {
+        if (id == null) {
+            return  1L;
+        } else {
+            return id;
+        }
+    }
+
+    /**
+     * Sets the value of the id property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Long }
+     *     
+     */
+    public void setId(Long value) {
+        this.id = value;
+    }
 
 }

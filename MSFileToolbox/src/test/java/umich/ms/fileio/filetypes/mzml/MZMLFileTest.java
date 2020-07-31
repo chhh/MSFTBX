@@ -16,31 +16,47 @@
 
 package umich.ms.fileio.filetypes.mzml;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static umich.ms.logging.LogHelper.configureJavaUtilLogging;
 
-import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
-import org.junit.Test;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.stream.Collectors;
+
+import org.junit.Ignore;
+import org.junit.jupiter.api.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import umich.ms.datatypes.LCMSDataSubset;
 import umich.ms.datatypes.lcmsrun.LCMSRunInfo;
 import umich.ms.datatypes.scan.IScan;
 import umich.ms.datatypes.scan.StorageStrategy;
 import umich.ms.datatypes.scancollection.IScanCollection;
+import umich.ms.datatypes.scancollection.ScanIndex;
 import umich.ms.datatypes.scancollection.impl.ScanCollectionDefault;
 import umich.ms.datatypes.spectrum.ISpectrum;
 import umich.ms.fileio.Opts;
 import umich.ms.fileio.ResourceUtils;
+import umich.ms.fileio.exceptions.FileParsingException;
+import umich.ms.fileio.filetypes.LCMSDataSource;
+import umich.ms.fileio.filetypes.mzxml.MZXMLFile;
 import umich.ms.util.IntervalST;
 import umich.ms.util.file.FileListing;
 
@@ -48,22 +64,25 @@ import umich.ms.util.file.FileListing;
  * @author Dmitry Avtonomov
  */
 public class MZMLFileTest {
+  private static final Logger log = LoggerFactory.getLogger(MZMLFileTest.class);
 
   private static final String RESOURCE_LOCATION = "mzml";
-  List<Path> paths;
+  private List<Path> paths;
 
-  @org.junit.Before
-  public void setUp() throws Exception {
-    paths = ResourceUtils.getResources(this.getClass(), RESOURCE_LOCATION);
+  @BeforeEach
+  void setUp() {
+    log.debug("Running setup");
+    paths = ResourceUtils.getResources(MZMLFileTest.class, RESOURCE_LOCATION);
   }
 
-  @org.junit.After
-  public void tearDown() throws Exception {
+  @AfterEach
+  public void tearDown() {
+    log.debug("Running cleanup");
     paths.clear();
     paths = null;
   }
 
-  @org.junit.Test
+  @Test
   public void parseRunInfo() throws Exception {
     for (Path p : paths) {
       System.out.printf("\n\nReading run info from file: %s\n", p.getFileName());
@@ -75,7 +94,7 @@ public class MZMLFileTest {
     }
   }
 
-  @org.junit.Test
+  @Test
   public void parseWholeFile() throws Exception {
     for (Path p : paths) {
       System.out.printf("\n\nParsing whole file: %s\n", p.getFileName());
@@ -85,6 +104,7 @@ public class MZMLFileTest {
       mzml.setNumThreadsForParsing(null);
       mzml.setTasksPerCpuPerBatch(1);
       mzml.setParsingTimeout(30 * 1000);
+      mzml.setExcludeEmptyScans(true);
 
       final MZMLIndex index = mzml.fetchIndex();
 
@@ -92,6 +112,87 @@ public class MZMLFileTest {
       scans.setDataSource(mzml);
       scans.loadData(LCMSDataSubset.STRUCTURE_ONLY, StorageStrategy.STRONG);
       System.out.printf("\tFound/parsed %d spectra\n", scans.getMapNum2scan().size());
+    }
+  }
+
+  private void assumeFileExists(String path) {
+    Assumptions.assumeTrue(Files.exists(Paths.get(path)));
+  }
+
+  private void assumeFileExists(Path path) {
+    Assumptions.assumeTrue(Files.exists(path));
+  }
+
+  @Test public void multiPrecursorTest() throws Exception {
+    List<Path> paths = this.paths.stream()
+        .filter(path -> path.getFileName().toString().toLowerCase().contains("multiple-precursor"))
+        .collect(Collectors.toList());
+    for (Path path : paths) {
+      MZMLFile mzml = new MZMLFile(path.toString());
+      IScanCollection scans = new ScanCollectionDefault(true);
+      scans.setDataSource(mzml);
+      scans.loadData(LCMSDataSubset.WHOLE_RUN);
+
+      List<IScan> multiPrecursorScans = scans.getMapNum2scan().values().stream()
+          .filter(iScan -> !iScan.getPrecursors().isEmpty())
+          .peek(
+              iScan -> log.info("Scan [{}] has {} precursors", iScan, iScan.getPrecursors().size()))
+          .collect(Collectors.toList());
+
+      Assertions.assertEquals(1, multiPrecursorScans.size());
+//      Assertions.assertEquals(11, multiPrecursorScans.get(0).getPrecursors().size());
+//      Assertions.assertEquals(1, multiPrecursorScans.get(0).getPrecursors().stream()
+//          .filter(pi -> pi.getPrecursorMsLevel() != null && pi.getPrecursorMsLevel() == 1).count());
+//      Assertions.assertEquals(10, multiPrecursorScans.get(0).getPrecursors().stream()
+//          .filter(pi -> pi.getPrecursorMsLevel() != null && pi.getPrecursorMsLevel() == 2).count());
+    }
+  }
+
+  @Test
+  public void broken() throws Exception {
+//    Path path = Paths.get("C:\\data\\bruker\\broken-tims-tof\\20180819_TIMS2_12-2_AnBr_SA_200ng_HeLa_50cm_120min_100ms_11CT_1_A1_01_2767.mzML");
+//    Path path = Paths.get("C:\\data\\ptm-shepherd-test-data\\02-broken-mzml\\01709a_GB1-TUM_first_pool_100_01_01-3xHCD-1h-R1.mzML");
+    //Path path = Paths.get("D:\\ms-data\\batmass-io-errors\\github-fragpipe-165-agilen\\HCC1806_F-2_E-1_M22_5µl_I-1_01.mzML");
+    //Path path = Paths.get("D:\\ms-data\\batmass-io-errors\\github-fragpipe-165-agilen\\HCC1806_F-2_E-1_M22_5µl_I-1_01.mzML");
+
+//    String fn = "test-isolation-ranges_broken-index.mzML";
+//    Path path = paths.stream().filter(p -> p.getFileName().toString().equalsIgnoreCase(fn))
+//        .findFirst().orElse(null);
+
+    Path dir = Paths.get("D:\\ms-data\\broken-mzml\\jb-proteinpilot-centroid");
+    Path pathBroken = dir.resolve("200305_TF1_PWende_JB_TH_Minus_N_MMazei_InSolDig_unfractionated_180min_bRP_01.wiff.mzml");
+    Path pathOk = dir.resolve("200305_TF1_PWende_JB_TH_Minus_N_MMazei_InSolDig_unfractionated_180min_bRP_proteinpilot_01.mzml");
+    List<Path> paths = Arrays.asList(pathBroken);
+
+    for (Path path : paths) {
+      assumeFileExists(path);
+      final MZMLFile mzml = new MZMLFile(path.toString());
+      mzml.setNumThreadsForParsing(1);
+      mzml.setTasksPerCpuPerBatch(1);
+      log.info("Reading broken file: {}", mzml.getPath());
+      mzml.setNumThreadsForParsing(null);
+      IScanCollection scans = new ScanCollectionDefault(true);
+      log.info("Parsing index");
+      MZMLIndex mzmlIndex = mzml.parseIndex();
+      log.info("Done parsing index");
+      scans.setDataSource(mzml);
+      log.info("Reading data");
+      scans.loadData(LCMSDataSubset.WHOLE_RUN);
+
+      IScan firstMs2 = scans.getMapMsLevel2index().get(2).getNum2scan()
+          .firstEntry().getValue();
+      Double mzRangeStart = firstMs2.getPrecursor().getMzRangeStart();
+      Double mzRangeEnd = firstMs2.getPrecursor().getMzRangeEnd();
+      log.info("Isolation range start: {}, end: {}", mzRangeStart, mzRangeEnd);
+
+      log.info("Done reading broken file: {}", mzml.getPath());
+
+      List<IScan> ms2WithNoPrecursor = scans.getMapMsLevel2index().get(2).getNum2scan().values().stream()
+          .filter(s -> s.getPrecursor() == null).collect(Collectors.toList());
+      if (!ms2WithNoPrecursor.isEmpty()) {
+        log.warn("Found {}/{} MS2 scans with no precursor info.", ms2WithNoPrecursor.size(),
+            scans.getMapMsLevel2index().get(2).getNum2scan().size());
+      }
     }
   }
 
@@ -133,7 +234,7 @@ public class MZMLFileTest {
     assertEquals(1, (int) scan.getPrecursor().getCharge());
     assertEquals(922.488431793529, scan.getPrecursor().getMzTarget(), 1e-5);
     assertEquals(922.008162699114, scan.getPrecursor().getMzTargetMono(), 1e-5);
-    assertEquals(1, (int) scan.getPrecursor().getParentScanNum());
+    // assertEquals(1, (int) scan.getPrecursor().getParentScanNum()); // this doesn't work since precursor scan "guessing" was removed
     assertEquals(1.1674739349000001, scan.getIm(), 1e-5);
     spectrum = scan.fetchSpectrum();
     assertArrayEquals(new double[]{475.941644111497, 544.934417174827, 565.968609353197, 657.969066099315, 677.966614713052, 677.97075427706, 677.974893853705, 677.979033442988, 678.977042987308, 695.95904019833, 769.97620651756, 789.196555194153, 789.991746103623, 789.996214599344, 791.024304331706, 791.051133011241, 791.860678715468, 792.751209553068, 803.170205024824, 837.948051199225, 920.236965862133, 921.602322640714, 921.64093400873, 921.983645341533, 921.98847271666, 921.998127504828, 922.002954917867, 922.007782343545, 922.012609781859, 922.017437232812, 922.027092172629, 922.046402203911, 922.051229743325, 922.13812761378, 922.147783185468, 922.16226663778, 922.253997810316, 922.282966496818, 922.302279207235, 922.466445409553, 922.567849479685, 922.625797164829, 922.973521491261, 922.983181435498, 922.988011426573, 922.992841430285, 923.002501475621, 923.007331517245, 923.012161571507, 923.016991638406, 923.021821717943, 923.026651810117, 923.041142162464, 923.065293002457, 923.132917035214, 923.384113699849, 923.645007942969, 923.678830265168, 923.847951164666, 923.910771441641, 923.930101187306, 923.959096184926, 924.002589534382, 924.007422191953, 924.021920240491, 924.03158566937, 924.113743855787, 924.220071636133, 924.234571352811, 924.253904485305, 925.080584986886, 925.148282796923, 925.298193905178, 925.520665027334, 925.864096857587, 926.251138630154, 926.585027121659, 929.709068628311, 930.998964220204, 944.538220026239, 953.245604519118}, spectrum.getMZs(), 0.01);
@@ -155,10 +256,10 @@ public class MZMLFileTest {
 
     final MZMLFile mzml = new MZMLFile(path.toString());
     final MZMLIndex index = mzml.fetchIndex();
-    assertEquals("Wrong number of scans in the build index: " + file, expectedCount, index.size());
+    assertEquals(expectedCount, index.size(), "Wrong number of scans in the build index: " + file);
     final MZMLIndexElement elem = index.getMapByNum().firstEntry().getValue();
-    assertEquals("Wrong offset: " + file, expectedOffset, elem.getOffsetLength().offset);
-    assertEquals("Wrong length: " + file, expectedLen, elem.getOffsetLength().length);
+    assertEquals(expectedOffset, elem.getOffsetLength().offset ,"Wrong offset: " + file);
+    assertEquals(expectedLen, elem.getOffsetLength().length, "Wrong length: " + file);
   }
 
   @Test
@@ -174,9 +275,63 @@ public class MZMLFileTest {
 
       final MZMLFile mzml = new MZMLFile(path.toString());
       final MZMLIndex index = mzml.fetchIndex();
-      assertEquals("Wrong number of scans returned after building index: " + file, expectedCount,
-          index.size());
+      assertEquals(expectedCount, index.size(), "Wrong number of scans returned after building index: " + file);
     }
+  }
+
+  public static String afterLastDot(String s) {
+    int last = s.lastIndexOf('.');
+    return last < 0 ? "" : s.substring(last+1);
+  }
+
+  @Test @Disabled
+  public void parseWholeFileFast() throws Exception {
+    SimpleDateFormat fmt= new SimpleDateFormat("HH:mm:ss");
+    String file = "D:\\ms-data\\batmass-io-errors\\HCC1806_F-2_E-1_M22_5ul_I-1_01.mzML";
+    assumeFileExists(file);
+    String ext = afterLastDot(file).toLowerCase();
+
+    LCMSDataSource<?> source;
+    switch (ext) {
+      case "mzml":
+        source = new MZMLFile(file);
+        break;
+      case "mzxml":
+        source = new MZXMLFile(file);
+        break;
+      default:
+        throw new UnsupportedOperationException("file not supported");
+    }
+
+    // create data structure to hold scans and load all scans
+    ScanCollectionDefault scans = new ScanCollectionDefault();
+    scans.setDataSource(source);
+
+    System.out.printf("Start loading whole file @ [%s]\n", fmt.format(new Date()));
+    long timeLo = System.nanoTime();
+    scans.loadData(LCMSDataSubset.WHOLE_RUN);
+    long timeHi = System.nanoTime();
+    System.out.printf("Done loading whole file @ [%s]\n", fmt.format(new Date()));
+    System.out.printf("Loading took %.1fs", (timeHi - timeLo)/1e9f);
+
+    // data index, can be used to locate scans by numbers or retention times at different ms levels
+    TreeMap<Integer, ScanIndex> index = scans.getMapMsLevel2index();
+
+    // iterate over MS2 scnas asynchronously, and calculate total intensity
+    ScanIndex ms2scans = index.get(2);
+    if (ms2scans == null || ms2scans.getNum2scan().isEmpty())
+      throw new IllegalStateException("empty ms2 index");
+    ExecutorService exec = Executors
+        .newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+    for (final Entry<Integer, IScan> kv : ms2scans.getNum2scan().entrySet()) {
+      exec.submit(() -> {
+        IScan scan = kv.getValue();
+        double spectrumIntensitySum = Arrays.stream(scan.getSpectrum().getIntensities()).sum();
+        System.out.printf("Scan [%s], intensity sum: %.2f\n", scan.toString(), spectrumIntensitySum);
+      });
+    }
+
+    System.out.printf("\n\nLoading took %.1fs", (timeHi - timeLo)/1e9f);
   }
 
   //@org.junit.Test
@@ -185,6 +340,7 @@ public class MZMLFileTest {
     //String file = "C:\\data\\andy\\no-index\\q01507-broken-index.mzML";
     String file = "C:\\data\\andy\\20161207_200ng_HeLa_DIA_VarTest.mzML";
     //String file = "C:\\projects\\batmass\\MSFTBX\\MSFileToolbox\\test\\resources\\mzml\\tiny.pwiz.idx.mzML";
+    assumeFileExists(file);
 
     System.out.printf("Processing file: %s\n", file);
     final MZMLFile mzml = new MZMLFile(file);
@@ -223,6 +379,25 @@ public class MZMLFileTest {
     timeHi = System.nanoTime();
     System.out.printf("Sum is %.4f\n", sum);
     System.out.printf("Parsing %s took %.4fs\n", file, (timeHi - timeLo) / 1e9);
+  }
+
+  @Test @Disabled
+  public void mzmlNoParentScan() throws FileParsingException {
+    String path = "C:\\data\\mzml\\20190504_TIMS1_FlMe_SA_HeLa_frac01_A10_1_93.mzML";
+    assumeFileExists(path);
+    try (MZMLFile mzml = new MZMLFile(path)) {
+      mzml.setExcludeEmptyScans(false);
+      MZMLIndex mzmlIndex = mzml.fetchIndex();
+      ScanCollectionDefault scans = new ScanCollectionDefault(true);
+      scans.setDataSource(mzml);
+      scans.loadData(LCMSDataSubset.STRUCTURE_ONLY);
+
+      TreeMap<Integer, IScan> index = scans.getMapNum2scan();
+      List<IScan> scansWithoutParent = index.values().stream()
+              .filter(scan -> scan.getPrecursor() != null && scan.getPrecursor().getParentScanNum() == null)
+              .collect(Collectors.toList());
+      log.debug("Found {} scans without parent scan number set", scansWithoutParent.size());
+    }
   }
 
   //@Test

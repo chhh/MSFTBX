@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2017 Dmitry Avtonomov
+ * Copyright (c) 2019 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,9 +31,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -372,7 +372,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *                                                 &lt;/simpleType>
  *                                               &lt;/attribute>
  *                                               &lt;attribute name="protein_descr" type="{http://www.w3.org/2001/XMLSchema}string" />
- *                                               &lt;attribute name="calc_pI" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                                               &lt;attribute name="calc_pI" type="{http://www.w3.org/2001/XMLSchema}double" />
  *                                               &lt;attribute name="protein_mw" type="{http://www.w3.org/2001/XMLSchema}double" />
  *                                             &lt;/restriction>
  *                                           &lt;/complexContent>
@@ -395,6 +395,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *                           &lt;attribute name="precursor_intensity" type="{http://www.w3.org/2001/XMLSchema}double" />
  *                           &lt;attribute name="activation_method" type="{http://regis-web.systemsbiology.net/pepXML}activationMethodType" />
  *                           &lt;attribute name="precursor_neutral_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *                           &lt;attribute name="uncalibrated_precursor_neutral_mass" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *                           &lt;attribute name="ion_mobility" type="{http://www.w3.org/2001/XMLSchema}double" />
  *                           &lt;attribute name="assumed_charge" use="required" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
  *                           &lt;attribute name="search_specification" type="{http://www.w3.org/2001/XMLSchema}string" />
  *                           &lt;attribute name="index" use="required" type="{http://regis-web.systemsbiology.net/pepXML}positiveInt" />
@@ -423,6 +425,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -433,140 +437,172 @@ import javax.xml.datatype.XMLGregorianCalendar;
 @XmlRootElement(name = "msms_pipeline_analysis")
 public class MsmsPipelineAnalysis {
 
-  @XmlElement(name = "analysis_summary")
-  protected List<AnalysisSummary> analysisSummary;
-  @XmlElement(name = "dataset_derivation")
-  protected DatasetDerivation datasetDerivation;
-  @XmlElement(name = "msms_run_summary", required = true)
-  protected List<MsmsRunSummary> msmsRunSummary;
-  @XmlAttribute(name = "name")
-  protected String name;
-  @XmlAttribute(name = "date", required = true)
-  @XmlSchemaType(name = "dateTime")
-  protected XMLGregorianCalendar date;
-  @XmlAttribute(name = "summary_xml", required = true)
-  protected String summaryXml;
+    @XmlElement(name = "analysis_summary")
+    protected List<AnalysisSummary> analysisSummary;
+    @XmlElement(name = "dataset_derivation")
+    protected DatasetDerivation datasetDerivation;
+    @XmlElement(name = "msms_run_summary", required = true)
+    protected List<MsmsRunSummary> msmsRunSummary;
+    @XmlAttribute(name = "name")
+    protected String name;
+    @XmlAttribute(name = "date", required = true)
+    @XmlSchemaType(name = "dateTime")
+    protected XMLGregorianCalendar date;
+    @XmlAttribute(name = "summary_xml", required = true)
+    protected String summaryXml;
 
-  /**
-   * Gets the value of the analysisSummary property.
-   *
-   * <p>
-   * This accessor method returns a reference to the live list, not a snapshot. Therefore any
-   * modification you make to the returned list will be present inside the JAXB object. This is why
-   * there is not a <CODE>set</CODE> method for the analysisSummary property.
-   *
-   * <p>
-   * For example, to add a new item, do as follows:
-   * <pre>
-   *    getAnalysisSummary().add(newItem);
-   * </pre>
-   *
-   *
-   * <p>
-   * Objects of the following type(s) are allowed in the list {@link AnalysisSummary }
-   */
-  public List<AnalysisSummary> getAnalysisSummary() {
-    if (analysisSummary == null) {
-      analysisSummary = new ArrayList<AnalysisSummary>(1);
+    /**
+     * Gets the value of the analysisSummary property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the analysisSummary property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getAnalysisSummary().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link AnalysisSummary }
+     * 
+     * 
+     */
+    public List<AnalysisSummary> getAnalysisSummary() {
+        if (analysisSummary == null) {
+            analysisSummary = new ArrayList<AnalysisSummary>(1);
+        }
+        return this.analysisSummary;
     }
-    return this.analysisSummary;
-  }
 
-  /**
-   * Gets the value of the datasetDerivation property.
-   *
-   * @return possible object is {@link DatasetDerivation }
-   */
-  public DatasetDerivation getDatasetDerivation() {
-    return datasetDerivation;
-  }
-
-  /**
-   * Sets the value of the datasetDerivation property.
-   *
-   * @param value allowed object is {@link DatasetDerivation }
-   */
-  public void setDatasetDerivation(DatasetDerivation value) {
-    this.datasetDerivation = value;
-  }
-
-  /**
-   * Gets the value of the msmsRunSummary property.
-   *
-   * <p>
-   * This accessor method returns a reference to the live list, not a snapshot. Therefore any
-   * modification you make to the returned list will be present inside the JAXB object. This is why
-   * there is not a <CODE>set</CODE> method for the msmsRunSummary property.
-   *
-   * <p>
-   * For example, to add a new item, do as follows:
-   * <pre>
-   *    getMsmsRunSummary().add(newItem);
-   * </pre>
-   *
-   *
-   * <p>
-   * Objects of the following type(s) are allowed in the list {@link MsmsRunSummary }
-   */
-  public List<MsmsRunSummary> getMsmsRunSummary() {
-    if (msmsRunSummary == null) {
-      msmsRunSummary = new ArrayList<MsmsRunSummary>(1);
+    /**
+     * Gets the value of the datasetDerivation property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link DatasetDerivation }
+     *     
+     */
+    public DatasetDerivation getDatasetDerivation() {
+        return datasetDerivation;
     }
-    return this.msmsRunSummary;
-  }
 
-  /**
-   * Gets the value of the name property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getName() {
-    return name;
-  }
+    /**
+     * Sets the value of the datasetDerivation property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link DatasetDerivation }
+     *     
+     */
+    public void setDatasetDerivation(DatasetDerivation value) {
+        this.datasetDerivation = value;
+    }
 
-  /**
-   * Sets the value of the name property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setName(String value) {
-    this.name = value;
-  }
+    /**
+     * Gets the value of the msmsRunSummary property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the msmsRunSummary property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getMsmsRunSummary().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link MsmsRunSummary }
+     * 
+     * 
+     */
+    public List<MsmsRunSummary> getMsmsRunSummary() {
+        if (msmsRunSummary == null) {
+            msmsRunSummary = new ArrayList<MsmsRunSummary>(1);
+        }
+        return this.msmsRunSummary;
+    }
 
-  /**
-   * Gets the value of the date property.
-   *
-   * @return possible object is {@link XMLGregorianCalendar }
-   */
-  public XMLGregorianCalendar getDate() {
-    return date;
-  }
+    /**
+     * Gets the value of the name property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getName() {
+        return name;
+    }
 
-  /**
-   * Sets the value of the date property.
-   *
-   * @param value allowed object is {@link XMLGregorianCalendar }
-   */
-  public void setDate(XMLGregorianCalendar value) {
-    this.date = value;
-  }
+    /**
+     * Sets the value of the name property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setName(String value) {
+        this.name = value;
+    }
 
-  /**
-   * Gets the value of the summaryXml property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getSummaryXml() {
-    return summaryXml;
-  }
+    /**
+     * Gets the value of the date property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public XMLGregorianCalendar getDate() {
+        return date;
+    }
 
-  /**
-   * Sets the value of the summaryXml property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setSummaryXml(String value) {
-    this.summaryXml = value;
-  }
+    /**
+     * Sets the value of the date property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public void setDate(XMLGregorianCalendar value) {
+        this.date = value;
+    }
+
+    /**
+     * Gets the value of the summaryXml property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getSummaryXml() {
+        return summaryXml;
+    }
+
+    /**
+     * Sets the value of the summaryXml property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setSummaryXml(String value) {
+        this.summaryXml = value;
+    }
 
 }

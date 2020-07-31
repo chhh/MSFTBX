@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2017 Dmitry Avtonomov
+ * Copyright (c) 2019 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,9 +30,9 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -131,7 +131,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *                             &lt;/simpleType>
  *                           &lt;/attribute>
  *                           &lt;attribute name="protein_descr" type="{http://www.w3.org/2001/XMLSchema}string" />
- *                           &lt;attribute name="calc_pI" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                           &lt;attribute name="calc_pI" type="{http://www.w3.org/2001/XMLSchema}double" />
  *                           &lt;attribute name="protein_mw" type="{http://www.w3.org/2001/XMLSchema}double" />
  *                         &lt;/restriction>
  *                       &lt;/complexContent>
@@ -154,6 +154,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *       &lt;attribute name="precursor_intensity" type="{http://www.w3.org/2001/XMLSchema}double" />
  *       &lt;attribute name="activation_method" type="{http://regis-web.systemsbiology.net/pepXML}activationMethodType" />
  *       &lt;attribute name="precursor_neutral_mass" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="uncalibrated_precursor_neutral_mass" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="ion_mobility" type="{http://www.w3.org/2001/XMLSchema}double" />
  *       &lt;attribute name="assumed_charge" use="required" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
  *       &lt;attribute name="search_specification" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="index" use="required" type="{http://regis-web.systemsbiology.net/pepXML}positiveInt" />
@@ -161,6 +163,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -168,280 +172,398 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 })
 public class SpectrumQuery {
 
-  @XmlElement(name = "search_result")
-  protected List<SearchResult> searchResult;
-  @XmlAttribute(name = "spectrum", required = true)
-  protected String spectrum;
-  @XmlAttribute(name = "spectrumNativeID")
-  protected String spectrumNativeID;
-  @XmlAttribute(name = "start_scan", required = true)
-  @XmlSchemaType(name = "unsignedInt")
-  protected long startScan;
-  @XmlAttribute(name = "end_scan", required = true)
-  @XmlSchemaType(name = "unsignedInt")
-  protected long endScan;
-  @XmlAttribute(name = "retention_time_sec")
-  protected Double retentionTimeSec;
-  @XmlAttribute(name = "collision_energy")
-  protected Double collisionEnergy;
-  @XmlAttribute(name = "compensation_voltage")
-  protected Double compensationVoltage;
-  @XmlAttribute(name = "precursor_intensity")
-  protected Double precursorIntensity;
-  @XmlAttribute(name = "activation_method")
-  protected ActivationMethodType activationMethod;
-  @XmlAttribute(name = "precursor_neutral_mass", required = true)
-  protected double precursorNeutralMass;
-  @XmlAttribute(name = "assumed_charge", required = true)
-  @XmlJavaTypeAdapter(Adapter1.class)
-  @XmlSchemaType(name = "nonNegativeInteger")
-  protected Integer assumedCharge;
-  @XmlAttribute(name = "search_specification")
-  protected String searchSpecification;
-  @XmlAttribute(name = "index", required = true)
-  protected long index;
+    @XmlElement(name = "search_result")
+    protected List<SearchResult> searchResult;
+    @XmlAttribute(name = "spectrum", required = true)
+    protected String spectrum;
+    @XmlAttribute(name = "spectrumNativeID")
+    protected String spectrumNativeID;
+    @XmlAttribute(name = "start_scan", required = true)
+    @XmlSchemaType(name = "unsignedInt")
+    protected long startScan;
+    @XmlAttribute(name = "end_scan", required = true)
+    @XmlSchemaType(name = "unsignedInt")
+    protected long endScan;
+    @XmlAttribute(name = "retention_time_sec")
+    protected Double retentionTimeSec;
+    @XmlAttribute(name = "collision_energy")
+    protected Double collisionEnergy;
+    @XmlAttribute(name = "compensation_voltage")
+    protected Double compensationVoltage;
+    @XmlAttribute(name = "precursor_intensity")
+    protected Double precursorIntensity;
+    @XmlAttribute(name = "activation_method")
+    protected ActivationMethodType activationMethod;
+    @XmlAttribute(name = "precursor_neutral_mass", required = true)
+    protected double precursorNeutralMass;
+    @XmlAttribute(name = "uncalibrated_precursor_neutral_mass")
+    protected Double uncalibratedPrecursorNeutralMass;
+    @XmlAttribute(name = "ion_mobility")
+    protected Double ionMobility;
+    @XmlAttribute(name = "assumed_charge", required = true)
+    @XmlJavaTypeAdapter(Adapter1 .class)
+    @XmlSchemaType(name = "nonNegativeInteger")
+    protected Integer assumedCharge;
+    @XmlAttribute(name = "search_specification")
+    protected String searchSpecification;
+    @XmlAttribute(name = "index", required = true)
+    protected long index;
 
-  /**
-   * Gets the value of the searchResult property.
-   *
-   * <p>
-   * This accessor method returns a reference to the live list, not a snapshot. Therefore any
-   * modification you make to the returned list will be present inside the JAXB object. This is why
-   * there is not a <CODE>set</CODE> method for the searchResult property.
-   *
-   * <p>
-   * For example, to add a new item, do as follows:
-   * <pre>
-   *    getSearchResult().add(newItem);
-   * </pre>
-   *
-   *
-   * <p>
-   * Objects of the following type(s) are allowed in the list {@link SearchResult }
-   */
-  public List<SearchResult> getSearchResult() {
-    if (searchResult == null) {
-      searchResult = new ArrayList<SearchResult>(1);
+    /**
+     * Gets the value of the searchResult property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the searchResult property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getSearchResult().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link SearchResult }
+     * 
+     * 
+     */
+    public List<SearchResult> getSearchResult() {
+        if (searchResult == null) {
+            searchResult = new ArrayList<SearchResult>(1);
+        }
+        return this.searchResult;
     }
-    return this.searchResult;
-  }
 
-  /**
-   * Gets the value of the spectrum property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getSpectrum() {
-    return spectrum;
-  }
+    /**
+     * Gets the value of the spectrum property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getSpectrum() {
+        return spectrum;
+    }
 
-  /**
-   * Sets the value of the spectrum property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setSpectrum(String value) {
-    this.spectrum = value;
-  }
+    /**
+     * Sets the value of the spectrum property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setSpectrum(String value) {
+        this.spectrum = value;
+    }
 
-  /**
-   * Gets the value of the spectrumNativeID property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getSpectrumNativeID() {
-    return spectrumNativeID;
-  }
+    /**
+     * Gets the value of the spectrumNativeID property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getSpectrumNativeID() {
+        return spectrumNativeID;
+    }
 
-  /**
-   * Sets the value of the spectrumNativeID property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setSpectrumNativeID(String value) {
-    this.spectrumNativeID = value;
-  }
+    /**
+     * Sets the value of the spectrumNativeID property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setSpectrumNativeID(String value) {
+        this.spectrumNativeID = value;
+    }
 
-  /**
-   * Gets the value of the startScan property.
-   */
-  public long getStartScan() {
-    return startScan;
-  }
+    /**
+     * Gets the value of the startScan property.
+     * 
+     */
+    public long getStartScan() {
+        return startScan;
+    }
 
-  /**
-   * Sets the value of the startScan property.
-   */
-  public void setStartScan(long value) {
-    this.startScan = value;
-  }
+    /**
+     * Sets the value of the startScan property.
+     * 
+     */
+    public void setStartScan(long value) {
+        this.startScan = value;
+    }
 
-  /**
-   * Gets the value of the endScan property.
-   */
-  public long getEndScan() {
-    return endScan;
-  }
+    /**
+     * Gets the value of the endScan property.
+     * 
+     */
+    public long getEndScan() {
+        return endScan;
+    }
 
-  /**
-   * Sets the value of the endScan property.
-   */
-  public void setEndScan(long value) {
-    this.endScan = value;
-  }
+    /**
+     * Sets the value of the endScan property.
+     * 
+     */
+    public void setEndScan(long value) {
+        this.endScan = value;
+    }
 
-  /**
-   * Gets the value of the retentionTimeSec property.
-   *
-   * @return possible object is {@link Double }
-   */
-  public Double getRetentionTimeSec() {
-    return retentionTimeSec;
-  }
+    /**
+     * Gets the value of the retentionTimeSec property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Double }
+     *     
+     */
+    public Double getRetentionTimeSec() {
+        return retentionTimeSec;
+    }
 
-  /**
-   * Sets the value of the retentionTimeSec property.
-   *
-   * @param value allowed object is {@link Double }
-   */
-  public void setRetentionTimeSec(Double value) {
-    this.retentionTimeSec = value;
-  }
+    /**
+     * Sets the value of the retentionTimeSec property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Double }
+     *     
+     */
+    public void setRetentionTimeSec(Double value) {
+        this.retentionTimeSec = value;
+    }
 
-  /**
-   * Gets the value of the collisionEnergy property.
-   *
-   * @return possible object is {@link Double }
-   */
-  public Double getCollisionEnergy() {
-    return collisionEnergy;
-  }
+    /**
+     * Gets the value of the collisionEnergy property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Double }
+     *     
+     */
+    public Double getCollisionEnergy() {
+        return collisionEnergy;
+    }
 
-  /**
-   * Sets the value of the collisionEnergy property.
-   *
-   * @param value allowed object is {@link Double }
-   */
-  public void setCollisionEnergy(Double value) {
-    this.collisionEnergy = value;
-  }
+    /**
+     * Sets the value of the collisionEnergy property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Double }
+     *     
+     */
+    public void setCollisionEnergy(Double value) {
+        this.collisionEnergy = value;
+    }
 
-  /**
-   * Gets the value of the compensationVoltage property.
-   *
-   * @return possible object is {@link Double }
-   */
-  public Double getCompensationVoltage() {
-    return compensationVoltage;
-  }
+    /**
+     * Gets the value of the compensationVoltage property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Double }
+     *     
+     */
+    public Double getCompensationVoltage() {
+        return compensationVoltage;
+    }
 
-  /**
-   * Sets the value of the compensationVoltage property.
-   *
-   * @param value allowed object is {@link Double }
-   */
-  public void setCompensationVoltage(Double value) {
-    this.compensationVoltage = value;
-  }
+    /**
+     * Sets the value of the compensationVoltage property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Double }
+     *     
+     */
+    public void setCompensationVoltage(Double value) {
+        this.compensationVoltage = value;
+    }
 
-  /**
-   * Gets the value of the precursorIntensity property.
-   *
-   * @return possible object is {@link Double }
-   */
-  public Double getPrecursorIntensity() {
-    return precursorIntensity;
-  }
+    /**
+     * Gets the value of the precursorIntensity property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Double }
+     *     
+     */
+    public Double getPrecursorIntensity() {
+        return precursorIntensity;
+    }
 
-  /**
-   * Sets the value of the precursorIntensity property.
-   *
-   * @param value allowed object is {@link Double }
-   */
-  public void setPrecursorIntensity(Double value) {
-    this.precursorIntensity = value;
-  }
+    /**
+     * Sets the value of the precursorIntensity property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Double }
+     *     
+     */
+    public void setPrecursorIntensity(Double value) {
+        this.precursorIntensity = value;
+    }
 
-  /**
-   * Gets the value of the activationMethod property.
-   *
-   * @return possible object is {@link ActivationMethodType }
-   */
-  public ActivationMethodType getActivationMethod() {
-    return activationMethod;
-  }
+    /**
+     * Gets the value of the activationMethod property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ActivationMethodType }
+     *     
+     */
+    public ActivationMethodType getActivationMethod() {
+        return activationMethod;
+    }
 
-  /**
-   * Sets the value of the activationMethod property.
-   *
-   * @param value allowed object is {@link ActivationMethodType }
-   */
-  public void setActivationMethod(ActivationMethodType value) {
-    this.activationMethod = value;
-  }
+    /**
+     * Sets the value of the activationMethod property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ActivationMethodType }
+     *     
+     */
+    public void setActivationMethod(ActivationMethodType value) {
+        this.activationMethod = value;
+    }
 
-  /**
-   * Gets the value of the precursorNeutralMass property.
-   */
-  public double getPrecursorNeutralMass() {
-    return precursorNeutralMass;
-  }
+    /**
+     * Gets the value of the precursorNeutralMass property.
+     * 
+     */
+    public double getPrecursorNeutralMass() {
+        return precursorNeutralMass;
+    }
 
-  /**
-   * Sets the value of the precursorNeutralMass property.
-   */
-  public void setPrecursorNeutralMass(double value) {
-    this.precursorNeutralMass = value;
-  }
+    /**
+     * Sets the value of the precursorNeutralMass property.
+     * 
+     */
+    public void setPrecursorNeutralMass(double value) {
+        this.precursorNeutralMass = value;
+    }
 
-  /**
-   * Gets the value of the assumedCharge property.
-   *
-   * @return possible object is {@link String }
-   */
-  public Integer getAssumedCharge() {
-    return assumedCharge;
-  }
+    /**
+     * Gets the value of the uncalibratedPrecursorNeutralMass property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Double }
+     *     
+     */
+    public Double getUncalibratedPrecursorNeutralMass() {
+        return uncalibratedPrecursorNeutralMass;
+    }
 
-  /**
-   * Sets the value of the assumedCharge property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setAssumedCharge(Integer value) {
-    this.assumedCharge = value;
-  }
+    /**
+     * Sets the value of the uncalibratedPrecursorNeutralMass property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Double }
+     *     
+     */
+    public void setUncalibratedPrecursorNeutralMass(Double value) {
+        this.uncalibratedPrecursorNeutralMass = value;
+    }
 
-  /**
-   * Gets the value of the searchSpecification property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getSearchSpecification() {
-    return searchSpecification;
-  }
+    /**
+     * Gets the value of the ionMobility property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Double }
+     *     
+     */
+    public Double getIonMobility() {
+        return ionMobility;
+    }
 
-  /**
-   * Sets the value of the searchSpecification property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setSearchSpecification(String value) {
-    this.searchSpecification = value;
-  }
+    /**
+     * Sets the value of the ionMobility property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Double }
+     *     
+     */
+    public void setIonMobility(Double value) {
+        this.ionMobility = value;
+    }
 
-  /**
-   * Gets the value of the index property.
-   */
-  public long getIndex() {
-    return index;
-  }
+    /**
+     * Gets the value of the assumedCharge property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public Integer getAssumedCharge() {
+        return assumedCharge;
+    }
 
-  /**
-   * Sets the value of the index property.
-   */
-  public void setIndex(long value) {
-    this.index = value;
-  }
+    /**
+     * Sets the value of the assumedCharge property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setAssumedCharge(Integer value) {
+        this.assumedCharge = value;
+    }
+
+    /**
+     * Gets the value of the searchSpecification property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getSearchSpecification() {
+        return searchSpecification;
+    }
+
+    /**
+     * Sets the value of the searchSpecification property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setSearchSpecification(String value) {
+        this.searchSpecification = value;
+    }
+
+    /**
+     * Gets the value of the index property.
+     * 
+     */
+    public long getIndex() {
+        return index;
+    }
+
+    /**
+     * Sets the value of the index property.
+     * 
+     */
+    public void setIndex(long value) {
+        this.index = value;
+    }
 
 }

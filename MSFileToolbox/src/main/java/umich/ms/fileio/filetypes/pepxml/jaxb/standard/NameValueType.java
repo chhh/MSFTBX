@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2017 Dmitry Avtonomov
+ * Copyright (c) 2019 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,13 +22,14 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.XmlValue;
 
 
 /**
  * <p>Java class for nameValueType complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType name="nameValueType">
  *   &lt;simpleContent>
@@ -40,72 +41,92 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/simpleContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType()
 public class NameValueType {
 
-  @XmlAttribute(name = "name", required = true)
-  protected String name;
-  @XmlAttribute(name = "value", required = true)
-  @XmlSchemaType(name = "anySimpleType")
-  protected String valueStr;
-  @XmlAttribute(name = "type")
-  @XmlSchemaType(name = "anySimpleType")
-  protected String type;
+    @XmlAttribute(name = "name", required = true)
+    protected String name;
+    @XmlAttribute(name = "value", required = true)
+    @XmlSchemaType(name = "anySimpleType")
+    protected String valueStr;
+    @XmlAttribute(name = "type")
+    @XmlSchemaType(name = "anySimpleType")
+    protected String type;
 
-  /**
-   * Gets the value of the name property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getName() {
-    return name;
-  }
+    /**
+     * Gets the value of the name property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getName() {
+        return name;
+    }
 
-  /**
-   * Sets the value of the name property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setName(String value) {
-    this.name = value;
-  }
+    /**
+     * Sets the value of the name property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setName(String value) {
+        this.name = value;
+    }
 
-  /**
-   * Gets the value of the valueStr property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getValueStr() {
-    return valueStr;
-  }
+    /**
+     * Gets the value of the valueStr property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getValueStr() {
+        return valueStr;
+    }
 
-  /**
-   * Sets the value of the valueStr property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setValueStr(String value) {
-    this.valueStr = value;
-  }
+    /**
+     * Sets the value of the valueStr property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setValueStr(String value) {
+        this.valueStr = value;
+    }
 
-  /**
-   * Gets the value of the type property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getType() {
-    return type;
-  }
+    /**
+     * Gets the value of the type property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getType() {
+        return type;
+    }
 
-  /**
-   * Sets the value of the type property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setType(String value) {
-    this.type = value;
-  }
+    /**
+     * Sets the value of the type property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setType(String value) {
+        this.type = value;
+    }
 
 }

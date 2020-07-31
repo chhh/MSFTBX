@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2017 Dmitry Avtonomov
+ * Copyright (c) 2019 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,9 +27,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for mixtureModelType complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType name="mixtureModelType">
  *   &lt;complexContent>
@@ -56,6 +56,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "mixtureModelType", propOrder = {
@@ -63,83 +65,97 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class MixtureModelType {
 
-  protected List<MixtureModelPoint> point;
-  @XmlAttribute(name = "name", required = true)
-  protected String name;
-  @XmlAttribute(name = "pos_bandwidth", required = true)
-  protected double posBandwidth;
-  @XmlAttribute(name = "neg_bandwidth", required = true)
-  protected double negBandwidth;
+    protected List<MixtureModelPoint> point;
+    @XmlAttribute(name = "name", required = true)
+    protected String name;
+    @XmlAttribute(name = "pos_bandwidth", required = true)
+    protected double posBandwidth;
+    @XmlAttribute(name = "neg_bandwidth", required = true)
+    protected double negBandwidth;
 
-  /**
-   * Gets the value of the point property.
-   *
-   * <p>
-   * This accessor method returns a reference to the live list, not a snapshot. Therefore any
-   * modification you make to the returned list will be present inside the JAXB object. This is why
-   * there is not a <CODE>set</CODE> method for the point property.
-   *
-   * <p>
-   * For example, to add a new item, do as follows:
-   * <pre>
-   *    getPoint().add(newItem);
-   * </pre>
-   *
-   *
-   * <p>
-   * Objects of the following type(s) are allowed in the list {@link MixtureModelPoint }
-   */
-  public List<MixtureModelPoint> getPoint() {
-    if (point == null) {
-      point = new ArrayList<MixtureModelPoint>(1);
+    /**
+     * Gets the value of the point property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the point property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getPoint().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link MixtureModelPoint }
+     * 
+     * 
+     */
+    public List<MixtureModelPoint> getPoint() {
+        if (point == null) {
+            point = new ArrayList<MixtureModelPoint>(1);
+        }
+        return this.point;
     }
-    return this.point;
-  }
 
-  /**
-   * Gets the value of the name property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getName() {
-    return name;
-  }
+    /**
+     * Gets the value of the name property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getName() {
+        return name;
+    }
 
-  /**
-   * Sets the value of the name property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setName(String value) {
-    this.name = value;
-  }
+    /**
+     * Sets the value of the name property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setName(String value) {
+        this.name = value;
+    }
 
-  /**
-   * Gets the value of the posBandwidth property.
-   */
-  public double getPosBandwidth() {
-    return posBandwidth;
-  }
+    /**
+     * Gets the value of the posBandwidth property.
+     * 
+     */
+    public double getPosBandwidth() {
+        return posBandwidth;
+    }
 
-  /**
-   * Sets the value of the posBandwidth property.
-   */
-  public void setPosBandwidth(double value) {
-    this.posBandwidth = value;
-  }
+    /**
+     * Sets the value of the posBandwidth property.
+     * 
+     */
+    public void setPosBandwidth(double value) {
+        this.posBandwidth = value;
+    }
 
-  /**
-   * Gets the value of the negBandwidth property.
-   */
-  public double getNegBandwidth() {
-    return negBandwidth;
-  }
+    /**
+     * Gets the value of the negBandwidth property.
+     * 
+     */
+    public double getNegBandwidth() {
+        return negBandwidth;
+    }
 
-  /**
-   * Sets the value of the negBandwidth property.
-   */
-  public void setNegBandwidth(double value) {
-    this.negBandwidth = value;
-  }
+    /**
+     * Sets the value of the negBandwidth property.
+     * 
+     */
+    public void setNegBandwidth(double value) {
+        this.negBandwidth = value;
+    }
 
 }

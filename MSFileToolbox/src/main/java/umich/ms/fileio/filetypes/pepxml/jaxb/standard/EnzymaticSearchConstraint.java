@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2017 Dmitry Avtonomov
+ * Copyright (c) 2019 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,9 +27,9 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -41,74 +41,94 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
 public class EnzymaticSearchConstraint {
 
-  @XmlAttribute(name = "enzyme", required = true)
-  protected String enzyme;
-  @XmlAttribute(name = "max_num_internal_cleavages", required = true)
-  @XmlJavaTypeAdapter(Adapter1.class)
-  @XmlSchemaType(name = "nonNegativeInteger")
-  protected Integer maxNumInternalCleavages;
-  @XmlAttribute(name = "min_number_termini", required = true)
-  @XmlJavaTypeAdapter(Adapter1.class)
-  @XmlSchemaType(name = "nonNegativeInteger")
-  protected Integer minNumberTermini;
+    @XmlAttribute(name = "enzyme", required = true)
+    protected String enzyme;
+    @XmlAttribute(name = "max_num_internal_cleavages", required = true)
+    @XmlJavaTypeAdapter(Adapter1 .class)
+    @XmlSchemaType(name = "nonNegativeInteger")
+    protected Integer maxNumInternalCleavages;
+    @XmlAttribute(name = "min_number_termini", required = true)
+    @XmlJavaTypeAdapter(Adapter1 .class)
+    @XmlSchemaType(name = "nonNegativeInteger")
+    protected Integer minNumberTermini;
 
-  /**
-   * Gets the value of the enzyme property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getEnzyme() {
-    return enzyme;
-  }
+    /**
+     * Gets the value of the enzyme property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getEnzyme() {
+        return enzyme;
+    }
 
-  /**
-   * Sets the value of the enzyme property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setEnzyme(String value) {
-    this.enzyme = value;
-  }
+    /**
+     * Sets the value of the enzyme property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setEnzyme(String value) {
+        this.enzyme = value;
+    }
 
-  /**
-   * Gets the value of the maxNumInternalCleavages property.
-   *
-   * @return possible object is {@link String }
-   */
-  public Integer getMaxNumInternalCleavages() {
-    return maxNumInternalCleavages;
-  }
+    /**
+     * Gets the value of the maxNumInternalCleavages property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public Integer getMaxNumInternalCleavages() {
+        return maxNumInternalCleavages;
+    }
 
-  /**
-   * Sets the value of the maxNumInternalCleavages property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setMaxNumInternalCleavages(Integer value) {
-    this.maxNumInternalCleavages = value;
-  }
+    /**
+     * Sets the value of the maxNumInternalCleavages property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setMaxNumInternalCleavages(Integer value) {
+        this.maxNumInternalCleavages = value;
+    }
 
-  /**
-   * Gets the value of the minNumberTermini property.
-   *
-   * @return possible object is {@link String }
-   */
-  public Integer getMinNumberTermini() {
-    return minNumberTermini;
-  }
+    /**
+     * Gets the value of the minNumberTermini property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public Integer getMinNumberTermini() {
+        return minNumberTermini;
+    }
 
-  /**
-   * Sets the value of the minNumberTermini property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setMinNumberTermini(Integer value) {
-    this.minNumberTermini = value;
-  }
+    /**
+     * Sets the value of the minNumberTermini property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setMinNumberTermini(Integer value) {
+        this.minNumberTermini = value;
+    }
 
 }

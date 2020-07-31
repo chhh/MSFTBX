@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2017 Dmitry Avtonomov
+ * Copyright (c) 2019 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,9 +28,9 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -49,200 +49,246 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
 @XmlRootElement(name = "xpressratio_summary")
 public class XpressratioSummary {
 
-  @XmlAttribute(name = "version", required = true)
-  protected String version;
-  @XmlAttribute(name = "author", required = true)
-  protected String author;
-  @XmlAttribute(name = "same_scan_range", required = true)
-  protected String sameScanRange;
-  @XmlAttribute(name = "labeled_residues", required = true)
-  protected String labeledResidues;
-  @XmlAttribute(name = "xpress_light", required = true)
-  @XmlSchemaType(name = "unsignedInt")
-  protected long xpressLight;
-  @XmlAttribute(name = "massdiff", required = true)
-  protected double massdiff;
-  @XmlAttribute(name = "masstol", required = true)
-  protected double masstol;
-  @XmlAttribute(name = "ppmtol", required = true)
-  protected double ppmtol;
-  @XmlAttribute(name = "min_num_chromatogram_points", required = true)
-  @XmlJavaTypeAdapter(Adapter1.class)
-  @XmlSchemaType(name = "integer")
-  protected Integer minNumChromatogramPoints;
-  @XmlAttribute(name = "min_num_isotope_peaks", required = true)
-  @XmlJavaTypeAdapter(Adapter1.class)
-  @XmlSchemaType(name = "integer")
-  protected Integer minNumIsotopePeaks;
+    @XmlAttribute(name = "version", required = true)
+    protected String version;
+    @XmlAttribute(name = "author", required = true)
+    protected String author;
+    @XmlAttribute(name = "same_scan_range", required = true)
+    protected String sameScanRange;
+    @XmlAttribute(name = "labeled_residues", required = true)
+    protected String labeledResidues;
+    @XmlAttribute(name = "xpress_light", required = true)
+    @XmlSchemaType(name = "unsignedInt")
+    protected long xpressLight;
+    @XmlAttribute(name = "massdiff", required = true)
+    protected double massdiff;
+    @XmlAttribute(name = "masstol", required = true)
+    protected double masstol;
+    @XmlAttribute(name = "ppmtol", required = true)
+    protected double ppmtol;
+    @XmlAttribute(name = "min_num_chromatogram_points", required = true)
+    @XmlJavaTypeAdapter(Adapter1 .class)
+    @XmlSchemaType(name = "integer")
+    protected Integer minNumChromatogramPoints;
+    @XmlAttribute(name = "min_num_isotope_peaks", required = true)
+    @XmlJavaTypeAdapter(Adapter1 .class)
+    @XmlSchemaType(name = "integer")
+    protected Integer minNumIsotopePeaks;
 
-  /**
-   * Gets the value of the version property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getVersion() {
-    return version;
-  }
+    /**
+     * Gets the value of the version property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getVersion() {
+        return version;
+    }
 
-  /**
-   * Sets the value of the version property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setVersion(String value) {
-    this.version = value;
-  }
+    /**
+     * Sets the value of the version property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setVersion(String value) {
+        this.version = value;
+    }
 
-  /**
-   * Gets the value of the author property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getAuthor() {
-    return author;
-  }
+    /**
+     * Gets the value of the author property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getAuthor() {
+        return author;
+    }
 
-  /**
-   * Sets the value of the author property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setAuthor(String value) {
-    this.author = value;
-  }
+    /**
+     * Sets the value of the author property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setAuthor(String value) {
+        this.author = value;
+    }
 
-  /**
-   * Gets the value of the sameScanRange property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getSameScanRange() {
-    return sameScanRange;
-  }
+    /**
+     * Gets the value of the sameScanRange property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getSameScanRange() {
+        return sameScanRange;
+    }
 
-  /**
-   * Sets the value of the sameScanRange property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setSameScanRange(String value) {
-    this.sameScanRange = value;
-  }
+    /**
+     * Sets the value of the sameScanRange property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setSameScanRange(String value) {
+        this.sameScanRange = value;
+    }
 
-  /**
-   * Gets the value of the labeledResidues property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getLabeledResidues() {
-    return labeledResidues;
-  }
+    /**
+     * Gets the value of the labeledResidues property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getLabeledResidues() {
+        return labeledResidues;
+    }
 
-  /**
-   * Sets the value of the labeledResidues property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setLabeledResidues(String value) {
-    this.labeledResidues = value;
-  }
+    /**
+     * Sets the value of the labeledResidues property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setLabeledResidues(String value) {
+        this.labeledResidues = value;
+    }
 
-  /**
-   * Gets the value of the xpressLight property.
-   */
-  public long getXpressLight() {
-    return xpressLight;
-  }
+    /**
+     * Gets the value of the xpressLight property.
+     * 
+     */
+    public long getXpressLight() {
+        return xpressLight;
+    }
 
-  /**
-   * Sets the value of the xpressLight property.
-   */
-  public void setXpressLight(long value) {
-    this.xpressLight = value;
-  }
+    /**
+     * Sets the value of the xpressLight property.
+     * 
+     */
+    public void setXpressLight(long value) {
+        this.xpressLight = value;
+    }
 
-  /**
-   * Gets the value of the massdiff property.
-   */
-  public double getMassdiff() {
-    return massdiff;
-  }
+    /**
+     * Gets the value of the massdiff property.
+     * 
+     */
+    public double getMassdiff() {
+        return massdiff;
+    }
 
-  /**
-   * Sets the value of the massdiff property.
-   */
-  public void setMassdiff(double value) {
-    this.massdiff = value;
-  }
+    /**
+     * Sets the value of the massdiff property.
+     * 
+     */
+    public void setMassdiff(double value) {
+        this.massdiff = value;
+    }
 
-  /**
-   * Gets the value of the masstol property.
-   */
-  public double getMasstol() {
-    return masstol;
-  }
+    /**
+     * Gets the value of the masstol property.
+     * 
+     */
+    public double getMasstol() {
+        return masstol;
+    }
 
-  /**
-   * Sets the value of the masstol property.
-   */
-  public void setMasstol(double value) {
-    this.masstol = value;
-  }
+    /**
+     * Sets the value of the masstol property.
+     * 
+     */
+    public void setMasstol(double value) {
+        this.masstol = value;
+    }
 
-  /**
-   * Gets the value of the ppmtol property.
-   */
-  public double getPpmtol() {
-    return ppmtol;
-  }
+    /**
+     * Gets the value of the ppmtol property.
+     * 
+     */
+    public double getPpmtol() {
+        return ppmtol;
+    }
 
-  /**
-   * Sets the value of the ppmtol property.
-   */
-  public void setPpmtol(double value) {
-    this.ppmtol = value;
-  }
+    /**
+     * Sets the value of the ppmtol property.
+     * 
+     */
+    public void setPpmtol(double value) {
+        this.ppmtol = value;
+    }
 
-  /**
-   * Gets the value of the minNumChromatogramPoints property.
-   *
-   * @return possible object is {@link String }
-   */
-  public Integer getMinNumChromatogramPoints() {
-    return minNumChromatogramPoints;
-  }
+    /**
+     * Gets the value of the minNumChromatogramPoints property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public Integer getMinNumChromatogramPoints() {
+        return minNumChromatogramPoints;
+    }
 
-  /**
-   * Sets the value of the minNumChromatogramPoints property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setMinNumChromatogramPoints(Integer value) {
-    this.minNumChromatogramPoints = value;
-  }
+    /**
+     * Sets the value of the minNumChromatogramPoints property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setMinNumChromatogramPoints(Integer value) {
+        this.minNumChromatogramPoints = value;
+    }
 
-  /**
-   * Gets the value of the minNumIsotopePeaks property.
-   *
-   * @return possible object is {@link String }
-   */
-  public Integer getMinNumIsotopePeaks() {
-    return minNumIsotopePeaks;
-  }
+    /**
+     * Gets the value of the minNumIsotopePeaks property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public Integer getMinNumIsotopePeaks() {
+        return minNumIsotopePeaks;
+    }
 
-  /**
-   * Sets the value of the minNumIsotopePeaks property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setMinNumIsotopePeaks(Integer value) {
-    this.minNumIsotopePeaks = value;
-  }
+    /**
+     * Sets the value of the minNumIsotopePeaks property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setMinNumIsotopePeaks(Integer value) {
+        this.minNumIsotopePeaks = value;
+    }
 
 }

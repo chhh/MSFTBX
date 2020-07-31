@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2017 Dmitry Avtonomov
+ * Copyright (c) 2019 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,9 +29,9 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -48,6 +48,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -57,116 +59,140 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlRootElement(name = "asapratio_contribution")
 public class AsapratioContribution {
 
-  @XmlElement(name = "asapratio_lc_lightpeak", required = true)
-  protected AsapratioLcLightpeak asapratioLcLightpeak;
-  @XmlElement(name = "asapratio_lc_heavypeak", required = true)
-  protected AsapratioLcHeavypeak asapratioLcHeavypeak;
-  @XmlAttribute(name = "ratio", required = true)
-  protected double ratio;
-  @XmlAttribute(name = "error", required = true)
-  protected double error;
-  @XmlAttribute(name = "charge", required = true)
-  @XmlJavaTypeAdapter(Adapter1.class)
-  @XmlSchemaType(name = "nonNegativeInteger")
-  protected Integer charge;
-  @XmlAttribute(name = "use", required = true)
-  @XmlSchemaType(name = "unsignedByte")
-  protected short use;
+    @XmlElement(name = "asapratio_lc_lightpeak", required = true)
+    protected AsapratioLcLightpeak asapratioLcLightpeak;
+    @XmlElement(name = "asapratio_lc_heavypeak", required = true)
+    protected AsapratioLcHeavypeak asapratioLcHeavypeak;
+    @XmlAttribute(name = "ratio", required = true)
+    protected double ratio;
+    @XmlAttribute(name = "error", required = true)
+    protected double error;
+    @XmlAttribute(name = "charge", required = true)
+    @XmlJavaTypeAdapter(Adapter1 .class)
+    @XmlSchemaType(name = "nonNegativeInteger")
+    protected Integer charge;
+    @XmlAttribute(name = "use", required = true)
+    @XmlSchemaType(name = "unsignedByte")
+    protected short use;
 
-  /**
-   * Gets the value of the asapratioLcLightpeak property.
-   *
-   * @return possible object is {@link AsapratioLcLightpeak }
-   */
-  public AsapratioLcLightpeak getAsapratioLcLightpeak() {
-    return asapratioLcLightpeak;
-  }
+    /**
+     * Gets the value of the asapratioLcLightpeak property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link AsapratioLcLightpeak }
+     *     
+     */
+    public AsapratioLcLightpeak getAsapratioLcLightpeak() {
+        return asapratioLcLightpeak;
+    }
 
-  /**
-   * Sets the value of the asapratioLcLightpeak property.
-   *
-   * @param value allowed object is {@link AsapratioLcLightpeak }
-   */
-  public void setAsapratioLcLightpeak(AsapratioLcLightpeak value) {
-    this.asapratioLcLightpeak = value;
-  }
+    /**
+     * Sets the value of the asapratioLcLightpeak property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link AsapratioLcLightpeak }
+     *     
+     */
+    public void setAsapratioLcLightpeak(AsapratioLcLightpeak value) {
+        this.asapratioLcLightpeak = value;
+    }
 
-  /**
-   * Gets the value of the asapratioLcHeavypeak property.
-   *
-   * @return possible object is {@link AsapratioLcHeavypeak }
-   */
-  public AsapratioLcHeavypeak getAsapratioLcHeavypeak() {
-    return asapratioLcHeavypeak;
-  }
+    /**
+     * Gets the value of the asapratioLcHeavypeak property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link AsapratioLcHeavypeak }
+     *     
+     */
+    public AsapratioLcHeavypeak getAsapratioLcHeavypeak() {
+        return asapratioLcHeavypeak;
+    }
 
-  /**
-   * Sets the value of the asapratioLcHeavypeak property.
-   *
-   * @param value allowed object is {@link AsapratioLcHeavypeak }
-   */
-  public void setAsapratioLcHeavypeak(AsapratioLcHeavypeak value) {
-    this.asapratioLcHeavypeak = value;
-  }
+    /**
+     * Sets the value of the asapratioLcHeavypeak property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link AsapratioLcHeavypeak }
+     *     
+     */
+    public void setAsapratioLcHeavypeak(AsapratioLcHeavypeak value) {
+        this.asapratioLcHeavypeak = value;
+    }
 
-  /**
-   * Gets the value of the ratio property.
-   */
-  public double getRatio() {
-    return ratio;
-  }
+    /**
+     * Gets the value of the ratio property.
+     * 
+     */
+    public double getRatio() {
+        return ratio;
+    }
 
-  /**
-   * Sets the value of the ratio property.
-   */
-  public void setRatio(double value) {
-    this.ratio = value;
-  }
+    /**
+     * Sets the value of the ratio property.
+     * 
+     */
+    public void setRatio(double value) {
+        this.ratio = value;
+    }
 
-  /**
-   * Gets the value of the error property.
-   */
-  public double getError() {
-    return error;
-  }
+    /**
+     * Gets the value of the error property.
+     * 
+     */
+    public double getError() {
+        return error;
+    }
 
-  /**
-   * Sets the value of the error property.
-   */
-  public void setError(double value) {
-    this.error = value;
-  }
+    /**
+     * Sets the value of the error property.
+     * 
+     */
+    public void setError(double value) {
+        this.error = value;
+    }
 
-  /**
-   * Gets the value of the charge property.
-   *
-   * @return possible object is {@link String }
-   */
-  public Integer getCharge() {
-    return charge;
-  }
+    /**
+     * Gets the value of the charge property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public Integer getCharge() {
+        return charge;
+    }
 
-  /**
-   * Sets the value of the charge property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setCharge(Integer value) {
-    this.charge = value;
-  }
+    /**
+     * Sets the value of the charge property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setCharge(Integer value) {
+        this.charge = value;
+    }
 
-  /**
-   * Gets the value of the use property.
-   */
-  public short getUse() {
-    return use;
-  }
+    /**
+     * Gets the value of the use property.
+     * 
+     */
+    public short getUse() {
+        return use;
+    }
 
-  /**
-   * Sets the value of the use property.
-   */
-  public void setUse(short value) {
-    this.use = value;
-  }
+    /**
+     * Sets the value of the use property.
+     * 
+     */
+    public void setUse(short value) {
+        this.use = value;
+    }
 
 }

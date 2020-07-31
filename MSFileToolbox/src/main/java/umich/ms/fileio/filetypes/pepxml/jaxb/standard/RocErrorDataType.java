@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2017 Dmitry Avtonomov
+ * Copyright (c) 2019 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,11 +28,11 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * Tag for encapsulating roc curves for pepXML
- *
+ * 
  * <p>Java class for rocErrorDataType complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType name="rocErrorDataType">
  *   &lt;complexContent>
@@ -70,6 +70,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "rocErrorDataType", propOrder = {
@@ -78,99 +80,119 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class RocErrorDataType {
 
-  @XmlElement(name = "roc_data_point")
-  protected List<RocDataPoint> rocDataPoint;
-  @XmlElement(name = "error_point")
-  protected List<ErrorPoint> errorPoint;
-  @XmlAttribute(name = "charge", required = true)
-  protected String charge;
-  @XmlAttribute(name = "charge_est_correct")
-  protected Double chargeEstCorrect;
+    @XmlElement(name = "roc_data_point")
+    protected List<RocDataPoint> rocDataPoint;
+    @XmlElement(name = "error_point")
+    protected List<ErrorPoint> errorPoint;
+    @XmlAttribute(name = "charge", required = true)
+    protected String charge;
+    @XmlAttribute(name = "charge_est_correct")
+    protected Double chargeEstCorrect;
 
-  /**
-   * Gets the value of the rocDataPoint property.
-   *
-   * <p>
-   * This accessor method returns a reference to the live list, not a snapshot. Therefore any
-   * modification you make to the returned list will be present inside the JAXB object. This is why
-   * there is not a <CODE>set</CODE> method for the rocDataPoint property.
-   *
-   * <p>
-   * For example, to add a new item, do as follows:
-   * <pre>
-   *    getRocDataPoint().add(newItem);
-   * </pre>
-   *
-   *
-   * <p>
-   * Objects of the following type(s) are allowed in the list {@link RocDataPoint }
-   */
-  public List<RocDataPoint> getRocDataPoint() {
-    if (rocDataPoint == null) {
-      rocDataPoint = new ArrayList<RocDataPoint>(1);
+    /**
+     * Gets the value of the rocDataPoint property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the rocDataPoint property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getRocDataPoint().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link RocDataPoint }
+     * 
+     * 
+     */
+    public List<RocDataPoint> getRocDataPoint() {
+        if (rocDataPoint == null) {
+            rocDataPoint = new ArrayList<RocDataPoint>(1);
+        }
+        return this.rocDataPoint;
     }
-    return this.rocDataPoint;
-  }
 
-  /**
-   * Gets the value of the errorPoint property.
-   *
-   * <p>
-   * This accessor method returns a reference to the live list, not a snapshot. Therefore any
-   * modification you make to the returned list will be present inside the JAXB object. This is why
-   * there is not a <CODE>set</CODE> method for the errorPoint property.
-   *
-   * <p>
-   * For example, to add a new item, do as follows:
-   * <pre>
-   *    getErrorPoint().add(newItem);
-   * </pre>
-   *
-   *
-   * <p>
-   * Objects of the following type(s) are allowed in the list {@link ErrorPoint }
-   */
-  public List<ErrorPoint> getErrorPoint() {
-    if (errorPoint == null) {
-      errorPoint = new ArrayList<ErrorPoint>(1);
+    /**
+     * Gets the value of the errorPoint property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the errorPoint property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getErrorPoint().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link ErrorPoint }
+     * 
+     * 
+     */
+    public List<ErrorPoint> getErrorPoint() {
+        if (errorPoint == null) {
+            errorPoint = new ArrayList<ErrorPoint>(1);
+        }
+        return this.errorPoint;
     }
-    return this.errorPoint;
-  }
 
-  /**
-   * Gets the value of the charge property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getCharge() {
-    return charge;
-  }
+    /**
+     * Gets the value of the charge property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getCharge() {
+        return charge;
+    }
 
-  /**
-   * Sets the value of the charge property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setCharge(String value) {
-    this.charge = value;
-  }
+    /**
+     * Sets the value of the charge property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setCharge(String value) {
+        this.charge = value;
+    }
 
-  /**
-   * Gets the value of the chargeEstCorrect property.
-   *
-   * @return possible object is {@link Double }
-   */
-  public Double getChargeEstCorrect() {
-    return chargeEstCorrect;
-  }
+    /**
+     * Gets the value of the chargeEstCorrect property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Double }
+     *     
+     */
+    public Double getChargeEstCorrect() {
+        return chargeEstCorrect;
+    }
 
-  /**
-   * Sets the value of the chargeEstCorrect property.
-   *
-   * @param value allowed object is {@link Double }
-   */
-  public void setChargeEstCorrect(Double value) {
-    this.chargeEstCorrect = value;
-  }
+    /**
+     * Sets the value of the chargeEstCorrect property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Double }
+     *     
+     */
+    public void setChargeEstCorrect(Double value) {
+        this.chargeEstCorrect = value;
+    }
 
 }

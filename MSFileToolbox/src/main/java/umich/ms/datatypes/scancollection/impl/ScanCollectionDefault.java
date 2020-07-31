@@ -21,6 +21,8 @@ import java.util.Map;
 import java.util.NavigableMap;
 import java.util.Set;
 import java.util.TreeMap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import umich.ms.datatypes.LCMSDataSubset;
 import umich.ms.datatypes.lcmsrun.LCMSRunInfo;
 import umich.ms.datatypes.scan.IScan;
@@ -43,6 +45,7 @@ import umich.ms.util.IntervalST;
  * @author Dmitry Avtonomov
  */
 public class ScanCollectionDefault implements IScanCollection {
+  private static final Logger log = LoggerFactory.getLogger(ScanCollectionDefault.class);
 
   public volatile LCMSRunInfo runInfo;
   public TreeMap<Integer, IntervalST<Double, TreeMap<Integer, IScan>>> msLevel2rangeGroups;
@@ -833,7 +836,7 @@ public class ScanCollectionDefault implements IScanCollection {
             msg.append(". Subset: ");
             msg.append(subset.toString());
 
-            System.err.println(msg.toString());
+            log.error(msg.toString());
           }
 
         }

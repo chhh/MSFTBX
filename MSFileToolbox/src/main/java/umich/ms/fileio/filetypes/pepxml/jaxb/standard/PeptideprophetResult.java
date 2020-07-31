@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2017 Dmitry Avtonomov
+ * Copyright (c) 2019 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,9 +27,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -54,6 +54,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -62,81 +64,101 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement(name = "peptideprophet_result")
 public class PeptideprophetResult {
 
-  @XmlElement(name = "search_score_summary")
-  protected SearchScoreSummary searchScoreSummary;
-  @XmlAttribute(name = "probability", required = true)
-  protected double probability;
-  @XmlAttribute(name = "all_ntt_prob")
-  protected String allNttProb;
-  @XmlAttribute(name = "analysis")
-  protected String analysis;
+    @XmlElement(name = "search_score_summary")
+    protected SearchScoreSummary searchScoreSummary;
+    @XmlAttribute(name = "probability", required = true)
+    protected double probability;
+    @XmlAttribute(name = "all_ntt_prob")
+    protected String allNttProb;
+    @XmlAttribute(name = "analysis")
+    protected String analysis;
 
-  /**
-   * Gets the value of the searchScoreSummary property.
-   *
-   * @return possible object is {@link SearchScoreSummary }
-   */
-  public SearchScoreSummary getSearchScoreSummary() {
-    return searchScoreSummary;
-  }
+    /**
+     * Gets the value of the searchScoreSummary property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link SearchScoreSummary }
+     *     
+     */
+    public SearchScoreSummary getSearchScoreSummary() {
+        return searchScoreSummary;
+    }
 
-  /**
-   * Sets the value of the searchScoreSummary property.
-   *
-   * @param value allowed object is {@link SearchScoreSummary }
-   */
-  public void setSearchScoreSummary(SearchScoreSummary value) {
-    this.searchScoreSummary = value;
-  }
+    /**
+     * Sets the value of the searchScoreSummary property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link SearchScoreSummary }
+     *     
+     */
+    public void setSearchScoreSummary(SearchScoreSummary value) {
+        this.searchScoreSummary = value;
+    }
 
-  /**
-   * Gets the value of the probability property.
-   */
-  public double getProbability() {
-    return probability;
-  }
+    /**
+     * Gets the value of the probability property.
+     * 
+     */
+    public double getProbability() {
+        return probability;
+    }
 
-  /**
-   * Sets the value of the probability property.
-   */
-  public void setProbability(double value) {
-    this.probability = value;
-  }
+    /**
+     * Sets the value of the probability property.
+     * 
+     */
+    public void setProbability(double value) {
+        this.probability = value;
+    }
 
-  /**
-   * Gets the value of the allNttProb property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getAllNttProb() {
-    return allNttProb;
-  }
+    /**
+     * Gets the value of the allNttProb property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getAllNttProb() {
+        return allNttProb;
+    }
 
-  /**
-   * Sets the value of the allNttProb property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setAllNttProb(String value) {
-    this.allNttProb = value;
-  }
+    /**
+     * Sets the value of the allNttProb property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setAllNttProb(String value) {
+        this.allNttProb = value;
+    }
 
-  /**
-   * Gets the value of the analysis property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getAnalysis() {
-    return analysis;
-  }
+    /**
+     * Gets the value of the analysis property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getAnalysis() {
+        return analysis;
+    }
 
-  /**
-   * Sets the value of the analysis property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setAnalysis(String value) {
-    this.analysis = value;
-  }
+    /**
+     * Sets the value of the analysis property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setAnalysis(String value) {
+        this.analysis = value;
+    }
 
 }

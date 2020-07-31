@@ -51,8 +51,12 @@ public enum ScanType {
     if (name == null) {
       return null;
     }
-    ScanType type = StringUtils.getEnumFromString(ScanType.class, name);
-    return type != null ? type : UNKNOWN;
+    try {
+      ScanType type = StringUtils.getEnumFromString(ScanType.class, name);
+      return type != null ? type : UNKNOWN;
+    } catch (Exception e) {
+      return UNKNOWN;
+    }
   }
 
   /**

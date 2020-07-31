@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2017 Dmitry Avtonomov
+ * Copyright (c) 2019 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,9 +28,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -53,6 +53,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -60,108 +62,132 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class CrossLinker {
 
-  @XmlElement(name = "cross_linker_info", required = true)
-  protected List<NameValueType> crossLinkerInfo;
-  @XmlAttribute(name = "identifier", required = true)
-  protected String identifier;
-  @XmlAttribute(name = "mass", required = true)
-  protected double mass;
-  @XmlAttribute(name = "link_sites", required = true)
-  protected String linkSites;
-  @XmlAttribute(name = "isotope_labeled", required = true)
-  protected String isotopeLabeled;
+    @XmlElement(name = "cross_linker_info", required = true)
+    protected List<NameValueType> crossLinkerInfo;
+    @XmlAttribute(name = "identifier", required = true)
+    protected String identifier;
+    @XmlAttribute(name = "mass", required = true)
+    protected double mass;
+    @XmlAttribute(name = "link_sites", required = true)
+    protected String linkSites;
+    @XmlAttribute(name = "isotope_labeled", required = true)
+    protected String isotopeLabeled;
 
-  /**
-   * Gets the value of the crossLinkerInfo property.
-   *
-   * <p>
-   * This accessor method returns a reference to the live list, not a snapshot. Therefore any
-   * modification you make to the returned list will be present inside the JAXB object. This is why
-   * there is not a <CODE>set</CODE> method for the crossLinkerInfo property.
-   *
-   * <p>
-   * For example, to add a new item, do as follows:
-   * <pre>
-   *    getCrossLinkerInfo().add(newItem);
-   * </pre>
-   *
-   *
-   * <p>
-   * Objects of the following type(s) are allowed in the list {@link NameValueType }
-   */
-  public List<NameValueType> getCrossLinkerInfo() {
-    if (crossLinkerInfo == null) {
-      crossLinkerInfo = new ArrayList<NameValueType>(1);
+    /**
+     * Gets the value of the crossLinkerInfo property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the crossLinkerInfo property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getCrossLinkerInfo().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link NameValueType }
+     * 
+     * 
+     */
+    public List<NameValueType> getCrossLinkerInfo() {
+        if (crossLinkerInfo == null) {
+            crossLinkerInfo = new ArrayList<NameValueType>(1);
+        }
+        return this.crossLinkerInfo;
     }
-    return this.crossLinkerInfo;
-  }
 
-  /**
-   * Gets the value of the identifier property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getIdentifier() {
-    return identifier;
-  }
+    /**
+     * Gets the value of the identifier property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getIdentifier() {
+        return identifier;
+    }
 
-  /**
-   * Sets the value of the identifier property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setIdentifier(String value) {
-    this.identifier = value;
-  }
+    /**
+     * Sets the value of the identifier property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setIdentifier(String value) {
+        this.identifier = value;
+    }
 
-  /**
-   * Gets the value of the mass property.
-   */
-  public double getMass() {
-    return mass;
-  }
+    /**
+     * Gets the value of the mass property.
+     * 
+     */
+    public double getMass() {
+        return mass;
+    }
 
-  /**
-   * Sets the value of the mass property.
-   */
-  public void setMass(double value) {
-    this.mass = value;
-  }
+    /**
+     * Sets the value of the mass property.
+     * 
+     */
+    public void setMass(double value) {
+        this.mass = value;
+    }
 
-  /**
-   * Gets the value of the linkSites property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getLinkSites() {
-    return linkSites;
-  }
+    /**
+     * Gets the value of the linkSites property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getLinkSites() {
+        return linkSites;
+    }
 
-  /**
-   * Sets the value of the linkSites property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setLinkSites(String value) {
-    this.linkSites = value;
-  }
+    /**
+     * Sets the value of the linkSites property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setLinkSites(String value) {
+        this.linkSites = value;
+    }
 
-  /**
-   * Gets the value of the isotopeLabeled property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getIsotopeLabeled() {
-    return isotopeLabeled;
-  }
+    /**
+     * Gets the value of the isotopeLabeled property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getIsotopeLabeled() {
+        return isotopeLabeled;
+    }
 
-  /**
-   * Sets the value of the isotopeLabeled property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setIsotopeLabeled(String value) {
-    this.isotopeLabeled = value;
-  }
+    /**
+     * Sets the value of the isotopeLabeled property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setIsotopeLabeled(String value) {
+        this.isotopeLabeled = value;
+    }
 
 }

@@ -1,15 +1,20 @@
 plugins {
-    id 'com.github.johnrengelman.shadow' version '4.0.1'
-    id "com.github.ben-manes.versions" version "0.20.0"
+    id 'com.github.johnrengelman.shadow' version '6.0.0'
+    id 'com.github.ben-manes.versions' version '0.28.0'
+    id 'com.google.protobuf' version '0.8.10'
     id 'java-library'
-    id 'maven'
+    id 'distribution'
+//    id 'maven'
+    id 'maven-publish'
     id 'idea'
+    id "com.dorongold.task-tree" version "1.5"
+//    id "com.jakeout.gradle-inspector" version "0.3.0"
 }
 
 group = 'com.github.chhh'
-version = '1.8.6'
+version = '1.18.1'
 
-description = """MSFTBX"""
+description = """Batmass-IO"""
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -19,10 +24,18 @@ tasks.withType(JavaCompile) {
 
 
 repositories {
-
-    //maven { url "http://repo.maven.apache.org/maven2" }
+    maven { // The google mirror is less flaky than mavenCentral()
+        url "https://maven-central.storage-download.googleapis.com/repos/central/data/" }
     mavenLocal()
     mavenCentral()
+}
+
+publishing {
+    publications {
+        shadow(MavenPublication) { publication ->
+            project.shadow.component(publication)
+        }
+    }
 }
 
 sourceSets {
@@ -34,47 +47,324 @@ sourceSets {
     }
 }
 
+// Copy Batmass gRPC C# Thermo library and binaries to the final distribution
+distributions {
+    main {
+        contents {
+            into('ext/thermo') {
+                from "C:/code2/batmass-io/batmass-io-thermo/BatmassIoThermoServer/bin/Debug"
+                //from "C:/code2/batmass-io/batmass-io-thermo/BatmassIoThermoServer/bin/Debug"
+                //from "${projectDir}/../../batmass-io/batmass-io-thermo/BatmassIoThermoServer/bin/Debug"
+            }
+        }
+    }
+}
+
+
 shadowJar {
     exclude '**/*.java'
     exclude '**/*.html'
     exclude '**/OSGI-OPT/'
     classifier = null
-    minimize {
-        exclude(dependency('javax.xml.bind:jaxb-api:.*'))
-        exclude(dependency('org.glassfish.jaxb:jaxb-runtime:.*'))
-        exclude(dependency('javax.activation:javax.activation-api:.*'))
-        exclude(dependency('com.sun.istack:istack-commons-runtime:.*'))
-    }
+//    minimize {
+//        exclude(dependency('javax.xml.bind:jaxb-api:.*'))
+//        exclude(dependency('org.glassfish.jaxb:jaxb-runtime:.*'))
+//        exclude(dependency('javax.activation:javax.activation-api:.*'))
+//        exclude(dependency('com.sun.istack:istack-commons-runtime:.*'))
+//        exclude(project(':lib-batmass-io-thermo-client'))
+//    }
 }
 
+def grpcVersion = '1.26.0' // CURRENT_GRPC_VERSION
+def protobufVersion = '3.11.2'
+def protocVersion = protobufVersion
+def slf4jVersion = '1.7.26'
+def osgiVersion = '4.3.1'
+def jnaVersion = '5.5.0'
+
 dependencies {
+    implementation 'io.projectreactor:reactor-core:3.3.6.RELEASE'
+    implementation 'com.squareup.okio:okio:2.6.0'
+    implementation 'org.jooq:jool-java-8:0.9.14'
+    implementation 'org.apache.commons:commons-csv:1.8'
+    //implementation 'com.github.davidmoten:rtree2:0.9-RC1'
 
-    implementation project(':lib-msftbx-javolution')
+    // logging
+    implementation "org.slf4j:slf4j-api:${slf4jVersion}"
+    implementation "org.slf4j:slf4j-simple:${slf4jVersion}"
+    testImplementation "org.slf4j:slf4j-simple:${slf4jVersion}"
+    // only include slf4j-simple in non-test for local builds
+//    if (file(".is-debug-build").exists()) {
+//    }
 
-    implementation ("org.jooq:jool-java-8:0.9.14")
+    // for bruker TDF binary data reading
+    implementation "net.java.dev.jna:jna:${jnaVersion}"
 
-    implementation(group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25')
-    implementation(group: 'com.google.guava', name: 'guava', version: '26.0-jre') {
+    // for bruker TDF files reading (sqlite)
+    runtimeOnly 'org.xerial:sqlite-jdbc:3.31.1'
+
+    // grpc thermo support
+    implementation "io.grpc:grpc-protobuf:${grpcVersion}"
+    implementation "io.grpc:grpc-stub:${grpcVersion}"
+    compileOnly "javax.annotation:javax.annotation-api:1.2"
+    // examples/advanced need this for JsonFormat
+    //implementation "com.google.protobuf:protobuf-java-util:${protobufVersion}"
+    runtimeOnly "io.grpc:grpc-netty-shaded:${grpcVersion}"
+
+    // javolution
+    compileOnly group: 'com.nativelibs4java', name: 'javacl', version:'1.0.0-RC4'
+    compileOnly group: 'org.osgi', name: 'org.osgi.core', version: "${osgiVersion}"
+    implementation group: 'org.osgi', name: 'org.osgi.compendium', version: "${osgiVersion}"
+
+    testImplementation group: 'org.osgi', name: 'org.osgi.core', version: "${osgiVersion}"
+    testImplementation group: 'org.osgi', name: 'org.osgi.compendium', version: "${osgiVersion}"
+
+
+    api(group: 'com.google.guava', name: 'guava', version: '29.0-jre') {
         exclude(module: 'animal-sniffer-annotations')
         exclude(module: 'j2objc-annotations')
         exclude(module: 'error_prone_annotations')
         exclude(module: 'jsr305')
         exclude(module: 'checker-qual')
     }
-    implementation(group: 'org.apache.commons', name: 'commons-pool2', version: '2.6.0')
-    implementation(group: 'com.github.chhh', name: 'javolution-core-java-msftbx', version: '6.11.8')
-    implementation(group: 'org.biojava', name: 'biojava-ontology', version: '5.1.0') {
+
+    implementation(group: 'org.apache.commons', name: 'commons-pool2', version: '2.8.0')
+    implementation(group: 'org.biojava', name: 'biojava-ontology', version: '5.2.1') {
         exclude(module: 'slf4j-api')
         exclude(module: 'log4j-slf4j-impl')
         exclude(module: 'log4j-core')
         exclude(module: 'log4j-api')
     }
-    compile 'javax.xml.bind:jaxb-api:2.3.1'
-    compile 'org.glassfish.jaxb:jaxb-runtime:2.3.1'
-    compile 'javax.activation:javax.activation-api:1.2.0'
+    implementation 'javax.xml.bind:jaxb-api:2.3.1'
+    implementation 'org.glassfish.jaxb:jaxb-runtime:2.3.1'
+    implementation 'javax.activation:javax.activation-api:1.2.0'
 
-    //testImplementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
-    testImplementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
-    testImplementation group: 'junit', name: 'junit', version: '4.12'
-    testImplementation group: 'org.apache.maven', name: 'maven-model', version: '3.5.4'
+    testImplementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
+    testImplementation group: 'org.apache.maven', name: 'maven-model', version: '3.6.3'
+    testImplementation 'org.apache.commons:commons-lang3:3.9'
+    // grpc
+    testImplementation "io.grpc:grpc-testing:${grpcVersion}"
+    testImplementation "org.mockito:mockito-core:2.25.1"
+
+
+    // test framework
+//    testImplementation group: 'junit', name: 'junit', version: '4.12'
+    // Use JUnit Jupiter API for testing.
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.4.2'
+    // Use JUnit Jupiter Engine for testing.
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.4.2'
+
+//    testCompileOnly 'junit:junit:4.12'
+//    testRuntimeOnly 'org.junit.vintage:junit-vintage-engine:5.3.1'
+}
+
+
+test {
+    useJUnitPlatform()
+
+    // Show test results.
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+
+    // set heap size for the test JVM(s)
+    //minHeapSize = "128m"
+    maxHeapSize = "4G"
+}
+
+
+
+// this substitution actually works well!
+//allprojects {
+//    configurations.all {
+//        resolutionStrategy {
+//            preferProjectModules()
+//            dependencySubstitution {
+//                substitute(module("com.google.guava:guava")).with(module("com.google.guava:guava:28.0-jre"))
+//            }
+//
+//        }
+//    }
+//}
+
+
+// this is a softer version of the previous substitution
+dependencies {
+    components.all {
+        allVariants {
+            withDependencies { deps ->
+                deps.each { dep ->
+                    if (dep.group == 'com.google.guava' && dep.name =='guava') {
+                        dep.version {
+                            prefer "28.0-jre"
+                        }
+                        dep.because "Guava is also exported as API for MSFragger to use - " +
+                                "one shared version for MSFTBX, MSFragger, gRPC"
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+protobuf {
+    protoc { artifact = "com.google.protobuf:protoc:${protocVersion}" }
+    plugins {
+        grpc { artifact = "io.grpc:protoc-gen-grpc-java:${grpcVersion}" }
+    }
+    generateProtoTasks {
+        all()*.plugins { grpc {} }
+    }
+}
+
+// Inform IDEs like IntelliJ IDEA, Eclipse or NetBeans about the generated code.
+sourceSets {
+    main {
+        java {
+            srcDirs 'build/generated/source/proto/main/grpc'
+            srcDirs 'build/generated/source/proto/main/java'
+        }
+    }
+}
+
+task copyReleasePom(type: Copy, group: 'chhh-release') {
+    description = "Copy and rename the POM generated by Publishing plugin into build/libs"
+    from "$buildDir/publications/shadow/pom-default.xml"
+    into file("$buildDir/libs")
+    rename {filename -> "${project.name}-${version}.pom"}
+}
+
+task prepareReleaseWithPom(group: 'chhh-release') {
+    description = """Create shadow JAR, generate and copy POM into build/libs.
+Produced files can then be copied into Msfragger/lib to be used as its dependency.
+Maven clean task in Msfragger repo will automatically install the JAR into
+local Maven repo.
+Alternatively you can just use :publishing:publishToMavenLocal
+task, that will install into local maven repo properly as well."""
+    dependsOn 'test'
+    dependsOn 'shadowJar'
+    dependsOn 'generatePomFileForShadowPublication'
+    dependsOn 'copyReleasePom'
+    tasks.findByName('copyReleasePom').mustRunAfter 'generatePomFileForShadowPublication'
+}
+
+def relMsfraggerPath = '../../../fragger/msfragger'
+def relFragpipePath = '../../../fragger/fragpipe'
+
+//// Add a new task.
+//final TaskContainer tasks = getProject().getTasks();
+//final Task taskRelativePaths = tasks.create("relativePaths");
+//taskRelativePaths.group("chhh-build-tools")
+//taskRelativePaths.doFirst(new Action() {
+//    void execute(Object task) {
+//        "$projectDir"
+//        System.out.printf("Current path ('.'): %s\n", java.nio.file.Paths.get().toAbsolutePath())
+//        System.out.println("Running " + task.getName())
+//    }
+//});
+
+task relPaths(group: 'chhh-build-tools', description: "Prints relative paths to MSfragger and" +
+        " FragPipe source trees.`") {
+    def pathFragger= new File('C:\\Users\\chhh\\code\\fragger\\msfragger')
+    def pathFragpipe = new File('C:\\Users\\chhh\\code\\fragger\\fragpipe')
+    def root = new File("$projectDir")
+    def relPathFragger = root.toPath().relativize( pathFragger.toPath() ).toFile()
+    def relPathFragpipe = root.toPath().relativize( pathFragpipe.toPath() ).toFile()
+    println("Fragger rel path: '" + relPathFragger.toString().replaceAll('\\\\', "/") + "'")
+    println("Fragpipe rel path: '" + relPathFragpipe.toString().replaceAll('\\\\', "/") + "'")
+}
+
+task copyToMsfragger(type: Copy, group: "chhh-msfragger") {
+    from "$buildDir/libs"
+    into file("$projectDir/$relMsfraggerPath/lib")
+}
+
+task cleanMsfragger (type: Exec, group: 'chhh-msfragger') {
+    workingDir file("$projectDir/$relMsfraggerPath")
+    commandLine 'cmd', '/c', 'mvn', 'clean'
+}
+
+task packageMsfragger (type: Exec, group: 'chhh-msfragger') {
+    workingDir file("$projectDir/$relMsfraggerPath")
+    commandLine 'cmd', '/c', 'mvn', 'package'
+//    commandLine 'cmd', '/c', 'mvn', 'package', '-Dmaven.test.skip=true'
+}
+
+task installJarForMsfragger(group: "chhh-msfragger") {
+    dependsOn 'prepareReleaseWithPom'
+    dependsOn 'copyToMsfragger'
+    dependsOn 'cleanMsfragger'
+    tasks.findByName('copyToMsfragger').mustRunAfter 'prepareReleaseWithPom'
+    tasks.findByName('cleanMsfragger').mustRunAfter 'copyToMsfragger'
+}
+
+task copyToFragpipe(type: Copy, group: "chhh-fragpipe",
+        description: "Copies build/libs/batmass-io-xx.jar as jazz to FragPipe/tools") {
+    from("$buildDir/libs") {
+        include "batmass-io-*.jar"
+        rename('(batmass-io-[^\\s]+)?\\.jar', '$1.jazz')
+    }
+    into file("$projectDir/$relFragpipePath/MSFragger-GUI/tools")
+}
+
+task installJazzToFragpipe(group: "chhh-fragpipe", description: 'Builds and copies jazz to fragpipe/tools') {
+    dependsOn 'prepareReleaseWithPom'
+    dependsOn 'copyToFragpipe'
+    tasks.findByName('copyToFragpipe').mustRunAfter 'prepareReleaseWithPom'
+}
+
+task releaseMsfragger(group: 'chhh-msfragger') {
+    dependsOn 'installJarForMsfragger'
+    dependsOn 'packageMsfragger'
+    tasks.findByName('packageMsfragger').mustRunAfter 'installJarForMsfragger'
+}
+
+
+task enableCompositeBuild {
+    group = 'chhh-build-tools'
+    description = """Creates an empty `.composite-enable` file, which servers as a flag for our
+settings.gradle file, that uses its presence to enable composite builds or use plain artifacts
+instead."""
+    doLast {
+        new File("./.composite-enable").createNewFile()
+    }
+}
+
+task disableCompositeBuild {
+    group = 'chhh-build-tools'
+    description = """Deletes `.composite-enable` file, which servers as a flag for our
+settings.gradle file, that uses its presence to enable composite builds or use plain artifacts
+instead."""
+    doLast {
+        File file = file("./.composite-enable")
+        if (file.exists()) {
+            file.delete()
+        }
+
+    }
+}
+
+task createLocalBuildMarker {
+    group = 'chhh-build-tools'
+    description = """Creates an empty `.composite-enable` file, which servers as a flag for our
+`settings.gradle` file, that uses its presence to enable composite builds or use plain artifacts
+instead."""
+    doLast {
+        new File("./.is-debug-build").createNewFile()
+    }
+}
+
+task deleteLocalBuildMarker {
+    group = 'chhh-build-tools'
+    description = """Deletes `.composite-enable` file, which servers as a flag for our
+`settings.gradle` file, that uses its presence to enable composite builds or use plain artifacts
+instead."""
+    doLast {
+        File file = file("./.is-debug-build")
+        if (file.exists()) {
+            file.delete()
+        }
+
+    }
 }

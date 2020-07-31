@@ -1,3 +1,8 @@
-rootProject.name = 'msftbx'
+rootProject.name = 'batmass-io'
 
-includeFlat("lib-msftbx-javolution")
+// Alternative to setting a dependency on a pusblished artifact.
+// When file `.composite-enable` is present, will use the project for
+// build instead of the downloaded jar.
+//if (file("./.composite-enable").exists()) {
+//    includeBuild ('../lib-javolution-msftbx')
+//}

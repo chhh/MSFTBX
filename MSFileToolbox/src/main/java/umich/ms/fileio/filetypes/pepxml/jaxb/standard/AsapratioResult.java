@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2017 Dmitry Avtonomov
+ * Copyright (c) 2019 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,9 +27,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -45,6 +45,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -53,89 +55,103 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement(name = "asapratio_result")
 public class AsapratioResult {
 
-  @XmlElement(name = "asapratio_peptide_data", required = true)
-  protected AsapratioPeptideData asapratioPeptideData;
-  @XmlAttribute(name = "mean", required = true)
-  protected double mean;
-  @XmlAttribute(name = "error", required = true)
-  protected double error;
-  @XmlAttribute(name = "heavy2light_mean", required = true)
-  protected double heavy2LightMean;
-  @XmlAttribute(name = "heavy2light_error", required = true)
-  protected double heavy2LightError;
+    @XmlElement(name = "asapratio_peptide_data", required = true)
+    protected AsapratioPeptideData asapratioPeptideData;
+    @XmlAttribute(name = "mean", required = true)
+    protected double mean;
+    @XmlAttribute(name = "error", required = true)
+    protected double error;
+    @XmlAttribute(name = "heavy2light_mean", required = true)
+    protected double heavy2LightMean;
+    @XmlAttribute(name = "heavy2light_error", required = true)
+    protected double heavy2LightError;
 
-  /**
-   * Gets the value of the asapratioPeptideData property.
-   *
-   * @return possible object is {@link AsapratioPeptideData }
-   */
-  public AsapratioPeptideData getAsapratioPeptideData() {
-    return asapratioPeptideData;
-  }
+    /**
+     * Gets the value of the asapratioPeptideData property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link AsapratioPeptideData }
+     *     
+     */
+    public AsapratioPeptideData getAsapratioPeptideData() {
+        return asapratioPeptideData;
+    }
 
-  /**
-   * Sets the value of the asapratioPeptideData property.
-   *
-   * @param value allowed object is {@link AsapratioPeptideData }
-   */
-  public void setAsapratioPeptideData(AsapratioPeptideData value) {
-    this.asapratioPeptideData = value;
-  }
+    /**
+     * Sets the value of the asapratioPeptideData property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link AsapratioPeptideData }
+     *     
+     */
+    public void setAsapratioPeptideData(AsapratioPeptideData value) {
+        this.asapratioPeptideData = value;
+    }
 
-  /**
-   * Gets the value of the mean property.
-   */
-  public double getMean() {
-    return mean;
-  }
+    /**
+     * Gets the value of the mean property.
+     * 
+     */
+    public double getMean() {
+        return mean;
+    }
 
-  /**
-   * Sets the value of the mean property.
-   */
-  public void setMean(double value) {
-    this.mean = value;
-  }
+    /**
+     * Sets the value of the mean property.
+     * 
+     */
+    public void setMean(double value) {
+        this.mean = value;
+    }
 
-  /**
-   * Gets the value of the error property.
-   */
-  public double getError() {
-    return error;
-  }
+    /**
+     * Gets the value of the error property.
+     * 
+     */
+    public double getError() {
+        return error;
+    }
 
-  /**
-   * Sets the value of the error property.
-   */
-  public void setError(double value) {
-    this.error = value;
-  }
+    /**
+     * Sets the value of the error property.
+     * 
+     */
+    public void setError(double value) {
+        this.error = value;
+    }
 
-  /**
-   * Gets the value of the heavy2LightMean property.
-   */
-  public double getHeavy2LightMean() {
-    return heavy2LightMean;
-  }
+    /**
+     * Gets the value of the heavy2LightMean property.
+     * 
+     */
+    public double getHeavy2LightMean() {
+        return heavy2LightMean;
+    }
 
-  /**
-   * Sets the value of the heavy2LightMean property.
-   */
-  public void setHeavy2LightMean(double value) {
-    this.heavy2LightMean = value;
-  }
+    /**
+     * Sets the value of the heavy2LightMean property.
+     * 
+     */
+    public void setHeavy2LightMean(double value) {
+        this.heavy2LightMean = value;
+    }
 
-  /**
-   * Gets the value of the heavy2LightError property.
-   */
-  public double getHeavy2LightError() {
-    return heavy2LightError;
-  }
+    /**
+     * Gets the value of the heavy2LightError property.
+     * 
+     */
+    public double getHeavy2LightError() {
+        return heavy2LightError;
+    }
 
-  /**
-   * Sets the value of the heavy2LightError property.
-   */
-  public void setHeavy2LightError(double value) {
-    this.heavy2LightError = value;
-  }
+    /**
+     * Sets the value of the heavy2LightError property.
+     * 
+     */
+    public void setHeavy2LightError(double value) {
+        this.heavy2LightError = value;
+    }
 
 }

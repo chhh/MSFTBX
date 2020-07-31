@@ -1,0 +1,280 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+// option java_outer_classname = "BatmassIo";
+
+//import "google/protobuf/any.proto";
+
+package com.dmtavt.batmass.io.ms.api;
+
+// The service for reading mass-spectrometry related files.
+service ISourceFactory {
+  // Test if the location can be opened by this service.
+  rpc Check (OpenRequest) returns (CheckResponse) {}
+  // Open a location, usually a file. Response contains descriptions of
+  // available sources.
+  rpc Open (OpenRequest) returns (OpenResponse) {}
+  // Close any open locations.
+  rpc Close (CloseRequest) returns (CloseResponse) {}
+  // Select one of the available sources. Sources are 0-based indexed.
+  // The number of sources is returned in the Open() request.
+  rpc SelectDataSource (SelectSourceRequest) returns (SelectSourceResponse) {}
+}
+
+message ErrorStatus {
+  bool is_error = 1;
+  string message = 2;
+}
+
+message Description {
+  repeated string message = 1;
+}
+
+message OpenRequest {
+  string location = 1;
+}
+
+message OpenResponse {
+  ErrorStatus error = 1;
+  OpenRequest request = 2;
+  Description description = 3;
+  repeated SourceDescription sources = 4;
+}
+
+message SourceDescription {
+  enum SourceType {
+    // This is reserved for cases when you need to implement a new source
+    // type, but can't add anything to this ENUM. Such a source can
+    // still be identified by text in SourceDescription.
+    UNKNOWN = 0;
+    MassSpecSource = 1;
+  }
+  SourceDescription.SourceType source_type = 1;
+  // Free-text description of the source.
+  string description = 2;
+}
+
+message CheckResponse {
+  ErrorStatus error = 1;
+  OpenRequest request = 2;
+  bool is_supported = 3;
+}
+
+message CloseRequest {
+}
+
+message CloseResponse {
+  ErrorStatus error = 1;
+}
+
+message SelectSourceRequest {
+  int32 source_idx = 1;
+}
+
+message SelectSourceResponse {
+  ErrorStatus error = 1;
+  SelectSourceRequest request = 2;
+  bool is_selected = 3;
+  SourceType source_type = 4;
+  string description = 5;
+}
+
+service ISource {
+  rpc IsReady (IsReadyRequest) returns (IsReadyResponse) {}
+  rpc Properties (SourceDescriptionRequest) returns (SourceDescriptionResponse) {}
+  rpc ListServices (ListServicesRequest) returns (ListServicesResponse) {}
+}
+
+message IsReadyRequest {}
+message IsReadyResponse {
+  ErrorStatus error = 1;
+  bool is_ready = 2;
+  // Might contain an explanation of why the source is not ready.
+  string message = 3;
+}
+
+message SourceDescriptionRequest {}
+message SourceDescriptionResponse {
+  ErrorStatus error = 1;
+  map<string, string>  properties = 4;
+}
+
+enum SourceType {
+  MassSpec = 0;
+}
+
+message ListServicesRequest {}
+message ListServicesResponse {
+  ErrorStatus error = 1;
+  repeated ServiceDescription services = 2;
+}
+
+message ServiceDescription {
+  string service_name = 1;
+}
+
+// =============================================================================
+
+message Options {
+  map <string, string> map = 1;
+}
+
+service ISvcInstrumentInfo {
+  rpc GetInstrumentInfo (InstrumentInfoRequest) returns (InstrumentInfoResponse) {}
+}
+
+message InstrumentInfoRequest {}
+
+message InstrumentInfo {
+	string instrument_type = 1;
+	string make = 2;
+	string model = 3;
+	string software_version = 4;
+	string other_text = 5;
+}
+
+message InstrumentInfoResponse {
+  ErrorStatus error = 1;
+  InstrumentInfo instrument_info = 2;
+}
+
+service ISvcMsFramesIndexed {
+  rpc FramesCount (FramesCountRequest) returns (FramesCountResponse) {}
+  rpc GetFramesByIndex (GetFramesByIndexRequest) returns (GetFramesResponse) {}
+  rpc SupportedOptions (SupportedOptionsRequest) returns (SupportedOptionsResponse) {}
+}
+
+message FramesCountRequest {}
+message FramesCountResponse {
+  ErrorStatus error = 1;
+  int32 frames_count = 2;
+}
+
+enum FrameQueryOpts {
+  // The source should centroid the data, if it supports such an operation.
+  // If it doesn't, then profile data is returned with no errors.
+  PREFER_CENTROID = 0;
+  // With this option a source should return an error if its data is not
+  // centroided and the source itself doesn't support centroiding.
+  REQUIRE_CENTROID = 1;
+  // If data is profile, try forcing re-centroiding.option Sometimes centroid
+  // data that is generated on-the-fly by the instrument can be different from
+  // what can be achieved with post-processing. If the data is already centroid
+  // only - nothing should be done and data returned as-is.
+  FORCE_RECENTROID = 2;
+}
+
+message GetFramesByIndexRequest {
+  int32 frame_index_lo = 1;
+  int32 frame_index_hi = 2;
+  bool include_data = 3;
+  bool include_meta_standard = 4;
+  bool include_meta_extras = 5;
+  Options opts = 6;
+}
+
+message GetFramesResponse {
+  ErrorStatus error = 1;
+  repeated MsFrame frames = 2;
+}
+
+message SupportedOptionsRequest {}
+message SupportedOptionsResponse {
+  ErrorStatus error = 1;
+  // Mapping of the form: option name -> description of accepted text format
+  Options supported_options = 2;
+}
+
+message MsFrame {
+  MsFrameData data = 1;
+  MsFrameMetaStandard meta_standard = 2;
+  MsFrameMetaExtras meta_extras = 3;
+}
+
+message MsFrameMetaStandard {
+  double time_in_seconds = 1;
+  // The max MS level/order in this scan.
+  int32 ms_level = 2;
+  Polarity.Type polarity = 3;
+  // One entry per MS level above 1.
+  repeated FragmentationInfo fragmentation_info = 4;
+}
+
+message Polarity {
+  enum Type {
+    UNKNOWN = 0;
+    POSITIVE = 1;
+    NEGATIVE = 2;
+  }
+}
+
+message MzRange {
+  double mz_lo = 1;
+  double mz_hi = 2;
+}
+
+message MsFrameMetaExtras {
+  map<string, string> info = 1;
+}
+
+message FragmentationInfo {
+  int32 ms_level = 1;
+  repeated IsolationRange isolation_ranges = 2;
+  map<string, string> parameters = 3;
+}
+
+message Ions {
+}
+
+message IsolationRange {
+  double mz_lo = 1;
+  double mz_hi = 2;
+  repeated Ion targets = 3;
+  repeated Activation activation = 4;
+}
+
+message Activation {
+  enum TypicalTypes {
+    UNKNOWN = 0;
+    CID = 1;
+    HCD = 2;
+    ECD = 3;
+    ETD = 4;
+  }
+
+  string activation_type = 1;
+  map<string, string> parameters = 2;
+}
+
+message Ion {
+  double mz = 1;
+  // Value of zero means unknown.
+  int32 charge = 2;
+}
+
+enum ByteOrder {
+  LE = 0;
+  BE = 1;
+}
+enum DataType {
+  DOUBLE = 0;
+  FLOAT = 1;
+  INT = 2;
+}
+
+message MsFrameData {
+  TriState is_profile = 1;
+  int32 count_spectra = 2;
+  repeated int32 spectra_lengths = 3;
+  bytes intensities = 4;
+  DataType intensities_data_type = 5;
+  bytes masses = 6;
+  DataType masses_data_type = 7;
+  ByteOrder byte_order = 8;
+}
+
+enum TriState {
+  UNKNOWN = 0;
+  TRUE = 1;
+  FALSE = 2;
+}

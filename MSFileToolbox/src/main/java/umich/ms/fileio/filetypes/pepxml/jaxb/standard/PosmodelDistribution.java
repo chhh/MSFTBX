@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2017 Dmitry Avtonomov
+ * Copyright (c) 2019 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,9 +28,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -43,6 +43,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -50,52 +52,62 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class PosmodelDistribution {
 
-  @XmlElement(required = true)
-  protected List<NameValueType> parameter;
-  @XmlAttribute(name = "type")
-  protected ModelDisType type;
+    @XmlElement(required = true)
+    protected List<NameValueType> parameter;
+    @XmlAttribute(name = "type")
+    protected ModelDisType type;
 
-  /**
-   * Gets the value of the parameter property.
-   *
-   * <p>
-   * This accessor method returns a reference to the live list, not a snapshot. Therefore any
-   * modification you make to the returned list will be present inside the JAXB object. This is why
-   * there is not a <CODE>set</CODE> method for the parameter property.
-   *
-   * <p>
-   * For example, to add a new item, do as follows:
-   * <pre>
-   *    getParameter().add(newItem);
-   * </pre>
-   *
-   *
-   * <p>
-   * Objects of the following type(s) are allowed in the list {@link NameValueType }
-   */
-  public List<NameValueType> getParameter() {
-    if (parameter == null) {
-      parameter = new ArrayList<NameValueType>(1);
+    /**
+     * Gets the value of the parameter property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the parameter property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getParameter().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link NameValueType }
+     * 
+     * 
+     */
+    public List<NameValueType> getParameter() {
+        if (parameter == null) {
+            parameter = new ArrayList<NameValueType>(1);
+        }
+        return this.parameter;
     }
-    return this.parameter;
-  }
 
-  /**
-   * Gets the value of the type property.
-   *
-   * @return possible object is {@link ModelDisType }
-   */
-  public ModelDisType getType() {
-    return type;
-  }
+    /**
+     * Gets the value of the type property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ModelDisType }
+     *     
+     */
+    public ModelDisType getType() {
+        return type;
+    }
 
-  /**
-   * Sets the value of the type property.
-   *
-   * @param value allowed object is {@link ModelDisType }
-   */
-  public void setType(ModelDisType value) {
-    this.type = value;
-  }
+    /**
+     * Sets the value of the type property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ModelDisType }
+     *     
+     */
+    public void setType(ModelDisType value) {
+        this.type = value;
+    }
 
 }

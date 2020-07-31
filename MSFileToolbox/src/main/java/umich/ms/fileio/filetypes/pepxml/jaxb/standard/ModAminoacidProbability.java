@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2017 Dmitry Avtonomov
+ * Copyright (c) 2019 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,9 +27,9 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -40,48 +40,58 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
 public class ModAminoacidProbability {
 
-  @XmlAttribute(name = "position", required = true)
-  @XmlJavaTypeAdapter(Adapter1.class)
-  @XmlSchemaType(name = "integer")
-  protected Integer position;
-  @XmlAttribute(name = "probability", required = true)
-  protected double probability;
+    @XmlAttribute(name = "position", required = true)
+    @XmlJavaTypeAdapter(Adapter1 .class)
+    @XmlSchemaType(name = "integer")
+    protected Integer position;
+    @XmlAttribute(name = "probability", required = true)
+    protected double probability;
 
-  /**
-   * Gets the value of the position property.
-   *
-   * @return possible object is {@link String }
-   */
-  public Integer getPosition() {
-    return position;
-  }
+    /**
+     * Gets the value of the position property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public Integer getPosition() {
+        return position;
+    }
 
-  /**
-   * Sets the value of the position property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setPosition(Integer value) {
-    this.position = value;
-  }
+    /**
+     * Sets the value of the position property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setPosition(Integer value) {
+        this.position = value;
+    }
 
-  /**
-   * Gets the value of the probability property.
-   */
-  public double getProbability() {
-    return probability;
-  }
+    /**
+     * Gets the value of the probability property.
+     * 
+     */
+    public double getProbability() {
+        return probability;
+    }
 
-  /**
-   * Sets the value of the probability property.
-   */
-  public void setProbability(double value) {
-    this.probability = value;
-  }
+    /**
+     * Sets the value of the probability property.
+     * 
+     */
+    public void setProbability(double value) {
+        this.probability = value;
+    }
 
 }

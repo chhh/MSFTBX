@@ -28,16 +28,88 @@ import java.util.TreeMap;
  */
 public class MsftbxInfo {
 
-  public static final String version = "1.8.7";
+  public static final String version = "1.18.1";
 
   private static final TreeMap<String, List<String>> changelog = new TreeMap<>();
   private static final Map<String, List<String>> changelogImmutable = Collections
       .unmodifiableMap(changelog);
 
   static {
+    changelog.put("v1.18.1", Arrays.asList(
+        "Remove guessing the parent scan number if precursor info is missing that."
+    ));
+    changelog.put("v1.18.0", Arrays.asList(
+        "Multiple precursors support in IScan. Implemented for Mzml and Thermo."
+    ));
+    changelog.put("v1.17.4", Arrays.asList(
+        "Thermo RAW files - parsing STRUCTURE_ONLY works."
+    ));
+    changelog.put("v1.17.3", Arrays.asList(
+        "Fix calculation of the last scan's length."
+    ));
+    changelog.put("v1.17.2", Arrays.asList(
+        "Add system property 'libs.thermo.timeout', units - seconds, controls server auto-stop"
+            + " when no RPC calls are received."
+    ));
+    changelog.put("v1.17.1", Arrays.asList(
+        "Add retries for starting BatmassServer."
+    ));
+    changelog.put("v1.17.0", Arrays.asList(
+        "New attribute in pepxml - 'uncalibrated_precursor_neutral_mass'.",
+        "Add 'String getId()' method to IScan with default implementation. Only parsed for mzML now. "
+            + "Returns scanNum as string by default."
+    ));
+    changelog.put("v1.16.6", Arrays.asList(
+            "Bruker files support for diaPasef."
+    ));
+    changelog.put("v1.16.3", Arrays.asList(
+        "mzML - change definition of a non-empty scan. When spectra are not parsed, cheeck default"
+            + " data array length, when spectra are parsed then examine spectra."
+    ));
+    changelog.put("v1.16.1", Arrays.asList(
+        "Fail fast when loading native libs"
+    ));
+    changelog.put("v1.16.0", Arrays.asList(
+        "Rename Bruker libs to include version number."
+    ));
+    changelog.put("v1.15.0", Arrays.asList(
+        "Rename lib to Batmass-IO."
+    ));
+    changelog.put("v1.10.3", Arrays.asList(
+        "Bugfixes for reading binary Bruker data.",
+        "Use IM scan numbers instead of 1/k0 for Bruker."
+    ));
+    changelog.put("v1.10.2", Arrays.asList(
+        "Add TimeInSec to all scans read by all functions.",
+        "Write an IM value for PASEF MS2 scnas.",
+        "Add IM Range for scans. Only repoted for MS2 PASEF scans."
+    ));
+    changelog.put("v1.10.1", Arrays.asList(
+        "Fix buffer underflow error in Bruker reader."
+    ));
+    changelog.put("v1.10.0", Arrays.asList(
+        "Bruker sql(tdf)/binary based file format reader. Not compliant with the old MSFTBX API "
+            + "as reading a single scan by its original number might produce multiple scans in "
+            + "case of PASEF MS2 scans. There is no way around this, MSFTBX API needs to be "
+            + "updated."
+    ));
+
+    changelog.put("v1.9.12", Arrays.asList(
+        "Guava dependency is now declared as 'compileOnly', which means consumers of MSFTBX"
+            + " need to provide their own copy."
+    ));
+    changelog.put("v1.9.11", Arrays.asList(
+        "Make Thermo scan numbers one-based."
+    ));
+    changelog.put("v1.9.10", Arrays.asList(
+        "Skip empty ion mobility scans in mzML parser."
+    ));
+    changelog.put("v1.9.8", Arrays.asList(
+        "Add Thermo RAW support"
+    ));
 
     changelog.put("v1.8.7", Arrays.asList(
-            "Add ion mobility binary data array to mzML."
+        "Add ion mobility binary data array to mzML."
     ));
 
     changelog.put("v1.8.6", Arrays.asList(

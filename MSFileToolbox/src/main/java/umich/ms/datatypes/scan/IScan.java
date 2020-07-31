@@ -25,6 +25,8 @@ import umich.ms.datatypes.scan.props.ScanType;
 import umich.ms.datatypes.scancollection.IScanCollection;
 import umich.ms.datatypes.spectrum.ISpectrum;
 import umich.ms.fileio.exceptions.FileParsingException;
+import umich.ms.fileio.filetypes.bruker.dao.Precursor;
+import umich.ms.util.DoubleRange;
 
 /**
  * If you are ever writing a wrapper for 3rd party Scan implementations you must implement this
@@ -33,6 +35,14 @@ import umich.ms.fileio.exceptions.FileParsingException;
  * Author: Dmitry Avtonomov (dmitriya) Email: dmitriy.avtonomov@gmail.com
  */
 public interface IScan extends Serializable {
+
+  /**
+   * Some sort of ID that comes from the original source of the scan. If the original
+   * source does not have an ID, just use the number.
+   */
+  default String getId() {
+    return Integer.toString(getNum());
+  }
 
   /**
    * Returns the internal scan number, which sometimes coincides with original scan numbers from raw
@@ -55,6 +65,9 @@ public interface IScan extends Serializable {
 
   void setIm(Double im);
 
+  DoubleRange getScanRange();
+  void setScanRange(DoubleRange imRange);
+
   Integer getMsLevel();
 
   void setMsLevel(Integer msLevel);
@@ -72,6 +85,10 @@ public interface IScan extends Serializable {
   PrecursorInfo getPrecursor();
 
   void setPrecursor(PrecursorInfo precursor);
+
+  List<PrecursorInfo> getPrecursors();
+
+  void addPrecursor(PrecursorInfo precursor);
 
   List<Integer> getChildScans();
 

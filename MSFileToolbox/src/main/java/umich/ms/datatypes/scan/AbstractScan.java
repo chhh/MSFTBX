@@ -16,6 +16,9 @@
 package umich.ms.datatypes.scan;
 
 import java.text.DecimalFormat;
+import java.text.MessageFormat;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import umich.ms.datatypes.scan.props.InjectionInfo;
 import umich.ms.datatypes.scan.props.Instrument;
@@ -24,6 +27,8 @@ import umich.ms.datatypes.scan.props.PrecursorInfo;
 import umich.ms.datatypes.scan.props.ScanType;
 import umich.ms.datatypes.scancollection.IScanCollection;
 import umich.ms.datatypes.spectrum.ISpectrum;
+import umich.ms.fileio.filetypes.bruker.dao.Precursor;
+import umich.ms.util.DoubleRange;
 
 /**
  * The most general representation of a Scan.
@@ -37,6 +42,11 @@ public abstract class AbstractScan implements IScan {
    * Serial number of this scan in an LC/MS run
    */
   protected int num;
+
+  /**
+   * String ID of the scan in original resource.
+   */
+  protected String id;
   /**
    * If this scan was added to a scan collection, this field should reference it
    */
@@ -45,6 +55,8 @@ public abstract class AbstractScan implements IScan {
    * If this is an MS1 scan, this field is left null, indicating there was no precursor
    */
   protected PrecursorInfo precursor;
+
+  protected List<PrecursorInfo> precursors = null;
   /**
    * If a file contains injection information, it should be put here, otherwise this field might be
    * null.
@@ -62,6 +74,7 @@ public abstract class AbstractScan implements IScan {
    * Inverse reduced ion mobility
    */
   protected Double im;
+  protected DoubleRange scanRange;
   protected Integer msLevel;
   protected Polarity polarity;
   /**
@@ -144,12 +157,42 @@ public abstract class AbstractScan implements IScan {
 
   @Override
   public PrecursorInfo getPrecursor() {
-    return precursor;
+    if (precursor != null)
+      return precursor;
+    if (precursors != null && !precursors.isEmpty())
+      return precursors.get(precursors.size()-1);
+    return null;
   }
 
   @Override
   public void setPrecursor(PrecursorInfo precursor) {
     this.precursor = precursor;
+  }
+
+  @Override
+  public List<PrecursorInfo> getPrecursors() {
+    if (precursors != null && !precursors.isEmpty())
+      return precursors;
+    if (precursor != null)
+      return Collections.singletonList(precursor);
+    return Collections.emptyList();
+  }
+
+  @Override
+  public void addPrecursor(PrecursorInfo precursor) {
+    if (precursors == null)
+      precursors = new ArrayList<>(1);
+    precursors.add(precursor);
+    setPrecursor(precursor); // only for backwards compatibility
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  @Override
+  public String getId() {
+    return id == null ? Integer.toString(getNum()) : id;
   }
 
   @Override
@@ -191,6 +234,17 @@ public abstract class AbstractScan implements IScan {
   public void setIm(Double im) {
     this.im = im;
   }
+
+  @Override
+  public DoubleRange getScanRange() {
+    return scanRange;
+  }
+
+  @Override
+  public void setScanRange(DoubleRange scanRange) {
+    this.scanRange = scanRange;
+  }
+
 
   @Override
   public Integer getMsLevel() {
@@ -313,12 +367,12 @@ public abstract class AbstractScan implements IScan {
 
   @Override
   public final void setSpectrum(ISpectrum spectrum, boolean forceOverrideMinMaxSumVals) {
-    if (spectrum == null && forceOverrideMinMaxSumVals) {
-      throw new IllegalArgumentException(String.format(
-          "If you force override min/max values, the spectrumRef must be non-null. Scan MS%d #%d @ %.3f",
-          getMsLevel(), getNum(), getRt()));
-    }
-    if (forceOverrideMinMaxSumVals) {
+//    if (spectrum == null && forceOverrideMinMaxSumVals) {
+//      throw new IllegalArgumentException(String.format(
+//          "If you force override min/max values, the spectrumRef must be non-null. Scan MS%d #%d @ %.3f",
+//          getMsLevel(), getNum(), getRt()));
+//    }
+    if (spectrum != null && forceOverrideMinMaxSumVals) {
       this.basePeakIntensity = spectrum.getMaxInt();
       this.basePeakMz = spectrum.getMaxIntMz();
       // only set these values if they've not been set previously, because these are isntrument level settings,
@@ -353,10 +407,12 @@ public abstract class AbstractScan implements IScan {
 
   @Override
   public String toString() {
-    return new StringBuilder(64)
-        .append("Scan #").append(getNum()).append(":MS").append(getMsLevel())
-        .append("[").append(getPolarity().toString()).append("]")
-        .append("@").append(FMT_DOUBLE_2_DIGITS_AFTER_DOT.format(getRt())).append("min")
-        .toString();
+    return MessageFormat
+        .format("Scan #{0}:MS{1}[{2}]@{3}min (id:{4})",
+                getNum(),
+                getMsLevel() == null ? "?" : getMsLevel(),
+                getPolarity() == null ? "?" : getPolarity().toString(),
+                getRt() == null ? "?" : FMT_DOUBLE_2_DIGITS_AFTER_DOT.format(getRt()),
+                id == null ? "?" : id);
   }
 }

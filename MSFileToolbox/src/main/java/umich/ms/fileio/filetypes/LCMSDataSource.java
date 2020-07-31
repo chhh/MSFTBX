@@ -18,7 +18,6 @@ package umich.ms.fileio.filetypes;
 import java.util.List;
 
 import umich.ms.datatypes.IScanFlux;
-import umich.ms.datatypes.IScanIterator;
 import umich.ms.datatypes.LCMSDataSubset;
 import umich.ms.datatypes.index.Index;
 import umich.ms.datatypes.lcmsrun.LCMSRunInfo;

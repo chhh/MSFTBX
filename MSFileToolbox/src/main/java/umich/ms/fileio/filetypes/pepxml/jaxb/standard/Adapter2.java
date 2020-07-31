@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2017 Dmitry Avtonomov
+ * Copyright (c) 2019 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,18 +20,19 @@ package umich.ms.fileio.filetypes.pepxml.jaxb.standard;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
 public class Adapter2
-    extends XmlAdapter<String, Double> {
+    extends XmlAdapter<String, Double>
+{
 
 
-  public Double unmarshal(String value) {
-    return (javax.xml.bind.DatatypeConverter.parseDouble(value));
-  }
-
-  public String marshal(Double value) {
-    if (value == null) {
-      return null;
+    public Double unmarshal(String value) {
+        return (javax.xml.bind.DatatypeConverter.parseDouble(value));
     }
-    return (javax.xml.bind.DatatypeConverter.printDouble(value));
-  }
+
+    public String marshal(Double value) {
+        if (value == null) {
+            return null;
+        }
+        return (javax.xml.bind.DatatypeConverter.printDouble(value));
+    }
 
 }

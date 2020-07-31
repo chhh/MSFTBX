@@ -43,7 +43,7 @@ public class SpectrumDefault extends AbstractSpectrum implements Serializable {
       throw new IllegalArgumentException("M/z and Intensity arrays must be of equal length");
     }
 
-    if (im != null && mz.length != im.length) {
+    if (im != null && im.length > 0 && mz.length != im.length) {
       throw new IllegalArgumentException("M/z and Ion Mobility arrays must be of equal length");
     }
 
@@ -77,6 +77,8 @@ public class SpectrumDefault extends AbstractSpectrum implements Serializable {
       double intHi = Double.NEGATIVE_INFINITY;
       double intHiMz = Double.NEGATIVE_INFINITY;
       double intSum = 0.0;
+      double mzLo = Double.POSITIVE_INFINITY;
+      double mzHi = Double.NEGATIVE_INFINITY;
       for (int i = 0; i < intensity.length; i++) {
         if (intLo > intensity[i]) {
           intLo = intensity[i];
@@ -88,9 +90,15 @@ public class SpectrumDefault extends AbstractSpectrum implements Serializable {
           intHi = intensity[i];
           intHiMz = mz[i];
         }
+        if (mzLo > mz[i]) {
+          mzLo = mz[i];
+        }
+        if (mzHi < mz[i]) {
+          mzHi = mz[i];
+        }
         intSum += intensity[i];
       }
-      init(mz[0], mz[mz.length - 1], intLo, intLoNonZero, intHi, intHiMz, intSum);
+      init(mzLo, mzHi, intLo, intLoNonZero, intHi, intHiMz, intSum);
     }
   }
 

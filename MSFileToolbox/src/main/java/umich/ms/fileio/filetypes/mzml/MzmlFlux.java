@@ -43,41 +43,11 @@ public class MzmlFlux implements IScanFlux {
 
   @Override
   public Flux<IScan> flux() throws FileParsingException {
-    final MZMLRunInfo runInfo = mzml.fetchRunInfo();
-
-    final InputStream is;
     try {
-      is = Files.newInputStream(Paths.get(path));
+      return fluxScans(this.mzml, true);
     } catch (IOException e) {
-      throw new IllegalStateException(e);
+      throw new FileParsingException(e);
     }
-
-    final int threads = 2;
-    final int prefetch = 2;
-    AtomicInteger ai = new AtomicInteger();
-
-    Flux<Buffer> gen = Flux.generate(
-        () -> is,
-        (inputStream, sink) -> {
-          Buffer buf = readBuffer();
-          if (buf == null) {
-            sink.complete();
-          } else {
-            sink.next(buf);
-          }
-          return inputStream;
-        },
-        inputStream -> {
-          if (inputStream != null) {
-            try {
-              inputStream.close();
-            } catch (IOException e) {
-              throw new IllegalStateException();
-            }
-          }
-        }
-    );
-    return null;
   }
 
   Buffer readBuffer() {

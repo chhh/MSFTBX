@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2017 Dmitry Avtonomov
+ * Copyright (c) 2019 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,9 +25,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -37,30 +37,38 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
 public class SequenceSearchConstraint {
 
-  @XmlAttribute(name = "sequence", required = true)
-  protected String sequence;
+    @XmlAttribute(name = "sequence", required = true)
+    protected String sequence;
 
-  /**
-   * Gets the value of the sequence property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getSequence() {
-    return sequence;
-  }
+    /**
+     * Gets the value of the sequence property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getSequence() {
+        return sequence;
+    }
 
-  /**
-   * Sets the value of the sequence property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setSequence(String value) {
-    this.sequence = value;
-  }
+    /**
+     * Sets the value of the sequence property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setSequence(String value) {
+        this.sequence = value;
+    }
 
 }

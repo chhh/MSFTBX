@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2017 Dmitry Avtonomov
+ * Copyright (c) 2019 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,9 +25,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -38,42 +38,48 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
 public class AffectedChannel {
 
-  @XmlAttribute(name = "channel", required = true)
-  protected long channel;
-  @XmlAttribute(name = "correction", required = true)
-  protected double correction;
+    @XmlAttribute(name = "channel", required = true)
+    protected long channel;
+    @XmlAttribute(name = "correction", required = true)
+    protected double correction;
 
-  /**
-   * Gets the value of the channel property.
-   */
-  public long getChannel() {
-    return channel;
-  }
+    /**
+     * Gets the value of the channel property.
+     * 
+     */
+    public long getChannel() {
+        return channel;
+    }
 
-  /**
-   * Sets the value of the channel property.
-   */
-  public void setChannel(long value) {
-    this.channel = value;
-  }
+    /**
+     * Sets the value of the channel property.
+     * 
+     */
+    public void setChannel(long value) {
+        this.channel = value;
+    }
 
-  /**
-   * Gets the value of the correction property.
-   */
-  public double getCorrection() {
-    return correction;
-  }
+    /**
+     * Gets the value of the correction property.
+     * 
+     */
+    public double getCorrection() {
+        return correction;
+    }
 
-  /**
-   * Sets the value of the correction property.
-   */
-  public void setCorrection(double value) {
-    this.correction = value;
-  }
+    /**
+     * Sets the value of the correction property.
+     * 
+     */
+    public void setCorrection(double value) {
+        this.correction = value;
+    }
 
 }

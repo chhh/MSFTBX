@@ -27,7 +27,7 @@ import java.nio.file.Paths;
 /**
  * Author: Dmitry Avtonomov (dmitriya)
  */
-public abstract class AbstractFile implements Closeable {
+public abstract class AbstractFile implements AutoCloseable {
 
   protected static final int BUF_SIZE = 8192;
   protected String path = "";

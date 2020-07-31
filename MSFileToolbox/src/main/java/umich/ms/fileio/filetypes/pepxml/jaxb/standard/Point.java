@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2017 Dmitry Avtonomov
+ * Copyright (c) 2019 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,9 +25,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -39,70 +39,90 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
 public class Point {
 
-  @XmlAttribute(name = "value")
-  protected Double value;
-  @XmlAttribute(name = "pos_dens")
-  protected Double posDens;
-  @XmlAttribute(name = "neg_dens")
-  protected Double negDens;
+    @XmlAttribute(name = "value")
+    protected Double value;
+    @XmlAttribute(name = "pos_dens")
+    protected Double posDens;
+    @XmlAttribute(name = "neg_dens")
+    protected Double negDens;
 
-  /**
-   * Gets the value of the value property.
-   *
-   * @return possible object is {@link Double }
-   */
-  public Double getValue() {
-    return value;
-  }
+    /**
+     * Gets the value of the value property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Double }
+     *     
+     */
+    public Double getValue() {
+        return value;
+    }
 
-  /**
-   * Sets the value of the value property.
-   *
-   * @param value allowed object is {@link Double }
-   */
-  public void setValue(Double value) {
-    this.value = value;
-  }
+    /**
+     * Sets the value of the value property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Double }
+     *     
+     */
+    public void setValue(Double value) {
+        this.value = value;
+    }
 
-  /**
-   * Gets the value of the posDens property.
-   *
-   * @return possible object is {@link Double }
-   */
-  public Double getPosDens() {
-    return posDens;
-  }
+    /**
+     * Gets the value of the posDens property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Double }
+     *     
+     */
+    public Double getPosDens() {
+        return posDens;
+    }
 
-  /**
-   * Sets the value of the posDens property.
-   *
-   * @param value allowed object is {@link Double }
-   */
-  public void setPosDens(Double value) {
-    this.posDens = value;
-  }
+    /**
+     * Sets the value of the posDens property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Double }
+     *     
+     */
+    public void setPosDens(Double value) {
+        this.posDens = value;
+    }
 
-  /**
-   * Gets the value of the negDens property.
-   *
-   * @return possible object is {@link Double }
-   */
-  public Double getNegDens() {
-    return negDens;
-  }
+    /**
+     * Gets the value of the negDens property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Double }
+     *     
+     */
+    public Double getNegDens() {
+        return negDens;
+    }
 
-  /**
-   * Sets the value of the negDens property.
-   *
-   * @param value allowed object is {@link Double }
-   */
-  public void setNegDens(Double value) {
-    this.negDens = value;
-  }
+    /**
+     * Sets the value of the negDens property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Double }
+     *     
+     */
+    public void setNegDens(Double value) {
+        this.negDens = value;
+    }
 
 }

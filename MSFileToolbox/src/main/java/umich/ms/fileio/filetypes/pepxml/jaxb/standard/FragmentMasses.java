@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2017 Dmitry Avtonomov
+ * Copyright (c) 2019 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,9 +25,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -39,62 +39,74 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
 public class FragmentMasses {
 
-  @XmlAttribute(name = "channel", required = true)
-  protected long channel;
-  @XmlAttribute(name = "mz", required = true)
-  protected double mz;
-  @XmlAttribute(name = "offset")
-  protected Double offset;
+    @XmlAttribute(name = "channel", required = true)
+    protected long channel;
+    @XmlAttribute(name = "mz", required = true)
+    protected double mz;
+    @XmlAttribute(name = "offset")
+    protected Double offset;
 
-  /**
-   * Gets the value of the channel property.
-   */
-  public long getChannel() {
-    return channel;
-  }
+    /**
+     * Gets the value of the channel property.
+     * 
+     */
+    public long getChannel() {
+        return channel;
+    }
 
-  /**
-   * Sets the value of the channel property.
-   */
-  public void setChannel(long value) {
-    this.channel = value;
-  }
+    /**
+     * Sets the value of the channel property.
+     * 
+     */
+    public void setChannel(long value) {
+        this.channel = value;
+    }
 
-  /**
-   * Gets the value of the mz property.
-   */
-  public double getMz() {
-    return mz;
-  }
+    /**
+     * Gets the value of the mz property.
+     * 
+     */
+    public double getMz() {
+        return mz;
+    }
 
-  /**
-   * Sets the value of the mz property.
-   */
-  public void setMz(double value) {
-    this.mz = value;
-  }
+    /**
+     * Sets the value of the mz property.
+     * 
+     */
+    public void setMz(double value) {
+        this.mz = value;
+    }
 
-  /**
-   * Gets the value of the offset property.
-   *
-   * @return possible object is {@link Double }
-   */
-  public Double getOffset() {
-    return offset;
-  }
+    /**
+     * Gets the value of the offset property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Double }
+     *     
+     */
+    public Double getOffset() {
+        return offset;
+    }
 
-  /**
-   * Sets the value of the offset property.
-   *
-   * @param value allowed object is {@link Double }
-   */
-  public void setOffset(Double value) {
-    this.offset = value;
-  }
+    /**
+     * Sets the value of the offset property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Double }
+     *     
+     */
+    public void setOffset(Double value) {
+        this.offset = value;
+    }
 
 }

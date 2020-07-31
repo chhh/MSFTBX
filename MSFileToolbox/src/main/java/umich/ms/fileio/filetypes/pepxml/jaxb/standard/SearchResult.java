@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2017 Dmitry Avtonomov
+ * Copyright (c) 2019 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,9 +28,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -124,7 +124,7 @@ import javax.xml.bind.annotation.XmlType;
  *                   &lt;/simpleType>
  *                 &lt;/attribute>
  *                 &lt;attribute name="protein_descr" type="{http://www.w3.org/2001/XMLSchema}string" />
- *                 &lt;attribute name="calc_pI" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                 &lt;attribute name="calc_pI" type="{http://www.w3.org/2001/XMLSchema}double" />
  *                 &lt;attribute name="protein_mw" type="{http://www.w3.org/2001/XMLSchema}double" />
  *               &lt;/restriction>
  *             &lt;/complexContent>
@@ -136,6 +136,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -143,56 +145,66 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class SearchResult {
 
-  @XmlElement(name = "search_hit")
-  protected List<SearchHit> searchHit;
-  @XmlAttribute(name = "search_id")
-  protected Long searchId;
+    @XmlElement(name = "search_hit")
+    protected List<SearchHit> searchHit;
+    @XmlAttribute(name = "search_id")
+    protected Long searchId;
 
-  /**
-   * Gets the value of the searchHit property.
-   *
-   * <p>
-   * This accessor method returns a reference to the live list, not a snapshot. Therefore any
-   * modification you make to the returned list will be present inside the JAXB object. This is why
-   * there is not a <CODE>set</CODE> method for the searchHit property.
-   *
-   * <p>
-   * For example, to add a new item, do as follows:
-   * <pre>
-   *    getSearchHit().add(newItem);
-   * </pre>
-   *
-   *
-   * <p>
-   * Objects of the following type(s) are allowed in the list {@link SearchHit }
-   */
-  public List<SearchHit> getSearchHit() {
-    if (searchHit == null) {
-      searchHit = new ArrayList<SearchHit>(1);
+    /**
+     * Gets the value of the searchHit property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the searchHit property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getSearchHit().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link SearchHit }
+     * 
+     * 
+     */
+    public List<SearchHit> getSearchHit() {
+        if (searchHit == null) {
+            searchHit = new ArrayList<SearchHit>(1);
+        }
+        return this.searchHit;
     }
-    return this.searchHit;
-  }
 
-  /**
-   * Gets the value of the searchId property.
-   *
-   * @return possible object is {@link Long }
-   */
-  public long getSearchId() {
-    if (searchId == null) {
-      return 1L;
-    } else {
-      return searchId;
+    /**
+     * Gets the value of the searchId property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Long }
+     *     
+     */
+    public long getSearchId() {
+        if (searchId == null) {
+            return  1L;
+        } else {
+            return searchId;
+        }
     }
-  }
 
-  /**
-   * Sets the value of the searchId property.
-   *
-   * @param value allowed object is {@link Long }
-   */
-  public void setSearchId(Long value) {
-    this.searchId = value;
-  }
+    /**
+     * Sets the value of the searchId property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Long }
+     *     
+     */
+    public void setSearchId(Long value) {
+        this.searchId = value;
+    }
 
 }

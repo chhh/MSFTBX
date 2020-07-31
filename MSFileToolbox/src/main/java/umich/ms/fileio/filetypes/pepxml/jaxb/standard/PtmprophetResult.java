@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2017 Dmitry Avtonomov
+ * Copyright (c) 2019 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,15 +29,25 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="mod_aminoacid_probability" maxOccurs="unbounded">
+ *         &lt;element name="mod_terminal_probability" maxOccurs="2" minOccurs="0">
+ *           &lt;complexType>
+ *             &lt;complexContent>
+ *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                 &lt;attribute name="terminus" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                 &lt;attribute name="probability" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *               &lt;/restriction>
+ *             &lt;/complexContent>
+ *           &lt;/complexType>
+ *         &lt;/element>
+ *         &lt;element name="mod_aminoacid_probability" maxOccurs="unbounded" minOccurs="0">
  *           &lt;complexType>
  *             &lt;complexContent>
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
@@ -55,96 +65,148 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
+    "modTerminalProbability",
     "modAminoacidProbability"
 })
 @XmlRootElement(name = "ptmprophet_result")
 public class PtmprophetResult {
 
-  @XmlElement(name = "mod_aminoacid_probability", required = true)
-  protected List<ModAminoacidProbability> modAminoacidProbability;
-  @XmlAttribute(name = "prior", required = true)
-  protected double prior;
-  @XmlAttribute(name = "ptm", required = true)
-  protected String ptm;
-  @XmlAttribute(name = "ptm_peptide", required = true)
-  protected String ptmPeptide;
+    @XmlElement(name = "mod_terminal_probability")
+    protected List<ModTerminalProbability> modTerminalProbability;
+    @XmlElement(name = "mod_aminoacid_probability")
+    protected List<ModAminoacidProbability> modAminoacidProbability;
+    @XmlAttribute(name = "prior", required = true)
+    protected double prior;
+    @XmlAttribute(name = "ptm", required = true)
+    protected String ptm;
+    @XmlAttribute(name = "ptm_peptide", required = true)
+    protected String ptmPeptide;
 
-  /**
-   * Gets the value of the modAminoacidProbability property.
-   *
-   * <p>
-   * This accessor method returns a reference to the live list, not a snapshot. Therefore any
-   * modification you make to the returned list will be present inside the JAXB object. This is why
-   * there is not a <CODE>set</CODE> method for the modAminoacidProbability property.
-   *
-   * <p>
-   * For example, to add a new item, do as follows:
-   * <pre>
-   *    getModAminoacidProbability().add(newItem);
-   * </pre>
-   *
-   *
-   * <p>
-   * Objects of the following type(s) are allowed in the list {@link ModAminoacidProbability }
-   */
-  public List<ModAminoacidProbability> getModAminoacidProbability() {
-    if (modAminoacidProbability == null) {
-      modAminoacidProbability = new ArrayList<ModAminoacidProbability>(1);
+    /**
+     * Gets the value of the modTerminalProbability property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the modTerminalProbability property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getModTerminalProbability().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link ModTerminalProbability }
+     * 
+     * 
+     */
+    public List<ModTerminalProbability> getModTerminalProbability() {
+        if (modTerminalProbability == null) {
+            modTerminalProbability = new ArrayList<ModTerminalProbability>(1);
+        }
+        return this.modTerminalProbability;
     }
-    return this.modAminoacidProbability;
-  }
 
-  /**
-   * Gets the value of the prior property.
-   */
-  public double getPrior() {
-    return prior;
-  }
+    /**
+     * Gets the value of the modAminoacidProbability property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the modAminoacidProbability property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getModAminoacidProbability().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link ModAminoacidProbability }
+     * 
+     * 
+     */
+    public List<ModAminoacidProbability> getModAminoacidProbability() {
+        if (modAminoacidProbability == null) {
+            modAminoacidProbability = new ArrayList<ModAminoacidProbability>(1);
+        }
+        return this.modAminoacidProbability;
+    }
 
-  /**
-   * Sets the value of the prior property.
-   */
-  public void setPrior(double value) {
-    this.prior = value;
-  }
+    /**
+     * Gets the value of the prior property.
+     * 
+     */
+    public double getPrior() {
+        return prior;
+    }
 
-  /**
-   * Gets the value of the ptm property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getPtm() {
-    return ptm;
-  }
+    /**
+     * Sets the value of the prior property.
+     * 
+     */
+    public void setPrior(double value) {
+        this.prior = value;
+    }
 
-  /**
-   * Sets the value of the ptm property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setPtm(String value) {
-    this.ptm = value;
-  }
+    /**
+     * Gets the value of the ptm property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getPtm() {
+        return ptm;
+    }
 
-  /**
-   * Gets the value of the ptmPeptide property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getPtmPeptide() {
-    return ptmPeptide;
-  }
+    /**
+     * Sets the value of the ptm property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setPtm(String value) {
+        this.ptm = value;
+    }
 
-  /**
-   * Sets the value of the ptmPeptide property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setPtmPeptide(String value) {
-    this.ptmPeptide = value;
-  }
+    /**
+     * Gets the value of the ptmPeptide property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getPtmPeptide() {
+        return ptmPeptide;
+    }
+
+    /**
+     * Sets the value of the ptmPeptide property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setPtmPeptide(String value) {
+        this.ptmPeptide = value;
+    }
 
 }

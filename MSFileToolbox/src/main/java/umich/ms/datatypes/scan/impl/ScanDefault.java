@@ -16,8 +16,10 @@
 package umich.ms.datatypes.scan.impl;
 
 import java.lang.ref.Reference;
+import java.util.List;
 import umich.ms.datatypes.scan.AbstractScan;
 import umich.ms.datatypes.scan.StorageStrategy;
+import umich.ms.datatypes.scan.props.PrecursorInfo;
 import umich.ms.datatypes.scancollection.IScanCollection;
 import umich.ms.datatypes.spectrum.ISpectrum;
 import umich.ms.fileio.exceptions.FileParsingException;
@@ -32,7 +34,6 @@ import umich.ms.fileio.exceptions.FileParsingException;
 public class ScanDefault extends AbstractScan {
 
   protected Reference<ISpectrum> spectrumRef;
-
 
   public ScanDefault(int num) {
     super(num);
@@ -65,7 +66,6 @@ public class ScanDefault extends AbstractScan {
   public Double getRt() {
     return rt;
   }
-
 
   public IScanCollection getScans() {
     return scans;

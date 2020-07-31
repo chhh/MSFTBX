@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2017 Dmitry Avtonomov
+ * Copyright (c) 2019 Dmitry Avtonomov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,9 +30,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.
- *
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -49,6 +49,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -57,113 +59,127 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement(name = "asapratio_peptide_data")
 public class AsapratioPeptideData {
 
-  @XmlElement(name = "asapratio_contribution", required = true)
-  protected List<AsapratioContribution> asapratioContribution;
-  @XmlAttribute(name = "status", required = true)
-  protected byte status;
-  @XmlAttribute(name = "cidIndex", required = true)
-  protected int cidIndex;
-  @XmlAttribute(name = "light_mass", required = true)
-  protected double lightMass;
-  @XmlAttribute(name = "heavy_mass", required = true)
-  protected double heavyMass;
-  @XmlAttribute(name = "area_flag", required = true)
-  @XmlSchemaType(name = "unsignedInt")
-  protected long areaFlag;
+    @XmlElement(name = "asapratio_contribution", required = true)
+    protected List<AsapratioContribution> asapratioContribution;
+    @XmlAttribute(name = "status", required = true)
+    protected byte status;
+    @XmlAttribute(name = "cidIndex", required = true)
+    protected int cidIndex;
+    @XmlAttribute(name = "light_mass", required = true)
+    protected double lightMass;
+    @XmlAttribute(name = "heavy_mass", required = true)
+    protected double heavyMass;
+    @XmlAttribute(name = "area_flag", required = true)
+    @XmlSchemaType(name = "unsignedInt")
+    protected long areaFlag;
 
-  /**
-   * Gets the value of the asapratioContribution property.
-   *
-   * <p>
-   * This accessor method returns a reference to the live list, not a snapshot. Therefore any
-   * modification you make to the returned list will be present inside the JAXB object. This is why
-   * there is not a <CODE>set</CODE> method for the asapratioContribution property.
-   *
-   * <p>
-   * For example, to add a new item, do as follows:
-   * <pre>
-   *    getAsapratioContribution().add(newItem);
-   * </pre>
-   *
-   *
-   * <p>
-   * Objects of the following type(s) are allowed in the list {@link AsapratioContribution }
-   */
-  public List<AsapratioContribution> getAsapratioContribution() {
-    if (asapratioContribution == null) {
-      asapratioContribution = new ArrayList<AsapratioContribution>(1);
+    /**
+     * Gets the value of the asapratioContribution property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the asapratioContribution property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getAsapratioContribution().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link AsapratioContribution }
+     * 
+     * 
+     */
+    public List<AsapratioContribution> getAsapratioContribution() {
+        if (asapratioContribution == null) {
+            asapratioContribution = new ArrayList<AsapratioContribution>(1);
+        }
+        return this.asapratioContribution;
     }
-    return this.asapratioContribution;
-  }
 
-  /**
-   * Gets the value of the status property.
-   */
-  public byte getStatus() {
-    return status;
-  }
+    /**
+     * Gets the value of the status property.
+     * 
+     */
+    public byte getStatus() {
+        return status;
+    }
 
-  /**
-   * Sets the value of the status property.
-   */
-  public void setStatus(byte value) {
-    this.status = value;
-  }
+    /**
+     * Sets the value of the status property.
+     * 
+     */
+    public void setStatus(byte value) {
+        this.status = value;
+    }
 
-  /**
-   * Gets the value of the cidIndex property.
-   */
-  public int getCidIndex() {
-    return cidIndex;
-  }
+    /**
+     * Gets the value of the cidIndex property.
+     * 
+     */
+    public int getCidIndex() {
+        return cidIndex;
+    }
 
-  /**
-   * Sets the value of the cidIndex property.
-   */
-  public void setCidIndex(int value) {
-    this.cidIndex = value;
-  }
+    /**
+     * Sets the value of the cidIndex property.
+     * 
+     */
+    public void setCidIndex(int value) {
+        this.cidIndex = value;
+    }
 
-  /**
-   * Gets the value of the lightMass property.
-   */
-  public double getLightMass() {
-    return lightMass;
-  }
+    /**
+     * Gets the value of the lightMass property.
+     * 
+     */
+    public double getLightMass() {
+        return lightMass;
+    }
 
-  /**
-   * Sets the value of the lightMass property.
-   */
-  public void setLightMass(double value) {
-    this.lightMass = value;
-  }
+    /**
+     * Sets the value of the lightMass property.
+     * 
+     */
+    public void setLightMass(double value) {
+        this.lightMass = value;
+    }
 
-  /**
-   * Gets the value of the heavyMass property.
-   */
-  public double getHeavyMass() {
-    return heavyMass;
-  }
+    /**
+     * Gets the value of the heavyMass property.
+     * 
+     */
+    public double getHeavyMass() {
+        return heavyMass;
+    }
 
-  /**
-   * Sets the value of the heavyMass property.
-   */
-  public void setHeavyMass(double value) {
-    this.heavyMass = value;
-  }
+    /**
+     * Sets the value of the heavyMass property.
+     * 
+     */
+    public void setHeavyMass(double value) {
+        this.heavyMass = value;
+    }
 
-  /**
-   * Gets the value of the areaFlag property.
-   */
-  public long getAreaFlag() {
-    return areaFlag;
-  }
+    /**
+     * Gets the value of the areaFlag property.
+     * 
+     */
+    public long getAreaFlag() {
+        return areaFlag;
+    }
 
-  /**
-   * Sets the value of the areaFlag property.
-   */
-  public void setAreaFlag(long value) {
-    this.areaFlag = value;
-  }
+    /**
+     * Sets the value of the areaFlag property.
+     * 
+     */
+    public void setAreaFlag(long value) {
+        this.areaFlag = value;
+    }
 
 }

@@ -16,12 +16,28 @@
 package umich.ms.datatypes.scan.props;
 
 import java.io.Serializable;
+import java.util.List;
+
+import com.dmtavt.batmass.io.ms.api.IsolationRange;
 import umich.ms.util.DoubleRange;
 
 /**
  * Author: Dmitry Avtonomov (dmitriya)
  */
 public class PrecursorInfo implements Serializable {
+  public static class IsolationRange2D {
+    public final double mzLo;
+    public final double mzHi;
+    public final double imLo;
+    public final double imHi;
+
+    public IsolationRange2D(double mzLo, double mzHi, double imLo, double imHi) {
+      this.mzLo = mzLo;
+      this.mzHi = mzHi;
+      this.imLo = imLo;
+      this.imHi = imHi;
+    }
+  }
 
   /**
    * This is the internal scan number, it will only be non-null, if the parent scan itself is still
@@ -41,9 +57,19 @@ public class PrecursorInfo implements Serializable {
   private Integer charge;
   private ActivationInfo activationInfo;
   private Double intensity;
+  private List<IsolationRange2D> isolationRanges;
+  private Integer precursorMsLevel = null;
 
   public PrecursorInfo() {
     activationInfo = new ActivationInfo();
+  }
+
+  public List<IsolationRange2D> getIsolationRanges() {
+    return isolationRanges;
+  }
+
+  public void setIsolationRanges(List<IsolationRange2D> isolationRanges) {
+    this.isolationRanges = isolationRanges;
   }
 
   public String getParentScanRefRaw() {
@@ -155,5 +181,13 @@ public class PrecursorInfo implements Serializable {
 
   public void setIntensity(Double intensity) {
     this.intensity = intensity;
+  }
+
+  public Integer getPrecursorMsLevel() {
+    return precursorMsLevel;
+  }
+
+  public void setPrecursorMsLevel(Integer precursorMsLevel) {
+    this.precursorMsLevel = precursorMsLevel;
   }
 }
