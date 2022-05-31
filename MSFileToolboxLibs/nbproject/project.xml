@@ -24,13 +24,16 @@
                 <package>com.google.common.reflect</package>
                 <package>com.google.common.util.concurrent</package>
                 <package>com.google.common.xml</package>
+                <package>com.google.thirdparty.publicsuffix</package>
                 <package>com4j</package>
                 <package>com4j.stdole</package>
                 <package>com4j.util</package>
+                <package>javax.realtime</package>
                 <package>javolution.context</package>
                 <package>javolution.context.internal</package>
                 <package>javolution.io</package>
                 <package>javolution.lang</package>
+                <package>javolution.osgi.internal</package>
                 <package>javolution.text</package>
                 <package>javolution.text.internal</package>
                 <package>javolution.tools</package>
@@ -52,6 +55,9 @@
                 <package>javolution.xml.internal.stream</package>
                 <package>javolution.xml.sax</package>
                 <package>javolution.xml.stream</package>
+                <package>javolution.xml.ws</package>
+                <package>okio</package>
+                <package>okio.internal</package>
                 <package>org.apache.commons.pool2</package>
                 <package>org.apache.commons.pool2.impl</package>
                 <package>org.apache.commons.pool2.proxy</package>
@@ -59,11 +65,43 @@
                 <package>org.biojava.nbio.ontology.io</package>
                 <package>org.biojava.nbio.ontology.obo</package>
                 <package>org.biojava.nbio.ontology.utils</package>
+                <package>org.osgi.service.log</package>
+                <package>org.reactivestreams</package>
                 <package>org.slf4j</package>
                 <package>org.slf4j.event</package>
                 <package>org.slf4j.helpers</package>
                 <package>org.slf4j.spi</package>
+                <package>reactor.adapter</package>
+                <package>reactor.core</package>
+                <package>reactor.core.publisher</package>
+                <package>reactor.core.scheduler</package>
+                <package>reactor.util</package>
+                <package>reactor.util.annotation</package>
+                <package>reactor.util.concurrent</package>
+                <package>reactor.util.context</package>
+                <package>reactor.util.function</package>
+                <package>reactor.util.retry</package>
             </public-packages>
+            <class-path-extension>
+                <runtime-relative-path>ext/com4j-2.2-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/com4j-2.2-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/reactor-core-3.3.8.RELEASE.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/reactor-core-3.3.8.RELEASE.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/javolution-core-java-msftbx-6.11.8.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/javolution-core-java-msftbx-6.11.8.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/commons-pool2-2.4.2.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/commons-pool2-2.4.2.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/reactive-streams-1.0.3.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/reactive-streams-1.0.3.jar</binary-origin>
+            </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/biojava-ontology-4.2.7.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/biojava-ontology-4.2.7.jar</binary-origin>
@@ -77,16 +115,8 @@
                 <binary-origin>release/modules/ext/guava-22.0-android.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/commons-pool2-2.4.2.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/commons-pool2-2.4.2.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/com4j-2.2-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/com4j-2.2-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/javolution-core-java-msftbx-6.11.8.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/javolution-core-java-msftbx-6.11.8.jar</binary-origin>
+                <runtime-relative-path>ext/okio-2.7.0.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/okio-2.7.0.jar</binary-origin>
             </class-path-extension>
         </data>
     </configuration>

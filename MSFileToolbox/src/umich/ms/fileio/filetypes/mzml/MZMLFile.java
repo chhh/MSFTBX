@@ -16,9 +16,15 @@
 package umich.ms.fileio.filetypes.mzml;
 
 import java.io.InputStream;
+import java.util.*;
+
 import javolution.xml.internal.stream.XMLStreamReaderImpl;
 import org.apache.commons.pool2.ObjectPool;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import umich.ms.datatypes.IScanFlux;
 import umich.ms.datatypes.LCMSDataSubset;
+import umich.ms.datatypes.scan.IScan;
 import umich.ms.fileio.exceptions.FileParsingException;
 import umich.ms.fileio.filetypes.xmlbased.AbstractXMLBasedDataSource;
 import umich.ms.fileio.filetypes.xmlbased.IndexBuilder;
@@ -27,6 +33,7 @@ import umich.ms.fileio.filetypes.xmlbased.IndexBuilder;
  * @author Dmitry Avtonomov
  */
 public class MZMLFile extends AbstractXMLBasedDataSource<MZMLIndexElement, MZMLIndex> {
+  private static final Logger log = LoggerFactory.getLogger(MZMLFile.class);
 
   private MZMLIndex index;
 
@@ -93,11 +100,7 @@ public class MZMLFile extends AbstractXMLBasedDataSource<MZMLIndexElement, MZMLI
   public MZMLMultiSpectraParser getSpectraParser(InputStream inputStream,
       LCMSDataSubset subset, ObjectPool<XMLStreamReaderImpl> readerPool, Integer numSpectra) {
     MZMLMultiSpectraParser parser;
-    try {
-      parser = new MZMLMultiSpectraParser(inputStream, subset, this);
-    } catch (FileParsingException ex) {
-      throw new IllegalStateException(ex);
-    }
+    parser = new MZMLMultiSpectraParser(inputStream, subset, this);
     parser.setNumScansToProcess(numSpectra);
     parser.setReaderPool(readerPool);
     return parser;
@@ -106,5 +109,10 @@ public class MZMLFile extends AbstractXMLBasedDataSource<MZMLIndexElement, MZMLI
   @Override
   public IndexBuilder<MZMLIndexElement> getIndexBuilder(IndexBuilder.Info info) {
     return new MZMLIndexBuilder(info, getReaderPool());
+  }
+
+  @Override
+  public IScanFlux getFlux() {
+    return new MzmlFlux(this.path);
   }
 }

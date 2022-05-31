@@ -216,6 +216,14 @@ public class IntervalST<K extends Comparable<K>, V> implements Iterable<Interval
     }
   }
 
+    public Node<K, V> getRoot() {
+        return root;
+    }
+
+  public void clear() {
+      root = null;
+  }
+  
   @Override
   public Iterator<IntervalST.Node<K, V>> iterator() {
     return new IntervalSTIterator();
@@ -369,9 +377,8 @@ public class IntervalST<K extends Comparable<K>, V> implements Iterable<Interval
    */
   public Interval1D<K> search(Interval1D<K> interval) {
     return search(root, interval);
-
   }
-
+  
   /*************************************************************************
    *  Interval searching
    *************************************************************************/

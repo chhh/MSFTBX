@@ -69,8 +69,7 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
   protected ObjectPool<XMLStreamReaderImpl> readerPool = null;
   private int numOpeningScanTagsFound;
 
-  public MZMLMultiSpectraParser(InputStream is, LCMSDataSubset subset, MZMLFile source)
-      throws FileParsingException {
+  public MZMLMultiSpectraParser(InputStream is, LCMSDataSubset subset, MZMLFile source) {
     super(is, subset);
     this.source = source;
     this.vars = new MzmlVars();
@@ -97,12 +96,12 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
     if (numScansToProcess != null) {
       parsedScans = new ArrayList<>(numScansToProcess);
     } else {
-      parsedScans = new ArrayList<>();
+      parsedScans = new ArrayList<>(1);
     }
     numOpeningScanTagsFound = 0;
     vars.reset();
 
-    XMLStreamReaderImpl reader =
+    XMLStreamReaderImpl reader = //new XMLStreamReaderImpl();
         (readerPool == null) ? new XMLStreamReaderImpl() : readerPool.borrowObject();
     try {
       reader.setInput(is, StandardCharsets.UTF_8.name());
@@ -513,7 +512,7 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
       double basePeakMz =
           vars.intensityData.valMaxPos < 0 ? 0d : vars.mzData.arr[vars.intensityData.valMaxPos];
       ISpectrum spectrum = new SpectrumDefault(
-          vars.mzData.arr, vars.intensityData.arr, vars.imData.arr,
+          vars.mzData.arr, vars.intensityData.arr, vars.imData == null ? null : vars.imData.arr,
           vars.intensityData.valMin, vars.intensityData.valMinNonZero,
           vars.intensityData.valMax, basePeakMz,
           vars.intensityData.sum);
