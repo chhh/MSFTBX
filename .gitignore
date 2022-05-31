@@ -1,6 +1,7 @@
 # this is for old (original) netbeans platform implementation for BatMass 
 updates-backup
 **/*.iml
+!MSFileToolboxLibs/release/modules/ext/*
 
 # Created by https://www.gitignore.io/api/vim,java,maven,macos,linux,emacs,csharp,gradle,eclipse,windows,netbeans,intellij+all,notepadpp,visualstudio,visualstudiocode
 # Edit at https://www.gitignore.io/?templates=vim,java,maven,macos,linux,emacs,csharp,gradle,eclipse,windows,netbeans,intellij+all,notepadpp,visualstudio,visualstudiocode
@@ -27,7 +28,7 @@ mono_crash.*
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
-[Rr]elease/
+#[Rr]elease/
 [Rr]eleases/
 x64/
 x86/
@@ -569,7 +570,7 @@ modules.xml
 .mtj.tmp/
 
 # Package Files #
-*.jar
+#*.jar
 *.war
 *.nar
 *.ear
@@ -874,4 +875,3 @@ gradle-app.setting
 # Backup folder for Package Reference Convert tool in Visual Studio 2017
 
 # End of https://www.gitignore.io/api/vim,java,maven,macos,linux,emacs,csharp,gradle,eclipse,windows,netbeans,intellij+all,notepadpp,visualstudio,visualstudiocode
-
