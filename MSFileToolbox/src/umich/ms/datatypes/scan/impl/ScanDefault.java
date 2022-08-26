@@ -107,5 +107,15 @@ public class ScanDefault extends AbstractScan {
     this.spectrumRef = storageStrategy.getRef(spectrum);
   }
 
+  @Override
+  public Double getFaimsVoltage() {
+    return faimsVoltage;
+  }
+
+  @Override
+  public void setFaimsVoltage(Double faimsVoltage) {
+    this.faimsVoltage = faimsVoltage;
+  }
+
 
 }

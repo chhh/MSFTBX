@@ -104,6 +104,7 @@ public abstract class AbstractScan implements IScan {
    */
   protected Double scanMzWindowUpper;
   protected StorageStrategy storageStrategy;
+  protected Double faimsVoltage;
 
   /**
    * Creates a scan with STRONG storage strategy.

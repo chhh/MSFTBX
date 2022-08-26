@@ -73,6 +73,7 @@ public enum PSIMSCV {
   MS_TIC("MS:1000285", "total ion current"),
   MS_RT_SCAN_START("MS:1000016", "scan start time"),
   MS_IM("MS:1002815", "inverse reduced ion mobility"),
+  MS_FAIMS("MS:1001581", "FAIMS compensation voltage"),
   MS_RT_RETENTION_TIME("MS:1000894", "retention time"),
   MS_RT_RETENTION_TIME_LOCAL("MS:1000895", "local retention time"),
   MS_RT_RETENTION_TIME_NORMALIZED("MS:1000896", "normalized retention time"),

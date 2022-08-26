@@ -654,6 +654,10 @@ public class MZMLMultiSpectraParser extends MultiSpectraParser {
       case MS_IM:
         vars.curScan.setIm(val.toDouble());
         break;
+      
+      case MS_FAIMS:
+        vars.curScan.setFaimsVoltage(val.toDouble());
+        break;
 
       case MS_RT_SCAN_START:
       case MS_RT_RETENTION_TIME:

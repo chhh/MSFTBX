@@ -104,6 +104,10 @@ public interface IScan extends Serializable {
   Double getScanMzWindowUpper();
 
   void setScanMzWindowUpper(Double scanMzWindowUpper);
+  
+  Double getFaimsVoltage();
+  
+  void setFaimsVoltage(Double faimsVoltage);
 
   /**
    * Get the spectrum, not trying to loead it from disk, if it wasn't parsed.
